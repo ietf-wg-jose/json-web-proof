@@ -43,10 +43,20 @@ Miek Gieben and available at [https://github.com/mmarkdown/mmark/](https://githu
 
 # Introduction
 
-More information can be found in [@!I-D.nottingham-for-the-users]. (An
-example of an informative reference in the middle of text. Note that
-referencing an Internet Draft involves replacing "draft-" in the name with
-"I-D.".)
+The JOSE specifications are very widely deployed and well supported technology combining security with the accessibility of JSON.  JWTs are one of the most common encapsulation formats for identity and access claims as part of the OpenID Connect standards.  More recently JOSE and JWTs are being integrated as part of the W3C's Verifiable Credentials work to implement Decentralized Identity use-cases.
+
+With these new use-cases there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not easily supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting a credential, and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) instead of traditional signatures.
+
+There are a growing number of these cryptographic primitives that support selective disclosure while protecting privacy across multiple presentations.  Examples that have already been or are being deployed in the context of Verifiable Credentials are:
+
+* [CL Signatures](https://eprint.iacr.org/2012/562.pdf)
+* [IDEMIX](http://www.zurich.ibm.com/idemix)
+* [BBS+](https://github.com/mattrglobal/bbs-signatures)
+* [Mercural Signatures](https://eprint.iacr.org/2020/979)
+* [PS Signatures](https://eprint.iacr.org/2015/525.pdf)
+* [U-Prove](https://www.microsoft.com/en-us/research/project/u-prove/)
+
+All of these follow the same pattern of taking multiple claims (a.k.a. 'attributes' or 'messages' in the literature) and binding them together into an issued credential.  These are then later securely one-way transformed into a presentation, revealing potentially only a subset of the original claims as required.
 
 # Conventions and Definitions
 
