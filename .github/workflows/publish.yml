@@ -36,12 +36,12 @@ jobs:
           refcache-
 
     - name: "Build Drafts"
-      uses: dwaite/i-d-template@v1
+      uses: martinthomson/i-d-template@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: "Upload to Datatracker"
-      uses: dwaite/i-d-template@v1
+      uses: martinthomson/i-d-template@v1
       with:
         make: upload
 
