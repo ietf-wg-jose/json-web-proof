@@ -6,10 +6,7 @@
 
 [WG projects](https://github.com/topics/wg-crypto) | [DIF page](https://identity.foundation/working-groups/crypto.html) | [Recordings](https://docs.google.com/spreadsheets/d/1wgccmMvIImx30qVE9GhRKWWv3vmL2ZyUauuKx3IfRmA/edit#gid=339046779)
 
-_For this call, you are encouraged to turn your video on. This is a good way to build rapport given we are a large, disparate group experiencing a lot of churn._
-
-_This document is live-edited DURING each call, or shortly after the call, and stable/authoritative copies live on our github repo under /agenda.md .
-Please note that we might not notice a pullrequest in time, but you are free to propose agenda items for future meetings via hackmd._
+(hackmd sync coming soon)
 
 <details>
 <summary> Meeting information - <b>6pm UTC every-other Tuesday</b></summary>
