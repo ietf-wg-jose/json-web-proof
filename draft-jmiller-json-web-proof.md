@@ -83,37 +83,13 @@ A JWP always contains a protected header along with one or more specific payload
 
 An individual payload may contain structured information such as a JSON document or be a simple value such as a number, string, or even a binary image.  Some algorithms may support payload values that are cryptographic values such as elliptic curve points or blinded secrets.
 
-## Payload Headers
-
-With multiple payloads, there must also be multiple protected headers in order to safely identify what each payload is and contains.  These headers can themselves easily become a correlation factor if the signer is putting unique values in them or generating unique arragements of headers and their payloads.  In order to minimize these possibilities, JWP places payload headers in the JWK [@!RFC7517] definition so that they are common across all uses of that JWK.
-
-Privacy preserving algorithms have a common pattern of supporting a fixed number of "slots" (also called "messages" or "attributes").  Often they are fixed at the time the public key is created and sometimes they are also pre-defined for a use-case with a specific number of attributes.  This is done to minimize any correlatable signals, to prevent a verifier from categorizing based on if the slots are of variable lengths even when only a subset are revealed in the proof.
-
-The key used for a JWP that is identified either by its header or by context MUST have an associated ordered array of payload definitions.  If defined by a JWK, this specification registers a `payloads` parameter with an array value, containing one object for each payload with its associated header values.
-
-If the JWK includes a `use` parameter this specification registers a `prf` (proof) value that MUST be used in order for the JWK to be valid for a JWP.
-
-For example:
-
-```json
-{
-   "kty":"EC",
-   "crv":"BLS12381_G1",
-   "use":"prf",
-   "x":"tCgCNuUYQotPEsrljWi-lIRIPpzhqsnJV1NPnE7je6glUb-FJm9IYkuv2hbHw22i",
-   "payloads":[
-      {"claims":["family_name", "given_name"]},
-      {"claims":["email"]},
-      {"claims":["birthdate"]},
-      {"claims":["age"], "cty":"hashchain-commitment"},
-      {"claims":["profile_pic"], "cty":"image/png"}
-   ]
-  }
-```
-
 ## Protected Header
 
-The JWP header MUST have an `alg` that supports proofs with signing, deriving, and verifying processing steps.
+Although there are multiple payloads, the protected header still represents the JWP as a whole.
+
+It is recommended that payload-specific information is not included in the header and is handled outside of the cryptographic envelope.  This is to minimize any correlatable signals in the metadata, to prevent a verifier from categorizing based on header changes that may varry between multiple JWPs.
+
+The JWP protected header MUST have at minimum an `alg` that supports proofs with signing, prooving, and verifying processing steps.
 
 For example:
 ```json
@@ -122,44 +98,27 @@ For example:
 }
 ```
 
+Every JWP algorithm must include a digest method that is used to generate a hash of the base64url serialized protected header.  The protected header cannot be selectively disclosed and the digest value MUST be included in all proof values.
+
 ## Payloads
 
-Payloads are always represented as an ordered array.  Each payload's content type is either known by context or specified in that payload's associated header.  The default content type is `application/json`, with the JSON object values being JWT claims.
+Payloads are always represented as an ordered array.  The mapping of which value is in which payload slot is out of scope of this specification.
 
-Example payloads:
-```json
-{
-    "given_name":"Jane",
-    "family_name":"Doe"
-}
-```
-```json
-{
-    "email":"janedoe@example.com"
-}
-```
-```json
-{
-    "birthdate":"0000-03-22"
-}
-```
+In order to support ZKPs, individual payloads cannot be serialized before they are passed into an algorithm implementation.  This enables the algorithms to accept and internally encode elliptic curve points, blinded values, plain numbers, membership keys, etc.  Implementations are therefore required to provide optional arguments for each payload such that the application can utilize these capabilities as needed.
 
+When selective disclosure preferences are applied, any one or more payloads may be hidden.  The position of other payloads does not change due to any preceeding ones being hidden - the resulting array will simply be sparse without the hidden payloads.
 
 ## Proof
 
 The proof value is a binary octet string that is opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value along with any required internal structures to it.
 
-All proofs MUST include integrity protection of the JWP's base64url encoded header value.  This value cannot be hidden and the protection MUST be included in the proof even after derivation.
+Implementations will also be required to provide optional arguments for each payload as input into the `proove` step.  These arguments can be used for generating predicate proofs, linking options, etc.
 
-# Derivation
-
-When selective disclosure preferences are applied to a derivation, any one or more payloads may be hidden.  The position of other payloads does not change due to any proceeding ones being hidden; the resulting array will simply be sparse, with the hidden payloads being replaced by the value `null`.
-
-Algorithms SHOULD generate a new un-correlatable proof value when a JWP is derived.  A JWP may also be single-use, where correlation across multiple derivations is not a factor.
+Algorithms SHOULD generate a new un-correlatable proof value during the `proove` step.  A JWP may also be single-use, where correlation across multiple derivations is not a factor.
 
 # Serializations
 
-Each payload MUST be base64url encoded when preparing it to be serialized.  The header and proof are also individually base64url encoded.
+Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The header and proof are also individually base64url encoded.
 
 Like JWS, JWP supports both a Compact Serialization and a JSON Serialization.
 
