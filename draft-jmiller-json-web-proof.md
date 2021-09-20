@@ -71,7 +71,7 @@ when, and only when, they appear in all capitals, as shown here.
 
 A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition that it can contain multiple individual payloads instead of a singular one.  New JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
-In addition to the JWS `sign` and `verify` interactions, JWP also importantly adds a `proove` processing step for interaction with the algorithm to perform the selective disclosure and privacy preserving transformations.  This allows for multi-party interactions where a credential is issued from one party, derived by the prooving party, then presented to another verifying party.  While `sign` only occurs once to create a JWP, the `proove` and `verify` steps may be safely repeated when supported by the algorithm.
+In addition to the JWS `sign` and `verify` interactions, JWP also importantly adds a `prove` processing step for interaction with the algorithm to perform the selective disclosure and privacy preserving transformations.  This allows for multi-party interactions where a credential is issued from one party, derived by the prooving party, then presented to another verifying party.  While `sign` only occurs once to create a JWP, the `prove` and `verify` steps may be safely repeated when supported by the algorithm.
 
 The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a proof value.  It does not create or specify any cryptographic protocols,  interaction protocols, or custom options for algorithms with additional capabilities.
 
@@ -112,9 +112,9 @@ When selective disclosure preferences are applied, any one or more payloads may 
 
 The proof value is a binary octet string that is opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value along with any required internal structures to it.
 
-Implementations will also be required to provide optional arguments for each payload as input into the `proove` step.  These arguments can be used for generating predicate proofs, linking options, etc.
+Implementations will also be required to provide optional arguments for each payload as input into the `prove` step.  These arguments can be used for generating predicate proofs, linking options, etc.
 
-Algorithms SHOULD generate a new un-correlatable proof value during the `proove` step.  A JWP may also be single-use, where correlation across multiple derivations is not a factor.
+Algorithms SHOULD generate a new un-correlatable proof value during the `prove` step.  A JWP may also be single-use, where correlation across multiple derivations is not a factor.
 
 # Serializations
 
