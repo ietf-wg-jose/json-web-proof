@@ -47,7 +47,7 @@ The JOSE specifications are very widely deployed and well supported technology c
 
 With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting a credential and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs), instead of traditional signatures.
 
-There are a growing number of these cryptographic primitives which support selective disclosure while protecting privacy across multiple presentations.  Examples that have already been or are being deployed in the context of Verifiable Credentials are:
+There are a growing number of these cryptographic primitives that support selective disclosure while protecting privacy across multiple presentations.  Examples that have already been or are being deployed in the context of Verifiable Credentials are:
 
 * [CL Signatures](https://eprint.iacr.org/2012/562.pdf)
 * [IDEMIX](http://www.zurich.ibm.com/idemix)
