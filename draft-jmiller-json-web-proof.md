@@ -90,7 +90,7 @@ Although there are multiple payloads, the protected header still represents the 
 
 It is recommended that payload-specific information is not included in the header and is handled outside of the cryptographic envelope.  This is to minimize any correlatable signals in the metadata, to prevent a verifier from categorizing based on header changes that may varry between multiple JWPs.
 
-The JWP protected header MUST have at minimum an `alg` that supports proofs with signing, prooving, and verifying processing steps.
+The JWP protected header MUST have at minimum an `alg` that supports proofs with signing, proving, and verifying processing steps.
 
 For example:
 ```json
