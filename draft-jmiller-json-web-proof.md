@@ -101,6 +101,8 @@ For example:
 
 Every JWP algorithm must include a digest method that is used to generate a hash of the base64url serialized protected header.  The protected header cannot be selectively disclosed and the digest value MUST be included in all proof values.
 
+In order to minimize linkability, the same protected header SHOULD be static across all JWPs for a given key or issuer.  All re-used headers MUST have the same base64url serialized value to avoid any non-deterministic JSON serialization, and the JWP algorithm's digest method MUST have a deterministic output for identical inputs.
+
 ## Payloads
 
 Payloads are always represented as an ordered array.  The mapping of which value is in which payload slot is out of scope of this specification.
