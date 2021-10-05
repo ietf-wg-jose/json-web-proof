@@ -109,7 +109,7 @@ Payloads are always represented and processed as individual octet strings and ar
 
 In order to support ZKPs, individual payloads cannot be serialized before they are passed into an algorithm implementation.  This enables the algorithms to accept and internally encode elliptic curve points, blinded values, plain numbers, membership keys, etc.  Implementations are therefore required to provide optional arguments for each payload such that the application can utilize these capabilities as needed.
 
-When selective disclosure preferences are applied, any one or more payloads may be hidden.  The position of other payloads does not change due to any preceeding ones being hidden - the resulting array will simply be sparse without the hidden payloads.
+Any one or more payloads may be non-disclosed in a JWP.  When a payload is not disclosed the position of other payloads does not change - the resulting array will simply be sparse and only contain the disclosed payloads.  The disclosed payloads will always be in same array positions in order to preserve any index-based references by the application across the whole JWP lifecycle.  How the sparse array is represented is specific to the serialization used.
 
 ## Proof
 
@@ -127,7 +127,7 @@ Like JWS, JWP supports both a Compact Serialization and a JSON Serialization.
 
 ## Compact Serialization
 
-The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any hidden payloads during a derivation are simply left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
+The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any non-disclosed payloads are simply left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
 
 The header, payloads, and proof are then concatenated with a `.` character to form the final compact serialization.
 
@@ -137,7 +137,7 @@ Example compact serialization:
 
 ## JSON Serialization
 
-Hidden payloads in the JSON serialization are represented with a `null` value.
+Non-disclosed payloads in the JSON serialization are represented with a `null` value.
 
 Example flattened JSON serialization:
 
@@ -157,6 +157,7 @@ Example flattened JSON serialization:
 
 * Requirements for supporting algorithms
 * Application interface for verification
+* Data minimization of the protected header
 
 # IANA Considerations
 
