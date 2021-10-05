@@ -72,7 +72,7 @@ when, and only when, they appear in all capitals, as shown here.
 
 A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition that it can contain multiple individual payloads instead of a singular one.  New JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
-In addition to the JWS `sign` and `verify` interactions, JWP also importantly adds a `prove` processing step for interaction with the algorithm to perform the selective disclosure and privacy preserving transformations.  This allows for multi-party interactions where a credential is issued from one party, derived by the prooving party, then presented to another verifying party.  While `sign` only occurs once to create a JWP, the `prove` and `verify` steps may be safely repeated when supported by the algorithm.
+In addition to the JWS `sign` and `verify` interactions, JWP also importantly adds a `prove` processing step for interaction with the algorithm to perform the selective disclosure and privacy preserving transformations.  This allows for multi-party interactions where a credential is issued from one party, held by another party, then used to generate and present proofs about the credential to another verifying party.  While `sign` only occurs when a JWP is being created, the `prove` and `verify` steps may be safely repeated on a signed JWP (when supported by the algorithm).
 
 The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a proof value.  It does not create or specify any cryptographic protocols,  interaction protocols, or custom options for algorithms with additional capabilities.
 
