@@ -52,6 +52,7 @@ There are a growing number of these cryptographic primitives which support selec
 * [CL Signatures](https://eprint.iacr.org/2012/562.pdf)
 * [IDEMIX](http://www.zurich.ibm.com/idemix)
 * [BBS+](https://github.com/mattrglobal/bbs-signatures)
+* [MerkleDisclosureProof2021](https://github.com/transmute-industries/merkle-disclosure-proof-2021)
 * [Mercural Signatures](https://eprint.iacr.org/2020/979)
 * [PS Signatures](https://eprint.iacr.org/2015/525.pdf)
 * [U-Prove](https://www.microsoft.com/en-us/research/project/u-prove/)
