@@ -58,7 +58,7 @@ There are a growing number of these cryptographic primitives which support selec
 * [U-Prove](https://www.microsoft.com/en-us/research/project/u-prove/)
 * [Spartan](https://github.com/microsoft/Spartan)
 
-All of these follow the same pattern of taking multiple claims (a.k.a., "attributes" or "messages" in the literature) and binding them together into an issued credential.  These are then later securely one-way transformed into a presentation, revealing potentially only a subset of the original claims as required or just proofs of the values.
+All of these follow the same pattern of taking multiple claims (a.k.a., "attributes" or "messages" in the literature) and binding them together into an issued credential.  These are then later securely one-way transformed into a presentation that reveals potentially only a subset of the original claims, predicate proofs of the claim values, or only proofs of knowledge of the claims.
 
 
 # Conventions and Definitions
