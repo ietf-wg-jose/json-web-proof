@@ -105,7 +105,7 @@ In order to minimize linkability, the same protected header SHOULD be static acr
 
 ## Payloads
 
-Payloads are always represented as an ordered array.  The mapping of which value is in which payload slot is out of scope of this specification.
+Payloads are always represented and processed as individual octet strings and arranged in an ordered array when there are multiple.  All application context of the placement and encoding of each payload value is out of scope of this specification and should be well defined and documented by the application or other specifications.
 
 In order to support ZKPs, individual payloads cannot be serialized before they are passed into an algorithm implementation.  This enables the algorithms to accept and internally encode elliptic curve points, blinded values, plain numbers, membership keys, etc.  Implementations are therefore required to provide optional arguments for each payload such that the application can utilize these capabilities as needed.
 
