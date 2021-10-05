@@ -37,7 +37,7 @@ organization = "Ping Identity"
 
 The JOSE set of standards established JSON-based container formats for [Keys](https://datatracker.ietf.org/doc/rfc7517/), [Signatures](https://datatracker.ietf.org/doc/rfc7515/), and [Encryption](https://datatracker.ietf.org/doc/rfc7516/).  They also established [IANA registries](https://www.iana.org/assignments/jose/jose.xhtml) to enable the algorithms and representations used for them to be extended.  Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.
 
-This document adds to the JOSE family by standardizing a new container format very similar in purpose and design to a JWS, called a _JSON Web Proof (JWP)_.  It adds support for the new algorithms by way of containing multiple individual payloads instead of a singular one as well as an additional derivation step to apply the privacy preserving selection and computation.
+This document adds to the JOSE family by standardizing a new container format very similar in purpose and design to a JWS, called a _JSON Web Proof (JWP)_.  It adds support for the new algorithms by way of containing multiple individual payloads instead of a singular one as well as an additional proof-generation step to apply the privacy preserving selection and computation.
 
 {mainmatter}
 
@@ -52,11 +52,13 @@ There are a growing number of these cryptographic primitives that support select
 * [CL Signatures](https://eprint.iacr.org/2012/562.pdf)
 * [IDEMIX](http://www.zurich.ibm.com/idemix)
 * [BBS+](https://github.com/mattrglobal/bbs-signatures)
+* [MerkleDisclosureProof2021](https://github.com/transmute-industries/merkle-disclosure-proof-2021)
 * [Mercural Signatures](https://eprint.iacr.org/2020/979)
 * [PS Signatures](https://eprint.iacr.org/2015/525.pdf)
 * [U-Prove](https://www.microsoft.com/en-us/research/project/u-prove/)
+* [Spartan](https://github.com/microsoft/Spartan)
 
-All of these follow the same pattern of taking multiple claims (a.k.a., "attributes" or "messages" in the literature) and binding them together into an issued credential.  These are then later securely one-way transformed into a presentation, revealing potentially only a subset of the original claims as required.
+All of these follow the same pattern of taking multiple claims (a.k.a., "attributes" or "messages" in the literature) and binding them together into an issued credential.  These are then later securely one-way transformed into a presentation that reveals potentially only a subset of the original claims, predicate proofs of the claim values, or only proofs of knowledge of the claims.
 
 
 # Conventions and Definitions
@@ -70,49 +72,25 @@ when, and only when, they appear in all capitals, as shown here.
 
 A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition that it can contain multiple individual payloads instead of a singular one.  New JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
-In addition to the JWS `sign` and `verify` interactions, JWP also importantly adds a `derive` processing step for interaction with the algorithm to perform the selective disclosure and privacy preserving transformations.  This allows for multi-party interactions where a credential is issued from one party, derived by an intermediary party, then presented to another verifying party.  While `sign` only occurs once on a JWP, `derive` and `verify` may be repeated if supported by the algorithm.
+In addition to the JWS `sign` and `verify` interactions, JWP also importantly adds a `prove` processing step for interaction with the algorithm to perform the selective disclosure and privacy preserving transformations.  This allows for multi-party interactions where a credential is issued from one party, held by another party, then used to generate and present proofs about the credential to another verifying party.  While `sign` only occurs when a JWP is being created, the `prove` and `verify` steps may be safely repeated on a signed JWP (when supported by the algorithm).
 
-The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a proof value.  It does not create or specify any cryptographic protocols,  interaction protocols, or required algorithm input values such as nonces.  This will be done in separate companion specifications - just like the [JSON Web Algorithms] [@RFC7518] specification did so for JWS and JWE [@RFC7516].
+The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a proof value.  It does not create or specify any cryptographic protocols,  interaction protocols, or custom options for algorithms with additional capabilities.
+
+Algorithm definitions that support JWPs will be done in separate companion specifications - just as the [JSON Web Algorithms] [@RFC7518] specification does for JWS and JWE [@RFC7516].
 
 # JWP Format
 
-A JWP contains multiple specific payloads, which are always represented within an ordered array. These payloads have the same processing rules applied as they would within JWS.
+A JWP always contains a protected header along with one or more specific payloads.  The payloads are always serialized and processed as an ordered array.
 
-The individual payloads are often meant to be composed into a single credential, and as such, are most commonly not wholly indpendent from one another, but rather serve as facets of a whole. In keeping with the nomenclature of JWTs, such payloads are said to each represent one or more _claims_.
-
-An individual payload may contain structured information, such as a JSON document representing multiple claims. Another payload might represent a single JWT claim, such as a binary profile image. Other payloads may represent cryptographic values for supporting various proofs, which might also be interpreted as claims.
-
-## Payload Headers
-
-With multiple payloads, there must also be multiple protected headers in order to safely identify what each payload is and contains.  These headers can themselves easily become a correlation factor if the signer is putting unique values in them or generating unique arragements of headers and their payloads.  In order to minimize these possibilities, JWP places payload headers in the JWK [@!RFC7517] definition so that they are common across all uses of that JWK.
-
-Privacy preserving algorithms have a common pattern of supporting a fixed number of "slots" (also called "messages" or "attributes").  Often they are fixed at the time the public key is created and sometimes they are also pre-defined for a use-case with a specific number of attributes.  This is done to minimize any correlatable signals, to prevent a verifier from categorizing based on if the slots are of variable lengths even when only a subset are revealed in the proof.
-
-The key used for a JWP that is identified either by its header or by context MUST have an associated ordered array of payload definitions.  If defined by a JWK, this specification registers a `payloads` parameter with an array value, containing one object for each payload with its associated header values.
-
-If the JWK includes a `use` parameter this specification registers a `prf` (proof) value that MUST be used in order for the JWK to be valid for a JWP.
-
-For example:
-
-```json
-{
-   "kty":"EC",
-   "crv":"BLS12381_G1",
-   "use":"prf",
-   "x":"tCgCNuUYQotPEsrljWi-lIRIPpzhqsnJV1NPnE7je6glUb-FJm9IYkuv2hbHw22i",
-   "payloads":[
-      {"claims":["family_name", "given_name"]},
-      {"claims":["email"]},
-      {"claims":["birthdate"]},
-      {"claims":["age"], "cty":"hashchain-commitment"},
-      {"claims":["profile_pic"], "cty":"image/png"}
-   ]
-  }
-```
+An individual payload may contain structured information such as a JSON document or be a simple value such as a number, string, or even a binary image.  Some algorithms may support payload values that are cryptographic values such as elliptic curve points or blinded secrets.
 
 ## Protected Header
 
-The JWP header MUST have an `alg` that supports proofs with signing, deriving, and verifying processing steps.
+Although there are multiple payloads, the protected header still represents the JWP as a whole.
+
+It is recommended that payload-specific information is not included in the header and is handled outside of the cryptographic envelope.  This is to minimize any correlatable signals in the metadata, to prevent a verifier from categorizing based on header changes that may varry between multiple JWPs.
+
+The JWP protected header MUST have at minimum an `alg` that supports proofs with signing, proving, and verifying processing steps.
 
 For example:
 ```json
@@ -121,50 +99,35 @@ For example:
 }
 ```
 
+Every JWP algorithm must include a digest method that is used to generate a hash of the base64url serialized protected header.  The protected header cannot be selectively disclosed and the digest value MUST be included in all proof values.
+
+In order to minimize linkability, the same protected header SHOULD be static across all JWPs for a given key or issuer.  All re-used headers MUST have the same base64url serialized value to avoid any non-deterministic JSON serialization, and the JWP algorithm's digest method MUST have a deterministic output for identical inputs.
+
 ## Payloads
 
-Payloads are always represented as an ordered array.  Each payload's content type is either known by context or specified in that payload's associated header.  The default content type is `application/json`, with the JSON object values being JWT claims.
+Payloads are always represented and processed as individual octet strings and arranged in an ordered array when there are multiple.  All application context of the placement and encoding of each payload value is out of scope of this specification and should be well defined and documented by the application or other specifications.
 
-Example payloads:
-```json
-{
-    "given_name":"Jane",
-    "family_name":"Doe"
-}
-```
-```json
-{
-    "email":"janedoe@example.com"
-}
-```
-```json
-{
-    "birthdate":"0000-03-22"
-}
-```
+In order to support ZKPs, individual payloads cannot be serialized before they are passed into an algorithm implementation.  This enables the algorithms to accept and internally encode elliptic curve points, blinded values, plain numbers, membership keys, etc.  Implementations are therefore required to provide optional arguments for each payload such that the application can utilize these capabilities as needed.
 
+Any one or more payloads may be non-disclosed in a JWP.  When a payload is not disclosed the position of other payloads does not change - the resulting array will simply be sparse and only contain the disclosed payloads.  The disclosed payloads will always be in same array positions in order to preserve any index-based references by the application across the whole JWP lifecycle.  How the sparse array is represented is specific to the serialization used.
 
 ## Proof
 
 The proof value is a binary octet string that is opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value along with any required internal structures to it.
 
-All proofs MUST include integrity protection of the JWP's base64url encoded header value.  This value cannot be hidden and the protection MUST be included in the proof even after derivation.
+Implementations will also be required to provide optional arguments for each payload as input into the `prove` step.  These arguments can be used for generating predicate proofs, linking options, etc.
 
-# Derivation
-
-When selective disclosure preferences are applied to a derivation, any one or more payloads may be hidden.  The position of other payloads does not change due to any proceeding ones being hidden; the resulting array will simply be sparse, with the hidden payloads being replaced by the value `null`.
-
-Algorithms SHOULD generate a new un-correlatable proof value when a JWP is derived.  A JWP may also be single-use, where correlation across multiple derivations is not a factor.
+Algorithms SHOULD generate a new un-correlatable proof value during the `prove` step.  A JWP may also be single-use, where correlation across multiple derivations is not a factor.
 
 # Serializations
 
-Each payload MUST be base64url encoded when preparing it to be serialized.  The header and proof are also individually base64url encoded.
+Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The header and proof are also individually base64url encoded.
 
 Like JWS, JWP supports both a Compact Serialization and a JSON Serialization.
 
 ## Compact Serialization
 
-The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any hidden payloads during a derivation are simply left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
+The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any non-disclosed payloads are simply left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
 
 The header, payloads, and proof are then concatenated with a `.` character to form the final compact serialization.
 
@@ -174,7 +137,7 @@ Example compact serialization:
 
 ## JSON Serialization
 
-Hidden payloads in the JSON serialization are represented with a `null` value.
+Non-disclosed payloads in the JSON serialization are represented with a `null` value.
 
 Example flattened JSON serialization:
 
@@ -194,6 +157,7 @@ Example flattened JSON serialization:
 
 * Requirements for supporting algorithms
 * Application interface for verification
+* Data minimization of the protected header
 
 # IANA Considerations
 
