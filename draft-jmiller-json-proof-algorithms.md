@@ -44,19 +44,19 @@ when, and only when, they appear in all capitals, as shown here.
 
 # Background
 
-JWP defines a clean abstraction around the parts of a container binding together a protected header and one or more payloads.  It does not define any details about the interactions between an application and the cryptographic libraries that implement proof-supporting algorithms.
+JWP defines a container that binds together a JSON protected header with one or more opaque payloads and a cryptographically generated proof value.  It does not specify the details necessary to implement a proof-supporting algorithm (JPA) or suggest how applications interact with JPA library interfaces.
 
-Due to the nature of ZKPs, this specification also documents the subtle but important differences in proof algorithms versus those defined by the JSON Web Algorithms RFC.  These changes help support more advanced capabilities such as blinded signatures and predicate proofs.
+This specification also documents the subtle but important differences inherent in ZKP-based JPAs versus those defined by the JSON Web Algorithms RFC.  These changes help support more advanced capabilities such as blinded signatures and predicate proofs.
 
-# Algorithm Basics
+# Fundamental Interactions
 
-The four principle interactions that every proof algorithm MUST support are `[sign](#sign)`, `[verify_signature](#verify-signature)`, `[prove](#prove)`, and `[verify_proof](#verify-proof)`.
+The four principle interactions that every JPA MUST support are `[sign](#sign)`, `[verify_signature](#verify-signature)`, `[prove](#prove)`, and `[verify_proof](#verify-proof)`.
 
-Some algorithms MAY also support two additional interactions of `[request_signature](#request-signature)` and `[request_proof](#request-proof)`.  While these do not use a JWP container as input or output, they are included here in order to maximize interoperability across proof algorithm implementations.
+Some JPAs MAY also support two additional interactions of `[request_signature](#request-signature)` and `[request_proof](#request-proof)`.  While these do not use a JWP container as input or output, they are included here in order to maximize interoperability across JPA implementations.
 
 ## Sign
 
-The JWP is first created as the output of a proof algorithm's `sign` operation.
+The JWP is first created as the output of a JPA's `sign` operation.
 
 TODO:
 
