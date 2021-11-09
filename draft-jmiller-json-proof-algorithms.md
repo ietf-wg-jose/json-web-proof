@@ -50,9 +50,9 @@ Due to the nature of ZKPs, this specification also documents the subtle but impo
 
 # Algorithm Basics
 
-The four principle interactions that every proof algorithm MUST support are `sign`, `verify_signature`, `prove`, and `verify_proof`.
+The four principle interactions that every proof algorithm MUST support are `[sign](#sign)`, `[verify_signature](#verify-signature)`, `[prove](#prove)`, and `[verify_proof](#verify-proof)`.
 
-Some algorithms MAY also support two additional interactions of `request_signature` and `request_proof`.  While these do not use a JWP container as input or output, they are included here in order to maximize interoperability across proof algorithm implementations.
+Some algorithms MAY also support two additional interactions of `[request_signature](#request-signature)` and `[request_proof](#request-proof)`.  While these do not use a JWP container as input or output, they are included here in order to maximize interoperability across proof algorithm implementations.
 
 ## Sign
 
@@ -97,6 +97,14 @@ TODO:
 * MAY support local state from the `request_proof` operation
 * Out of scope is app interface to interact with the resulting verified assertions (may also be part of the request proof state)
 * MAY indicate if the JWP can be re-used to generate a new proof
+
+## Request Signature
+
+TODO
+
+## Request Proof
+
+TODO
 
 # Security Considerations
 
