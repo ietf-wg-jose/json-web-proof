@@ -59,6 +59,7 @@ Some algorithms MAY also support two additional interactions of `[request_signat
 The JWP is first created as the output of a proof algorithm's `sign` operation.
 
 TODO:
+
 * MUST support the protected header as an octet string
 * MUST support one or more payloads, each as an octet string
 * MAY support the output of the `request_signature` operation from the requesting party
@@ -70,6 +71,7 @@ TODO:
 Performed by the requesting party to verify the newly signed JWP.
 
 TODO:
+
 * MAY support local state from the `request_signature` operation
 * MAY return a modified JWP for serialized storage without the local state
 * MAY support verifying any hidden payloads
@@ -79,6 +81,7 @@ TODO:
 Used to apply any selective disclosure preferences and perform any unlinkability transformations.
 
 TODO:
+
 * MAY support the output of the `request_proof` operation from the requesting party
 * MUST support ability to hide any payload
 * MUST always include the protected header
@@ -92,6 +95,7 @@ TODO:
 Performed by the requesting party on a JWP to verify any revealed payloads and/or assertions about them from the proving party, while also verifying they are the same payloads and ordering as witnessed by the signing party.
 
 TODO:
+
 * MUST verify the integrity of all revealed payloads
 * MUST verify any included assertions about a hidden payload as true
 * MAY support local state from the `request_proof` operation
