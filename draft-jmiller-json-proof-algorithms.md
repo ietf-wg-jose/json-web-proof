@@ -62,9 +62,9 @@ TODO:
 
 * MUST support the protected header as an octet string
 * MUST support one or more payloads, each as an octet string
-* MAY support the output of the `request_signature` operation from the requesting party
-* MAY support signing hidden payloads with no octet string
-* MUST include integrity protection for the header and all payloads, specify all digest and hash2curve methods
+* MAY support the output of the `request_signature` operation from the requesting party (for blinded payloads)
+* MUST include integrity protection for the header and all payloads
+* MUST specify all digest and hash2curve methods used
 
 ## Verify Signature
 
@@ -72,9 +72,10 @@ Performed by the requesting party to verify the newly signed JWP.
 
 TODO:
 
-* MAY support local state from the `request_signature` operation
-* MAY return a modified JWP for serialized storage without the local state
-* MAY support verifying any hidden payloads
+* MAY support local/cached private state from the `request_signature` operation (the blinded payloads)
+* MAY return a modified JWP for serialized storage without the local state (with the payloads unblinded)
+* MUST fully verify the proof value against the protected header and all payloads
+* MUST fail if given a proven JWP
 
 ## Prove
 
@@ -82,10 +83,9 @@ Used to apply any selective disclosure preferences and perform any unlinkability
 
 TODO:
 
-* MAY support the output of the `request_proof` operation from the requesting party
+* MAY support the output of the `request_proof` operation from the requesting party (for predicate proofs and verifiable computation requests)
 * MUST support ability to hide any payload
 * MUST always include the protected header
-* MAY add/append new payloads
 * MAY replace the proof value
 * MUST indicate if the input JWP is able to be used again
 * MAY support an input JWP that resulted from a previous `prove` operation
@@ -101,6 +101,7 @@ TODO:
 * MAY support local state from the `request_proof` operation
 * Out of scope is app interface to interact with the resulting verified assertions (may also be part of the request proof state)
 * MAY indicate if the JWP can be re-used to generate a new proof
+* MUST fail if given only a signed JWP
 
 ## Request Signature
 
