@@ -87,7 +87,7 @@ TODO:
 
 ## Prove
 
-Used to apply any selective disclosure preferences and perform any unlinkability transformations.
+Used to apply any selective disclosure choices and perform any unlinkability transformations.
 
 TODO:
 
