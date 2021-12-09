@@ -23,6 +23,15 @@ organization = "Ping Identity"
   [author.address]
    email = "jmiller@pingidentity.com"
 
+[[author]]
+initials = "M."
+surname = "Jones"
+fullname = "Michael B. Jones"
+organization = "Microsoft"
+  [author.address]
+  email = "mbj@microsoft.com"
+  uri = "https://self-issued.info/"
+
 %%%
 
 .# Abstract
@@ -33,7 +42,7 @@ The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms
 
 # Introduction
 
-The JSON Web Proof (JWP) draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other newer cryptographic algorithms.
+The JSON Web Proof (JWP) draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.
 
 # Conventions and Definitions
 
@@ -44,13 +53,13 @@ when, and only when, they appear in all capitals, as shown here.
 
 # Background
 
-JWP defines a container that binds together a JSON protected header with one or more opaque payloads and a cryptographically generated proof value.  It does not specify the details necessary to implement a proof-supporting algorithm (JPA) or suggest how applications interact with JPA library interfaces.
+JWP defines a container binding together a protected header, one or more payloads, and a cryptographic proof.  It does not define any details about the interactions between an application and the cryptographic libraries that implement proof-supporting algorithms.
 
-This specification also documents the subtle but important differences inherent in ZKP-based JPAs versus those defined by the JSON Web Algorithms RFC.  These changes help support more advanced capabilities such as blinded signatures and predicate proofs.
+Due to the nature of ZKPs, this specification also documents the subtle but important differences in proof algorithms versus those defined by the JSON Web Algorithms RFC.  These differences help support more advanced capabilities such as blinded signatures and predicate proofs.
 
 # Fundamental Interactions
 
-The four principle interactions that every JPA MUST support are `[sign](#sign)`, `[verify_signature](#verify-signature)`, `[prove](#prove)`, and `[verify_proof](#verify-proof)`.
+The four principal interactions that every proof algorithm MUST support are `[sign](#sign)`, `[verify_signature](#verify-signature)`, `[prove](#prove)`, and `[verify_proof](#verify-proof)`.
 
 Some JPAs MAY also support two additional interactions of `[request_signature](#request-signature)` and `[request_proof](#request-proof)`.  While these do not use a JWP container as input or output, they are included here in order to maximize interoperability across JPA implementations.
 
@@ -68,7 +77,7 @@ TODO:
 
 ## Verify Signature
 
-Performed by the requesting party to verify the newly signed JWP.
+Performed by the requesting party to verify the signed JWP.
 
 TODO:
 
@@ -79,7 +88,7 @@ TODO:
 
 ## Prove
 
-Used to apply any selective disclosure preferences and perform any unlinkability transformations.
+Used to apply any selective disclosure choices and perform any unlinkability transformations.
 
 TODO:
 
@@ -111,6 +120,22 @@ TODO
 
 TODO
 
+# Algorithm Specifications
+
+This section defines how to use specific algorithms for JWPs.
+
+## One-Time Use with ES256
+
+TBD
+
+## BBS-BLS12
+
+TBD
+
+## ZKSnark
+
+TBD
+
 # Security Considerations
 
 * Data minimization of the proof value
@@ -118,6 +143,14 @@ TODO
 
 # IANA Considerations
 
-This document has no IANA actions.
+## JWP Algorithms Registry
+
+This section establishes the IANA JWP Algorithms Registry.  It also registers the following algorithms.
+
+TBD
 
 {backmatter}
+
+# Acknowledgements
+
+TBD
