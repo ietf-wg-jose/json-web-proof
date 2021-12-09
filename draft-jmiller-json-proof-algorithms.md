@@ -131,6 +131,10 @@ The signer generates an ephemeral keypair and uses that to sign each individual 
 
 The prover can then choose which payloads to disclose and leave the proof value intact when presenting the JWP to a verifier.  The verifier will only need to verify the included ephemeral signatures for the disclosed payloads along with the final signature using the signer's public key.
 
+Proposed JWK `alg` value is "SU" with a `crv` value being whichever keypair type is being used, for example "P-256".
+
+Proposed JWP `alg` value is of the format "SU-" appended with the relevant JWS `alg` value for the chosen keypair algorigthm, for example "SU-ES256"
+
 TODO, turn pseudocode into a fully unrolled step-by-step example:
 ```
 EK = ephemeral key
@@ -140,9 +144,15 @@ su_sig = join(sigs, IK.sign(sigs))
 ```
 
 
-## BBS-BLS12
+## BBS+
 
+Applying the BBS+ signature algorithm to a JWP is extremely straight forward.  The BBS+ sign methods take an ordered array of octet messages and return a signature value.  Each JWP payload is one message, and the resulting signature is used as the initial proof value.
 
+When proving, the BBS+ create proof method takes the original signature, array of messages, a nonce, and the indicies of which messages are being disclosed.  The output is the new proof value.  The nonce value should be generated or provided by the verifier and its handling is out of scope of JWP and this algorithm.
+
+Proposed JWK `alg` value is "BBS" with a `crv` value of "Bls12381G2".
+
+Proposed JWP `alg` value is "BBS-Bls12381G2".
 
 ## ZKSnark
 
