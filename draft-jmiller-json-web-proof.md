@@ -236,7 +236,7 @@ After using the BBS+ algorithm to generate an unlinkable proof revealing only th
 
 # Security Considerations
 
-* Requirements for supporting algorithms, see JWA
+* Requirements for supporting algorithms, see JPA
 * Application interface for verification
 * Data minimization of the protected header
 
