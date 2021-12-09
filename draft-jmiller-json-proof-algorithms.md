@@ -123,13 +123,26 @@ TODO
 
 This section defines how to use specific algorithms for JWPs.
 
-## One-Time Use with ES256
+## Single Use
 
-TBD
+This is a very simple use of traditional keypair-based signatures that supports selective disclosure.  Unlinkability is only achieved by requiring that each JWP is single-use only.  When the prover has an active relationship with the signer where new single-use JWPs can be created dynamically or in batches, this approach is very efficient and immediately usable with existing traditional crypto libraries.
+
+The signer generates an ephemeral keypair and uses that to sign each individual payload, simply appending each of those to compose the initial input to the signature.  The ephemeral public key used is included in the protected header and integrity protected. The aggregated and ordered list of individual payload signatures is then signed with the signer's public key and appended to create the initial proof value.
+
+The prover can then choose which payloads to disclose and leave the proof value intact when presenting the JWP to a verifier.  The verifier will only need to verify the included ephemeral signatures for the disclosed payloads along with the final signature using the signer's public key.
+
+TODO, turn pseudocode into a fully unrolled step-by-step example:
+```
+EK = ephemeral key
+IK = issuer key 
+sigs = join(EK.sign(JWK(EK)), EK.sign(payload[0]), EK.sign(payload[1]), EK.sign(payload[2]), ...)
+su_sig = join(sigs, IK.sign(sigs))
+```
+
 
 ## BBS-BLS12
 
-TBD
+
 
 ## ZKSnark
 
