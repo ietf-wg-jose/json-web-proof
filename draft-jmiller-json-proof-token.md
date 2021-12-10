@@ -42,7 +42,7 @@ JSON Proof Token (JPT) is a compact, URL-safe, privacy-preserving representation
 
 # Introduction
 
-JSON Proof Token (JPT) is a compact claims representation format intended to be used in the same ways as a JSON Web Token (JWT), but with additional support for selective disclosure and unlinkability.  JPTs encode claim values to be transmitted as payloads of a JSON Web Proof (JWP).  JPTs are always represented using the JWP Compact Serialization.  The corresponding claim names are not transmitted in the payloads, but are represented in a separate layout data structure.
+JSON Proof Token (JPT) is a compact claims representation format intended to be used in the same ways as a JSON Web Token (JWT), but with additional support for selective disclosure and unlinkability.  JPTs encode claim values to be transmitted as payloads of a JSON Web Proof (JWP).  JPTs are always represented using the JWP Compact Serialization.  The corresponding claim names are not transmitted in the payloads and are stored in a separate structure that can be externalized and shared across multiple JPTs.
 
 # Conventions and Definitions
 
@@ -87,51 +87,43 @@ In order to generate a variety of ZKPs of knowledge, range, membeship, or other 
 
 It is suggested that the claim names used with JPTs come from those in the IANA JSON Web Token Claims Registry, when those fit the application's needs.
 
-# Layout
+# Claims
 
-Using a JSON Proof Token requires combining information from two sources: the layout and the payloads. Given the design considerations, the simplest solution is to represent the token's encompassing JSON body in an external shared definition, while preserving only the individual claim values in the JWP container.
+Using a JSON Proof Token requires combining information from two sources: the claim names and the payloads.  The simplest solution is to list the claim names in an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the JWP Protected Header using the `claims` key.
 
-The layout definition MUST be accessible to and known by all parties that will process the JPT.  Since this is also true of the public key, the ideal location for the layout definition is in the JWK itself. (Note: The layout definition could move to a standalone JSON Proof Key specification.)
+When the claims array is stored in the header, any variations of it are disclosed to the verifier and can be used to correlate and link usages.  Given the privacy design considerations around linkability it is recomended that the claims are defined external to an individual JPT and either referenced or known by the application context.
 
-A layout is the symbolic equivalent to the JSON body of a JWT, containing all of the claim names along with any additional structures or fixed metadata.  The individual claim values are not included in the layout and instead are replaced by payload references.
+In order to facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure externally resolve and then verify that the correct list of claim names are being used when processing the payloads containing the claim values.
 
-These claim value references can be present in two different types: direct and indirect.  A direct reference is always an array with a single integer value, acting as an index into the array of payloads contained in the JPT.  All payloads referenced directly MUST be the base64url encoding of the UTF-8 representation of a JSON value.
+If there is an associated JWK containing the signing key information, the `claims` key is also registered there as a convenient location for the claim names.
 
-Indirect references are those understood only in the context of supporting applications.  Payloads with indirect references will have content types that vary by the given context and may be textual or binary.  This allows JPTs to include raw values without incurring the penalty of a double-encoding into a JSON-safe string.
+All payloads are claim values and MUST be the base64url encoding of the UTF-8 representation of a JSON value.
 
-The following is an example layout definition object, using single-integer-valued arrays as the index references to the corresponding payloads:
+The following is an example JWP Protected Header that includes a claims array:
 ```json
 {
-  "kty": "ZKP",
-  "crv": "Bls12381G2",
-  "x": "qM4Gi4razIIAXpDSlHB7-pPoo6GOChoBbSLxr7rNwb8mxyVykbmKQGNb0kI7iegDAs9cIwf6DAsCGi7BVs48MG-iw4PsP0L136g2gQpZjrKsr4GbkV5EIx0R2BjIJNfQ",
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
   "alg": "BBS",
-  "use": "proof",
-  "lyt": {
-    "iat": [0],
-    "exp": [1],
-    "name": [2],
-    "email": [3],
-    "photo": {
-      "type":"image/jpeg",
-      "data": 4
-    }
-  }
+  "claims": [
+    "iat",
+    "exp",
+    "family_name",
+    "given_name",
+    "email"
+  ]
 }
 ```
 
 # Payloads
 
-Application resolves each reference as required when processing the layout.  Resolution can result in one of three things:
+Application resolves each claim as required when processing the JPT.  Resolution can result in one of three things:
 1. A disclosed JSON value
-2. A proof method
+2. A custom proof method
 3. A `null` value
 
 ## Disclosed
 
-* all referenced directly by layout are JSON strings
-* may be indirect references w/ non-JSON values
+* Always an octet string of valid JSON text.
 
 ## Proof Methods
 
