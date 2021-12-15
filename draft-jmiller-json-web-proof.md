@@ -246,15 +246,11 @@ This document has no IANA actions.
 
 {backmatter}
 
-# Acknowledgements
-
-TBD
-
 # Example JWPs
 
 The following examples use algorithms defined in JSON Proof Algorithms and also contain the keys used, so that implementations can validate these samples.
 
-# Example Single-Use JWP
+## Example Single-Use JWP
 
 This example uses the Single-Use Algorithm as defined in JSON Proof Algorithms to create a JSON Proof Token.  It demonstrates how to apply selective disclosure using an array of traditional JWS-based signatures.  Unlinkability is only achieved by using each JWP one time, as multiple uses are inherently linkable via the traditional signature embedded in the proof.
 
@@ -374,6 +370,10 @@ An example of this JPT with selective disclosure of only the given name and age 
 ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTUwYkdRaUxDSmpiR0ZwYlhNaU9sc2labUZ0YVd4NVgyNWhiV1VpTENKbmFYWmxibDl1WVcxbElpd2laVzFoYVd3aUxDSmhaMlVpWFN3aWRIbHdJam9pU2xCVUlpd2ljSEp2YjJaZmFuZHJJanA3SW10MGVTSTZJa1ZESWl3aWVDSTZJbUZqWWtsUmFYVk5jek5wT0Y5MWMzcEZha295ZEhCVWRGSk5ORVZWTTNsNk9URlFTRFpEWkVneVZqQWlMQ0o1SWpvaVgwdGplVXhxT1haWFRYQjBibTFMZEcwME5rZHhSSG80ZDJZM05FazFURXRuY213eVIzcElNMjVUUlNJc0ltTnlkaUk2SWxBdE1qVTJJbjBzSW1Gc1p5STZJbE5WTFVWVE1qVTJJbjAi.~IkpheSI~~NDI.qAJpCfZywjR5BCXuywCrHGZqYGVnk-UuAk2nGmH06y43Fp-nZQICzXRr6-I7bHocIcGWYsOQPWrrQCQD1ze9R19232J5VHztWOfV-iUL-b9_2jiQOdFO-qyFk_1EiNScj-pwIAF9_SPcRN101xvMhvQykW7FUgshclsOxR0JtdnQBz9AUayn82XYbmQFGKpo7aBR1Q_fwb_VkIxP2KlreyEbrxBzpP98UV1w6z5viQog7Td1Pc922NOi_-hiz9Ukrvqj19tlmwINRpdcsXePnGhTUXERIpbippArZH2VLQRZ5-Sd48F3Sa7ZwYzw_uO7RWOjCnq2g3QLISnruN0l5L2BbPyQbxtZfBYWOiNBs405UuJrByiDK8Ub5A0n34UTBK73kIThDzZoyPAny4zHCqjr_edcGlJGWbWiUdgOlefZcYl0QSacpjhHlD3pYZZjGnlJx9UUgcW53xnUQbL-2swNRl165ZHq1tvquHWQQzGcOSasZeSzLedQjS0PL8hN
 ```
 
-# Example Multi-Use JWP
+## Example Multi-Use JWP
+
+TBD
+
+# Acknowledgements
 
 TBD
