@@ -126,9 +126,13 @@ This section defines how to use specific algorithms for JWPs.
 
 ## Single Use
 
-This is a very simple use of traditional keypair-based signatures that supports selective disclosure.  Unlinkability is only achieved by requiring that each JWP is single-use only.  When the prover has an active relationship with the signer where new single-use JWPs can be created dynamically or in batches, this approach is very efficient and immediately usable with existing traditional crypto libraries.
+The Single Use (SU) algorithm is based on composing multiple traditional asymmetric JWS signatures into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.  It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the prover must be able to interact with the signer again to receive new single-use JWPs (dynamically or in batches).
 
-The signer generates an ephemeral keypair and uses that to sign each individual payload, simply appending each of those to compose the initial input to the signature.  The ephemeral public key used is included in the protected header and integrity protected. The aggregated and ordered list of individual payload signatures is then signed with the signer's public key and appended to create the initial proof value.
+To create a SU-based JWP the Signer must generate a unique ephemeral asymmetric key-pair for each JWP.  The public JWK of the ephemeral key must be included in the JWP protected header with the property name of `proof_jwk`.  The ephemeral key-pair is then used to generate an individual JWS for each payload as well as the JWP's protected header.
+
+Each JWS is created with its own protected header containing the minimum required `alg` value.  The JWS body is set to the octet string of the given payload or the JWP protected header being signed.  The resulting JWS signature octet string is used to build the JWP proof value by appending them together ordered by the payloads and followed by the protected header signature.
+
+and uses that to sign each individual payload, simply appending each of those to compose the initial input to the signature.  The ephemeral public key used is included in the protected header and integrity protected. The aggregated and ordered list of individual payload signatures is then signed with the signer's public key and appended to create the initial proof value.
 
 The prover can then choose which payloads to disclose and leave the proof value intact when presenting the JWP to a verifier.  The verifier will only need to verify the included ephemeral signatures for the disclosed payloads along with the final signature using the signer's public key.
 
