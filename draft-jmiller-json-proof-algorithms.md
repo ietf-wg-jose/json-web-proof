@@ -128,25 +128,47 @@ This section defines how to use specific algorithms for JWPs.
 
 The Single Use (SU) algorithm is based on composing multiple traditional asymmetric JWS signatures into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.  It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the prover must be able to interact with the signer again to receive new single-use JWPs (dynamically or in batches).
 
-To create a SU-based JWP the Signer must generate a unique ephemeral asymmetric key-pair for each JWP.  The public JWK of the ephemeral key must be included in the JWP protected header with the property name of `proof_jwk`.  The ephemeral key-pair is then used to generate an individual JWS for each payload as well as the JWP's protected header.
+### Signer Setup
 
-Each JWS is created with its own protected header containing the minimum required `alg` value.  The JWS body is set to the octet string of the given payload or the JWP protected header being signed.  The resulting JWS signature octet string is used to build the JWP proof value by appending them together ordered by the payloads and followed by the protected header signature.
+To create a SU-based JWP the Signer must first generate a unique ephemeral key-pair that will be used to sign the parts of a single JWP and then discarded.  The signer must choose a supported JWS algorithm that is asymmetric and only use each key-pair once in order to prevent any other party from brute-forcing non-disclosed payloads based on their individual signatures.
 
-and uses that to sign each individual payload, simply appending each of those to compose the initial input to the signature.  The ephemeral public key used is included in the protected header and integrity protected. The aggregated and ordered list of individual payload signatures is then signed with the signer's public key and appended to create the initial proof value.
+The public JWK of the ephemeral key must be included in the JWP protected header with the property name of `proof_jwk`.
 
-The prover can then choose which payloads to disclose and leave the proof value intact when presenting the JWP to a verifier.  The verifier will only need to verify the included ephemeral signatures for the disclosed payloads along with the final signature using the signer's public key.
+### Using JWS
 
-Proposed JWK `alg` value is "SU" with a `crv` value being whichever keypair type is being used, for example "P-256".
+The ephemeral key-pair is then used to generate an individual JWS for each payload as well as one for the JWP's protected header.
 
-Proposed JWP `alg` value is of the format "SU-" appended with the relevant JWS `alg` value for the chosen keypair algorigthm, for example "SU-ES256"
+Each JWS is created with its own protected header containing only the minimum required `alg` value.  Since the JWS protected header itself is not included in the resulting JWP, it must be a static value in the form of `{"alg":"***"}` where `***` is the JWS asymmetric key algorithm being used.  This value is re-created by a Verifier based on the `proof_jwk` included in the JWP protected header.
 
-TODO, turn pseudocode into a fully unrolled step-by-step example:
-```
-EK = ephemeral key
-IK = issuer key 
-sigs = join(EK.sign(JWK(EK)), EK.sign(payload[0]), EK.sign(payload[1]), EK.sign(payload[2]), ...)
-su_sig = join(sigs, IK.sign(sigs))
-```
+The JWS body is set to the octet string of the given payload to generate individual payload signatures, and set to the JWP protected header to generate it's signature.  The resulting JWS signature octet strings are used directly to build the JWP proof.
+
+### Proof Value
+
+Each payload will be signed using JWS with the generated ephemeral public key, only the resulting JWS signature value from each is used to build the JWP Proof.
+
+Each signature octet string (the fixed-length binary value, *not* the Base64 URL encoded form) is appended together in the same order as the payloads.  The signature octet string for the JWP protected header is then also appended.
+
+The resulting octet string will be the fixed length of each signature (for example, 32 octets for the ES256 algorithm), multiplied by the number of payloads being signed in the JWP (for example, 5), and then adding the JWP protected header signature (example total would be 32*(5+1) = 192 octets).
+
+The appended total of the ephemeral signature parts is itself then signed using a JWS with the Signer's key-pair and a fixed protected header containing only the required `alg` value.  Any protected header values from the Signer are always placed into the JWP's protected header and not the JWS used to generate/sign the Proof value.
+
+### Selective Disclosure
+
+The Prover does not modify the JWP Proof value when presenting it to a Verifier, it will always contain the full set of JWS signature parts for each payload and the protected header.  Since this value is fixed for the JWP and always revealed, they should only be used and presented a single time to each Verifier in order for the Prover to remain unlinkable across multiple interactions.
+
+Each payload can be selectively disclosed by simply including it in the presented JWP, leaving any hidden ones blank as a sparse array.  The Verifier uses the disclosed payloads and generates a fixed JWS protected header in order to perform validation of just those payloads using the matching JWS signature part from the Proof value and the JWK included in the JWP protected header.
+
+### Verification
+
+With each disclosed payload verified as described above, the Verifier also always verifies the JWP protected header against the matching JWS signature part in the Proof value.
+
+Finally, the Proof value itself must be verified against the Signer's public key.  First, the correct signature length octets of the given public key are removed from the end of the Proof value, and the remaining previous octets are used as the body of the final verification JWS against the signature octets that were just removed.
+
+### JPA Registration
+
+Proposed JWP `alg` value is of the format "SU-" appended with the relevant JWS `alg` value for the chosen public and ephemeral key-pair algorithm, for example "SU-ES256".
+
+If the ephemeral algorithm is different than the one used by the Signer's public key, it follows the in the `alg` value.  For example "SU-PS256-ES256" where the Signer is using PS256 for their public key and ES256 for the ephemeral key.
 
 
 ## BBS+
