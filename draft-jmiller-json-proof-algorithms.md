@@ -152,11 +152,11 @@ The final JWP protected header is then used directly as the body of a JWS and si
 
 Each JWP Payload is processed in order and signed as a JWS body using the ephemeral key.  The resulting JWS signature value is appended to the JWP Proof.
 
-The appended total of the stable header signature and ephemeral payload signatures as an octet string will be the fixed length of each signature (for example, 32 octets for the ES256 algorithm), multiplied by the number of payloads plus the JWP protected header (example total would be `32 * (1 protected header + 5 payloads) = 192 octets`).
+The appended total of the stable header signature and ephemeral payload signatures as an octet string will be the fixed length of each signature (for example, 32 octets for the ES256 algorithm), multiplied by the number of payloads plus the JWP protected header (example total would be `64 * (1 protected header + 5 payloads) = 384 octets`).
 
 ### Selective Disclosure
 
-The Prover is able to modify the Proof value when presenting it to a Verifier, it will always contain the initial stable header signature part and is then followed by the ephemeral signature parts for each payload that is disclosed.  Non-disclosed payloads will not have their ephemeral signature value included (for example if the second and fifth payloads are hidden then the Prover's derived proof value would be `32 * (1 header signature + the 1st, 2nd, and 4th payload signatures) = 128 octets`).
+The Prover is able to modify the Proof value when presenting it to a Verifier, it will always contain the initial stable header signature part and is then followed by the ephemeral signature parts for each payload that is disclosed.  Non-disclosed payloads will not have their ephemeral signature value included (for example if the second and fifth payloads are hidden then the Prover's derived proof value would be `64 * (1 header signature + the 1st, 2nd, and 4th payload signatures) = 256 octets`).
 
 Since the individual signatures in the Proof value do not change, the JWP should only be used and presented a single time to each Verifier in order for the Prover to remain unlinkable across multiple interactions.
 
