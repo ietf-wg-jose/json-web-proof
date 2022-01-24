@@ -158,7 +158,7 @@ If an implementation uses an alternative JWS protected header than the fixed val
 
 ### Protected Header
 
-The JWK of the ephemeral key MUST be included in the JWP protected header with the property name of `proof_jwk` and contain only the public values.
+The JWK of the ephemeral key MUST be included in the JWP protected header with the property name of `proof_jwk` and contain only the REQUIRED values to represent the public key.
 
 The final JWP protected header is then used directly as the body of a JWS and signed using the Signer's stable key.  The resulting JWS signature value as an unencoded octet string is the first value in the JWP Proof.
 
@@ -170,9 +170,9 @@ The appended total of the stable header signature and ephemeral payload signatur
 
 ### Selective Disclosure
 
-The Prover is able to modify the Proof value when presenting it to a Verifier, it will always contain the initial stable header signature part and is then followed by the ephemeral signature parts for each payload that is disclosed.  Non-disclosed payloads will not have their ephemeral signature value included (for example if the second and fifth payloads are hidden then the Prover's derived proof value would be `64 * (1 header signature + the 1st, 2nd, and 4th payload signatures) = 256 octets`).
+The Prover is able to derive a new Proof value when presenting it to a Verifier.  The presented Proof value will always contain the stable signature for the protected header as the first element.  It is then followed by only the ephemeral signatures for each payload that is disclosed with order preserved.  Non-disclosed payloads will NOT have their ephemeral signature value included.  For example, if the second and fifth payloads are hidden then the Prover's derived Proof value would be of the length `64 * (1 header signature + the 1st, 2nd, and 4th payload signatures) = 256 octets`.
 
-Since the individual signatures in the Proof value do not change, the JWP should only be used and presented a single time to each Verifier in order for the Prover to remain unlinkable across multiple interactions.
+Since the individual signatures in the Proof value are not changed from the Signer, the JWP SHOULD only be used and presented a single time to each Verifier in order for the Prover to remain unlinkable across multiple presentations.
 
 ### Verification
 
