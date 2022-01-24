@@ -51,6 +51,20 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 document are to be interpreted as described in BCP 14 [@!RFC2119] [@RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
+# Terminology
+
+The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS Protected Header" are defined by the JWS specification [JWS].
+
+The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP Protected Header" are defined by the JWP specification [JWP].
+
+These terms are defined by this specification:
+
+Stable Key
+  An asymmetric key-pair used by a Signer that is also shared via an out-of-band mechanism to a Verifier in order to validate the signature.
+
+Ephemeral Key
+  An asymmetric key-pair that is generated for one-time use by a Signer and never stored or used again outside of the creation of a single JWP.
+
 # Background
 
 JWP defines a container binding together a protected header, one or more payloads, and a cryptographic proof.  It does not define any details about the interactions between an application and the cryptographic libraries that implement proof-supporting algorithms.
