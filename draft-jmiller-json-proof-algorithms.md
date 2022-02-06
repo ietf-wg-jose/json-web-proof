@@ -184,15 +184,61 @@ The Verifier uses only the disclosed payloads and generates or uses the included
 
 Proposed JWP `alg` value is of the format "SU-" appended with the relevant JWS `alg` value for the chosen public and ephemeral key-pair algorithm, for example "SU-ES256".
 
-## BBS+
+## BBS
 
-Applying the BBS+ signature algorithm to a JWP is extremely straight forward.  The BBS+ sign methods take an ordered array of octet messages and return a signature value.  Each JWP payload is one message, and the resulting signature is used as the initial proof value.
+The BBS Signature Scheme under active standards development as a [work item](https://github.com/decentralized-identity/bbs-signature) within the DIF [Applied Cryptography Working Group](https://identity.foundation/working-groups/crypto.html).  Prior to this effort, a [V1 implementation of BBS](https://github.com/mattrglobal/bbs-signatures) has been released and maintained by a community of individuals with notable adoption in multiple early stage decentralized identity projects.
 
-When proving, the BBS+ create proof method takes the original signature, array of messages, a nonce, and the indicies of which messages are being disclosed.  The output is the new proof value.  The nonce value should be generated or provided by the verifier and its handling is out of scope of JWP and this algorithm.
+This JSON Proof Algorithm definition for BBS is based on the already released implementation and relies on the provided software API, a future definition with a different `alg` value will be created to succeed this version as the BBS standardization effort progresses.
 
-Proposed JWK `alg` value is "BBS" with a `crv` value of "Bls12381G2".
+This algorithm supports both selective disclosure and unlinkability, enabling the Prover to generate multiple proofs from one signed JWP without the verifier being able to correlate those proofs together.
 
-Proposed JWP `alg` value is "BBS-Bls12381G2".
+### BLS Curve
+
+The pairing friendly elliptic curve used for the BBS software implementation is part of the BLS family with an embedding degree of 12 over a 381-bit prime field.  For this JPA, only the group G2 is used.
+
+In the implementation the method used to generate the key pairs is `generateBls12381G2KeyPair()`.
+
+### Messages
+
+BBS is a multi-message scheme and operates on an array of individual messages for signing and proof generation.  Each message is a binary octet string, the BBS implementation uses a hash-to-curve method to map each message to a point.
+
+### Protected Header
+
+The UTF-8 octet string of the JWP Protected Header is the first message in the input array, it is always at index 0.
+
+### Payloads
+
+The octet strings of each payload are placed into the BBS message array following the protected header message.  For example, first payload is at index 1 of the array and the last payload is always the last message in the array.
+
+In future versions of this algorithm there will be additional methods defined for transforming a payload into a point such that additional Zero-Knowledge Proof types can be supported by the Prover such as range and membership predicates.
+
+### Signing
+
+The Signer's BLS12-381 G2 key pair is used to sign the completed message array input containing the octet strings of the Protected Header and every payload.  The result is a signature octet string that is used as the signed JWP Proof value.
+
+In the implementation, the method used to perform the signing is `blsSign({keyPair, [header, payload1, payload2, ...]})` and returns a binary signature value.
+
+### Proving
+
+The prover must decode the JWP header and payload values in order to generate the identical message array that the signer used.
+
+To generate a JWP for a verifier, the prover must use a cryptographic nonce that is provided by that verifier as input.  This nonce MUST be a 32 byte octet string that the verifier generated from a trusted  source.
+
+The prover also applies selective disclosure preferences by creating an array of indices of which messages in the input array are to be revealed to the verifier.  The revealed indices MUST include the value `0` so that the protected header message is always revealed to the verifier.
+
+The result of creating a proof is an octet string that is used as the verifiable JWP proof value.
+
+In the implementation, the method used to generate the proof is `blsCreateProof({signedProof, publicKey, [header, payload1, payload2, ...], nonce, [0, 2, ...])`.
+
+### Verification
+
+The verifier decodes the JWP header and payload values into a messages array, skipping any non-revealed payloads.  The current BBS implementation embeds the revealed indices into the output proof value so the verification messages array only needs to include the revealed messages.
+
+In the implementation, the method used to verify the proof is `blsVerifyProof({verifyProof, publicKey, [header, payload2, ...] nonce)`.
+
+### JPA Registration
+
+Proposed JWP `alg` value for BBS based on the software implementation is "BBS-X".
 
 ## ZKSnark
 
@@ -201,7 +247,7 @@ TBD
 # Security Considerations
 
 * Data minimization of the proof value
-* Unlinkability
+* Unlinkability of the protected header contents
 
 # IANA Considerations
 
