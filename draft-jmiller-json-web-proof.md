@@ -100,7 +100,7 @@ The JWP protected header MUST have, at minimum, an `alg` that supports proofs wi
 For example:
 ```json
 {
-    "alg":"BBS-BLS12"
+    "alg":"BBS-X"
 }
 ```
 
@@ -156,27 +156,28 @@ Example flattened JSON serialization:
 
 ## Example JWP
 
-This section provides an example of a JWP.  Its computation is described in more detail in Appendix A.1, including specifying the exact octet sequences representing the JSON values used and the key value used.
+This section provides an example of a JWP secured using the BBS JSON Proof Algorithm [JPA].  Its computation is described in more detail in the JPA BBS definition, including specifying the exact octet sequences representing the JSON values used and the key value used.
 
-The following example JWP Protected Header declares that the encoded object is a JSON Proof Token [JPT] and the JWP Protected Header and JWP Payloads are secured using the BBS+ JSON Proof Algorithm:
+The following example JWP Protected Header declares that the encoded object is a JSON Proof Token [JPT] and the JWP Protected Header and JWP Payloads are secured using the BBS JSON Proof Algorithm [JPA]:
 
 ```json
 {
-  "typ": "JPT",
-  "alg": "BBS+",
+  "iss": "https://issuer.example",
   "claims": [
     "family_name",
     "given_name",
     "email",
     "age"
-  ]
+  ],
+  "typ": "JPT",
+  "alg": "BBS-X"
 }
 ```
 
 Encoding this JWS Protected Header as BASE64URL(UTF8(JWP Protected Header)) gives this value:
 
 ```
-  eyJ0eXAiOiJKUFQiLCJhbGciOiJCQlMrIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl19
+  eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQVCIsImFsZyI6IkJCUy1YIn0
 ```
 
 The UTF-8 representation of the following JSON values are used as the JWP Payloads along with their BASE64URL(Payload) encoded form.  (Note that the JWP payloads can be any content, JSON values are used for JSON Proof Tokens.)
@@ -186,16 +187,16 @@ The UTF-8 representation of the following JSON values are used as the JWP Payloa
 * `"jaydoe@example.org"` - `ImpheWRvZUBleGFtcGxlLm9yZyI`
 * `42` - `NDI`
 
-Computing the BBS+ signature of the JWP Payloads using the key specified in Appendix A.1 and base64url-encoding the result yields this BASE64URL(JWP Proof) value:
+Computing the BBS signature of the JWP Payloads using the key specified in Appendix A.1 and base64url-encoding the result yields this BASE64URL(JWP Proof) value:
 
 ```
-  rVvDIb3QzG_--IqtdUc6FCCElEiGKu_sEKvInu65kVeIP5evELrMPaDYWbyUI2epYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ
+  gwho74MFtojkf2qEBFHsJCBZgeCV9dNRIXacM5QAzvqTb2wNTARiChTGF9wlEJwFYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ
 ```
 
 Concatenating these values in the order Header.Payload1~Payload2~Payload3~Payload4.Proof with period ('.') and tilde ('~') characters between the parts yields this complete JWP representation using the JWP Compact Serialization (with line breaks for display purposes only):
 
 ```
-  ImV5SjBlWEFpT2lKS1VGUWlMQ0poYkdjaU9pSkNRbE1ySWl3aVkyeGhhVzF6SWpwYkltWmhiV2xzZVY5dVlXMWxJaXdpWjJsMlpXNWZibUZ0WlNJc0ltVnRZV2xzSWl3aVlXZGxJbDE5Ig
+  eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQVCIsImFsZyI6IkJCUy1YIn0
   .
   IkRvZSI
   ~
@@ -204,34 +205,34 @@ Concatenating these values in the order Header.Payload1~Payload2~Payload3~Payloa
   ImpheWRvZUBleGFtcGxlLm9yZyI
   ~
   NDI
-  .rVvDIb3QzG_--IqtdUc6FCCElEiGKu_sEKvInu65kVeIP5evELrMPaDYWbyUI2epYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ
+  .gwho74MFtojkf2qEBFHsJCBZgeCV9dNRIXacM5QAzvqTb2wNTARiChTGF9wlEJwFYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ
 ```
 
 The same JWP using the JSON Serialization:
 ```json
 {
-  "protected": "eyJ0eXAiOiJKUFQiLCJhbGciOiJCQlMrIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl19",
+  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQVCIsImFsZyI6IkJCUy1YIn0",
   "payloads": [
     "IkRvZSI",
     "IkpheSI",
     "ImpheWRvZUBleGFtcGxlLm9yZyI",
     "NDI"
   ],
-  "proof": "rVvDIb3QzG_--IqtdUc6FCCElEiGKu_sEKvInu65kVeIP5evELrMPaDYWbyUI2epYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ"
+  "proof": "gwho74MFtojkf2qEBFHsJCBZgeCV9dNRIXacM5QAzvqTb2wNTARiChTGF9wlEJwFYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ"
 }
 ```
 
 After using the BBS algorithm to generate an unlinkable proof revealing only the 2nd and 4th payload of the given name and email in this example, the result will be a new JWP with the same Protected Header only those payloads included:
 
 ```
-  ImV5SjBlWEFpT2lKS1VGUWlMQ0poYkdjaU9pSkNRbE1ySWl3aVkyeGhhVzF6SWpwYkltWmhiV2xzZVY5dVlXMWxJaXdpWjJsMlpXNWZibUZ0WlNJc0ltVnRZV2xzSWl3aVlXZGxJbDE5Ig
+  eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQVCIsImFsZyI6IkJCUy1YIn0
   .
   ~
   IkpheSI
   ~
   ~
   NDI
-  .AAUVrk1iHD_KnJeDoAcQDtyDRzsiFlIJQadHy6aWdyyUukBXiRf8bgtA4zcICVpMQacmrDSkJyaDbrMt7flSCu_C-pKIZ74sNXzzQyaCsam4N8K6-iYh2LVgCNf-FswgaXqLlBnUpTA29HKZKhyi0JsljtZX0H0EpDcl0CZsN9hD8uC-R8Tr5YyryCV2tRoW_VeKAAAAdLXtOduYTfnbSp38MKvd26CVNdELV7iytn-sq-3deDljBCiGSCNzVisQ21HxK0LYgwAAAAIwiazSFF9yWQUwWtzaAwN6LWbCvp-DN1bUqN8QN8Sy_kX3XXFBN_0FwuKrn_pxO2tivScDnx30mDyhZ3mfbCl_iiMhjRUzgpOeTVXAUSKlPUPlmfDnESCmd00Kvjyt9ESNvNKI4WAnBzjYNXv3s-D1AAAABDFFH9-1guu1xyZB3TIvqorcyCk0M8GAIaBHqFvYdJu9U32AkzxLcVgbJ2ALtPDuwb8ME4SZaq2apBI4pCrKJFE1fbzr3JdnuSOsYkxUflTnwa_Ex2yCXpa7LGc5rBG6pmG4N8DOOyFN1w7LYrwpPkAh1w11sO6Pg-NpmkaiAdpA
+  .AAUVjPocNVq54AMOOTR6fTi4k09p7ksDON8TbKXSwFpGJpPxIpb9CieH0IgE4Hcnd8m6sO8DAPWSuNO_BPWD156pYvhMPIGnPPglOTvZTnuuReKJZrxfhdDz1WSDmgvzx1TvsZDG5lqBSGTIsFksJNYp2qgKt4MKvJHMcsbVEj28HYmXLDR94HyQPyJYDAbKBGpWAAAAdJek-dySicKLY8WgJ8reG3jB-QKw1XIL5IxSJ0O61KeOeGArhTcnDB9vC6KdsgbixgAAAAJSbCyDkZYSnVcQsfjAj2K2RIUKkuqMQ9lapfEyj4lvbCyZTjmmmIbII5MM-w7Mlif9Np2Vp3-KKEB1J1H138IYlHvlbfSga43fMjrRNDflVwB5kq4zBIMI3o4e7l60oB2PmevDr8DwK0hXJCgBmqThAAAABAw5WfKp81ieomSR1anW498WkmUiT60BtVMbU291LMTlOxgk7KGYUbV5Ezy5z4WMfV6-Ll4R2pjy3Vfvrvm46sdIz-fHxqOiKqICMoOdl7NrLJ01k2PUclaszoogX7NN_xKuN5-SsequvK2Ysa2oREPbXZDNEMlku0eWX5cWR5sq
 ```
 
 # Security Considerations
