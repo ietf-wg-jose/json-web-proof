@@ -222,7 +222,7 @@ The same JWP using the JSON Serialization:
 }
 ```
 
-After using the BBS algorithm to generate an unlinkable proof revealing only the 2nd and 4th payload of the given name and email in this example, the result will be a new JWP with the same Protected Header only those payloads included:
+After using the BBS algorithm to generate an unlinkable proof revealing only the second and fourth payload of the given name and email in this example, the result will be a new JWP with the same Protected Header only those payloads included:
 
 ```
   eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQVCIsImFsZyI6IkJCUy1YIn0
