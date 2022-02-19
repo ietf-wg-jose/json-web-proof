@@ -46,7 +46,7 @@ organization = "Microsoft"
 
 The JOSE set of standards established JSON-based container formats for [Keys](https://datatracker.ietf.org/doc/rfc7517/), [Signatures](https://datatracker.ietf.org/doc/rfc7515/), and [Encryption](https://datatracker.ietf.org/doc/rfc7516/).  They also established [IANA registries](https://www.iana.org/assignments/jose/jose.xhtml) to enable the algorithms and representations used for them to be extended.  Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.
 
-This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads, enabling those payloads to be selectively disclosed. It also specifies a proof-generation step, enabling privacy-preserving selection and computation.
+This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads, enabling those payloads to be selectively disclosed. It also specifies a presentation step where privacy-preserving selection and proof computation are performed along with an additional protected header to prevent replay and support binding mechanisms.
 
 {mainmatter}
 
@@ -67,7 +67,7 @@ There are a growing number of these cryptographic primitives that support select
 * [U-Prove](https://www.microsoft.com/en-us/research/project/u-prove/)
 * [Spartan](https://github.com/microsoft/Spartan)
 
-All of these follow the same pattern of taking multiple claims (a.k.a., "attributes" or "messages" in the literature) and binding them together into an issued token.  These are then later securely one-way transformed into a presentation that reveals potentially only a subset of the original claims, predicate proofs of the claim values, or proofs of knowledge of the claims.
+All of these follow the same pattern of taking multiple claims (a.k.a., "attributes" or "messages" in the literature) and binding them together into a single issued statement.  These are then later securely one-way transformed into a presentation that reveals potentially only a subset of the original claims, predicate proofs about the claim values, or proofs of knowledge of the claims.
 
 
 # Conventions and Definitions
@@ -77,19 +77,38 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 document are to be interpreted as described in BCP 14 [@!RFC2119] [@RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
+The roles of "issuer", "holder", and "verifier", are used from and defined by the [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/2021/REC-vc-data-model-20211109/).  The term "presentation" is also used and defined by this source, but the term "credential" is avoided in this specification in order to minimize confusion with other definitions.
+
+## Abbreviations
+
+* ZKP: Zero-Knowledge Proof
+* JWP: JSON Web Proof (this specification)
+* JPA: JSON Proof Algorithms
+* JPT: JSON Proof Token
+
 # Background
 
 A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition that it can contain multiple individual secured payloads instead of a singular one.  JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
-In addition to the JWS `sign` and `verify` interactions, JWP also importantly adds a `prove` processing step for interaction with the algorithm to perform the selective disclosure and privacy-preserving transformations.  This allows for multi-party interactions where a token is issued from one party, held by another party, then used to generate and present proofs about the token to another verifying party.  While `sign` only occurs when a JWP is being created, the `prove` and `verify` steps may be safely repeated on a signed JWP (when supported by the algorithm).
-
 The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, interaction protocols, or custom options for algorithms with additional capabilities.
+
+JWS establishes the common `sign` and `verify` interactions with an implementation.  JWP extends this, adding the `validate` and `present` interactions.
+
+A JWP is initially created using the `sign` interaction resulting in the structure with a single protected header, one or more payloads, and an initial proof value that contains the signing algorithm output.  Then `validate` is used to check the integrity protection of the header and all payloads using only the proof value.
+
+After validation, the `present` interaction applies any selective disclosure and privacy-preserving transformations that are performed for a specific audience.  That audience then uses `verify` to ensure the integrity protection of the headers and disclosed payloads along with verifying any contained ZKPs.
+
+This allows for multi-party interactions where a statement is issued from one party, held by another party, then used to generate a unique presentation about the statement to another verifying party.  While `sign` and `validate` only occur when a JWP is initially created, the `present` and `verify` steps may be safely repeated on a signed JWP.  The linkability of the presented JWP is only protected when supported by the underlying algorithm.
 
 Algorithm definitions that support JWPs are being done in separate companion specifications - just as the [JSON Web Algorithms] [@RFC7518] specification does for JWS and JWE [@RFC7516].  The JSON Proof Algorithms specification defines how an initial set of algorithms are used with JWP.
 
 # JWP Format
 
-A JWP always contains a protected header along with one or more payloads.  Each payload is represents an octet string.  The payloads are then serialized as an ordered array.  Finally, the JWP contains a representation of a cryptographic proof over the payloads.
+A JWP always contains at least one protected header along with one or more payloads.  Each payload is represents an octet string.  The payloads are then serialized as an ordered array.  Finally, every JWP contains a representation of a cryptographic proof over the payloads and header(s).
+
+When a JWP is signed by an issuer it contains only one header, the issuer protected header, along with all of the payloads and a proof value.  The proof value internally contains one or more cryptographic statements that are used to check the integrity protection of the issuer header and all payloads.  Each of these statements may be a ZKP or a traditional cryptographic signature, the algorithm is responsible for how these statements are serialized into a single proof value octet string.
+
+When a signed JWP is presented it undergoes a transformation that adds a presentation protected header. It may also have one or more payloads hidden, disclosing a subset of the original signed payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.
 
 ## Protected Header
 
