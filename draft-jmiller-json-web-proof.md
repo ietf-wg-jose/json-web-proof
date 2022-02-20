@@ -46,7 +46,7 @@ organization = "Microsoft"
 
 The JOSE set of standards established JSON-based container formats for [Keys](https://datatracker.ietf.org/doc/rfc7517/), [Signatures](https://datatracker.ietf.org/doc/rfc7515/), and [Encryption](https://datatracker.ietf.org/doc/rfc7516/).  They also established [IANA registries](https://www.iana.org/assignments/jose/jose.xhtml) to enable the algorithms and representations used for them to be extended.  Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.
 
-This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads, enabling those payloads to be selectively disclosed. It also specifies a presentation step where privacy-preserving selection and proof computation are performed along with an additional protected header to prevent replay and support binding mechanisms.
+This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.  It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay and support binding mechanisms.
 
 {mainmatter}
 
@@ -54,7 +54,7 @@ This document defines a new container format similar in purpose and design to JS
 
 The JOSE specifications are very widely deployed and well supported, enabling use of cryptographic primitives with a JSON representation.  JWTs [@!RFC7519] are one of the most common representations for identity and access claims.  For instance, they are used by the OpenID Connect and Secure Telephony Identity Revisited (STIR) standards.  Also, JWTs are used by W3C's Verifiable Credentials and are used in many Decentralized Identity systems.
 
-With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting information and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs), instead of traditional signatures.
+With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting information, and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) instead of traditional signatures.
 
 There are a growing number of these cryptographic primitives that support selective disclosure while protecting privacy across multiple presentations.  Examples used in the context of Verifiable Credentials are:
 
@@ -72,10 +72,7 @@ All of these follow the same pattern of taking multiple claims (a.k.a., "attribu
 
 # Conventions and Definitions
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in BCP 14 [@!RFC2119] [@RFC8174]
-when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@RFC8174] when, and only when, they appear in all capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier", are used from and defined by the [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/2021/REC-vc-data-model-20211109/).  The term "presentation" is also used and defined by this source, but the term "credential" is avoided in this specification in order to minimize confusion with other definitions.
 
@@ -90,23 +87,25 @@ The roles of "issuer", "holder", and "verifier", are used from and defined by th
 
 A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition that it can contain multiple individual secured payloads instead of a singular one.  JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
-The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, interaction protocols, or custom options for algorithms with additional capabilities.
+The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm specific capabilities.
 
-JWS establishes the common `sign` and `verify` interactions with an implementation.  JWP extends this, adding the `validate` and `present` interactions.
+In order to fully support the newer privacy primitives, JWP introduces the three roles of issuer, holder, and verifier as defined by [@VCDM11].  There are also two forms of a JWP: the signed form created by an issuer for a holder, and the presented form created by a holder for a verifier.
 
-A JWP is initially created using the `sign` interaction resulting in the structure with a single protected header, one or more payloads, and an initial proof value that contains the signing algorithm output.  Then `validate` is used to check the integrity protection of the header and all payloads using only the proof value.
+A JWP is initially created by the issuer using a `sign` interaction with an implementation.  A successful results is a signed JWP that has a single issuer-protected header, one or more payloads, and an initial proof value that contains the signing algorithm output.  The holder upon receiving a signed JWP then uses `validate` to check the integrity protection of the header and all payloads using the given proof value.
 
-After validation, the `present` interaction applies any selective disclosure and privacy-preserving transformations that are performed for a specific audience.  That audience then uses `verify` to ensure the integrity protection of the headers and disclosed payloads along with verifying any contained ZKPs.
+After validation, the holder uses `present` to apply any selective disclosure choices, perform privacy-preserving transformations for unlinkability, and add a presentation-protected header that ensures the resulting presented JWP cannot be replayed.  The verifier then uses `verify` to ensure the integrity protection of the protected headers and any disclosed payloads along with verifying any additional ZKPs covering non-disclosed payloads.
 
-This allows for multi-party interactions where a statement is issued from one party, held by another party, then used to generate a unique presentation about the statement to another verifying party.  While `sign` and `validate` only occur when a JWP is initially created, the `present` and `verify` steps may be safely repeated on a signed JWP.  The linkability of the presented JWP is only protected when supported by the underlying algorithm.
+While `sign` and `validate` only occur when a JWP is initially created by the issuer, the `present` and `verify` steps may be safely repeated by a holder on a signed JWP.  The unlinkability of the resulting presented JWP is only protected when supported by the underlying algorithm.
 
 Algorithm definitions that support JWPs are being done in separate companion specifications - just as the [JSON Web Algorithms] [@RFC7518] specification does for JWS and JWE [@RFC7516].  The JSON Proof Algorithms specification defines how an initial set of algorithms are used with JWP.
 
 # JWP Format
 
-A JWP always contains at least one protected header along with one or more payloads.  Each payload is represents an octet string.  The payloads are then serialized as an ordered array.  Finally, every JWP contains a representation of a cryptographic proof over the payloads and header(s).
+A JWP may have one or two integrity protected headers depending on if it is the signed form (one) or the presented form (two).  The protected headers are always a JSON object that is serialized as a UTF-8 encoded octet string.
 
-When a JWP is signed by an issuer it contains only one header, the issuer protected header, along with all of the payloads and a proof value.  The proof value internally contains one or more cryptographic statements that are used to check the integrity protection of the issuer header and all payloads.  Each of these statements may be a ZKP or a traditional cryptographic signature, the algorithm is responsible for how these statements are serialized into a single proof value octet string.
+Every JWP has one or more payloads, each payload is an octet string.  All of the contained payloads are serialized as an array who's ordering is preserved in all serializations.
+
+The JWP proof value is a single octet string that is only generated from and consumed by the underling JPA.  Internally the proof value may one or more cryptographic statements that are used to check the integrity protection of the issuer header and all payloads.  Each of these statements may be a ZKP or a traditional cryptographic signature, the algorithm is responsible for how these statements are serialized into a single proof value.
 
 When a signed JWP is presented it undergoes a transformation that adds a presentation protected header. It may also have one or more payloads hidden, disclosing a subset of the original signed payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.
 
