@@ -89,31 +89,35 @@ A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition 
 
 The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm specific capabilities.
 
-In order to fully support the newer privacy primitives, JWP introduces the three roles of issuer, holder, and verifier as defined by [@VCDM11].  There are also two forms of a JWP: the signed form created by an issuer for a holder, and the presented form created by a holder for a verifier.
+In order to fully support the newer privacy primitives, JWP introduces the three roles of issuer, holder, and verifier as defined by [@VCDM11].  There are also two forms of a JWP: the issued form created by an issuer for a holder, and the presented form created by a holder for a verifier.
 
-A JWP is initially created by the issuer using a `sign` interaction with an implementation.  A successful results is a signed JWP that has a single issuer-protected header, one or more payloads, and an initial proof value that contains the signing algorithm output.  The holder upon receiving a signed JWP then uses `validate` to check the integrity protection of the header and all payloads using the given proof value.
+A JWP is initially created by the issuer using the `issue` interaction with an implementation.  A successful results is an issued JWP that has a single issuer-protected header, one or more payloads, and an initial proof value that contains the issuing algorithm output.  The holder upon receiving an issued JWP then uses `validate` to check the integrity protection of the header and all payloads using the given proof value.
 
 After validation, the holder uses `present` to apply any selective disclosure choices, perform privacy-preserving transformations for unlinkability, and add a presentation-protected header that ensures the resulting presented JWP cannot be replayed.  The verifier then uses `verify` to ensure the integrity protection of the protected headers and any disclosed payloads along with verifying any additional ZKPs covering non-disclosed payloads.
 
-While `sign` and `validate` only occur when a JWP is initially created by the issuer, the `present` and `verify` steps may be safely repeated by a holder on a signed JWP.  The unlinkability of the resulting presented JWP is only protected when supported by the underlying algorithm.
+While `issue` and `validate` only occur when a JWP is initially created by the issuer, the `present` and `verify` steps may be safely repeated by a holder on an issued JWP.  The unlinkability of the resulting presented JWP is only protected when supported by the underlying algorithm.
 
 Algorithm definitions that support JWPs are being done in separate companion specifications - just as the [JSON Web Algorithms] [@RFC7518] specification does for JWS and JWE [@RFC7516].  The JSON Proof Algorithms specification defines how an initial set of algorithms are used with JWP.
 
-# JWP Format
+# JWP Forms
 
-A JWP may have one or two integrity protected headers depending on if it is the signed form (one) or the presented form (two).  The protected headers are always a JSON object that is serialized as a UTF-8 encoded octet string.
+A JWP is always in one of two forms, the issued form and the presented form.  The significant difference between the two forms is the number of protected headers.  An issued JWP has only one issuer protected header, while a presented JWP will have both the issuer protected header and an additional presentation protected header.  Both of the protected headers are always a JSON object that is serialized as a UTF-8 encoded octet string.
 
-Every JWP has one or more payloads, each payload is an octet string.  All of the contained payloads are serialized as an array who's ordering is preserved in all serializations.
+All JWP forms have one or more payloads, each payload is an octet string.  All of the contained payloads are serialized as an array who's ordering is preserved in all serializations.
 
 The JWP proof value is a single octet string that is only generated from and consumed by the underling JPA.  Internally the proof value may one or more cryptographic statements that are used to check the integrity protection of the issuer header and all payloads.  Each of these statements may be a ZKP or a traditional cryptographic signature, the algorithm is responsible for how these statements are serialized into a single proof value.
 
-When a signed JWP is presented it undergoes a transformation that adds a presentation protected header. It may also have one or more payloads hidden, disclosing a subset of the original signed payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.
+When an issued JWP is presented it undergoes a transformation that adds a presentation protected header. It may also have one or more payloads hidden, disclosing a subset of the original issued payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.
 
-## Protected Header
+## Issuer Form
 
-Although there are multiple payloads, the protected header still applies to the JWP as a whole.  It is recommended that payload-specific information not be included in the header and instead be handled outside of the cryptographic envelope.  This is to minimize any correlatable signals in the metadata, to prevent a verifier from categorizing based on header changes that may vary between multiple JWPs.
+When a JWP is 
 
-The JWP protected header MUST have, at minimum, an `alg` that supports proofs with signing, proving, and verifying processing steps.
+### Issuer Protected Header
+
+Although there are multiple payloads, the issuer protected header still applies to the JWP as a whole.  It is recommended that payload-specific information not be included in this header and instead be handled outside of the cryptographic envelope.  This is to minimize any correlatable signals in the metadata, to prevent a verifier from categorizing based on differences between between multiple headers from the same issuer.
+
+The JWP issuer protected header MUST have, at minimum, an `alg` that supports the issue, validate, present, and verify processing stages.
 
 For example:
 ```json
@@ -122,11 +126,11 @@ For example:
 }
 ```
 
-Every JWP algorithm must include a digest method that is used to generate a cryptographic hash of the base64url-serialized protected header.  The protected header cannot be selectively disclosed and the digest value MUST be included in all proof values.
+Every JWP algorithm MUST include a digest method that is used to generate a cryptographic hash of the base64url-serialized issuer protected header.  This header cannot be selectively disclosed and the digest MUST be protected by and verifiable from the proof value.
 
-In order to minimize linkability, the protected header MUST be static across all JWPs for a given key and layout.  All reused headers MUST have the same base64url-serialized value to avoid any non-deterministic JSON serialization, and the JWP algorithm's digest method MUST have a deterministic output for identical inputs.
+In order to prevent accidentally introducing linkability, when an issuer uses the same key with the same grouping of payload types they MUST also use the same issuer protected header.  Each of these headers MUST have the same base64url-serialized value to avoid any non-deterministic JSON serialization, and the JWP algorithm's digest method MUST have a deterministic output for identical inputs.
 
-## Payloads
+## Issuer Payloads
 
 Payloads are represented and processed as individual octet strings and arranged in an ordered array when there are multiple payloads.  All application context of the placement and encoding of each payload value is out of scope of this specification and SHOULD be well defined and documented by the application or other specifications.
 
@@ -134,7 +138,7 @@ In order to support ZKPs, individual payloads cannot be serialized before they a
 
 Any one or more payloads may be non-disclosed in a JWP.  When a payload is not disclosed, the position of other payloads does not change; the resulting array will simply be sparse and only contain the disclosed payloads.  The disclosed payloads will always be in same array positions to preserve any index-based references by the application across the whole JWP lifecycle.  How the sparse array is represented is specific to the serialization used.
 
-## Proof
+## Issuer Proof
 
 The proof value is a binary octet string that is opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures to it.
 
