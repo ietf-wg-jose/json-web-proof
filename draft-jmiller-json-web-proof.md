@@ -89,7 +89,7 @@ A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition 
 
 The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.
 
-In order to fully support the newer privacy primitives, JWP introduces the three roles of issuer, holder, and verifier as defined by [@VCDM11].  There are also two forms of a JWP: the issued form created by an issuer for a holder, and the presented form created by a holder for a verifier.
+In order to fully support the newer privacy primitives, JWP introduces the three roles of issuer, holder, and verifier as defined by the VC Data Model.  There are also two forms of a JWP: the issued form created by an issuer for a holder, and the presented form created by a holder for a verifier.
 
 A JWP is initially created by the issuer using the `issue` interaction with an implementation.  A successful result is an issued JWP that has a single issuer-protected header, one or more payloads, and an initial proof value that contains the issuing algorithm output.  The holder, upon receiving an issued JWP, then uses `validate` to check the integrity protection of the header and all payloads using the given proof value.
 
