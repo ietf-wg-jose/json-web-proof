@@ -75,66 +75,55 @@ Due to the nature of ZKPs, this specification also documents the subtle but impo
 
 # Algorithm Basics
 
-The four principal interactions that every proof algorithm MUST support are `[sign](#sign)`, `[verify_signature](#verify-signature)`, `[prove](#prove)`, and `[verify_proof](#verify-proof)`.
+The four principal interactions that every proof algorithm MUST support are `[issue](#issue)`, `[confirm](#confirm)`, `[present](#present)`, and `[verify](#verify)`.
 
-Some JPAs MAY also support two additional interactions of `[request_signature](#request-signature)` and `[request_proof](#request-proof)`.  While these do not use a JWP container as input or output, they are included here in order to maximize interoperability across JPA implementations.
+## Issue
 
-## Sign
-
-The JWP is first created as the output of a JPA's `sign` operation.
+The JWP is first created as the output of a JPA's `issue` operation.
 
 TODO:
 
-* MUST support the protected header as an octet string
+* MUST support the issuer protected header as an octet string
 * MUST support one or more payloads, each as an octet string
-* MAY support the output of the `request_signature` operation from the requesting party (for blinded payloads)
-* MUST include integrity protection for the header and all payloads
-* MUST specify all digest and hash2curve methods used
+* MAY support algorithm-specific options from the holder (for blinded payloads, PoP, etc)
+* MUST include integrity protection for the issuer header and all payloads
+* MUST specify all digest and/or hash2curve methods used
 
-## Verify Signature
+## Confirm
 
-Performed by the requesting party to verify the signed JWP.
+Performed by the holder to validate the issued JWP is correctly formed and protected.
 
 TODO:
 
-* MAY support local/cached private state from the `request_signature` operation (the blinded payloads)
-* MAY return a modified JWP for serialized storage without the local state (with the payloads unblinded)
-* MUST fully verify the proof value against the protected header and all payloads
-* MUST fail if given a proven JWP
+* MAY support algorithm-specific options (such as those sent to the issuer)
+* MAY return a modified JWP for serialized storage without the local state (such as with blinded payloads now un-blinded)
+* MUST fully verify the proof value against the issuer protected header and all payloads
+* MUST fail if given a presented JWP
 
-## Prove
+## Present
 
 Used to apply any selective disclosure choices and perform any unlinkability transformations.
 
 TODO:
 
-* MAY support the output of the `request_proof` operation from the requesting party (for predicate proofs and verifiable computation requests)
-* MUST support ability to hide any payload
-* MUST always include the protected header
-* MAY replace the proof value
-* MUST indicate if the input JWP is able to be used again
-* MAY support an input JWP that resulted from a previous `prove` operation
+* MAY support algorithm-specific options from the requesting party (for predicate proofs and verifiable computation requests)
+* MUST support the ability to hide any payload
+* MUST always include the issuer protected header
+* MUST replace the proof value
+* MUST include a new presentation protected header that provides replay protection
 
-## Verify Proof
+## Verify
 
-Performed by the requesting party on a JWP to verify any revealed payloads and/or assertions about them from the proving party, while also verifying they are the same payloads and ordering as witnessed by the signing party.
+Performed by the verifier to verify the protected headers along with any revealed payloads and/or assertions about them from the proving party, while also verifying they are the same payloads and ordering as witnessed by the issuer.
 
 TODO:
 
 * MUST verify the integrity of all revealed payloads
+* MUST verify the integrity of both the issuer and presentation protected headers
 * MUST verify any included assertions about a hidden payload as true
-* MAY support local state from the `request_proof` operation
-* Out of scope is app interface to interact with the resulting verified assertions (may also be part of the request proof state)
-* MAY indicate if the JWP can be re-used to generate a new proof
-* MUST fail if given only a signed JWP
-
-## Request Signature
-
-TODO
-
-## Request Proof
-
-TODO
+* MAY support algorithm-specific options (such as those sent to the holder)
+* Out of scope is the app interface to interact with the resulting verified assertions
+* MUST fail if given only an issued JWP
 
 # Algorithm Specifications
 
