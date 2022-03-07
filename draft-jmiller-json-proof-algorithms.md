@@ -142,11 +142,17 @@ This section defines how to use specific algorithms for JWPs.
 
 The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.  It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the prover must be able to interact with the signer again to receive new single-use JWPs (dynamically or in batches).
 
+### Holder Setup
+
+In order to support the protection of a presentation by the holder to the verifier, the holder must use a Proof-of-Possession (PoP) key both during the issuance and the presentation.  The SU algorithm uses [RFC 7800](https://datatracker.ietf.org/doc/html/rfc7800) to accomplish this, adding a "cnf" claim to the issuer's protected header that identifies the PoP key being used by the holder.
+
+The PoP key's algorithm MUST be the same one as used to create the JWS values for the SU proof.  The issuer MUST verify that the holder has possession of this key before adding the "cnf" claim with the matching key information.  The holder-issuer communication to exchange this information is out of scope of this specification.
+
 ### Signer Setup
 
 To create a Single Use JWP the Signer must first generate a unique ephemeral key-pair using a JWS algorithm.  This key-pair will be used to sign the parts of a single JWP and then discarded.  The selected algorithm must be the same for both the ephemeral key and the Signer's stable key.
 
-The signer must choose only an asymmetric JWS algorithm so that each signature is non-deterministic.  This ensures that no other party can brute-force any non-disclosed payloads based only on their individual signatures.
+The signer MUST choose an asymmetric JWS algorithm so that each signature is non-deterministic.  This ensures that no other party can brute-force any non-disclosed payloads based only on their individual signatures.
 
 ### Using JWS
 
