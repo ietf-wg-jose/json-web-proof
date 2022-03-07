@@ -51,6 +51,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 document are to be interpreted as described in BCP 14 [@!RFC2119] [@RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
+The roles of "issuer", "holder", and "verifier", are used as defined by the [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/2021/REC-vc-data-model-20211109/).  The term "presentation" is also used as defined by this source, but the term "credential" is avoided in this specification in order to minimize confusion with other definitions.
+
 # Terminology
 
 The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS Protected Header" are defined by the JWS specification [JWS].
@@ -60,10 +62,10 @@ The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP Protected
 These terms are defined by this specification:
 
 Stable Key
-  An asymmetric key-pair used by a Signer that is also shared via an out-of-band mechanism to a Verifier in order to validate the signature.
+  An asymmetric key-pair used by a issuer that is also shared via an out-of-band mechanism to a Verifier in order to validate the signature.
 
 Ephemeral Key
-  An asymmetric key-pair that is generated for one-time use by a Signer and never stored or used again outside of the creation of a single JWP.
+  An asymmetric key-pair that is generated for one-time use by a issuer and never stored or used again outside of the creation of a single JWP.
 
 # Background
 
@@ -140,7 +142,7 @@ This section defines how to use specific algorithms for JWPs.
 
 ## Single Use
 
-The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.  It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the prover must be able to interact with the signer again to receive new single-use JWPs (dynamically or in batches).
+The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.  It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the holder must be able to interact with the issuer again to receive new single-use JWPs (dynamically or in batches).
 
 ### Holder Setup
 
@@ -148,11 +150,11 @@ In order to support the protection of a presentation by the holder to the verifi
 
 The PoP key's algorithm MUST be the same one as used to create the JWS values for the SU proof.  The issuer MUST verify that the holder has possession of this key before adding the "cnf" claim with the matching key information.  The holder-issuer communication to exchange this information is out of scope of this specification.
 
-### Signer Setup
+### Issuer Setup
 
-To create a Single Use JWP the Signer must first generate a unique ephemeral key-pair using a JWS algorithm.  This key-pair will be used to sign the parts of a single JWP and then discarded.  The selected algorithm must be the same for both the ephemeral key and the Signer's stable key.
+To create a Single Use JWP the issuer must first generate a unique ephemeral key-pair using a JWS algorithm.  This key-pair will be used to sign the parts of a single JWP and then discarded.  The selected algorithm must be the same for both the ephemeral key and the issuer's stable key.
 
-The signer MUST choose an asymmetric JWS algorithm so that each signature is non-deterministic.  This ensures that no other party can brute-force any non-disclosed payloads based only on their individual signatures.
+The issuer MUST choose an asymmetric JWS algorithm so that each signature is non-deterministic.  This ensures that no other party can brute-force any non-disclosed payloads based only on their individual signatures.
 
 ### Using JWS
 
@@ -166,7 +168,7 @@ If an implementation uses an alternative JWS protected header than the fixed val
 
 The JWK of the ephemeral key MUST be included in the JWP protected header with the property name of `proof_jwk` and contain only the REQUIRED values to represent the public key.
 
-The final JWP protected header is then used directly as the body of a JWS and signed using the Signer's stable key.  The resulting JWS signature value as an unencoded octet string is the first value in the JWP Proof.
+The final JWP protected header is then used directly as the body of a JWS and signed using the issuer's stable key.  The resulting JWS signature value as an unencoded octet string is the first value in the JWP Proof.
 
 ### Payloads
 
@@ -176,13 +178,13 @@ The appended total of the stable header signature and ephemeral payload signatur
 
 ### Selective Disclosure
 
-The Prover is able to derive a new Proof value when presenting it to a Verifier.  The presented Proof value will always contain the stable signature for the protected header as the first element.  It is then followed by only the ephemeral signatures for each payload that is disclosed with order preserved.  Non-disclosed payloads will NOT have their ephemeral signature value included.  For example, if the second and fifth payloads are hidden then the Prover's derived Proof value would be of the length `64 * (1 header signature + the 1st, 2nd, and 4th payload signatures) = 256 octets`.
+The holder is able to derive a new Proof value when presenting it to a Verifier.  The presented Proof value will always contain the stable signature for the protected header as the first element.  It is then followed by only the ephemeral signatures for each payload that is disclosed with order preserved.  Non-disclosed payloads will NOT have their ephemeral signature value included.  For example, if the second and fifth payloads are hidden then the holder's derived Proof value would be of the length `64 * (1 header signature + the 1st, 2nd, and 4th payload signatures) = 256 octets`.
 
-Since the individual signatures in the Proof value are not changed from the Signer, the JWP SHOULD only be used and presented a single time to each Verifier in order for the Prover to remain unlinkable across multiple presentations.
+Since the individual signatures in the Proof value are not changed from the issuer, the JWP SHOULD only be used and presented a single time to each Verifier in order for the holder to remain unlinkable across multiple presentations.
 
 ### Verification
 
-With each disclosed payload verified as described above, the Verifier MUST verify the JWP protected header against the first matching JWS signature part in the Proof value using the Signer's stable key.  With this verified, the ephemeral key can then be used from the protected header to verify the payload signatures.
+With each disclosed payload verified as described above, the Verifier MUST verify the JWP protected header against the first matching JWS signature part in the Proof value using the issuer's stable key.  With this verified, the ephemeral key can then be used from the protected header to verify the payload signatures.
 
 The Verifier uses only the disclosed payloads and generates or uses the included fixed JWS protected header in order to perform validation of just those payloads.  It uses the matching JWS signature part from the Proof value to verify with the already verified ephemeral key.
 
@@ -196,7 +198,7 @@ The BBS Signature Scheme under active standards development as a [work item](htt
 
 This JSON Proof Algorithm definition for BBS is based on the already released implementation and relies on the provided software API.  A future definition with a different `alg` value will be created to succeed this version as the BBS standardization effort progresses.
 
-This algorithm supports both selective disclosure and unlinkability, enabling the Prover to generate multiple proofs from one signed JWP without the verifier being able to correlate those proofs together.
+This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple proofs from one signed JWP without the verifier being able to correlate those proofs together.
 
 ### BLS Curve
 
@@ -216,21 +218,21 @@ The UTF-8 octet string of the JWP Protected Header is the first message in the i
 
 The octet strings of each payload are placed into the BBS message array following the protected header message.  For example, first payload is at index 1 of the array and the last payload is always the last message in the array.
 
-In future versions of this algorithm, there will be additional methods defined for transforming a payload into a point such that additional Zero-Knowledge Proof types can be supported by the Prover such as range and membership predicates.
+In future versions of this algorithm, there will be additional methods defined for transforming a payload into a point such that additional Zero-Knowledge Proof types can be supported by the holder such as range and membership predicates.
 
 ### Signing
 
-The Signer's BLS12-381 G2 key pair is used to sign the completed message array input containing the octet strings of the Protected Header and every payload.  The result is a signature octet string that is used as the initial JWP Proof value.
+The issuer's BLS12-381 G2 key pair is used to sign the completed message array input containing the octet strings of the Protected Header and every payload.  The result is a signature octet string that is used as the initial JWP Proof value.
 
 In the implementation, the method used to perform the signing is `blsSign({keyPair, [header, payload1, payload2, ...]})` and returns a binary signature value.
 
 ### Proving
 
-The prover must decode the JWP header and payload values in order to generate the identical message array that the signer used.
+The holder must decode the JWP header and payload values in order to generate the identical message array that the issuer used.
 
-To generate a JWP for a verifier, the prover must use a cryptographic nonce that is provided by that verifier as input.  This nonce MUST be a 32 byte octet string that the verifier generated by a secure RNG.
+To generate a JWP for a verifier, the holder must use a cryptographic nonce that is provided by that verifier as input.  This nonce MUST be a 32 byte octet string that the verifier generated by a secure RNG.
 
-The prover also applies selective disclosure preferences by creating an array of indices of which messages in the input array are to be revealed to the verifier.  The revealed indices MUST include the value `0` so that the protected header message is always revealed to the verifier.
+The holder also applies selective disclosure preferences by creating an array of indices of which messages in the input array are to be revealed to the verifier.  The revealed indices MUST include the value `0` so that the protected header message is always revealed to the verifier.
 
 The result of creating a proof is an octet string that is used as the verifiable JWP proof value.
 
