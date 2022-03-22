@@ -1,6 +1,8 @@
 let fs = require('fs');
 let path = require('path');
+let jp = require('jsonpath');
 
+let formats = ["json", "text"];
 let args = process.argv.slice(2);
 
 // validate and load markdown source
@@ -30,17 +32,50 @@ if(fixtures == null || typeof fixtures != 'object' || Array.isArray(fixtures)) e
 
 // process all the lines
 let md_out = [];
-let fix_count = 1;
-let fixing = false;
+let fix_count = 0;
+let fixture = null;
+let line_count = 1;
 md_lines.forEach(function(line){
-    let ticks = (line == '```');
-    // drop the current contents of a fixture
-    if(fixing && !ticks) continue;
-    // detecting closing ticks
-    if(fixing && ticks)
+    line_count++;
+
+    // in fixing mode
+    if(fixture)
     {
+        // drop lines until closing back-ticks
+        if(line != '```') return;
+
         // do replacement
+        md_out.push(fixture);
+        fixture = null;
+        fix_count++;
+        md_out.push(line);
+        return;
     }
+
+    // detect new fixing block
+    if(line.substring(0,3) == '```' && (sep = line.indexOf(' ')) > 0)
+    {
+        let query = line.substring(sep+1);
+        let res = jp.query(fixtures, query);
+        if(res.length == 0) return err(`fixture not found for '${query}' at line ${line_count}:${line}`);
+        if(res.length > 1) return err(`multiple fixtures found for '${query}' at line ${line_count}:${line}`);
+
+        let format = line.substring(3,sep);
+        switch(formats.indexOf(format))
+        {
+            case 0: // json
+                if(typeof res[0] != 'object') return err(`fixture is '${typeof res[0]}', expected object at ${line_count}:${line}`);
+                fixture = JSON.stringify(res[0], 0, 2);
+                break;
+            case 1: // text
+                if(typeof res[0] != 'string') return err(`fixture is '${typeof res[0]}', expected string at ${line_count}:${line}`);
+                fixture = res[0];
+                break;
+            default:
+                return err(`unknown format '${format}' at line ${line_count}:${line}`);
+        }
+    }
+
     md_out.push(line);
 });
 
