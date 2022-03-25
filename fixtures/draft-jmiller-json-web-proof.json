@@ -1,0 +1,9 @@
+{
+  "issuer_private_jwk": {
+    "crv": "P-256",
+    "kty": "EC",
+    "x": "ONebN43-G5DOwZX6jCVpEYEe0bYd5WDybXAG0sL3iDA",
+    "y": "b0MHuYfSxu3Pj4DAyDXabAc0mPjpB1worEpr3yyrft4",
+    "d": "jnE0-9YvxQtLJEKcyUHU6HQ3Y9nSDnh0NstYJFn7RuI"
+  }
+}
