@@ -3,7 +3,7 @@ const { fromKeyLike } = require('jose/jwk/from_key_like');
 const { generateKeyPair } = require('jose/util/generate_key_pair');
 const { calculateThumbprint } = require('jose/jwk/thumbprint');
 const { encode, decode } = require('jose/util/base64url');
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 const { GeneralSign } = require('jose/jws/general/sign');
 const { parseJwk } = require('jose/jwk/parse');
 
@@ -21,6 +21,14 @@ const ephemeral_key = {
     "y": "_KcyLj9vWMptnmKtm46GqDz8wf74I5LKgrl2GzH3nSE",
     "crv": "P-256",
     "d": "Yfg5t1lo9T36QJJkrX0XiPd8Bj0Z6dt3zNqGIkyuOFc"
+}
+
+let jwp_fix = {}
+try {
+    jwp_fix = JSON.parse(readFileSync('draft-jmiller-json-web-proof.json'))
+}catch(E){
+    console.error(`fixture file loading error:`, E);
+    process.exit(1)
 }
 
 // use jose wrapper
@@ -48,6 +56,7 @@ function octet_array(value)
 //    jwk.kid = await calculateThumbprint(jwk);
     console.log('Issuer JWK:');
     console.log(JSON.stringify(jwk,0,2));
+    jwp_fix.issuer_private_jwk = jwk;
 
     // generate the ephemeral key
 //    const ephemeral = await generateKeyPair('ES256');
@@ -155,4 +164,5 @@ function octet_array(value)
     console.log('Compact Serialization:');
     console.log(serialized.join('.'));
     
+    writeFileSync('draft-jmiller-json-web-proof.json', JSON.stringify(jwp_fix, 0, 2))
 })();
