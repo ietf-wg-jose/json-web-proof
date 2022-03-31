@@ -66,7 +66,7 @@ md_lines.forEach(function(line){
             case 0: // json
                 if(Array.isArray(res[0]))
                 {
-                    fixture = JSON.stringify(res[0]).split(',').join(', ');
+                    fixture = JSON.stringify(res[0]).split(',').join(', ').split('],').join('],\n').split(']]').join(']\n]').split('[[').join('[\n [');
                     break;
                 }
                 if(typeof res[0] != 'object') return err(`fixture is '${typeof res[0]}', expected object at ${line_count}:${line}`);
