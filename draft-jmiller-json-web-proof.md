@@ -320,19 +320,19 @@ This is the Signer's stable private key used in this example in the JWK format:
 ```
 
 This is the ephemeral private key used in this example in the JWK format:
-```json
+```json issuer_ephemeral_jwk
 {
-  "kty": "EC",
-  "x": "acbIQiuMs3i8_uszEjJ2tpTtRM4EU3yz91PH6CdH2V0",
-  "y": "_KcyLj9vWMptnmKtm46GqDz8wf74I5LKgrl2GzH3nSE",
   "crv": "P-256",
-  "d": "Yfg5t1lo9T36QJJkrX0XiPd8Bj0Z6dt3zNqGIkyuOFc"
+  "kty": "EC",
+  "x": "ONebN43-G5DOwZX6jCVpEYEe0bYd5WDybXAG0sL3iDA",
+  "y": "b0MHuYfSxu3Pj4DAyDXabAc0mPjpB1worEpr3yyrft4",
+  "d": "jnE0-9YvxQtLJEKcyUHU6HQ3Y9nSDnh0NstYJFn7RuI"
 }
 ```
 
 The JWP Protected Header declares that the data structure is a JPT and the JWP Proof Input is secured using the Single-Use ECDSA algorithm with the P-256 curve and SHA-256 digest.  It also includes the ephemeral public key and list of claims used for this JPT.
 
-```json
+```json jwp_protected_header
 {
   "iss": "https://issuer.tld",
   "claims": [
@@ -343,10 +343,10 @@ The JWP Protected Header declares that the data structure is a JPT and the JWP P
   ],
   "typ": "JPT",
   "proof_jwk": {
+    "crv": "P-256",
     "kty": "EC",
     "x": "acbIQiuMs3i8_uszEjJ2tpTtRM4EU3yz91PH6CdH2V0",
-    "y": "_KcyLj9vWMptnmKtm46GqDz8wf74I5LKgrl2GzH3nSE",
-    "crv": "P-256"
+    "y": "_KcyLj9vWMptnmKtm46GqDz8wf74I5LKgrl2GzH3nSE"
   },
   "alg": "SU-ES256"
 }
@@ -354,13 +354,13 @@ The JWP Protected Header declares that the data structure is a JPT and the JWP P
 
 After removing formatting whitespace, the octets representing UTF8(JWP Protected Header) in this example (using JSON array notation) are:
 
-```json
-[123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58, 47, 47, 105, 115, 115, 117, 101, 114, 46, 116, 108, 100, 34, 44, 34, 99, 108, 97, 105, 109, 115, 34, 58, 91, 34, 102, 97, 109, 105, 108, 121, 95, 110, 97, 109, 101, 34, 44, 34, 103, 105, 118, 101, 110, 95, 110, 97, 109, 101, 34, 44, 34, 101, 109, 97, 105, 108, 34, 44, 34, 97, 103, 101, 34, 93, 44, 34, 116, 121, 112, 34, 58, 34, 74, 80, 84, 34, 44, 34, 112, 114, 111, 111, 102, 95, 106, 119, 107, 34, 58, 123, 34, 107, 116, 121, 34, 58, 34, 69, 67, 34, 44, 34, 120, 34, 58, 34, 97, 99, 98, 73, 81, 105, 117, 77, 115, 51, 105, 56, 95, 117, 115, 122, 69, 106, 74, 50, 116, 112, 84, 116, 82, 77, 52, 69, 85, 51, 121, 122, 57, 49, 80, 72, 54, 67, 100, 72, 50, 86, 48, 34, 44, 34, 121, 34, 58, 34, 95, 75, 99, 121, 76, 106, 57, 118, 87, 77, 112, 116, 110, 109, 75, 116, 109, 52, 54, 71, 113, 68, 122, 56, 119, 102, 55, 52, 73, 53, 76, 75, 103, 114, 108, 50, 71, 122, 72, 51, 110, 83, 69, 34, 44, 34, 99, 114, 118, 34, 58, 34, 80, 45, 50, 53, 54, 34, 125, 44, 34, 97, 108, 103, 34, 58, 34, 83, 85, 45, 69, 83, 50, 53, 54, 34, 125]
+```json jwp_protected_header_octets
+[123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58, 47, 47, 105, 115, 115, 117, 101, 114, 46, 116, 108, 100, 34, 44, 34, 99, 108, 97, 105, 109, 115, 34, 58, 91, 34, 102, 97, 109, 105, 108, 121, 95, 110, 97, 109, 101, 34, 44, 34, 103, 105, 118, 101, 110, 95, 110, 97, 109, 101, 34, 44, 34, 101, 109, 97, 105, 108, 34, 44, 34, 97, 103, 101, 34, 93, 44, 34, 116, 121, 112, 34, 58, 34, 74, 80, 84, 34, 44, 34, 112, 114, 111, 111, 102, 95, 106, 119, 107, 34, 58, 123, 34, 99, 114, 118, 34, 58, 34, 80, 45, 50, 53, 54, 34, 44, 34, 107, 116, 121, 34, 58, 34, 69, 67, 34, 44, 34, 120, 34, 58, 34, 97, 99, 98, 73, 81, 105, 117, 77, 115, 51, 105, 56, 95, 117, 115, 122, 69, 106, 74, 50, 116, 112, 84, 116, 82, 77, 52, 69, 85, 51, 121, 122, 57, 49, 80, 72, 54, 67, 100, 72, 50, 86, 48, 34, 44, 34, 121, 34, 58, 34, 95, 75, 99, 121, 76, 106, 57, 118, 87, 77, 112, 116, 110, 109, 75, 116, 109, 52, 54, 71, 113, 68, 122, 56, 119, 102, 55, 52, 73, 53, 76, 75, 103, 114, 108, 50, 71, 122, 72, 51, 110, 83, 69, 34, 125, 44, 34, 97, 108, 103, 34, 58, 34, 83, 85, 45, 69, 83, 50, 53, 54, 34, 125]
 ```
 
 Encoding this JWP Protected Header as BASE64URL(UTF8(JWP Protected Header)) gives this value:
-```base64
-eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7Imt0eSI6IkVDIiwieCI6ImFjYklRaXVNczNpOF91c3pFakoydHBUdFJNNEVVM3l6OTFQSDZDZEgyVjAiLCJ5IjoiX0tjeUxqOXZXTXB0bm1LdG00NkdxRHo4d2Y3NEk1TEtncmwyR3pIM25TRSIsImNydiI6IlAtMjU2In0sImFsZyI6IlNVLUVTMjU2In0
+```text jwp_protected_header_base64
+eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sImFsZyI6IlNVLUVTMjU2In0
 ```
 
 Each payload must also be individually encoded:
@@ -373,31 +373,45 @@ The third payload is the string `"jaydoe@example.org"` with the octet sequence o
 
 The fourth payload is the string `42` with the octet sequence of `[52, 50]` and base64url-encoded as `NDI`.  
 
-The Single Use algorithm utilizes multiple individual JWS Signatures.  Each signature value is generated by creating a JWS with a single Protected Header with the associated `alg` value, in this example the header used for each JWS is the JSON Object `{"alg":"ES256"}`.  The JWS payload for each varies and the resulting signature value is used in its unencoded form (the octet string, not the base64url-encoded form).
+The Single Use algorithm utilizes multiple individual JWS Signatures.  Each signature value is generated by creating a JWS with a single Protected Header with the associated `alg` value, in this example the fixed header used for each JWS is the serialized JSON Object `{"alg":"ES256"}`.  The JWS payload for each varies and the resulting signature value is used in its unencoded form (the octet string, not the base64url-encoded form).
 
-The first signature is generated by creating a JWS with the fixed header and the payload is set to the octet string of the JPT protected header above.  The resulting JWS signature using the Signer's *stable key* is the octet string of:
-`[123, 241, 185, 211, 20, 142, 143, 156, 81, 90, 21, 80, 144, 48, 17, 67, 88, 34, 91, 245, 139, 166, 151, 152, 238, 46, 233, 182, 233, 158, 26, 200, 160, 44, 118, 80, 145, 68, 157, 79, 109, 38, 138, 230, 22, 49, 80, 20, 171, 225, 95, 75, 132, 126, 48, 86, 215, 156, 164, 175, 152, 206, 53, 114]`
+The first signature is generated by creating a JWS using the fixed header with the payload set to the octet string of the JPT protected header from earlier.  The resulting JWS signature using the Signer's *stable key* is the octet string of:
+```json jwp_protected_header_signature
+[142, 229, 21, 142, 132, 41, 68, 245, 171, 211, 79, 198, 53, 26, 153, 28, 6, 243, 133, 26, 151, 170, 236, 129, 132, 244, 192, 2, 117, 218, 215, 86, 158, 134, 26, 108, 213, 89, 195, 238, 215, 107, 172, 114, 123, 143, 49, 255, 158, 105, 29, 222, 63, 202, 58, 145, 10, 118, 173, 128, 116, 55, 138, 166]
+```
 
 This process is repeated for the JPT payloads, using their octet strings as the payload in the ephemeral JWS in order to generate a signature using the *epehemeral key* for each:
 
-The first payload signature is: `[239, 95, 185, 130, 101, 177, 129, 112, 71, 152, 141, 139, 49, 192, 110, 184, 232, 167, 55, 197, 22, 232, 217, 215, 69, 95, 84, 120, 161, 180, 119, 49, 187, 125, 118, 80, 194, 79, 137, 15, 99, 65, 134, 146, 61, 251, 185, 64, 128, 0, 223, 173, 30, 219, 115, 147, 209, 144, 243, 214, 161, 104, 12, 225]`
+The first payload signature is: 
+```json jwp_payload_0_signature
+[79, 79, 101, 15, 72, 1, 209, 97, 224, 217, 166, 111, 88, 46, 108, 232, 39, 117, 106, 255, 26, 74, 81, 21, 40, 127, 241, 218, 161, 204, 54, 26, 19, 165, 201, 91, 46, 246, 184, 175, 159, 30, 27, 236, 101, 213, 138, 63, 191, 37, 26, 147, 236, 62, 87, 88, 149, 129, 90, 60, 190, 134, 19, 47]
+```
 
-The second payload signature is: `[157, 16, 183, 96, 67, 74, 128, 77, 104, 145, 220, 169, 205, 196, 213, 13, 141, 4, 137, 154, 24, 72, 96, 151, 24, 12, 3, 29, 252, 201, 223, 37, 134, 5, 100, 104, 38, 48, 196, 119, 117, 222, 54, 82, 212, 0, 187, 59, 70, 241, 33, 207, 115, 10, 129, 12, 215, 131, 88, 170, 196, 96, 108, 13]`
+The second payload signature is: 
+```json jwp_payload_1_signature
+[229, 147, 79, 149, 28, 60, 248, 37, 141, 169, 31, 108, 34, 101, 136, 212, 140, 246, 101, 239, 146, 229, 132, 131, 174, 62, 222, 204, 64, 7, 65, 253, 153, 164, 134, 63, 36, 148, 254, 28, 136, 196, 248, 52, 211, 186, 141, 159, 14, 49, 195, 177, 103, 204, 65, 113, 170, 216, 181, 209, 201, 197, 89, 92]
+```
 
-The third payload signature is: `[48, 5, 131, 24, 209, 43, 80, 216, 143, 126, 44, 111, 126, 27, 67, 2, 127, 195, 135, 20, 16, 181, 82, 187, 151, 217, 190, 123, 16, 95, 43, 71, 89, 209, 223, 66, 55, 158, 94, 161, 114, 236, 130, 47, 198, 184, 76, 170, 133, 130, 135, 168, 195, 218, 175, 213, 130, 120, 224, 179, 178, 127, 144, 211]`
+The third payload signature is: 
+```json jwp_payload_2_signature
+[141, 28, 241, 179, 207, 174, 86, 201, 225, 191, 251, 18, 130, 11, 219, 42, 152, 233, 83, 174, 214, 155, 124, 140, 167, 101, 80, 107, 108, 171, 9, 103, 29, 76, 10, 60, 245, 21, 26, 112, 98, 159, 165, 140, 133, 82, 22, 206, 230, 148, 47, 57, 151, 108, 240, 96, 190, 132, 27, 251, 125, 123, 56, 174]
+```
 
-The fourth payload signature is: `[122, 226, 251, 52, 234, 38, 110, 224, 150, 120, 190, 17, 93, 139, 205, 129, 222, 4, 57, 91, 54, 105, 43, 106, 72, 182, 142, 73, 34, 135, 107, 92, 51, 109, 231, 234, 6, 96, 171, 146, 125, 237, 8, 106, 250, 145, 93, 119, 5, 97, 81, 185, 29, 160, 202, 69, 96, 60, 105, 139, 88, 198, 227, 221]`
+The fourth payload signature is: 
+```json jwp_payload_3_signature
+[14, 255, 206, 58, 239, 42, 242, 155, 13, 98, 189, 10, 28, 195, 161, 135, 81, 33, 172, 246, 109, 181, 177, 178, 94, 71, 208, 105, 178, 10, 148, 15, 75, 207, 111, 12, 175, 220, 201, 185, 157, 72, 48, 208, 156, 74, 187, 31, 120, 118, 165, 81, 135, 63, 110, 78, 120, 83, 205, 32, 104, 22, 202, 122]
+```
 
 Each payload's individual signature is concatenated in order, resulting in a larger octet string with a length of an individual signature (64 octets for ES256) multiplied by the number of payloads (4 for this example).  These payload ephemeral signatures are then appended to the initial protected header stable signature.  Using the above examples, the resulting octet string is 320 in length (`5 * 64`):
 
-```json
-[123, 241, 185, 211, 20, 142, 143, 156, 81, 90, 21, 80, 144, 48, 17, 67, 88, 34, 91, 245, 139, 166, 151, 152, 238, 46, 233, 182, 233, 158, 26, 200, 160, 44, 118, 80, 145, 68, 157, 79, 109, 38, 138, 230, 22, 49, 80, 20, 171, 225, 95, 75, 132, 126, 48, 86, 215, 156, 164, 175, 152, 206, 53, 114, 239, 95, 185, 130, 101, 177, 129, 112, 71, 152, 141, 139, 49, 192, 110, 184, 232, 167, 55, 197, 22, 232, 217, 215, 69, 95, 84, 120, 161, 180, 119, 49, 187, 125, 118, 80, 194, 79, 137, 15, 99, 65, 134, 146, 61, 251, 185, 64, 128, 0, 223, 173, 30, 219, 115, 147, 209, 144, 243, 214, 161, 104, 12, 225, 157, 16, 183, 96, 67, 74, 128, 77, 104, 145, 220, 169, 205, 196, 213, 13, 141, 4, 137, 154, 24, 72, 96, 151, 24, 12, 3, 29, 252, 201, 223, 37, 134, 5, 100, 104, 38, 48, 196, 119, 117, 222, 54, 82, 212, 0, 187, 59, 70, 241, 33, 207, 115, 10, 129, 12, 215, 131, 88, 170, 196, 96, 108, 13, 48, 5, 131, 24, 209, 43, 80, 216, 143, 126, 44, 111, 126, 27, 67, 2, 127, 195, 135, 20, 16, 181, 82, 187, 151, 217, 190, 123, 16, 95, 43, 71, 89, 209, 223, 66, 55, 158, 94, 161, 114, 236, 130, 47, 198, 184, 76, 170, 133, 130, 135, 168, 195, 218, 175, 213, 130, 120, 224, 179, 178, 127, 144, 211, 122, 226, 251, 52, 234, 38, 110, 224, 150, 120, 190, 17, 93, 139, 205, 129, 222, 4, 57, 91, 54, 105, 43, 106, 72, 182, 142, 73, 34, 135, 107, 92, 51, 109, 231, 234, 6, 96, 171, 146, 125, 237, 8, 106, 250, 145, 93, 119, 5, 97, 81, 185, 29, 160, 202, 69, 96, 60, 105, 139, 88, 198, 227, 221, 78, 162, 177, 222, 199, 67, 149, 66, 52, 64, 170, 86, 75, 42, 1, 254, 171, 125, 203, 191, 225, 19, 220, 99, 31, 46, 97, 36, 221, 184, 157, 236, 8, 252, 145, 52, 139, 137, 114, 17, 143, 238, 130, 123, 200, 31, 102, 95, 241, 206, 32, 116, 242, 63, 77, 144, 112, 122, 170, 132, 166, 148, 201, 51]
+```json jwp_signatures
+[142, 229, 21, 142, 132, 41, 68, 245, 171, 211, 79, 198, 53, 26, 153, 28, 6, 243, 133, 26, 151, 170, 236, 129, 132, 244, 192, 2, 117, 218, 215, 86, 158, 134, 26, 108, 213, 89, 195, 238, 215, 107, 172, 114, 123, 143, 49, 255, 158, 105, 29, 222, 63, 202, 58, 145, 10, 118, 173, 128, 116, 55, 138, 166, 79, 79, 101, 15, 72, 1, 209, 97, 224, 217, 166, 111, 88, 46, 108, 232, 39, 117, 106, 255, 26, 74, 81, 21, 40, 127, 241, 218, 161, 204, 54, 26, 19, 165, 201, 91, 46, 246, 184, 175, 159, 30, 27, 236, 101, 213, 138, 63, 191, 37, 26, 147, 236, 62, 87, 88, 149, 129, 90, 60, 190, 134, 19, 47, 229, 147, 79, 149, 28, 60, 248, 37, 141, 169, 31, 108, 34, 101, 136, 212, 140, 246, 101, 239, 146, 229, 132, 131, 174, 62, 222, 204, 64, 7, 65, 253, 153, 164, 134, 63, 36, 148, 254, 28, 136, 196, 248, 52, 211, 186, 141, 159, 14, 49, 195, 177, 103, 204, 65, 113, 170, 216, 181, 209, 201, 197, 89, 92, 141, 28, 241, 179, 207, 174, 86, 201, 225, 191, 251, 18, 130, 11, 219, 42, 152, 233, 83, 174, 214, 155, 124, 140, 167, 101, 80, 107, 108, 171, 9, 103, 29, 76, 10, 60, 245, 21, 26, 112, 98, 159, 165, 140, 133, 82, 22, 206, 230, 148, 47, 57, 151, 108, 240, 96, 190, 132, 27, 251, 125, 123, 56, 174, 14, 255, 206, 58, 239, 42, 242, 155, 13, 98, 189, 10, 28, 195, 161, 135, 81, 33, 172, 246, 109, 181, 177, 178, 94, 71, 208, 105, 178, 10, 148, 15, 75, 207, 111, 12, 175, 220, 201, 185, 157, 72, 48, 208, 156, 74, 187, 31, 120, 118, 165, 81, 135, 63, 110, 78, 120, 83, 205, 32, 104, 22, 202, 122]
 ```
 
 The final Proof value from the Signer is the concatenated array of the header signature followed by all of the payload signatures, then base64url encoded.
 
 The resulting JSON Serialized JPT using the above examples is:
-```json
+```json jwp_final
 {
   "payloads": [
     "IkRvZSI",
@@ -405,14 +419,14 @@ The resulting JSON Serialized JPT using the above examples is:
     "ImpheWRvZUBleGFtcGxlLm9yZyI",
     "NDI"
   ],
-  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7Imt0eSI6IkVDIiwieCI6ImFjYklRaXVNczNpOF91c3pFakoydHBUdFJNNEVVM3l6OTFQSDZDZEgyVjAiLCJ5IjoiX0tjeUxqOXZXTXB0bm1LdG00NkdxRHo4d2Y3NEk1TEtncmwyR3pIM25TRSIsImNydiI6IlAtMjU2In0sImFsZyI6IlNVLUVTMjU2In0",
-  "proof": "e_G50xSOj5xRWhVQkDARQ1giW_WLppeY7i7ptumeGsigLHZQkUSdT20miuYWMVAUq-FfS4R-MFbXnKSvmM41cu9fuYJlsYFwR5iNizHAbrjopzfFFujZ10VfVHihtHcxu312UMJPiQ9jQYaSPfu5QIAA360e23OT0ZDz1qFoDOGdELdgQ0qATWiR3KnNxNUNjQSJmhhIYJcYDAMd_MnfJYYFZGgmMMR3dd42UtQAuztG8SHPcwqBDNeDWKrEYGwNMAWDGNErUNiPfixvfhtDAn_DhxQQtVK7l9m-exBfK0dZ0d9CN55eoXLsgi_GuEyqhYKHqMPar9WCeOCzsn-Q03ri-zTqJm7glni-EV2LzYHeBDlbNmkraki2jkkih2tcM23n6gZgq5J97Qhq-pFddwVhUbkdoMpFYDxpi1jG491OorHex0OVQjRAqlZLKgH-q33Lv-ET3GMfLmEk3bid7Aj8kTSLiXIRj-6Ce8gfZl_xziB08j9NkHB6qoSmlMkz"
+  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sImFsZyI6IlNVLUVTMjU2In0",
+  "proof": "juUVjoQpRPWr00_GNRqZHAbzhRqXquyBhPTAAnXa11aehhps1VnD7tdrrHJ7jzH_nmkd3j_KOpEKdq2AdDeKpk9PZQ9IAdFh4Nmmb1gubOgndWr_GkpRFSh_8dqhzDYaE6XJWy72uK-fHhvsZdWKP78lGpPsPldYlYFaPL6GEy_lk0-VHDz4JY2pH2wiZYjUjPZl75LlhIOuPt7MQAdB_Zmkhj8klP4ciMT4NNO6jZ8OMcOxZ8xBcarYtdHJxVlcjRzxs8-uVsnhv_sSggvbKpjpU67Wm3yMp2VQa2yrCWcdTAo89RUacGKfpYyFUhbO5pQvOZds8GC-hBv7fXs4rg7_zjrvKvKbDWK9ChzDoYdRIaz2bbWxsl5H0GmyCpQPS89vDK_cybmdSDDQnEq7H3h2pVGHP25OeFPNIGgWyno"
 }
 ```
 
 The compact form of the same JPT is:
-```
-eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7Imt0eSI6IkVDIiwieCI6ImFjYklRaXVNczNpOF91c3pFakoydHBUdFJNNEVVM3l6OTFQSDZDZEgyVjAiLCJ5IjoiX0tjeUxqOXZXTXB0bm1LdG00NkdxRHo4d2Y3NEk1TEtncmwyR3pIM25TRSIsImNydiI6IlAtMjU2In0sImFsZyI6IlNVLUVTMjU2In0.IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.e_G50xSOj5xRWhVQkDARQ1giW_WLppeY7i7ptumeGsigLHZQkUSdT20miuYWMVAUq-FfS4R-MFbXnKSvmM41cu9fuYJlsYFwR5iNizHAbrjopzfFFujZ10VfVHihtHcxu312UMJPiQ9jQYaSPfu5QIAA360e23OT0ZDz1qFoDOGdELdgQ0qATWiR3KnNxNUNjQSJmhhIYJcYDAMd_MnfJYYFZGgmMMR3dd42UtQAuztG8SHPcwqBDNeDWKrEYGwNMAWDGNErUNiPfixvfhtDAn_DhxQQtVK7l9m-exBfK0dZ0d9CN55eoXLsgi_GuEyqhYKHqMPar9WCeOCzsn-Q03ri-zTqJm7glni-EV2LzYHeBDlbNmkraki2jkkih2tcM23n6gZgq5J97Qhq-pFddwVhUbkdoMpFYDxpi1jG491OorHex0OVQjRAqlZLKgH-q33Lv-ET3GMfLmEk3bid7Aj8kTSLiXIRj-6Ce8gfZl_xziB08j9NkHB6qoSmlMkz
+```text jwp_compact
+eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sImFsZyI6IlNVLUVTMjU2In0.IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.juUVjoQpRPWr00_GNRqZHAbzhRqXquyBhPTAAnXa11aehhps1VnD7tdrrHJ7jzH_nmkd3j_KOpEKdq2AdDeKpk9PZQ9IAdFh4Nmmb1gubOgndWr_GkpRFSh_8dqhzDYaE6XJWy72uK-fHhvsZdWKP78lGpPsPldYlYFaPL6GEy_lk0-VHDz4JY2pH2wiZYjUjPZl75LlhIOuPt7MQAdB_Zmkhj8klP4ciMT4NNO6jZ8OMcOxZ8xBcarYtdHJxVlcjRzxs8-uVsnhv_sSggvbKpjpU67Wm3yMp2VQa2yrCWcdTAo89RUacGKfpYyFUhbO5pQvOZds8GC-hBv7fXs4rg7_zjrvKvKbDWK9ChzDoYdRIaz2bbWxsl5H0GmyCpQPS89vDK_cybmdSDDQnEq7H3h2pVGHP25OeFPNIGgWyno
 ```
 
 An example of this JPT with selective disclosure of only the name and email claims (age hidden) being presented:
