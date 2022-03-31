@@ -69,6 +69,7 @@ function octet_array(value)
     console.log();
     console.log('Ephemeral JWK:');
     console.log(JSON.stringify(ejwk_private,0,2));
+    jwp_fix.issuer_ephemeral_jwk = jwk;
 
     // storage as we build up
     const sigs = [];
@@ -88,12 +89,16 @@ function octet_array(value)
     console.log(JSON.stringify(protected, 0, 2));
     console.log('octets:', octet_array(JSON.stringify(protected)));
     console.log('encoded:', jwp.protected);
+    jwp_fix.jwp_protected_header = protected;
+    jwp_fix.jwp_protected_header_octets = JSON.parse(octet_array(JSON.stringify(protected)));
+    jwp_fix.jwp_protected_header_base64 = jwp.protected;
 
     // encode/sign the protected header w/ the stable key
     signature = await sign_payload(jwp.protected, stable.privateKey);
     sigs.push(signature);
     console.log('protected sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
+    jwp_fix.jwp_protected_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
     
     // encode/sign each payload
     payload = JSON.stringify('Doe');
@@ -106,6 +111,7 @@ function octet_array(value)
     console.log('octets:', octet_array(payload));
     console.log('sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
+    jwp_fix.jwp_payload_0_signature = JSON.parse(octet_array(Array.from(decode(signature))));
 
     payload = JSON.stringify('Jay');
     encoded = encode(payload);
@@ -117,6 +123,7 @@ function octet_array(value)
     console.log('octets:', octet_array(payload));
     console.log('sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
+    jwp_fix.jwp_payload_1_signature = JSON.parse(octet_array(Array.from(decode(signature))));
 
     payload = JSON.stringify('jaydoe@example.org');
     encoded = encode(payload);
@@ -128,6 +135,7 @@ function octet_array(value)
     console.log('octets:', octet_array(payload));
     console.log('sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
+    jwp_fix.jwp_payload_2_signature = JSON.parse(octet_array(Array.from(decode(signature))));
 
     payload = JSON.stringify(42);
     encoded = encode(payload);
@@ -139,6 +147,7 @@ function octet_array(value)
     console.log('octets:', octet_array(payload));
     console.log('sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
+    jwp_fix.jwp_payload_3_signature = JSON.parse(octet_array(Array.from(decode(signature))));
 
     // merge final signature
     let final = Buffer.from([]);
@@ -150,10 +159,12 @@ function octet_array(value)
     console.log();
     console.log('final:', encode(final));
     console.log('octets:', octet_array(Array.from(final)));
+    jwp_fix.jwp_signatures = JSON.parse(octet_array(Array.from(final)));
 
     console.log();
     console.log('JSON Serialization:');
     console.log(JSON.stringify(jwp,0,2));
+    jwp_fix.jwp_final = jwp;
 
 
     const serialized = [];
@@ -163,6 +174,7 @@ function octet_array(value)
     console.log();
     console.log('Compact Serialization:');
     console.log(serialized.join('.'));
+    jwp_fix.jwp_compact = serialized.join('.');
     
     writeFileSync('draft-jmiller-json-web-proof.json', JSON.stringify(jwp_fix, 0, 2))
 })();
