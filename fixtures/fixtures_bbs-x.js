@@ -10,9 +10,17 @@ const { fromKeyLike } = require('jose/jwk/from_key_like');
 const { generateKeyPair } = require('jose/util/generate_key_pair');
 const { calculateThumbprint } = require('jose/jwk/thumbprint');
 const { encode, decode } = require('jose/util/base64url');
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 const { GeneralSign } = require('jose/jws/general/sign');
 const { randomBytes } = require('crypto');
+
+let jpa_fix = {}
+try {
+    jpa_fix = JSON.parse(readFileSync('draft-jmiller-json-proof-algorithms.json'))
+}catch(E){
+    console.error(`fixture file loading error:`, E);
+    process.exit(1)
+}
 
 function octet_array(value)
 {
@@ -36,6 +44,8 @@ function octet_array(value)
     console.log(JSON.stringify(jwk,0,2));
     console.log('pub', octet_array(keyPair.publicKey));
     console.log('priv', octet_array(keyPair.secretKey));
+    jpa_fix.bbs_issuer_public_octets = JSON.parse(octet_array(keyPair.publicKey));
+    jpa_fix.bbs_issuer_private_octets = JSON.parse(octet_array(keyPair.secretKey));
 
     // generate jwp
     const jwp = {};
@@ -50,6 +60,7 @@ function octet_array(value)
     console.log(JSON.stringify(protected, 0, 2));
 //    console.log('octets:', octet_array(JSON.stringify(protected)));
 //    console.log('encoded:', jwp.protected);
+    jpa_fix.bbs_issuer_protected_header = protected;
 
     const protected_buff = Buffer.from(JSON.stringify(protected), 'utf8');
     jwp.protected = encode(protected_buff);
@@ -71,12 +82,15 @@ function octet_array(value)
 
     let x = messages.map((item)=>Array.from(item))
     console.log('messages',JSON.stringify(x).split(',').join(', '))
+    jpa_fix.bbs_issuer_messages = x;
     console.log('signature', octet_array(signature));
+    jpa_fix.bbs_issuer_signature = JSON.parse(octet_array(signature));
   
     jwp.proof = encode(signature);
     console.log()
     console.log('JSON Serialization:');
     console.log(JSON.stringify(jwp,0,2));
+    jpa_fix.bbs_issued_jwp = JSON.parse(JSON.stringify(jwp)); // copy
 
     const serialized = [];
     serialized.push(encode(JSON.stringify(jwp.protected)));
@@ -85,10 +99,12 @@ function octet_array(value)
     console.log()
     console.log('Compact Serialization:');
     console.log(serialized.join('.'));
+    jpa_fix.bbs_issued_compact = serialized.join('.');
 
     // generate a proof with selective disclosure of only the name and age
     const nonce = randomBytes(32);
     console.log('nonce', octet_array(nonce));
+    jpa_fix.bbs_present_nonce = JSON.parse(octet_array(nonce));
 
     const proof = await blsCreateProof({
         signature,
@@ -98,12 +114,14 @@ function octet_array(value)
         revealed: [0,2,4],
     });
     console.log('proof', octet_array(proof));
+    jpa_fix.bbs_present_proof = JSON.parse(octet_array(proof));
 
     jwp.payloads[0] = null;
     jwp.payloads[2] = null;
     jwp.proof = encode(proof);
     console.log('JSON Serialization:');
     console.log(JSON.stringify(jwp,0,2));
+    jpa_fix.bbs_present_jwp = JSON.parse(JSON.stringify(jwp));
 
     jwp.payloads[0] = '';
     jwp.payloads[2] = '';
@@ -114,6 +132,8 @@ function octet_array(value)
     console.log()
     console.log('Compact Presentation:');
     console.log(presentation.join('.'));
+    jpa_fix.bbs_present_compact = presentation.join('.');
       
+    writeFileSync('draft-jmiller-json-proof-algorithms.json', JSON.stringify(jpa_fix, 0, 2))
 
 })();

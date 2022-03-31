@@ -266,19 +266,19 @@ Proposed JWP `alg` value for BBS based on the software implementation is "BBS-X"
 The following example uses the given BLS12-384 key-pair:
 
 Public:
-```json
-[174, 25, 240, 10, 149, 197, 107, 241, 79, 27, 32, 83, 19, 34, 100, 118, 209, 75, 211, 26, 186, 42, 67, 136, 206, 88, 202, 153, 44, 176, 141, 59, 16, 171, 59, 234, 35, 138, 148, 233, 234, 230, 121, 210, 157, 73, 248, 245, 13, 71, 6, 15, 244, 112, 20, 176, 167, 127, 12, 33, 115, 49, 243, 163, 157, 209, 244, 232, 99, 209, 128, 150, 67, 253, 208, 102, 97, 60, 220, 255, 204, 32, 159, 193, 241, 57, 198, 51, 118, 187, 18, 156, 46, 114, 66, 49]
+```json bbs_issuer_public_octets
+[140, 129, 17, 222, 243, 162, 119, 27, 26, 140, 2, 19, 111, 52, 124, 84, 132, 226, 125, 34, 35, 174, 46, 18, 156, 26, 144, 78, 178, 236, 114, 2, 237, 148, 150, 47, 201, 102, 49, 0, 177, 147, 47, 81, 169, 243, 155, 226, 4, 77, 164, 83, 41, 123, 36, 31, 181, 111, 82, 110, 247, 214, 70, 239, 81, 35, 160, 254, 79, 82, 38, 211, 46, 194, 244, 181, 81, 149, 40, 130, 89, 26, 117, 43, 183, 208, 173, 175, 181, 244, 13, 120, 30, 163, 133, 84]
 ```
 
 Private:
-```json
-[44, 254, 245, 65, 205, 228, 50, 118, 124, 30, 71, 54, 61, 149, 218, 51, 168, 222, 50, 176, 12, 145, 125, 33, 213, 111, 123, 182, 153, 38, 87, 118]
+```json bbs_issuer_private_octets
+[42, 72, 136, 22, 114, 168, 145, 180, 187, 222, 48, 107, 73, 209, 250, 254, 98, 216, 211, 253, 187, 119, 181, 94, 115, 142, 112, 37, 234, 117, 75, 75]
 ```
 
 The protected header used is:
-```json
+```json bbs_issuer_protected_header
 {
-  "iss": "https://issuer.tld",
+  "iss": "https://issuer.example",
   "claims": [
     "family_name",
     "given_name",
@@ -300,67 +300,67 @@ The fourth payload is the string `42` with the octet sequence of `[52, 50]` and 
 
 The message array used as an input to the BLS implementation is:
 
-```json
+```json bbs_issuer_messages
 [
-  [123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58, 47, 47, 105, 115, 115, 117, 101, 114, 46, 116, 108, 100, 34, 44, 34, 99, 108, 97, 105, 109, 115, 34, 58, 91, 34, 102, 97, 109, 105, 108, 121, 95, 110, 97, 109, 101, 34, 44, 34, 103, 105, 118, 101, 110, 95, 110, 97, 109, 101, 34, 44, 34, 101, 109, 97, 105, 108, 34, 44, 34, 97, 103, 101, 34, 93, 44, 34, 116, 121, 112, 34, 58, 34, 74, 80, 84, 34, 44, 34, 97, 108, 103, 34, 58, 34, 66, 66, 83, 45, 88, 34, 125],
-  [34, 68, 111, 101, 34],
-  [34, 74, 97, 121, 34],
-  [34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34],
-  [52, 50]
+ [123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58, 47, 47, 105, 115, 115, 117, 101, 114, 46, 101, 120, 97, 109, 112, 108, 101, 34, 44, 34, 99, 108, 97, 105, 109, 115, 34, 58, 91, 34, 102, 97, 109, 105, 108, 121, 95, 110, 97, 109, 101, 34, 44, 34, 103, 105, 118, 101, 110, 95, 110, 97, 109, 101, 34, 44, 34, 101, 109, 97, 105, 108, 34, 44, 34, 97, 103, 101, 34, 93, 44, 34, 116, 121, 112, 34, 58, 34, 74, 80, 84, 34, 44, 34, 97, 108, 103, 34, 58, 34, 66, 66, 83, 45, 88, 34, 125],
+ [34, 68, 111, 101, 34],
+ [34, 74, 97, 121, 34],
+ [34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34],
+ [52, 50]
 ]
 ```
 
 Using the above inputs, the output of the `blsSign()` call is the octet string:
-```json
-[182, 93, 71, 253, 212, 100, 97, 101, 156, 37, 197, 153, 3, 41, 66, 160, 124, 185, 77, 145, 221, 108, 176, 44, 165, 253, 254, 67, 99, 173, 227, 178, 78, 75, 236, 41, 2, 224, 179, 27, 54, 221, 11, 83, 36, 218, 2, 24, 97, 65, 229, 41, 252, 220, 112, 78, 38, 239, 6, 153, 202, 130, 196, 144, 18, 197, 136, 173, 160, 231, 132, 54, 139, 224, 157, 181, 128, 96, 13, 217, 20, 14, 202, 20, 45, 32, 76, 112, 125, 76, 192, 97, 240, 118, 55, 215, 166, 87, 69, 52, 90, 199, 23, 31, 200, 2, 242, 213, 158, 44, 158, 49]
+```json bbs_issuer_signature
+[161, 210, 160, 148, 181, 197, 110, 95, 71, 215, 128, 102, 34, 30, 189, 254, 23, 223, 32, 5, 146, 180, 244, 117, 220, 95, 222, 33, 187, 159, 171, 33, 19, 57, 132, 48, 243, 31, 176, 63, 165, 179, 82, 232, 1, 126, 185, 70, 59, 71, 186, 202, 107, 21, 161, 207, 85, 91, 66, 162, 251, 56, 129, 110, 183, 93, 117, 16, 166, 55, 82, 66, 44, 230, 113, 84, 149, 43, 44, 241, 109, 80, 17, 220, 37, 8, 220, 204, 169, 56, 216, 74, 239, 90, 249, 53, 174, 177, 76, 22, 198, 7, 148, 182, 179, 123, 152, 69, 31, 96, 203, 103]
 ```
 
 The resulting signed JWP in JSON serialization is:
-```json
+```json bbs_issued_jwp
 {
-  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwiYWxnIjoiQkJTLVgifQ",
+  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQVCIsImFsZyI6IkJCUy1YIn0",
   "payloads": [
     "IkRvZSI",
     "IkpheSI",
     "ImpheWRvZUBleGFtcGxlLm9yZyI",
     "NDI"
   ],
-  "proof": "tl1H_dRkYWWcJcWZAylCoHy5TZHdbLAspf3-Q2Ot47JOS-wpAuCzGzbdC1Mk2gIYYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ"
+  "proof": "odKglLXFbl9H14BmIh69_hffIAWStPR13F_eIbufqyETOYQw8x-wP6WzUugBfrlGO0e6ymsVoc9VW0Ki-ziBbrdddRCmN1JCLOZxVJUrLPFtUBHcJQjczKk42ErvWvk1rrFMFsYHlLaze5hFH2DLZw"
 }
 ```
 
 The same JWP in compact serialization:
-```
-ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTUwYkdRaUxDSmpiR0ZwYlhNaU9sc2labUZ0YVd4NVgyNWhiV1VpTENKbmFYWmxibDl1WVcxbElpd2laVzFoYVd3aUxDSmhaMlVpWFN3aWRIbHdJam9pU2xCVUlpd2lZV3huSWpvaVFrSlRMVmdpZlEi.IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.tl1H_dRkYWWcJcWZAylCoHy5TZHdbLAspf3-Q2Ot47JOS-wpAuCzGzbdC1Mk2gIYYUHlKfzccE4m7waZyoLEkBLFiK2g54Q2i-CdtYBgDdkUDsoULSBMcH1MwGHwdjfXpldFNFrHFx_IAvLVniyeMQ
+```text bbs_issued_compact
+ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXpJanBiSW1aaGJXbHNlVjl1WVcxbElpd2laMmwyWlc1ZmJtRnRaU0lzSW1WdFlXbHNJaXdpWVdkbElsMHNJblI1Y0NJNklrcFFWQ0lzSW1Gc1p5STZJa0pDVXkxWUluMCI.IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.odKglLXFbl9H14BmIh69_hffIAWStPR13F_eIbufqyETOYQw8x-wP6WzUugBfrlGO0e6ymsVoc9VW0Ki-ziBbrdddRCmN1JCLOZxVJUrLPFtUBHcJQjczKk42ErvWvk1rrFMFsYHlLaze5hFH2DLZw
 ```
 
 For verification a nonce is needed:
-```json
-[127, 207, 97, 120, 199, 184, 23, 159, 105, 123, 246, 10, 55, 7, 221, 96, 213, 104, 73, 98, 217, 32, 121, 237, 162, 90, 150, 9, 180, 72, 226, 188]
+```json bbs_present_nonce
+[66, 152, 45, 43, 212, 59, 122, 56, 34, 60, 240, 188, 130, 10, 188, 37, 82, 165, 138, 47, 184, 100, 69, 189, 253, 88, 65, 80, 201, 42, 162, 118]
 ```
 
 To generate a proof, the `blsCreateProof()` method is used with a revealed indexes array argument of `[0, 2, 4]` and results in the octet string:
-```json
-[0, 5, 21, 161, 191, 254, 45, 60, 183, 31, 8, 229, 8, 160, 190, 97, 252, 230, 185, 215, 158, 121, 125, 186, 81, 20, 232, 4, 201, 86, 118, 56, 241, 236, 207, 206, 210, 82, 31, 229, 175, 239, 6, 193, 68, 14, 80, 208, 205, 219, 106, 165, 188, 183, 147, 59, 186, 90, 209, 11, 27, 44, 167, 126, 166, 101, 132, 205, 207, 22, 35, 181, 148, 118, 44, 164, 163, 58, 16, 211, 245, 133, 115, 158, 158, 89, 182, 5, 151, 101, 91, 28, 59, 75, 224, 207, 48, 75, 220, 131, 79, 188, 57, 235, 164, 122, 170, 120, 251, 230, 158, 230, 73, 152, 138, 106, 61, 106, 90, 215, 124, 158, 179, 82, 2, 137, 107, 96, 130, 131, 215, 25, 41, 242, 146, 48, 158, 82, 61, 185, 135, 172, 63, 248, 149, 50, 183, 0, 0, 0, 116, 179, 185, 176, 214, 11, 160, 24, 235, 157, 189, 141, 33, 225, 119, 5, 146, 167, 175, 227, 188, 165, 196, 210, 156, 216, 164, 28, 167, 32, 97, 215, 36, 122, 137, 173, 182, 17, 233, 69, 41, 20, 44, 69, 203, 236, 226, 24, 242, 0, 0, 0, 2, 0, 199, 248, 173, 124, 33, 127, 253, 79, 170, 77, 153, 101, 169, 100, 88, 190, 206, 55, 24, 25, 80, 108, 215, 80, 134, 128, 70, 190, 240, 209, 148, 67, 202, 130, 180, 145, 51, 72, 188, 140, 185, 142, 193, 246, 155, 12, 248, 65, 14, 209, 72, 248, 119, 250, 123, 46, 136, 8, 191, 45, 173, 77, 125, 180, 76, 253, 10, 139, 244, 156, 138, 226, 149, 41, 76, 50, 45, 210, 231, 74, 18, 192, 91, 36, 154, 46, 158, 76, 243, 13, 119, 122, 107, 206, 91, 226, 160, 27, 80, 206, 97, 32, 74, 42, 155, 180, 137, 229, 210, 80, 236, 0, 0, 0, 4, 6, 143, 167, 94, 118, 29, 1, 252, 243, 190, 176, 42, 45, 175, 213, 182, 81, 7, 250, 244, 141, 136, 168, 27, 164, 110, 101, 28, 181, 237, 236, 54, 12, 67, 44, 104, 187, 33, 249, 159, 143, 104, 204, 234, 0, 251, 101, 79, 170, 206, 113, 44, 235, 62, 242, 254, 139, 252, 218, 73, 155, 48, 127, 131, 79, 41, 134, 186, 183, 174, 247, 112, 103, 33, 131, 82, 115, 233, 36, 235, 12, 179, 171, 71, 55, 154, 86, 221, 77, 206, 171, 190, 186, 31, 192, 43, 88, 0, 45, 109, 204, 217, 154, 132, 113, 93, 166, 177, 51, 31, 118, 153, 88, 116, 45, 113, 111, 187, 7, 150, 214, 184, 244, 198, 149, 222, 93, 101]
+```json bbs_present_proof
+[0, 5, 21, 168, 16, 247, 161, 85, 133, 66, 233, 151, 131, 236, 206, 160, 107, 246, 136, 112, 227, 72, 3, 19, 169, 243, 110, 156, 51, 245, 105, 155, 33, 175, 48, 164, 181, 226, 118, 175, 113, 157, 225, 98, 80, 244, 171, 142, 137, 0, 58, 167, 252, 36, 58, 37, 15, 16, 241, 136, 106, 252, 89, 20, 30, 206, 3, 62, 74, 56, 249, 48, 167, 60, 225, 210, 148, 160, 100, 47, 46, 136, 61, 205, 163, 105, 21, 33, 136, 220, 203, 37, 69, 187, 184, 63, 196, 46, 43, 165, 178, 212, 238, 214, 179, 29, 24, 220, 151, 170, 148, 166, 242, 173, 90, 195, 152, 61, 159, 88, 199, 195, 62, 170, 96, 181, 97, 155, 135, 176, 175, 20, 191, 7, 252, 138, 107, 54, 231, 238, 103, 49, 90, 80, 193, 27, 137, 0, 0, 0, 116, 146, 156, 218, 93, 80, 118, 105, 79, 134, 149, 90, 108, 215, 170, 106, 33, 234, 150, 229, 74, 253, 2, 114, 80, 100, 30, 82, 65, 242, 141, 210, 18, 101, 150, 18, 226, 54, 147, 35, 69, 75, 158, 62, 161, 20, 191, 182, 108, 0, 0, 0, 2, 7, 107, 154, 12, 90, 222, 64, 186, 16, 95, 51, 31, 126, 43, 151, 52, 226, 7, 201, 232, 154, 67, 169, 228, 86, 211, 202, 12, 233, 222, 160, 180, 32, 237, 4, 201, 153, 190, 35, 114, 210, 66, 99, 122, 75, 216, 62, 30, 59, 177, 164, 14, 147, 164, 123, 176, 67, 43, 242, 12, 173, 67, 108, 93, 173, 203, 96, 121, 60, 54, 143, 88, 253, 62, 156, 96, 104, 136, 20, 122, 124, 53, 127, 151, 217, 111, 154, 234, 137, 127, 144, 149, 173, 44, 119, 82, 43, 75, 60, 69, 1, 243, 232, 154, 253, 67, 94, 220, 127, 182, 27, 186, 0, 0, 0, 4, 103, 10, 114, 139, 49, 98, 199, 34, 114, 64, 103, 64, 234, 150, 191, 77, 10, 110, 35, 159, 38, 31, 224, 231, 152, 192, 196, 66, 85, 110, 87, 86, 81, 154, 242, 157, 107, 191, 124, 177, 27, 89, 216, 123, 88, 219, 141, 215, 132, 200, 82, 249, 45, 212, 254, 254, 161, 38, 98, 107, 20, 43, 205, 88, 79, 117, 222, 186, 89, 10, 23, 180, 51, 18, 238, 144, 69, 255, 41, 61, 210, 12, 176, 57, 11, 56, 222, 200, 193, 128, 3, 234, 154, 202, 13, 43, 89, 114, 105, 229, 10, 170, 6, 156, 243, 152, 177, 254, 248, 238, 13, 172, 153, 121, 254, 33, 248, 48, 109, 118, 86, 81, 41, 131, 204, 71, 117, 242]
 ```
 
 The resulting verifiable JWP in JSON serialization is:
-```json
+```json bbs_present_jwp
 {
-  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwiYWxnIjoiQkJTLVgifQ",
+  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQVCIsImFsZyI6IkJCUy1YIn0",
   "payloads": [
     null,
     "IkpheSI",
     null,
     "NDI"
   ],
-  "proof": "AAUVob_-LTy3HwjlCKC-YfzmudeeeX26URToBMlWdjjx7M_O0lIf5a_vBsFEDlDQzdtqpby3kzu6WtELGyynfqZlhM3PFiO1lHYspKM6ENP1hXOenlm2BZdlWxw7S-DPMEvcg0-8Oeukeqp4--ae5kmYimo9alrXfJ6zUgKJa2CCg9cZKfKSMJ5SPbmHrD_4lTK3AAAAdLO5sNYLoBjrnb2NIeF3BZKnr-O8pcTSnNikHKcgYdckeomtthHpRSkULEXL7OIY8gAAAAIAx_itfCF__U-qTZllqWRYvs43GBlQbNdQhoBGvvDRlEPKgrSRM0i8jLmOwfabDPhBDtFI-Hf6ey6ICL8trU19tEz9Cov0nIrilSlMMi3S50oSwFskmi6eTPMNd3przlvioBtQzmEgSiqbtInl0lDsAAAABAaPp152HQH8876wKi2v1bZRB_r0jYioG6RuZRy17ew2DEMsaLsh-Z-PaMzqAPtlT6rOcSzrPvL-i_zaSZswf4NPKYa6t673cGchg1Jz6STrDLOrRzeaVt1Nzqu-uh_AK1gALW3M2ZqEcV2msTMfdplYdC1xb7sHlta49MaV3l1l"
+  "proof": "AAUVqBD3oVWFQumXg-zOoGv2iHDjSAMTqfNunDP1aZshrzCkteJ2r3Gd4WJQ9KuOiQA6p_wkOiUPEPGIavxZFB7OAz5KOPkwpzzh0pSgZC8uiD3No2kVIYjcyyVFu7g_xC4rpbLU7tazHRjcl6qUpvKtWsOYPZ9Yx8M-qmC1YZuHsK8Uvwf8ims25-5nMVpQwRuJAAAAdJKc2l1QdmlPhpVabNeqaiHqluVK_QJyUGQeUkHyjdISZZYS4jaTI0VLnj6hFL-2bAAAAAIHa5oMWt5AuhBfMx9-K5c04gfJ6JpDqeRW08oM6d6gtCDtBMmZviNy0kJjekvYPh47saQOk6R7sEMr8gytQ2xdrctgeTw2j1j9PpxgaIgUenw1f5fZb5rqiX-Qla0sd1IrSzxFAfPomv1DXtx_thu6AAAABGcKcosxYscickBnQOqWv00KbiOfJh_g55jAxEJVbldWUZrynWu_fLEbWdh7WNuN14TIUvkt1P7-oSZiaxQrzVhPdd66WQoXtDMS7pBF_yk90gywOQs43sjBgAPqmsoNK1lyaeUKqgac85ix_vjuDayZef4h-DBtdlZRKYPMR3Xy"
 }
 ```
 
 The same JWP in compact serialization:
-```
-ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTUwYkdRaUxDSmpiR0ZwYlhNaU9sc2labUZ0YVd4NVgyNWhiV1VpTENKbmFYWmxibDl1WVcxbElpd2laVzFoYVd3aUxDSmhaMlVpWFN3aWRIbHdJam9pU2xCVUlpd2lZV3huSWpvaVFrSlRMVmdpZlEi.~IkpheSI~~NDI.AAUVob_-LTy3HwjlCKC-YfzmudeeeX26URToBMlWdjjx7M_O0lIf5a_vBsFEDlDQzdtqpby3kzu6WtELGyynfqZlhM3PFiO1lHYspKM6ENP1hXOenlm2BZdlWxw7S-DPMEvcg0-8Oeukeqp4--ae5kmYimo9alrXfJ6zUgKJa2CCg9cZKfKSMJ5SPbmHrD_4lTK3AAAAdLO5sNYLoBjrnb2NIeF3BZKnr-O8pcTSnNikHKcgYdckeomtthHpRSkULEXL7OIY8gAAAAIAx_itfCF__U-qTZllqWRYvs43GBlQbNdQhoBGvvDRlEPKgrSRM0i8jLmOwfabDPhBDtFI-Hf6ey6ICL8trU19tEz9Cov0nIrilSlMMi3S50oSwFskmi6eTPMNd3przlvioBtQzmEgSiqbtInl0lDsAAAABAaPp152HQH8876wKi2v1bZRB_r0jYioG6RuZRy17ew2DEMsaLsh-Z-PaMzqAPtlT6rOcSzrPvL-i_zaSZswf4NPKYa6t673cGchg1Jz6STrDLOrRzeaVt1Nzqu-uh_AK1gALW3M2ZqEcV2msTMfdplYdC1xb7sHlta49MaV3l1l
+```text bbs_present_compact
+ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXpJanBiSW1aaGJXbHNlVjl1WVcxbElpd2laMmwyWlc1ZmJtRnRaU0lzSW1WdFlXbHNJaXdpWVdkbElsMHNJblI1Y0NJNklrcFFWQ0lzSW1Gc1p5STZJa0pDVXkxWUluMCI.~IkpheSI~~NDI.AAUVqBD3oVWFQumXg-zOoGv2iHDjSAMTqfNunDP1aZshrzCkteJ2r3Gd4WJQ9KuOiQA6p_wkOiUPEPGIavxZFB7OAz5KOPkwpzzh0pSgZC8uiD3No2kVIYjcyyVFu7g_xC4rpbLU7tazHRjcl6qUpvKtWsOYPZ9Yx8M-qmC1YZuHsK8Uvwf8ims25-5nMVpQwRuJAAAAdJKc2l1QdmlPhpVabNeqaiHqluVK_QJyUGQeUkHyjdISZZYS4jaTI0VLnj6hFL-2bAAAAAIHa5oMWt5AuhBfMx9-K5c04gfJ6JpDqeRW08oM6d6gtCDtBMmZviNy0kJjekvYPh47saQOk6R7sEMr8gytQ2xdrctgeTw2j1j9PpxgaIgUenw1f5fZb5rqiX-Qla0sd1IrSzxFAfPomv1DXtx_thu6AAAABGcKcosxYscickBnQOqWv00KbiOfJh_g55jAxEJVbldWUZrynWu_fLEbWdh7WNuN14TIUvkt1P7-oSZiaxQrzVhPdd66WQoXtDMS7pBF_yk90gywOQs43sjBgAPqmsoNK1lyaeUKqgac85ix_vjuDayZef4h-DBtdlZRKYPMR3Xy
 ```
 
 ## ZKSnark
