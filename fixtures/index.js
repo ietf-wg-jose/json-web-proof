@@ -64,6 +64,11 @@ md_lines.forEach(function(line){
         switch(formats.indexOf(format))
         {
             case 0: // json
+                if(Array.isArray(res[0]))
+                {
+                    fixture = JSON.stringify(res[0]).split(',').join(', ');
+                    break;
+                }
                 if(typeof res[0] != 'object') return err(`fixture is '${typeof res[0]}', expected object at ${line_count}:${line}`);
                 fixture = JSON.stringify(res[0], 0, 2);
                 break;
