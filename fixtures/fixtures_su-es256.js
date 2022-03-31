@@ -23,6 +23,8 @@ const ephemeral_key = {
     "d": "Yfg5t1lo9T36QJJkrX0XiPd8Bj0Z6dt3zNqGIkyuOFc"
 }
 
+const nonce = [185,49,1,223,189,101,214,156,214,38,94,218,124,29,48,139,65,214,80,217,53,45,239,155,10,137,133,47,22,188,43,235];
+
 let jwp_fix = {}
 try {
     jwp_fix = JSON.parse(readFileSync('draft-jmiller-json-web-proof.json'))
@@ -83,18 +85,18 @@ function octet_array(value)
     protected.typ = 'JPT';
     protected.proof_jwk = ejwk;
     protected.alg = 'SU-ES256';
-    jwp.protected = encode(JSON.stringify(protected));
+    jwp.issuer = encode(JSON.stringify(protected));
     console.log();
     console.log('Protected Header:');
     console.log(JSON.stringify(protected, 0, 2));
     console.log('octets:', octet_array(JSON.stringify(protected)));
-    console.log('encoded:', jwp.protected);
+    console.log('encoded:', jwp.issuer);
     jwp_fix.jwp_protected_header = protected;
     jwp_fix.jwp_protected_header_octets = JSON.parse(octet_array(JSON.stringify(protected)));
-    jwp_fix.jwp_protected_header_base64 = jwp.protected;
+    jwp_fix.jwp_protected_header_base64 = jwp.issuer;
 
     // encode/sign the protected header w/ the stable key
-    signature = await sign_payload(jwp.protected, stable.privateKey);
+    signature = await sign_payload(jwp.issuer, stable.privateKey);
     sigs.push(signature);
     console.log('protected sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
@@ -168,7 +170,7 @@ function octet_array(value)
 
 
     const serialized = [];
-    serialized.push(jwp.protected);
+    serialized.push(jwp.issuer);
     serialized.push(jwp.payloads.join('~'));
     serialized.push(jwp.proof);
     console.log();
@@ -176,5 +178,9 @@ function octet_array(value)
     console.log(serialized.join('.'));
     jwp_fix.jwp_compact = serialized.join('.');
     
+    // presentation header
+    jwp.presentation = {};
+    jwp.presentation.nonce = encode(nonce);
+
     writeFileSync('draft-jmiller-json-web-proof.json', JSON.stringify(jwp_fix, 0, 2))
 })();
