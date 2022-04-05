@@ -23,6 +23,14 @@ const ephemeral_key = {
     "d": "Yfg5t1lo9T36QJJkrX0XiPd8Bj0Z6dt3zNqGIkyuOFc"
 }
 
+const holder_key = {
+    "crv": "P-256",
+    "kty": "EC",
+    "x": "oB1TPrE_QJIL61fUOOK5DpKgd8j2zbZJtqpILDTJX6I",
+    "y": "3JqnrkucLobkdRuOqZXOP9MMlbFyenFOLyGlG-FPACM",
+    "d": "AvyDPl1I4xwjrI2iEOi6DxM9ipJe_h_VUN5OvoKvvW8"
+}
+
 const nonce = [185,49,1,223,189,101,214,156,214,38,94,218,124,29,48,139,65,214,80,217,53,45,239,155,10,137,133,47,22,188,43,235];
 
 let jwp_fix = {}
@@ -71,36 +79,48 @@ function octet_array(value)
     console.log();
     console.log('Ephemeral JWK:');
     console.log(JSON.stringify(ejwk_private,0,2));
-    jwp_fix.issuer_ephemeral_jwk = jwk;
+    jwp_fix.issuer_ephemeral_jwk = ejwk;
+
+    const holder = {};
+    holder.privateKey = await parseJwk(holder_key, 'ES256');
+    delete holder_key.d;
+    holder.publicKey = await parseJwk(holder_key, 'ES256');
+    const pjwk = await fromKeyLike(holder.publicKey);
+    const pjwk_private = await fromKeyLike(holder.privateKey);
+    console.log();
+    console.log('Holder Presentation JWK:');
+    console.log(JSON.stringify(pjwk_private,0,2));
+    jwp_fix.holder_presentation_jwk = pjwk;
 
     // storage as we build up
     const sigs = [];
     const jwp = {payloads:[]};
 
-    // create the protected header first
-    const protected = {};
-//    protected.kid = jwk.kid;
-    protected.iss = 'https://issuer.tld';
-    protected.claims = ['family_name', 'given_name', 'email', 'age']
-    protected.typ = 'JPT';
-    protected.proof_jwk = ejwk;
-    protected.alg = 'SU-ES256';
-    jwp.issuer = encode(JSON.stringify(protected));
+    // create the issuer protected header first
+    const issuer = {};
+//    issuer.kid = jwk.kid;
+    issuer.iss = 'https://issuer.tld';
+    issuer.claims = ['family_name', 'given_name', 'email', 'age']
+    issuer.typ = 'JPT';
+    issuer.proof_jwk = ejwk;
+    issuer.presentation_jwk = pjwk;
+    issuer.alg = 'SU-ES256';
+    jwp.issuer = encode(JSON.stringify(issuer));
     console.log();
-    console.log('Protected Header:');
-    console.log(JSON.stringify(protected, 0, 2));
-    console.log('octets:', octet_array(JSON.stringify(protected)));
+    console.log('Issuer Protected Header:');
+    console.log(JSON.stringify(issuer, 0, 2));
+    console.log('octets:', octet_array(JSON.stringify(issuer)));
     console.log('encoded:', jwp.issuer);
-    jwp_fix.jwp_protected_header = protected;
-    jwp_fix.jwp_protected_header_octets = JSON.parse(octet_array(JSON.stringify(protected)));
-    jwp_fix.jwp_protected_header_base64 = jwp.issuer;
+    jwp_fix.jwp_issuer_header = issuer;
+    jwp_fix.jwp_issuer_header_octets = JSON.parse(octet_array(JSON.stringify(issuer)));
+    jwp_fix.jwp_issuer_header_base64 = jwp.issuer;
 
-    // encode/sign the protected header w/ the stable key
+    // encode/sign the issuer protected header w/ the stable key
     signature = await sign_payload(jwp.issuer, stable.privateKey);
     sigs.push(signature);
-    console.log('protected sig:', signature);
+    console.log('issuer protected sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
-    jwp_fix.jwp_protected_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
+    jwp_fix.jwp_issuer_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
     
     // encode/sign each payload
     payload = JSON.stringify('Doe');
@@ -166,7 +186,7 @@ function octet_array(value)
     console.log();
     console.log('JSON Serialization:');
     console.log(JSON.stringify(jwp,0,2));
-    jwp_fix.jwp_final = jwp;
+    jwp_fix.jwp_final = JSON.parse(JSON.stringify(jwp));
 
 
     const serialized = [];
@@ -178,9 +198,55 @@ function octet_array(value)
     console.log(serialized.join('.'));
     jwp_fix.jwp_compact = serialized.join('.');
     
-    // presentation header
-    jwp.presentation = {};
-    jwp.presentation.nonce = encode(nonce);
+    // presentation protected header
+    const presentation = {};
+    presentation.nonce = encode(nonce);
+    jwp.presentation = encode(JSON.stringify(presentation));
+    console.log('Presentation Protected Header:');
+    console.log(JSON.stringify(presentation, 0, 2));
+    console.log('octets:', octet_array(JSON.stringify(presentation)));
+    console.log('encoded:', jwp.presentation);
+    jwp_fix.jwp_presentation_header = presentation;
+    jwp_fix.jwp_presentation_header_octets = JSON.parse(octet_array(JSON.stringify(presentation)));
+    jwp_fix.jwp_presentation_header_base64 = jwp.presentation;
+    // encode/sign the presentation protected header w/ the holder key
+    signature = await sign_payload(jwp.presentation, holder.privateKey);
+    console.log('presentation protected sig:', signature);
+    console.log('octets:', octet_array(Array.from(decode(signature))));
+    jwp_fix.jwp_presentation_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
+
+    sigs.splice(1, 0, signature);
+    sigs.splice(2+2, 1);
+    sigs.splice(2+0, 1);
+    jwp.payloads[0] = null;
+    jwp.payloads[2] = null;
+    let pres_final = Buffer.from([]);
+    for(sig of sigs)
+    {
+        pres_final = Buffer.concat([pres_final, decode(sig)]);
+    }
+    jwp.proof = encode(pres_final);
+    console.log();
+    console.log('presentation final:', jwp.proof);
+    console.log('octets:', octet_array(Array.from(pres_final)));
+    jwp_fix.jwp_presentation_signatures = JSON.parse(octet_array(Array.from(pres_final)));
+
+    console.log();
+    console.log('JSON Serialization:');
+    console.log(JSON.stringify(jwp,0,2));
+    jwp_fix.jwp_final_presentation = JSON.parse(JSON.stringify(jwp));
+
+    jwp.payloads[0] = '';
+    jwp.payloads[2] = '';
+    const pres_serialized = [];
+    pres_serialized.push(jwp.issuer);
+    pres_serialized.push(jwp.presentation);
+    pres_serialized.push(jwp.payloads.join('~'));
+    pres_serialized.push(jwp.proof);
+    console.log();
+    console.log('Compact Serialization:');
+    console.log(pres_serialized.join('.'));
+    jwp_fix.jwp_compact_presentation = pres_serialized.join('.');
 
     writeFileSync('draft-jmiller-json-web-proof.json', JSON.stringify(jwp_fix, 0, 2))
 })();
