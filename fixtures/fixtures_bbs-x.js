@@ -14,6 +14,25 @@ const { readFileSync, writeFileSync } = require('fs');
 const { GeneralSign } = require('jose/jws/general/sign');
 const { randomBytes } = require('crypto');
 
+const keyPair = {
+    publicKey: new Uint8Array([
+        179, 209, 122,  60, 230,  37, 188,  86,  19,  19,   4,  36,
+        240, 230,  79, 178, 230, 147,   9,  60, 239,  41, 233, 167,
+        190, 252, 154,  35,  39, 201, 238,  73,  77, 228,  20,  47,
+        109, 174,  15, 168, 187, 145, 126,  85,  83, 151,  48,  30,
+         13, 237,  92, 179, 124, 181, 211, 204, 187, 222, 229, 234,
+        182,  94,  60, 157,  19, 148, 162,  48, 185, 134, 177, 168,
+         68, 115, 167,  48,  92, 181, 168,  53,  52, 246, 201, 112,
+        103,  23, 159, 138, 225,  13, 165, 171, 251, 112, 163,  96
+      ]),
+    secretKey:new Uint8Array([
+        72, 125, 227,  97, 150, 148, 186, 145,
+       110,  46, 135, 232, 104, 204, 128, 242,
+        73, 151,  72, 162,   0,  54, 139, 146,
+       221, 137,  34,  74,   1,  42, 140, 206
+     ])
+}
+
 let jpa_fix = {}
 try {
     jpa_fix = JSON.parse(readFileSync('draft-jmiller-json-proof-algorithms.json'))
@@ -31,7 +50,7 @@ function octet_array(value)
 
 (async function(){
     // generate the long-term public key
-    const keyPair = await generateBls12381G2KeyPair();
+    //const keyPair = await generateBls12381G2KeyPair();
 
     const jwk = {};
     jwk.kty = 'OKP';
