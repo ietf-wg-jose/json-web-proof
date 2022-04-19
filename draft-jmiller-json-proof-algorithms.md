@@ -133,13 +133,14 @@ TODO:
 
 This section defines how to use specific algorithms for JWPs.
 
+
 ## Single Use
 
 The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.
 
 It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the holder will need to interact with the issuer again to receive new single-use JWPs (dynamically or in batches).
 
-## JWS Algorithm
+### JWS Algorithm
 
 The Single Use algorithm is based on using multiple JWS values, all of which are generated with the same JSON Web Algorithm (JWA) for signing.  This JWA identifier is included as part of the Single Use identifier for JWP.
 
@@ -204,6 +205,7 @@ With the headers verified, the issuer's Ephemeral Key as given in the issuer pro
 ### JPA Registration
 
 Proposed JWP `alg` value is of the format "SU-" appended with the relevant JWS `alg` value for the chosen public and ephemeral key-pair algorithm, for example "SU-ES256".
+
 
 ## BBS
 
@@ -362,6 +364,59 @@ The same JWP in compact serialization:
 ```text bbs_present_compact
 ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXpJanBiSW1aaGJXbHNlVjl1WVcxbElpd2laMmwyWlc1ZmJtRnRaU0lzSW1WdFlXbHNJaXdpWVdkbElsMHNJblI1Y0NJNklrcFFWQ0lzSW1Gc1p5STZJa0pDVXkxWUluMCI.~IkpheSI~~NDI.AAUVqUnyMW_qGrrCzK7xHqUydeyQX5O6276HzUKz41aX9q7qzC6r-eHGh1GD4Y3ZL9l_sA9ibulK3OYbyXVy0ym3LEC5LYyZMUnHXdD41K9qx1P_gE2Y-qZlTvgKauwY7hUihoC6hJl7Vlic9ssX_fjZ6QGo0AzB3o5aHN_xgqSQUwAPpRmckfMnWPn2uZgD3Ei0AAAAdIW0OjVpeHzjoE7lStFvpGW3VnrUfloX5G24SUtysY6yWWtkvbtKj6fausG99w6GKAAAAAIFgnhW_xwhkRSVwwgEyNSyQ5PmrsAJnl6zkD88Uv_YBFVs0cLRsWpF1-uxU_QBw2aHYxR5B_wau84Q-oYB_8VcgmnxryMW0mWecdbeAwSovPsi1dPglpMmpOWX4t-8tbTM5DprN-iUtMcqtX876eq8AAAABF3EHyaXaecu5C5WxIjUr6pTFU4T4NN6B1xHEatCejiCLROs2UE_9icGHk2EViQpA-pIkshllp9sjA_DOfmav8xbHp8gnRgDblpmY84qOgG111UdIIMuTBkFK8sg16epbDiukjOuKL4WJV2c9dAaN7SHc0ZgavPVg8Q_pSqdFl4u
 ```
+
+
+## Salted HMAC
+
+The Salted HMAC (SH) algorithm is similar to Single Use (SU), but uses generated salts and HMAC instead of individual JWSs to protect each payload.  It requires less compute but can result in potentially larger presentation proof values.
+
+Like SU, it also does not support unlinkability if the same JWP is presented multiple times and requires an individually issued JWP for each presentation in order to fully protect privacy.
+
+### SU-based Setup
+
+This algorithm uses most of the same setup as the Single Use one, including the use of JWS as the signature mechanism and the holder providing a Presentation Key.
+
+The main difference with the SH algorithm is that instead of the issuer generating an Ephemeral Key for signing, it instead generates a Shared Secret using HMAC.  This Shared Secret is then used to generate unique salt values that become the input keys to HMAC the issuer protected header and each payload.
+
+### Issuer Protected Header
+
+The holder's Presentation Key JWK MUST be included in the issuer protected header using the `presentation_jwk` claim.  The issuer MUST validate that the holder has posession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
+
+The salt for the issuer header is generated using HMAC with the Shared Secret as the key and the value "issuer_header" as the value.  The issuer header JSON is then serialized using UTF-8 and encoded with base64url into an octet array.  The generated salt is used as the HMAC key with the octet array as the value, and the resulting hash value becomes the first input into the larger octet array that will be signed by the issuer.
+
+### Payloads
+
+A unique salt is generated for each payload using HMAC with the Shared Secret at the key and the values "payload_X" where "X" is replaced by the zero-based array index of the payload, for example "payload_0", "payload_1", etc.
+
+Each payload is then serialized using UTF-8 and encoded with base64url into an octet array.  The generated salt for that payload based on its index is used as the HMAC key with the encoded octet array as the value.  The resulting hash value is appended to the larger octet array that will be signed by the issuer.
+
+
+### Issuer Proof
+
+The issuer proof consists of two items appended together, the issuer's signature of the appended array of hashes, and the shared secret used to generate the salts.
+
+To generate the signature, the array containing the HMAC hash of the issuer protected header followed by all of the payloads appended in order is used as the input to a new JWS.  The issuer signs the JWS using its static public key, storing the result as the first item in the issuer proof value.
+
+The octet array of the shared secret used to generate the salts is then appended, resulting in the final issuer proof value.
+
+For example, the signature for the ES256 algorithm is 64 octets and for a JWP with five payloads hashed using HMAC-SHA256 the total issuer proof value length would be `64 + (5 * 32) = 224` octets.
+
+### Presentation Protected Header
+
+Same as SU.
+
+### Presentation
+
+WIP: presentation_proof = [issuer_signature, revealed_salt_0, hidden_hash_1, hidden_hash_2, revealed_salt_3]
+
+### Verification
+
+WIP: hash revealed payloads w/ the included salt, generate array of hashes and validate issuer signature, validate presentation signature.
+
+### JPA Registration
+
+Proposed JWP `alg` value is of the format "SH-" appended with the relevant JWS `alg` value for the chosen HMAC and public key-pair algorithms in order, for example "SH-HS256-ES256".
+
 
 ## ZKSnark
 

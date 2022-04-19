@@ -42,8 +42,8 @@ try {
 }
 
 // use jose wrapper
-async function sign_payload(payload, key){
-    const sig = new GeneralSign(decode(payload));
+async function sign_bytes(bytes, key){
+    const sig = new GeneralSign(bytes);
     sig.addSignature(key).setProtectedHeader({'alg':'ES256'});
     const jws = await sig.sign();
     return jws.signatures[0].signature;
@@ -105,80 +105,47 @@ function octet_array(value)
     //jpa_fix.jwp_issuer_header_octets = JSON.parse(octet_array(JSON.stringify(issuer)));
     //jpa_fix.jwp_issuer_header_base64 = jwp.issuer;
 
+    // encode/sign the issuer protected header w/ the stable key
+    let ih_salt = createHmac('sha256', ephemeral).update('header').digest()
+    let ih_hash = createHmac('sha256', ih_salt).update(jwp.issuer).digest()
+    console.log('issuer protected hash octets:', octet_array(ih_hash));
+    //jpa_fix.jwp_issuer_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
+
     // generate salts
-    const ih_salt = createHmac('sha256', ephemeral).update('header').digest()
-    const salts = [];
-    for(i=0;i++;i<issuer.claims.length)
+    let salts = [];
+    for(i=0;i<issuer.claims.length;i++)
     {
         salts[i] = createHmac('sha256', ephemeral).update(String(i)).digest()
     }
-
-    const hashes = []
-
-    // encode/sign the issuer protected header w/ the stable key
-    let hash = createHmac('sha256', ih_salt).update(jwp.issuer).digest()
-    hashes.push(hash);
-    console.log('issuer protected hash octets:', octet_array(hash));
-    //jpa_fix.jwp_issuer_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
     
-    // encode/hash each payload
-    payload = JSON.stringify('Doe');
-    encoded = encode(payload);
-    jwp.payloads.push(encoded);
-    hash = createHmac('sha256', salts[0]).update(encoded).digest()
-    hashes.push(hash);
-    console.log();
-    console.log('payload:', encoded);
-    console.log('octets:', octet_array(payload));
-    console.log('hash octets:', octet_array(hash));
-    //jpa_fix.jwp_payload_0_signature = JSON.parse(octet_array(Array.from(decode(signature))));
-
-    payload = JSON.stringify('Jay');
-    encoded = encode(payload);
-    jwp.payloads.push(encoded);
-    signature = await sign_payload(encoded, ephemeral.privateKey);
-    sigs.push(signature);
-    console.log();
-    console.log('payload:', encoded);
-    console.log('octets:', octet_array(payload));
-    console.log('sig:', signature);
-    console.log('octets:', octet_array(Array.from(decode(signature))));
-    //jpa_fix.jwp_payload_1_signature = JSON.parse(octet_array(Array.from(decode(signature))));
-
-    payload = JSON.stringify('jaydoe@example.org');
-    encoded = encode(payload);
-    jwp.payloads.push(encoded);
-    signature = await sign_payload(encoded, ephemeral.privateKey);
-    sigs.push(signature);
-    console.log();
-    console.log('payload:', encoded);
-    console.log('octets:', octet_array(payload));
-    console.log('sig:', signature);
-    console.log('octets:', octet_array(Array.from(decode(signature))));
-    //jpa_fix.jwp_payload_2_signature = JSON.parse(octet_array(Array.from(decode(signature))));
-
-    payload = JSON.stringify(42);
-    encoded = encode(payload);
-    jwp.payloads.push(encoded);
-    signature = await sign_payload(encoded, ephemeral.privateKey);
-    sigs.push(signature);
-    console.log();
-    console.log('payload:', encoded);
-    console.log('octets:', octet_array(payload));
-    console.log('sig:', signature);
-    console.log('octets:', octet_array(Array.from(decode(signature))));
-    //jpa_fix.jwp_payload_3_signature = JSON.parse(octet_array(Array.from(decode(signature))));
-
-    // merge final signature
-    let final = Buffer.from([]);
-    for(sig of sigs)
-    {
-        final = Buffer.concat([final, decode(sig)]);
+    let hashes = []
+    let payloads = ['Doe', 'Jay', 'jaydoe@example.org', 42]
+    for(i=0;i<payloads.length;i++){
+        // encode/hash each payload
+        payload = JSON.stringify(payloads[i]);
+        encoded = encode(payload);
+        jwp.payloads.push(encoded);
+        hash = createHmac('sha256', salts[i]).update(encoded).digest()
+        hashes.push(hash);
+        console.log();
+        console.log('payload:', encoded);
+        console.log('octets:', octet_array(payload));
+        console.log('hash octets:', octet_array(hash));
+        //jpa_fix.jwp_payload_0_signature = JSON.parse(octet_array(Array.from(decode(signature))));
     }
-    jwp.proof = encode(final);
+
+    // merge hashes for signing then append ephemeral for issuer proof value
+    let final = ih_hash;
+    for(hash of hashes)
+    {
+        final = Buffer.concat([final, hash]);
+    }
+    let hashes_signature = await sign_bytes(final, stable.privateKey);
+    let proof = Buffer.concat([decode(hashes_signature), ephemeral])
+    jwp.proof = encode(proof);
     console.log();
-    console.log('final:', encode(final));
-    console.log('octets:', octet_array(Array.from(final)));
+    console.log('proof final:', jwp.proof);
+    console.log('octets:', octet_array(Array.from(proof)));
     //jpa_fix.jwp_signatures = JSON.parse(octet_array(Array.from(final)));
 
     console.log();
@@ -208,20 +175,22 @@ function octet_array(value)
     //jpa_fix.jwp_presentation_header_octets = JSON.parse(octet_array(JSON.stringify(presentation)));
     //jpa_fix.jwp_presentation_header_base64 = jwp.presentation;
     // encode/sign the presentation protected header w/ the holder key
-    signature = await sign_payload(jwp.presentation, holder.privateKey);
+    signature = await sign_bytes(decode(jwp.presentation), holder.privateKey);
     console.log('presentation protected sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
     //jpa_fix.jwp_presentation_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
 
-    sigs.splice(1, 0, signature);
-    sigs.splice(2+2, 1);
-    sigs.splice(2+0, 1);
+    // replace salt with hash for non-disclosed
+    salts[0] = hashes[0]
+    salts[2] = hashes[2]
     jwp.payloads[0] = null;
     jwp.payloads[2] = null;
-    let pres_final = Buffer.from([]);
-    for(sig of sigs)
+
+    // build presentation proof from issuer sig, presentation sig, then hash-or-salt 
+    let pres_final = Buffer.concat([decode(hashes_signature), decode(signature)])
+    for(salt of salts)
     {
-        pres_final = Buffer.concat([pres_final, decode(sig)]);
+        pres_final = Buffer.concat([pres_final, salt]);
     }
     jwp.proof = encode(pres_final);
     console.log();
