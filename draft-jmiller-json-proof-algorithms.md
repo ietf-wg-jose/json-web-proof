@@ -366,36 +366,40 @@ ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXpJanBiSW1a
 ```
 
 
-## Salted HMAC
+## Message Authentication Code
 
-The Salted HMAC (SH) algorithm is similar to Single Use (SU), but uses generated salts and HMAC instead of individual JWSs to protect each payload.  It requires less compute but can result in potentially larger presentation proof values.
+The Message Authentication Code (MAC) JPA is similar to Single Use (SU), but uses generated salts and hashes instead of individual JWSs to protect each payload.  It requires less compute but can result in potentially larger presentation proof values.
 
 Like SU, it also does not support unlinkability if the same JWP is presented multiple times and requires an individually issued JWP for each presentation in order to fully protect privacy.
 
-### SU-based Setup
+The design is intentionally minimal and only introduces the use of a MAC method for both generation of the salts and for hashing the payloads.  It is able to use any standardized cryptographic MAC method such as [HMAC](https://datatracker.ietf.org/doc/html/rfc2104) or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).
 
-This algorithm uses most of the same setup as the Single Use one, including the use of JWS as the signature mechanism and the holder providing a Presentation Key.
+### JWS-based Setup
 
-The main difference with the SH algorithm is that instead of the issuer generating an Ephemeral Key for signing, it instead generates a Shared Secret using HMAC.  This Shared Secret is then used to generate unique salt values that become the input keys to HMAC the issuer protected header and each payload.
+This algorithm uses most of the same setup as Single Use, including the use of JWS as the issuer signature mechanism and the holder's presentation header signature.
+
+The main difference from the SU JPA is that instead of the issuer generating an Ephemeral Key for signing, it instead generates a single 32 byte random Shared Secret.  The Shared Secret will be included with the issuer signature and sent privately to the holder as the issuer's JWP proof value.
+
+This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a set of unique salt values.  The salt values then become the input keys to generate a MAC for the issuer protected header and each payload.
 
 ### Issuer Protected Header
 
-The holder's Presentation Key JWK MUST be included in the issuer protected header using the `presentation_jwk` claim.  The issuer MUST validate that the holder has posession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
+The holder's Presentation Key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has posession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
-The salt for the issuer header is generated using HMAC with the Shared Secret as the key and the value "issuer_header" as the value.  The issuer header JSON is then serialized using UTF-8 and encoded with base64url into an octet array.  The generated salt is used as the HMAC key with the octet array as the value, and the resulting hash value becomes the first input into the larger octet array that will be signed by the issuer.
+The salt for the issuer header is generated using the MAC with the Shared Secret as the key and the value "issuer_header" as the value.  The issuer header JSON is serialized using UTF-8 and encoded with base64url into an octet array.  The generated salt is used as the MAC key with the octet array as the value, and the resulting hash value becomes the first input into the larger octet array that will be signed by the issuer.
 
 ### Payloads
 
-A unique salt is generated for each payload using HMAC with the Shared Secret at the key and the values "payload_X" where "X" is replaced by the zero-based array index of the payload, for example "payload_0", "payload_1", etc.
+A unique salt is generated for each payload using the MAC with the Shared Secret at the key and the values "payload_X" where "X" is replaced by the zero-based array index of the payload, for example "payload_0", "payload_1", etc.
 
-Each payload is then serialized using UTF-8 and encoded with base64url into an octet array.  The generated salt for that payload based on its index is used as the HMAC key with the encoded octet array as the value.  The resulting hash value is appended to the larger octet array that will be signed by the issuer.
+Each payload is serialized using UTF-8 and encoded with base64url into an octet array.  The generated salt for that payload based on its index is used as the MAC key with the encoded octet array as the value.  The resulting hash value is appended to the larger octet array that will be signed by the issuer.
 
 
 ### Issuer Proof
 
 The issuer proof consists of two items appended together, the issuer's signature of the appended array of hashes, and the shared secret used to generate the salts.
 
-To generate the signature, the array containing the HMAC hash of the issuer protected header followed by all of the payloads appended in order is used as the input to a new JWS.  The issuer signs the JWS using its static public key, storing the result as the first item in the issuer proof value.
+To generate the signature, the array containing the MAC hash of the issuer protected header followed by all of the payloads appended in order is used as the input to a new JWS.  The issuer signs the JWS using its static public key, storing the result as the first item in the issuer proof value.
 
 The octet array of the shared secret used to generate the salts is then appended, resulting in the final issuer proof value.
 
@@ -415,7 +419,7 @@ WIP: hash revealed payloads w/ the included salt, generate array of hashes and v
 
 ### JPA Registration
 
-Proposed JWP `alg` value is of the format "SH-" appended with the relevant JWS `alg` value for the chosen HMAC and public key-pair algorithms in order, for example "SH-HS256-ES256".
+Proposed JWP `alg` value is of the format "MAC-" appended with the relevant JWS `alg` value for the chosen MAC and public key-pair algorithms in order, for example "MAC-HS256-ES256".
 
 
 ## ZKSnark
