@@ -380,24 +380,23 @@ This algorithm uses most of the same setup as the JWS-based Single Use algorithm
 
 The main difference from the JWS JPA is that instead of the issuer generating an Ephemeral Key for signing, it instead generates a single 32 byte random Shared Secret.  The Shared Secret will be included with the issuer signature and sent privately to the holder as the issuer's JWP proof value.
 
-This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique keys.  These keys are then used as the input to generate a MAC for the issuer protected header and each payload.
+This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique keys.  These keys are then used as the input to generate a MAC for each payload.
 
 ### Issuer Protected Header
 
 The holder's Presentation Key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has posession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
-The key for the issuer header is generated using the MAC with the Shared Secret as the key and the value "issuer_header" as the value.  The issuer header JSON is serialized using UTF-8 and encoded with base64url into an octet array.  The final issuer header MAC is generated from the octet array and the key, and the resulting value becomes the first input into the larger octet array that will be signed by the issuer.
+For consistency, the issuer header is protected by a MAC using the fixed value "issuer_header" as the key.  The issuer header JSON is serialized using UTF-8 and encoded with base64url into an octet array.  The final issuer header MAC is generated from the octet array and the fixed key, and the resulting value becomes the first input into the larger octet array that will be signed by the issuer.
 
 ### Payloads
 
-A unique key is also generated for each payload using the MAC with the Shared Secret as the key and the values "payload_X" where "X" is replaced by the zero-based array index of the payload, for example "payload_0", "payload_1", etc.
+A unique key is generated for each payload using the MAC with the Shared Secret as the key and the values "payload_X" where "X" is replaced by the zero-based array index of the payload, for example "payload_0", "payload_1", etc.
 
 Each payload is serialized using UTF-8 and encoded with base64url into an octet array.  The generated key for that payload based on its index is used to generate the MAC for the payload's encoded octet array.  The resulting value is appended to the larger octet array that will be signed by the issuer.
 
-
 ### Issuer Proof
 
-The issuer proof consists of two items appended together, the issuer's signature of the appended array of MACs, and the Shared Secret used to generate the MAC keys.
+The issuer proof consists of two items appended together, the issuer's signature of the appended array of MACs, and the Shared Secret used to generate the set of payload keys.
 
 To generate the signature, the array containing the final MAC of the issuer protected header followed by all of the payload MACs appended in order is used as the input to a new JWS.  The issuer signs the JWS using its static public key, storing the result as the first item in the issuer proof value.
 
