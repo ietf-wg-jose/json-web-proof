@@ -368,19 +368,19 @@ ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXpJanBiSW1a
 
 ## Message Authentication Code
 
-The Message Authentication Code (MAC) JPA uses a MAC to both generate keys and compute values to protect the issuer header and each payload.  It requires less compute but can result in potentially larger presentation proof values.
+The Message Authentication Code (MAC) JPA uses a MAC to both generate keys and compute values to protect the issuer header and each payload.  
 
-Like the JWS-based JPA, it also does not support unlinkability if the same JWP is presented multiple times and requires an individually issued JWP for each presentation in order to fully protect privacy.
+Like the JWS-based JPA, it also does not support unlinkability if the same JWP is presented multiple times and requires an individually issued JWP for each presentation in order to fully protect privacy.  When compared to the JWS approach, using a MAC requires less compute but can result in potentially larger presentation proof values.
 
-The design is intentionally minimal and only introduces the use of a MAC method for both generation of the keys and protecting the payloads.  It is able to use any standardized cryptographic MAC method such as [HMAC](https://datatracker.ietf.org/doc/html/rfc2104) or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).
+The design is intentionally minimal and only involves using a single standardized MAC method instead of a mix of MAC/hash methods or a custom hash-based construct.  It is able to use any published cryptographic MAC method such as [HMAC](https://datatracker.ietf.org/doc/html/rfc2104) or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).
 
 ### JWS-based Setup
 
-This algorithm uses most of the same setup as the JWS-based Single Use algorithm by using JWS as the issuer signature mechanism and the holder's presentation header signature.
+This algorithm uses most of the same setup as the JWS-based Single Use algorithm by using JWS as the issuer signature mechanism and for the holder's presentation header signature.
 
-The main difference from the JWS JPA is that instead of the issuer generating an Ephemeral Key for signing, it instead generates a single 32 byte random Shared Secret.  The Shared Secret will be included with the issuer signature and sent privately to the holder as the issuer's JWP proof value.
+The main difference from the JWS JPA is that instead of the issuer generating an Ephemeral Key for signing, it instead generates a single 32 byte random Shared Secret.  The Shared Secret will be included with the issuer signature and shared privately to the holder as the issuer's JWP proof value.
 
-This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique keys.  These keys are then used as the input to generate a MAC for each payload.
+This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique keys.  These keys are then used as the input to generate a MAC that protects each payload.
 
 ### Issuer Protected Header
 
@@ -404,10 +404,13 @@ The octet array of the Shared Secret used to generate the MAC keys is then appen
 
 ### Presentation Protected Header
 
-Same as SU.
+See the JWS [Presentation Protected Header](#presentation-protected-header) section.
 
 ### Presentation
 
+The presentation proof is constructed as a large octet array containing multiple appended items similar to the issuer proof value.  The first item is the same, the issuer signature.  It is then followed by a MAC value for each payload.
+
+The MAC values used will depend on if that payload has been disclosed or is hidden.  Disclosed payloads will use the MAC key input
 WIP: presentation_proof = [issuer_signature, revealed_key_0, hidden_mac_1, hidden_mac_2, revealed_key_3]
 
 Using the ES256 algorithm with a signature of 64 octets and for a JWP with five payloads using HMAC-SHA256 the total presentation proof value length would be `64 + (5 * 32) = 224` octets.
