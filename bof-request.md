@@ -44,7 +44,7 @@ WIP:
 
 
 ## Agenda
-   - https://github.com/json-web-proofs/json-web-proofs/bof-agenda.md
+   - https://github.com/json-web-proofs/json-web-proofs/blob/main/bof-agenda.md
 
 ## Links to the mailing list, draft charter if any, relevant Internet-Drafts, etc.
    - Github: https://github.com/json-web-proofs/json-web-proofs
