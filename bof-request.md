@@ -12,7 +12,7 @@ The second limitation is unlinkability.  With the widespread prevalence of user 
 
 Accomplishing both of these capabilities efficiently and securely has been a multi-decade research activity for a sizeable academic and applied cryptography community, often referred to anonymous credentials from an [early paper](http://cs.brown.edu/people/alysyans/papers/cl01a.pdf) on the subject.  Some of the cryptographic techniques developed in this space involve pairing-friendly curves, zero-knowledge proofs, accumulators, and mercurial signatures (to name just a few).  The requirements to adopt any of these solutions live entirely outside of the current scope of the JOSE and JWT specifications.
 
-This BOF aims to foster a discussion of establishing a new Working Group to develop a set of companion specifications to JOSE that are designed to support the privacy-enhancing primitives of selective disclosure and unlinkability.  These specifications would standardize-defined proof-based cryptographic schemes into a compatible and serializable container format; creation or standardization of those schemes is not in scope.
+This BOF aims to foster a discussion of establishing a new Working Group to develop a set of companion specifications to JOSE that are designed to support the privacy-enhancing primitives of selective disclosure and unlinkability.  These specifications would standardize defined proof-based cryptographic schemes into a compatible and serializable container format; creation or standardization of those schemes is not in scope.
 
 ## Required Details
 - Status: WG Forming
