@@ -368,19 +368,23 @@ ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXpJanBiSW1a
 
 ## Message Authentication Code
 
-The Message Authentication Code (MAC) JPA uses a MAC to both generate keys and compute values to protect the issuer header and each payload.  
+The Message Authentication Code (MAC) JPA uses a MAC to both generate ephemeral keys and compute authentication codes to protect the issuer header and each payload individually.
 
 Like the JWS-based JPA, it also does not support unlinkability if the same JWP is presented multiple times and requires an individually issued JWP for each presentation in order to fully protect privacy.  When compared to the JWS approach, using a MAC requires less compute but can result in potentially larger presentation proof values.
 
-The design is intentionally minimal and only involves using a single standardized MAC method instead of a mix of MAC/hash methods or a custom hash-based construct.  It is able to use any published cryptographic MAC method such as [HMAC](https://datatracker.ietf.org/doc/html/rfc2104) or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).
+The design is intentionally minimal and only involves using a single standardized MAC method instead of a mix of MAC/hash methods or a custom hash-based construct.  It is able to use any published cryptographic MAC method such as [HMAC](https://datatracker.ietf.org/doc/html/rfc2104) or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).  It uses traditional public-key based signatures to verify the authenticity of the issuer and holder.
 
-### JWS-based Setup
+### Holder Setup
 
-This algorithm uses most of the same setup as the JWS-based Single Use algorithm by using JWS as the issuer signature mechanism and for the holder's presentation header signature.
+Prior to the issuer creating a new JWP it must have binding information provided by the holder.  This enables the holder to perform replay prevention while presenting the JWP.
 
-The main difference from the JWS JPA is that instead of the issuer generating an Ephemeral Key for signing, it instead generates a single 32 byte random Shared Secret.  The Shared Secret will be included with the issuer signature and shared privately to the holder as the issuer's JWP proof value.
 
-This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique keys.  These keys are then used as the input to generate a MAC that protects each payload.
+
+### Issuer Setup
+
+To use the MAC algorithm the issuer must have a stable public key pair to perform signing.  To issue a MAC-based JWP it must first generate a single 32 byte random Shared Secret.  The Shared Secret will be included with the issuer signature and shared privately to the holder as part of the issuer's JWP proof value.
+
+This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique ephemeral keys.  These keys are then used as the input to generate a MAC that protects the issuer header and each payload.
 
 ### Issuer Protected Header
 
