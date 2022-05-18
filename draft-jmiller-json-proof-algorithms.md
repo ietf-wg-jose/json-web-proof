@@ -421,7 +421,14 @@ WIP: generate a MAC for the revealed payloads w/ the included keys, generate arr
 
 ### JPA Registration
 
-Proposed JWP `alg` value is of the format "MAC-" appended with the relevant JWS `alg` value for the chosen MAC and public key-pair algorithms in order, for example "MAC-HS256-ES256".
+Proposed JWP `alg` value is of the format "MAC-" appended with a unique identifier for the set of MAC and signing algorithms used.  Below is the initial registrations:
+
+* `MAC-H256` uses `HMAC SHA-256` as the MAC and `ECDSA using P-256 and SHA-256` for the signatures
+* `MAC-H384` uses `HMAC SHA-384` as the MAC and `ECDSA using P-384 and SHA-384` for the signatures
+* `MAC-H512` uses `HMAC SHA-512` as the MAC and `ECDSA using P-521 and SHA-512` for the signatures
+* `MAC-K25519` uses `KMAC SHAKE128` as the MAC and `EdDSA using Curve25519` for the signatures
+* `MAC-K448` uses `KMAC SHAKE256` as the MAC and `EdDSA using Curve448` for the signatures
+* `MAC-H256K` uses `HMAC SHA-256` as the MAC and `ECDSA using secp256k1 and SHA-256` for the signatures
 
 
 ## ZKSnark
