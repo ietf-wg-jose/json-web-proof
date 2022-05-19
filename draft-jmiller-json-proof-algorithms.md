@@ -376,21 +376,23 @@ The design is intentionally minimal and only involves using a single standardize
 
 ### Holder Setup
 
-Prior to the issuer creating a new JWP it must have binding information provided by the holder.  This enables the holder to perform replay prevention while presenting the JWP.
+Prior to the issuer creating a new JWP it must have presentation binding information provided by the holder.  This enables the holder to perform replay prevention while presenting the JWP.
 
+The presentation key used by the holder must be transferred to the issuer and verified, likely through a challenge and self-signing mechanism.  If the holder requires unlinkability it must also generate a new key that is verified and bound to each new JWP.
 
+How these holder presentation keys are transfered and verified is out of scope of this specification, protocols such as OpenID Connect can be used to accomplish this.  What is required by this definition is that the holder's presentation key MUST be included in the issuer's protected header using the `pjwk` claim with a JWK as the value.
 
 ### Issuer Setup
 
-To use the MAC algorithm the issuer must have a stable public key pair to perform signing.  To issue a MAC-based JWP it must first generate a single 32 byte random Shared Secret.  The Shared Secret will be included with the issuer signature and shared privately to the holder as part of the issuer's JWP proof value.
+To use the MAC algorithm the issuer must have a stable public key pair to perform signing.  To start the issuance process a single 32 byte random Shared Secret must first be generated.  This value will be shared privately to the holder as part of the issuer's JWP proof value.
 
-This Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique ephemeral keys.  These keys are then used as the input to generate a MAC that protects the issuer header and each payload.
+The Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique ephemeral keys.  These keys are then used as the input to generate a MAC that protects each payload.
 
 ### Issuer Protected Header
 
-The holder's Presentation Key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has posession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
+The holder's presentation key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has posession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
-For consistency, the issuer header is protected by a MAC using the fixed value "issuer_header" as the key.  The issuer header JSON is serialized using UTF-8 and encoded with base64url into an octet array.  The final issuer header MAC is generated from the octet array and the fixed key, and the resulting value becomes the first input into the larger octet array that will be signed by the issuer.
+For consistency, the issuer header is also protected by a MAC by using the fixed value "issuer_header" as the input key.  The issuer header JSON is serialized using UTF-8 and encoded with base64url into an octet array.  The final issuer header MAC is generated from the octet array and the fixed key, and the resulting value becomes the first input into the larger octet array that will be signed by the issuer.
 
 ### Payloads
 
