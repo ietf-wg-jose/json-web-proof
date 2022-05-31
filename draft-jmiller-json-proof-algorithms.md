@@ -453,7 +453,7 @@ Next, the verifier must validate all of the disclosed payloads using the followi
    1. Extract the next hash value from the remaining `presentation_proof` octet array
    2. If the payload was disclosed: perform a MAC using the given hash value as the input key and append the result to the `jws_payload` octet array
    3. If the payload was hidden: append the given hash value to the `jws_payload` octet array
-7. Create a JWS using the correct fixed header with `alg` value and the generated `jws_payload` value as the payload
+7. Create a JWS using a header containing the `alg` parameter along with the generated `jws_payload` value as the payload
 8. Validate the JWS using the resolved issuer JWK and the extracted `issuer_signature` value
 
 ### JPA Registration
