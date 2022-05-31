@@ -154,7 +154,7 @@ The issuer MUST verify that the holder has possession of this key.  The holder-i
 
 ### Issuer Setup
 
-To create a Single Use JWP the issuer first generates a unique Ephemeral Key using the selected JWS algorithm.  This key-pair will be used to sign each of the payloads of a single JWP and then discarded. 
+To create a Single Use JWP the issuer first generates a unique Ephemeral Key using the selected JWS algorithm.  This key-pair will be used to sign each of the payloads of a single JWP and then discarded.
 
 ### Using JWS
 
