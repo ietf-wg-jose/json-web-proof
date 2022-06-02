@@ -4,4 +4,5 @@
 - What Would JOSE Do?  Why re-form the JOSE working group to meet the need? - Mike Jones (5 minutes)
 - The selective disclosure industry landscape - including Verifiable Credentials and ISO Mobile Driver Licenses (mDL) - Kristina Yasuda (10 minutes)
 - A Look Under the Covers:  The JSON Web Proofs specifications - Jeremie Miller (15 minutes)
-- Open Microphone (20 minutes)
+- Beyond JWS: BBS as New Algorithm with Advanced Capabilities - Tobias Looker (5 minutes)
+- Open Microphone (15 minutes)
