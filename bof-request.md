@@ -10,8 +10,6 @@ The first limitation is handling selective disclosure (or [data minimization](ht
 
 The second limitation is unlinkability. While it is a common experience to share unique trackable identifiers, such as e-mail addresses, names, and locations, there are also many identity-related exchanges that only involve an access control decision or capability without needing to uniquely identify a person. The only solution today using a JWT is to request a new token per Verifier from the issuer each time, or ahead of time in batches to be able to use a different one per Verifier – such that they are single-use tokens.
 
-Accomplishing both of these capabilities efficiently and securely has been a multi-decade research activity for a sizeable academic and applied cryptography community, often referred to anonymous credentials from an [early paper](http://cs.brown.edu/people/alysyans/papers/cl01a.pdf) on the subject.  Some of the cryptographic techniques developed in this space involve pairing-friendly curves, zero-knowledge proofs, accumulators, and mercurial signatures (to name just a few).  The requirements to adopt any of these solutions live entirely outside of the current scope of the JOSE and JWT specifications.
-
 Accomplishing both goals efficiently and securely has been a multi-decade research activity for a sizeable academic and applied cryptography community, often referred to as anonymous credentials. Some of the cryptographic techniques developed in this space involve pairing-friendly curves and zero-knowledge proofs (to name just a few).  Simple selective disclosure techniques using well-established cryptographic algorithms, such as the salted hashes used by the ISO Mobile Driver License (mDL) spec, are also in scope.  The current JOSE and JWT specifications are not sufficiently general to enable use of these newer techniques.
 
 This BoF proposes to re-form the JSON Object Signing and Encryption (JOSE) working group.  The reconstituted JOSE working group will build on what came before but also rectify these shortcomings.  Specifically, it will develop a set of companion specifications to the existing JOSE specs that are designed to support the privacy-enhancing primitives of selective disclosure and unlinkability.  These specifications will utilize defined cryptographic schemes, standardizing their use in a JSON-based serializable container format; creation or standardization of new cryptographic algorithms would not be in scope.  Parallel CBOR-based representations may also be developed.
@@ -22,7 +20,7 @@ This BoF proposes to re-form the JSON Object Signing and Encryption (JOSE) worki
 - BOF proponents: Jeremie Miller <jeremie.miller@gmail.com>, Michael B. Jones <michael.jones@microsoft.com>
 - BOF chairs: (Leif Johansson has volunteered)
 - Number of people expected to attend: 40
-- Length of session (1 or 2 hours): 1 hours
+- Length of session (1 or 2 hours): 1 hour
 - Conflicts (whole Areas and/or WGs)
    - Chair Conflicts: TBD
    - Technology Overlap: OAuth and COSE Working Groups
@@ -47,15 +45,15 @@ WIP:
 - Which (if any) entirely new protocols or practices are required:
   - New cryptographic container formats related to JOSE and COSE
 - Implementations:
-  - There is an implementation by Ping Identity.  Microsoft plans to implement.  Transmute plans to implement.  Others in the Verifiable Credentials space also plan to implement.  Many of these will be at IETF in Philadelphia, some specifically for this BoF.  We expect some of these to be open source.
+  - There is an implementation by Ping Identity.  Microsoft plans to implement.  Transmute plans to implement.  Others in the Verifiable Credentials space also plan to implement.  Many of these people will be at IETF in Philadelphia, some specifically for this BoF.  We expect some of these implementations to be open source.
 
 
 ## Agenda
    - https://github.com/json-web-proofs/json-web-proofs/blob/main/bof-agenda.md
 
 ## Links to the mailing list, draft charter if any, relevant Internet-Drafts, etc.
-   - Github: https://github.com/json-web-proofs/json-web-proofs
    - Draft charter: https://github.com/json-web-proofs/json-web-proofs/blob/main/charter-ietf-jose-03.md
+   - GitHub: https://github.com/json-web-proofs/json-web-proofs
    - Relevant drafts:
       - JSON Web Proof:
          - https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-web-proof.html
