@@ -205,6 +205,8 @@ Example flattened JSON serialization showing the presentation form with both the
 
 # Security Considerations
 
+Notes to be expanded:
+
 * Requirements for supporting algorithms, see JPA
 * Application interface for verification
 * Data minimization of the protected header
