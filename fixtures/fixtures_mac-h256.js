@@ -16,7 +16,7 @@ const stable_key = {
     "d": "jnE0-9YvxQtLJEKcyUHU6HQ3Y9nSDnh0NstYJFn7RuI"
 };
 
-const ephemeral_key = [
+const shared_secret = [
     100, 109,  91, 184, 139,  20, 107,  86,
       1, 252,  86, 159, 126, 251, 228,   4,
      35, 177,  75,  96,  11, 205, 144, 189,
@@ -64,13 +64,13 @@ function octet_array(value)
 //    jwk.kid = await calculateThumbprint(jwk);
     console.log('Issuer JWK:');
     console.log(JSON.stringify(jwk,0,2));
-    //jpa_fix.issuer_private_jwk = jwk;
+    jpa_fix.issuer_private_jwk = jwk;
 
-    const ephemeral = Buffer.from(ephemeral_key)
+    const shared_key = Buffer.from(shared_secret)
     console.log();
-    console.log('Ephemeral Salt Key');
-    console.log(octet_array(ephemeral));
-    //jpa_fix.issuer_ephemeral_jwk = ejwk;    
+    console.log('Shared Secret');
+    console.log(octet_array(shared_key));
+    jpa_fix.mac_shared_secret = shared_secret;
 
     const holder = {};
     holder.privateKey = await parseJwk(holder_key, 'ES256');
@@ -81,7 +81,7 @@ function octet_array(value)
     console.log();
     console.log('Holder Presentation JWK:');
     console.log(JSON.stringify(pjwk_private,0,2));
-    //jpa_fix.holder_presentation_jwk = pjwk;
+    jpa_fix.holder_presentation_jwk = pjwk;
 
     // storage as we build up
     const sigs = [];
@@ -93,65 +93,70 @@ function octet_array(value)
     issuer.iss = 'https://issuer.tld';
     issuer.claims = ['family_name', 'given_name', 'email', 'age']
     issuer.typ = 'JPT';
-    issuer.presentation_jwk = pjwk;
-    issuer.alg = 'SH-ES256';
+    issuer.pjwk = pjwk;
+    issuer.alg = 'MAC-H256';
     jwp.issuer = encode(JSON.stringify(issuer));
     console.log();
     console.log('Issuer Protected Header:');
     console.log(JSON.stringify(issuer, 0, 2));
     console.log('octets:', octet_array(JSON.stringify(issuer)));
     console.log('encoded:', jwp.issuer);
-    //jpa_fix.jwp_issuer_header = issuer;
-    //jpa_fix.jwp_issuer_header_octets = JSON.parse(octet_array(JSON.stringify(issuer)));
-    //jpa_fix.jwp_issuer_header_base64 = jwp.issuer;
+    jpa_fix.mac_issuer_header = issuer;
+    jpa_fix.mac_issuer_header_octets = JSON.parse(octet_array(JSON.stringify(issuer)));
+    jpa_fix.mac_issuer_header_base64 = jwp.issuer;
 
     // encode/sign the issuer protected header w/ the stable key
-    let ih_salt = createHmac('sha256', ephemeral).update('header').digest()
-    let ih_hash = createHmac('sha256', ih_salt).update(jwp.issuer).digest()
-    console.log('issuer protected hash octets:', octet_array(ih_hash));
-    //jpa_fix.jwp_issuer_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
+    let ih_mac = createHmac('sha256', 'issuer_header').update(jwp.issuer).digest()
+    console.log('issuer protected header mac:', octet_array(ih_mac));
+    jpa_fix.mac_issuer_header_mac = JSON.parse(octet_array(Array.from(decode(ih_mac))));
 
-    // generate salts
-    let salts = [];
+    // generate payload keys
+    let payload_keys = [];
     for(i=0;i<issuer.claims.length;i++)
     {
-        salts[i] = createHmac('sha256', ephemeral).update(String(i)).digest()
+        payload_keys[i] = createHmac('sha256', shared_key).update(String(i)).digest()
     }
-    
-    let hashes = []
+    let x = payload_keys.map((item)=>Array.from(item))
+    jpa_fix.mac_issuer_keys = x;
+
+    let payload_macs = []
     let payloads = ['Doe', 'Jay', 'jaydoe@example.org', 42]
-    for(i=0;i<payloads.length;i++){
+    for(i=0;i<payloads.length;i++)
+    {
         // encode/hash each payload
         payload = JSON.stringify(payloads[i]);
         encoded = encode(payload);
         jwp.payloads.push(encoded);
-        hash = createHmac('sha256', salts[i]).update(encoded).digest()
-        hashes.push(hash);
+        mac = createHmac('sha256', payload_keys[i]).update(encoded).digest()
+        payload_macs.push(mac);
         console.log();
         console.log('payload:', encoded);
         console.log('octets:', octet_array(payload));
-        console.log('hash octets:', octet_array(hash));
-        //jpa_fix.jwp_payload_0_signature = JSON.parse(octet_array(Array.from(decode(signature))));
+        console.log('mac octets:', octet_array(mac));
+        jpa_fix[`mac_payload_${i}`] = JSON.parse(octet_array(Array.from(decode(mac))));
     }
+    x = payload_macs.map((item)=>Array.from(item))
+    jpa_fix.mac_issuer_macs = x;
 
-    // merge hashes for signing then append ephemeral for issuer proof value
-    let final = ih_hash;
-    for(hash of hashes)
+
+    // merge macs for signing then append shared key for issuer proof value
+    let final = ih_mac;
+    for(mac of payload_macs)
     {
-        final = Buffer.concat([final, hash]);
+        final = Buffer.concat([final, mac]);
     }
-    let hashes_signature = await sign_bytes(final, stable.privateKey);
-    let proof = Buffer.concat([decode(hashes_signature), ephemeral])
+    let macs_signature = await sign_bytes(final, stable.privateKey);
+    jpa_fix.mac_issuer_signature = JSON.parse(octet_array(Array.from(macs_signature)));
+    let proof = Buffer.concat([decode(macs_signature), shared_key])
     jwp.proof = encode(proof);
     console.log();
     console.log('proof final:', jwp.proof);
     console.log('octets:', octet_array(Array.from(proof)));
-    //jpa_fix.jwp_signatures = JSON.parse(octet_array(Array.from(final)));
 
     console.log();
     console.log('JSON Serialization:');
     console.log(JSON.stringify(jwp,0,2));
-    //jpa_fix.jwp_final = JSON.parse(JSON.stringify(jwp));
+    jpa_fix.mac_issued_jwp = JSON.parse(JSON.stringify(jwp));
 
 
     const serialized = [];
@@ -161,47 +166,52 @@ function octet_array(value)
     console.log();
     console.log('Compact Serialization:');
     console.log(serialized.join('.'));
-    //jpa_fix.jwp_compact = serialized.join('.');
-    
+    jpa_fix.mac_issued_compact = serialized.join('.');
+
     // presentation protected header
     const presentation = {};
     presentation.nonce = encode(nonce);
+    jpa_fix.mac_present_nonce = JSON.parse(octet_array(Array.from(nonce)));
     jwp.presentation = encode(JSON.stringify(presentation));
     console.log('Presentation Protected Header:');
     console.log(JSON.stringify(presentation, 0, 2));
     console.log('octets:', octet_array(JSON.stringify(presentation)));
     console.log('encoded:', jwp.presentation);
-    //jpa_fix.jwp_presentation_header = presentation;
-    //jpa_fix.jwp_presentation_header_octets = JSON.parse(octet_array(JSON.stringify(presentation)));
-    //jpa_fix.jwp_presentation_header_base64 = jwp.presentation;
+    jpa_fix.mac_presentation_header = presentation;
+    jpa_fix.mac_presentation_header_octets = JSON.parse(octet_array(JSON.stringify(presentation)));
+    jpa_fix.mac_presentation_header_base64 = jwp.presentation;
     // encode/sign the presentation protected header w/ the holder key
     signature = await sign_bytes(decode(jwp.presentation), holder.privateKey);
     console.log('presentation protected sig:', signature);
     console.log('octets:', octet_array(Array.from(decode(signature))));
-    //jpa_fix.jwp_presentation_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
+    jpa_fix.mac_presentation_header_signature = JSON.parse(octet_array(Array.from(decode(signature))));
 
-    // replace salt with hash for non-disclosed
-    salts[0] = hashes[0]
-    salts[2] = hashes[2]
+    // 0 and 2 not disclosed
     jwp.payloads[0] = null;
     jwp.payloads[2] = null;
 
-    // build presentation proof from issuer sig, presentation sig, then hash-or-salt 
-    let pres_final = Buffer.concat([decode(hashes_signature), decode(signature)])
-    for(salt of salts)
+    // build presentation proof from issuer sig, presentation sig, then mac-or-key
+    let pres_final = Buffer.concat([decode(macs_signature), decode(signature)])
+    for(i=0; i < payload_keys.length; i++)
     {
-        pres_final = Buffer.concat([pres_final, salt]);
+        // 0 and 2 not disclosed, include their mac instead of key
+        if(i == 0 || i == 2)
+            pres_final = Buffer.concat([pres_final, payload_macs[i]]);
+        else
+            pres_final = Buffer.concat([pres_final, payload_keys[i]]);
     }
+    x = pres_final.slice(2).map((item)=>Array.from(item))
+    jpa_fix.mac_presentation_keyormac = x;
     jwp.proof = encode(pres_final);
     console.log();
     console.log('presentation final:', jwp.proof);
     console.log('octets:', octet_array(Array.from(pres_final)));
-    //jpa_fix.jwp_presentation_signatures = JSON.parse(octet_array(Array.from(pres_final)));
+    jpa_fix.mac_presentation_proof = JSON.parse(octet_array(Array.from(pres_final)));
 
     console.log();
     console.log('JSON Serialization:');
     console.log(JSON.stringify(jwp,0,2));
-    //jpa_fix.jwp_final_presentation = JSON.parse(JSON.stringify(jwp));
+    jpa_fix.mac_presentation_jwp = JSON.parse(JSON.stringify(jwp));
 
     jwp.payloads[0] = '';
     jwp.payloads[2] = '';
@@ -213,7 +223,7 @@ function octet_array(value)
     console.log();
     console.log('Compact Serialization:');
     console.log(pres_serialized.join('.'));
-    //jpa_fix.jwp_compact_presentation = pres_serialized.join('.');
+    jpa_fix.mac_presentation_compact = pres_serialized.join('.');
 
     writeFileSync('draft-jmiller-json-proof-algorithms.json', JSON.stringify(jpa_fix, 0, 2))
 })();
