@@ -1,6 +1,5 @@
 %%%
 title = "JSON Proof Token"
-abbrev = "jpa"
 docName = "draft-jmiller-json-proof-token-latest"
 category = "info"
 ipr = "none"
@@ -44,6 +43,8 @@ JSON Proof Token (JPT) is a compact, URL-safe, privacy-preserving representation
 
 JSON Proof Token (JPT) is a compact claims representation format intended to be used in the same ways as a JSON Web Token (JWT), but with additional support for selective disclosure and unlinkability.  JPTs encode claim values to be transmitted as payloads of a JSON Web Proof (JWP).  JPTs are always represented using the JWP Compact Serialization.  The corresponding claim names are not transmitted in the payloads and are stored in a separate structure that can be externalized and shared across multiple JPTs.
 
+> Editors Note: This draft is still early and incomplete, there will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcome at https://github.com/json-web-proofs/json-web-proofs.
+
 # Conventions and Definitions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
@@ -69,7 +70,7 @@ Any other data that is repeated across multiple JPTs is externalized so that it 
 
 ## Selective Disclosure
 
-While JWPs provide the underling structure for easily supporting selective disclosure, JPTs must go a step further to ensure that applications can effectively provide choice and consent on exactly what is being disclosed.  Software using JWPs must know the mappings from payloads to claims and predicates.  JPTs do not support disclosing claims that are intended to be private from the issuer to the relying party.  All revealed payloads MUST be mapped to claims that are accessible to the application.
+While JWPs provide the underling structure for easily supporting selective disclosure, JPTs must go a step further to ensure that applications can effectively provide choice and consent on exactly what is being disclosed.  Software using JWPs must know the mappings from payloads to claims.  JPTs do not support disclosing claims that are intended to be private from the issuer to the relying party.  All disclosed payloads MUST be mapped to claims and made accessible to the application.
 
 ## Familiarity
 
@@ -81,7 +82,7 @@ The most significant divergence required by JPTs is that of supporting values th
 
 ## Proofs
 
-In order to generate a variety of ZKPs of knowledge, range, membeship, or other predicates, it is essential that the individual payloads are individual claims or predicates.  This greatly simplifies the task of linking a derived proof of a given claim or predicate to the specific payload that was also signed by the issuer.  While JPTs definitely support claims that have complex object or array compound values, they also also allow simple claim values such as JSON strings, numbers, and booleans.
+In order to generate a variety of efficient ZKPs of knowledge, range, membership, or other predicates, it is essential that each individual payload is only a single claim value.  This greatly simplifies the task of linking a derived proof of a given claim to the specific payload that was also signed by the issuer.  While JPTs support claims that have complex object or array compound values, they also allow for simple claim values such as JSON strings, numbers, and booleans that can be used directly in generating predicate proofs.
 
 # Claim Names
 
@@ -91,7 +92,7 @@ It is suggested that the claim names used with JPTs come from those in the IANA 
 
 Using a JSON Proof Token requires combining information from two sources: the claim names and the payloads.  The simplest solution is to list the claim names in an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the JWP Protected Header using the `claims` key.
 
-When the claims array is stored in the header, any variations of it are disclosed to the verifier and can be used to correlate and link usages.  Given the privacy design considerations around linkability it is recomended that the claims are defined external to an individual JPT and either referenced or known by the application context.
+When the claims array is stored in the header, any variations of it are disclosed to the verifier and can be used to correlate and link usages.  Given the privacy design considerations around linkability it is recommended that the claims are defined external to an individual JPT and either referenced or known by the application context.
 
 In order to facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure externally resolve and then verify that the correct list of claim names are being used when processing the payloads containing the claim values.
 
@@ -116,6 +117,8 @@ The following is an example JWP Protected Header that includes a claims array:
 
 # Payloads
 
+> Editors Note: This section is significantly incomplete, use it only as an indicator of the intended direction.
+
 Application resolves each claim as required when processing the JPT.  Resolution can result in one of three things:
 1. A disclosed JSON value
 2. A custom proof method
@@ -123,14 +126,14 @@ Application resolves each claim as required when processing the JPT.  Resolution
 
 ## Disclosed
 
-* Always an octet string of valid JSON text.
+Always an octet string of valid JSON text.
 
 ## Proof Methods
 
 * proof methods can be returned instead of a disclosed payload
 * these are generated by the algorithm from information in the JWP's proof value
 * a proof method may be custom based on the capabilities of the algorithm
-* define common proof method types avalable?
+* define common proof method types available?
   * range
   * membership
   * time
@@ -139,12 +142,11 @@ Application resolves each claim as required when processing the JPT.  Resolution
 
 # Example JPT
 
-TBD An example is desperately needed here!
+See the JSON Web Proof draft appendix.
 
 # Security Considerations
 
 * Protected Header Minimization
-
 
 # IANA Considerations
 

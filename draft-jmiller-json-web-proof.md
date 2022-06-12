@@ -1,6 +1,5 @@
 %%%
 title = "JSON Web Proof"
-abbrev = "jwp"
 docName = "draft-jmiller-json-web-proof-latest"
 category = "info"
 ipr = "none"
