@@ -473,26 +473,44 @@ The following example uses the `MAC-H256` algorithm.
 
 This is the Signer's stable private key in the JWK format:
 ```json issuer_private_jwk
+{
+  "crv": "P-256",
+  "kty": "EC",
+  "x": "ONebN43-G5DOwZX6jCVpEYEe0bYd5WDybXAG0sL3iDA",
+  "y": "b0MHuYfSxu3Pj4DAyDXabAc0mPjpB1worEpr3yyrft4",
+  "d": "jnE0-9YvxQtLJEKcyUHU6HQ3Y9nSDnh0NstYJFn7RuI"
+}
 ```
 
 This is the Signer's generated Shared Secret:
 ```json mac_shared_secret
+[100, 109, 91, 184, 139, 20, 107, 86, 1, 252, 86, 159, 126, 251, 228, 4, 35, 177, 75, 96, 11, 205, 144, 189, 42, 95, 135, 170, 107, 58, 99, 142]
 ```
 
 This is the Holder's presentation private key in the JWK format:
 ```json holder_presentation_jwk
-
-
-The protected header used is:
-```json mac_issuer_protected_header
+{
+  "crv": "P-256",
+  "kty": "EC",
+  "x": "oB1TPrE_QJIL61fUOOK5DpKgd8j2zbZJtqpILDTJX6I",
+  "y": "3JqnrkucLobkdRuOqZXOP9MMlbFyenFOLyGlG-FPACM",
+  "d": "AvyDPl1I4xwjrI2iEOi6DxM9ipJe_h_VUN5OvoKvvW8"
+}
 ```
 
 The first MAC is generated using the key `issuer_header` and the base64url-encoded issuer protected header, resulting in this octet array:
 ```json mac_issuer_header_mac
+[140, 88, 59, 30, 127, 113, 27, 237, 78, 200, 182, 114, 94, 123, 198, 128, 102, 232, 178, 88, 252, 248, 57, 2, 231, 19, 145, 8, 160, 197, 66, 166]
 ```
 
 The issuer generates an array of derived keys with one for each payload by using the shared secret as the key and the index of the payload as the input:
 ```json mac_issuer_keys
+[
+ [180, 129, 55, 94, 125, 158, 179, 245, 30, 199, 148, 60, 184, 28, 197, 123, 231, 232, 95, 91, 65, 74, 38, 242, 253, 96, 67, 44, 40, 220, 250, 4],
+ [143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137, 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115, 72, 214, 57, 98],
+ [144, 73, 77, 66, 230, 187, 217, 186, 246, 41, 138, 25, 39, 203, 101, 76, 156, 161, 244, 130, 203, 166, 184, 154, 7, 4, 218, 84, 168, 199, 36, 245],
+ [70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155, 242, 236, 21, 138]
+]
 ```
 
 The first payload is the string `"Doe"` with the octet sequence of `[34, 68, 111, 101, 34]` and base64url-encoded as `IkRvZSI`.
@@ -505,46 +523,87 @@ The fourth payload is the string `42` with the octet sequence of `[52, 50]` and 
 
 A MAC is generated for each payload using the generated key for its given index, resulting in an array of MACs:
 ```json mac_issuer_macs
+[
+ [156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28, 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64, 129, 61, 172],
+ [239, 17, 12, 35, 111, 129, 51, 87, 43, 86, 234, 38, 89, 149, 169, 157, 33, 104, 81, 246, 190, 154, 74, 195, 194, 158, 50, 208, 203, 203, 249, 237],
+ [162, 174, 12, 27, 190, 250, 112, 1, 139, 177, 49, 124, 110, 201, 83, 233, 14, 109, 60, 253, 121, 184, 126, 121, 26, 138, 5, 214, 97, 96, 216, 80],
+ [61, 109, 78, 172, 255, 189, 67, 83, 247, 65, 234, 128, 30, 47, 145, 70, 129, 26, 41, 41, 78, 4, 151, 230, 232, 127, 135, 230, 14, 208, 178, 50]
+]
 ```
 
 Concatenating the issuer protected header MAC with the array of payload MACs produces a single octet array that is signed using the issuer's stable key, resulting in the following signature:
 ```json mac_issuer_signature
+[120, 172, 15, 230, 138, 230, 150, 139, 241, 196, 79, 134, 122, 43, 149, 11, 253, 104, 58, 199, 49, 87, 32, 64, 237, 50, 86, 155, 153, 58, 63, 116, 245, 130, 136, 197, 164, 207, 232, 238, 106, 171, 246, 98, 149, 254, 22, 1, 114, 187, 233, 168, 116, 173, 211, 208, 234, 245, 76, 238, 143, 157, 83, 202]
 ```
 
 The orignal shared secret octet string is then concatenated to the end of the issuer signature octet string and the result is base64url-encoded as the issuer's proof value.
 
 The final issued JWP in JSON serialization is:
 ```json mac_issued_jwp
+{
+  "payloads": [
+    "IkRvZSI",
+    "IkpheSI",
+    "ImpheWRvZUBleGFtcGxlLm9yZyI",
+    "NDI"
+  ],
+  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBLZ2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb2JrZFJ1T3FaWE9QOU1NbGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI1NiJ9",
+  "proof": "eKwP5ormlovxxE-GeiuVC_1oOscxVyBA7TJWm5k6P3T1gojFpM_o7mqr9mKV_hYBcrvpqHSt09Dq9Uzuj51TymRtW7iLFGtWAfxWn3775AQjsUtgC82QvSpfh6prOmOO"
+}
 ```
 
 The same JWP in compact serialization:
 ```text mac_issued_compact
+eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBLZ2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb2JrZFJ1T3FaWE9QOU1NbGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI1NiJ9.IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.eKwP5ormlovxxE-GeiuVC_1oOscxVyBA7TJWm5k6P3T1gojFpM_o7mqr9mKV_hYBcrvpqHSt09Dq9Uzuj51TymRtW7iLFGtWAfxWn3775AQjsUtgC82QvSpfh6prOmOO
 ```
 
 Next we show the presentation of the JWP with selective disclosure.
 
 We start with this presentation header using a nonce provided by the Verifier:
 ```json mac_presentation_header
+{
+  "nonce": "uTEB371l1pzWJl7afB0wi0HWUNk1Le-bComFLxa8K-s"
+}
 ```
 
 When signed with the holder's presentation key, the resulting signature octets are:
 ```json mac_presentation_header_signature
+[126, 134, 175, 2, 165, 12, 103, 11, 116, 72, 94, 228, 240, 142, 107, 195, 198, 238, 218, 203, 63, 198, 105, 175, 1, 69, 182, 5, 204, 239, 35, 149, 85, 55, 4, 169, 109, 243, 88, 213, 12, 1, 167, 235, 222, 17, 232, 118, 110, 111, 47, 165, 102, 142, 0, 1, 226, 117, 143, 125, 132, 62, 231, 145]
 ```
 
 Then by applying selective disclosure of only the given name and age claims (family name and email hidden, payload array indexes 0 and 2), the holder builds a mixed array of either the payload key (if disclosed) or MAC (if hidden):
 ```json mac_presentation_keyormac
+[
+ [156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28, 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64, 129, 61, 172],
+ [143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137, 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115, 72, 214, 57, 98],
+ [162, 174, 12, 27, 190, 250, 112, 1, 139, 177, 49, 124, 110, 201, 83, 233, 14, 109, 60, 253, 121, 184, 126, 121, 26, 138, 5, 214, 97, 96, 216, 80],
+ [70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155, 242, 236, 21, 138]
+]
 ```
 
 The final presented proof value is generated by concatenating first the presentation header signature octet string, followed by the issuer signature octet string, then followed by the mixed array of keys and MACs:
 ```json mac_presentation_proof
+[126, 134, 175, 2, 165, 12, 103, 11, 116, 72, 94, 228, 240, 142, 107, 195, 198, 238, 218, 203, 63, 198, 105, 175, 1, 69, 182, 5, 204, 239, 35, 149, 85, 55, 4, 169, 109, 243, 88, 213, 12, 1, 167, 235, 222, 17, 232, 118, 110, 111, 47, 165, 102, 142, 0, 1, 226, 117, 143, 125, 132, 62, 231, 145, 120, 172, 15, 230, 138, 230, 150, 139, 241, 196, 79, 134, 122, 43, 149, 11, 253, 104, 58, 199, 49, 87, 32, 64, 237, 50, 86, 155, 153, 58, 63, 116, 245, 130, 136, 197, 164, 207, 232, 238, 106, 171, 246, 98, 149, 254, 22, 1, 114, 187, 233, 168, 116, 173, 211, 208, 234, 245, 76, 238, 143, 157, 83, 202, 156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28, 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64, 129, 61, 172, 143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137, 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115, 72, 214, 57, 98, 162, 174, 12, 27, 190, 250, 112, 1, 139, 177, 49, 124, 110, 201, 83, 233, 14, 109, 60, 253, 121, 184, 126, 121, 26, 138, 5, 214, 97, 96, 216, 80, 70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155, 242, 236, 21, 138]
 ```
 
 The resulting presented JWP in JSON serialization is:
 ```json mac_presentation_jwp
+{
+  "payloads": [
+    null,
+    "IkpheSI",
+    null,
+    "NDI"
+  ],
+  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBLZ2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb2JrZFJ1T3FaWE9QOU1NbGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI1NiJ9",
+  "proof": "foavAqUMZwt0SF7k8I5rw8bu2ss_xmmvAUW2BczvI5VVNwSpbfNY1QwBp-veEeh2bm8vpWaOAAHidY99hD7nkXisD-aK5paL8cRPhnorlQv9aDrHMVcgQO0yVpuZOj909YKIxaTP6O5qq_Zilf4WAXK76ah0rdPQ6vVM7o-dU8qcNVp9i-I8qGTcT_8IVxzc7XChWydEictc8xB0QIE9rI-stpy4iuSs1xqviYkZn43VDNYd58gNXnQWKXNI1jlioq4MG776cAGLsTF8bslT6Q5tPP15uH55GooF1mFg2FBGN7ZpZYL-6kTg22F3YvQhKzeU7uGxZaAx9m2b8uwVig",
+  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4YThLLXMifQ"
+}
 ```
 
 The same JWP in compact serialization:
 ```text mac_presentation_compact
+eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBLZ2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb2JrZFJ1T3FaWE9QOU1NbGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI1NiJ9.eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4YThLLXMifQ.~IkpheSI~~NDI.foavAqUMZwt0SF7k8I5rw8bu2ss_xmmvAUW2BczvI5VVNwSpbfNY1QwBp-veEeh2bm8vpWaOAAHidY99hD7nkXisD-aK5paL8cRPhnorlQv9aDrHMVcgQO0yVpuZOj909YKIxaTP6O5qq_Zilf4WAXK76ah0rdPQ6vVM7o-dU8qcNVp9i-I8qGTcT_8IVxzc7XChWydEictc8xB0QIE9rI-stpy4iuSs1xqviYkZn43VDNYd58gNXnQWKXNI1jlioq4MG776cAGLsTF8bslT6Q5tPP15uH55GooF1mFg2FBGN7ZpZYL-6kTg22F3YvQhKzeU7uGxZaAx9m2b8uwVig
 ```
 
 ## ZKSnark

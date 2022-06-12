@@ -81,10 +81,9 @@ function octet_array(value)
     console.log();
     console.log('Holder Presentation JWK:');
     console.log(JSON.stringify(pjwk_private,0,2));
-    jpa_fix.holder_presentation_jwk = pjwk;
+    jpa_fix.holder_presentation_jwk = pjwk_private;
 
     // storage as we build up
-    const sigs = [];
     const jwp = {payloads:[]};
 
     // create the issuer protected header first
@@ -108,7 +107,7 @@ function octet_array(value)
     // encode/sign the issuer protected header w/ the stable key
     let ih_mac = createHmac('sha256', 'issuer_header').update(jwp.issuer).digest()
     console.log('issuer protected header mac:', octet_array(ih_mac));
-    jpa_fix.mac_issuer_header_mac = JSON.parse(octet_array(Array.from(decode(ih_mac))));
+    jpa_fix.mac_issuer_header_mac = JSON.parse(octet_array(Array.from(ih_mac)));
 
     // generate payload keys
     let payload_keys = [];
@@ -146,7 +145,7 @@ function octet_array(value)
         final = Buffer.concat([final, mac]);
     }
     let macs_signature = await sign_bytes(final, stable.privateKey);
-    jpa_fix.mac_issuer_signature = JSON.parse(octet_array(Array.from(macs_signature)));
+    jpa_fix.mac_issuer_signature = JSON.parse(octet_array(Array.from(decode(macs_signature))));
     let proof = Buffer.concat([decode(macs_signature), shared_key])
     jwp.proof = encode(proof);
     console.log();
@@ -191,22 +190,21 @@ function octet_array(value)
     jwp.payloads[2] = null;
 
     // build presentation proof from issuer sig, presentation sig, then mac-or-key
-    let pres_final = Buffer.concat([decode(macs_signature), decode(signature)])
+    let pres_final = [decode(signature), decode(macs_signature)]
     for(i=0; i < payload_keys.length; i++)
     {
         // 0 and 2 not disclosed, include their mac instead of key
         if(i == 0 || i == 2)
-            pres_final = Buffer.concat([pres_final, payload_macs[i]]);
+            pres_final.push(payload_macs[i]);
         else
-            pres_final = Buffer.concat([pres_final, payload_keys[i]]);
+            pres_final.push(payload_keys[i]);
     }
     x = pres_final.slice(2).map((item)=>Array.from(item))
     jpa_fix.mac_presentation_keyormac = x;
-    jwp.proof = encode(pres_final);
+    jwp.proof = encode(Buffer.concat(pres_final));
     console.log();
     console.log('presentation final:', jwp.proof);
-    console.log('octets:', octet_array(Array.from(pres_final)));
-    jpa_fix.mac_presentation_proof = JSON.parse(octet_array(Array.from(pres_final)));
+    jpa_fix.mac_presentation_proof = JSON.parse(octet_array(Array.from(decode(jwp.proof))));
 
     console.log();
     console.log('JSON Serialization:');
