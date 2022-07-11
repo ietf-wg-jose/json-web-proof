@@ -1,6 +1,5 @@
 %%%
 title = "JSON Proof Algorithms"
-abbrev = "jpa"
 docName = "draft-jmiller-json-proof-algorithms-latest"
 category = "info"
 ipr = "none"
@@ -44,6 +43,8 @@ The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms
 
 The JSON Web Proof (JWP) draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.
 
+> Editors Note: This draft is still early and incomplete, there will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcome at https://github.com/json-web-proofs/json-web-proofs.
+
 # Conventions and Definitions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
@@ -85,56 +86,46 @@ The four principal interactions that every proof algorithm MUST support are `[is
 
 The JWP is first created as the output of a JPA's `issue` operation.
 
-TODO:
+Every algorithm MUST support a JSON issuer protected header along with one or more octet string payloads.  The algorithm MAY support using additional items provided by the holder for issuance such as blinded payloads, keys for replay prevention, etc.
 
-* MUST support the issuer protected header as an octet string
-* MUST support one or more payloads, each as an octet string
-* MAY support algorithm-specific options from the holder (for blinded payloads, replay prevention, etc)
-* MUST include integrity protection for the issuer header and all payloads
-* MUST specify all digest and/or hash2curve methods used
+All algorithms MUST provide integrity protection for the issuer header and all payloads, and MUST specify all digest and/or hash2curve methods used.
 
 ## Confirm
 
 Performed by the holder to validate the issued JWP is correctly formed and protected.
 
-TODO:
+Each algorithm MAY support using additional input items options such as those sent to the issuer for issuance. After confirmation an algorithm MAY return a modified JWP for serialized storage without the local state (such as with blinded payloads now un-blinded).
 
-* MAY support algorithm-specific options (such as those sent to the issuer)
-* MAY return a modified JWP for serialized storage without the local state (such as with blinded payloads now un-blinded)
-* MUST fully verify the proof value against the issuer protected header and all payloads
-* MUST fail if given a presented JWP
+The algorithm MUST fully verify the issued proof value against the issuer protected header and all payloads.  If given a presented JWP instead of an issued one the confirm process and MUST return an error.
 
 ## Present
 
 Used to apply any selective disclosure choices and perform any unlinkability transformations.
 
-TODO:
+An algorithm MAY support additional input options from the requesting party such as for predicate proofs and verifiable computation requests.
 
-* MAY support algorithm-specific options from the requesting party (for predicate proofs and verifiable computation requests)
-* MUST support the ability to hide any payload
-* MUST always include the issuer protected header
-* MUST replace the proof value
-* MUST include a new presentation protected header that provides replay protection
+Every algorithm MUST support the ability to hide any or all payloads.  It MUST always include the issuer protected header unmodified in the presentation.
+
+The algorithm MUST replace the issued proof value and generate a new presented proof value.  It also MUST include a new presentation protected header that provides replay protection.
 
 ## Verify
 
-Performed by the verifier to verify the protected headers along with any revealed payloads and/or assertions about them from the proving party, while also verifying they are the same payloads and ordering as witnessed by the issuer.
+Performed by the verifier to verify the protected headers along with any disclosed payloads and/or assertions about them from the proving party, while also verifying they are the same payloads and ordering as witnessed by the issuer.
 
-TODO:
+The algorithm MUST verify the integrity of all disclosed payloads and MUST also verify the integrity of both the issuer and presentation protected headers.
 
-* MUST verify the integrity of all revealed payloads
-* MUST verify the integrity of both the issuer and presentation protected headers
-* MUST verify any included assertions about a hidden payload as true
-* MAY support algorithm-specific options (such as those sent to the holder)
-* Out of scope is the app interface to interact with the resulting verified assertions
-* MUST fail if given only an issued JWP
+If the presented proof contains any assertions about the hidden payloads, the algorithm MUST also verify all of those assertions.
+It MAY support additional options such as those sent to the holder to generate the presentation.
+
+If given an issued JWP for verification, the algorithm MUST return an error.
 
 # Algorithm Specifications
 
 This section defines how to use specific algorithms for JWPs.
 
-
 ## Single Use
+
+> Editors Note: This algorithm is going to be renamed and slightly refactored, new name is still TBD.
 
 The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.
 
@@ -188,6 +179,8 @@ The presentation protected header MAY contain other claims that are either provi
 
 ### Presentation
 
+> Editors Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
+
 The holder derives a new proof value when presenting it to a verifier.  The presented proof value will always contain the issuer's Stable Key signature for the issuer protected header as the first element.
 
 The second element of the presented proof value is always the holder's Presentation Key signature of the presentation protected header, constructed identically to the issuer protected header by using the serialized JSON value octet string as the JWS body.  Signing only the presentation header with the Presentation Key is sufficient to protect the entire presentation since that key is private to the holder and only the contents of the presentation header are used for replay prevention.
@@ -205,6 +198,10 @@ With the headers verified, the issuer's Ephemeral Key as given in the issuer pro
 ### JPA Registration
 
 Proposed JWP `alg` value is of the format "SU-" appended with the relevant JWS `alg` value for the chosen public and ephemeral key-pair algorithm, for example "SU-ES256".
+
+### Example
+
+See the example in the appendix of the JSON Web Proof draft.
 
 
 ## BBS
@@ -422,6 +419,8 @@ See the JWS [Presentation Protected Header](#presentation-protected-header) sect
 
 ### Presentation
 
+> Editors Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
+
 The presentation proof is constructed as a large octet array containing multiple appended items similar to the issuer proof value.  The first item is the JWS decoded signature value generated when the holder uses the presentation key to sign the presentation header.  The second item is the issuer signature from the issuer's proof value.
 
 These two signatures are then followed by a MAC value for each payload.  The MAC values used will depend on if that payload has been disclosed or is hidden.  Disclosed payloads will include the MAC key input, and hidden payloads will include only their final MAC value.
@@ -608,9 +607,11 @@ eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJnaXZlbl9u
 
 ## ZKSnark
 
-TBD
+> Editors Note: This is just a placeholder for a future definition that is in the early stages of development as part of the [Decentralized Identity Foundation](https://github.com/decentralized-identity/spartan_zkSNARK_signatures).
 
 # Security Considerations
+
+> Editors Note: This will follow once the algorithms defined here have become more stable.
 
 * Data minimization of the proof value
 * Unlinkability of the protected header contents
