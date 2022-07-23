@@ -272,7 +272,7 @@ Public:
 115, 167, 48, 92, 181, 168, 53, 52, 246, 201, 112, 103, 23, 159,
 138, 225, 13, 165, 171, 251, 112, 163, 96]
 ```
-Figure: bbs_issuer_public_octets
+Figure: bbs-issuer-public-octets
 
 Private:
 ```json
@@ -280,7 +280,7 @@ Private:
 128, 242, 73, 151, 72, 162, 0, 54, 139, 146, 221, 137, 34, 74, 1,
 42, 140, 206]
 ```
-Figure: bbs_issuer_private_octets
+Figure: bbs-issuer-private-octets
 
 The protected header used is:
 ```json
@@ -296,7 +296,7 @@ The protected header used is:
   "alg": "BBS-X"
 }
 ```
-Figure: bbs_issuer_protected_header
+Figure: bbs-issuer-protected-header
 
 The first payload is the string `"Doe"` with the octet sequence of `[ 34, 68, 111, 101, 34 ]` and base64url-encoded as `IkRvZSI`.
 
@@ -324,7 +324,7 @@ The message array used as an input to the BLS implementation is:
  101, 46, 111, 114, 103, 34], [52, 50]
 ]
 ```
-Figure: bbs_issuer_messages
+Figure: bbs-issuer-messages
 
 Using the above inputs, the output of the `blsSign()` call is the octet string:
 ```json
@@ -337,7 +337,7 @@ Using the above inputs, the output of the `blsSign()` call is the octet string:
 226, 197, 24, 104, 183, 9, 141, 207, 21, 106, 136, 161, 115, 142, 3,
 196, 155, 52, 174, 205, 212, 13, 174, 220]
 ```
-Figure: bbs_issuer_signature
+Figure: bbs-issuer-signature
 
 The resulting signed JWP in JSON serialization is:
 ```json
@@ -356,7 +356,7 @@ The resulting signed JWP in JSON serialization is:
   i3CY3PFWqIoXOOA8SbNK7N1A2u3A"
 }
 ```
-Figure: bbs_issued_jwp
+Figure: bbs-issued-jwp
 
 The same JWP in compact serialization:
 ```text
@@ -367,7 +367,7 @@ ZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.tANC_gnNFFivUloiGrJQ4VvR
 eBe5n0xJvexzjR9TKyq698TsRhN7UPmS7aww0ME-ZDuaFjSluPpHNGrpGvD71nqFPfFG
 f1PwcIK1l6DWK9VT0-6_AUGHk-LFGGi3CY3PFWqIoXOOA8SbNK7N1A2u3A
 ```
-Figure: bbs_issued_compact
+Figure: bbs-issued-compact
 
 For verification a nonce is needed:
 ```json
@@ -375,7 +375,7 @@ For verification a nonce is needed:
 100, 151, 7, 36, 164, 109, 146, 195, 190, 75, 32, 255, 6, 128, 44,
 128, 96, 9]
 ```
-Figure: bbs_present_nonce
+Figure: bbs-present-nonce
 
 To generate a proof, the `blsCreateProof()` method is used with a revealed indexes array argument of `[ 0, 2, 4 ]` and results in the octet string:
 ```json
@@ -411,7 +411,7 @@ To generate a proof, the `blsCreateProof()` method is used with a revealed index
 208, 26, 55, 180, 135, 115, 70, 96, 106, 243, 213, 131, 196, 63,
 165, 42, 157, 22, 94, 46]
 ```
-Figure: bbs_present_proof
+Figure: bbs-present-proof
 
 The resulting verifiable JWP in JSON serialization is:
 ```json
@@ -437,7 +437,7 @@ The resulting verifiable JWP in JSON serialization is:
   g8Q_pSqdFl4u"
 }
 ```
-Figure: bbs_present_jwp
+Figure: bbs-present-jwp
 
 The same JWP in compact serialization:
 ```text
@@ -454,7 +454,7 @@ TM5DprN-iUtMcqtX876eq8AAAABF3EHyaXaecu5C5WxIjUr6pTFU4T4NN6B1xHEatCej
 iCLROs2UE_9icGHk2EViQpA-pIkshllp9sjA_DOfmav8xbHp8gnRgDblpmY84qOgG111
 UdIIMuTBkFK8sg16epbDiukjOuKL4WJV2c9dAaN7SHc0ZgavPVg8Q_pSqdFl4u
 ```
-Figure: bbs_present_compact
+Figure: bbs-present-compact
 
 
 ## Message Authentication Code
@@ -481,7 +481,7 @@ The Shared Secret is used by both the issuer and holder as the MAC method's key 
 
 ### Issuer Protected Header
 
-The holder's presentation key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has posession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
+The holder's presentation key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has possession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
 For consistency, the issuer header is also protected by a MAC by using the fixed value "issuer_header" as the input key.  The issuer header JSON is serialized using UTF-8 and encoded with base64url into an octet array.  The final issuer header MAC is generated from the octet array and the fixed key, and the resulting value becomes the first input into the larger octet array that will be signed by the issuer.
 
@@ -580,7 +580,7 @@ This is the Signer's stable private key in the JWK format:
   "d": "jnE0-9YvxQtLJEKcyUHU6HQ3Y9nSDnh0NstYJFn7RuI"
 }
 ```
-Figure: issuer_private_jwk
+Figure: issuer-private-jwk
 
 This is the Signer's generated Shared Secret:
 ```json
@@ -588,7 +588,7 @@ This is the Signer's generated Shared Secret:
 228, 4, 35, 177, 75, 96, 11, 205, 144, 189, 42, 95, 135, 170, 107,
 58, 99, 142]
 ```
-Figure: mac_shared_secret
+Figure: mac-shared-secret
 
 This is the Holder's presentation private key in the JWK format:
 ```json
@@ -600,7 +600,7 @@ This is the Holder's presentation private key in the JWK format:
   "d": "AvyDPl1I4xwjrI2iEOi6DxM9ipJe_h_VUN5OvoKvvW8"
 }
 ```
-Figure: holder_presentation_jwk
+Figure: holder-presentation-jwk
 
 The first MAC is generated using the key `issuer_header` and the base64url-encoded issuer protected header, resulting in this octet array:
 ```json
@@ -608,7 +608,7 @@ The first MAC is generated using the key `issuer_header` and the base64url-encod
 198, 128, 102, 232, 178, 88, 252, 248, 57, 2, 231, 19, 145, 8, 160,
 197, 66, 166]
 ```
-Figure: mac_issuer_header_mac
+Figure: mac-issuer-header-mac
 
 The issuer generates an array of derived keys with one for each payload by using the shared secret as the key and the index of the payload as the input:
 ```json
@@ -627,7 +627,7 @@ The issuer generates an array of derived keys with one for each payload by using
  242, 236, 21, 138]
 ]
 ```
-Figure: mac_issuer_keys
+Figure: mac-issuer-keys
 
 The first payload is the string `"Doe"` with the octet sequence of `[ 34, 68, 111, 101, 34 ]` and base64url-encoded as `IkRvZSI`.
 
@@ -654,7 +654,7 @@ A MAC is generated for each payload using the generated key for its given index,
  208, 178, 50]
 ]
 ```
-Figure: mac_issuer_macs
+Figure: mac-issuer-macs
 
 Concatenating the issuer protected header MAC with the array of payload MACs produces a single octet array that is signed using the issuer's stable key, resulting in the following signature:
 ```json
@@ -664,7 +664,7 @@ Concatenating the issuer protected header MAC with the array of payload MACs pro
 98, 149, 254, 22, 1, 114, 187, 233, 168, 116, 173, 211, 208, 234,
 245, 76, 238, 143, 157, 83, 202]
 ```
-Figure: mac_issuer_signature
+Figure: mac-issuer-signature
 
 The orignal shared secret octet string is then concatenated to the end of the issuer signature octet string and the result is base64url-encoded as the issuer's proof value.
 
@@ -688,7 +688,7 @@ The final issued JWP in JSON serialization is:
   prOmOO"
 }
 ```
-Figure: mac_issued_jwp
+Figure: mac-issued-jwp
 
 The same JWP in compact serialization:
 ```text
@@ -701,7 +701,7 @@ bGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI1NiJ9.IkRvZSI~IkpheSI
 Wm5k6P3T1gojFpM_o7mqr9mKV_hYBcrvpqHSt09Dq9Uzuj51TymRtW7iLFGtWAfxWn37
 75AQjsUtgC82QvSpfh6prOmOO
 ```
-Figure: mac_issued_compact
+Figure: mac-issued-compact
 
 Next we show the presentation of the JWP with selective disclosure.
 
@@ -711,7 +711,7 @@ We start with this presentation header using a nonce provided by the Verifier:
   "nonce": "uTEB371l1pzWJl7afB0wi0HWUNk1Le-bComFLxa8K-s"
 }
 ```
-Figure: mac_presentation_header
+Figure: mac-presentation-header
 
 When signed with the holder's presentation key, the resulting signature octets are:
 ```json
@@ -721,7 +721,7 @@ When signed with the holder's presentation key, the resulting signature octets a
 222, 17, 232, 118, 110, 111, 47, 165, 102, 142, 0, 1, 226, 117, 143,
 125, 132, 62, 231, 145]
 ```
-Figure: mac_presentation_header_signature
+Figure: mac-presentation-header-signature
 
 Then by applying selective disclosure of only the given name and age claims (family name and email hidden, payload array indexes 0 and 2), the holder builds a mixed array of either the payload key (if disclosed) or MAC (if hidden):
 ```json
@@ -740,7 +740,7 @@ Then by applying selective disclosure of only the given name and age claims (fam
  242, 236, 21, 138]
 ]
 ```
-Figure: mac_presentation_keyormac
+Figure: mac-presentation-keyormac
 
 The final presented proof value is generated by concatenating first the presentation header signature octet string, followed by the issuer signature octet string, then followed by the mixed array of keys and MACs:
 ```json
@@ -763,7 +763,7 @@ The final presented proof value is generated by concatenating first the presenta
 219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49,
 246, 109, 155, 242, 236, 21, 138]
 ```
-Figure: mac_presentation_proof
+Figure: mac-presentation-proof
 
 The resulting presented JWP in JSON serialization is:
 ```json
@@ -790,7 +790,7 @@ The resulting presented JWP in JSON serialization is:
   zFMZS1iQ29tRkx4YThLLXMifQ"
 }
 ```
-Figure: mac_presentation_jwp
+Figure: mac-presentation-jwp
 
 The same JWP in compact serialization:
 ```text
@@ -807,7 +807,7 @@ dEictc8xB0QIE9rI-stpy4iuSs1xqviYkZn43VDNYd58gNXnQWKXNI1jlioq4MG776cA
 GLsTF8bslT6Q5tPP15uH55GooF1mFg2FBGN7ZpZYL-6kTg22F3YvQhKzeU7uGxZaAx9m
 2b8uwVig
 ```
-Figure: mac_presentation_compact
+Figure: mac-presentation-compact
 
 ## ZKSnark
 
