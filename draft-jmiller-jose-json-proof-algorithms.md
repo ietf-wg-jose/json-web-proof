@@ -35,13 +35,13 @@ organization = "Microsoft"
 
 .# Abstract
 
-The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof (JWP) and JSON Web Key (JWK) specifications. It defines several IANA registries for these identifiers.
+The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the [JSON Web Proof (JWP)](https://www.ietf.org/archive/id/draft-jmiller-jose-json-web-proof-00.html) and JSON Web Key (JWK) specifications. It defines several IANA registries for these identifiers.
 
 {mainmatter}
 
 # Introduction
 
-The JSON Web Proof (JWP) draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.
+The [JSON Web Proof (JWP)](https://www.ietf.org/archive/id/draft-jmiller-jose-json-web-proof-00.html) draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.
 
 > Editors Note: This draft is still early and incomplete, there will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcome at https://github.com/json-web-proofs/json-web-proofs.
 
