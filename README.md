@@ -14,16 +14,16 @@ Examples of capabilities an algorithm may support include:
 
 ## Specifications in Progress
 
-### [JSON Web Proofs (JWP)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-web-proof.html)
+### [JSON Web Proofs (JWP)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-jose-json-web-proof.html)
 A new container, similar to JWS[^JWS], which allows for more than one payload.
 
-### [JSON Proof Algorithms (JPA)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-proof-algorithms.html)
+### [JSON Proof Algorithms (JPA)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-jose-json-proof-algorithms.html)
 Required and optional capabilities for algorithms within JSON Web Proofs. 
 
-This is loosely analagous to JWA[^JWA], with concrete algorithms defined as separate specifications.
+This is loosely analogous to JWA[^JWA], with concrete algorithms defined as separate specifications.
 
-### [JSON Proof Token (JPT)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-proof-token.html)
-An application of JWP for representing claims about an entity, analagous to  JWT[^JWT].
+### [JSON Proof Token (JPT)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-jose-json-proof-token.html)
+An application of JWP for representing claims about an entity, analogous to  JWT[^JWT].
 
 [^JWS]: [JSON Web Signatures - RFC7515](JWS)
 [^JWK]: [JSON Web Keys - RFC7517](JWK)

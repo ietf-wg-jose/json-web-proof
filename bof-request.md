@@ -31,7 +31,7 @@ This BoF proposes to re-form the JSON Object Signing and Encryption (JOSE) worki
 WIP:
 
 - Relationships with related ongoing standards work:
-  - The JSON Web Proofs specs were incubated in the [Applied Cryptography working group of the Decentralized Identity Foundation (DIF)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-web-proof.html), with the explicit goal of taking them to the IETF for standardization once sufficiently mature.  The work is now mature enough to bring to the IETF.
+  - The JSON Web Proofs specs were incubated in the [Applied Cryptography working group of the Decentralized Identity Foundation (DIF)](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-jose-json-web-proof.html), with the explicit goal of taking them to the IETF for standardization once sufficiently mature.  The work is now mature enough to bring to the IETF.
     - DIF is bringing this to the IETF because of the IETF's deep expertise in security and cryptography and its closely-related JOSE/JWT and COSE/CWT work.
   - A dependency upon this work was written into the [revised W3C Verifiable Credentials working group charter](https://www.w3.org/2022/05/proposed-vc-wg-charter.html).  The W3C wants to see the IETF standardize this.
 - Any protocols or practices that already exist in this space:
@@ -56,8 +56,8 @@ WIP:
    - GitHub: https://github.com/json-web-proofs/json-web-proofs
    - Relevant drafts:
       - JSON Web Proof:
-         - https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-web-proof.html
+         - https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-jose-json-web-proof.html
       - JSON Proof Algorithms:
-         - https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-proof-algorithms.html
+         - https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-jose-json-proof-algorithms.html
       - JSON Proof Token:
-         - https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-proof-token.html
+         - https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-jose-json-proof-token.html

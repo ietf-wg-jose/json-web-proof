@@ -1,6 +1,6 @@
 %%%
 title = "JSON Web Proof"
-docName = "draft-jmiller-json-web-proof-latest"
+docName = "draft-jmiller-jose-json-web-proof-latest"
 category = "info"
 ipr = "none"
 workgroup="todo"
@@ -8,7 +8,7 @@ keyword = ["jose", "zkp", "jwp", "jws"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-jmiller-json-web-proof"
+value = "draft-jmiller-jose-json-web-proof"
 status = "standard"
 
 [pi]

@@ -1,6 +1,6 @@
 %%%
 title = "JSON Proof Token"
-docName = "draft-jmiller-json-proof-token-latest"
+docName = "draft-jmiller-jose-json-proof-token-latest"
 category = "info"
 ipr = "none"
 workgroup="todo"
@@ -8,7 +8,7 @@ keyword = ["jose", "zkp", "jwp", "jws", "jpt"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-jmiller-json-proof-token"
+value = "draft-jmiller-jose-json-proof-token"
 status = "standard"
 
 [pi]

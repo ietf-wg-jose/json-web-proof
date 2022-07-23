@@ -1,6 +1,6 @@
 %%%
 title = "JSON Proof Algorithms"
-docName = "draft-jmiller-json-proof-algorithms-latest"
+docName = "draft-jmiller-jose-json-proof-algorithms-latest"
 category = "info"
 ipr = "none"
 workgroup="todo"
@@ -8,7 +8,7 @@ keyword = ["jose", "zkp", "jwp", "jws", "jpa"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-jmiller-json-proof-algorithms"
+value = "draft-jmiller-jose-json-proof-algorithms"
 status = "standard"
 
 [pi]

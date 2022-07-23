@@ -35,7 +35,7 @@ const nonce = [185,49,1,223,189,101,214,156,214,38,94,218,124,29,48,139,65,214,8
 
 let jpa_fix = {}
 try {
-    jpa_fix = JSON.parse(readFileSync('draft-jmiller-json-proof-algorithms.json'))
+    jpa_fix = JSON.parse(readFileSync('draft-jmiller-jose-json-proof-algorithms.json'))
 }catch(E){
     console.error(`fixture file loading error:`, E);
     process.exit(1)
@@ -223,5 +223,5 @@ function octet_array(value)
     console.log(pres_serialized.join('.'));
     jpa_fix.mac_presentation_compact = pres_serialized.join('.');
 
-    writeFileSync('draft-jmiller-json-proof-algorithms.json', JSON.stringify(jpa_fix, 0, 2))
+    writeFileSync('draft-jmiller-jose-json-proof-algorithms.json', JSON.stringify(jpa_fix, 0, 2))
 })();
