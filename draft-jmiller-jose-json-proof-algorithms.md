@@ -54,9 +54,9 @@ The roles of "issuer", "holder", and "verifier", are used as defined by the [Ver
 
 # Terminology
 
-The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS Protected Header" are defined by the JWS specification [JWS].
+The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS Protected Header" are defined by [@RFC7515].
 
-The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP Protected Header" are defined by the JWP specification [JWP].
+The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP Protected Header" are defined by the JWP draft.
 
 These terms are defined by this specification:
 
@@ -377,7 +377,7 @@ For verification a nonce is needed:
 ```
 Figure: bbs_present_nonce
 
-To generate a proof, the `blsCreateProof()` method is used with a revealed indexes array argument of `[0, 2, 4]` and results in the octet string:
+To generate a proof, the `blsCreateProof()` method is used with a revealed indexes array argument of `[ 0, 2, 4 ]` and results in the octet string:
 ```json
 [0, 5, 21, 169, 73, 242, 49, 111, 234, 26, 186, 194, 204, 174, 241,
 30, 165, 50, 117, 236, 144, 95, 147, 186, 219, 190, 135, 205, 66,
@@ -629,13 +629,13 @@ The issuer generates an array of derived keys with one for each payload by using
 ```
 Figure: mac_issuer_keys
 
-The first payload is the string `"Doe"` with the octet sequence of `[34, 68, 111, 101, 34]` and base64url-encoded as `IkRvZSI`.
+The first payload is the string `"Doe"` with the octet sequence of `[ 34, 68, 111, 101, 34 ]` and base64url-encoded as `IkRvZSI`.
 
-The second payload is the string `"Jay"` with the octet sequence of `[34, 74, 97, 121, 34]` and base64url-encoded as `IkpheSI`.
+The second payload is the string `"Jay"` with the octet sequence of `[ 34, 74, 97, 121, 34 ]` and base64url-encoded as `IkpheSI`.
 
-The third payload is the string `"jaydoe@example.org"` with the octet sequence of `[34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34]` and base64url-encoded as `ImpheWRvZUBleGFtcGxlLm9yZyI`.
+The third payload is the string `"jaydoe@example.org"` with the octet sequence of `[ 34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34 ]` and base64url-encoded as `ImpheWRvZUBleGFtcGxlLm9yZyI`.
 
-The fourth payload is the string `42` with the octet sequence of `[52, 50]` and base64url-encoded as `NDI`.
+The fourth payload is the string `42` with the octet sequence of `[ 52, 50 ]` and base64url-encoded as `NDI`.
 
 A MAC is generated for each payload using the generated key for its given index, resulting in an array of MACs:
 ```json
