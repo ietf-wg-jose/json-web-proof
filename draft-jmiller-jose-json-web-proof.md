@@ -1,14 +1,14 @@
 %%%
 title = "JSON Web Proof"
-docName = "draft-jmiller-jose-json-web-proof-latest"
-category = "info"
-ipr = "none"
+abbrev = "json-web-proof"
+ipr = "trust200902"
 workgroup="todo"
 keyword = ["jose", "zkp", "jwp", "jws"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-jmiller-jose-json-web-proof"
+value = "draft-jmiller-jose-json-web-proof-00"
+stream = "IETF"
 status = "standard"
 
 [pi]
@@ -51,7 +51,7 @@ This document defines a new container format similar in purpose and design to JS
 
 # Introduction
 
-The JOSE specifications are very widely deployed and well supported, enabling use of cryptographic primitives with a JSON representation.  JWTs [RFC7519] are one of the most common representations for identity and access claims.  For instance, they are used by the OpenID Connect and Secure Telephony Identity Revisited (STIR) standards.  Also, JWTs are used by W3C's Verifiable Credentials and are used in many Decentralized Identity systems.
+The JOSE specifications are very widely deployed and well supported, enabling use of cryptographic primitives with a JSON representation.  JWTs [@RFC7519] are one of the most common representations for identity and access claims.  For instance, they are used by the OpenID Connect and Secure Telephony Identity Revisited (STIR) standards.  Also, JWTs are used by W3C's Verifiable Credentials and are used in many Decentralized Identity systems.
 
 With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting information, and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.
 
@@ -71,7 +71,8 @@ All of these follow the same pattern of taking multiple claims (a.k.a., "attribu
 
 # Conventions and Definitions
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+"MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@RFC2119] [@RFC8174] when, and only when, they appear in all capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier", are used as defined by the [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/2021/REC-vc-data-model-20211109/).  The term "presentation" is also used as defined by this source, but the term "credential" is avoided in this specification in order to minimize confusion with other definitions.
 
@@ -84,7 +85,7 @@ The roles of "issuer", "holder", and "verifier", are used as defined by the [Ver
 
 # Background
 
-A _JSON Web Proof (JWP)_ is very similar to a JWS [RFC7515], with the addition that it can contain multiple individual secured payloads instead of a singular one.  JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
+A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition that it can contain multiple individual secured payloads instead of a singular one.  JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
 The intent of JSON Web Proofs is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.
 
@@ -96,7 +97,7 @@ After validation, the holder uses `present` to apply any selective disclosure ch
 
 While `issue` and `confirm` only occur when a JWP is initially created by the issuer, the `present` and `verify` steps may be safely repeated by a holder on an issued JWP.  The unlinkability of the resulting presented JWP is only provided when supported by the underlying algorithm.
 
-Algorithm definitions that support JWPs are being done in separate companion specifications - just as the [JSON Web Algorithms] [RFC7518] specification does for JWS and JWE [RFC7516].  The [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-00.html) specification defines how an initial set of algorithms are used with JWP.
+Algorithm definitions that support JWPs are being done in separate companion specifications - just as the JSON Web Algorithms [@RFC7518] specification does for JWS and JWE [@RFC7516].  The [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-00.html) specification defines how an initial set of algorithms are used with JWP.
 
 # JWP Forms
 
@@ -195,22 +196,23 @@ Example flattened JSON serialization showing the presentation form with both the
     null,
     "NDI"
   ],
-  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaW
-  x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJ
-  vb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4
-  X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRub
-  Ut0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOn
-  siY3J2IjoiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNUR
-  wS2dkOGoyemJaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlN
-  TWxiRnllbkZPTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYifQ",
-  "proof": "LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0cDJ
-  KZoUgomHu5MzYhTUsa0YRXVBnMB91RjonrnWVsakfXtfm2h7gHxA_8G1wkB09x09kon2e
-  K9gTv4iKw4GP6Rh02PEIAVAvnhtuiShMnPqVw1tCBdhweWzjyxJbG86J7Y8MDt2H9f5hh
-  HIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc27EYkRHdRgG
-  QwWNtuExKz7OmwH8oWizplEtjWJ5WIlJpee79gQ9HTa2QIOT9bUDvjjkkO-jK_zuDjZwh
-  5MkrcaQ",
-  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFM
-  ZS1iQ29tRkx4YThLLXMifQ"
+  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFt
+  aWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiw
+  icHJvb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU
+  1zM2k4X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5d
+  ldNcHRubUt0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlv
+  bl9qd2siOnsiY3J2IjoiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw
+  2MWZVT09LNURwS2dkOGoyemJaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2
+  RSdU9xWlhPUDlNTWxiRnllbkZPTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYif
+  Q",
+  "proof": "LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0c
+  DJKZoUgomHu5MzYhTUsa0YRXVBnMB91RjonrnWVsakfXtfm2h7gHxA_8G1wkB09x09k
+  on2eK9gTv4iKw4GP6Rh02PEIAVAvnhtuiShMnPqVw1tCBdhweWzjyxJbG86J7Y8MDt2
+  H9f5hhHIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc27E
+  YkRHdRgGQwWNtuExKz7OmwH8oWizplEtjWJ5WIlJpee79gQ9HTa2QIOT9bUDvjjkkO-
+  jK_zuDjZwh5MkrcaQ",
+  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOaz
+  FMZS1iQ29tRkx4YThLLXMifQ"
 }
 ```
 Figure: jwp_final_presentation
@@ -308,30 +310,55 @@ Figure: jwp_issuer_header
 After removing formatting whitespace, the octets representing UTF8(JWP Protected Header) in this example (using JSON array notation) are:
 
 ```json
-[123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58, 47, 47, 105, 115, 115, 117, 101, 114, 46, 116, 108, 100, 34, 44, 34, 99, 108, 97, 105, 109, 115, 34, 58, 91, 34, 102, 97, 109, 105, 108, 121, 95, 110, 97, 109, 101, 34, 44, 34, 103, 105, 118, 101, 110, 95, 110, 97, 109, 101, 34, 44, 34, 101, 109, 97, 105, 108, 34, 44, 34, 97, 103, 101, 34, 93, 44, 34, 116, 121, 112, 34, 58, 34, 74, 80, 84, 34, 44, 34, 112, 114, 111, 111, 102, 95, 106, 119, 107, 34, 58, 123, 34, 99, 114, 118, 34, 58, 34, 80, 45, 50, 53, 54, 34, 44, 34, 107, 116, 121, 34, 58, 34, 69, 67, 34, 44, 34, 120, 34, 58, 34, 97, 99, 98, 73, 81, 105, 117, 77, 115, 51, 105, 56, 95, 117, 115, 122, 69, 106, 74, 50, 116, 112, 84, 116, 82, 77, 52, 69, 85, 51, 121, 122, 57, 49, 80, 72, 54, 67, 100, 72, 50, 86, 48, 34, 44, 34, 121, 34, 58, 34, 95, 75, 99, 121, 76, 106, 57, 118, 87, 77, 112, 116, 110, 109, 75, 116, 109, 52, 54, 71, 113, 68, 122, 56, 119, 102, 55, 52, 73, 53, 76, 75, 103, 114, 108, 50, 71, 122, 72, 51, 110, 83, 69, 34, 125, 44, 34, 112, 114, 101, 115, 101, 110, 116, 97, 116, 105, 111, 110, 95, 106, 119, 107, 34, 58, 123, 34, 99, 114, 118, 34, 58, 34, 80, 45, 50, 53, 54, 34, 44, 34, 107, 116, 121, 34, 58, 34, 69, 67, 34, 44, 34, 120, 34, 58, 34, 111, 66, 49, 84, 80, 114, 69, 95, 81, 74, 73, 76, 54, 49, 102, 85, 79, 79, 75, 53, 68, 112, 75, 103, 100, 56, 106, 50, 122, 98, 90, 74, 116, 113, 112, 73, 76, 68, 84, 74, 88, 54, 73, 34, 44, 34, 121, 34, 58, 34, 51, 74, 113, 110, 114, 107, 117, 99, 76, 111, 98, 107, 100, 82, 117, 79, 113, 90, 88, 79, 80, 57, 77, 77, 108, 98, 70, 121, 101, 110, 70, 79, 76, 121, 71, 108, 71, 45, 70, 80, 65, 67, 77, 34, 125, 44, 34, 97, 108, 103, 34, 58, 34, 83, 85, 45, 69, 83, 50, 53, 54, 34, 125]
+[123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58, 47,
+ 47, 105, 115, 115, 117, 101, 114, 46, 116, 108, 100, 34, 44, 34, 99,
+ 108, 97, 105, 109, 115, 34, 58, 91, 34, 102, 97, 109, 105, 108, 121,
+ 95, 110, 97, 109, 101, 34, 44, 34, 103, 105, 118, 101, 110, 95, 110,
+ 97, 109, 101, 34, 44, 34, 101, 109, 97, 105, 108, 34, 44, 34, 97,
+ 103, 101, 34, 93, 44, 34, 116, 121, 112, 34, 58, 34, 74, 80, 84, 34,
+ 44, 34, 112, 114, 111, 111, 102, 95, 106, 119, 107, 34, 58, 123, 34,
+ 99, 114, 118, 34, 58, 34, 80, 45, 50, 53, 54, 34, 44, 34, 107, 116,
+ 121, 35, 58, 34, 69, 67, 34, 44, 34, 120, 34, 58, 34, 97, 99, 98,
+ 73, 81, 105, 117, 77, 115, 51, 105, 56, 95, 117, 115, 122, 69, 106,
+ 74, 50,116, 112, 84, 116, 82, 77, 52, 69, 85, 51, 121, 122, 57, 49,
+ 80, 72, 54, 67, 100, 72, 50, 86, 48, 34, 44, 34, 121, 34, 58, 34,
+ 95, 75, 99, 121, 76, 106, 57, 118, 87, 77, 112, 116, 110, 109, 75,
+ 116, 109, 52, 54, 71, 113, 68, 122, 56, 119, 102, 55, 52, 73, 53,
+ 76, 75, 103, 114, 108, 50, 71, 122, 72, 51, 110, 83, 69, 34, 125,
+ 44, 34, 112, 114, 101, 115, 101, 110, 116, 97, 116, 105, 111, 110,
+ 95, 106, 119, 107, 34, 58, 123, 34, 99, 114, 118, 34, 58, 34, 80,
+ 45, 50, 53, 54, 34, 44, 34, 107, 116, 121, 34, 58, 34, 69, 67, 34,
+ 44, 34, 120, 34, 58, 34, 111, 66, 49,  84, 80, 114, 69, 95, 81, 74,
+ 73, 76, 54, 49, 102, 85, 79, 79, 75, 53, 68, 112, 75, 103, 100, 56,
+ 106, 50, 122, 98, 90, 74, 116, 113, 112, 73, 76, 68, 84, 74, 88, 54,
+ 73, 34, 44, 34, 121, 34, 58, 34, 51, 74, 113, 110, 114, 107, 117, 
+ 99, 76, 111, 98, 107, 100, 82, 117, 79, 113, 90, 88, 79, 80, 57, 77,
+ 77, 108, 98, 70, 121, 101, 110, 70, 79, 76, 121, 71, 108, 71, 45,
+ 70, 80, 65, 67, 77, 34, 125, 44, 34, 97, 108, 103, 34, 58, 34, 83,
+ 85, 45, 69, 83, 50, 53, 54, 34, 125]
 ```
 Figure: jwp_issuer_header_octets
 
 Encoding this JWP Protected Header as BASE64URL(UTF8(JWP Protected Header)) gives this value:
 ```text
-eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJ
-naXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7Im
-NydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ0cFR0U
-k00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FEejh3Zjc0
-STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOnsiY3J2IjoiUC0yNTYiLCJ
-rdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNURwS2dkOGoyemJaSnRxcElMRF
-RKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlNTWxiRnllbkZPTHlHbEctRlBBQ
-00ifSwiYWxnIjoiU1UtRVMyNTYifQ
+eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiL
+CJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIj
+p7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ
+0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FE
+ejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOnsiY3J2IjoiU
+C0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNURwS2dkOGoyem
+JaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlNTWxiRnllbkZ
+PTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYifQ
 ```
 Figure: jwp_issuer_header_base64
 
 Each payload must also be individually encoded:
 
-The first payload is the string `"Doe"` with the octet sequence of `[34, 68, 111, 101, 34]` and base64url-encoded as `IkRvZSI`.
+The first payload is the string `"Doe"` with the octet sequence of `[ 34, 68, 111, 101, 34 ]` and base64url-encoded as `IkRvZSI`.
 
-The second payload is the string `"Jay"` with the octet sequence of `[34, 74, 97, 121, 34]` and base64url-encoded as `IkpheSI`.
+The second payload is the string `"Jay"` with the octet sequence of `[ 34, 74, 97, 121, 34 ]` and base64url-encoded as `IkpheSI`.
 
-The third payload is the string `"jaydoe@example.org"` with the octet sequence of `[34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34]` and base64url-encoded as `ImpheWRvZUBleGFtcGxlLm9yZyI`.
+The third payload is the string `"jaydoe@example.org"` with the octet sequence of `[ 34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34 ]` and base64url-encoded as `ImpheWRvZUBleGFtcGxlLm9yZyI`.
 
 The fourth payload is the string `42` with the octet sequence of `[52, 50]` and base64url-encoded as `NDI`.
 
@@ -339,7 +366,11 @@ The Single Use algorithm utilizes multiple individual JWS Signatures.  Each sign
 
 The first signature is generated by creating a JWS using the fixed header with the payload set to the octet string of the JPT protected header from earlier.  The resulting JWS signature using the Signer's *stable key* is the octet string of:
 ```json
-[44, 147, 34, 55, 167, 26, 18, 164, 161, 48, 158, 99, 60, 219, 108, 240, 231, 172, 114, 163, 106, 230, 242, 146, 170, 71, 192, 117, 43, 134, 36, 13, 70, 200, 156, 178, 173, 248, 228, 164, 1, 180, 112, 50, 74, 102, 133, 32, 162, 97, 238, 228, 204, 216, 133, 53, 44, 107, 70, 17, 93, 80, 103, 48]
+[44, 147, 34, 55, 167, 26, 18, 164, 161, 48, 158, 99, 60, 219, 108,
+ 240, 231, 172, 114, 163, 106, 230, 242, 146, 170, 71, 192, 117, 43,
+ 134, 36, 13, 70, 200, 156, 178, 173, 248, 228, 164, 1, 180, 112, 50,
+ 74, 102, 133, 32, 162, 97, 238, 228, 204, 216, 133, 53, 44, 107, 70,
+ 17, 93, 80, 103, 48]
 ```
 Figure: jwp_issuer_header_signature
 
@@ -347,32 +378,69 @@ This process is repeated for the JPT payloads, using their octet strings as the 
 
 The first payload signature is:
 ```json
-[171, 17, 93, 97, 129, 118, 193, 36, 150, 14, 229, 113, 60, 60, 114, 243, 240, 152, 229, 218, 124, 218, 120, 150, 103, 43, 110, 177, 204, 182, 28, 156, 72, 243, 36, 140, 160, 218, 241, 207, 27, 106, 88, 133, 72, 43, 12, 143, 224, 43, 119, 76, 96, 216, 245, 111, 233, 39, 131, 244, 158, 53, 210, 69]
+[171, 17, 93, 97, 129, 118, 193, 36, 150, 14, 229, 113, 60, 60, 114,
+ 243, 240, 152, 229, 218, 124, 218, 120, 150, 103, 43, 110, 177, 204,
+ 182, 28, 156, 72, 243, 36, 140, 160, 218, 241, 207, 27, 106, 88,
+ 133, 72, 43, 12, 143, 224, 43, 119, 76, 96, 216, 245, 111, 233, 39,
+ 131, 244, 158, 53, 210, 69]
 ```
 Figure: jwp_payload_0_signature
 
 The second payload signature is:
 ```json
-[112, 121, 108, 227, 203, 18, 91, 27, 206, 137, 237, 143, 12, 14, 221, 135, 245, 254, 97, 132, 114, 48, 153, 34, 240, 93, 140, 194, 108, 61, 251, 90, 107, 212, 17, 13, 191, 235, 8, 96, 1, 128, 121, 186, 4, 144, 55, 112, 99, 92, 75, 226, 8, 15, 255, 85, 125, 229, 110, 17, 245, 69, 87, 54]
+[112, 121, 108, 227, 203, 18, 91, 27, 206, 137, 237, 143, 12, 14,
+ 221, 135, 245, 254, 97, 132, 114, 48, 153, 34, 240, 93, 140, 194,
+ 108, 61, 251, 90, 107, 212, 17, 13, 191, 235, 8, 96, 1, 128, 121,
+ 186, 4, 144, 55, 112, 99, 92, 75, 226, 8, 15, 255, 85, 125, 229,
+ 110, 17, 245, 69, 87, 54]
 ```
 Figure: jwp_payload_1_signature
 
 The third payload signature is:
 ```json
-[195, 89, 195, 251, 210, 23, 69, 91, 7, 66, 9, 11, 213, 97, 77, 145, 134, 185, 227, 131, 55, 23, 175, 179, 151, 206, 164, 26, 240, 254, 25, 102, 110, 215, 202, 193, 166, 80, 58, 239, 217, 242, 167, 58, 167, 134, 135, 44, 199, 142, 161, 2, 27, 222, 34, 12, 211, 107, 94, 51, 190, 187, 120, 123]
+[195, 89, 195, 251, 210, 23, 69, 91, 7, 66, 9, 11, 213, 97, 77, 145,
+ 134, 185, 227, 131, 55, 23, 175, 179, 151, 206, 164, 26, 240, 254,
+ 25, 102, 110, 215, 202, 193, 166, 80, 58, 239, 217, 242, 167, 58,
+ 167, 134, 135, 44, 199, 142, 161, 2, 27, 222, 34, 12, 211, 107, 94,
+ 51, 190, 187, 120, 123]
 ```
 Figure: jwp_payload_2_signature
 
 The fourth payload signature is:
 ```json
-[236, 70, 36, 68, 119, 81, 128, 100, 48, 88, 219, 110, 19, 18, 179, 236, 233, 176, 31, 202, 22, 139, 58, 101, 18, 216, 214, 39, 149, 136, 148, 154, 94, 123, 191, 96, 67, 209, 211, 107, 100, 8, 57, 63, 91, 80, 59, 227, 142, 73, 14, 250, 50, 191, 206, 224, 227, 103, 8, 121, 50, 74, 220, 105]
+[236, 70, 36, 68, 119, 81, 128, 100, 48, 88, 219, 110, 19, 18, 179,
+ 236, 233, 176, 31, 202, 22, 139, 58, 101, 18, 216, 214, 39, 149,
+ 136, 148, 154, 94, 123, 191, 96, 67, 209, 211, 107, 100, 8, 57, 63,
+ 91, 80, 59, 227, 142, 73, 14, 250, 50, 191, 206, 224, 227, 103, 8,
+ 121, 50, 74, 220, 105]
 ```
 Figure: jwp_payload_3_signature
 
 Each payload's individual signature is concatenated in order, resulting in a larger octet string with a length of an individual signature (64 octets for ES256) multiplied by the number of payloads (4 for this example).  These payload ephemeral signatures are then appended to the initial protected header stable signature.  Using the above examples, the resulting octet string is 320 in length (`5 * 64`):
 
 ```json
-[44, 147, 34, 55, 167, 26, 18, 164, 161, 48, 158, 99, 60, 219, 108, 240, 231, 172, 114, 163, 106, 230, 242, 146, 170, 71, 192, 117, 43, 134, 36, 13, 70, 200, 156, 178, 173, 248, 228, 164, 1, 180, 112, 50, 74, 102, 133, 32, 162, 97, 238, 228, 204, 216, 133, 53, 44, 107, 70, 17, 93, 80, 103, 48, 171, 17, 93, 97, 129, 118, 193, 36, 150, 14, 229, 113, 60, 60, 114, 243, 240, 152, 229, 218, 124, 218, 120, 150, 103, 43, 110, 177, 204, 182, 28, 156, 72, 243, 36, 140, 160, 218, 241, 207, 27, 106, 88, 133, 72, 43, 12, 143, 224, 43, 119, 76, 96, 216, 245, 111, 233, 39, 131, 244, 158, 53, 210, 69, 112, 121, 108, 227, 203, 18, 91, 27, 206, 137, 237, 143, 12, 14, 221, 135, 245, 254, 97, 132, 114, 48, 153, 34, 240, 93, 140, 194, 108, 61, 251, 90, 107, 212, 17, 13, 191, 235, 8, 96, 1, 128, 121, 186, 4, 144, 55, 112, 99, 92, 75, 226, 8, 15, 255, 85, 125, 229, 110, 17, 245, 69, 87, 54, 195, 89, 195, 251, 210, 23, 69, 91, 7, 66, 9, 11, 213, 97, 77, 145, 134, 185, 227, 131, 55, 23, 175, 179, 151, 206, 164, 26, 240, 254, 25, 102, 110, 215, 202, 193, 166, 80, 58, 239, 217, 242, 167, 58, 167, 134, 135, 44, 199, 142, 161, 2, 27, 222, 34, 12, 211, 107, 94, 51, 190, 187, 120, 123, 236, 70, 36, 68, 119, 81, 128, 100, 48, 88, 219, 110, 19, 18, 179, 236, 233, 176, 31, 202, 22, 139, 58, 101, 18, 216, 214, 39, 149, 136, 148, 154, 94, 123, 191, 96, 67, 209, 211, 107, 100, 8, 57, 63, 91, 80, 59, 227, 142, 73, 14, 250, 50, 191, 206, 224, 227, 103, 8, 121, 50, 74, 220, 105]
+[44, 147, 34, 55, 167, 26, 18, 164, 161, 48, 158, 99, 60, 219, 108,
+ 240, 231, 172, 114, 163, 106, 230, 242, 146, 170, 71, 192, 117, 43,
+ 134, 36, 13, 70, 200, 156, 178, 173, 248, 228, 164, 1, 180, 112, 50,
+ 74, 102, 133, 32, 162, 97, 238, 228, 204, 216, 133, 53, 44, 107, 70,
+ 17, 93, 80, 103, 48, 171, 17, 93, 97, 129, 118, 193, 36, 150, 14,
+ 229, 113, 60, 60, 114, 243, 240, 152, 229, 218, 124, 218, 120, 150,
+ 103, 43, 110, 177, 204, 182, 28, 156, 72, 243, 36, 140, 160, 218,
+ 241, 207, 27, 106, 88, 133, 72, 43, 12, 143, 224, 43, 119, 76, 96,
+ 216, 245, 111, 233, 39, 131, 244, 158, 53, 210, 69, 112, 121, 108,
+ 227, 203, 18, 91, 27, 206, 137, 237, 143, 12, 14, 221, 135, 245,
+ 254, 97, 132, 114, 48, 153, 34, 240, 93, 140, 194, 108, 61, 251, 90,
+ 107, 212, 17, 13, 191, 235, 8, 96, 1, 128, 121, 186, 4, 144, 55,
+ 112, 99, 92, 75, 226, 8, 15, 255, 85, 125, 229, 110, 17, 245, 69,
+ 87, 54, 195, 89, 195, 251, 210, 23, 69, 91, 7, 66, 9, 11, 213, 97,
+ 77, 145, 134, 185, 227, 131, 55, 23, 175, 179, 151, 206, 164, 26,
+ 240, 254, 25, 102, 110, 215, 202, 193, 166, 80, 58, 239, 217, 242,
+ 167, 58, 167, 134, 135, 44, 199, 142, 161, 2, 27, 222, 34, 12, 211,
+ 107, 94, 51, 190, 187, 120, 123, 236, 70, 36, 68, 119, 81, 128, 100,
+ 48, 88, 219, 110, 19, 18, 179, 236, 233, 176, 31, 202, 22, 139, 58,
+ 101, 18, 216, 214, 39, 149, 136, 148, 154, 94, 123, 191, 96, 67,
+ 209, 211, 107, 100, 8, 57, 63, 91, 80, 59, 227, 142, 73, 14, 250,
+ 50, 191, 206, 224, 227, 103, 8, 121, 50, 74, 220, 105]
 ```
 Figure: jwp_signatures
 
@@ -387,42 +455,43 @@ The resulting JSON serialized JPT using the above examples is:
     "ImpheWRvZUBleGFtcGxlLm9yZyI",
     "NDI"
   ],
-  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaW
-  x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJ
-  vb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4
-  X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRub
-  Ut0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOn
-  siY3J2IjoiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNUR
-  wS2dkOGoyemJaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlN
-  TWxiRnllbkZPTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYifQ",
-  "proof": "LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0cDJ
-  KZoUgomHu5MzYhTUsa0YRXVBnMKsRXWGBdsEklg7lcTw8cvPwmOXafNp4lmcrbrHMthyc
-  SPMkjKDa8c8baliFSCsMj-Ard0xg2PVv6SeD9J410kVweWzjyxJbG86J7Y8MDt2H9f5hh
-  HIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc2w1nD-9IXRV
-  sHQgkL1WFNkYa544M3F6-zl86kGvD-GWZu18rBplA679nypzqnhocsx46hAhveIgzTa14
-  zvrt4e-xGJER3UYBkMFjbbhMSs-zpsB_KFos6ZRLY1ieViJSaXnu_YEPR02tkCDk_W1A7
-  445JDvoyv87g42cIeTJK3Gk"
+  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFt
+  aWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiw
+  icHJvb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU
+  1zM2k4X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5d
+  ldNcHRubUt0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlv
+  bl9qd2siOnsiY3J2IjoiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw
+  2MWZVT09LNUR wS2dkOGoyemJaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia
+  2RSdU9xWlhPUDlN TWxiRnllbkZPTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTY
+  ifQ",
+  "proof": "LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0c
+  DJKZoUgomHu5MzYhTUsa0YRXVBnMKsRXWGBdsEklg7lcTw8cvPwmOXafNp4lmcrbrHM
+  thycSPMkjKDa8c8baliFSCsMj-Ard0xg2PVv6SeD9J410kVweWzjyxJbG86J7Y8MDt2
+  H9f5hhHIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc2w1
+  nD-9IXRVsHQgkL1WFNkYa544M3F6-zl86kGvD-GWZu18rBplA679nypzqnhocsx46hA
+  hveIgzTa14zvrt4e-xGJER3UYBkMFjbbhMSs-zpsB_KFos6ZRLY1ieViJSaXnu_YEPR
+  02tkCDk_W1A7 445JDvoyv87g42cIeTJK3Gk"
 }
 ```
 Figure: jwp_final
 
 The compact serialization of the same JPT is:
 ```text
-eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJ
-naXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7Im
-NydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ0cFR0U
-k00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FEejh3Zjc0
-STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOnsiY3J2IjoiUC0yNTYiLCJ
-rdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNURwS2dkOGoyemJaSnRxcElMRF
-RKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlNTWxiRnllbkZPTHlHbEctRlBBQ
-00ifSwiYWxnIjoiU1UtRVMyNTYifQ.IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZ
-yI~NDI.LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0cDJKZoUg
-omHu5MzYhTUsa0YRXVBnMKsRXWGBdsEklg7lcTw8cvPwmOXafNp4lmcrbrHMthycSPMkjKD
-a8c8baliFSCsMj-Ard0xg2PVv6SeD9J410kVweWzjyxJbG86J7Y8MDt2H9f5hhHIwmSLwXY
-zCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc2w1nD-9IXRVsHQgkL1WFNk
-Ya544M3F6-zl86kGvD-GWZu18rBplA679nypzqnhocsx46hAhveIgzTa14zvrt4e-xGJER3
-UYBkMFjbbhMSs-zpsB_KFos6ZRLY1ieViJSaXnu_YEPR02tkCDk_W1A7445JDvoyv87g42c
-IeTJK3Gk
+eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiL
+CJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIj
+p7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ
+0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FE
+ejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOnsiY3J2IjoiU
+C0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNURwS2dkOGoyem
+JaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlNTWxiRnllbkZ
+PTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYifQ.IkRvZSI~IkpheSI~ImpheWRvZ
+UBleGFtcGxlLm9yZyI~NDI.LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJ
+yyrfjkpAG0cDJKZoUgomHu5MzYhTUsa0YRXVBnMKsRXWGBdsEklg7lcTw8cvPwmOXafNp
+4lmcrbrHMthycSPMkjKDa8c8baliFSCsMj-Ard0xg2PVv6SeD9J410kVweWzjyxJbG86J
+7Y8MDt2H9f5hhHIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1R
+Vc2w1nD-9IXRVsHQgkL1WFNkYa544M3F6-zl86kGvD-GWZu18rBplA679nypzqnhocsx4
+6hAhveIgzTa14zvrt4e-xGJER3UYBkMFjbbhMSs-zpsB_KFos6ZRLY1ieViJSaXnu_YEP
+R02tkCDk_W1A7445JDvoyv87g42cIeTJK3Gk
 ```
 Figure: jwp_compact
 
@@ -437,26 +506,50 @@ Figure: jwp_presentation_header
 
 Which when serialized results in the following octets:
 ```json
-[123, 34, 110, 111, 110, 99, 101, 34, 58, 34, 117, 84, 69, 66, 51, 55, 49, 108, 49, 112, 122, 87, 74, 108, 55, 97, 102, 66, 48, 119, 105, 48, 72, 87, 85, 78, 107, 49, 76, 101, 45, 98, 67, 111, 109, 70, 76, 120, 97, 56, 75, 45, 115, 34, 125]
+[123, 34, 110, 111, 110, 99, 101, 34, 58, 34, 117, 84, 69, 66, 51,
+ 55, 49, 108, 49, 112, 122, 87, 74, 108, 55, 97, 102, 66, 48, 119,
+ 105, 48, 72, 87, 85, 78, 107, 49, 76, 101, 45, 98, 67, 111, 109, 70,
+ 76, 120, 97, 56, 75, 45, 115, 34, 125]
 ```
 Figure: jwp_presentation_header_octets
 
 And when base64url encoded results in the string:
 ```text
-eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4YThLLXM
-ifQ
+eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4YThLL
+XMifQ
 ```
 Figure: jwp_presentation_header_base64
 
 When signed with the holder's presentation key, the resulting signature octets are:
 ```json
-[31, 117, 70, 58, 39, 174, 117, 149, 177, 169, 31, 94, 215, 230, 218, 30, 224, 31, 16, 63, 240, 109, 112, 144, 29, 61, 199, 79, 100, 162, 125, 158, 43, 216, 19, 191, 136, 138, 195, 129, 143, 233, 24, 116, 216, 241, 8, 1, 80, 47, 158, 27, 110, 137, 40, 76, 156, 250, 149, 195, 91, 66, 5, 216]
+[31, 117, 70, 58, 39, 174, 117, 149, 177, 169, 31, 94, 215, 230, 218,
+ 30, 224, 31, 16, 63, 240, 109, 112, 144, 29, 61, 199, 79, 100, 162,
+ 125, 158, 43, 216, 19, 191, 136, 138, 195, 129, 143, 233, 24, 116,
+ 216, 241, 8, 1, 80, 47, 158, 27, 110, 137, 40, 76, 156, 250, 149,
+ 195, 91, 66, 5, 216]
 ```
 Figure: jwp_presentation_header_signature
 
 Then by applying selective disclosure of only the given name and age claims (family name and email hidden), the proof value including the signature of the presentation header and removing the ephemeral signatures of the family name and email payloads results in the following octet array:
 ```json
-[44, 147, 34, 55, 167, 26, 18, 164, 161, 48, 158, 99, 60, 219, 108, 240, 231, 172, 114, 163, 106, 230, 242, 146, 170, 71, 192, 117, 43, 134, 36, 13, 70, 200, 156, 178, 173, 248, 228, 164, 1, 180, 112, 50, 74, 102, 133, 32, 162, 97, 238, 228, 204, 216, 133, 53, 44, 107, 70, 17, 93, 80, 103, 48, 31, 117, 70, 58, 39, 174, 117, 149, 177, 169, 31, 94, 215, 230, 218, 30, 224, 31, 16, 63, 240, 109, 112, 144, 29, 61, 199, 79, 100, 162, 125, 158, 43, 216, 19, 191, 136, 138, 195, 129, 143, 233, 24, 116, 216, 241, 8, 1, 80, 47, 158, 27, 110, 137, 40, 76, 156, 250, 149, 195, 91, 66, 5, 216, 112, 121, 108, 227, 203, 18, 91, 27, 206, 137, 237, 143, 12, 14, 221, 135, 245, 254, 97, 132, 114, 48, 153, 34, 240, 93, 140, 194, 108, 61, 251, 90, 107, 212, 17, 13, 191, 235, 8, 96, 1, 128, 121, 186, 4, 144, 55, 112, 99, 92, 75, 226, 8, 15, 255, 85, 125, 229, 110, 17, 245, 69, 87, 54, 236, 70, 36, 68, 119, 81, 128, 100, 48, 88, 219, 110, 19, 18, 179, 236, 233, 176, 31, 202, 22, 139, 58, 101, 18, 216, 214, 39, 149, 136, 148, 154, 94, 123, 191, 96, 67, 209, 211, 107, 100, 8, 57, 63, 91, 80, 59, 227, 142, 73, 14, 250, 50, 191, 206, 224, 227, 103, 8, 121, 50, 74, 220, 105]
+[44, 147, 34, 55, 167, 26, 18, 164, 161, 48, 158, 99, 60, 219, 108,
+ 240, 231, 172, 114, 163, 106, 230, 242, 146, 170, 71, 192, 117, 43,
+ 134, 36, 13, 70, 200, 156, 178, 173, 248, 228, 164, 1, 180, 112, 50,
+ 74, 102, 133, 32, 162, 97, 238, 228, 204, 216, 133, 53, 44, 107, 70,
+ 17, 93, 80, 103, 48, 31, 117, 70, 58, 39, 174, 117, 149, 177, 169,
+ 31, 94, 215, 230, 218, 30, 224, 31, 16, 63, 240, 109, 112, 144, 29,
+ 61, 199, 79, 100, 162, 125, 158, 43, 216, 19, 191, 136, 138, 195,
+ 129, 143, 233, 24, 116, 216, 241, 8, 1, 80, 47, 158, 27, 110, 137,
+ 40, 76, 156, 250, 149, 195, 91, 66, 5, 216, 112, 121, 108, 227, 203,
+ 18, 91, 27, 206, 137, 237, 143, 12, 14, 221, 135, 245, 254, 97, 132,
+ 114, 48, 153, 34, 240, 93, 140, 194, 108, 61, 251, 90, 107, 212, 17,
+ 13, 191, 235, 8, 96, 1, 128, 121, 186, 4, 144, 55, 112, 99, 92, 75,
+ 226, 8, 15, 255, 85, 125, 229, 110, 17, 245, 69, 87, 54, 236, 70,
+ 36, 68, 119, 81, 128, 100, 48, 88, 219, 110, 19, 18, 179, 236, 233,
+ 176, 31, 202, 22, 139, 58, 101, 18, 216, 214, 39, 149, 136, 148,
+ 154, 94, 123, 191, 96, 67, 209, 211, 107, 100, 8, 57, 63, 91, 80,
+ 59, 227, 142, 73, 14, 250, 50, 191, 206, 224, 227, 103, 8, 121, 50,
+ 74, 220, 105]
 ```
 Figure: jwp_presentation_signatures
 
@@ -469,42 +562,43 @@ The resulting presented JPT in JSON serialization:
     null,
     "NDI"
   ],
-  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaW
-  x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJ
-  vb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4
-  X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRub
-  Ut0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOn
-  siY3J2IjoiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNUR
-  wS2dkOGoyemJaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlN
-  TWxiRnllbkZPTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYifQ",
-  "proof": "LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0cDJ
-  KZoUgomHu5MzYhTUsa0YRXVBnMB91RjonrnWVsakfXtfm2h7gHxA_8G1wkB09x09kon2e
-  K9gTv4iKw4GP6Rh02PEIAVAvnhtuiShMnPqVw1tCBdhweWzjyxJbG86J7Y8MDt2H9f5hh
-  HIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc27EYkRHdRgG
-  QwWNtuExKz7OmwH8oWizplEtjWJ5WIlJpee79gQ9HTa2QIOT9bUDvjjkkO-jK_zuDjZwh
-  5MkrcaQ",
-  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFM
-  ZS1iQ29tRkx4YThLLXMifQ"
+  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFt
+  aWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiw
+  icHJvb2ZfandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU
+  1zM2k4X3VzekVqSjJ0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5d
+  ldNcHRubUt0bTQ2R3FEejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlv
+  bl9qd2siOnsiY3J2IjoiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw
+  2MWZVT09LNURwS2dkOGoyemJaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2
+  RSdU9xWlhPUDlNTWxiRnllbkZPTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYif
+  Q",
+  "proof": "LJMiN6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0c
+  DJKZoUgomHu5MzYhTUsa0YRXVBnMB91RjonrnWVsakfXtfm2h7gHxA_8G1wkB09x09k
+  on2eK9gTv4iKw4GP6Rh02PEIAVAvnhtuiShMnPqVw1tCBdhweWzjyxJbG86J7Y8MDt2
+  H9f5hhHIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc27E
+  YkRHdRgGQwWNtuExKz7OmwH8oWizplEtjWJ5WIlJpee79gQ9HTa2QIOT9bUDvjjkkO-
+  jK_zuDjZwh5MkrcaQ",
+  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOaz
+  FMZS1iQ29tRkx4YThLLXMifQ"
 }
 ```
 Figure: jwp_final_presentation
 
 And also in compact serialization:
 ```text
-eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJ
-naXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIjp7Im
-NydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ0cFR0U
-k00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FEejh3Zjc0
-STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOnsiY3J2IjoiUC0yNTYiLCJ
-rdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNURwS2dkOGoyemJaSnRxcElMRF
-RKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlNTWxiRnllbkZPTHlHbEctRlBBQ
-00ifSwiYWxnIjoiU1UtRVMyNTYifQ.eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3a
-TBIV1VOazFMZS1iQ29tRkx4YThLLXMifQ.~IkpheSI~~NDI.LJMiN6caEqShMJ5jPNts8Oe
-scqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0cDJKZoUgomHu5MzYhTUsa0YRXVBnMB91Rjonrn
-WVsakfXtfm2h7gHxA_8G1wkB09x09kon2eK9gTv4iKw4GP6Rh02PEIAVAvnhtuiShMnPqVw
-1tCBdhweWzjyxJbG86J7Y8MDt2H9f5hhHIwmSLwXYzCbD37WmvUEQ2_6whgAYB5ugSQN3Bj
-XEviCA__VX3lbhH1RVc27EYkRHdRgGQwWNtuExKz7OmwH8oWizplEtjWJ5WIlJpee79gQ9H
-Ta2QIOT9bUDvjjkkO-jK_zuDjZwh5MkrcaQ
+eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiL
+CJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicHJvb2ZfandrIj
+p7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiYWNiSVFpdU1zM2k4X3VzekVqSjJ
+0cFR0Uk00RVUzeXo5MVBINkNkSDJWMCIsInkiOiJfS2N5TGo5dldNcHRubUt0bTQ2R3FE
+ejh3Zjc0STVMS2dybDJHekgzblNFIn0sInByZXNlbnRhdGlvbl9qd2siOnsiY3J2IjoiU
+C0yNTYiLCJrdHkiOiJFQyIsIngiOiJvQjFUUHJFX1FKSUw2MWZVT09LNURwS2dkOGoyem
+JaSnRxcElMRFRKWDZJIiwieSI6IjNKcW5ya3VjTG9ia2RSdU9xWlhPUDlNTWxiRnllbkZ
+PTHlHbEctRlBBQ00ifSwiYWxnIjoiU1UtRVMyNTYifQ.eyJub25jZSI6InVURUIzNzFsM
+XB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4YThLLXMifQ.~IkpheSI~~NDI.LJMiN
+6caEqShMJ5jPNts8OescqNq5vKSqkfAdSuGJA1GyJyyrfjkpAG0cDJKZoUgomHu5MzYhT
+Usa0YRXVBnMB91RjonrnWVsakfXtfm2h7gHxA_8G1wkB09x09kon2eK9gTv4iKw4GP6Rh
+02PEIAVAvnhtuiShMnPqVw1tCBdhweWzjyxJbG86J7Y8MDt2H9f5hhHIwmSLwXYzCbD37
+WmvUEQ2_6whgAYB5ugSQN3BjXEviCA__VX3lbhH1RVc27EYkRHdRgGQwWNtuExKz7OmwH
+8oWizplEtjWJ5WIlJpee79gQ9HTa2QIOT9bUDvjjkkO-jK_zuDjZwh5MkrcaQ
 ```
 Figure: jwp_compact_presentation
 
