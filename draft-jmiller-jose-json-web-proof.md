@@ -2,7 +2,7 @@
 title = "JSON Web Proof"
 abbrev = "json-web-proof"
 ipr = "trust200902"
-workgroup="todo"
+workgroup="jose"
 keyword = ["jose", "zkp", "jwp", "jws"]
 
 [seriesInfo]
