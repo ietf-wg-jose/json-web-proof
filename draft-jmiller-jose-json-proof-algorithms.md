@@ -265,17 +265,19 @@ Proposed JWP `alg` value for BBS based on the software implementation is "BBS-X"
 The following example uses the given BLS12-384 key-pair:
 
 Public:
-```json bbs_issuer_public_octets
+```json
 [179, 209, 122, 60, 230, 37, 188, 86, 19, 19, 4, 36, 240, 230, 79, 178, 230, 147, 9, 60, 239, 41, 233, 167, 190, 252, 154, 35, 39, 201, 238, 73, 77, 228, 20, 47, 109, 174, 15, 168, 187, 145, 126, 85, 83, 151, 48, 30, 13, 237, 92, 179, 124, 181, 211, 204, 187, 222, 229, 234, 182, 94, 60, 157, 19, 148, 162, 48, 185, 134, 177, 168, 68, 115, 167, 48, 92, 181, 168, 53, 52, 246, 201, 112, 103, 23, 159, 138, 225, 13, 165, 171, 251, 112, 163, 96]
 ```
+Figure: bbs_issuer_public_octets
 
 Private:
-```json bbs_issuer_private_octets
+```json
 [72, 125, 227, 97, 150, 148, 186, 145, 110, 46, 135, 232, 104, 204, 128, 242, 73, 151, 72, 162, 0, 54, 139, 146, 221, 137, 34, 74, 1, 42, 140, 206]
 ```
+Figure: bbs_issuer_private_octets
 
 The protected header used is:
-```json bbs_issuer_protected_header
+```json
 {
   "iss": "https://issuer.example",
   "claims": [
@@ -288,6 +290,7 @@ The protected header used is:
   "alg": "BBS-X"
 }
 ```
+Figure: bbs_issuer_protected_header
 
 The first payload is the string `"Doe"` with the octet sequence of `[34, 68, 111, 101, 34]` and base64url-encoded as `IkRvZSI`.
 
@@ -299,7 +302,7 @@ The fourth payload is the string `42` with the octet sequence of `[52, 50]` and 
 
 The message array used as an input to the BLS implementation is:
 
-```json bbs_issuer_messages
+```json
 [
  [123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58, 47, 47, 105, 115, 115, 117, 101, 114, 46, 101, 120, 97, 109, 112, 108, 101, 34, 44, 34, 99, 108, 97, 105, 109, 115, 34, 58, 91, 34, 102, 97, 109, 105, 108, 121, 95, 110, 97, 109, 101, 34, 44, 34, 103, 105, 118, 101, 110, 95, 110, 97, 109, 101, 34, 44, 34, 101, 109, 97, 105, 108, 34, 44, 34, 97, 103, 101, 34, 93, 44, 34, 116, 121, 112, 34, 58, 34, 74, 80, 84, 34, 44, 34, 97, 108, 103, 34, 58, 34, 66, 66, 83, 45, 88, 34, 125],
  [34, 68, 111, 101, 34],
@@ -308,14 +311,16 @@ The message array used as an input to the BLS implementation is:
  [52, 50]
 ]
 ```
+Figure: bbs_issuer_messages
 
 Using the above inputs, the output of the `blsSign()` call is the octet string:
-```json bbs_issuer_signature
+```json
 [180, 3, 66, 254, 9, 205, 20, 88, 175, 82, 90, 34, 26, 178, 80, 225, 91, 209, 120, 23, 185, 159, 76, 73, 189, 236, 115, 141, 31, 83, 43, 42, 186, 247, 196, 236, 70, 19, 123, 80, 249, 146, 237, 172, 48, 208, 193, 62, 100, 59, 154, 22, 52, 165, 184, 250, 71, 52, 106, 233, 26, 240, 251, 214, 122, 133, 61, 241, 70, 127, 83, 240, 112, 130, 181, 151, 160, 214, 43, 213, 83, 211, 238, 191, 1, 65, 135, 147, 226, 197, 24, 104, 183, 9, 141, 207, 21, 106, 136, 161, 115, 142, 3, 196, 155, 52, 174, 205, 212, 13, 174, 220]
 ```
+Figure: bbs_issuer_signature
 
 The resulting signed JWP in JSON serialization is:
-```json bbs_issued_jwp
+```json
 {
   "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjp
   bImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQ
@@ -331,24 +336,28 @@ The resulting signed JWP in JSON serialization is:
   FWqIoXOOA8SbNK7N1A2u3A"
 }
 ```
+Figure: bbs_issued_jwp
 
 The same JWP in compact serialization:
-```text bbs_issued_compact
+```text
 ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXpJanBiSW1aaGJXbHNlVjl1WVcxbElpd2laMmwyWlc1ZmJtRnRaU0lzSW1WdFlXbHNJaXdpWVdkbElsMHNJblI1Y0NJNklrcFFWQ0lzSW1Gc1p5STZJa0pDVXkxWUluMCI.IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.tANC_gnNFFivUloiGrJQ4VvReBe5n0xJvexzjR9TKyq698TsRhN7UPmS7aww0ME-ZDuaFjSluPpHNGrpGvD71nqFPfFGf1PwcIK1l6DWK9VT0-6_AUGHk-LFGGi3CY3PFWqIoXOOA8SbNK7N1A2u3A
 ```
+Figure: bbs_issued_compact
 
 For verification a nonce is needed:
-```json bbs_present_nonce
+```json
 [137, 103, 248, 147, 211, 133, 97, 190, 130, 157, 110, 64, 244, 250, 100, 151, 7, 36, 164, 109, 146, 195, 190, 75, 32, 255, 6, 128, 44, 128, 96, 9]
 ```
+Figure: bbs_present_nonce
 
 To generate a proof, the `blsCreateProof()` method is used with a revealed indexes array argument of `[0, 2, 4]` and results in the octet string:
-```json bbs_present_proof
+```json
 [0, 5, 21, 169, 73, 242, 49, 111, 234, 26, 186, 194, 204, 174, 241, 30, 165, 50, 117, 236, 144, 95, 147, 186, 219, 190, 135, 205, 66, 179, 227, 86, 151, 246, 174, 234, 204, 46, 171, 249, 225, 198, 135, 81, 131, 225, 141, 217, 47, 217, 127, 176, 15, 98, 110, 233, 74, 220, 230, 27, 201, 117, 114, 211, 41, 183, 44, 64, 185, 45, 140, 153, 49, 73, 199, 93, 208, 248, 212, 175, 106, 199, 83, 255, 128, 77, 152, 250, 166, 101, 78, 248, 10, 106, 236, 24, 238, 21, 34, 134, 128, 186, 132, 153, 123, 86, 88, 156, 246, 203, 23, 253, 248, 217, 233, 1, 168, 208, 12, 193, 222, 142, 90, 28, 223, 241, 130, 164, 144, 83, 0, 15, 165, 25, 156, 145, 243, 39, 88, 249, 246, 185, 152, 3, 220, 72, 180, 0, 0, 0, 116, 133, 180, 58, 53, 105, 120, 124, 227, 160, 78, 229, 74, 209, 111, 164, 101, 183, 86, 122, 212, 126, 90, 23, 228, 109, 184, 73, 75, 114, 177, 142, 178, 89, 107, 100, 189, 187, 74, 143, 167, 218, 186, 193, 189, 247, 14, 134, 40, 0, 0, 0, 2, 5, 130, 120, 86, 255, 28, 33, 145, 20, 149, 195, 8, 4, 200, 212, 178, 67, 147, 230, 174, 192, 9, 158, 94, 179, 144, 63, 60, 82, 255, 216, 4, 85, 108, 209, 194, 209, 177, 106, 69, 215, 235, 177, 83, 244, 1, 195, 102, 135, 99, 20, 121, 7, 252, 26, 187, 206, 16, 250, 134, 1, 255, 197, 92, 130, 105, 241, 175, 35, 22, 210, 101, 158, 113, 214, 222, 3, 4, 168, 188, 251, 34, 213, 211, 224, 150, 147, 38, 164, 229, 151, 226, 223, 188, 181, 180, 204, 228, 58, 107, 55, 232, 148, 180, 199, 42, 181, 127, 59, 233, 234, 188, 0, 0, 0, 4, 93, 196, 31, 38, 151, 105, 231, 46, 228, 46, 86, 196, 136, 212, 175, 170, 83, 21, 78, 19, 224, 211, 122, 7, 92, 71, 17, 171, 66, 122, 56, 130, 45, 19, 172, 217, 65, 63, 246, 39, 6, 30, 77, 132, 86, 36, 41, 3, 234, 72, 146, 200, 101, 150, 159, 108, 140, 15, 195, 57, 249, 154, 191, 204, 91, 30, 159, 32, 157, 24, 3, 110, 90, 102, 99, 206, 42, 58, 1, 181, 215, 85, 29, 32, 131, 46, 76, 25, 5, 43, 203, 32, 215, 167, 169, 108, 56, 174, 146, 51, 174, 40, 190, 22, 37, 93, 156, 245, 208, 26, 55, 180, 135, 115, 70, 96, 106, 243, 213, 131, 196, 63, 165, 42, 157, 22, 94, 46]
 ```
+Figure: bbs_present_proof
 
 The resulting verifiable JWP in JSON serialization is:
-```json bbs_present_jwp
+```json
 {
   "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1zIjp
   bImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cCI6IkpQ
@@ -370,9 +379,10 @@ The resulting verifiable JWP in JSON serialization is:
   kFK8sg16epbDiukjOuKL4WJV2c9dAaN7SHc0ZgavPVg8Q_pSqdFl4u"
 }
 ```
+Figure: bbs_present_jwp
 
 The same JWP in compact serialization:
-```text bbs_present_compact
+```text
 ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFXMXp
 JanBiSW1aaGJXbHNlVjl1WVcxbElpd2laMmwyWlc1ZmJtRnRaU0lzSW1WdFlXbHNJaXdpWV
 dkbElsMHNJblI1Y0NJNklrcFFWQ0lzSW1Gc1p5STZJa0pDVXkxWUluMCI.~IkpheSI~~NDI
@@ -386,6 +396,7 @@ F3EHyaXaecu5C5WxIjUr6pTFU4T4NN6B1xHEatCejiCLROs2UE_9icGHk2EViQpA-pIkshl
 lp9sjA_DOfmav8xbHp8gnRgDblpmY84qOgG111UdIIMuTBkFK8sg16epbDiukjOuKL4WJV2
 c9dAaN7SHc0ZgavPVg8Q_pSqdFl4u
 ```
+Figure: bbs_present_compact
 
 
 ## Message Authentication Code
@@ -496,7 +507,7 @@ Proposed JWP `alg` value is of the format "MAC-" appended with a unique identifi
 The following example uses the `MAC-H256` algorithm.
 
 This is the Signer's stable private key in the JWK format:
-```json issuer_private_jwk
+```json
 {
   "crv": "P-256",
   "kty": "EC",
@@ -505,14 +516,16 @@ This is the Signer's stable private key in the JWK format:
   "d": "jnE0-9YvxQtLJEKcyUHU6HQ3Y9nSDnh0NstYJFn7RuI"
 }
 ```
+Figure: issuer_private_jwk
 
 This is the Signer's generated Shared Secret:
-```json mac_shared_secret
+```json
 [100, 109, 91, 184, 139, 20, 107, 86, 1, 252, 86, 159, 126, 251, 228, 4, 35, 177, 75, 96, 11, 205, 144, 189, 42, 95, 135, 170, 107, 58, 99, 142]
 ```
+Figure: mac_shared_secret
 
 This is the Holder's presentation private key in the JWK format:
-```json holder_presentation_jwk
+```json
 {
   "crv": "P-256",
   "kty": "EC",
@@ -521,14 +534,16 @@ This is the Holder's presentation private key in the JWK format:
   "d": "AvyDPl1I4xwjrI2iEOi6DxM9ipJe_h_VUN5OvoKvvW8"
 }
 ```
+Figure: holder_presentation_jwk
 
 The first MAC is generated using the key `issuer_header` and the base64url-encoded issuer protected header, resulting in this octet array:
-```json mac_issuer_header_mac
+```json
 [140, 88, 59, 30, 127, 113, 27, 237, 78, 200, 182, 114, 94, 123, 198, 128, 102, 232, 178, 88, 252, 248, 57, 2, 231, 19, 145, 8, 160, 197, 66, 166]
 ```
+Figure: mac_issuer_header_mac
 
 The issuer generates an array of derived keys with one for each payload by using the shared secret as the key and the index of the payload as the input:
-```json mac_issuer_keys
+```json
 [
  [180, 129, 55, 94, 125, 158, 179, 245, 30, 199, 148, 60, 184, 28, 197, 123, 231, 232, 95, 91, 65, 74, 38, 242, 253, 96, 67, 44, 40, 220, 250, 4],
  [143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137, 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115, 72, 214, 57, 98],
@@ -536,6 +551,7 @@ The issuer generates an array of derived keys with one for each payload by using
  [70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155, 242, 236, 21, 138]
 ]
 ```
+Figure: mac_issuer_keys
 
 The first payload is the string `"Doe"` with the octet sequence of `[34, 68, 111, 101, 34]` and base64url-encoded as `IkRvZSI`.
 
@@ -546,7 +562,7 @@ The third payload is the string `"jaydoe@example.org"` with the octet sequence o
 The fourth payload is the string `42` with the octet sequence of `[52, 50]` and base64url-encoded as `NDI`.
 
 A MAC is generated for each payload using the generated key for its given index, resulting in an array of MACs:
-```json mac_issuer_macs
+```json
 [
  [156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28, 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64, 129, 61, 172],
  [239, 17, 12, 35, 111, 129, 51, 87, 43, 86, 234, 38, 89, 149, 169, 157, 33, 104, 81, 246, 190, 154, 74, 195, 194, 158, 50, 208, 203, 203, 249, 237],
@@ -554,16 +570,18 @@ A MAC is generated for each payload using the generated key for its given index,
  [61, 109, 78, 172, 255, 189, 67, 83, 247, 65, 234, 128, 30, 47, 145, 70, 129, 26, 41, 41, 78, 4, 151, 230, 232, 127, 135, 230, 14, 208, 178, 50]
 ]
 ```
+Figure: mac_issuer_macs
 
 Concatenating the issuer protected header MAC with the array of payload MACs produces a single octet array that is signed using the issuer's stable key, resulting in the following signature:
-```json mac_issuer_signature
+```json
 [120, 172, 15, 230, 138, 230, 150, 139, 241, 196, 79, 134, 122, 43, 149, 11, 253, 104, 58, 199, 49, 87, 32, 64, 237, 50, 86, 155, 153, 58, 63, 116, 245, 130, 136, 197, 164, 207, 232, 238, 106, 171, 246, 98, 149, 254, 22, 1, 114, 187, 233, 168, 116, 173, 211, 208, 234, 245, 76, 238, 143, 157, 83, 202]
 ```
+Figure: mac_issuer_signature
 
 The orignal shared secret octet string is then concatenated to the end of the issuer signature octet string and the result is base64url-encoded as the issuer's proof value.
 
 The final issued JWP in JSON serialization is:
-```json mac_issued_jwp
+```json
 {
   "payloads": [
     "IkRvZSI",
@@ -580,9 +598,10 @@ The final issued JWP in JSON serialization is:
   V_hYBcrvpqHSt09Dq9Uzuj51TymRtW7iLFGtWAfxWn3775AQjsUtgC82QvSpfh6prOmOO"
 }
 ```
+Figure: mac_issued_jwp
 
 The same JWP in compact serialization:
-```text mac_issued_compact
+```text
 eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJ
 naXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJjcnYiOi
 JQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBLZ2Q4ajJ6Y
@@ -592,23 +611,26 @@ FtcGxlLm9yZyI~NDI.eKwP5ormlovxxE-GeiuVC_1oOscxVyBA7TJWm5k6P3T1gojFpM_o7
 mqr9mKV_hYBcrvpqHSt09Dq9Uzuj51TymRtW7iLFGtWAfxWn3775AQjsUtgC82QvSpfh6pr
 OmOO
 ```
+Figure: mac_issued_compact
 
 Next we show the presentation of the JWP with selective disclosure.
 
 We start with this presentation header using a nonce provided by the Verifier:
-```json mac_presentation_header
+```json
 {
   "nonce": "uTEB371l1pzWJl7afB0wi0HWUNk1Le-bComFLxa8K-s"
 }
 ```
+Figure: mac_presentation_header
 
 When signed with the holder's presentation key, the resulting signature octets are:
-```json mac_presentation_header_signature
+```json
 [126, 134, 175, 2, 165, 12, 103, 11, 116, 72, 94, 228, 240, 142, 107, 195, 198, 238, 218, 203, 63, 198, 105, 175, 1, 69, 182, 5, 204, 239, 35, 149, 85, 55, 4, 169, 109, 243, 88, 213, 12, 1, 167, 235, 222, 17, 232, 118, 110, 111, 47, 165, 102, 142, 0, 1, 226, 117, 143, 125, 132, 62, 231, 145]
 ```
+Figure: mac_presentation_header_signature
 
 Then by applying selective disclosure of only the given name and age claims (family name and email hidden, payload array indexes 0 and 2), the holder builds a mixed array of either the payload key (if disclosed) or MAC (if hidden):
-```json mac_presentation_keyormac
+```json
 [
  [156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28, 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64, 129, 61, 172],
  [143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137, 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115, 72, 214, 57, 98],
@@ -616,14 +638,16 @@ Then by applying selective disclosure of only the given name and age claims (fam
  [70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155, 242, 236, 21, 138]
 ]
 ```
+Figure: mac_presentation_keyormac
 
 The final presented proof value is generated by concatenating first the presentation header signature octet string, followed by the issuer signature octet string, then followed by the mixed array of keys and MACs:
-```json mac_presentation_proof
+```json
 [126, 134, 175, 2, 165, 12, 103, 11, 116, 72, 94, 228, 240, 142, 107, 195, 198, 238, 218, 203, 63, 198, 105, 175, 1, 69, 182, 5, 204, 239, 35, 149, 85, 55, 4, 169, 109, 243, 88, 213, 12, 1, 167, 235, 222, 17, 232, 118, 110, 111, 47, 165, 102, 142, 0, 1, 226, 117, 143, 125, 132, 62, 231, 145, 120, 172, 15, 230, 138, 230, 150, 139, 241, 196, 79, 134, 122, 43, 149, 11, 253, 104, 58, 199, 49, 87, 32, 64, 237, 50, 86, 155, 153, 58, 63, 116, 245, 130, 136, 197, 164, 207, 232, 238, 106, 171, 246, 98, 149, 254, 22, 1, 114, 187, 233, 168, 116, 173, 211, 208, 234, 245, 76, 238, 143, 157, 83, 202, 156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28, 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64, 129, 61, 172, 143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137, 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115, 72, 214, 57, 98, 162, 174, 12, 27, 190, 250, 112, 1, 139, 177, 49, 124, 110, 201, 83, 233, 14, 109, 60, 253, 121, 184, 126, 121, 26, 138, 5, 214, 97, 96, 216, 80, 70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155, 242, 236, 21, 138]
 ```
+Figure: mac_presentation_proof
 
 The resulting presented JWP in JSON serialization is:
-```json mac_presentation_jwp
+```json
 {
   "payloads": [
     null,
@@ -646,9 +670,10 @@ The resulting presented JWP in JSON serialization is:
   ZS1iQ29tRkx4YThLLXMifQ"
 }
 ```
+Figure: mac_presentation_jwp
 
 The same JWP in compact serialization:
-```text mac_presentation_compact
+```text
 eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUiLCJ
 naXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJjcnYiOi
 JQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBLZ2Q4ajJ6Y
@@ -661,6 +686,7 @@ h0rdPQ6vVM7o-dU8qcNVp9i-I8qGTcT_8IVxzc7XChWydEictc8xB0QIE9rI-stpy4iuSs1
 xqviYkZn43VDNYd58gNXnQWKXNI1jlioq4MG776cAGLsTF8bslT6Q5tPP15uH55GooF1mFg
 2FBGN7ZpZYL-6kTg22F3YvQhKzeU7uGxZaAx9m2b8uwVig
 ```
+Figure: mac_presentation_compact
 
 ## ZKSnark
 
