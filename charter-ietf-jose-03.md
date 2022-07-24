@@ -4,7 +4,7 @@ The original [JSON Object Signing and Encryption (JOSE) working group](https://d
 - Integrity-protected objects – JSON Web Signatures (JWS) [[RFC 7515](https://www.rfc-editor.org/rfc/rfc7515.html)]
 - Encrypted objects – JSON Web Encryption (JWE) [[RFC 7516](https://www.rfc-editor.org/rfc/rfc7516.html)]
 - Key representations – JSON Web Key (JWK) [[RFC 7517](https://www.rfc-editor.org/rfc/rfc7517.html)]
-- Algorithm definitions used with the above – JSON Web Algorithms (JWA) [[RFC 7518](https://www.rfc-editor.org/rfc/rfc7518.html)]
+- Algorithm definitions – JSON Web Algorithms (JWA) [[RFC 7518](https://www.rfc-editor.org/rfc/rfc7518.html)]
 - Test vectors for the above – Examples of Protecting Content Using JSON Object Signing and Encryption [[RFC 7520](https://www.rfc-editor.org/rfc/rfc7520.html)]
 
 These were used to define the JSON Web Token (JWT) [[RFC 7519](https://www.rfc-editor.org/rfc/rfc7519.html)], which in turn, has seen widespread deployment in areas as diverse as [digital identity](https://openid.net/connect/) and [secure telephony](https://www.ietf.org/blog/stir-action/).
@@ -27,7 +27,7 @@ This group is chartered to work on the following deliverables:
 
 - Standards Track document(s) specifying representation(s) of JSON-based claims and/or proofs enabling selective disclosure of these claims and/or proofs, and that also aims to prevent the ability to correlate by different verifiers.
 
-- Standards Track document(s) specifying algorithms and algorithm identifiers needed for these new JOSE specifications.
+- Standards Track document(s) specifying new algorithms and algorithm identifiers
 
 - Standards Track document(s) specifying how to represent keys for these new algorithms as JSON Web Keys (JWKs).
 
