@@ -27,7 +27,7 @@ This group is chartered to work on the following deliverables:
 
 - Standards Track document(s) specifying representation(s) of JSON-based claims and/or proofs enabling selective disclosure of these claims and/or proofs, and that also aims to prevent the ability to correlate by different verifiers.
 
-- Standards Track document(s) specifying new algorithms and algorithm identifiers
+- Standards Track document(s) specifying new algorithms and algorithm identifiers.
 
 - Standards Track document(s) specifying how to represent keys for these new algorithms as JSON Web Keys (JWKs).
 
