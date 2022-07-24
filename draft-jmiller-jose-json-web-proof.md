@@ -3,11 +3,12 @@ title = "JSON Web Proof"
 abbrev = "json-web-proof"
 ipr = "trust200902"
 workgroup="jose"
+docname = "draft-jmiller-jose-json-web-proof-latest"
 keyword = ["jose", "zkp", "jwp", "jws"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-jmiller-jose-json-web-proof-00"
+value = "draft-jmiller-jose-json-web-proof-latest"
 stream = "IETF"
 status = "standard"
 
