@@ -2,3 +2,4 @@ lib
 *.xml
 *.html
 *.txt
+.DS_Store

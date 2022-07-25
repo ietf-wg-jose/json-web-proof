@@ -35,7 +35,7 @@ const nonce = [185,49,1,223,189,101,214,156,214,38,94,218,124,29,48,139,65,214,8
 
 let jwp_fix = {}
 try {
-    jwp_fix = JSON.parse(readFileSync('draft-jmiller-json-web-proof.json'))
+    jwp_fix = JSON.parse(readFileSync('draft-jmiller-jose-json-web-proof.json'))
 }catch(E){
     console.error(`fixture file loading error:`, E);
     process.exit(1)
@@ -248,5 +248,5 @@ function octet_array(value)
     console.log(pres_serialized.join('.'));
     jwp_fix.jwp_compact_presentation = pres_serialized.join('.');
 
-    writeFileSync('draft-jmiller-json-web-proof.json', JSON.stringify(jwp_fix, 0, 2))
+    writeFileSync('draft-jmiller-jose-json-web-proof.json', JSON.stringify(jwp_fix, 0, 2))
 })();

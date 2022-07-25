@@ -35,7 +35,7 @@ const keyPair = {
 
 let jpa_fix = {}
 try {
-    jpa_fix = JSON.parse(readFileSync('draft-jmiller-json-proof-algorithms.json'))
+    jpa_fix = JSON.parse(readFileSync('draft-jmiller-jose-json-proof-algorithms.json'))
 }catch(E){
     console.error(`fixture file loading error:`, E);
     process.exit(1)
@@ -153,6 +153,6 @@ function octet_array(value)
     console.log(presentation.join('.'));
     jpa_fix.bbs_present_compact = presentation.join('.');
       
-    writeFileSync('draft-jmiller-json-proof-algorithms.json', JSON.stringify(jpa_fix, 0, 2))
+    writeFileSync('draft-jmiller-jose-json-proof-algorithms.json', JSON.stringify(jpa_fix, 0, 2))
 
 })();
