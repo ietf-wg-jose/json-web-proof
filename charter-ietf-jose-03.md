@@ -1,6 +1,6 @@
-# Name: charter-ietf-jose-03
+# Proposed charter for JSON Web Proofs working group - actual working group name TBD
 
-The original [JSON Object Signing and Encryption (JOSE) working group](https://datatracker.ietf.org/doc/charter-ietf-jose/02/) standardized JSON-based representations for:
+The [JSON Object Signing and Encryption (JOSE) working group](https://datatracker.ietf.org/doc/charter-ietf-jose/02/) standardized JSON-based representations for:
 - Integrity-protected objects – JSON Web Signatures (JWS) [[RFC 7515](https://www.rfc-editor.org/rfc/rfc7515.html)]
 - Encrypted objects – JSON Web Encryption (JWE) [[RFC 7516](https://www.rfc-editor.org/rfc/rfc7516.html)]
 - Key representations – JSON Web Key (JWK) [[RFC 7517](https://www.rfc-editor.org/rfc/rfc7517.html)]
@@ -17,11 +17,11 @@ The first limitation is handling selective disclosure (or [data minimization](ht
 
 The second limitation is unlinkability. While it is a common experience to share unique trackable identifiers, such as e-mail addresses, names, and locations, there are also many identity-related exchanges that only involve an access control decision or capability without needing to uniquely identify a person. The only solution today using a JWT is to request a new token per Verifier from the issuer each time, or ahead of time in batches to be able to use a different one per Verifier – such that they are single-use tokens.
 
-Accomplishing both goals efficiently and securely has been a multi-decade research activity for a sizeable academic and applied cryptography community, often referred to as anonymous credentials. Some of the cryptographic techniques developed in this space involve pairing-friendly curves and zero-knowledge proofs (to name just a few). The current JOSE and JWT specifications are not sufficiently general to enable use of these newer techniques.  The reconstituted JSON Object Signing and Encryption (JOSE) working group will build on what came before but also rectify these shortcomings.
+Accomplishing both goals efficiently and securely has been a multi-decade research activity for a sizeable academic and applied cryptography community, often referred to as anonymous credentials. Some of the cryptographic techniques developed in this space involve pairing-friendly curves and zero-knowledge proofs (to name just a few). The current JOSE and JWT specifications are not sufficiently general to enable use of these newer techniques.  This charter is for a working group (name TBD) that will build on what came before but also rectify these shortcomings.
 
 This group is chartered to work on the following deliverables:
 
-- An Informational document detailing Use Cases and Requirements for the new JSON Object Signing and Encryption (JOSE) specifications enabling selective disclosure and zero-knowledge proofs.
+- An Informational document detailing Use Cases and Requirements for new specifications enabling JSON-based selective disclosure and zero-knowledge proofs.
 
 - Standards Track document(s) specifying representation(s) of independently-disclosable integrity-protected sets of data and/or proofs using JSON-based data structures, which also aims to prevent the ability to correlate by different verifiers.
 
@@ -31,10 +31,10 @@ This group is chartered to work on the following deliverables:
 
 - Standards Track document(s) specifying how to represent keys for these new algorithms as JSON Web Keys (JWKs).
 
-- An Informational document defining test vectors for these new JOSE specifications.
+- An Informational document defining test vectors for these new specifications.
 
 - Standards Track document(s) defining CBOR-based representations corresponding to all the above, building upon the COSE and CWT specifications in the same way that the above build on JOSE and JWT.
 
 One or more of these goals may be combined into a single document, in which case the concrete milestones for these goals will be satisfied by the consolidated document(s). 
 
-An informal goal of the working group is close coordination with the [rechartered W3C Verifiable Credentials WG](https://www.w3.org/2022/05/proposed-vc-wg-charter.html), which has taken a dependency on this work for the second version of its Verifiable Credentials specification.
+An informal goal of the working group is close coordination with the [rechartered W3C Verifiable Credentials WG](https://www.w3.org/2022/05/proposed-vc-wg-charter.html), which has taken a dependency on this work for the second version of its Verifiable Credentials specification.  The working group will also coordinate with the [Selective Disclosure JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) work in the OAuth working group.
