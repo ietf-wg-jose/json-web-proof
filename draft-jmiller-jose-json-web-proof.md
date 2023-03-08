@@ -54,7 +54,7 @@ This document defines a new container format similar in purpose and design to JS
 
 The JOSE specifications are very widely deployed and well supported, enabling use of cryptographic primitives with a JSON representation.  JWTs [@RFC7519] are one of the most common representations for identity and access claims.  For instance, they are used by the OpenID Connect and Secure Telephony Identity Revisited (STIR) standards.  Also, JWTs are used by W3C's Verifiable Credentials and are used in many Decentralized Identity systems.
 
-With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting information, and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.
+With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting information and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.
 
 There are a growing number of these cryptographic primitives that support selective disclosure while protecting privacy across multiple presentations.  Examples used in the context of Verifiable Credentials are:
 
@@ -62,7 +62,7 @@ There are a growing number of these cryptographic primitives that support select
 * [IDEMIX](http://www.zurich.ibm.com/idemix)
 * [BBS+](https://github.com/mattrglobal/bbs-signatures)
 * [MerkleDisclosureProof2021](https://github.com/transmute-industries/merkle-disclosure-proof-2021)
-* [Mercural Signatures](https://eprint.iacr.org/2020/979)
+* [Mercurial Signatures](https://eprint.iacr.org/2020/979)
 * [PS Signatures](https://eprint.iacr.org/2015/525.pdf)
 * [U-Prove](https://www.microsoft.com/en-us/research/project/u-prove/)
 * [Spartan](https://github.com/microsoft/Spartan)
@@ -75,14 +75,14 @@ All of these follow the same pattern of taking multiple claims (a.k.a., "attribu
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
 "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@RFC2119] [@RFC8174] when, and only when, they appear in all capitals, as shown here.
 
-The roles of "issuer", "holder", and "verifier", are used as defined by the [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/2021/REC-vc-data-model-20211109/).  The term "presentation" is also used as defined by this source, but the term "credential" is avoided in this specification in order to minimize confusion with other definitions.
+The roles of "issuer", "holder", and "verifier" are used as defined by the [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/2021/REC-vc-data-model-20211109/).  The term "presentation" is also used as defined by this source, but the term "credential" is avoided in this specification in order to minimize confusion with other definitions.
 
 ## Abbreviations
 
 * ZKP: Zero-Knowledge Proof
 * JWP: JSON Web Proof (this specification)
-* JPA: [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-00.html)
-* JPT: [JSON Proof Token](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-token-00.html)
+* JPA: [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-01.html)
+* JPT: [JSON Proof Token](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-token-01.html)
 
 # Background
 
@@ -98,11 +98,11 @@ After validation, the holder uses `present` to apply any selective disclosure ch
 
 While `issue` and `confirm` only occur when a JWP is initially created by the issuer, the `present` and `verify` steps may be safely repeated by a holder on an issued JWP.  The unlinkability of the resulting presented JWP is only provided when supported by the underlying algorithm.
 
-Algorithm definitions that support JWPs are being done in separate companion specifications - just as the JSON Web Algorithms [@RFC7518] specification does for JWS and JWE [@RFC7516].  The [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-00.html) specification defines how an initial set of algorithms are used with JWP.
+Algorithm definitions that support JWPs are being done in separate companion specifications - just as the JSON Web Algorithms [@RFC7518] specification does for JWS and JWE [@RFC7516].  The [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-01.html) specification defines how an initial set of algorithms are used with JWP.
 
 # JWP Forms
 
-A JWP is always in one of two forms, the issued form and the presented form.  The significant difference between the two forms is the number of protected headers.  An issued JWP has only one issuer protected header, while a presented JWP will have both the issuer protected header and an additional presentation protected header.  Each protected headers is a JSON object that is serialized as a UTF-8 encoded octet string.
+A JWP is always in one of two forms: the issued form or the presented form.  The significant difference between the two forms is the number of protected headers.  An issued JWP has only one issuer protected header, while a presented JWP will have both the issuer protected header and an additional presentation protected header.  Each protected header is a JSON object that is serialized as a UTF-8 encoded octet string.
 
 All JWP forms have one or more payloads; each payload is an octet string.  The payloads are arranged in an array for which the ordering is preserved in all serializations.
 
@@ -110,7 +110,7 @@ The JWP proof value is a single octet string that is only generated from and pro
 
 ## Issued Form
 
-When a JWP is first created it is always in the issuer form.  It will contain the issuer protected header along with all of the payloads.
+When a JWP is first created, it is always in the issued form.  It will contain the issuer protected header along with all of the payloads.
 
 The issued form can only be confirmed by a holder as being correctly formed and protected, it is NOT to be verified directly or presented as-is to a verifier.  The holder SHOULD treat an issued JWP as private and use appropriately protected storage.
 
@@ -145,15 +145,15 @@ When an issued JWP is presented, it undergoes a transformation that adds a prese
 
 When supported by the underling JPA, a single issued JWP can be used to safely generate multiple presented JWPs without becoming correlatable.
 
-A JWP may also be single-use, where an issued JWP can only be used once to generate a presented form, any additional presentations would be inherently correlatable.  These are still useful for applications needing only selective disclosure or where new unique issued JWPs can be retrieved easily.
+A JWP may also be single use, where an issued JWP can only be used once to generate a presented form, any additional presentations would be inherently correlatable.  These are still useful for applications needing only selective disclosure or where new unique issued JWPs can be retrieved easily.
 
 ### Presentation Protected Header
 
 The presented form of a JWP MUST contain a presentation protected header.  It is added by the holder and MUST be integrity protected by the underling JPA.
 
-This header is used to ensure a presented JWP can not be replayed and is cryptographically bound to the verifier it was presented to.
+This header is used to ensure that a presented JWP cannot be replayed and is cryptographically bound to the verifier it was presented to.
 
-While there isn't any required values in the presentation header, it MUST contain one or more header values that uniquely identify the presented JWP to both the holder and verifier.  For example, header values that would satisfy this requirement include `nonce` and `aud`.
+While there are not any required values in the presentation header, it MUST contain one or more header values that uniquely identify the presented JWP to both the holder and verifier.  For example, header values that would satisfy this requirement include `nonce` and `aud`.
 
 ### Presentation Payloads
 
@@ -161,7 +161,7 @@ Any one or more payloads may be non-disclosed in a presented JWP.  When a payloa
 
 The disclosed payloads will always be in the same array positions to preserve any index-based references by the application between the issued and presented forms of the JWP.  How the sparse array is represented is specific to the serialization used.
 
-Algorithms MAY support including a proof about a payload in the presentation.  Applications then treat that proven payload the same as any other non-disclosed payload and not include it in the presented array of payloads.
+Algorithms MAY support including a proof about a payload in the presentation.  Applications then treat that proven payload the same as any other non-disclosed payload and do not include it in the presented array of payloads.
 
 ### Presentation Proof
 
@@ -179,7 +179,7 @@ Like JWS, JWP supports both a Compact Serialization and a JSON Serialization.
 
 ## Compact Serialization
 
-The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any non-disclosed payloads are simply left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
+The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any non-disclosed payloads are left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
 
 The headers, concatenated payloads, and proof value are then concatenated with a `.` character to form the final compact serialization.  The issued form will only contain one header and always have three `.` separated parts.  The presented form will always have four `.` separated parts, the issued header, followed by the protected header, then the payloads and the proof.
 
@@ -226,7 +226,7 @@ Notes to be expanded:
 * Requirements for supporting algorithms, see JPA
 * Application interface for verification
 * Data minimization of the protected header
-* In order to prevent accidentally introducing linkability, when an issuer uses the same key with the same grouping of payload types they SHOULD also use the same issuer protected header.  Each of these headers SHOULD have the same base64url-serialized value to avoid any non-deterministic JSON serialization.
+* In order to prevent accidentally introducing linkability, when an issuer uses the same key with the same grouping of payload types, they SHOULD also use the same issuer protected header.  Each of these headers SHOULD have the same base64url-serialized value to avoid any non-deterministic JSON serialization.
 
 
 # IANA Considerations
@@ -243,7 +243,7 @@ The following examples use algorithms defined in JSON Proof Algorithms and also 
 
 This example uses the Single-Use Algorithm as defined in JSON Proof Algorithms to create a JSON Proof Token.  It demonstrates how to apply selective disclosure using an array of traditional JWS-based signatures.  Unlinkability is only achieved by using each JWP one time, as multiple uses are inherently linkable via the traditional ECDSA signature embedded in the proof.
 
-To begin we need two asymmetric keys for Single-Use, one that represents the JPT signers's stable key, and the other is an ephemeral key generated by the Signer just for this JWP.
+To begin, we need two asymmetric keys for Single Use: one that represents the JPT Signer's stable key and the other is an ephemeral key generated by the Signer just for this JWP.
 
 This is the Signer's stable private key used in this example in the JWK format:
 ```json
@@ -375,7 +375,7 @@ The first signature is generated by creating a JWS using the fixed header with t
 ```
 Figure: jwp-issuer-header-signature
 
-This process is repeated for the JPT payloads, using their octet strings as the payload in the ephemeral JWS in order to generate a signature using the *epehemeral key* for each:
+This process is repeated for the JPT payloads, using their octet strings as the payload in the ephemeral JWS in order to generate a signature using the *ephemeral key* for each:
 
 The first payload signature is:
 ```json
@@ -505,7 +505,7 @@ To present this JPT, we first use the following presentation header with a nonce
 ```
 Figure: jwp-presentation-header
 
-Which when serialized results in the following octets:
+When serialized, this results in the following octets:
 ```json
 [123, 34, 110, 111, 110, 99, 101, 34, 58, 34, 117, 84, 69, 66, 51,
  55, 49, 108, 49, 112, 122, 87, 74, 108, 55, 97, 102, 66, 48, 119,
@@ -615,3 +615,15 @@ TBD
 
 * Issuer Protected Header
 * Presentation Protected Header
+
+# Document History
+
+   [[ To be removed from the final specification ]]
+
+  -01
+
+* Applied editorial improvements
+
+  -00
+
+* First individual draft targeting JOSE working group
