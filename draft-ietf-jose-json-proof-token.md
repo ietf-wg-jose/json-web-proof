@@ -4,11 +4,11 @@ abbrev = "json-proof-token"
 ipr = "trust200902"
 workgroup="jose"
 keyword = ["jose", "zkp", "jwp", "jws", "jpt"]
-docname = "draft-jmiller-jose-json-proof-token-latest"
+docname = "draft-ietf-jose-json-proof-token-latest"
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-jmiller-jose-json-proof-token-latest"
+value = "draft-ietf-jose-json-proof-token-latest"
 stream = "IETF"
 status = "standard"
 
