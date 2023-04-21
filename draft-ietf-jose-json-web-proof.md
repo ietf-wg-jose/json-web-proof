@@ -35,7 +35,7 @@ organization = "Ping Identity"
 initials = "M."
 surname = "Jones"
 fullname = "Michael B. Jones"
-organization = "Individual"
+organization = "individual"
   [author.address]
   email = "michael_b_jones@hotmail.com"
   uri = "https://self-issued.info/"
@@ -81,8 +81,8 @@ The roles of "issuer", "holder", and "verifier" are used as defined by the [Veri
 
 * ZKP: Zero-Knowledge Proof
 * JWP: JSON Web Proof (this specification)
-* JPA: [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-01.html)
-* JPT: [JSON Proof Token](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-token-01.html)
+* JPA: [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-ietf-jose-json-proof-algorithms-00.html)
+* JPT: [JSON Proof Token](https://www.ietf.org/archive/id/draft-ietf-jose-json-proof-token-00.html)
 
 # Background
 
@@ -98,7 +98,7 @@ After validation, the holder uses `present` to apply any selective disclosure ch
 
 While `issue` and `confirm` only occur when a JWP is initially created by the issuer, the `present` and `verify` steps may be safely repeated by a holder on an issued JWP.  The unlinkability of the resulting presented JWP is only provided when supported by the underlying algorithm.
 
-Algorithm definitions that support JWPs are being done in separate companion specifications - just as the JSON Web Algorithms [@RFC7518] specification does for JWS and JWE [@RFC7516].  The [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-jmiller-jose-json-proof-algorithms-01.html) specification defines how an initial set of algorithms are used with JWP.
+Algorithm definitions that support JWPs are being done in separate companion specifications - just as the JSON Web Algorithms [@RFC7518] specification does for JWS and JWE [@RFC7516].  The [JSON Proof Algorithms](https://www.ietf.org/archive/id/draft-ietf-jose-json-proof-algorithms-00.html) specification defines how an initial set of algorithms are used with JWP.
 
 # JWP Forms
 
