@@ -27,9 +27,9 @@ organization = "Ping Identity"
 initials = "M."
 surname = "Jones"
 fullname = "Michael B. Jones"
-organization = "Microsoft"
+organization = "Individual"
   [author.address]
-  email = "mbj@microsoft.com"
+  email = "michael_b_jones@hotmail.com"
   uri = "https://self-issued.info/"
 
 %%%
@@ -834,3 +834,11 @@ TBD
 # Acknowledgements
 
 TBD
+
+# Document History
+
+   [[ To be removed from the final specification ]]
+
+-00
+
+* Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
