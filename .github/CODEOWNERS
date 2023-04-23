@@ -1,0 +1,5 @@
+# Automatically generated CODEOWNERS
+# Regenerate with `make update-codeowners`
+draft-ietf-jose-json-proof-algorithms.md jmiller@pingidentity.com michael_b_jones@hotmail.com
+draft-ietf-jose-json-proof-token.md jmiller@pingidentity.com michael_b_jones@hotmail.com
+draft-ietf-jose-json-web-proof.md jmiller@pingidentity.com dwaite+jwp@pingidentity.com michael_b_jones@hotmail.com
