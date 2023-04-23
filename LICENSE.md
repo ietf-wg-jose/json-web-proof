@@ -1,4 +1,4 @@
 # License
 
 See the
-[guidelines for contributions](https://github.com/{GITHUB_USER}/{GITHUB_REPO}/blob/{GITHUB_BRANCH}/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/json-web-proofs/json-web-proofs/blob/main/CONTRIBUTING.md).
