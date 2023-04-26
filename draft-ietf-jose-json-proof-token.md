@@ -32,6 +32,14 @@ organization = "individual"
   email = "michael_b_jones@hotmail.com"
   uri = "https://self-issued.info/"
 
+[[author]]
+initials = "D."
+surname = "Waite"
+fullname = "David Waite"
+organization = "Ping Identity"
+  [author.address]
+  email = "dwaite+jwp@pingidentity.com"
+
 %%%
 
 .# Abstract
