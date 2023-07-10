@@ -213,7 +213,7 @@ See the example in the appendix of the JSON Web Proof draft.
 
 ## BBS
 
-The BBS Signature Scheme under active standards development as a [work item](https://github.com/decentralized-identity/bbs-signature) within the DIF [Applied Cryptography Working Group](https://identity.foundation/working-groups/crypto.html).  Prior to this effort, a [V1 implementation of BBS](https://github.com/mattrglobal/bbs-signatures) has been released and maintained by a community of individuals with notable adoption in multiple early stage decentralized identity projects.
+The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under active development within the CRFG. Prior to this effort work was done under the DIF [Applied Cryptography Working Group](https://identity.foundation/working-groups/crypto.html), an effort to clarify and bring best practices to early prototypes leveraged by multiple early stage decentralized identity projects.
 
 This JSON Proof Algorithm definition for BBS is based on the already released implementation and relies on the provided software API.  A future definition with a different `alg` value will be created to succeed this version as the BBS standardization effort progresses.
 
