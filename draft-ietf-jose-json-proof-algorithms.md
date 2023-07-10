@@ -44,13 +44,13 @@ organization = "Ping Identity"
 
 .# Abstract
 
-The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the [JSON Web Proof (JWP)](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-00.html) and JSON Web Key (JWK) specifications. It defines several IANA registries for these identifiers.
+The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof and JSON Web Key (JWK) specifications. It defines several IANA registries for these identifiers.
 
 {mainmatter}
 
 # Introduction
 
-The [JSON Web Proof (JWP)](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-00.html) draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.
+The JSON Web Proof (JWP) [@!I-D.ietf-jose-json-web-proof] draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.
 
 > Editor's Note: This draft is still early and incomplete, there will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcome at https://github.com/json-web-proofs/json-web-proofs.
 
@@ -476,7 +476,7 @@ The Message Authentication Code (MAC) JPA uses a MAC to both generate ephemeral 
 
 Like the JWS-based JPA, it also does not support unlinkability if the same JWP is presented multiple times and requires an individually issued JWP for each presentation in order to fully protect privacy.  When compared to the JWS approach, using a MAC requires less computation but can result in potentially larger presentation proof values.
 
-The design is intentionally minimal and only involves using a single standardized MAC method instead of a mix of MAC/hash methods or a custom hash-based construct.  It is able to use any published cryptographic MAC method such as [HMAC](https://datatracker.ietf.org/doc/html/rfc2104) or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).  It uses traditional public-key based signatures to verify the authenticity of the issuer and holder.
+The design is intentionally minimal and only involves using a single standardized MAC method instead of a mix of MAC/hash methods or a custom hash-based construct.  It is able to use any published cryptographic MAC method such as HMAC [@?RFC2104] or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).  It uses traditional public-key based signatures to verify the authenticity of the issuer and holder.
 
 ### Holder Setup
 
