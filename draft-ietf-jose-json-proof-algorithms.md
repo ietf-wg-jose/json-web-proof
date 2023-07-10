@@ -818,10 +818,6 @@ GLsTF8bslT6Q5tPP15uH55GooF1mFg2FBGN7ZpZYL-6kTg22F3YvQhKzeU7uGxZaAx9m
 ```
 Figure: mac-presentation-compact
 
-## ZKSnark
-
-> Editor's Note: This is just a placeholder for a future definition that is in the early stages of development as part of the [Decentralized Identity Foundation](https://github.com/decentralized-identity/spartan_zkSNARK_signatures).
-
 # Security Considerations
 
 > Editor's Note: This will follow once the algorithms defined here have become more stable.
