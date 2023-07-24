@@ -23,3 +23,4 @@ draft-ietf-jose-json-web-proof.xml
 package-lock.json
 report.xml
 !requirements.txt
+.idea
