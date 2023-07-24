@@ -620,6 +620,8 @@ TBD
 
    [[ To be removed from the final specification ]]
 
+  -02
+
   -01
 
   * Correct cross-references within group

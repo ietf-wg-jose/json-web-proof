@@ -169,6 +169,12 @@ TBD
 
    [[ To be removed from the final specification ]]
 
+  -02
+
+  -01
+
+  * Correct cross-references within group
+
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-proof-token-01
