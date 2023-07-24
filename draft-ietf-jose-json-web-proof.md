@@ -620,6 +620,11 @@ TBD
 
    [[ To be removed from the final specification ]]
 
+  -01
+
+  * Correct cross-references within group
+
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-web-proof-01
+  * Changed affiliation of Michael B. Jones

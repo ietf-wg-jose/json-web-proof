@@ -847,6 +847,15 @@ TBD
 
    [[ To be removed from the final specification ]]
 
+  -01
+
+  * Correct cross-references within group
+  * Describe `issuer_header` and `presentation_header`
+  * Update BBS references to CFRG drafts
+  * Rework reference to HMAC ( RFC2104 )
+  * Remove ZKSnark placeholder
+
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
+  * Changed affiliation of Michael B. Jones
