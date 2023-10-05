@@ -1,0 +1,11 @@
+{
+    "alg": "BBS",
+    "typ": "JPT",
+    "iss": "https://issuer.example",
+    "claims": [
+        "family_name", 
+        "given_name", 
+        "email", 
+        "age"
+    ]
+}
