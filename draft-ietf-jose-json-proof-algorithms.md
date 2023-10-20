@@ -219,11 +219,13 @@ See the example in the appendix of the JSON Web Proof draft.
 
 The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under active development within the CRFG. Prior to this effort work was done under the DIF [Applied Cryptography Working Group](https://identity.foundation/working-groups/crypto.html), an effort to clarify and bring best practices to early prototypes leveraged by multiple early stage decentralized identity projects.
 
-This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without any verifier being able to correlate those presentations together.
+This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without a verifier being able to correlate those presentations together based on the proof.
 
-### Algorithm
+### Algorithms
 
-The `BBS-DRAFT-3` "alg" parameter value corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_` from [@!I-D.irtf-cfrg-bbs-signatures], used in a JWP issuance form, while `BBS-PROOF-DRAFT-3` corresponds to the same ciphersuite in presentation form.
+The `BBS-DRAFT-3` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_` from [@!I-D.irtf-cfrg-bbs-signatures].
+
+The `BBS-PROOF-DRAFT-3` `alg` parameter value in the presentation protected header corresponds to the same ciphersuite, but used in presentation form.
 
 ### Key Format
 
@@ -234,21 +236,23 @@ The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x`
 <{{./fixtures/build/private-key.jwk}}
 Figure: BBS private key in JWK format
 
-There is no key shared for presentation proofs.
+There is no additional prover key necessary for presentation proofs.
 
 ### Issuance
 
-Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.1], using the issuer's BLS12-381 G2 key pair (as `SK` and `PK`), along with desired protected header and payloads (as the octets header and the octets array messages).
+Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets header and the octets array messages.
 
 The octets result of this operation forms the issuance proof, to be used along with the protected header and payloads to serialize the JWP.
 
-For example, the following figures show an issued JWP:
+As an example, consider following protected header and array of payloads:
 
 <{{./fixtures/template/bbs-issuer-protected-header.json}}
-Figure: Issuer protected header
+Figure: Example issuer protected header
 
 <{{./fixtures/template/bbs-issuer-payloads.json}}
-Figure: Issuer payloads (formatted as JSON array)
+Figure: Example issuer payloads (as members of a JSON array)
+
+These components along with the private issuer key previously given would be representable in the following serializations:
 
 <{{./fixtures/build/bbs-issuer.json.jwp}}
 Figure: Issued JWP (JSON serialization)
@@ -260,7 +264,7 @@ Figure: Issued JWP (compact serialization)
 
 Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.2].
 
-This operation utilizes the issuer's public key as `PK`, the proof as `signature`, the protected header octets as `header` and the array of payload octets as `messages`).
+This operation utilizes the issuer's public key as `PK`, the proof as `signature`, the protected header octets as `header` and the array of payload octets as `messages`.
 
 ### Presentation
 
@@ -268,16 +272,18 @@ Derivation of a presentation is done by the holder using the `ProofGen` operatio
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the issuance payloads as `messages`, and the holder's presentation protected header as `ph`.
 
-The operation also takes a vector of indexes into `messages`, describing which payloads the holder wishes to disclose.
+The operation also takes a vector of indexes into `messages`, describing which payloads the holder wishes to disclose. All payloads are required for proof generation, but only these indicated payloads will be required to be disclosed for later proof verification.
 
 The output of this operation is the presentation proof.
 
 Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of `null` in JSON serialization and a zero-length string in compact serialization.
 
-For example, the following figures show a presented JWP:
+For example, given the following presentation header:
 
 <{{./fixtures/template/bbs-prover-presentation-header.json}}
 Figure: Holder Presentation Header
+
+The prover decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:
 
 <{{./fixtures/build/bbs-prover.json.jwp}}
 Figure: Presentation JWP (JSON serialization)
@@ -664,7 +670,7 @@ TBD
 
 # Acknowledgements
 
-TBD
+The BBS examples were generated using the library at https://github.com/mattrglobal/pairing_crypto .
 
 # Document History
 
@@ -675,6 +681,5 @@ TBD
   * Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
 
   -02
-  * Add new `BBS` algorithm based on [@!I-D.irtf-cfrg-bbs-signatures] changes in draft 3.
+  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on [@!I-D.irtf-cfrg-bbs-signatures], Draft 3.
   * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
-
