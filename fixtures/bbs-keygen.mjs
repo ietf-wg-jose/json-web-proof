@@ -13,9 +13,9 @@ try { await fs.mkdir("build");  } catch (e) { /* ignore */ }
 await fs.writeFile("build/private-key.jwk",
     JSON.stringify({
         kty: "OKP",
-        alg: "BBS",
+        alg: "BBS-DRAFT-3",
         use: "proof",
-        crv: "BLS12381G2",
+        crv: "BLs12381G2",
         x: encode(keys.publicKey),
         d: encode(keys.secretKey)
     }, null, 2));
@@ -23,8 +23,8 @@ await fs.writeFile("build/private-key.jwk",
 await fs.writeFile("build/public-key.jwk",
     JSON.stringify({
         kty: "OKP",
-        alg: "BBS",
+        alg: "BBS-DRAFT-3",
         use: "proof",
-        crv: "BLS12381G2",
+        crv: "BLs12381G2",
         x: encode(keys.publicKey)
     }, null, 2));

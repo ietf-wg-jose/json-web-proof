@@ -223,16 +223,18 @@ This algorithm supports both selective disclosure and unlinkability, enabling th
 
 ### Algorithm
 
-The `BBS` "alg" parameter value corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_` in a JWP in issuance form, while `BBS-PROOF` corresponds to the same ciphersuite in presentation form.
+The `BBS-DRAFT-3` "alg" parameter value corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_` from [@!I-D.irtf-cfrg-bbs-signatures], used in a JWP issuance form, while `BBS-PROOF-DRAFT-3` corresponds to the same ciphersuite in presentation form.
 
 ### Key format
 
-A `BBS` key is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, section 3.3]
+The key used for the `BBS-DRAFT-3` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, section 3.3]
 
-The JWK form of this key is an `OKP` type with a curve of `BLS12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_g2`.
+The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_g2`. The use of this curve is described in [@!I-D.looker-cose-bls-key-representations].
 
 <{{./fixtures/build/private-key.jwk}}
 Figure: BBS private key in JWK format
+
+There is no key shared for presentation proofs.
 
 ### Issuance
 
@@ -671,3 +673,8 @@ TBD
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
+
+  -02
+  * Add new `BBS` algorithm based on [@!I-D.irtf-cfrg-bbs-signatures] changes in draft 3.
+  * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
+

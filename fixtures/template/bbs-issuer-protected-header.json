@@ -1,5 +1,5 @@
 {
-    "alg": "BBS",
+    "alg": "BBS-DRAFT-3",
     "typ": "JPT",
     "iss": "https://issuer.example",
     "claims": [
