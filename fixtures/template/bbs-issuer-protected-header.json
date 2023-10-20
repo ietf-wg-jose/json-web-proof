@@ -1,0 +1,11 @@
+{
+    "alg": "BBS-DRAFT-3",
+    "typ": "JPT",
+    "iss": "https://issuer.example",
+    "claims": [
+        "family_name", 
+        "given_name", 
+        "email", 
+        "age"
+    ]
+}

@@ -219,256 +219,85 @@ See the example in the appendix of the JSON Web Proof draft.
 
 The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under active development within the CRFG. Prior to this effort work was done under the DIF [Applied Cryptography Working Group](https://identity.foundation/working-groups/crypto.html), an effort to clarify and bring best practices to early prototypes leveraged by multiple early stage decentralized identity projects.
 
-This JSON Proof Algorithm definition for BBS is based on the already released implementation and relies on the provided software API.  A future definition with a different `alg` value will be created to succeed this version as the BBS standardization effort progresses.
+This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without a verifier being able to correlate those presentations together based on the proof.
 
-This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without any verifier being able to correlate those presentations together.
+### Algorithms
 
-### BLS Curve
+The `BBS-DRAFT-3` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_` from [@!I-D.irtf-cfrg-bbs-signatures].
 
-The pairing friendly elliptic curve used for the BBS software implementation is part of the BLS family with an embedding degree of 12 over a 381-bit prime field.  For this JPA, only the group G2 is used.
+The `BBS-PROOF-DRAFT-3` `alg` parameter value in the presentation protected header corresponds to the same ciphersuite, but used in presentation form.
 
-In the implementation the method used to generate the key pairs is `generateBls12381G2KeyPair()`.
+### Key Format
 
-### Messages
+The key used for the `BBS-DRAFT-3` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.3]
 
-BBS is a multi-message scheme and operates on an array of individual messages for signing and proof generation.  Each message is a single binary octet string.  The BBS implementation uses a hash-to-curve method to map each message to a point.
+The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_g2`. The use of this curve is described in [@!I-D.looker-cose-bls-key-representations].
 
-### Issuer Protected Header
+<{{./fixtures/build/private-key.jwk}}
+Figure: BBS private key in JWK format
 
-The UTF-8 octet string of the issuer protected header is the first message in the input array at index 0.
-
-### Payloads
-
-The octet strings of each payload are placed into the BBS message array following the issuer protected header message.  For example, the first payload is at index 1 of the array and the last payload is always the last message in the array.
-
-In future versions of this algorithm, there will be additional methods defined for transforming a payload into a point such that additional Zero-Knowledge Proof types can be supported by the holder such as range and membership predicates.
+There is no additional prover key necessary for presentation proofs.
 
 ### Issuance
 
-The issuer's BLS12-381 G2 Stable Key is used to sign the completed message array input containing the octet strings of the issuer protected header and every payload.  The result is a signature octet string that is used as the initial JWP proof value.
+Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets header and the octets array messages.
 
-In the implementation, the method used to perform the signing is `blsSign({keyPair, [header, payload1, payload2, ...]})` and returns a binary signature value.
+The octets result of this operation forms the issuance proof, to be used along with the protected header and payloads to serialize the JWP.
+
+As an example, consider following protected header and array of payloads:
+
+<{{./fixtures/template/bbs-issuer-protected-header.json}}
+Figure: Example issuer protected header
+
+<{{./fixtures/template/bbs-issuer-payloads.json}}
+Figure: Example issuer payloads (as members of a JSON array)
+
+These components along with the private issuer key previously given would be representable in the following serializations:
+
+<{{./fixtures/build/bbs-issuer.json.jwp}}
+Figure: Issued JWP (JSON serialization)
+
+<{{./fixtures/build/bbs-issuer.compact.jwp}}
+Figure: Issued JWP (compact serialization)
+
+### Issuance Proof Verification
+
+Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.2].
+
+This operation utilizes the issuer's public key as `PK`, the proof as `signature`, the protected header octets as `header` and the array of payload octets as `messages`.
 
 ### Presentation
 
-The holder must decode the issuer protected header and payload values in order to generate the identical message array that the issuer used.
+Derivation of a presentation is done by the holder using the `ProofGen` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.3].
 
-To generate a presented JWP for a verifier, the holder must use a cryptographic nonce that is provided by that verifier as input.  This nonce MUST be a 32-byte octet string that the verifier generated by a secure RNG.  How this nonce value is communicated to the holder is out of scope of this presentation.  The `nonce` claim in the presentation protected header is used to store the verifier's given nonce value.
+This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the issuance payloads as `messages`, and the holder's presentation protected header as `ph`.
 
-The holder also applies selective disclosure preferences by creating an array of indices of which messages in the input array are to be revealed to the verifier.  The revealed indices MUST include the value `0` so that the issuer protected header message is always revealed to the verifier.
+The operation also takes a vector of indexes into `messages`, describing which payloads the holder wishes to disclose. All payloads are required for proof generation, but only these indicated payloads will be required to be disclosed for later proof verification.
 
-The result of creating a proof is an octet string that is used as the presented JWP proof value.
+The output of this operation is the presentation proof.
 
-In the implementation, the method used to generate the proof is `blsCreateProof({signedProof, publicKey, [issuer_header, payload1, payload2, ...], presentation_header, [0, 2, ...])`.
+Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of `null` in JSON serialization and a zero-length string in compact serialization.
 
-### Verification
+For example, given the following presentation header:
 
-The verifier decodes the JWP issuer protected header and payload values into a messages array, skipping any non-revealed payloads.  The current BBS implementation embeds the revealed indices into the output proof value, so the verification messages array only needs to include the disclosed messages.
+<{{./fixtures/template/bbs-prover-presentation-header.json}}
+Figure: Holder Presentation Header
 
-In the implementation, the method used to verify the proof is `blsVerifyProof({verifyProof, publicKey, [issuer_header, payload2, ...], presentation_header)`.
+The prover decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:
 
-### JPA Registration
+<{{./fixtures/build/bbs-prover.json.jwp}}
+Figure: Presentation JWP (JSON serialization)
 
-Proposed JWP `alg` value for BBS based on the software implementation is "BBS-X".
+<{{./fixtures/build/bbs-prover.compact.jwp}}
+Figure: Presentation JWP (compact serialization)
 
-### Example
+### Presentation Verification
 
-The following example uses the given BLS12-384 key-pair:
+Verification of a presentation is done by the holder using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4.4].
 
-Public:
-```json
-[179, 209, 122, 60, 230, 37, 188, 86, 19, 19, 4, 36, 240, 230, 79,
-178, 230, 147, 9, 60, 239, 41, 233, 167, 190, 252, 154, 35, 39, 201,
-238, 73, 77, 228, 20, 47, 109, 174, 15, 168, 187, 145, 126, 85, 83,
-151, 48, 30, 13, 237, 92, 179, 124, 181, 211, 204, 187, 222, 229,
-234, 182, 94, 60, 157, 19, 148, 162, 48, 185, 134, 177, 168, 68,
-115, 167, 48, 92, 181, 168, 53, 52, 246, 201, 112, 103, 23, 159,
-138, 225, 13, 165, 171, 251, 112, 163, 96]
-```
-Figure: bbs-issuer-public-octets
+This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the holder's presentation protected header as `ph`, and the payloads as `disclosed_messages`.
 
-Private:
-```json
-[72, 125, 227, 97, 150, 148, 186, 145, 110, 46, 135, 232, 104, 204,
-128, 242, 73, 151, 72, 162, 0, 54, 139, 146, 221, 137, 34, 74, 1,
-42, 140, 206]
-```
-Figure: bbs-issuer-private-octets
-
-The protected header used is:
-```json
-{
-  "iss": "https://issuer.example",
-  "claims": [
-    "family_name",
-    "given_name",
-    "email",
-    "age"
-  ],
-  "typ": "JPT",
-  "alg": "BBS-X"
-}
-```
-Figure: bbs-issuer-protected-header
-
-The first payload is the string `"Doe"` with the octet sequence of `[ 34, 68, 111, 101, 34 ]` and base64url-encoded as `IkRvZSI`.
-
-The second payload is the string `"Jay"` with the octet sequence of `[ 34, 74, 97, 121, 34 ]` and base64url-encoded as `IkpheSI`.
-
-The third payload is the string `"jaydoe@example.org"` with the octet sequence of `[ 34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34 ]` and base64url-encoded as `ImpheWRvZUBleGFtcGxlLm9yZyI`.
-
-The fourth payload is the string `42` with the octet sequence of `[ 52, 50 ]` and base64url-encoded as `NDI`.
-
-The message array used as an input to the BLS implementation is:
-
-```json
-[
- [123, 34, 105, 115, 115, 34, 58, 34, 104, 116, 116, 112, 115, 58,
-  47, 47, 105, 115, 115, 117, 101, 114, 46, 101, 120, 97, 109, 112,
-  108, 101, 34, 44, 34, 99, 108, 97, 105, 109, 115, 34, 58, 91, 34,
-  102, 97, 109, 105, 108, 121, 95, 110, 97, 109, 101, 34, 44, 34,
-  103, 105, 118, 101, 110, 95, 110, 97, 109, 101, 34, 44, 34, 101,
-  109, 97, 105, 108, 34, 44, 34, 97, 103, 101, 34, 93, 44, 34, 116,
-  121, 112, 34, 58, 34, 74, 80, 84, 34, 44, 34, 97, 108, 103, 34, 58,
-  34, 66, 66, 83, 45, 88, 34, 125],
- [ 34, 68, 111, 101, 34 ],
- [ 34, 74, 97, 121, 34 ],
- [34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108,
- 101, 46, 111, 114, 103, 34], [ 52, 50 ]
-]
-```
-Figure: bbs-issuer-messages
-
-Using the above inputs, the output of the `blsSign()` call is the octet string:
-```json
-[180, 3, 66, 254, 9, 205, 20, 88, 175, 82, 90, 34, 26, 178, 80, 225,
-91, 209, 120, 23, 185, 159, 76, 73, 189, 236, 115, 141, 31, 83, 43,
-42, 186, 247, 196, 236, 70, 19, 123, 80, 249, 146, 237, 172, 48,
-208, 193, 62, 100, 59, 154, 22, 52, 165, 184, 250, 71, 52, 106, 233,
-26, 240, 251, 214, 122, 133, 61, 241, 70, 127, 83, 240, 112, 130,
-181, 151, 160, 214, 43, 213, 83, 211, 238, 191, 1, 65, 135, 147,
-226, 197, 24, 104, 183, 9, 141, 207, 21, 106, 136, 161, 115, 142, 3,
-196, 155, 52, 174, 205, 212, 13, 174, 220]
-```
-Figure: bbs-issuer-signature
-
-The resulting signed JWP in JSON serialization is:
-```json
-{
-  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1z
-  IjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cC
-  I6IkpQVCIsImFsZyI6IkJCUy1YIn0",
-  "payloads": [
-    "IkRvZSI",
-    "IkpheSI",
-    "ImpheWRvZUBleGFtcGxlLm9yZyI",
-    "NDI"
-  ],
-  "proof": "tANC_gnNFFivUloiGrJQ4VvReBe5n0xJvexzjR9TKyq698TsRhN7UPmS
-  7aww0ME-ZDuaFjSluPpHNGrpGvD71nqFPfFGf1PwcIK1l6DWK9VT0-6_AUGHk-LFGG
-  i3CY3PFWqIoXOOA8SbNK7N1A2u3A"
-}
-```
-Figure: bbs-issued-jwp
-
-The same JWP in compact serialization:
-```text
-ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFX
-MXpJanBiSW1aaGJXbHNlVjl1WVcxbElpd2laMmwyWlc1ZmJtRnRaU0lzSW1WdFlXbHNJ
-aXdpWVdkbElsMHNJblI1Y0NJNklrcFFWQ0lzSW1Gc1p5STZJa0pDVXkxWUluMCI.IkRv
-ZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.tANC_gnNFFivUloiGrJQ4VvR
-eBe5n0xJvexzjR9TKyq698TsRhN7UPmS7aww0ME-ZDuaFjSluPpHNGrpGvD71nqFPfFG
-f1PwcIK1l6DWK9VT0-6_AUGHk-LFGGi3CY3PFWqIoXOOA8SbNK7N1A2u3A
-```
-Figure: bbs-issued-compact
-
-For verification, a nonce is needed:
-```json
-[137, 103, 248, 147, 211, 133, 97, 190, 130, 157, 110, 64, 244, 250,
-100, 151, 7, 36, 164, 109, 146, 195, 190, 75, 32, 255, 6, 128, 44,
-128, 96, 9]
-```
-Figure: bbs-present-nonce
-
-To generate a proof, the `blsCreateProof()` method is used with a revealed indexes array argument of `[ 0, 2, 4 ]` and results in the octet string:
-```json
-[0, 5, 21, 169, 73, 242, 49, 111, 234, 26, 186, 194, 204, 174, 241,
-30, 165, 50, 117, 236, 144, 95, 147, 186, 219, 190, 135, 205, 66,
-179, 227, 86, 151, 246, 174, 234, 204, 46, 171, 249, 225, 198, 135,
-81, 131, 225, 141, 217, 47, 217, 127, 176, 15, 98, 110, 233, 74,
-220, 230, 27, 201, 117, 114, 211, 41, 183, 44, 64, 185, 45, 140,
-153, 49, 73, 199, 93, 208, 248, 212, 175, 106, 199, 83, 255, 128,
-77, 152, 250, 166, 101, 78, 248, 10, 106, 236, 24, 238, 21, 34, 134,
-128, 186, 132, 153, 123, 86, 88, 156, 246, 203, 23, 253, 248, 217,
-233, 1, 168, 208, 12, 193, 222, 142, 90, 28, 223, 241, 130, 164,
-144, 83, 0, 15, 165, 25, 156, 145, 243, 39, 88, 249, 246, 185, 152,
-3, 220, 72, 180, 0, 0, 0, 116, 133, 180, 58, 53, 105, 120, 124, 227,
-160, 78, 229, 74, 209, 111, 164, 101, 183, 86, 122, 212, 126, 90,
-23, 228, 109, 184, 73, 75, 114, 177, 142, 178, 89, 107, 100, 189,
-187, 74, 143, 167, 218, 186, 193, 189, 247, 14, 134, 40, 0, 0, 0, 2,
-5, 130, 120, 86, 255, 28, 33, 145, 20, 149, 195, 8, 4, 200, 212,
-178, 67, 147, 230, 174, 192, 9, 158, 94, 179, 144, 63, 60, 82, 255,
-216, 4, 85, 108, 209, 194, 209, 177, 106, 69, 215, 235, 177, 83,
-244, 1, 195, 102, 135, 99, 20, 121, 7, 252, 26, 187, 206, 16, 250,
-134, 1, 255, 197, 92, 130, 105, 241, 175, 35, 22, 210, 101, 158,
-113, 214, 222, 3, 4, 168, 188, 251, 34, 213, 211, 224, 150, 147, 38,
-164, 229, 151, 226, 223, 188, 181, 180, 204, 228, 58, 107, 55, 232,
-148, 180, 199, 42, 181, 127, 59, 233, 234, 188, 0, 0, 0, 4, 93, 196,
-31, 38, 151, 105, 231, 46, 228, 46, 86, 196, 136, 212, 175, 170, 83,
-21, 78, 19, 224, 211, 122, 7, 92, 71, 17, 171, 66, 122, 56, 130, 45,
-19, 172, 217, 65, 63, 246, 39, 6, 30, 77, 132, 86, 36, 41, 3, 234,
-72, 146, 200, 101, 150, 159, 108, 140, 15, 195, 57, 249, 154, 191,
-204, 91, 30, 159, 32, 157, 24, 3, 110, 90, 102, 99, 206, 42, 58, 1,
-181, 215, 85, 29, 32, 131, 46, 76, 25, 5, 43, 203, 32, 215, 167,
-169, 108, 56, 174, 146, 51, 174, 40, 190, 22, 37, 93, 156, 245,
-208, 26, 55, 180, 135, 115, 70, 96, 106, 243, 213, 131, 196, 63,
-165, 42, 157, 22, 94, 46]
-```
-Figure: bbs-present-proof
-
-The resulting verifiable JWP in JSON serialization is:
-```json
-{
-  "protected": "eyJpc3MiOiJodHRwczovL2lzc3Vlci5leGFtcGxlIiwiY2xhaW1z
-  IjpbImZhbWlseV9uYW1lIiwiZ2l2ZW5fbmFtZSIsImVtYWlsIiwiYWdlIl0sInR5cC
-  I6IkpQVCIsImFsZyI6IkJCUy1YIn0",
-  "payloads": [
-    null,
-    "IkpheSI",
-    null,
-    "NDI"
-  ],
-  "proof": "AAUVqUnyMW_qGrrCzK7xHqUydeyQX5O6276HzUKz41aX9q7qzC6r-eHG
-  h1GD4Y3ZL9l_sA9ibulK3OYbyXVy0ym3LEC5LYyZMUnHXdD41K9qx1P_gE2Y-qZlTv
-  gKauwY7hUihoC6hJl7Vlic9ssX_fjZ6QGo0AzB3o5aHN_xgqSQUwAPpRmckfMnWPn2
-  uZgD3Ei0AAAAdIW0OjVpeHzjoE7lStFvpGW3VnrUfloX5G24SUtysY6yWWtkvbtKj6
-  fausG99w6GKAAAAAIFgnhW_xwhkRSVwwgEyNSyQ5PmrsAJnl6zkD88Uv_YBFVs0cLR
-  sWpF1-uxU_QBw2aHYxR5B_wau84Q-oYB_8VcgmnxryMW0mWecdbeAwSovPsi1dPglp
-  MmpOWX4t-8tbTM5DprN-iUtMcqtX876eq8AAAABF3EHyaXaecu5C5WxIjUr6pTFU4T
-  4NN6B1xHEatCejiCLROs2UE_9icGHk2EViQpA-pIkshllp9sjA_DOfmav8xbHp8gnR
-  gDblpmY84qOgG111UdIIMuTBkFK8sg16epbDiukjOuKL4WJV2c9dAaN7SHc0ZgavPV
-  g8Q_pSqdFl4u"
-}
-```
-Figure: bbs-present-jwp
-
-The same JWP in compact serialization:
-```text
-ImV5SnBjM01pT2lKb2RIUndjem92TDJsemMzVmxjaTVsZUdGdGNHeGxJaXdpWTJ4aGFX
-MXpJanBiSW1aaGJXbHNlVjl1WVcxbElpd2laMmwyWlc1ZmJtRnRaU0lzSW1WdFlXbHNJ
-aXdpWVdkbElsMHNJblI1Y0NJNklrcFFWQ0lzSW1Gc1p5STZJa0pDVXkxWUluMCI.~Ikp
-heSI~~NDI.AAUVqUnyMW_qGrrCzK7xHqUydeyQX5O6276HzUKz41aX9q7qzC6r-eHGh1
-GD4Y3ZL9l_sA9ibulK3OYbyXVy0ym3LEC5LYyZMUnHXdD41K9qx1P_gE2Y-qZlTvgKau
-wY7hUihoC6hJl7Vlic9ssX_fjZ6QGo0AzB3o5aHN_xgqSQUwAPpRmckfMnWPn2uZgD3E
-i0AAAAdIW0OjVpeHzjoE7lStFvpGW3VnrUfloX5G24SUtysY6yWWtkvbtKj6fausG99w
-6GKAAAAAIFgnhW_xwhkRSVwwgEyNSyQ5PmrsAJnl6zkD88Uv_YBFVs0cLRsWpF1-uxU_
-QBw2aHYxR5B_wau84Q-oYB_8VcgmnxryMW0mWecdbeAwSovPsi1dPglpMmpOWX4t-8tb
-TM5DprN-iUtMcqtX876eq8AAAABF3EHyaXaecu5C5WxIjUr6pTFU4T4NN6B1xHEatCej
-iCLROs2UE_9icGHk2EViQpA-pIkshllp9sjA_DOfmav8xbHp8gnRgDblpmY84qOgG111
-UdIIMuTBkFK8sg16epbDiukjOuKL4WJV2c9dAaN7SHc0ZgavPVg8Q_pSqdFl4u
-```
-Figure: bbs-present-compact
-
+In addition, the `disclosed_indexes` vector value is calculated from the payloads. For each absent value in payloads (`null` in JSON serialization or a zero-length string in compact serialization), the index of that payload is added to this vector.
 
 ## Message Authentication Code
 
@@ -841,7 +670,7 @@ TBD
 
 # Acknowledgements
 
-TBD
+The BBS examples were generated using the library at https://github.com/mattrglobal/pairing_crypto .
 
 # Document History
 
@@ -850,3 +679,7 @@ TBD
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
+
+  -02
+  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on [@!I-D.irtf-cfrg-bbs-signatures], Draft 3.
+  * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
