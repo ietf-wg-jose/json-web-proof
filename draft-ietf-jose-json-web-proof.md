@@ -137,7 +137,7 @@ JPAs MAY provide software interfaces that perform the encoding of individual pay
 
 The proof value is a binary octet string that is opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
 
-The issuer proof is only for the holder to perform validation, checking that the issuer header and all payloads are properly encoded and protected by the given proof.
+The issuer proof is used by the holder to perform validation, checking that the issuer header and all payloads are properly encoded and protected by the given proof.
 
 ## Presented Form
 
