@@ -683,7 +683,11 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   -01
 
-  * Published -01 versions of JWP specifications.
+  * Correct cross-references within group
+  * Describe `issuer_header` and `presentation_header`
+  * Update BBS references to CFRG drafts
+  * Rework reference to HMAC ( RFC2104 )
+  * Remove ZKSnark placeholder
 
   -00
 

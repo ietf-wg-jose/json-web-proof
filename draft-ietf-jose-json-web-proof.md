@@ -626,7 +626,7 @@ TBD
 
   -01
 
-  * Published -01 versions of JWP specifications.
+  * Correct cross-references within group.
 
   -00
 
