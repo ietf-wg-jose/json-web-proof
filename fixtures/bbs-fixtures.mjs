@@ -15,6 +15,26 @@ const protectedHeader = Buffer.from(JSON.stringify(protectedHeaderJSON), "UTF-8"
 const payloads = payloadsJSON.map((item)=>Buffer.from(JSON.stringify(item), "UTF-8"));
 const presentationHeader = Buffer.from(JSON.stringify(presentationHeaderJSON), "UTF-8");
 
+export function lineWrap(str, paddingLength) {
+    if (!paddingLength) {
+        paddingLength = 0;
+    }
+    var output = [];
+    for (var line of str.split('\n')) {
+        if (line.length > 69) {
+            while (line.length > 69) {
+                output.push(line.substring(0, 69));
+                line = Array(paddingLength).join(" ") + line.substring(69);
+            }
+            output.push(line);
+        }
+        else {
+            output.push(line);
+        }
+    }
+    return output.join("\n");
+}
+
 // calculate signature
 const signature = await pairing.bbs.bls12381_sha256.sign({
     publicKey: keyPair.publicKey, 
@@ -32,6 +52,7 @@ const compactSerialization = [
     encode(signature)
 ].join(".");
 await fs.writeFile("build/bbs-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
+await fs.writeFile("build/bbs-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
 
 // JSON Serialization
 const jsonSerialziation = {
@@ -40,7 +61,9 @@ const jsonSerialziation = {
     proof: encode(signature)
 };
 
-await fs.writeFile("build/bbs-issuer.json.jwp", JSON.stringify(jsonSerialziation, null, 2), {encoding: "UTF-8"});
+let jsonSerializationStr = JSON.stringify(jsonSerialziation, null, 2);
+await fs.writeFile("build/bbs-issuer.json.jwp", jsonSerializationStr);
+await fs.writeFile("build/bbs-issuer.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));
 
 // Generate proof, selectively disclosing only name and age
 var proof = await pairing.bbs.bls12381_sha256.deriveProof({
@@ -69,6 +92,7 @@ const compactProverSerialization = [
     encode(proof)
 ].join(".");
 await fs.writeFile("build/bbs-prover.compact.jwp", compactProverSerialization, {encoding: "UTF-8"});
+await fs.writeFile("build/bbs-prover.compact.jwp.wrapped", lineWrap(compactProverSerialization, 0));
 
 // JSON Serialization
 const jsonProverSerialization = {
@@ -78,4 +102,6 @@ const jsonProverSerialization = {
     proof: encode(proof)
 };
 
-await fs.writeFile("build/bbs-prover.json.jwp", JSON.stringify(jsonProverSerialization, null, 2), {encoding: "UTF-8"});
+var jsonProverSerializationStr = JSON.stringify(jsonProverSerialization, null, 2);
+await fs.writeFile("build/bbs-prover.json.jwp", jsonProverSerializationStr, {encoding: "UTF-8"});
+await fs.writeFile("build/bbs-prover.compact.json.jwp", lineWrap(jsonProverSerializationStr, 8), {encoding: "UTF-8"});

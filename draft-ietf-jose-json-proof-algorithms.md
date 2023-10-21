@@ -233,7 +233,7 @@ The key used for the `BBS-DRAFT-3` algorithm is an elliptic curve-based key pair
 
 The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_g2`. The use of this curve is described in [@!I-D.looker-cose-bls-key-representations].
 
-<{{./fixtures/build/private-key.jwk}}
+<{{./fixtures/build/private-key.jwk.wrapped}}
 Figure: BBS private key in JWK format
 
 There is no additional prover key necessary for presentation proofs.
@@ -254,10 +254,10 @@ Figure: Example issuer payloads (as members of a JSON array)
 
 These components along with the private issuer key previously given would be representable in the following serializations:
 
-<{{./fixtures/build/bbs-issuer.json.jwp}}
+<{{./fixtures/build/bbs-issuer.json.jwp.wrapped}}
 Figure: Issued JWP (JSON serialization)
 
-<{{./fixtures/build/bbs-issuer.compact.jwp}}
+<{{./fixtures/build/bbs-issuer.compact.jwp.wrapped}}
 Figure: Issued JWP (compact serialization)
 
 ### Issuance Proof Verification
@@ -285,10 +285,10 @@ Figure: Holder Presentation Header
 
 The prover decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:
 
-<{{./fixtures/build/bbs-prover.json.jwp}}
+<{{./fixtures/build/bbs-prover.json.jwp.wrapped}}
 Figure: Presentation JWP (JSON serialization)
 
-<{{./fixtures/build/bbs-prover.compact.jwp}}
+<{{./fixtures/build/bbs-prover.compact.jwp.wrapped}}
 Figure: Presentation JWP (compact serialization)
 
 ### Presentation Verification
