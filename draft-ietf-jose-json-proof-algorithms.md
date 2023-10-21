@@ -677,6 +677,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
    [[ To be removed from the final specification ]]
 
   -02
+
   * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on [@!I-D.irtf-cfrg-bbs-signatures], Draft 3.
   * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
 
