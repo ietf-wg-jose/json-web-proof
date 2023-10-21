@@ -101,7 +101,7 @@ Using a JSON Proof Token requires combining information from two sources: the cl
 
 When the claims array is stored in the header, any variations of it are disclosed to the verifier and can be used to correlate and link usages.  Given the privacy design considerations around linkability it is recommended that the claims are defined external to an individual JPT and either referenced or known by the application context.
 
-In order to facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.
+In order to facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.
 
 If there is an associated JWK containing the signing key information, the `claims` key is also registered there as a convenient location for the claim names.
 
@@ -119,6 +119,15 @@ The following is an example JWP Protected Header that includes a claims array:
     "given_name",
     "email"
   ]
+}
+```
+
+The following is an example JWP Protected Header that includes a `cid`:
+```json
+{
+  "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
+  "alg": "BBS",
+  "cid": "guA8PAI14Gkn4273f1rR606yMbRMFg4y"
 }
 ```
 
