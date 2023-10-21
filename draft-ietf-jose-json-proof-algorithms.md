@@ -27,7 +27,7 @@ organization = "Ping Identity"
 initials = "M."
 surname = "Jones"
 fullname = "Michael B. Jones"
-organization = "individual"
+organization = "Self-Issued Consulting"
   [author.address]
   email = "michael_b_jones@hotmail.com"
   uri = "https://self-issued.info/"
