@@ -111,7 +111,7 @@ The following is an example JWP Protected Header that includes a claims array:
 ```json
 {
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
-  "alg": "BBS",
+  "alg": "BBS-DRAFT-3",
   "claims": [
     "iat",
     "exp",
@@ -176,3 +176,7 @@ TBD
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-proof-token-01
+
+  -02
+
+  * Update example to use the current BBS algorithm
