@@ -60,7 +60,7 @@ There are a growing number of these cryptographic primitives that support select
 
 * [CL Signatures](https://eprint.iacr.org/2012/562.pdf)
 * [IDEMIX](http://www.zurich.ibm.com/idemix)
-* [BBS+](https://github.com/mattrglobal/bbs-signatures)
+* BBS signatures, described in [@?I-D.irtf-cfrg-bbs-signatures]
 * [MerkleDisclosureProof2021](https://github.com/transmute-industries/merkle-disclosure-proof-2021)
 * [Mercurial Signatures](https://eprint.iacr.org/2020/979)
 * [PS Signatures](https://eprint.iacr.org/2015/525.pdf)
@@ -123,7 +123,7 @@ Every issuer protected header MUST have, at minimum, an `alg` value that identif
 For example:
 ```json
 {
-    "alg":"BBS-X"
+    "alg":"BBS-DRAFT-3"
 }
 ```
 
@@ -605,7 +605,7 @@ Figure: jwp-compact-presentation
 
 ## Example Multi-Use JWP
 
-See JPA BBS-X example.
+See JPA BBS-DRAFT-3 example.
 
 # Acknowledgements
 
@@ -623,3 +623,7 @@ TBD
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-web-proof-01
+
+  -02
+
+  * Update reference to current BBS algorithm

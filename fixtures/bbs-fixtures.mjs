@@ -4,6 +4,7 @@ import pairing from "@mattrglobal/pairing-crypto";
 import { encode } from 'jose/util/base64url';
 
 import { keyRead } from './bbs-keyread.mjs';
+import { lineWrap } from "./linewrap.mjs"
 
 import protectedHeaderJSON from "./template/bbs-issuer-protected-header.json" assert {type: "json"};
 import presentationHeaderJSON from "./template/bbs-prover-presentation-header.json" assert {type: "json"};
@@ -14,26 +15,6 @@ const keyPair = await keyRead();
 const protectedHeader = Buffer.from(JSON.stringify(protectedHeaderJSON), "UTF-8");
 const payloads = payloadsJSON.map((item)=>Buffer.from(JSON.stringify(item), "UTF-8"));
 const presentationHeader = Buffer.from(JSON.stringify(presentationHeaderJSON), "UTF-8");
-
-export function lineWrap(str, paddingLength) {
-    if (!paddingLength) {
-        paddingLength = 0;
-    }
-    var output = [];
-    for (var line of str.split('\n')) {
-        if (line.length > 69) {
-            while (line.length > 69) {
-                output.push(line.substring(0, 69));
-                line = Array(paddingLength).join(" ") + line.substring(69);
-            }
-            output.push(line);
-        }
-        else {
-            output.push(line);
-        }
-    }
-    return output.join("\n");
-}
 
 // calculate signature
 const signature = await pairing.bbs.bls12381_sha256.sign({
