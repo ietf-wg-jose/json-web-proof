@@ -169,6 +169,10 @@ TBD
 
    [[ To be removed from the final specification ]]
 
+  -02
+
+  * Update example to use the current BBS algorithm
+
   -01
 
   * Published -01 versions of JWP specifications.
@@ -176,7 +180,3 @@ TBD
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-proof-token-01
-
-  -02
-
-  * Update example to use the current BBS algorithm

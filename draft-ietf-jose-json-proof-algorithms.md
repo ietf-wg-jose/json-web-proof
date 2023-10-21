@@ -676,10 +676,14 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
    [[ To be removed from the final specification ]]
 
-  -00
-
-  * Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
-
   -02
   * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on [@!I-D.irtf-cfrg-bbs-signatures], Draft 3.
   * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
+
+  -01
+
+  * Published -01 versions of JWP specifications.
+
+  -00
+
+  * Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
