@@ -172,7 +172,9 @@ This document has no IANA actions.
 
 # Acknowledgements
 
-TBD
+We would like to thank
+Brent Zundel
+for his valuable contributions to this specification.
 
 # Document History
 
