@@ -27,7 +27,7 @@ organization = "Ping Identity"
 initials = "M."
 surname = "Jones"
 fullname = "Michael B. Jones"
-organization = "individual"
+organization = "Self-Issued Consulting"
   [author.address]
   email = "michael_b_jones@hotmail.com"
   uri = "https://self-issued.info/"
@@ -676,10 +676,19 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
    [[ To be removed from the final specification ]]
 
+  -02
+
+  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on [@!I-D.irtf-cfrg-bbs-signatures], Draft 3.
+  * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
+
+  -01
+
+  * Correct cross-references within group
+  * Describe `issuer_header` and `presentation_header`
+  * Update BBS references to CFRG drafts
+  * Rework reference to HMAC ( RFC2104 )
+  * Remove ZKSnark placeholder
+
   -00
 
   * Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01
-
-  -02
-  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on [@!I-D.irtf-cfrg-bbs-signatures], Draft 3.
-  * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
