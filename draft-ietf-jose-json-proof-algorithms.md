@@ -293,7 +293,7 @@ Figure: Presentation JWP (compact serialization)
 
 ### Presentation Verification
 
-Verification of a presentation is done by the holder using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4.4].
+Verification of a presentation is done by the verifier using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4.4].
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the holder's presentation protected header as `ph`, and the payloads as `disclosed_messages`.
 
