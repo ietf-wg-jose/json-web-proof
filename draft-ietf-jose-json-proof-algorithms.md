@@ -670,6 +670,10 @@ TBD
 
 # Acknowledgements
 
+We would like to thank
+Alberto Solavagione
+for his valuable contributions to this specification.
+
 The BBS examples were generated using the library at https://github.com/mattrglobal/pairing_crypto .
 
 # Document History
