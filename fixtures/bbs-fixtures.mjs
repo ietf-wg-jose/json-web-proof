@@ -21,7 +21,7 @@ const signature = await pairing.bbs.bls12381_sha256.sign({
     publicKey: keyPair.publicKey, 
     secretKey: keyPair.secretKey, 
     header: protectedHeader,
-    payloads: payloads
+    messages: payloads
 });
 
 await fs.writeFile("build/bbs-issuer-proof.base64url", encode(signature), {encoding: "UTF-8"});
