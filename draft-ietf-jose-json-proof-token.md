@@ -93,7 +93,7 @@ To generate a variety of efficient ZKPs of knowledge, range, membership, or othe
 
 # Claim Names
 
-It is suggested that the claim names used with JPTs come from those in the IANA JSON Web Token Claims Registry, when those fit the application's needs.
+It is RECOMMENDED that the claim names used with JPTs come from those in the IANA JSON Web Token Claims Registry [@IANA.JWT.Claims] established by [@!RFC7519], when those fit the application's needs.
 
 # Claims
 
@@ -169,6 +169,16 @@ See the [@!I-D.ietf-jose-json-web-proof] appendix.
 This document has no IANA actions.
 
 {backmatter}
+
+<reference anchor="IANA.JWT.Claims" target="https://www.iana.org/assignments/jwt">
+  <front>
+    <title>JSON Web Token Claims</title>
+    <author>
+      <organization>IANA</organization>
+    </author>
+    <date/>
+  </front>
+</reference>
 
 # Acknowledgements
 
