@@ -77,7 +77,7 @@ Any other data that is repeated across multiple JPTs is externalized so that it 
 
 ## Selective Disclosure
 
-While JWPs provide the underling structure for easily supporting selective disclosure, JPTs must go a step further to ensure that applications can effectively provide choice and consent on exactly what is being disclosed.  Software using JWPs must know the mappings from payloads to claims.  JPTs do not support disclosing claims that are intended to be private from the issuer to the relying party.  All disclosed payloads MUST be mapped to claims and made accessible to the application.
+While JWPs provide the underling structure for easily supporting selective disclosure, JPTs must go a step further to ensure that holders can effectively provide choice and consent on exactly what is being disclosed.  Software using JWPs must know the mappings from payloads to claims.  JPTs do not support disclosing claims from the issuer that are intended only for a specific verifier.  All disclosed payloads MUST be mapped to claims and made accessible to the application.
 
 ## Familiarity
 
@@ -106,6 +106,8 @@ To facilitate this external definition of the claim names, an additional `cid` k
 If there is an associated JWK containing the signing key information, the `claims` key is also registered there as a convenient location for the claim names.
 
 All payloads are claim values and MUST be the base64url encoding of the UTF-8 representation of a JSON value.
+That said, predicate proofs derived from payload values are not represented as claims;
+they are contained in the presentation proof using algorithm-specific representations.
 
 The following is an example JWP Protected Header that includes a claims array:
 ```json
