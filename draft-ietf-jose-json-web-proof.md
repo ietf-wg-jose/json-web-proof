@@ -128,7 +128,7 @@ and Private Header Parameter names.
 
 These requirements are intentionally parallel to those in Section 4 of [@RFC7515].
 
-## Registered Header Parameter Names
+## Registered Header Parameter Names {#RegisteredHeaderParameterNames}
 
 The following Header Parameter names for use in JWPs are registered
 in the IANA "JSON Web Proof Header Parameters" registry established by (#HdrReg),
@@ -338,7 +338,7 @@ they can result in non-interoperable JWPs.
 
 A producer and consumer of a JWP may agree to use Header Parameter names
 that are Private Names (names that are
-not Registered Header Parameter names (#RegisteredHeaderParameterName)
+not Registered Header Parameter names (#RegisteredHeaderParameterNames)
 or Public Header Parameter names (#PublicHeaderParameterName).
 Unlike Public Header Parameter names,
 Private Header Parameter names are subject to collision and
@@ -535,7 +535,7 @@ will typically use different Header Parameter Usage Locations values.
 ### Initial Registry Contents {#HdrContents}
 
 This section registers the Header Parameter names defined in
-(#RegisteredHeaderParameterName) in this registry.
+(#RegisteredHeaderParameterNames) in this registry.
 
 * Header Parameter Name: `alg`
 * Header Parameter Description: Algorithm
