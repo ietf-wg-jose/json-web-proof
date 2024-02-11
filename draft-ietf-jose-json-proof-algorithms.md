@@ -206,7 +206,7 @@ The verifier MUST verify the issuer protected header against the first matching 
 
 With the headers verified, the issuer's Ephemeral Key as given in the issuer protected header `proof_jwk` claim can then be used to verify each of the disclosed payload signatures.
 
-### JPA Registration
+### JPA Registration {#SU-registration}
 
 The proposed JWP `alg` value is of the format "SU-" appended with the relevant JWS `alg` value for the chosen public and ephemeral key-pair algorithm, for example "SU-ES256".
 
@@ -221,7 +221,7 @@ The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under active develo
 
 This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without a verifier being able to correlate those presentations together based on the proof.
 
-### Algorithms
+### JPA Algorithms {#BBS-registration}
 
 The `BBS-DRAFT-3` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_` from [@!I-D.irtf-cfrg-bbs-signatures].
 
@@ -229,7 +229,7 @@ The `BBS-PROOF-DRAFT-3` `alg` parameter value in the presentation protected head
 
 ### Key Format
 
-The key used for the `BBS-DRAFT-3` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.3]
+The key used for the `BBS-DRAFT-3` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.3].
 
 The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_g2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
 
@@ -321,7 +321,7 @@ To use the MAC algorithm, the issuer must have a stable public key pair to perfo
 
 The Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique ephemeral keys.  These keys are then used as the input to generate a MAC that protects each payload.
 
-### Issuer Protected Header
+### Issuer Protected Header {#issuer-protected-header}
 
 The holder's presentation key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has possession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
@@ -397,7 +397,7 @@ Next, the verifier must validate all of the disclosed payloads using the followi
 7. Create a JWS using a header containing the `alg` parameter along with the generated `jws_payload` value as the payload
 8. Validate the JWS using the resolved issuer JWK and the extracted `issuer_signature` value
 
-### JPA Registration
+### JPA Registration {#MAC-registration}
 
 Proposed JWP `alg` value is of the format "MAC-" appended with a unique identifier for the set of MAC and signing algorithms used.  Below are the initial registrations:
 
@@ -660,11 +660,201 @@ Figure: mac-presentation-compact
 
 # IANA Considerations
 
-## JWP Algorithms Registry
+The following registration procedure is used for all the
+registries established by this specification.
 
-This section establishes the IANA JWP Algorithms Registry.  It also registers the following algorithms.
+Values are registered on a Specification Required [@RFC5226] basis
+after a three-week review period on the jose-reg-review@ietf.org
+mailing list, on the advice of one or more Designated Experts.
+However, to allow for the allocation of values prior to publication,
+the Designated Experts may approve registration once they are
+satisfied that such a specification will be published.
 
-TBD
+Registration requests sent to the mailing list for review should use
+an appropriate subject (e.g., "Request to register JWP algorithm: example").
+
+Within the review period, the Designated Experts will either approve or deny
+the registration request, communicating this decision to the review list and IANA.
+Denials should include an explanation and, if applicable,
+suggestions as to how to make the request successful.
+Registration requests that are undetermined for
+a period longer than 21 days can be brought to the IESG's attention
+(using the iesg@ietf.org mailing list) for resolution.
+
+Criteria that should be applied by the Designated Experts include
+determining whether the proposed registration duplicates existing functionality,
+whether it is likely to be of general applicability
+or useful only for a single application,
+and whether the registration description is clear.
+
+IANA must only accept registry updates from the Designated Experts and should direct
+all requests for registration to the review mailing list.
+
+It is suggested that multiple Designated Experts be appointed who are able to
+represent the perspectives of different applications using this specification,
+in order to enable broadly informed review of registration decisions.
+In cases where a registration decision could be perceived as
+creating a conflict of interest for a particular Expert,
+that Expert should defer to the judgment of the other Experts.
+
+
+## JSON Web Proof Algorithms Registry {#AlgsReg}
+
+This specification establishes the
+IANA "JSON Web Proof Algorithms" registry
+for values of the JWP `alg` (algorithm) parameter in JWP Header Parameters.
+The registry records the algorithm name, the algorithm description,
+the algorithm usage locations,
+the implementation requirements, the change controller,
+and a reference to the specification that defines it.
+The same algorithm name can be registered multiple times,
+provided that the sets of usage locations are disjoint.
+
+It is suggested that the length of the key be included in the algorithm
+name when multiple variations of algorithms are being
+registered that use keys of different lengths and the key lengths for
+each need to be fixed (for instance, because they will be created by
+key derivation functions).
+This allows readers of the JSON text to more easily make security decisions.
+
+The Designated Experts should perform reasonable due diligence
+that algorithms being registered either are currently considered
+cryptographically credible or are being registered as Deprecated
+or Prohibited.
+
+The implementation requirements of an algorithm may be changed
+over time as the
+cryptographic landscape evolves, for instance,
+to change the status of an algorithm to Deprecated or
+to change the status of an algorithm from Optional
+to Recommended+ or Required.
+Changes of implementation requirements are only permitted
+on a Specification Required basis after review by the Designated Experts,
+with the new specification
+defining the revised implementation requirements level.
+
+### Registration Template {#AlgsTemplate}
+
+* Algorithm Name: The name requested (e.g., "SU-ES256"). This name is a case-sensitive ASCII string. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.
+* Algorithm Description: Brief description of the algorithm (e.g., "Single-Use JWP using ES256").
+* Algorithm Usage Location(s): The algorithm usage locations, which should be one or more of the values `Issued` or `Presented`.  Other values may be used with the approval of a Designated Expert.
+* JWP Implementation Requirements: The algorithm implementation requirements for JWP, which must be one the words Required, Recommended, Optional, Deprecated, or Prohibited. Optionally, the word can be followed by a "+" or "-". The use of "+" indicates that the requirement strength is likely to be increased in a future version of the specification.  The use of "-" indicates that the requirement strength is likely to be decreased in a future version of the specification. Any identifiers registered for non-authenticated encryption algorithms or other algorithms that are otherwise unsuitable for direct use as JWP algorithms must be registered as "Prohibited".
+* Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.
+* Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.
+* Algorithm Analysis Documents(s): References to a publication or publications in well-known cryptographic conferences, by national standards bodies, or by other authoritative sources analyzing the cryptographic soundness of the algorithm to be registered. The Designated Experts may require convincing evidence of the cryptographic soundness of a new algorithm to be provided with the registration request unless the algorithm is being registered as Deprecated or Prohibited. Having gone through working group and IETF review, the initial registrations made by this document are exempt from the need to provide this information.
+
+
+### Initial Registry Contents {#AlgsContents}
+
+* Algorithm Name: `SU-ES256`
+* Algorithm Description: Single-Use JWP using ES256
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Recommended
+* Change Controller: IETF
+* Specification Document(s): (#SU-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `SU-ES384`
+* Algorithm Description: Single-Use JWP using ES384
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#SU-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `SU-ES512`
+* Algorithm Description: Single-Use JWP using ES512
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#SU-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `BBS-DRAFT-3`
+* Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
+* Algorithm Usage Location(s): Issued
+* JWP Implementation Requirements: Required
+* Change Controller: IETF
+* Specification Document(s): (#BBS-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `BBS-PROOF-DRAFT-3`
+* Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
+* Algorithm Usage Location(s): Presented
+* JWP Implementation Requirements: Required
+* Change Controller: IETF
+* Specification Document(s): (#BBS-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `MAC-H256`
+* Algorithm Description: `MAC-H256` uses `HMAC SHA-256` as the MAC and `ECDSA using P-256 and SHA-256` for the signatures
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#MAC-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `MAC-H384`
+* Algorithm Description: `MAC-H384` uses `HMAC SHA-384` as the MAC and `ECDSA using P-384 and SHA-384` for the signatures
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#MAC-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `MAC-H512`
+* Algorithm Description: `MAC-H512` uses `HMAC SHA-512` as the MAC and `ECDSA using P-521 and SHA-512` for the signatures
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#MAC-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `MAC-K25519`
+* Algorithm Description: `MAC-K25519` uses `KMAC SHAKE128` as the MAC and `EdDSA using Curve25519` for the signatures
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#MAC-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `MAC-K448`
+* Algorithm Description: `MAC-K448` uses `KMAC SHAKE256` as the MAC and `EdDSA using Curve448` for the signatures
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#MAC-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+* Algorithm Name: `MAC-H256K`
+* Algorithm Description: `MAC-H256K` uses `HMAC SHA-256` as the MAC and `ECDSA using secp256k1 and SHA-256` for the signatures
+* Algorithm Usage Location(s): Issued, Presented
+* JWP Implementation Requirements: Optional
+* Change Controller: IETF
+* Specification Document(s): (#MAC-registration) of this specification
+* Algorithm Analysis Documents(s): n/a
+
+## Header Parameter Names Registration {#HdrReg}
+
+This section registers the following Header Parameter names
+defined by this specification in the IANA
+"JSON Web Proof Header Parameters" registry
+established by [@!I-D.ietf-jose-json-web-proof].
+
+### Registry Contents {#HdrContents}
+
+* Header Parameter Name: `proof_jwk`
+* Header Parameter Description: Issuer's Ephemeral Key
+* Header Parameter Usage Location(s): Issued
+* Change Controller: IETF
+* Specification Document(s): (#issuer-protected-header) of this specification
+
+* Header Parameter Name: `presentation_jwk`
+* Header Parameter Description: Holder's Presentation Key
+* Header Parameter Usage Location(s): Issued
+* Change Controller: IETF
+* Specification Document(s): (#issuer-protected-header) of this specification
+
 
 {backmatter}
 

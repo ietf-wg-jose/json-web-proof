@@ -102,6 +102,248 @@ While `issue` and `confirm` only occur when a JWP is initially created by the is
 
 Algorithm definitions that support JWPs are in separate companion specifications - just as the JSON Web Algorithms [@RFC7518] specification does for JWS and JWE [@RFC7516].  The JSON Proof Algorithms (JPA) [@!I-D.ietf-jose-json-proof-algorithms] specification defines how an initial set of algorithms are used with JWP.
 
+# JWP Header
+
+The members of the JSON object(s) representing the JWP Header describe
+the proof applied to the Protected Header and the Payload
+and optionally, additional properties of the JWP.
+The Header Parameter names within the JWP Header MUST be unique;
+JWP parsers MUST either reject JWPs with duplicate Header Parameter names
+or use a JSON parser that returns only the lexically last duplicate member name,
+as specified in Section 15.12 ("The JSON Object") of ECMAScript 5.1 [@ECMAScript].
+
+Implementations are required to understand
+the specific Header Parameters defined by this specification
+that are designated as "MUST be understood"
+and process them in the manner defined in this specification.
+All other Header Parameters defined by this specification that
+are not so designated MUST be ignored when not understood.
+Unless listed as a critical Header Parameter, per (#critDef),
+all Header Parameters not defined by this specification
+MUST be ignored when not understood.
+
+There are three classes of Header Parameter names:
+Registered Header Parameter names, Public Header Parameter names,
+and Private Header Parameter names.
+
+These requirements are intentionally parallel to those in Section 4 of [@RFC7515].
+
+## Registered Header Parameter Names
+
+The following Header Parameter names for use in JWPs are registered
+in the IANA "JSON Web Proof Header Parameters" registry established by (#HdrReg),
+with meanings as defined in the subsections below.
+
+As indicated by the common registry, Header Parameters used
+in the Issued Form (see (#issued-form)) and the Presented Form (#presented-form)
+share a common Header Parameter space;
+when a parameter is used by both forms, its usage must be compatible between them.
+
+These Header Parameters are intentionally parallel to those in Section 4.1 of [@RFC7515].
+
+### "alg" (Algorithm) Header Parameter {#algDef}
+
+The `alg` (algorithm) Header Parameter identifies the cryptographic algorithm
+used to secure the JWP.
+The JWP Proof value is not valid if the `alg` value does not represent
+a supported algorithm or if there is not a key for use with that algorithm
+associated with the party that secured the content.
+`alg` values should either be registered in
+the IANA "JSON Web Proof Algorithms" registry
+established by [@!I-D.ietf-jose-json-proof-algorithms]
+or be a value that contains a Collision-Resistant Name.
+The `alg` value is a case-sensitive ASCII string containing a StringOrURI value.
+This Header Parameter MUST be present
+and MUST be understood and processed by implementations.
+
+A list of defined `alg` values for this use can be found
+in the IANA "JSON Web Proof Algorithms" registry
+established by [@!I-D.ietf-jose-json-proof-algorithms];
+the initial contents of this registry are registered
+by [@!I-D.ietf-jose-json-proof-algorithms].
+
+### "kid" (Key ID) Header Parameter {#kidDef}
+
+The `kid` (key ID) Header Parameter
+is a hint indicating which key was used to secure the JWP.
+This parameter allows originators to explicitly signal a change of
+key to recipients.
+The structure of the `kid` value is unspecified.
+Its value MUST be a case-sensitive string.
+Use of this Header Parameter is OPTIONAL.
+
+When used with a JWK,
+the `kid` value is used to match a JWK `kid` parameter value.
+
+### "typ" (Type) Header Parameter {#typDef}
+
+The `typ` (type) Header Parameter is used by JWP applications to declare the
+media type (#IANA.MediaTypes) of this complete JWP.
+This is intended for use by the application when
+more than one kind of object could be present in
+an application data structure that can contain a JWP;
+the application can use this value to disambiguate among
+the different kinds of objects that might be present.
+It will typically not be used by applications when
+the kind of object is already known.
+This parameter is ignored by JWP implementations;
+any processing of this parameter is performed by the JWP application.
+Use of this Header Parameter is OPTIONAL.
+
+Per [@RFC2045], all media type values,
+subtype values, and parameter names are case insensitive.
+However, parameter values are case sensitive unless
+otherwise specified for the specific parameter.
+
+To keep messages compact in common situations,
+it is RECOMMENDED that producers omit an "application/" prefix
+of a media type value in a `typ`
+Header Parameter when no other '/' appears in the media type value.
+A recipient using the media type value MUST treat it as if
+"application/" were prepended to any `typ` value not containing a '/'.
+For instance, a `typ` value of `example` SHOULD be used to represent
+the `application/example` media type,
+whereas the media type `application/example;part="1/2"` cannot
+be shortened to `example;part="1/2"`.
+
+The `typ` value `jwp` can be used by applications
+to indicate that this object is a JWP using the JWP Compact Serialization.
+The `typ` value `jwp+json` can be used by applications
+to indicate that this object is a JWP using the JWP JSON Serialization.
+Other type values can also be used by applications.
+
+It is RECOMMENDED that the `typ` Header Parameter be used for explicit typing,
+in parallel to the recommendations in Section 3.11 of [@RFC8725].
+
+<!--- It's not clear that `cty` makes sense for JWPs; retaining text here for now.
+
+### "cty" (Content Type) Header Parameter {#ctyDef}
+
+The `cty` (content type) Header Parameter
+is used by JWP applications to declare the
+media type (#IANA.MediaTypes)
+of the secured content (the payload).
+This is intended for use by the application when
+more than one kind of object could be present in
+the JWP Payload;
+the application can use this value to disambiguate among
+the different kinds of objects that might be present.
+It will typically not be used by applications when
+the kind of object is already known.
+This parameter is ignored by JWP implementations;
+any processing of this parameter is performed by the JWP application.
+Use of this Header Parameter is OPTIONAL.
+
+Per [@RFC2045], all media type values,
+subtype values, and parameter names are case insensitive.
+However, parameter values are case sensitive unless
+otherwise specified for the specific parameter.
+
+To keep messages compact in common situations,
+it is RECOMMENDED that producers omit an "application/" prefix
+of a media type value in a `cty`
+Header Parameter when no other '/' appears in the media type value.
+A recipient using the media type value MUST treat it as if
+"application/" were prepended to any
+`cty` value not containing a '/'.
+For instance, a `cty` value of
+`example` SHOULD be used to represent
+the `application/example` media type,
+whereas the media type
+`application/example;part="1/2"` cannot
+be shortened to `example;part="1/2"`.
+
+-->
+
+### "crit" (Critical) Header Parameter {#critDef}
+
+The `crit` (critical) Header Parameter indicates that extensions to
+this specification and/or [@!I-D.ietf-jose-json-proof-algorithms]
+are being used that MUST be understood and processed.
+Its value is an array listing the Header Parameter names
+present in the JWP Header that use those extensions.
+If any of the listed extension Header Parameters are not
+understood and supported by the recipient, then the JWP is invalid.
+Producers MUST NOT include Header Parameter names defined by
+this specification or [@!I-D.ietf-jose-json-proof-algorithms] for use with JWP,
+duplicate names, or
+names that do not occur as Header Parameter names within the JWP Header
+in the `crit` list.
+Producers MUST NOT use the empty list `[]` as the `crit` value.
+Recipients MAY consider the JWP to be invalid if the critical list
+contains any Header Parameter names defined by
+this specification or [@!I-D.ietf-jose-json-proof-algorithms] for use with JWP
+or if any other constraints on its use are violated.
+When used, this Header Parameter MUST be integrity protected;
+therefore, it MUST occur only within the JWP Protected Header.
+Use of this Header Parameter is OPTIONAL.
+This Header Parameter MUST be understood and processed by implementations.
+
+### "proof_jwk" (Proof JWK) Header Parameter {#proof_jwkDef}
+
+The `proof_jwk` (Proof JWK) represents the public key used by the issuer
+for proof of possession.
+This key is represented as a JSON Web Key public key value.
+It MUST contain only public key parameters and
+SHOULD contain only the minimum JWK parameters necessary to represent the key;
+other JWK parameters included can be checked for consistency and honored, or they can be ignored.
+This Header Parameter MUST be present in the JWP issuer header parameters
+and MUST be understood and processed by implementations.
+
+### "presentation_jwk" (Presentation JWK) Header Parameter {#presentation_jwkDef}
+
+The `presentation_jwk` (Presentation JWK) represents the public key used by the holder
+for proof of possession.
+This key is represented as a JSON Web Key public key value.
+It MUST contain only public key parameters and
+SHOULD contain only the minimum JWK parameters necessary to represent the key;
+other JWK parameters included can be checked for consistency and honored, or they can be ignored.
+This Header Parameter MUST be present in the JWP issuer header parameters
+and MUST be understood and processed by implementations.
+
+### "iss" (Issuer) Header Parameter {#issDef}
+
+The `iss` (issuer) Header Parameter identifies the principal that issued the JWP.
+The processing of this claim is generally application specific.
+The `iss` value is a case-sensitive string
+containing a StringOrURI value.
+Its definition is intentionally parallel to the `iss` claim defined in [@!RFC7519].
+Use of this Header Parameter is OPTIONAL.
+
+### "claims" (Claims) Header Parameter {#claimsDef}
+
+The `claims` Header Parameter is an array listing the Claim Names
+corresponding to the JWP payloads, in the same order as the payloads.
+Each array value is a Claim Name, as defined in [@!RFC7519].
+Use of this Header Parameter is OPTIONAL.
+
+## Public Header Parameter Names {#PublicHeaderParameterName}
+
+Additional Header Parameter names can be defined by those
+using JWPs. However, in order to prevent collisions, any new
+Header Parameter name should either be registered in the IANA
+"JSON Web Proof Header Parameters" registry
+established by
+(#HdrReg) or be a Public Name
+(a value that contains a Collision-Resistant Name).
+In each case, the definer of the name
+or value needs to take reasonable precautions to make sure they
+are in control of the part of the namespace they use to
+define the Header Parameter name.
+
+New Header Parameters should be introduced sparingly, as
+they can result in non-interoperable JWPs.
+
+## Private Header Parameter Names {#PrivateHeaderParameterName}
+
+A producer and consumer of a JWP may agree to use Header Parameter names
+that are Private Names (names that are
+not Registered Header Parameter names (#RegisteredHeaderParameterName)
+or Public Header Parameter names (#PublicHeaderParameterName).
+Unlike Public Header Parameter names,
+Private Header Parameter names are subject to collision and
+should be used with caution.
+
 # JWP Forms
 
 A JWP is always in one of two forms: the issued form or the presented form.  A structural difference between the two forms is the number of protected headers.  An issued JWP has only one issuer protected header, while a presented JWP will have both the issuer protected header and an additional presentation protected header.  Each protected header is a JSON object that is serialized as a UTF-8 encoded octet string.
@@ -110,7 +352,7 @@ All JWP forms have one or more payloads; each payload is an octet string.  The p
 
 The JWP proof value is a single octet string that is only generated from and processed by the underlying JPA.  Internally, the proof value may contain one or more cryptographic statements that are used to check the integrity protection of the header(s) and all payloads.  Each of these statements may be a ZKP or a traditional cryptographic signature.  The algorithm is responsible for how these statements are serialized into a single proof value.
 
-## Issued Form
+## Issued Form {#issued-form}
 
 When a JWP is first created, it is always in the issued form.  It will contain the issuer protected header along with all of the payloads.
 
@@ -141,7 +383,7 @@ The proof value is a binary octet string that is opaque to applications.  Indivi
 
 The issuer proof is used by the holder to perform validation, checking that the issuer header and all payloads are properly encoded and protected by the given proof.
 
-## Presented Form
+## Presented Form {#presented-form}
 
 When an issued JWP is presented, it undergoes a transformation that adds a presentation protected header. It may also have one or more payloads hidden, disclosing only a subset of the original issued payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.
 
@@ -233,7 +475,161 @@ Notes to be expanded:
 
 # IANA Considerations
 
-This document has no IANA actions.
+The following registration procedure is used for all the
+registries established by this specification.
+
+Values are registered on a Specification Required [@RFC5226] basis
+after a three-week review period on the jose-reg-review@ietf.org
+mailing list, on the advice of one or more Designated Experts.
+However, to allow for the allocation of values prior to publication,
+the Designated Experts may approve registration once they are
+satisfied that such a specification will be published.
+
+Registration requests sent to the mailing list for review should use
+an appropriate subject (e.g., "Request to register JWP header parameter: example").
+
+Within the review period, the Designated Experts will either approve or deny
+the registration request, communicating this decision to the review list and IANA.
+Denials should include an explanation and, if applicable,
+suggestions as to how to make the request successful.
+Registration requests that are undetermined for
+a period longer than 21 days can be brought to the IESG's attention
+(using the iesg@ietf.org mailing list) for resolution.
+
+Criteria that should be applied by the Designated Experts includes
+determining whether the proposed registration duplicates existing functionality,
+whether it is likely to be of general applicability
+or useful only for a single application,
+and whether the registration description is clear.
+
+IANA must only accept registry updates from the Designated Experts and should direct
+all requests for registration to the review mailing list.
+
+It is suggested that multiple Designated Experts be appointed who are able to
+represent the perspectives of different applications using this specification,
+in order to enable broadly informed review of registration decisions.
+In cases where a registration decision could be perceived as
+creating a conflict of interest for a particular Expert,
+that Expert should defer to the judgment of the other Experts.
+
+## JSON Web Proof Header Parameters Registry {#HdrReg}
+
+This specification establishes the
+IANA "JSON Web Proof Header Parameters" registry
+for Header Parameter names.
+The registry records the Header Parameter name
+and a reference to the specification that defines it.
+The same Header Parameter name can be registered multiple times,
+provided that the parameter usage is compatible between the specifications.
+Different registrations of the same Header Parameter name
+will typically use different Header Parameter Usage Locations values.
+
+### Registration Template {#HdrTemplate}
+
+* Header Parameter Name: The name requested (e.g., "kid"). Because a core goal of this specification is for the resulting representations to be compact, it is RECOMMENDED that the name be short -- not to exceed 8 characters without a compelling reason to do so. This name is case sensitive. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.
+* Header Parameter Description: Brief description of the Header Parameter (e.g., "Key ID").
+* Header Parameter Usage Location(s): The Header Parameter usage locations, which should be one or more of the values `Issued` or `Presented`.  Other values may be used with the approval of a Designated Expert.
+* Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.
+* Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.
+
+### Initial Registry Contents {#HdrContents}
+
+This section registers the Header Parameter names defined in
+(#RegisteredHeaderParameterName) in this registry.
+
+* Header Parameter Name: `alg`
+* Header Parameter Description: Algorithm
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#algDef) of this specification
+
+* Header Parameter Name: `kid`
+* Header Parameter Description: Key ID
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#kidDef) of this specification
+
+* Header Parameter Name: `typ`
+* Header Parameter Description: Type
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#typDef) of this specification
+
+* Header Parameter Name: `crit`
+* Header Parameter Description: Critical
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#critDef) of this specification
+
+* Header Parameter Name: `iss`
+* Header Parameter Description: Issuer
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#issDef) of this specification
+
+* Header Parameter Name: `claims`
+* Header Parameter Description: claims
+* Header Parameter Usage Location(s): Issued
+* Change Controller: IETF
+* Specification Document(s): (#claimsDef) of this specification
+
+## Media Type Registration {#MediaReg}
+
+### Registry Contents {#MediaContents}
+
+This section registers the `application/jwp`
+media type [@RFC2046]
+in the IANA "Media Types" registry (#IANA.MediaTypes)
+in the manner described in [@RFC6838],
+which can be used to indicate that the content is
+a JWP using the JWP Compact Serialization.
+This section also registers the `application/jwp+json`
+media type in the IANA "Media Types" registry,
+which can be used to indicate that the content is
+a JWP using the JWP JSON Serialization.
+
+* Type name: application
+* Subtype name: jwp
+* Required parameters: n/a
+* Optional parameters: n/a
+* Encoding considerations: 8bit; application/jwp values are encoded as a series of base64url-encoded values (some of which may be the empty string), each separated from the next by a single period ('.') character.
+* Security considerations: See the Security Considerations section of this specification.
+* Interoperability considerations: n/a
+* Published specification: this specification
+* Applications that use this media type: TBD
+* Fragment identifier considerations: n/a
+* Additional information:<list style="empty">
+  - Magic number(s): n/a
+  - File extension(s): n/a
+  - Macintosh file type code(s): n/a
+* Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
+* Intended usage: COMMON
+* Restrictions on usage: none
+* Author: Michael B. Jones, michael_b_jones@hotmail.com
+* Change Controller: IETF
+* Provisional registration? No
+
+* Type name: application
+* Subtype name: jwp+json
+* Required parameters: n/a
+* Optional parameters: n/a
+* Encoding considerations: 8bit; application/jwp+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
+* Security considerations: See the Security Considerations section of this specification
+* Interoperability considerations: n/a
+* Published specification: this specification
+* Applications that use this media type: TBD
+* Fragment identifier considerations: n/a
+* Additional information:<list style="empty">
+  - Magic number(s): n/a
+  - File extension(s): n/a
+  - Macintosh file type code(s): n/a
+* Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
+* Intended usage: COMMON
+* Restrictions on usage: none
+* Author: Michael B. Jones, michael_b_jones@hotmail.com
+* Change Controller: IETF
+* Provisional registration? No
+
 
 {backmatter}
 
@@ -257,6 +653,31 @@ This document has no IANA actions.
     </author>
    <date day="27" month="December" year="2023"/>
   </front>
+</reference>
+
+<reference anchor="ECMAScript" target="http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf">
+  <front>
+    <title>ECMAScript Language Specification, 5.1 Edition</title>
+    <author>
+      <organization>Ecma International</organization>
+    </author>
+    <date month="June" year="2011"/>
+  </front>
+  <seriesInfo name="ECMA" value="262"/>
+  <format target="http://www.ecma-international.org/ecma-262/5.1/" type="HTML" />
+  <format target="http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf" type="PDF" />
+</reference>
+
+<reference anchor="IANA.MediaTypes" target="http://www.iana.org/assignments/media-types">
+  <front>
+    <title>Media Types</title>
+    <author>
+      <organization>IANA</organization>
+    </author>
+    <date/>
+  </front>
+  <format target="http://www.iana.org/assignments/media-types"
+	  type="HTML" />
 </reference>
 
 # Example JWPs
@@ -314,7 +735,7 @@ The JWP Protected Header declares that the data structure is a JPT and the JWP P
     "email",
     "age"
   ],
-  "typ": "JPT",
+  "typ": "jpt",
   "proof_jwk": {
     "crv": "P-256",
     "kty": "EC",
