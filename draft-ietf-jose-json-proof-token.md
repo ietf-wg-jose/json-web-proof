@@ -77,7 +77,7 @@ Any other data that is repeated across multiple JPTs is externalized so that it 
 
 ## Selective Disclosure
 
-While JWPs provide the underling structure for easily supporting selective disclosure, JPTs must go a step further to ensure that holders can effectively provide choice and consent on exactly what is being disclosed.  Software using JWPs must know the mappings from payloads to claims.  JPTs do not support disclosing claims from the issuer that are intended only for a specific verifier.  All disclosed payloads MUST be mapped to claims and made accessible to the application.
+While JWPs provide the underling structure for easily supporting selective disclosure, JPTs must go a step further to ensure that holders can effectively provide choice and consent on exactly what is being disclosed.  Software using JWPs MUST know the mappings from payloads to claims. All disclosed payloads MUST be mapped to claims and made accessible to the application.  Holders SHOULD understand the semantics of all disclosed claims. JPTs SHOULD NOT contain claims that are intended only for a specific verifier.
 
 ## Familiarity
 
@@ -97,9 +97,9 @@ It is RECOMMENDED that the claim names used with JPTs come from those in the IAN
 
 # Claims
 
-Using a JSON Proof Token requires combining information from two sources: the claim names and the payloads.  The simplest solution is to list the claim names in an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the JWP Protected Header using the `claims` key.
+A JSON Proof Token assigns each playload a claim name. Payloads MUST each have a negotiated and understood claim name within the application context. The simplest solution to establish payload claim names is as an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the Issuer Protected Header using the `claims` key.
 
-When the claims array is stored in the header, any variations of it are disclosed to the verifier and can be used to correlate and link usages.  Given the privacy design considerations around linkability it is recommended that the claims are defined external to an individual JPT and either referenced or known by the application context.
+When the claims array is stored in the header, any variations of that array between JWP are visible to the verifier, and can indirectly leak user information or provide linkability.  Given the privacy design considerations around linkability it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.
 
 To facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.
 
