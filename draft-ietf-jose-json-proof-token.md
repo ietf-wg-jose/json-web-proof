@@ -111,7 +111,7 @@ The following is an example JWP Protected Header that includes a claims array:
 ```json
 {
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
-  "alg": "BBS-DRAFT-3",
+  "alg": "BBS-DRAFT-5",
   "claims": [
     "iat",
     "exp",
