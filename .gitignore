@@ -24,3 +24,5 @@ package-lock.json
 report.xml
 !requirements.txt
 .idea
+.DS_Store
+pairing_crypto
