@@ -297,7 +297,7 @@ Verification of a presentation is done by the verifier using the `ProofVerify` o
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the holder's presentation protected header as `ph`, and the payloads as `disclosed_messages`.
 
-In addition, the `disclosed_indexes` scalar array is calculated from the payloads provided. For each absent value in the presented payloads, the index of that payload is added to this vector.
+In addition, the `disclosed_indexes` scalar array is calculated from the payloads provided. Values disclosed in the presented payloads have a zero-based index in this array, while the indices of absent payloads are omitted.
 
 ## Message Authentication Code
 
@@ -685,7 +685,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   -02
 
-  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on the previous draft 3/4 behavior of [@!I-D.irtf-cfrg-bbs-signatures#05].
+  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on draft-irtf-cfrg-bbs-signatures-03.
   * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
 
   -01
