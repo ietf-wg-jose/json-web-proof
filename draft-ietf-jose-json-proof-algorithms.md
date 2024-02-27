@@ -229,9 +229,9 @@ The `BBS-PROOF-DRAFT-5` `alg` parameter value in the presentation protected head
 
 ### Key Format
 
-The key used for the `BBS-DRAFT-5` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.3]
+The key used for the `BBS-DRAFT-5` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.4]
 
-The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_g2`. The use of this curve is described in [@!I-D.looker-cose-bls-key-representations].
+The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.looker-cose-bls-key-representations].
 
 <{{./fixtures/build/private-key.jwk.wrapped}}
 Figure: BBS private key in JWK format
@@ -240,7 +240,7 @@ There is no additional prover key necessary for presentation proofs.
 
 ### Issuance
 
-Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.4.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets header and the octets array messages.
+Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets `header` and the octets array `messages`.
 
 The octets result of this operation forms the issuance proof, to be used along with the protected header and payloads to serialize the JWP.
 
@@ -262,13 +262,13 @@ Figure: Issued JWP (compact serialization)
 
 ### Issuance Proof Verification
 
-Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.4.2].
+Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as `signature`, the protected header octets as `header` and the array of payload octets as `messages`.
 
 ### Presentation
 
-Derivation of a presentation is done by the holder using the `ProofGen` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.4.3].
+Derivation of a presentation is done by the holder using the `ProofGen` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.3].
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the issuance payloads as `messages`, and the holder's presentation protected header as `ph`.
 
@@ -293,11 +293,11 @@ Figure: Presentation JWP (compact serialization)
 
 ### Presentation Verification
 
-Verification of a presentation is done by the verifier using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.4.4].
+Verification of a presentation is done by the verifier using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the holder's presentation protected header as `ph`, and the payloads as `disclosed_messages`.
 
-In addition, the `disclosed_indexes` vector value is calculated from the payloads. For each absent value in payloads (`null` in JSON serialization or a zero-length string in compact serialization), the index of that payload is added to this vector.
+In addition, the `disclosed_indexes` scalar array is calculated from the payloads provided. For each absent value in the presented payloads, the index of that payload is added to this vector.
 
 ## Message Authentication Code
 
