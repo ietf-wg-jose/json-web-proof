@@ -218,21 +218,21 @@ See the example in the appendix of [@!I-D.ietf-jose-json-web-proof].
 
 ## BBS
 
-The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under active development within the CRFG.
+The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures#05] is under active development within the CRFG.
 
 This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without a verifier being able to correlate those presentations together based on the proof.
 
 ### JPA Algorithms {#BBS-registration}
 
-The `BBS-DRAFT-3` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_` from [@!I-D.irtf-cfrg-bbs-signatures].
+The `BBS-DRAFT-5` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`.
 
-The `BBS-PROOF-DRAFT-3` `alg` parameter value in the presentation protected header corresponds to the same ciphersuite, but used in presentation form.
+The `BBS-PROOF-DRAFT-5` `alg` parameter value in the presentation protected header corresponds to the same ciphersuite, but used in presentation form.
 
 ### Key Format
 
-The key used for the `BBS-DRAFT-3` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.3].
+The key used for the `BBS-DRAFT-5` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.4]
 
-The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_g2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
+The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
 
 <{{./fixtures/build/private-key.jwk.wrapped}}
 Figure: BBS private key in JWK format
@@ -241,7 +241,7 @@ There is no additional holder key necessary for presentation proofs.
 
 ### Issuance
 
-Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets header and the octets array messages.
+Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets `header` and the octets array `messages`.
 
 The octets resulting from this operation form the issuance proof, to be used along with the protected header and payloads to serialize the JWP.
 
@@ -263,13 +263,13 @@ Figure: Issued JWP (compact serialization)
 
 ### Issuance Proof Verification
 
-Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.2].
+Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as `signature`, the protected header octets as `header` and the array of payload octets as `messages`.
 
 ### Presentation
 
-Derivation of a presentation is done by the holder using the `ProofGen` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.4.3].
+Derivation of a presentation is done by the holder using the `ProofGen` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.3].
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the issuance payloads as `messages`, and the holder's presentation protected header as `ph`.
 
@@ -294,11 +294,11 @@ Figure: Presentation JWP (compact serialization)
 
 ### Presentation Verification
 
-Verification of a presentation is done by the verifier using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4.4].
+Verification of a presentation is done by the verifier using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the holder's presentation protected header as `ph`, and the payloads as `disclosed_messages`.
 
-In addition, the `disclosed_indexes` vector value is calculated from the payloads. For each value present in payloads (e.g. all values not `null` in JSON serialization or a zero-length string in compact serialization), the index of that payload is added to this vector.
+In addition, the `disclosed_indexes` scalar array is calculated from the payloads provided. Values disclosed in the presented payloads have a zero-based index in this array, while the indices of absent payloads are omitted.
 
 ## Message Authentication Code
 
@@ -894,6 +894,9 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 # Document History
 
    [[ To be removed from the final specification ]]
+  -03
+
+  * Removed `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` in lieu of `BBS-DRAFT-5` and `BBS-PROOF-DRAFT-5`, with signature/proof/verification referencing the revised mechanisms in [@!I-D.irtf-cfrg-bbs-signatures#05].
 
   -03
 
@@ -901,7 +904,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   -02
 
-  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on [@!I-D.irtf-cfrg-bbs-signatures], Draft 3.
+  * Add new `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` algorithms based on draft-irtf-cfrg-bbs-signatures-03.
   * Remove prior `BBS-X` algorithm based on a particular implementation of earlier drafts.
 
   -01

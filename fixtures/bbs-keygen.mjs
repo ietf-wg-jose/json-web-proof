@@ -15,7 +15,7 @@ try { await fs.mkdir("build");  } catch (e) { /* ignore */ }
 var privateKeyStr = 
 JSON.stringify({
     kty: "OKP",
-    alg: "BBS-DRAFT-3",
+    alg: "BBS-DRAFT-5",
     use: "proof",
     crv: "BLs12381G2",
     x: encode(keys.publicKey),
@@ -28,7 +28,7 @@ await fs.writeFile("build/private-key.jwk.wrapped", lineWrap(privateKeyStr, 8));
 var publicKeyStr = 
 JSON.stringify({
     kty: "OKP",
-    alg: "BBS-DRAFT-3",
+    alg: "BBS-DRAFT-5",
     use: "proof",
     crv: "BLs12381G2",
     x: encode(keys.publicKey)

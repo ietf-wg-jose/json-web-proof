@@ -328,7 +328,7 @@ Every issuer protected header MUST have an `alg` value that identifies a valid J
 For example:
 ```json
 {
-    "alg":"BBS-DRAFT-3"
+    "alg":"BBS-DRAFT-5"
 }
 ```
 
@@ -1012,7 +1012,7 @@ Figure: jwp-compact-presentation
 
 ## Example Multi-Use JWP
 
-See JPA BBS-DRAFT-3 example.
+See JPA BBS-DRAFT-5 example.
 
 # Acknowledgements
 
