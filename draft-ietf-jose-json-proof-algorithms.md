@@ -771,7 +771,7 @@ defining the revised implementation requirements level.
 * Specification Document(s): (#SU-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `BBS-DRAFT-3`
+* Algorithm Name: `BBS-DRAFT-5`
 * Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
 * Algorithm Usage Location(s): Issued
 * JWP Implementation Requirements: Required
@@ -779,7 +779,7 @@ defining the revised implementation requirements level.
 * Specification Document(s): (#BBS-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `BBS-PROOF-DRAFT-3`
+* Algorithm Name: `BBS-PROOF-DRAFT-5`
 * Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
 * Algorithm Usage Location(s): Presented
 * JWP Implementation Requirements: Required
@@ -897,9 +897,6 @@ The BBS examples were generated using the library at https://github.com/mattrglo
   -03
 
   * Removed `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` in lieu of `BBS-DRAFT-5` and `BBS-PROOF-DRAFT-5`, with signature/proof/verification referencing the revised mechanisms in [@!I-D.irtf-cfrg-bbs-signatures#05].
-
-  -03
-
   * Improvements resulting from a full proofreading.
 
   -02
