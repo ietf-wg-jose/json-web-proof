@@ -85,4 +85,4 @@ const jsonProverSerialization = {
 
 var jsonProverSerializationStr = JSON.stringify(jsonProverSerialization, null, 2);
 await fs.writeFile("build/bbs-prover.json.jwp", jsonProverSerializationStr, {encoding: "UTF-8"});
-await fs.writeFile("build/bbs-prover.compact.json.jwp", lineWrap(jsonProverSerializationStr, 8), {encoding: "UTF-8"});
+await fs.writeFile("build/bbs-prover.json.jwp.wrapped", lineWrap(jsonProverSerializationStr, 8), {encoding: "UTF-8"});
