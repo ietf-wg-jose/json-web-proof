@@ -99,17 +99,12 @@ It is RECOMMENDED that the claim names used with JPTs come from those in the IAN
 
 A JSON Proof Token assigns each playload a claim name. Payloads MUST each have a negotiated and understood claim name within the application context. The simplest solution to establish payload claim names is as an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the Issuer Protected Header using the `claims` key.
 
-When the claims array is stored in the header, any variations of that array between JWP are visible to the verifier, and can indirectly leak user information or provide linkability.  Given the privacy design considerations around linkability it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.
-
-To facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.
-
-If there is an associated JWK containing the signing key information, the `claims` key is also registered there as a convenient location for the claim names.
-
 All payloads are claim values and MUST be the base64url encoding of the UTF-8 representation of a JSON value.
 That said, predicate proofs derived from payload values are not represented as claims;
 they are contained in the presentation proof using algorithm-specific representations.
 
-The following is an example JWP Protected Header that includes a claims array:
+The following is an example JWP Issuer Protected Header that includes a claims property:
+
 ```json
 {
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
@@ -119,10 +114,20 @@ The following is an example JWP Protected Header that includes a claims array:
     "exp",
     "family_name",
     "given_name",
-    "email"
+    "email",
+    "address",
+    "age_over_21"
   ]
 }
 ```
+
+In this example, the "iat" and "exp" would be JSON-formatted numbers, "family_name", "given_name" and "email" would be JSON strings (in quotes), "address" would be a JSON object and "age_over_21" would be expected to be either `true` or `false`.
+
+When the claims array is transferred as a property in the Issuer Protected Header, any variations of that array between JWP will be visible to the verifier, and can leak information about the subject or provide an additional vector for linkability.  Given the privacy design considerations around linkability, it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.
+
+To facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.
+
+If there is an associated JWK containing the signing key information, the `claims` key is also registered there as a convenient location for the claim names.
 
 The following is an example JWP Protected Header that includes a `cid`:
 ```json
