@@ -387,11 +387,13 @@ Like JWS, JWP supports both a Compact Serialization and a JSON Serialization.
 
 The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any non-disclosed payloads are left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
 
+A payload which is disclosed but which contains no data (i.e. a zero-length octet string) is encoded as a single `_` character of data, which is not a valid result from base64url-encoding a value.
+
 The headers, concatenated payloads, and proof value are then concatenated with a `.` character to form the final compact serialization.  The issued form will only contain one header and always have three `.` separated parts.  The presented form will always have four `.` separated parts, the issued header, followed by the protected header, then the payloads and the proof.
 
 ## JSON Serialization
 
-Non-disclosed payloads in the JSON serialization are represented with a `null` value in the `payloads` array.
+Non-disclosed payloads in the JSON serialization are represented with a `null` value in the `payloads` array. A zero-length payload is represented as a zero-length base64url encoded sequence, the empty string `""`.
 
 This example flattened JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.
 
