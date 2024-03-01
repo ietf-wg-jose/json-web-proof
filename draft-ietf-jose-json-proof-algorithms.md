@@ -107,7 +107,7 @@ The algorithm MUST fully verify the issued proof value against the issuer protec
 
 ## Present
 
-Used to apply any selective disclosure choices and perform any unlinkability transformations.
+Used to apply any selective disclosure choices and perform any unlinkability transformations, as well as to show binding.
 
 An algorithm MAY support additional input options from the requesting party, such as for predicate proofs and verifiable computation requests.
 
