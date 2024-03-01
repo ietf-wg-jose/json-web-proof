@@ -424,9 +424,8 @@ This example flattened JSON serialization shows the presentation form with both 
     kRHdRgGQwWNtuExKz7OmwH8oWizplEtjWJ5WIlJpee79gQ9HTa2QIOT9bUDvjjkkO
     -jK_zuDjZwh5MkrcaQ"
   ],
-  "presentation": [
-    "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4
-    YThLLXMifQ"
+  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOaz
+  FMZS1iQ29tRkx4YThLLXMifQ"
   ]
 }
 ```
@@ -999,9 +998,8 @@ The resulting presented JPT in JSON serialization:
     kRHdRgGQwWNtuExKz7OmwH8oWizplEtjWJ5WIlJpee79gQ9HTa2QIOT9bUDvjjkkO
     -jK_zuDjZwh5MkrcaQ"
   ],
-  "presentation": [
-    "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4
-    YThLLXMifQ"
+  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOaz
+  FMZS1iQ29tRkx4YThLLXMifQ"
   ]
 }
 ```

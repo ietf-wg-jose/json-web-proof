@@ -632,10 +632,8 @@ The resulting presented JWP in JSON serialization is:
     MG776cAGLsTF8bslT6Q5tPP15uH55GooF1mFg2FBGN7ZpZYL-6kTg22F3YvQhKzeU
     7uGxZaAx9m2b8uwVig"
   ],
-  "presentation": [
-    "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4
-    YThLLXMifQ"
-  ]
+  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOaz
+  FMZS1iQ29tRkx4YThLLXMifQ"
 }
 ```
 Figure: mac-presentation-jwp
