@@ -282,6 +282,35 @@ containing a StringOrURI value.
 Its definition is intentionally parallel to the `iss` claim defined in [@!RFC7519].
 Use of this Header Parameter is OPTIONAL.
 
+### "aud" (Audience) Header Parameter {#audDef}
+
+The `aud` (audience) Header Parameter
+identifies the recipients that the JWP is intended for.
+Each principal intended to process the JWP MUST identify itself
+with a value in the audience Header Parameter.  If the principal
+processing the Header Parameter does not identify itself with a
+value in the `aud` Header Parameter when this Header Parameter is present,
+then the JWP MUST be rejected.
+In the general case, 
+the `aud` value is an array of
+case-sensitive strings, each containing a StringOrURI value.
+In the special case when the JWP has one audience,
+the `aud` value MAY be a single
+case-sensitive string containing a StringOrURI value.
+The interpretation of audience values is generally application specific.
+Its definition is intentionally parallel to the `aud` claim defined in [@!RFC7519].
+Use of this Header Parameter is OPTIONAL.
+
+### "nonce" (Nonce) Header Parameter {#nonceDef}
+
+The `nonce` (nonce) Header Parameter is a case-sensitive string value
+used to associate protocol state with a JWP.
+This can be used, for instance, to mitigate replay attacks.
+The use of nonce values is generally protocol specific.
+Its definition is intentionally parallel to the `nonce` claim
+registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).
+Use of this Header Parameter is OPTIONAL.
+
 ### "claims" (Claims) Header Parameter {#claimsDef}
 
 The `claims` Header Parameter is an array listing the Claim Names
@@ -550,6 +579,18 @@ This section registers the Header Parameter names defined in
 * Change Controller: IETF
 * Specification Document(s): (#issDef) of this specification
 
+* Header Parameter Name: `aud`
+* Header Parameter Description: Audience
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#audDef) of this specification
+
+* Header Parameter Name: `nonce`
+* Header Parameter Description: Nonce
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#nonceDef) of this specification
+
 * Header Parameter Name: `claims`
 * Header Parameter Description: claims
 * Header Parameter Usage Location(s): Issued
@@ -661,6 +702,16 @@ a JWP using the JWP JSON Serialization.
   </front>
   <format target="http://www.iana.org/assignments/media-types"
 	  type="HTML" />
+</reference>
+
+<reference anchor="IANA.JWT.Claims" target="https://www.iana.org/assignments/jwt">
+  <front>
+    <title>JSON Web Token Claims</title>
+    <author>
+      <organization>IANA</organization>
+    </author>
+    <date/>
+  </front>
 </reference>
 
 # Example JWPs
