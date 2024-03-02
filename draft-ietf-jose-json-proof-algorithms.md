@@ -899,8 +899,10 @@ The BBS examples were generated using the library at https://github.com/mattrglo
    [[ To be removed from the final specification ]]
   -03
 
-  * Removed `BBS-DRAFT-3` and `BBS-PROOF-DRAFT-3` in lieu of `BBS-DRAFT-5` and `BBS-PROOF-DRAFT-5`, with signature/proof/verification referencing the revised mechanisms in [@!I-D.irtf-cfrg-bbs-signatures#05].
   * Improvements resulting from a full proofreading.
+  * Populated IANA Considerations section.
+  * Updated to use BBS draft -05.
+  * Updated examples.
 
   -02
 
