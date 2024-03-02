@@ -581,13 +581,13 @@ This section registers the Header Parameter names defined in
 
 * Header Parameter Name: `aud`
 * Header Parameter Description: Audience
-* Header Parameter Usage Location(s): Issued, Presented
+* Header Parameter Usage Location(s): Presented
 * Change Controller: IETF
 * Specification Document(s): (#audDef) of this specification
 
 * Header Parameter Name: `nonce`
 * Header Parameter Description: Nonce
-* Header Parameter Usage Location(s): Issued, Presented
+* Header Parameter Usage Location(s): Presented
 * Change Controller: IETF
 * Specification Document(s): (#nonceDef) of this specification
 
