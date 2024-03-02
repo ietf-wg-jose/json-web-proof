@@ -202,6 +202,7 @@ for his valuable contributions to this specification.
   -03
 
   * Improvements resulting from a full proofreading.
+  * Added examples of JSON object and JSON boolean claims.
 
   -02
 

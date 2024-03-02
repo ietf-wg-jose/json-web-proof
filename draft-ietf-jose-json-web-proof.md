@@ -1062,6 +1062,12 @@ for his valuable contributions to this specification.
   -03
 
   * Improvements resulting from a full proofreading.
+  * Populated IANA Considerations section.
+  * Specified JWP Header Parameters.
+  * Specified representation of zero-length disclosed payloads for the compact serialization.
+  * Specified that algorithms may supply multiple octet strings for the proof, which are separated by `~` characters in the compact serialization.
+  * Updated to use BBS draft -05.
+  * Added Terminology Section.
 
   -02
 
