@@ -291,7 +291,7 @@ with a value in the audience Header Parameter.  If the principal
 processing the Header Parameter does not identify itself with a
 value in the `aud` Header Parameter when this Header Parameter is present,
 then the JWP MUST be rejected.
-In the general case, 
+In the general case,
 the `aud` value is an array of
 case-sensitive strings, each containing a StringOrURI value.
 In the special case when the JWP has one audience,
