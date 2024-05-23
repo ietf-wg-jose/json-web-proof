@@ -1,5 +1,5 @@
 {
-    "alg": "BBS-PROOF-DRAFT-5",
+    "alg": "SU-ES256",
     "aud": "https://recipient.example.com",
     "nonce": "wrmBRkKtXjQ"
 }

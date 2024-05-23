@@ -5,6 +5,7 @@ ipr = "trust200902"
 workgroup="jose"
 keyword = ["jose", "zkp", "jwp", "jws", "jpa"]
 docname = "draft-ietf-jose-json-proof-algorithms"
+consensus = true
 
 [seriesInfo]
 name = "Internet-Draft"
@@ -247,10 +248,10 @@ The octets resulting from this operation form the issuance proof, to be used alo
 
 As an example, consider following protected header and array of payloads:
 
-<{{./fixtures/template/bbs-issuer-protected-header.json}}
+<{{./fixtures/template/jpt-issuer-protected-header.json}}
 Figure: Example issuer protected header
 
-<{{./fixtures/template/bbs-issuer-payloads.json}}
+<{{./fixtures/template/jpt-issuer-payloads.json}}
 Figure: Example issuer payloads (as members of a JSON array)
 
 These components along with the private issuer key previously given would be representable in the following serializations:
@@ -281,15 +282,15 @@ Presentation serialization leverages the two protected headers and presentation 
 
 For example, given the following presentation header:
 
-<{{./fixtures/template/bbs-prover-presentation-header.json}}
+<{{./fixtures/template/bbs-holder-presentation-header.json}}
 Figure: Holder Presentation Header
 
 The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:
 
-<{{./fixtures/build/bbs-prover.json.jwp.wrapped}}
+<{{./fixtures/build/bbs-holder.json.jwp.wrapped}}
 Figure: Presentation JWP (JSON serialization)
 
-<{{./fixtures/build/bbs-prover.compact.jwp.wrapped}}
+<{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}
 Figure: Presentation JWP (compact serialization)
 
 ### Presentation Verification

@@ -1,0 +1,13 @@
+{
+  "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
+  "alg": "BBS-DRAFT-5",
+  "claims": [
+    "iat",
+    "exp",
+    "family_name",
+    "given_name",
+    "email",
+    "address",
+    "age_over_21"
+  ]
+}

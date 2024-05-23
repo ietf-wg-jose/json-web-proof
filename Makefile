@@ -4,7 +4,7 @@ include $(LIBDIR)/main.mk
 
 .PHONY: $(SUBDIRS)
 fixtures:
-	cd fixtures; node bbs-keygen.mjs; node bbs-fixtures.mjs
+	@cd fixtures; node --no-warnings bbs-keygen.mjs; node --no-warnings bbs-fixtures.mjs
 
 $(drafts_xml): fixtures
 
