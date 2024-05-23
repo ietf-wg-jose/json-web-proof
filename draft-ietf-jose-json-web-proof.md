@@ -520,11 +520,15 @@ will typically use different Header Parameter Usage Locations values.
 This section registers the Header Parameter names defined in
 (#RegisteredHeaderParameterNames) in this registry.
 
+#### Algorithm Header Parameter
+
 * Header Parameter Name: `alg`
 * Header Parameter Description: Algorithm
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#algDef) of this specification
+
+#### Key ID Header Parameter
 
 * Header Parameter Name: `kid`
 * Header Parameter Description: Key ID
@@ -532,11 +536,15 @@ This section registers the Header Parameter names defined in
 * Change Controller: IETF
 * Specification Document(s): (#kidDef) of this specification
 
+#### Type Header Parameter
+
 * Header Parameter Name: `typ`
 * Header Parameter Description: Type
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#typDef) of this specification
+
+#### Critical Header Parameter
 
 * Header Parameter Name: `crit`
 * Header Parameter Description: Critical
@@ -544,11 +552,15 @@ This section registers the Header Parameter names defined in
 * Change Controller: IETF
 * Specification Document(s): (#critDef) of this specification
 
+#### Issuer Header Parameter
+
 * Header Parameter Name: `iss`
 * Header Parameter Description: Issuer
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#issDef) of this specification
+
+#### Audience Header Parameter
 
 * Header Parameter Name: `aud`
 * Header Parameter Description: Audience
@@ -556,11 +568,15 @@ This section registers the Header Parameter names defined in
 * Change Controller: IETF
 * Specification Document(s): (#audDef) of this specification
 
+#### Nonce Header Parameter
+
 * Header Parameter Name: `nonce`
 * Header Parameter Description: Nonce
 * Header Parameter Usage Location(s): Presented
 * Change Controller: IETF
 * Specification Document(s): (#nonceDef) of this specification
+
+#### Claims Header Parameter
 
 * Header Parameter Name: `claims`
 * Header Parameter Description: claims
@@ -583,6 +599,7 @@ media type in the IANA "Media Types" registry,
 which can be used to indicate that the content is
 a JWP using the JWP JSON Serialization.
 
+#### The application/jwp Media Type
 * Type name: application
 * Subtype name: jwp
 * Required parameters: n/a
@@ -593,7 +610,7 @@ a JWP using the JWP JSON Serialization.
 * Published specification: this specification
 * Applications that use this media type: TBD
 * Fragment identifier considerations: n/a
-* Additional information:<list style="empty">
+* Additional information:
   - Magic number(s): n/a
   - File extension(s): n/a
   - Macintosh file type code(s): n/a
@@ -603,6 +620,8 @@ a JWP using the JWP JSON Serialization.
 * Author: Michael B. Jones, michael_b_jones@hotmail.com
 * Change Controller: IETF
 * Provisional registration? No
+
+#### The application/jwp+json Media Type
 
 * Type name: application
 * Subtype name: jwp+json
@@ -614,7 +633,7 @@ a JWP using the JWP JSON Serialization.
 * Published specification: this specification
 * Applications that use this media type: TBD
 * Fragment identifier considerations: n/a
-* Additional information:<list style="empty">
+* Additional information:
   - Magic number(s): n/a
   - File extension(s): n/a
   - Macintosh file type code(s): n/a
@@ -624,7 +643,6 @@ a JWP using the JWP JSON Serialization.
 * Author: Michael B. Jones, michael_b_jones@hotmail.com
 * Change Controller: IETF
 * Provisional registration? No
-
 
 {backmatter}
 
