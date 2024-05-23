@@ -778,7 +778,9 @@ for his valuable contributions to this specification.
 
 # Document History
 
-   [[ To be removed from the final specification ]]
+  [[ To be removed from the final specification ]]
+
+  * Refactoring figures and examples to be built from a common set across all three documents
 
   -03
 
