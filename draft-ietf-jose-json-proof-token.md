@@ -5,6 +5,7 @@ ipr = "trust200902"
 workgroup="jose"
 keyword = ["jose", "zkp", "jwp", "jws", "jpt"]
 docname = "draft-ietf-jose-json-proof-token"
+consensus = true
 
 [seriesInfo]
 name = "Internet-Draft"
@@ -105,21 +106,7 @@ they are contained in the presentation proof using algorithm-specific representa
 
 The following is an example JWP Issuer Protected Header that includes a claims property:
 
-```json
-{
-  "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
-  "alg": "BBS-DRAFT-5",
-  "claims": [
-    "iat",
-    "exp",
-    "family_name",
-    "given_name",
-    "email",
-    "address",
-    "age_over_21"
-  ]
-}
-```
+<{{./fixtures/template/jpt-issuer-protected-header-with-claims.json}}
 
 In this example, the "iat" and "exp" would be JSON-formatted numbers, "family_name", "given_name" and "email" would be JSON strings (in quotes), "address" would be a JSON object and "age_over_21" would be expected to be either `true` or `false`.
 
@@ -130,13 +117,8 @@ To facilitate this external definition of the claim names, an additional `cid` k
 If there is an associated JWK containing the signing key information, the `claims` key is also registered there as a convenient location for the claim names.
 
 The following is an example JWP Protected Header that includes a `cid`:
-```json
-{
-  "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
-  "alg": "BBS",
-  "cid": "guA8PAI14Gkn4273f1rR606yMbRMFg4y"
-}
-```
+
+<{{./fixtures/template/jpt-issuer-protected-header-with-cid.json}}
 
 # Payloads
 

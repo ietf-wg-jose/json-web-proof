@@ -1,0 +1,16 @@
+[
+    1714521600,
+    1717199999,
+    "Doe",
+    "Jay",
+    "jaydoe@example.org",
+    {
+        "formatted": "1234 Main St.\nAnytown, CA 12345\nUSA",
+        "street_address": "1234 Main St.",
+        "locality": "Anytown",
+        "region": "CA",
+        "postal_code": 12345,
+        "country": "USA"        
+    },
+    true
+]

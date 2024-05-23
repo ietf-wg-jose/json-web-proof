@@ -1,5 +1,5 @@
 {
-    "alg": "BBS-DRAFT-5",
+    "alg": "SU-ES256",
     "typ": "JPT",
     "iss": "https://issuer.example",
     "claims": [

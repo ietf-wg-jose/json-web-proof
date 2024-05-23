@@ -6,9 +6,9 @@ import { encode } from 'jose/util/base64url';
 import { keyRead } from './bbs-keyread.mjs';
 import { lineWrap } from "./linewrap.mjs"
 
-import protectedHeaderJSON from "./template/bbs-issuer-protected-header.json" assert {type: "json"};
-import presentationHeaderJSON from "./template/bbs-prover-presentation-header.json" assert {type: "json"};
-import payloadsJSON from "./template/bbs-issuer-payloads.json" assert {type: "json"};
+import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" assert {type: "json"};
+import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" assert {type: "json"};
+import payloadsJSON from "./template/jpt-issuer-payloads.json" assert {type: "json"};
 
 // load/massage data
 const keyPair = await keyRead();
@@ -56,33 +56,38 @@ var proof = await pairing.bbs.bls12381_sha256.deriveProof({
     messages: [
         { value: payloads[0], reveal: true },
         { value: payloads[1], reveal: true },
-        { value: payloads[2], reveal: false },
-        { value: payloads[3], reveal: true }
+        { value: payloads[2], reveal: true },
+        { value: payloads[3], reveal: true },
+        { value: payloads[4], reveal: false },
+        { value: payloads[5], reveal: false },
+        { value: payloads[6], reveal: false },
     ]
 });
-await fs.writeFile("build/bbs-prover-proof.base64url", encode(proof), {encoding: "UTF-8"});
+await fs.writeFile("build/bbs-holder-proof.base64url", encode(proof), {encoding: "UTF-8"});
 
 // go ahead and modify payloads in place for final output
-payloads[2] = null; // remove email
+payloads[4] = null; // remove email
+payloads[5] = null; // remove address
+payloads[6] = null; // remove age_over_21
 
 // Compact Serialization
-const compactProverSerialization = [
+const compactHolderSerialization = [
     encode(presentationHeader),
     encode(protectedHeader),
     payloads.map((item)=>encode(item || "")).join("~"),
     encode(proof)
 ].join(".");
-await fs.writeFile("build/bbs-prover.compact.jwp", compactProverSerialization, {encoding: "UTF-8"});
-await fs.writeFile("build/bbs-prover.compact.jwp.wrapped", lineWrap(compactProverSerialization, 0));
+await fs.writeFile("build/bbs-holder.compact.jwp", compactHolderSerialization, {encoding: "UTF-8"});
+await fs.writeFile("build/bbs-holder.compact.jwp.wrapped", lineWrap(compactHolderSerialization, 0));
 
 // JSON Serialization
-const jsonProverSerialization = {
+const jsonHolderSerialization = {
     presentation: encode(presentationHeader),
     issuer: encode(protectedHeader),
     payloads: payloads.map((item)=> item && encode(item)),
     proof: encode(proof)
 };
 
-var jsonProverSerializationStr = JSON.stringify(jsonProverSerialization, null, 2);
-await fs.writeFile("build/bbs-prover.json.jwp", jsonProverSerializationStr, {encoding: "UTF-8"});
-await fs.writeFile("build/bbs-prover.json.jwp.wrapped", lineWrap(jsonProverSerializationStr, 8), {encoding: "UTF-8"});
+var jsonHolderSerializationStr = JSON.stringify(jsonHolderSerialization, null, 2);
+await fs.writeFile("build/bbs-holder.json.jwp", jsonHolderSerializationStr, {encoding: "UTF-8"});
+await fs.writeFile("build/bbs-holder.json.jwp.wrapped", lineWrap(jsonHolderSerializationStr, 8), {encoding: "UTF-8"});
