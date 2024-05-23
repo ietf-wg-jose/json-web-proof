@@ -4,7 +4,12 @@ include $(LIBDIR)/main.mk
 
 .PHONY: $(SUBDIRS)
 fixtures:
+	@cd fixtures; node --no-warnings nonce.mjs
 	@cd fixtures; node --no-warnings bbs-keygen.mjs; node --no-warnings bbs-fixtures.mjs
+	@cd fixtures; node --no-warnings es256-keygen.mjs issuer; \
+		node --no-warnings es256-keygen.mjs holder; \
+		node --no-warnings es256-keygen.mjs ephemeral; \
+		node --no-warnings su-es256-fixtures.mjs
 
 $(drafts_xml): fixtures
 
