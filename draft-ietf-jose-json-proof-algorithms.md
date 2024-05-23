@@ -230,9 +230,6 @@ The key used for the `BBS-DRAFT-5` algorithm is an elliptic curve-based key pair
 
 The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
 
-<{{./fixtures/build/private-key.jwk.wrapped}}
-Figure: BBS private key in JWK format
-
 There is no additional holder key necessary for presentation proofs.
 
 ### Issuance
@@ -240,22 +237,6 @@ There is no additional holder key necessary for presentation proofs.
 Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets `header` and the octets array `messages`.
 
 The octets resulting from this operation form the issuance proof, to be used along with the protected header and payloads to serialize the JWP.
-
-As an example, consider following protected header and array of payloads:
-
-<{{./fixtures/template/jpt-issuer-protected-header.json}}
-Figure: Example issuer protected header
-
-<{{./fixtures/template/jpt-issuer-payloads.json}}
-Figure: Example issuer payloads (as members of a JSON array)
-
-These components along with the private issuer key previously given would be representable in the following serializations:
-
-<{{./fixtures/build/bbs-issuer.json.jwp.wrapped}}
-Figure: Issued JWP (JSON serialization)
-
-<{{./fixtures/build/bbs-issuer.compact.jwp.wrapped}}
-Figure: Issued JWP (compact serialization)
 
 ### Issuance Proof Verification
 
@@ -274,19 +255,6 @@ The operation also takes a vector of indexes into `messages`, describing which p
 The output of this operation is the presentation proof.
 
 Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of `null` in JSON serialization and a zero-length string in compact serialization.
-
-For example, given the following presentation header:
-
-<{{./fixtures/template/bbs-holder-presentation-header.json}}
-Figure: Holder Presentation Header
-
-The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:
-
-<{{./fixtures/build/bbs-holder.json.jwp.wrapped}}
-Figure: Presentation JWP (JSON serialization)
-
-<{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}
-Figure: Presentation JWP (compact serialization)
 
 ### Presentation Verification
 
@@ -496,7 +464,6 @@ defining the revised implementation requirements level.
 * Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.
 * Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.
 * Algorithm Analysis Documents(s): References to a publication or publications in well-known cryptographic conferences, by national standards bodies, or by other authoritative sources analyzing the cryptographic soundness of the algorithm to be registered. The Designated Experts may require convincing evidence of the cryptographic soundness of a new algorithm to be provided with the registration request unless the algorithm is being registered as Deprecated or Prohibited. Having gone through working group and IETF review, the initial registrations made by this document are exempt from the need to provide this information.
-
 
 ### Initial Registry Contents {#AlgsContents}
 
@@ -708,6 +675,46 @@ And also in compact serialization:
 
 <{{./fixtures/build/su-es256-presentation.compact.jwp.wrapped}}>
 Figure: Final Presentation in Compact Serialization
+
+## Example BBS JWP
+
+The following example uses the `BBS-DRAFT-5` algorithm.
+
+
+This is the Signer's stable private key in the JWK format:
+<{{./fixtures/build/private-key.jwk.wrapped}}
+Figure: BBS private key in JWK format
+
+There is no additional holder key necessary for presentation proofs.
+
+For the following protected header and array of payloads:
+
+<{{./fixtures/template/jpt-issuer-protected-header.json}}
+Figure: Example issuer protected header
+
+<{{./fixtures/template/jpt-issuer-payloads.json}}
+Figure: Example issuer payloads (as members of a JSON array)
+
+These components are signed using the private issuer key previously given, which is then representable in the following serializations:
+
+<{{./fixtures/build/bbs-issuer.json.jwp.wrapped}}
+Figure: Issued JWP (JSON serialization)
+
+<{{./fixtures/build/bbs-issuer.compact.jwp.wrapped}}
+Figure: Issued JWP (compact serialization)
+
+For a presentation with the following presentation header:
+
+<{{./fixtures/template/bbs-holder-presentation-header.json}}
+Figure: Holder Presentation Header
+
+The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:
+
+<{{./fixtures/build/bbs-holder.json.jwp.wrapped}}
+Figure: Presentation JWP (JSON serialization)
+
+<{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}
+Figure: Presentation JWP (compact serialization)
 
 ## Example MAC JWP
 
