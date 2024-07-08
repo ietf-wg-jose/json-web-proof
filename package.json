@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jose": "^3.20.3",
+    "jose": "^5",
     "jsonpath": "^1.1.1",
-    "@mattrglobal/pairing-crypto": "file:mattrglobal-pairing-crypto-8fc600b5.tgz"
+    "@mattrglobal/pairing-crypto": "file:mattrglobal-pairing-crypto-192addc1.tgz"
   }
 }

@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 
 import pairing from "@mattrglobal/pairing-crypto";
-import { encode } from 'jose/util/base64url';
+import { base64url } from 'jose';
 
 import { keyRead } from './bbs-keyread.mjs';
 import { lineWrap } from "./linewrap.mjs"
@@ -9,6 +9,8 @@ import { lineWrap } from "./linewrap.mjs"
 import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" assert {type: "json"};
 import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" assert {type: "json"};
 import payloadsJSON from "./template/jpt-issuer-payloads.json" assert {type: "json"};
+
+const encode = base64url.encode;
 
 // load/massage data
 const keyPair = await keyRead();

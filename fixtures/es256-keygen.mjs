@@ -3,10 +3,12 @@
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
 import * as crypto from "node:crypto"
 
-import {encode} from "jose/util/base64url"
+import {base64url} from "jose";
 import {lineWrap} from "./linewrap.mjs"
 import fs from "node:fs/promises";
 import { promisify } from "node:util";
+
+const encode = base64url.encode;
 
 var keypair = await crypto.generateKeyPairSync("ec", {
     namedCurve: "prime256v1"

@@ -1,5 +1,5 @@
-import { encode, decode } from 'jose/util/base64url';
-import { GeneralSign } from 'jose/jws/general/sign';
+import { base64url } from 'jose';
+import { GeneralSign } from 'jose';
 import { lineWrap } from './linewrap.mjs';
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
@@ -13,6 +13,8 @@ import presentationNonceStr from "./build/presentation-nonce.json" assert {type:
 import issuerProtectedHeaderJSON from "./template/su-es256-issuer-protected-header.json" assert {type: "json"};
 import holderProtectedHeaderJSON from "./template/su-es256-holder-protected-header.json" assert {type: "json"};
 import assert from 'assert';
+
+const { encode, decode } = base64url;
 
 const payloads = payloadsJSON.map((item) => Buffer.from(JSON.stringify(item), "UTF-8"));
 const issuerNonce = decode(issuerNonceStr);
