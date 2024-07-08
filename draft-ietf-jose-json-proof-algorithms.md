@@ -220,13 +220,13 @@ This algorithm supports both selective disclosure and unlinkability, enabling th
 
 ### JPA Algorithms {#BBS-registration}
 
-The `BBS-DRAFT-5` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`.
+The `BBS` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_`.
 
-The `BBS-PROOF-DRAFT-5` `alg` parameter value in the presentation protected header corresponds to the same ciphersuite, but used in presentation form.
+The `BBS-PROOF` `alg` parameter value in the presentation protected header corresponds to the same ciphersuite, but used in presentation form.
 
 ### Key Format
 
-The key used for the `BBS-DRAFT-5` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.4]
+The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.4]
 
 The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
 
@@ -491,7 +491,7 @@ defining the revised implementation requirements level.
 * Specification Document(s): (#SU-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `BBS-DRAFT-5`
+* Algorithm Name: `BBS`
 * Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
 * Algorithm Usage Location(s): Issued
 * JWP Implementation Requirements: Required
@@ -499,7 +499,7 @@ defining the revised implementation requirements level.
 * Specification Document(s): (#BBS-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `BBS-PROOF-DRAFT-5`
+* Algorithm Name: `BBS-PROOF`
 * Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
 * Algorithm Usage Location(s): Presented
 * JWP Implementation Requirements: Required
@@ -678,7 +678,7 @@ Figure: Final Presentation in Compact Serialization
 
 ## Example BBS JWP
 
-The following example uses the `BBS-DRAFT-5` algorithm.
+The following example uses the `BBS` algorithm.
 
 
 This is the Signer's stable private key in the JWK format:
@@ -978,6 +978,8 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   * Refactoring figures and examples to be built from a common set across all three documents
   * Move single-use example appendix from JWP to JPA
+  * Change algorithm from "BBS-DRAFT-5" to "BBS", and from "BBS-PROOF-DRAFT-5" to "BBS-PROOF"
+  * Update BBS ciphersuite ID to "BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_"
 
   -03
 
