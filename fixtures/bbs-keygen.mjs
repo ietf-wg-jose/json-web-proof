@@ -2,10 +2,11 @@
 // containing a BLS curve key pair usable for issuance, based on 
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
 import {bbs} from "@mattrglobal/pairing-crypto"
-import {encode} from "jose/util/base64url"
+import {base64url} from "jose";
 import {lineWrap} from "./linewrap.mjs"
 import fs from "node:fs/promises";
 
+const encode = base64url.encode
 var keys = await bbs.bls12381_sha256.generateKeyPair();
 
 // create "build" directory if doesn't exist
