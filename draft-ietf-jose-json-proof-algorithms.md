@@ -977,11 +977,14 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   [[ To be removed from the final specification ]]
 
+  -04
+
   * Refactoring figures and examples to be built from a common set across all three documents
   * Move single-use example appendix from JWP to JPA
   * Change algorithm from `BBS-DRAFT-5` to `BBS`, and from `BBS-PROOF-DRAFT-5` to `BBS-PROOF`
   * Update BBS ciphersuite ID to `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_`
   * Update to draft 5 BLS key representations
+
   -03
 
   * Improvements resulting from a full proofreading.

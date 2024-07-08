@@ -721,6 +721,8 @@ for his valuable contributions to this specification.
 
   [[ To be removed from the final specification ]]
 
+ -04
+
   * Refactoring figures and examples to be built from a common set across all three documents
   * Move single-use example appendix from JWP to JPA
 
