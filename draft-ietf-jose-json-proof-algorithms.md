@@ -228,7 +228,7 @@ The `BBS-PROOF` `alg` parameter value in the presentation protected header corre
 
 The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.4]
 
-The JWK form of this key is an `OKP` type with a curve of `BLs12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
+The JWK form of this key is an `OKP` type with a curve of `BLS12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
 
 There is no additional holder key necessary for presentation proofs.
 
@@ -682,6 +682,7 @@ The following example uses the `BBS` algorithm.
 
 
 This is the Signer's stable private key in the JWK format:
+
 <{{./fixtures/build/private-key.jwk.wrapped}}
 Figure: BBS private key in JWK format
 
@@ -978,9 +979,9 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   * Refactoring figures and examples to be built from a common set across all three documents
   * Move single-use example appendix from JWP to JPA
-  * Change algorithm from "BBS-DRAFT-5" to "BBS", and from "BBS-PROOF-DRAFT-5" to "BBS-PROOF"
-  * Update BBS ciphersuite ID to "BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_"
-
+  * Change algorithm from `BBS-DRAFT-5` to `BBS`, and from `BBS-PROOF-DRAFT-5` to `BBS-PROOF`
+  * Update BBS ciphersuite ID to `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_`
+  * Update to draft 5 BLS key representations
   -03
 
   * Improvements resulting from a full proofreading.
