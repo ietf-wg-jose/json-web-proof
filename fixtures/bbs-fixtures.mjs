@@ -20,7 +20,7 @@ const presentationHeader = Buffer.from(JSON.stringify(presentationHeaderJSON), "
 
 // calculate signature
 const signature = await pairing.bbs.bls12381_sha256.sign({
-    publicKey: keyPair.publicKey, 
+    publicKey: keyPair.publicKey.compressed, 
     secretKey: keyPair.secretKey, 
     header: protectedHeader,
     messages: payloads
@@ -50,7 +50,7 @@ await fs.writeFile("build/bbs-issuer.json.jwp.wrapped", lineWrap(jsonSerializati
 
 // Generate proof, selectively disclosing only name and age
 var proof = await pairing.bbs.bls12381_sha256.deriveProof({
-    publicKey: keyPair.publicKey,
+    publicKey: keyPair.publicKey.compressed,
     header: protectedHeader,
     presentationHeader: presentationHeader,
     signature: signature,
