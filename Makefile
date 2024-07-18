@@ -10,6 +10,7 @@ fixtures:
 		node --no-warnings es256-keygen.mjs holder; \
 		node --no-warnings es256-keygen.mjs ephemeral; \
 		node --no-warnings su-es256-fixtures.mjs
+	@cd fixtures; node --no-warnings mac-h256-fixtures.mjs; node --no-warnings mac-h256-secret-gen.mjs
 
 $(drafts_xml): fixtures
 

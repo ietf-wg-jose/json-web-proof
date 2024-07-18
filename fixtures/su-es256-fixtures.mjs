@@ -12,7 +12,6 @@ import issuerNonceStr from "./build/issuer-nonce.json" assert {type: "json"};
 import presentationNonceStr from "./build/presentation-nonce.json" assert {type: "json"};
 import issuerProtectedHeaderJSON from "./template/su-es256-issuer-protected-header.json" assert {type: "json"};
 import holderProtectedHeaderJSON from "./template/su-es256-holder-protected-header.json" assert {type: "json"};
-import assert from 'assert';
 
 const { encode, decode } = base64url;
 
@@ -39,26 +38,6 @@ async function sign_payload(payload, key){
     sig.addSignature(key).setProtectedHeader({'alg':'ES256'});
     const jws = await sig.sign();
     return jws.signatures[0].signature;
-}
-
-// const { fromKeyLike } = require('jose/jwk/from_key_like');
-// const { generateKeyPair } = require('jose/util/generate_key_pair');
-// const { calculateThumbprint } = require('jose/jwk/thumbprint');
-// const { readFileSync, writeFileSync } = require('fs');
-// const { parseJwk } = require('jose/jwk/parse');
-
-// let jwp_fix = {}
-// try {
-//     jwp_fix = JSON.parse(await fs.readFile('draft-jmiller-jose-json-web-proof.json'))
-// }catch(E){
-//     console.error(`fixture file loading error:`, E);
-//     process.exit(1)
-// }
-
-function octet_array(value)
-{
-    if(!Array.isArray(value)) value = Array.from(new TextEncoder("utf-8").encode((value)));
-    return JSON.stringify(value).split(',').join(', ')
 }
 
 // storage as we build up
