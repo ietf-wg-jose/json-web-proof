@@ -1,0 +1,14 @@
+{
+    "alg": "MAC-H256",
+    "typ": "JPT",
+    "iss": "https://issuer.example",
+    "claims": [
+        "iat",
+        "exp",
+        "family_name", 
+        "given_name", 
+        "email",
+        "address",
+        "age_over_21"
+    ]
+}

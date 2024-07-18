@@ -681,7 +681,7 @@ Figure: Final Presentation in Compact Serialization
 The following example uses the `BBS` algorithm.
 
 
-This is the Signer's stable private key in the JWK format:
+This is the Issuer's stable private key in the JWK format:
 
 <{{./fixtures/build/private-key.jwk.wrapped}}
 Figure: BBS private key in JWK format
@@ -721,247 +721,89 @@ Figure: Presentation JWP (compact serialization)
 
 The following example uses the `MAC-H256` algorithm.
 
-This is the Signer's stable private key in the JWK format:
-```json
-{
-  "crv": "P-256",
-  "kty": "EC",
-  "x": "ONebN43-G5DOwZX6jCVpEYEe0bYd5WDybXAG0sL3iDA",
-  "y": "b0MHuYfSxu3Pj4DAyDXabAc0mPjpB1worEpr3yyrft4",
-  "d": "jnE0-9YvxQtLJEKcyUHU6HQ3Y9nSDnh0NstYJFn7RuI"
-}
-```
-Figure: issuer-private-jwk
+This is the Issuer's stable private key in the JWK format:
 
-This is the Signer's generated Shared Secret:
-```json
-[100, 109, 91, 184, 139, 20, 107, 86, 1, 252, 86, 159, 126, 251,
-228, 4, 35, 177, 75, 96, 11, 205, 144, 189, 42, 95, 135, 170, 107,
-58, 99, 142]
-```
-Figure: mac-shared-secret
+<{{./fixtures/build/issuer-private-key-es256.jwk.wrapped}}
+Figure: Issuer private key
+
+This is the Issuer's ephemerally generated shared secret:
+
+<{{./fixtures/build/issuer-nonce.json}}
+Figure: Shared Secret
 
 This is the Holder's presentation private key in the JWK format:
-```json
-{
-  "crv": "P-256",
-  "kty": "EC",
-  "x": "oB1TPrE_QJIL61fUOOK5DpKgd8j2zbZJtqpILDTJX6I",
-  "y": "3JqnrkucLobkdRuOqZXOP9MMlbFyenFOLyGlG-FPACM",
-  "d": "AvyDPl1I4xwjrI2iEOi6DxM9ipJe_h_VUN5OvoKvvW8"
-}
-```
-Figure: holder-presentation-jwk
 
-The first MAC is generated using the key `issuer_header` and the base64url-encoded issuer protected header, resulting in this octet array:
-```json
-[140, 88, 59, 30, 127, 113, 27, 237, 78, 200, 182, 114, 94, 123,
-198, 128, 102, 232, 178, 88, 252, 248, 57, 2, 231, 19, 145, 8, 160,
-197, 66, 166]
-```
-Figure: mac-issuer-header-mac
+<{{./fixtures/build/holder-private-key-es256.jwk.wrapped}}
+Figure: Holder private key
 
-The issuer generates an array of derived keys with one for each payload by using the shared secret as the key and the index of the payload as the input:
-```json
-[
- [180, 129, 55, 94, 125, 158, 179, 245, 30, 199, 148, 60, 184, 28,
- 197, 123, 231, 232, 95, 91, 65, 74, 38, 242, 253, 96, 67, 44, 40,
- 220, 250, 4],
- [143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137,
- 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115,
- 72, 214, 57, 98],
- [144, 73, 77, 66, 230, 187, 217, 186, 246, 41, 138, 25, 39, 203,
- 101, 76, 156, 161, 244, 130, 203, 166, 184, 154, 7, 4, 218, 84,
- 168, 199, 36, 245],
- [70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98,
- 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155,
- 242, 236, 21, 138]
-]
-```
-Figure: mac-issuer-keys
+For the following protected header and array of payloads:
 
-The first payload is the string `"Doe"` with the octet sequence of `[ 34, 68, 111, 101, 34 ]` and base64url-encoded as `IkRvZSI`.
+<{{./fixtures/build/mac-h256-issuer-protected-header.json}}
+Figure: Example issuer protected header
 
-The second payload is the string `"Jay"` with the octet sequence of `[ 34, 74, 97, 121, 34 ]` and base64url-encoded as `IkpheSI`.
+<{{./fixtures/template/jpt-issuer-payloads.json}}
+Figure: Example issuer payloads (as members of a JSON array)
 
-The third payload is the string `"jaydoe@example.org"` with the octet sequence of `[ 34, 106, 97, 121, 100, 111, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 111, 114, 103, 34 ]` and base64url-encoded as `ImpheWRvZUBleGFtcGxlLm9yZyI`.
+The first MAC is generated using the key `issuer_header` and the base64url-encoded issuer protected header, resulting in the following base64url-encoded octet array:
 
-The fourth payload is the string `42` with the octet sequence of `[ 52, 50 ]` and base64url-encoded as `NDI`.
+<{{./fixtures/build/mac-h256-issuer-protected-header-mac.txt}}
+Figure: Issuer MAC of protected header
 
-A MAC is generated for each payload using the generated key for its given index, resulting in an array of MACs:
-```json
-[
- [156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28,
- 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64,
- 129, 61, 172],
- [239, 17, 12, 35, 111, 129, 51, 87, 43, 86, 234, 38, 89, 149, 169,
- 157, 33, 104, 81, 246, 190, 154, 74, 195, 194, 158, 50, 208, 203,
- 203, 249, 237],
- [162, 174, 12, 27, 190, 250, 112, 1, 139, 177, 49, 124, 110, 201,
- 83, 233, 14, 109, 60, 253, 121, 184, 126, 121, 26, 138, 5, 214, 97,
- 96, 216, 80],
- [61, 109, 78, 172, 255, 189, 67, 83, 247, 65, 234, 128, 30, 47,
- 145, 70, 129, 26, 41, 41, 78, 4, 151, 230, 232, 127, 135, 230, 14,
- 208, 178, 50]
-]
-```
-Figure: mac-issuer-macs
+The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload (as `payload_{n}` in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys (as base64url-encoded members in a JSON array):
 
-Concatenating the issuer protected header MAC with the array of payload MACs produces a single octet array that is signed using the issuer's stable key, resulting in the following signature:
-```json
-[120, 172, 15, 230, 138, 230, 150, 139, 241, 196, 79, 134, 122, 43,
-149, 11, 253, 104, 58, 199, 49, 87, 32, 64, 237, 50, 86, 155, 153,
-58, 63, 116, 245, 130, 136, 197, 164, 207, 232, 238, 106, 171, 246,
-98, 149, 254, 22, 1, 114, 187, 233, 168, 116, 173, 211, 208, 234,
-245, 76, 238, 143, 157, 83, 202]
-```
-Figure: mac-issuer-signature
+<{{./fixtures/build/mac-h256-issuer-derived-payload-keys.json}}
+Figure: Derived payload keys
 
-The original shared secret octet string is then concatenated to the end of the issuer signature octet string and the result is base64url-encoded as the issuer's proof value.
+A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values (as base64url-encoded members in a JSON array):
+
+<{{./fixtures/build/mac-h256-payload-macs.json}}
+Figure: Payload MAC values
+
+The proof is the concatenation of the issuer protected header MAC, each payload MAC value, and the shared secret. The result is the following base64url-encoded value:
+
+<{{./fixtures/build/mac-h256-issued-proof.txt.wrapped}}
+Figure: Issued Proof
 
 The final issued JWP in JSON serialization is:
-```json
-{
-  "payloads": [
-    "IkRvZSI",
-    "IkpheSI",
-    "ImpheWRvZUBleGFtcGxlLm9yZyI",
-    "NDI"
-  ],
-  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmF
-  taWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUI
-  iwicGp3ayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUp
-  JTDYxZlVPT0s1RHBLZ2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb
-  2JrZFJ1T3FaWE9QOU1NbGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI
-  1NiJ9",
-  "proof": [
-    "eKwP5ormlovxxE-GeiuVC_1oOscxVyBA7TJWm5k6P3T1gojFpM_o7mqr9mKV_hYB
-    crvpqHSt09Dq9Uzuj51TymRtW7iLFGtWAfxWn3775AQjsUtgC82QvSpfh6prOmOO"
-  ]
-}
-```
-Figure: mac-issued-jwp
+
+<{{./fixtures/build/mac-h256-issuer.json.jwp.wrapped}}
+Figure: Issued JWP (in JSON serialization)
 
 The same JWP in compact serialization:
-```text
-eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUi
-LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJj
-cnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBL
-Z2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb2JrZFJ1T3FaWE9QOU1N
-bGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI1NiJ9.IkRvZSI~IkpheSI
-~ImpheWRvZUBleGFtcGxlLm9yZyI~NDI.eKwP5ormlovxxE-GeiuVC_1oOscxVyBA7TJ
-Wm5k6P3T1gojFpM_o7mqr9mKV_hYBcrvpqHSt09Dq9Uzuj51TymRtW7iLFGtWAfxWn37
-75AQjsUtgC82QvSpfh6prOmOO
-```
-Figure: mac-issued-compact
+
+<{{./fixtures/build/mac-h256-issuer.compact.jwp.wrapped}}
+Figure: Issued JWP (in compact serialization)
 
 Next, we show the presentation of the JWP with selective disclosure.
 
-We start with this presentation header using a nonce provided by the Verifier:
-```json
-{
-  "nonce": "uTEB371l1pzWJl7afB0wi0HWUNk1Le-bComFLxa8K-s"
-}
-```
-Figure: mac-presentation-header
+For presentation with the following presentation protected header:
 
-When signed with the holder's presentation key, the resulting signature octets are:
-```json
-[126, 134, 175, 2, 165, 12, 103, 11, 116, 72, 94, 228, 240, 142,
-107, 195, 198, 238, 218, 203, 63, 198, 105, 175, 1, 69, 182, 5, 204,
-239, 35, 149, 85, 55, 4, 169, 109, 243, 88, 213, 12, 1, 167, 235,
-222, 17, 232, 118, 110, 111, 47, 165, 102, 142, 0, 1, 226, 117, 143,
-125, 132, 62, 231, 145]
-```
-Figure: mac-presentation-header-signature
+<{{./fixtures/build/mac-h256-presentation-protected-header.json.wrapped}}
+Figure: Presentation Protected Header
 
-Then by applying selective disclosure of only the given name and age claims (family name and email hidden, payload array indexes 0 and 2), the holder builds a mixed array of either the payload key (if disclosed) or MAC (if hidden):
-```json
-[
- [156, 53, 90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28,
- 220, 237, 112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64,
- 129, 61, 172],
- [143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137,
- 25, 159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115,
- 72, 214, 57, 98],
- [162, 174, 12, 27, 190, 250, 112, 1, 139, 177, 49, 124, 110, 201,
- 83, 233, 14, 109, 60, 253, 121, 184, 126, 121, 26, 138, 5, 214, 97,
- 96, 216, 80],
- [70, 55, 182, 105, 101, 130, 254, 234, 68, 224, 219, 97, 119, 98,
- 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49, 246, 109, 155,
- 242, 236, 21, 138]
-]
-```
-Figure: mac-presentation-keyormac
+The holder will take the issuer proof (including shared secret) and derive the same individual payload MAC values (above).
 
-The final presented proof value is generated by concatenating first the presentation header signature octet string, followed by the issuer signature octet string, then followed by the mixed array of keys and MACs:
-```json
-[126, 134, 175, 2, 165, 12, 103, 11, 116, 72, 94, 228, 240, 142,
-107, 195, 198, 238, 218, 203, 63, 198, 105, 175, 1, 69, 182, 5, 204,
-239, 35, 149, 85, 55, 4, 169, 109, 243, 88, 213, 12, 1, 167, 235,
-222, 17, 232, 118, 110, 111, 47, 165, 102, 142, 0, 1, 226, 117, 143,
-125, 132, 62, 231, 145, 120, 172, 15, 230, 138, 230, 150, 139, 241,
-196, 79, 134, 122, 43, 149, 11, 253, 104, 58, 199, 49, 87, 32, 64,
-237, 50, 86, 155, 153, 58, 63, 116, 245, 130, 136, 197, 164, 207,
-232, 238, 106, 171, 246, 98, 149, 254, 22, 1, 114, 187, 233, 168,
-116, 173, 211, 208, 234, 245, 76, 238, 143, 157, 83, 202, 156, 53,
-90, 125, 139, 226, 60, 168, 100, 220, 79, 255, 8, 87, 28, 220, 237,
-112, 161, 91, 39, 68, 137, 203, 92, 243, 16, 116, 64, 129, 61, 172,
-143, 172, 182, 156, 184, 138, 228, 172, 215, 26, 175, 137, 137, 25,
-159, 141, 213, 12, 214, 29, 231, 200, 13, 94, 116, 22, 41, 115, 72,
-214, 57, 98, 162, 174, 12, 27, 190, 250, 112, 1, 139, 177, 49, 124,
-110, 201, 83, 233, 14, 109, 60, 253, 121, 184, 126, 121, 26, 138, 5,
-214, 97, 96, 216, 80, 70, 55, 182, 105, 101, 130, 254, 234, 68, 224,
-219, 97, 119, 98, 244, 33, 43, 55, 148, 238, 225, 177, 101, 160, 49,
-246, 109, 155, 242, 236, 21, 138]
-```
-Figure: mac-presentation-proof
+In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to `email`, `address`, and `age_over_21`)
 
-The resulting presented JWP in JSON serialization is:
-```json
-{
-  "payloads": [
-    null,
-    "IkpheSI",
-    null,
-    "NDI"
-  ],
-  "issuer": "eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmF
-  taWx5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUI
-  iwicGp3ayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUp
-  JTDYxZlVPT0s1RHBLZ2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb
-  2JrZFJ1T3FaWE9QOU1NbGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI
-  1NiJ9",
-  "proof": [
-    "foavAqUMZwt0SF7k8I5rw8bu2ss_xmmvAUW2BczvI5VVNwSpbfNY1QwBp-veEeh2
-    bm8vpWaOAAHidY99hD7nkXisD-aK5paL8cRPhnorlQv9aDrHMVcgQO0yVpuZOj909
-    YKIxaTP6O5qq_Zilf4WAXK76ah0rdPQ6vVM7o-dU8qcNVp9i-I8qGTcT_8IVxzc7X
-    ChWydEictc8xB0QIE9rI-stpy4iuSs1xqviYkZn43VDNYd58gNXnQWKXNI1jlioq4
-    MG776cAGLsTF8bslT6Q5tPP15uH55GooF1mFg2FBGN7ZpZYL-6kTg22F3YvQhKzeU
-    7uGxZaAx9m2b8uwVig"
-  ],
-  "presentation": "eyJub25jZSI6InVURUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOaz
-  FMZS1iQ29tRkx4YThLLXMifQ"
-}
-```
-Figure: mac-presentation-jwp
+For the disclosed payloads, the holder will provide the corresponding derived key. For the non-disclosed payloads, the holder will provide the corresponding MAC value. This corresponds to the following JSON array of base64url-encoded values:
+
+<{{./fixtures/build/mac-h256-presentation-disclosures.json.wrapped}}
+Figure: Per-payload disclosure information.
+
+The final presented proof value is generated by concatenating first the presentation header signature octet string, followed by the issuer signature octet string, then followed by either the MAC value or derived key for a payload (above). This results in the following base64url-encoded proof value:
+
+<{{./fixtures/build/mac-h256-presentation-proof.txt.wrapped}}
+Figure: Presentation proof
+
+The final presented JWP in JSON serialization is:
+
+<{{./fixtures/build/mac-h256-presentation.json.jwp.wrapped}}
+Figure: Presented JWP (in JSON serialization)
 
 The same JWP in compact serialization:
-```text
-eyJpc3MiOiJodHRwczovL2lzc3Vlci50bGQiLCJjbGFpbXMiOlsiZmFtaWx5X25hbWUi
-LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZ2UiXSwidHlwIjoiSlBUIiwicGp3ayI6eyJj
-cnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6Im9CMVRQckVfUUpJTDYxZlVPT0s1RHBL
-Z2Q4ajJ6YlpKdHFwSUxEVEpYNkkiLCJ5IjoiM0pxbnJrdWNMb2JrZFJ1T3FaWE9QOU1N
-bGJGeWVuRk9MeUdsRy1GUEFDTSJ9LCJhbGciOiJNQUMtSDI1NiJ9.eyJub25jZSI6InV
-URUIzNzFsMXB6V0psN2FmQjB3aTBIV1VOazFMZS1iQ29tRkx4YThLLXMifQ.~IkpheSI
-~~NDI.foavAqUMZwt0SF7k8I5rw8bu2ss_xmmvAUW2BczvI5VVNwSpbfNY1QwBp-veEe
-h2bm8vpWaOAAHidY99hD7nkXisD-aK5paL8cRPhnorlQv9aDrHMVcgQO0yVpuZOj909Y
-KIxaTP6O5qq_Zilf4WAXK76ah0rdPQ6vVM7o-dU8qcNVp9i-I8qGTcT_8IVxzc7XChWy
-dEictc8xB0QIE9rI-stpy4iuSs1xqviYkZn43VDNYd58gNXnQWKXNI1jlioq4MG776cA
-GLsTF8bslT6Q5tPP15uH55GooF1mFg2FBGN7ZpZYL-6kTg22F3YvQhKzeU7uGxZaAx9m
-2b8uwVig
-```
-Figure: mac-presentation-compact
+
+<{{./fixtures/build/mac-h256-presentation.compact.jwp.wrapped}}
+Figure: Presented JWP (in compact serialization)
 
 # Acknowledgements
 
