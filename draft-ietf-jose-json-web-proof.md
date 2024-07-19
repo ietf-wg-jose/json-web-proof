@@ -724,6 +724,7 @@ for his valuable contributions to this specification.
   [[ To be removed from the final specification ]]
 
   * Clarify the use of multiple octet strings in presentation proofs.
+  * Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.
 
  -04
 
