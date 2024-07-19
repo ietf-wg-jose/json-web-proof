@@ -135,7 +135,7 @@ This section defines how to use specific algorithms for JWPs.
 
 > Editor's Note: This algorithm may be renamed and slightly refactored.
 
-The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a single JWP proof value.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.
+The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a JWP proof.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.
 
 It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the holder will need to interact with the issuer again to receive new single-use JWPs (dynamically or in batches).
 
@@ -177,7 +177,9 @@ In various examples in this specification, the octet string serialized issuer he
 
 Each JWP payload is processed in order and signed as a JWS body using the issuer's Ephemeral Key.  The resulting JWS signature value unencoded octet string is appended to the JWP proof.
 
-The proof value as an octet string will have a total length that is the sum of the fixed length of the issuer protected header signature plus the fixed length of each of the payload Ephemeral Key signatures.  For example, the signature for the ES256 algorithm is 64 octets and for a JWP with five payloads the total proof value length would be `64 * (1 + 5) = 384` octets).
+### Proof
+
+The proof value is an octet string array. The first entry is the unencoded signature of the issuer protected header, with each additional entry being a unencoded ephemeral key signature of an issued payload.
 
 ### Presentation Protected Header
 
@@ -194,17 +196,19 @@ In various examples in this specification, the octet string serialized presentat
 
 > Editor's Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
 
-The holder derives a new proof value when presenting it to a verifier.  The presented proof value will always contain the issuer's Stable Key signature for the issuer protected header as the first element.
+The holder derives a new proof array of octets when presenting it to a verifier.  The presented proof value will always contain the issuer's Stable Key signature for the issuer protected header as the first element.
 
-The second element of the presented proof value is always the holder's Presentation Key signature of the presentation protected header, constructed identically to the issuer protected header by using the serialized JSON value octet string as the JWS body.  Signing only the presentation header with the Presentation Key is sufficient to protect the entire presentation since that key is private to the holder and only the contents of the presentation header are used for replay prevention.
+The second element of the presented proof is the holder's signature of the presentation protected header using the holder's presentation key. This signature is constructed using the same technique desscribed for generating the issuer's signature over the issuer protected header.  Signing only the presentation header with the Presentation Key is sufficient to protect the entire presentation since that key is private to the holder and only the contents of the presentation header are used for replay prevention.
 
-The two header signatures are then followed by only the issuer's Ephemeral Key signatures for each payload that is disclosed.  The order of the payload signatures is preserved and MUST be in the same order as the included disclosed payloads in the presented JWP.  Non-disclosed payloads will NOT have a signature value included.  For example, if the second and fifth payloads are hidden then the holder's derived proof value would be of the length `64 * (1 + 1 + the 1st, 2nd, and 4th payload signatures) = 320 octets`.
+The two header signatures are then followed by only the issuer's Ephemeral Key signatures for each payload that is disclosed.  The order of the payload signatures is preserved and MUST be in the same order as the included disclosed payloads in the presented JWP.  Non-disclosed payloads will NOT have a signature value included.
+
+For example, if the second and fifth of five payloads are not disclosed, then the holder's derived proof would consist of the issuer's signature over the issuer protected header, the holder's signature over the holder's protected header, the ephemeral key signature over the first, third and fourth payloads.
 
 Since the individual signatures in the proof value are unique and remain unchanged across multiple presentations, a Single Use JWP SHOULD only be presented a single time to each verifier in order for the holder to remain unlinkable across multiple presentations.
 
 ### Verification
 
-The verifier MUST verify the issuer protected header against the first matching JWS signature part in the proof value using the issuer's Stable Key.  It MUST also verify the presentation protected header against the second JWS signature part in the proof value using the holder's Presentation Key as provided in the `presentation_jwk` claim in the issuer protected header.
+The verifier MUST verify the issuer protected header against the first matching JWS signature part in the proof  using the issuer's Stable Key.  It MUST also verify the presentation protected header against the second part in the proof value using the holder's Presentation Key as provided in the `presentation_jwk` claim in the issuer protected header.
 
 With the headers verified, the issuer's Ephemeral Key as given in the issuer protected header `proof_jwk` claim can then be used to verify each of the disclosed payload signatures.
 
@@ -637,9 +641,9 @@ The JWP Protected Header is serialized (without the above whitespace added for r
 <{{./fixtures/build/su-es256-issuer-protected-header.b64.wrapped}}
 Figure: Encoded Issuer Protected Header (es256)
 
-The Single Use algorithm utilizes multiple individual JWS Signatures.  Each signature value is generated by creating a JWS with a single Protected Header with the associated `alg` value. In this example, the fixed header used for each JWS is the serialized JSON Object `{"alg":"ES256"}`.  The JWS payload for each varies and the resulting signature value is used in its unencoded form (the octet string, not the base64url-encoded form).
+The Single Use algorithm utilizes multiple individual JWS Signatures.  Each signature value is generated by creating a JWS with a single Protected Header with the associated `alg` value. In this example, the fixed header used for each JWS is the serialized JSON Object `{"alg":"ES256"}`. This protected header will be used to generate a signature over each corresponding payload in the JWP. The corresponding octet value in the proof is the binary (base64url-decoded) value of the signature.
 
-The final Proof value from the Issuer is the concatenated array of the header signature followed by all of the payload signatures, then base64url encoded.
+The final proof value from the Issuer is an array with the octets of the header signature, followed by entries for each payload signature.
 
 The resulting JSON serialized JPT using the above examples is:
 
@@ -820,6 +824,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
   [[ To be removed from the final specification ]]
 
   * Update of appendix describing MAC-H256 to now also be generated by the build system from a common set of code and templates
+  * Update single use algorithm to use an array of octet values rather than requiring splitting an octet buffer into parts during generation of a presentation and during verification.
 
   -04
 
