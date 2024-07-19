@@ -61,31 +61,26 @@ for (let payload of payloads) {
 
 // merge final signature
 let final = Buffer.from([]);
-
-for(let sig of sigs)
-{
-    final = Buffer.concat([final, decode(sig)]);
-}
-await fs.writeFile("build/su-es256-issuer-proof.base64url", encode(final), {encoding: "UTF-8"});
+await fs.writeFile("build/su-es256-issuer-proof.json.wrapped", lineWrap(JSON.stringify(sigs, 0, 2)), {encoding: "UTF-8"});
 
 // Compact Serialization
 let compactSerialization = [
     encode(issuerProtectedHeader),
     payloads.map((item)=>encode(item)).join("~"),
-    encode(final)
+    sigs.join("~")
 ].join(".");
 
 await fs.writeFile("build/su-es256-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
 await fs.writeFile("build/su-es256-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
 
 // JSON Serialization
-let jsonSerialziation = {
+let jsonSerialization = {
     issuer: encode(issuerProtectedHeader),
     payloads: payloads.map((item)=>encode(item)),
-    proof: encode(final)
+    proof: sigs
 };
 
-let jsonSerializationStr = JSON.stringify(jsonSerialziation, null, 2);
+let jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);
 await fs.writeFile("build/su-es256-issuer.json.jwp", jsonSerializationStr);
 await fs.writeFile("build/su-es256-issuer.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));
 
@@ -103,32 +98,26 @@ sigs.splice(1, 0, signature);
 sigs.splice(7, 2); // remove last two 
 payloads[7] = null;
 payloads[8 ] = null;
-let pres_final = Buffer.from([]);
-for(let sig of sigs)
-{
-    pres_final = Buffer.concat([pres_final, decode(sig)]);
-}
-let proof = encode(pres_final);
-await fs.writeFile("build/su-es256-presentation-proof.base64url", encode(proof), {encoding: "UTF-8"});
+await fs.writeFile("build/su-es256-presentation-proof.json.wrapped", lineWrap(JSON.stringify(sigs, 0, 2)), {encoding: "UTF-8"});
 
 // Compact Serialization
 compactSerialization = [
     encode(holderProtectedHeader),
     encode(issuerProtectedHeader),
     payloads.map((item)=>item != null ? encode(item) : "").join("~"),
-    encode(proof)
+    sigs.join("~")
 ].join(".");
 await fs.writeFile("build/su-es256-presentation.compact.jwp", compactSerialization, {encoding: "UTF-8"});
 await fs.writeFile("build/su-es256-presentation.compact.jwp.wrapped", lineWrap(compactSerialization));
 
 // JSON Serialization
-jsonSerialziation = {
+jsonSerialization = {
     presentation: encode(holderProtectedHeader),
     issuer: encode(issuerProtectedHeader),
     payloads: payloads.map((item)=>item != null ? encode(item) : null),
-    proof: encode(proof)
+    proof: sigs
 };
 
-jsonSerializationStr = JSON.stringify(jsonSerialziation, null, 2);
+jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);
 await fs.writeFile("build/su-es256-presentation.json.jwp", jsonSerializationStr);
 await fs.writeFile("build/su-es256-presentation.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));

@@ -379,7 +379,7 @@ JPAs MAY provide software interfaces that perform the encoding of individual pay
 
 ### Issuer Proof
 
-The proof value is one or more binary octet strings that are opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
+The issuer proof is one or more binary octet strings that are opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
 
 The issuer proof is used by the holder to perform validation, checking that the issuer header and all payloads are properly encoded and protected by the given proof.
 
@@ -410,11 +410,13 @@ Rather, proofs about payloads, such as "age >= 21", are included in the presenta
 
 ### Presentation Proof
 
-The proof value of a presented JWP will always be different than the issued proof.  At a minimum, it MUST be updated to include protection of the added presentation header.
+The presentation proof is one or more binary octet strings that are opaque to applications. Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
+
+The proof of a presented JWP will always be different than the issued proof.  At a minimum, it MUST be updated to include protection of the added presentation header.
 
 Algorithms SHOULD generate an un-correlatable presentation proof in order to support multiple presentations from a single issued JWP.
 
-Any payload specific proofs are included in the single proof value for the presented JWP. The JPA is responsible for internally encoding multiple proof values into one and cryptographically binding them to a specific payload from the issuer.
+The algorithm is responsible for representing selective disclosure of payloads in a presented proof. If multiple octet strings are insufficient for representing a proof as defined by an algorithm, the algorithm is responsible for defining how such information is represented within one or more octet strings.
 
 # Serializations
 
@@ -720,6 +722,8 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
+
+  * Clarify the use of multiple octet strings in presentation proofs.
 
  -04
 
