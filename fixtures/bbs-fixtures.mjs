@@ -41,7 +41,7 @@ await fs.writeFile("build/bbs-issuer.compact.jwp.wrapped", lineWrap(compactSeria
 const jsonSerialziation = {
     issuer: encode(protectedHeader),
     payloads: payloads.map((item)=>encode(item)),
-    proof: encode(signature)
+    proof: [ encode(signature) ]
 };
 
 let jsonSerializationStr = JSON.stringify(jsonSerialziation, null, 2);
@@ -87,7 +87,7 @@ const jsonHolderSerialization = {
     presentation: encode(presentationHeader),
     issuer: encode(protectedHeader),
     payloads: payloads.map((item)=> item && encode(item)),
-    proof: encode(proof)
+    proof: [ encode(proof) ]
 };
 
 var jsonHolderSerializationStr = JSON.stringify(jsonHolderSerialization, null, 2);
