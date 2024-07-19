@@ -92,15 +92,15 @@ const combinedMacs = payloadMacs.reduce(
 const macsSignature = decode(await sign_payload(combinedMacs, issuerPrivateKey));
 
 // Append shared key to raw signature for issuer proof value
-const issuedProof = Buffer.concat([macsSignature, holderSharedSecret]);
+const issuedProof = [macsSignature, holderSharedSecret]
 
-await fs.writeFile("build/mac-h256-issued-proof.txt.wrapped", lineWrap(encode(issuedProof)));
+await fs.writeFile("build/mac-h256-issued-proof.json.wrapped", lineWrap(JSON.stringify(issuedProof.map(encode), 0, 2)));
 
 // create issued JSON serialization
 const finalIssuedJSON = {
     issuer: encode(finalIssuerProtectedHeader),
     payloads: encodedPayloads,
-    proof: encode(issuedProof)
+    proof: issuedProof.map(encode)
 }
 const issuerJSONOutput = JSON.stringify(finalIssuedJSON, 0, 2);
 
@@ -108,7 +108,7 @@ const issuerJSONOutput = JSON.stringify(finalIssuedJSON, 0, 2);
 const serialized = [];
 serialized.push(encode(finalIssuerProtectedHeader));
 serialized.push(encodedPayloads.join('~'));
-serialized.push(encode(issuedProof));
+serialized.push(issuedProof.map(encode).join("~"));
 const issuerCompactOutput = serialized.join('.');
 
 await fs.writeFile("build/mac-h256-issuer.json.jwp.wrapped", lineWrap(issuerJSONOutput));
@@ -145,19 +145,18 @@ for (let i = 0 ; i < payloads.length; i++ ) {
     }
 }
 
-await fs.writeFile("build/mac-h256-presentation-disclosures.json.wrapped",
-    lineWrap(JSON.stringify(pres_final.slice(2).map(encode), 0, 2)));
+// await fs.writeFile("build/mac-h256-presentation-disclosures.json.wrapped",
+//     lineWrap(JSON.stringify(pres_final.slice(2).map(encode), 0, 2)));
 
-const presentationProof = Buffer.concat(pres_final);
-await fs.writeFile("build/mac-h256-presentation-proof.txt.wrapped",
-    lineWrap(encode(presentationProof)));
+await fs.writeFile("build/mac-h256-presentation-proof.json.wrapped",
+    lineWrap(JSON.stringify(pres_final.map(encode), 0, 2)));
 
 // create issued JSON serialization
 const finalPresentedJSON = {
     presentation: encode(finalHolderProtectedHeader),
     issuer: encode(finalIssuerProtectedHeader),
     payloads: encodedPayloads,
-    proof: encode(presentationProof)
+    proof: pres_final.map(encode)
 }
 const presentedJSONOutput = JSON.stringify(finalPresentedJSON, 0, 2);
 
@@ -166,7 +165,7 @@ const serialized2 = [];
 serialized2.push(encode(finalHolderProtectedHeader));
 serialized2.push(encode(finalIssuerProtectedHeader));
 serialized2.push(encodedPayloads.join('~'));
-serialized2.push(encode(presentationProof));
+serialized2.push(pres_final.map(encode).join('~'));
 const presentedCompactOutput = serialized2.join('.');
 
 await fs.writeFile("build/mac-h256-presentation.json.jwp.wrapped",

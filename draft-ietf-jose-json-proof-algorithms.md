@@ -294,77 +294,61 @@ The Shared Secret is used by both the issuer and holder as the MAC method's key 
 
 The holder's presentation key JWK MUST be included in the issuer protected header using the `pjwk` claim.  The issuer MUST validate that the holder has possession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
-For consistency, the issuer header is also protected by a MAC by using the fixed value "issuer_header" as the input key.  The issuer header JSON is serialized using UTF-8 and encoded with base64url into an octet array.  The final issuer header MAC is generated from the octet array and the fixed key, and the resulting value becomes the first input into the larger octet array that will be signed by the issuer.
+### Combined MAC Representation
 
-### Payloads
+The combined MAC representation is a single octet string representing the MAC values of the issuer protected header, along with each payload provided by the issuer. This representation is signed by the issuer, but not shared - parties will recreate this octet string and verify the signature to verify the integrity of supplied issuer protected header and the integrity of any disclosed payloads.
 
-A unique key is generated for each payload using the MAC with the Shared Secret as the key and the values "payload_X" where "X" is replaced by the zero-based array index of the payload, for example "payload_0", "payload_1", etc.
+The issuer protected header is included in this value as a MAC created using the fixed key "issuer_header" in UTF-8 encoded octets. The value is the issuer header JSON in its base64url-encoded form, as a UTF-8 encoded octet string.
 
-Each payload is serialized using UTF-8 and encoded with base64url into an octet array.  The generated key for that payload based on its index is used to generate the MAC for the payload's encoded octet array.  The resulting value is appended to the larger octet array that will be signed by the issuer.
+A unique key is generated for each payload using a MAC, with the Shared Secret as the key and a value of "payload_X" as UTF-8 encoded octets, where "X" is replaced by the zero-based array index of the payload, for example "payload_0", "payload_1", etc.
+
+Each payload then itself has a corresponding MAC, using the above per-payload key and the payload in its base64url-encoded form, sa a UTF-8 encoded octet string.
+
+The combined MAC representation is the octet string formed by the the concatentation of the issuer protected header MAC output, along with each payload MAC output.
 
 ### Issuer Proof
 
-The issuer proof consists of two items appended together: the issuer's signature of the appended array of MACs and the Shared Secret used to generate the set of payload keys.
+The issuer proof consists of two octet strings.
 
-To generate the signature, the array containing the final MAC of the issuer protected header followed by all of the payload MACs appended in order is used as the input to a new JWS.
-
-```
-jws_payload = [issuer_header_mac, payload_mac_1, ... payload_mac_n]
-```
-
-The issuer signs the JWS using its stable public key and a fixed header containing the `alg` associated with MAC algorithm in use.
+The first octet string is the issuer signature over the combined mac representation. The issuer signs the JWS using its stable public key, and a fixed header containing the `alg` associated with signing algorithm in use.
 
 `jws_header = '{"alg":"ES256"}'`
 
-The resulting signature is decoded and used as the first item in the issuer proof value.  The octet array of the Shared Secret is appended, resulting in the final issuer proof value.
+The signature value of the JWS is extracted and base64url-decoded into an octet string.
 
-`issuer_proof = [jws_signature, shared_secret]`
+The second octet string is the Shared Secret used to generate the per-payload keys for the combined representation.
 
 ### Presentation Protected Header
 
 See the JWS [Presentation Protected Header](#presentation-protected-header) section.
 
-### Presentation
+### Presentation Proof
 
 > Editor's Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
 
-The presentation proof is constructed as a large octet array containing multiple appended items similar to the issuer proof value.  The first item is the JWS decoded signature value generated when the holder uses the presentation key to sign the presentation header.  The second item is the issuer signature from the issuer's proof value.
+The first value in the presentation proof is the presentation signature. This is a signature over the presentation protected header, using the key specified by the `pjwk` parameter in the issuer protected header.
 
-These two signatures are then followed by a MAC value for each payload.  The MAC values used will depend on whether that payload has been disclosed or is hidden.  Disclosed payloads will include the MAC key input, and hidden payloads will include only their final MAC value.
+The second value is the issuer signature over the Combined MAC Representation provided with the issued form.
 
-```
-presentation_proof = [presentation_signature, issuer_signature,
-                      disclosed_key_0, hidden_mac_1, hidden_mac_2,
-                      ... disclosed_key_n]
-```
+The remaining values are used by the verifier to reconstruct the combined MAC representation without access to the Shared Secret. There is one value corresponding to each payload, whether it has been disclosed or not.
 
-The size of this value will depend on the underlying cryptographic algorithms.  For example, `MAC-H256` uses the `ES256` JWS with a decoded signature of 64 octets, and for a JWP with five payloads using `HMAC-SHA256` the total presentation proof value length would be `64 + 64 + (5 * 32) = 288` octets.
+If a payload is disclosed, the unique per-payload key derived from the shared secret is used as the payload's entry in the proof array.
 
-### Verifier Setup
+If a payload is not disclosed, the payload's MAC in the combined MAC representation is used as the payload's entry in the proof array.
 
-To verify that the presentation was protected from replay attacks, the verifier must be able to validate the presentation protected header.  This involves the following steps:
+### Verification of the Presentation Proof
 
-1. JSON parse the presentation header
-2. Validate the contained `nonce` claim
-3. JSON parse the issuer header
-4. Validate the contained `pjwk` claim
-5. Create a JWS using the correct fixed header with `alg` value and the presentation header as the body
-6. Remove the `presentation_signature` from the beginning of the `presentation_proof` octet array
-7. Validate the JWS using the JWK from the `pjwk` claim and the `presentation_signature` value
+The verifier must recreate the Combined MAC Representation from the presentation proof to verify integrity over the disclosed information.
 
-Next, the verifier must validate all of the disclosed payloads using the following steps:
+The issuer protected header MAC is recreated using the same mechanism described above.
 
-1. JSON parse the issuer header
-2. Resolve the `kid` using a trusted mechanism to obtain the correct issuer JWK
-3. Remove the `issuer_signature` from the beginning of the remaining `presentation_proof` octet array (after the `presentation_signature` was removed)
-4. Perform the MAC on the presented `issuer_header` value using the "issuer_header" value as the input key
-5. Store the resulting value as the first entry in a new `jws_payload` octet array
-6. Iterate on each presented payload (disclosed or hidden)
-   1. Extract the next hash value from the remaining `presentation_proof` octet array
-   2. If the payload was disclosed: perform a MAC using the given hash value as the input key and append the result to the `jws_payload` octet array
-   3. If the payload was hidden: append the given hash value to the `jws_payload` octet array
-7. Create a JWS using a header containing the `alg` parameter along with the generated `jws_payload` value as the payload
-8. Validate the JWS using the resolved issuer JWK and the extracted `issuer_signature` value
+For each payload in the presentation:
+
+- If the payload is disclosed, then the presentation proof contains the unique per-payload key. The corresponding payload MAC can be computed by performing the MAC operation with this key and the corresponding payload.
+
+- If the payload is not disclosed, then the presentation proof contains the payload MAC, which can be used directly
+
+The concatenation of the octets of the issuer protected header MAC and each payload MAC forms the Combined MAC Representation. The issuer signature in the proof is then verified by converting these values to a JWS as described above, and verifying that JWS.
 
 ### JPA Registration {#MAC-registration}
 
@@ -763,9 +747,9 @@ A MAC is generated for each payload using the corresponding derived payload key.
 <{{./fixtures/build/mac-h256-payload-macs.json}}
 Figure: Payload MAC values
 
-The proof is the concatenation of the issuer protected header MAC, each payload MAC value, and the shared secret. The result is the following base64url-encoded value:
+The proof is the issuer protected header MAC and the shared secret as octet strings. Representing this as an array of base64url-encoded values:
 
-<{{./fixtures/build/mac-h256-issued-proof.txt.wrapped}}
+<{{./fixtures/build/mac-h256-issued-proof.json.wrapped}}
 Figure: Issued Proof
 
 The final issued JWP in JSON serialization is:
@@ -789,14 +773,11 @@ The holder will take the issuer proof (including shared secret) and derive the s
 
 In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to `email`, `address`, and `age_over_21`)
 
-For the disclosed payloads, the holder will provide the corresponding derived key. For the non-disclosed payloads, the holder will provide the corresponding MAC value. This corresponds to the following JSON array of base64url-encoded values:
+For the disclosed payloads, the holder will provide the corresponding derived key. For the non-disclosed payloads, the holder will provide the corresponding MAC value.
 
-<{{./fixtures/build/mac-h256-presentation-disclosures.json.wrapped}}
-Figure: Per-payload disclosure information.
+The final presented proof value is generated by concatenating first the presentation header signature octet string, followed by the issuer signature octet string, then the value disclosed by the holder for each payload. This results in the following proof, represented as a JSON array of base64url-encoded values:
 
-The final presented proof value is generated by concatenating first the presentation header signature octet string, followed by the issuer signature octet string, then followed by either the MAC value or derived key for a payload (above). This results in the following base64url-encoded proof value:
-
-<{{./fixtures/build/mac-h256-presentation-proof.txt.wrapped}}
+<{{./fixtures/build/mac-h256-presentation-proof.json.wrapped}}
 Figure: Presentation proof
 
 The final presented JWP in JSON serialization is:
@@ -826,6 +807,8 @@ The BBS examples were generated using the library at https://github.com/mattrglo
   * Update of appendix describing MAC-H256 to now also be generated by the build system from a common set of code and templates
   * Update single use algorithm to use an array of octet values rather than requiring splitting an octet buffer into parts during generation of a presentation and during verification.
   * Update BBS algorithm description and examples to clarify the proof is an array with a single octet string.
+  * Update MAC algorithm to use an array of octet values for the proof, rather than requiring splitting an octet buffer into parts.
+  * Add new section on the Combined MAC Representation to clarify operations are serving to recreate this octet string value.
 
   -04
 
