@@ -424,7 +424,7 @@ Each disclosed payload MUST be base64url encoded when preparing it to be seriali
 
 Like JWS, JWP supports both a Compact Serialization and a JSON Serialization.
 
-## Compact Serialization
+## Compact Serialization {#CompactSerialization}
 
 The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any non-disclosed payloads are left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
 
@@ -437,7 +437,7 @@ The headers, concatenated payloads, and proof value are then concatenated with a
 <{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}>
 Figure: Compact Serialization of Presentation
 
-## JSON Serialization
+## JSON Serialization {#JSONSerialization}
 
 Non-disclosed payloads in the JSON serialization are represented with a `null` value in the `payloads` array. A zero-length payload is represented as a zero-length base64url encoded sequence, the empty string `""`.
 
@@ -448,7 +448,7 @@ This example flattened JSON serialization shows the presentation form with both 
 <{{./fixtures/build/bbs-holder.json.jwp.wrapped}}>
 Figure: JSON Serialization of Presentation
 
-# Security Considerations
+# Security Considerations {#SecurityConsiderations}
 
 Notes to be expanded:
 
@@ -606,8 +606,8 @@ a JWP using the JWP JSON Serialization.
 * Subtype name: jwp
 * Required parameters: n/a
 * Optional parameters: n/a
-* Encoding considerations: 8bit; application/jwp values are encoded as a series of base64url-encoded values (some of which may be the empty string), each separated from the next by a single period ('.') character.
-* Security considerations: See the Security Considerations section of this specification.
+* Encoding considerations: 8bit; application/jwp values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters
+* Security considerations: See (#SecurityConsiderations) of this specification
 * Interoperability considerations: n/a
 * Published specification: this specification
 * Applications that use this media type: TBD
@@ -630,7 +630,7 @@ a JWP using the JWP JSON Serialization.
 * Required parameters: n/a
 * Optional parameters: n/a
 * Encoding considerations: 8bit; application/jwp+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
-* Security considerations: See the Security Considerations section of this specification
+* Security considerations: See (#SecurityConsiderations) of this specification
 * Interoperability considerations: n/a
 * Published specification: this specification
 * Applications that use this media type: TBD
@@ -645,6 +645,42 @@ a JWP using the JWP JSON Serialization.
 * Author: Michael B. Jones, michael_b_jones@hotmail.com
 * Change Controller: IETF
 * Provisional registration? No
+
+## Structured Syntax Suffix Registration {#SuffixReg}
+
+### Registry Contents {#SuffixContents}
+
+This section registers the `+jwp`
+structured syntax suffix [@RFC6838]
+in the IANA "Structured Syntax Suffix" registry (#IANA.StructuredSuffix)
+in the manner described in [@RFC6838],
+which can be used to indicate that the media type is encoded as a JWP.
+
+#### The +jwp Structured Syntax Suffix
+
+* Name: JSON Web Proof (JWP)
+* +suffix: +jwp
+* References: (#CompactSerialization) of this specification
+* Encoding considerations: binary; JWP values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters
+* Interoperability considerations: n/a
+* Fragment identifier considerations: The syntax and semantics of fragment identifiers specified for +jwp SHOULD be as specified for "application/jwp".  (At publication of this document, there is no fragment identification syntax defined for "application/jwp".)
+
+  The syntax and semantics for fragment identifiers for a specific
+  "xxx/yyy+jwp" SHOULD be processed as follows:
+
+  For cases defined in +jwp, where the fragment identifier resolves
+  per the +jwp rules, then process as specified in +jwp.
+
+  For cases defined in +jwp, where the fragment identifier does not
+  resolve per the +jwp rules, then process as specified in
+  "xxx/yyy+jwp".
+
+  For cases not defined in +jwp, then process as specified in
+  "xxx/yyy+jwp".
+
+* Security considerations: See (#SecurityConsiderations) of this specification
+* Contact: Michael B. Jones, michael_b_jones@hotmail.com
+* Author/Change controller: IETF
 
 {backmatter}
 
@@ -695,6 +731,16 @@ a JWP using the JWP JSON Serialization.
 	  type="HTML" />
 </reference>
 
+<reference anchor="IANA.StructuredSuffix" target="https://www.iana.org/assignments/media-type-structured-suffix/">
+  <front>
+    <title>Structured Syntax Suffix</title>
+    <author>
+      <organization>IANA</organization>
+    </author>
+    <date/>
+  </front>
+</reference>
+
 <reference anchor="IANA.JWT.Claims" target="https://www.iana.org/assignments/jwt">
   <front>
     <title>JSON Web Token Claims</title>
@@ -730,6 +776,7 @@ for his valuable contributions to this specification.
 
   * Refactoring figures and examples to be built from a common set across all three documents
   * Move single-use example appendix from JWP to JPA
+  * Registered `+jwp` structured syntax suffix.
 
   -03
 
