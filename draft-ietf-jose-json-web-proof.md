@@ -760,11 +760,6 @@ We would like to thank
 Brent Zundel
 for his valuable contributions to this specification.
 
-# Registries
-
-* Issuer Protected Header
-* Presentation Protected Header
-
 # Document History
 
   [[ To be removed from the final specification ]]
