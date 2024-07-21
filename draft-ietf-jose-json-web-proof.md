@@ -769,14 +769,16 @@ for his valuable contributions to this specification.
 
   [[ To be removed from the final specification ]]
 
+ -05
+
   * Clarify the use of multiple octet strings in presentation proofs.
   * Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.
+  * Move single-use example appendix from JWP to JPA.
+  * Registered `+jwp` structured syntax suffix.
 
  -04
 
-  * Refactoring figures and examples to be built from a common set across all three documents
-  * Move single-use example appendix from JWP to JPA
-  * Registered `+jwp` structured syntax suffix.
+  * Refactoring figures and examples to be built from a common set across all three documents.
 
   -03
 
