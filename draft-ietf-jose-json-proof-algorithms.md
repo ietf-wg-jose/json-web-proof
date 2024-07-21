@@ -218,7 +218,7 @@ The proposed JWP `alg` value is of the format "SU-" appended with the relevant J
 
 ## BBS
 
-The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures#05] is under active development within the CRFG.
+The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under active development within the CRFG.
 
 This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without a verifier being able to correlate those presentations together based on the proof.
 
@@ -230,7 +230,7 @@ The `BBS-PROOF` `alg` parameter value in the presentation protected header corre
 
 ### Key Format
 
-The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.4]
+The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4]
 
 The JWK form of this key is an `OKP` type with a curve of `BLS12381G2`, with `x` being the BASE64URL-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
 
@@ -238,19 +238,19 @@ There is no additional holder key necessary for presentation proofs.
 
 ### Issuance
 
-Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets `header` and the octets array `messages`.
+Issuance is performed using the `Sign` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.1]. This operation utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with desired protected header and payloads as the octets `header` and the octets array `messages`.
 
 The octets resulting from this operation form a single octet string in the issuance proof array, to be used along with the protected header and payloads to serialize the JWP.
 
 ### Issuance Proof Verification
 
-Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.2].
+Holder verification of the signature on issuance form is performed using the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as `signature`, the protected header octets as `header` and the array of payload octets as `messages`.
 
 ### Presentation
 
-Derivation of a presentation is done by the holder using the `ProofGen` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, section 3.5.3].
+Derivation of a presentation is done by the holder using the `ProofGen` operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.3].
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the issuance payloads as `messages`, and the holder's presentation protected header as `ph`.
 
@@ -262,7 +262,7 @@ Presentation serialization leverages the two protected headers and presentation 
 
 ### Presentation Verification
 
-Verification of a presentation is done by the verifier using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures#05, Section 3.5.4].
+Verification of a presentation is done by the verifier using the `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the issuer protected header as `header`, the issuance proof as `signature`, the holder's presentation protected header as `ph`, and the payloads as `disclosed_messages`.
 
@@ -809,6 +809,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
   * Update BBS algorithm description and examples to clarify the proof is an array with a single octet string.
   * Update MAC algorithm to use an array of octet values for the proof, rather than requiring splitting an octet buffer into parts.
   * Add new section on the Combined MAC Representation to clarify operations are serving to recreate this octet string value.
+  * Correct reference to the latest BBS draft
 
   -04
 
