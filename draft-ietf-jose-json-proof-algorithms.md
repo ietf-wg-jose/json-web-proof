@@ -543,20 +543,23 @@ defining the revised implementation requirements level.
 * Specification Document(s): (#MAC-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-## Header Parameter Names Registration {#HdrReg}
+## JSON Web Proof Header Parameters Registration {#HdrReg}
 
-This section registers the following Header Parameter names
-defined by this specification in the IANA
-"JSON Web Proof Header Parameters" registry
+This section registers the following JWP Header Parameters in the
+IANA "JSON Web Proof Header Parameters" registry
 established by [@!I-D.ietf-jose-json-web-proof].
 
 ### Registry Contents {#HdrContents}
+
+#### Proof JWK Header Parameter
 
 * Header Parameter Name: `proof_jwk`
 * Header Parameter Description: Issuer's Ephemeral Key
 * Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
 * Specification Document(s): (#issuer-protected-header) of this specification
+
+#### Presentation JWK Header Parameter
 
 * Header Parameter Name: `presentation_jwk`
 * Header Parameter Description: Holder's Presentation Key
