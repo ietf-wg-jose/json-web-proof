@@ -35,12 +35,28 @@ const holderPrivateKey = crypto.createPrivateKey({
 /// Internal usage of JWS for individual payloads
 
 async function sign_payload(payload, key){
-    const sig = new GeneralSign(decode(payload));
+    const sig = new GeneralSign(payload);
     sig.addSignature(key).setProtectedHeader({'alg':'ES256'});
     const jws = await sig.sign();
-    return jws.signatures[0].signature;
+    return decode(jws.signatures[0].signature);
 }
 
+function jsonDisclosureEncode(payload) {
+    if (payload == null) {
+        return null;
+    }
+    return encode(payload);
+}
+
+function compactDisclosureEncode(payload) {
+    if (payload == null) {
+        return "";
+    }
+    if (payload == "") {
+        return "_";
+    }
+    return encode(payload);
+}
 /// Create Issued JWP
 
 // Modify the issuer protected header by adding the Holder's public key
@@ -51,7 +67,7 @@ const finalIssuerProtectedHeader = JSON.stringify(issuerProtectedHeaderJSON);
 
 await fs.writeFile("build/mac-h256-issuer-protected-header.json", lineWrap(JSON.stringify(issuerProtectedHeaderJSON, 0, 2)));
 
-let issuerHeaderMac = crypto.createHmac('sha256', 'issuer_header').update(encode(finalIssuerProtectedHeader)).digest();
+let issuerHeaderMac = crypto.createHmac('sha256', 'issuer_header').update(finalIssuerProtectedHeader).digest();
 
 await fs.writeFile("build/mac-h256-issuer-protected-header-mac.txt", lineWrap(encode(issuerHeaderMac)));
 
@@ -68,12 +84,10 @@ for(let i=0; i<payloadsJSON.length; i++)
     payloadKeys.push(payloadKey);
 
     // encode/hash each payload
-    let payload = JSON.stringify(payloadsJSON[i]);
-    let encoded = encode(payload);
-    encodedPayloads.push(encoded);
+    let payload = payloads[i];
 
     // create a mac based on the synthesized payload key and the encoded payload
-    let mac = crypto.createHmac('sha256', payloadKey).update(encoded).digest()
+    let mac = crypto.createHmac('sha256', payloadKey).update(payload).digest()
     payloadMacs.push(mac);
 }
 
@@ -89,7 +103,7 @@ const combinedMacs = payloadMacs.reduce(
     issuerHeaderMac
 );
 
-const macsSignature = decode(await sign_payload(combinedMacs, issuerPrivateKey));
+const macsSignature = await sign_payload(combinedMacs, issuerPrivateKey);
 
 // Append shared key to raw signature for issuer proof value
 const issuedProof = [macsSignature, holderSharedSecret]
@@ -99,7 +113,7 @@ await fs.writeFile("build/mac-h256-issued-proof.json.wrapped", lineWrap(JSON.str
 // create issued JSON serialization
 const finalIssuedJSON = {
     issuer: encode(finalIssuerProtectedHeader),
-    payloads: encodedPayloads,
+    payloads: payloads.map(encode),
     proof: issuedProof.map(encode)
 }
 const issuerJSONOutput = JSON.stringify(finalIssuedJSON, 0, 2);
@@ -107,7 +121,7 @@ const issuerJSONOutput = JSON.stringify(finalIssuedJSON, 0, 2);
 // create issued compact serialization
 const serialized = [];
 serialized.push(encode(finalIssuerProtectedHeader));
-serialized.push(encodedPayloads.join('~'));
+serialized.push(payloads.map(encode).join('~'));
 serialized.push(issuedProof.map(encode).join("~"));
 const issuerCompactOutput = serialized.join('.');
 
@@ -118,12 +132,12 @@ await fs.writeFile("build/mac-h256-issuer.compact.jwp.wrapped", lineWrap(issuerC
 
 // Modify the holder protected header by adding a nonce
 holderProtectedHeaderJSON.nonce = encode(presentationNonce);
-const finalHolderProtectedHeader = JSON.stringify(holderProtectedHeaderJSON);
+const finalHolderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHeaderJSON));
 
 await fs.writeFile("build/mac-h256-presentation-protected-header.json.wrapped", lineWrap(JSON.stringify(holderProtectedHeaderJSON, 0, 2)));
 
 // Sign the presentation protected header w/ the holder key
-const presentationProtectedHeaderSignature = decode(await sign_payload(finalHolderProtectedHeader, holderPrivateKey));
+const presentationProtectedHeaderSignature = await sign_payload(finalHolderProtectedHeader, holderPrivateKey);
 
 // build presentation proof from issuer sig, presentation sig, then mac-or-key
 let pres_final = [presentationProtectedHeaderSignature, macsSignature];
@@ -134,7 +148,6 @@ for (let i = 0 ; i < payloads.length; i++ ) {
     const redacted = redactedPayloads.includes(i);
     if (redacted) {
         payloads[i] = null;
-        encodedPayloads[i] = "";
     }
 
     // append key for disclosed payloads, mac for redacted payloads
@@ -155,7 +168,7 @@ await fs.writeFile("build/mac-h256-presentation-proof.json.wrapped",
 const finalPresentedJSON = {
     presentation: encode(finalHolderProtectedHeader),
     issuer: encode(finalIssuerProtectedHeader),
-    payloads: encodedPayloads,
+    payloads: payloads.map(jsonDisclosureEncode),
     proof: pres_final.map(encode)
 }
 const presentedJSONOutput = JSON.stringify(finalPresentedJSON, 0, 2);
@@ -164,7 +177,7 @@ const presentedJSONOutput = JSON.stringify(finalPresentedJSON, 0, 2);
 const serialized2 = [];
 serialized2.push(encode(finalHolderProtectedHeader));
 serialized2.push(encode(finalIssuerProtectedHeader));
-serialized2.push(encodedPayloads.join('~'));
+serialized2.push(payloads.map(compactDisclosureEncode).join('~'));
 serialized2.push(pres_final.map(encode).join('~'));
 const presentedCompactOutput = serialized2.join('.');
 
