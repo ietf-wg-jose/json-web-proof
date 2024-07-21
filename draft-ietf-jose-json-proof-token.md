@@ -110,11 +110,18 @@ The following is an example JWP Issuer Protected Header that includes a claims p
 
 In this example, the "iat" and "exp" would be JSON-formatted numbers, "family_name", "given_name" and "email" would be JSON strings (in quotes), "address" would be a JSON object and "age_over_21" would be expected to be either `true` or `false`.
 
-When the claims array is transferred as a property in the Issuer Protected Header, any variations of that array between JWP will be visible to the verifier, and can leak information about the subject or provide an additional vector for linkability.  Given the privacy design considerations around linkability, it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.
+# Claims ID ("cid") JWP Header Parameter {#cidDef}
 
-To facilitate this external definition of the claim names, an additional `cid` key is defined with a required digest value calculated as defined here.  This `cid` can be used similar to a `kid` in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.
+A Claims ID ("cid") value can be used as an identifier for a set of claim names without explicitly listing them.
+The structure of the `cid` value is unspecified.
+Its value MUST be a case-sensitive string.
+Use of this JWP Header Parameter is OPTIONAL.
+
+The `cid` can be used similarly to a `kid` in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.
 
 If there is an associated JWK containing the signing key information, the `claims` key is also registered there as a convenient location for the claim names.
+
+When the claims array is transferred as a property in the Issuer Protected Header, any variations of that array between JWP will be visible to the verifier, and can leak information about the subject or provide an additional vector for linkability.  Given the privacy design considerations around linkability, it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.
 
 The following is an example JWP Protected Header that includes a `cid`:
 
@@ -155,7 +162,22 @@ See the [@!I-D.ietf-jose-json-web-proof] appendix.
 
 # IANA Considerations
 
-This document has no IANA actions.
+## JSON Web Proof Header Parameters Registration {#HdrReg}
+
+This section registers the following JWP Header Parameter in the
+IANA "JSON Web Proof Header Parameters" registry
+established by [@!I-D.ietf-jose-json-web-proof].
+
+### Registry Contents {#HdrContents}
+
+#### Claims ID Header Parameter
+
+* Header Parameter Name: `cid`
+* Header Parameter Description: Claims ID
+* Header Parameter Usage Location(s): Issued, Presented
+* Change Controller: IETF
+* Specification Document(s): (#cidDef) of this specification
+
 
 {backmatter}
 
@@ -180,6 +202,10 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
+
+ -05
+
+  * Define and register Claims ID JWP Header Parameter.
 
   -04
 
