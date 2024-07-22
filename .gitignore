@@ -5,6 +5,8 @@
 *.txt
 *.upload
 *~
+.DS_Store
+.idea
 .tags
 /*-[0-9][0-9].xml
 /.gems/
@@ -21,8 +23,6 @@ draft-ietf-jose-json-proof-algorithms.xml
 draft-ietf-jose-json-proof-token.xml
 draft-ietf-jose-json-web-proof.xml
 package-lock.json
+pairing_crypto
 report.xml
 !requirements.txt
-.idea
-.DS_Store
-pairing_crypto
