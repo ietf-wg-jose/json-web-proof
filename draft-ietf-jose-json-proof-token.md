@@ -6,6 +6,7 @@ workgroup="jose"
 keyword = ["jose", "zkp", "jwp", "jws", "jpt"]
 docname = "draft-ietf-jose-json-proof-token"
 consensus = true
+tocdepth = 4
 
 [seriesInfo]
 name = "Internet-Draft"
