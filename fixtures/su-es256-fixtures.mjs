@@ -1,6 +1,5 @@
 import { base64url } from 'jose';
-import { GeneralSign } from 'jose';
-import { lineWrap } from './linewrap.mjs';
+import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256 } from './utils.mjs';
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 
@@ -32,14 +31,6 @@ const ephemeralPrivateKey = crypto.createPrivateKey({
     format: "jwk"
 });
 
-// use jose wrapper
-async function sign_payload(payload, key){
-    const sig = new GeneralSign(decode(payload));
-    sig.addSignature(key).setProtectedHeader({'alg':'ES256'});
-    const jws = await sig.sign();
-    return jws.signatures[0].signature;
-}
-
 // storage as we build up
 const sigs = [];
 
@@ -52,10 +43,10 @@ let issuerProtectedHeader = Buffer.from(JSON.stringify(issuerProtectedHeaderJSON
 await fs.writeFile("build/su-es256-issuer-protected-header.b64.wrapped", lineWrap(encode(issuerProtectedHeader)), "UTF-8");
 
 // encode/sign the issuer protected header w/ the stable key
-sigs.push(await sign_payload(issuerProtectedHeader, issuerPrivateKey));
+sigs.push(await signPayloadSHA256(issuerProtectedHeader, issuerPrivateKey));
 
 for (let payload of payloads) {
-    const signature = await sign_payload(payload, ephemeralPrivateKey);
+    const signature = await signPayloadSHA256(payload, ephemeralPrivateKey);
     sigs.push(signature);
 };
 
@@ -66,8 +57,8 @@ await fs.writeFile("build/su-es256-issuer-proof.json.wrapped", lineWrap(JSON.str
 // Compact Serialization
 let compactSerialization = [
     encode(issuerProtectedHeader),
-    payloads.map((item)=>encode(item)).join("~"),
-    sigs.join("~")
+    payloads.map(compactPayloadEncode).join("~"),
+    sigs.map(encode).join("~")
 ].join(".");
 
 await fs.writeFile("build/su-es256-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
@@ -76,8 +67,8 @@ await fs.writeFile("build/su-es256-issuer.compact.jwp.wrapped", lineWrap(compact
 // JSON Serialization
 let jsonSerialization = {
     issuer: encode(issuerProtectedHeader),
-    payloads: payloads.map((item)=>encode(item)),
-    proof: sigs
+    payloads: payloads.map(jsonPayloadEncode),
+    proof: sigs.map(encode)
 };
 
 let jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);
@@ -91,7 +82,7 @@ await fs.writeFile("build/su-es256-presentation-protected-header.json.wrapped", 
 
 await fs.writeFile("build/su-es256-holder-protected-header.b64.wrapped", lineWrap(encode(holderProtectedHeader)), "UTF-8");
 
-let signature = await sign_payload(holderProtectedHeader, holderPrivateKey);
+let signature = await signPayloadSHA256(holderProtectedHeader, holderPrivateKey);
 await fs.writeFile("build/su-es256-holder-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
 
 sigs.splice(1, 0, signature);
@@ -104,8 +95,8 @@ await fs.writeFile("build/su-es256-presentation-proof.json.wrapped", lineWrap(JS
 compactSerialization = [
     encode(holderProtectedHeader),
     encode(issuerProtectedHeader),
-    payloads.map((item)=>item != null ? encode(item) : "").join("~"),
-    sigs.join("~")
+    payloads.map(compactPayloadEncode).join("~"),
+    sigs.map(encode).join("~")
 ].join(".");
 await fs.writeFile("build/su-es256-presentation.compact.jwp", compactSerialization, {encoding: "UTF-8"});
 await fs.writeFile("build/su-es256-presentation.compact.jwp.wrapped", lineWrap(compactSerialization));
@@ -114,8 +105,8 @@ await fs.writeFile("build/su-es256-presentation.compact.jwp.wrapped", lineWrap(c
 jsonSerialization = {
     presentation: encode(holderProtectedHeader),
     issuer: encode(issuerProtectedHeader),
-    payloads: payloads.map((item)=>item != null ? encode(item) : null),
-    proof: sigs
+    payloads: payloads.map(jsonPayloadEncode),
+    proof: sigs.map(encode)
 };
 
 jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);

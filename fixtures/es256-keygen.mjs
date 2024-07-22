@@ -4,7 +4,7 @@
 import * as crypto from "node:crypto"
 
 import {base64url} from "jose";
-import {lineWrap} from "./linewrap.mjs"
+import {lineWrap} from "./utils.mjs"
 import fs from "node:fs/promises";
 import { promisify } from "node:util";
 
