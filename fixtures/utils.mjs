@@ -42,6 +42,7 @@ export function jsonPayloadEncode(payload) {
 }
 
 export async function signPayloadSHA256(payload, key){
-    const sig = await promisify(crypto.sign)("SHA256", payload, key);
+    const sig = await promisify(crypto.sign)("SHA256", payload, {
+        dsaEncoding: "ieee-p1363", key});
     return sig;
 }

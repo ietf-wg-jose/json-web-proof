@@ -76,7 +76,7 @@ const combinedMacs = payloadMacs.reduce(
     issuerHeaderMac
 );
 
-const macsSignature = await sign_payload(combinedMacs, issuerPrivateKey);
+const macsSignature = await signPayloadSHA256(combinedMacs, issuerPrivateKey);
 
 // Append shared key to raw signature for issuer proof value
 const issuedProof = [macsSignature, holderSharedSecret]
@@ -110,7 +110,7 @@ const finalHolderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHea
 await fs.writeFile("build/mac-h256-presentation-protected-header.json.wrapped", lineWrap(JSON.stringify(holderProtectedHeaderJSON, 0, 2)));
 
 // Sign the presentation protected header w/ the holder key
-const presentationProtectedHeaderSignature = decode(await signPayloadSHA256(finalHolderProtectedHeader, holderPrivateKey));
+const presentationProtectedHeaderSignature = await signPayloadSHA256(finalHolderProtectedHeader, holderPrivateKey);
 
 // build presentation proof from issuer sig, presentation sig, then mac-or-key
 let pres_final = [presentationProtectedHeaderSignature, macsSignature];
