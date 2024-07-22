@@ -133,15 +133,13 @@ This section defines how to use specific algorithms for JWPs.
 
 ## Single Use
 
-> Editor's Note: This algorithm may be renamed and slightly refactored.
-
-The Single Use (SU) algorithm is based on composing multiple traditional JWS values into a JWP proof.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.
+The Single Use (SU) algorithm is based on composing multiple traditional asymmetric signatures into a single JWP proof.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.
 
 It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the holder will need to interact with the issuer again to receive new single-use JWPs (dynamically or in batches).
 
 ### JWS Algorithm
 
-The Single Use algorithm is based on using multiple JWS values, all of which are generated with the same JSON Web Algorithm (JWA) for signing.  This JWA identifier is included as part of the Single Use identifier for JWP.
+The Single Use algorithm is based on using multiple signatures to cover the individual payloads, all of which are generated with the same Asymmetric JSON Web Algorithm (JWA).  The internal signing algorithm to use is part of the registration for a new Single Use algorithm identifier.
 
 The chosen JWA MUST be an asymmetric signing algorithm so that each signature can be verified without sharing any private values between the parties.  This ensures that the verifier cannot brute force any non-disclosed payloads based only on their disclosed individual signatures.
 
@@ -149,19 +147,15 @@ The chosen JWA MUST be an asymmetric signing algorithm so that each signature ca
 
 In order to support the protection of a presentation by a holder to a verifier, the holder MUST use a Presentation Key during the issuance and the presentation of every Single Use JWP.  This Presentation Key MUST be generated and used for only one JWP.
 
-The issuer MUST verify that the holder has possession of this key.  The holder-issuer communication to exchange this information is out of scope of this specification but can be easily accomplished by the holder using this key to generate a JWS that signs a value the issuer can verify as unique.
+The issuer MUST verify that the holder has possession of this key.  The holder-issuer communication to exchange this information is out of scope of this specification, but can be accomplished by the holder using this key to generate a JWS that signs a value the issuer can verify as unique.
 
 ### Issuer Setup
 
-To create a Single Use JWP, the issuer first generates a unique Ephemeral Key using the selected JWS algorithm.  This key-pair will be used to sign each of the payloads of a single JWP and then discarded.
+To create a Single Use JWP, the issuer first generates a unique Ephemeral Key using the selected internal algorithm.  This key-pair will be used to sign each of the payloads of a single JWP and then discarded.
 
-### Using JWS
+### Signing payloads
 
-JSON Web Signatures are used to create all of the signature values used by the SU algorithm.  This allows an implementation to use an existing JWS library directly for all necessary cryptographic operations without requiring any additional primitives.
-
-Each individual JWS uses a fixed protected header containing only the minimum required `alg` value.  Since this JWS protected header itself is the same for every JWS, it SHOULD be a static value in the form of `{"alg":"***"}` where `***` is the JWA asymmetric signing key algorithm identifier being used.  This value is recreated by a verifier using the correct JWA algorithm value included in the SU algorithm identifier.
-
-If an implementation uses an alternative JWS protected header than this fixed value, the octet string representation of that header should be included, base64url-encoded into the `jws_header` parameter in the issuer protected header.
+Each individual payload is signed using the selected internal algorithm using the Ephemeral Key.
 
 ### Issuer Protected Header
 
@@ -169,17 +163,15 @@ The JWK of the issuer's Ephemeral Key MUST be included in the issuer protected h
 
 The holder's Presentation Key JWK MUST be included in issuer protected header using the `presentation_jwk` parameter.
 
-The final issuer protected header is then used directly as the body of a JWS and signed using the issuer's Stable Key.  The resulting JWS signature value unencoded octet string is the first value in the JWP proof.
-
-In various examples in this specification, the octet string serialized issuer header is referenced as `issuer_header`.
+The issuer protected header is signed using the given JWA and the issuer's Stable Key.
 
 ### Payloads
 
-Each JWP payload is processed in order and signed as a JWS body using the issuer's Ephemeral Key.  The resulting JWS signature value unencoded octet string is appended to the JWP proof.
+Each JWP payload is processed in order and signed using the given JWA using the issuer's Ephemeral Key.
 
 ### Proof
 
-The proof value is an octet string array. The first entry is the unencoded signature of the issuer protected header, with each additional entry being a unencoded ephemeral key signature of an issued payload.
+The proof value is an octet string array. The first entry is the octet string of the issuer protected header signature, with an additional entry for each payload signature.
 
 ### Presentation Protected Header
 
@@ -196,11 +188,11 @@ In various examples in this specification, the octet string serialized presentat
 
 > Editor's Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
 
-The holder derives a new proof array of octets when presenting it to a verifier.  The presented proof value will always contain the issuer's Stable Key signature for the issuer protected header as the first element.
+The holder derives a new proof as part of presentation.  The presented proof value will always contain the issuer's Stable Key signature for the issuer protected header as the first element.
 
-The second element of the presented proof is the holder's signature of the presentation protected header using the holder's presentation key. This signature is constructed using the same technique desscribed for generating the issuer's signature over the issuer protected header.  Signing only the presentation header with the Presentation Key is sufficient to protect the entire presentation since that key is private to the holder and only the contents of the presentation header are used for replay prevention.
+The second element of the presented proof is the holder's signature of the presentation protected header using the holder's presentation key. This signature is constructed using the same algorithm described in generating the issuer's signature over the issuer protected header. Signing only the presentation header with the Presentation Key is sufficient to protect the entire presentation since that key is private to the holder and only the contents of the presentation header are used for replay prevention.
 
-The two header signatures are then followed by only the issuer's Ephemeral Key signatures for each payload that is disclosed.  The order of the payload signatures is preserved and MUST be in the same order as the included disclosed payloads in the presented JWP.  Non-disclosed payloads will NOT have a signature value included.
+For each payload which is to be disclosed, the corresponding payload signature (from the issued JWP) is included in the proof. If a payload is omitted from the presented JWP, the signature value will NOT be includeed, and the presentation proof will have one less part.
 
 For example, if the second and fifth of five payloads are not disclosed, then the holder's derived proof would consist of the issuer's signature over the issuer protected header, the holder's signature over the holder's protected header, the ephemeral key signature over the first, third and fourth payloads.
 
@@ -208,7 +200,7 @@ Since the individual signatures in the proof value are unique and remain unchang
 
 ### Verification
 
-The verifier MUST verify the issuer protected header against the first matching JWS signature part in the proof  using the issuer's Stable Key.  It MUST also verify the presentation protected header against the second part in the proof value using the holder's Presentation Key as provided in the `presentation_jwk` parameter in the issuer protected header.
+The verifier MUST verify the issuer protected header octets against the first part in the proof using the issuer's Stable Key. It MUST also verify the presentation protected header octets against the second part in the proof value using the holder's Presentation Key, as provided in the `presentation_jwk` claim in the issuer protected header.
 
 With the headers verified, the issuer's Ephemeral Key as given in the issuer protected header `proof_jwk` parameter can then be used to verify each of the disclosed payload signatures.
 
@@ -272,7 +264,7 @@ In addition, the `disclosed_indexes` scalar array is calculated from the payload
 
 The Message Authentication Code (MAC) JPA uses a MAC to both generate ephemeral keys and compute authentication codes to protect the issuer header and each payload individually.
 
-Like the JWS-based JPA, it also does not support unlinkability if the same JWP is presented multiple times and requires an individually issued JWP for each presentation in order to fully protect privacy.  When compared to the JWS approach, using a MAC requires less computation but can result in potentially larger presentation proof values.
+Like the the Single Use algorithm family, it also does not support unlinkability if the same JWP is presented multiple times. and requires an individually issued JWP for each presentation in order to fully protect privacy.  When compared to the JWS approach, using a MAC requires less computation but can result in potentially larger presentation proof values.
 
 The design is intentionally minimal and only involves using a single standardized MAC method instead of a mix of MAC/hash methods or a custom hash-based construct.  It is able to use any published cryptographic MAC method such as HMAC [@?RFC2104] or [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).  It uses traditional public-key based signatures to verify the authenticity of the issuer and holder.
 
@@ -816,7 +808,8 @@ The BBS examples were generated using the library at https://github.com/mattrglo
   * Update BBS algorithm description and examples to clarify the proof is an array with a single octet string.
   * Update MAC algorithm to use an array of octet values for the proof, rather than requiring splitting an octet buffer into parts.
   * Add new section on the Combined MAC Representation to clarify operations are serving to recreate this octet string value.
-  * Correct reference to the latest BBS draft
+  * Correct reference to the latest BBS draft.
+  * SU and MAC families now use raw JWA rather than JWS and synthesized headers
   * Change algorithms to not use base64url-encoding internally. Algorithms are meant to operate on octets, while base64url-encoding is used to represent those octets in JSON and compact serializations.
 
   -04

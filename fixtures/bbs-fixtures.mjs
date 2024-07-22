@@ -4,7 +4,7 @@ import pairing from "@mattrglobal/pairing-crypto";
 import { base64url } from 'jose';
 
 import { keyRead } from './bbs-keyread.mjs';
-import { lineWrap } from "./linewrap.mjs"
+import { lineWrap, compactPayloadEncode, jsonPayloadEncode } from './utils.mjs';
 
 import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" assert {type: "json"};
 import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" assert {type: "json"};
@@ -31,7 +31,7 @@ await fs.writeFile("build/bbs-issuer-proof.base64url", encode(signature), {encod
 // Compact Serialization
 const compactSerialization = [
     encode(protectedHeader),
-    payloads.map((item)=>encode(item)).join("~"),
+    payloads.map(compactPayloadEncode).join("~"),
     encode(signature)
 ].join(".");
 await fs.writeFile("build/bbs-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
@@ -40,7 +40,7 @@ await fs.writeFile("build/bbs-issuer.compact.jwp.wrapped", lineWrap(compactSeria
 // JSON Serialization
 const jsonSerialziation = {
     issuer: encode(protectedHeader),
-    payloads: payloads.map((item)=>encode(item)),
+    payloads: payloads.map(jsonPayloadEncode),
     proof: [ encode(signature) ]
 };
 
@@ -76,7 +76,7 @@ payloads[6] = null; // remove age_over_21
 const compactHolderSerialization = [
     encode(presentationHeader),
     encode(protectedHeader),
-    payloads.map((item)=>encode(item || "")).join("~"),
+    payloads.map(compactPayloadEncode).join("~"),
     encode(proof)
 ].join(".");
 await fs.writeFile("build/bbs-holder.compact.jwp", compactHolderSerialization, {encoding: "UTF-8"});
@@ -86,7 +86,7 @@ await fs.writeFile("build/bbs-holder.compact.jwp.wrapped", lineWrap(compactHolde
 const jsonHolderSerialization = {
     presentation: encode(presentationHeader),
     issuer: encode(protectedHeader),
-    payloads: payloads.map((item)=> item && encode(item)),
+    payloads: payloads.map(jsonPayloadEncode),
     proof: [ encode(proof) ]
 };
 

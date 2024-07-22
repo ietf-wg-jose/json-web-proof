@@ -3,7 +3,7 @@
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
 import {bbs, utilities} from "@mattrglobal/pairing-crypto"
 import {base64url} from "jose";
-import {lineWrap} from "./linewrap.mjs"
+import {lineWrap} from "./utils.mjs"
 import fs from "node:fs/promises";
 
 const encode = base64url.encode
