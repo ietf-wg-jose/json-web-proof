@@ -57,8 +57,7 @@ for(let i=0; i<payloadsJSON.length; i++)
     let payloadKey = crypto.createHmac('sha256', issuerNonce).update("payload_").update(String(i)).digest();
     payloadKeys.push(payloadKey);
 
-    // encode/hash each payload
-    let payload = JSON.stringify(payloadsJSON[i]);
+    let payload = payloads[i];
 
     // create a mac based on the synthesized payload key and the encoded payload
     let mac = crypto.createHmac('sha256', payloadKey).update(payload).digest()
@@ -77,7 +76,7 @@ const combinedMacs = payloadMacs.reduce(
     issuerHeaderMac
 );
 
-const macsSignature = decode(await signPayloadSHA256(combinedMacs, issuerPrivateKey));
+const macsSignature = await sign_payload(combinedMacs, issuerPrivateKey);
 
 // Append shared key to raw signature for issuer proof value
 const issuedProof = [macsSignature, holderSharedSecret]
@@ -106,7 +105,7 @@ await fs.writeFile("build/mac-h256-issuer.compact.jwp.wrapped", lineWrap(issuerC
 
 // Modify the holder protected header by adding a nonce
 holderProtectedHeaderJSON.nonce = encode(presentationNonce);
-const finalHolderProtectedHeader = JSON.stringify(holderProtectedHeaderJSON);
+const finalHolderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHeaderJSON));
 
 await fs.writeFile("build/mac-h256-presentation-protected-header.json.wrapped", lineWrap(JSON.stringify(holderProtectedHeaderJSON, 0, 2)));
 

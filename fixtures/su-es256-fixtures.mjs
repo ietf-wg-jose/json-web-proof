@@ -52,7 +52,7 @@ for (let payload of payloads) {
 
 // merge final signature
 let final = Buffer.from([]);
-await fs.writeFile("build/su-es256-issuer-proof.json.wrapped", lineWrap(JSON.stringify(sigs, 0, 2)), {encoding: "UTF-8"});
+await fs.writeFile("build/su-es256-issuer-proof.json.wrapped", lineWrap(JSON.stringify(sigs.map(encode), 0, 2)), {encoding: "UTF-8"});
 
 // Compact Serialization
 let compactSerialization = [
@@ -89,7 +89,7 @@ sigs.splice(1, 0, signature);
 sigs.splice(7, 2); // remove last two 
 payloads[7] = null;
 payloads[8 ] = null;
-await fs.writeFile("build/su-es256-presentation-proof.json.wrapped", lineWrap(JSON.stringify(sigs, 0, 2)), {encoding: "UTF-8"});
+await fs.writeFile("build/su-es256-presentation-proof.json.wrapped", lineWrap(JSON.stringify(sigs.map(encode), 0, 2)), {encoding: "UTF-8"});
 
 // Compact Serialization
 compactSerialization = [
