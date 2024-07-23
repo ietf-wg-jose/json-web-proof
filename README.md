@@ -1,10 +1,10 @@
-# JSON Web Proofs
+# JSON Web Proof
 
-Specification work for JSON Web Proofs
+Specification work for JSON Web Proof
 
-The JSON Web Proofs effort aims to establish a new JSON based container as a new entry in the JOSE family of container formats.
+The JSON Web Proof effort aims to establish a new JSON based container as a new entry in the JOSE family of container formats.
 
-While similar to JSON Web Signatures[^JWS], JSON Web Proofs aim to support newer algorithms and cryptographic techniques. These techniques establish the role of a *prover*, which has limited capabilities to derive new forms of from a signed message which can still be cryptographically verified.
+While similar to JSON Web Signature[^JWS], JSON Web Proof aim to support newer algorithms and cryptographic techniques. These techniques establish the role of a *prover*, which has limited capabilities to derive new forms of from a signed message which can still be cryptographically verified.
 
 Examples of capabilities an algorithm may support include:
 
@@ -19,35 +19,35 @@ Examples of capabilities an algorithm may support include:
 
 A new container, similar to JWS[^JWS], which allows for more than one payload.
 
-* [Editor's Copy](https://json-web-proofs.github.io/json-web-proofs/#go.draft-ietf-jose-json-web-proof.html)
+* [Editor's Copy](https://ietf-wg-jose.github.io/json-web-proof/#go.draft-ietf-jose-json-web-proof.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-jose-json-web-proof)
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof)
-* [Compare Editor's Copy to Working Group Draft](https://json-web-proofs.github.io/json-web-proofs/#go.draft-ietf-jose-json-web-proof.diff)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-wg-jose.github.io/json-web-proof/#go.draft-ietf-jose-json-web-proof.diff)
 
 ### JSON Proof Algorithms
 
-Required and optional capabilities for algorithms within JSON Web Proofs. 
+Required and optional capabilities for algorithms within JSON Web Proof. 
 
 This is loosely analogous to JWA[^JWA], with concrete algorithms defined as separate specifications.
 
-* [Editor's Copy](https://json-web-proofs.github.io/json-web-proofs/#go.draft-ietf-jose-json-proof-algorithms.html)
+* [Editor's Copy](https://ietf-wg-jose.github.io/json-web-proof/#go.draft-ietf-jose-json-proof-algorithms.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-jose-json-proof-algorithms)
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms)
-* [Compare Editor's Copy to Working Group Draft](https://json-web-proofs.github.io/json-web-proofs/#go.draft-ietf-jose-json-proof-algorithms.diff)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-wg-jose.github.io/json-web-proof/#go.draft-ietf-jose-json-proof-algorithms.diff)
 
 ### JSON Proof Token
 
 An application of JWP for representing claims about an entity, analogous to  JWT[^JWT].
 
-* [Editor's Copy](https://json-web-proofs.github.io/json-web-proofs/#go.draft-ietf-jose-json-proof-token.html)
+* [Editor's Copy](https://ietf-wg-jose.github.io/json-web-proof/#go.draft-ietf-jose-json-proof-token.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-jose-json-proof-token)
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token)
-* [Compare Editor's Copy to Working Group Draft](https://json-web-proofs.github.io/json-web-proofs/#go.draft-ietf-jose-json-proof-token.diff)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-wg-jose.github.io/json-web-proof/#go.draft-ietf-jose-json-proof-token.diff)
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/json-web-proofs/json-web-proofs/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ietf-wg-jose/json-web-proof/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
