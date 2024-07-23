@@ -61,10 +61,10 @@ Formatted text and HTML versions of the draft can be built using `make`.
 $ make
 ```
 
-[^JWS]: [JSON Web Signatures - RFC7515](JWS)
-[^JWK]: [JSON Web Keys - RFC7517](JWK)
-[^JWA]: [JSON Web Algorithms - RFC7518](JWA)
-[^JWT]: [JSON Web Token - RFC7519](JWT)
+[^JWS]: [JSON Web Signatures - RFC7515][JWS]
+[^JWK]: [JSON Web Keys - RFC7517][JWK]
+[^JWA]: [JSON Web Algorithms - RFC7518][JWA]
+[^JWT]: [JSON Web Token - RFC7519][JWT]
 
 [JWS]: https://datatracker.ietf.org/doc/html/rfc7515
 [JWK]: https://datatracker.ietf.org/doc/html/rfc7517
