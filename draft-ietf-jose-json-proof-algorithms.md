@@ -54,7 +54,7 @@ The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms
 
 The JSON Web Proof (JWP) [@!I-D.ietf-jose-json-web-proof] draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.
 
-> Editor's Note: This draft is still early and incomplete. There will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcomed at https://github.com/json-web-proofs/json-web-proofs.
+> Editor's Note: This draft is still early and incomplete. There will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcomed at https://github.com/ietf-wg-jose/json-web-proof.
 
 # Conventions and Definitions
 
@@ -801,6 +801,8 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 # Document History
 
   [[ To be removed from the final specification ]]
+
+  * Update reference to new repository home
 
  -05
 
