@@ -153,9 +153,9 @@ Always an octet string of valid JSON text.
   * knowledge
   * linking
 
-# Example JPT
+# Example JPTs
 
-See the [@!I-D.ietf-jose-json-web-proof] appendix.
+See the examples in Appendix A.1 of [@I-D.ietf-jose-json-proof-algorithms].
 
 # Security Considerations
 
