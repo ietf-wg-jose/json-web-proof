@@ -183,8 +183,6 @@ This specification registers the `nonce` header parameter for the presentation p
 
 The presentation protected header MAY contain other header parameters that are either provided by the verifier or by the holder.  These presentation header parameters SHOULD NOT contain values that are common across multiple presentations and SHOULD be unique to a single presentation and verifier.
 
-In various examples in this specification, the octet string serialized presentation header is referenced as `presentation_header`.
-
 ### Presentation
 
 > Editor's Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
@@ -803,6 +801,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
   [[ To be removed from the final specification ]]
 
   * Update reference to new repository home
+  * Fixed #77: Removed vestigial use of `presentation_header`.
 
  -05
 
