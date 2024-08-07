@@ -128,18 +128,16 @@ The following is an example JWP Protected Header that includes a `cid`:
 
 <{{./fixtures/template/jpt-issuer-protected-header-with-cid.json}}
 
-# Payloads
+# Presented Claims and Proofs
 
-> Editor's Note: This section is incomplete. Use it only as an indicator of the intended direction.
-
-Application resolves each claim as required when processing the JPT.  Resolution can result in one of three things:
+Each claim in the issued form of the JPT results in one of three things in the presented form of the JPT:
 1. A disclosed JSON value.
 1. An indicator that the value was not disclosed.
 1. An algorithm-specific proof method.
 
 ## Disclosed
 
-A disclosed payloads are represented as a base64url-encoded UTF-encoded octet string
+A disclosed payload is represented as a base64url-encoded UTF-encoded octet string
 representing a valid JSON value.
 
 ## Undisclosed
@@ -214,7 +212,7 @@ for his valuable contributions to this specification.
   [[ To be removed from the final specification ]]
 
   * Update reference to new repository home
-  * Enhance JPT payload description.
+  * Fixed #99: Discussed issued and presented forms of JPTs.
 
  -05
 
