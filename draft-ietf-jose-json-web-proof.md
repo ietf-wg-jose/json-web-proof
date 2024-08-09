@@ -465,14 +465,19 @@ is recommended for this purpose.
 The processing of Encrypted JWPs is identical to
 the processing of other JWEs.
 
-A `cty` (content type) Header Parameter value of `jwp` is used to indicate
-that the content of the JWE is a JWP using the JWP Compact Serialization.
-A `cty` (content type) Header Parameter value of `jwp+json` is used to indicate
-that the content of the JWE is the UTF-8 encoding of a JWP using the JWP JSON Serialization.
-In both cases, the `cty` (content type) Header Parameter MUST be present
+The `cty` (content type) JWE Header Parameter is used to indicate
+that the content of the JWE is a JWP.
+The `cty` value of the JWE SHOULD be the same as
+the `typ` (type) JWP Header Parameter value of the JWP.
+If the JWP has no `typ` value, then the following JWE Header Parameter `cty` (content type) values SHOULD be used:
+
+* `jwp` is used to indicate that the content of the JWE is a JWP using the JWP Compact Serialization.
+* `jwp+json` is used to indicate that the content of the JWE is the UTF-8 encoding of a JWP using the JWP JSON Serialization.
+
+The `cty` (content type) Header Parameter MUST be present
 unless the application knows that the encrypted content is
 a JWP by another means or convention,
-in which case the `cty` value would typically be omitted.
+in which case the `cty` value MAY be omitted.
 
 # Security Considerations {#SecurityConsiderations}
 
