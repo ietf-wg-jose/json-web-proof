@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-08T00:42:56.428150+00:00",
+  "timestamp": "2024-08-11T00:47:26.356264+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -8546,13 +8546,13 @@
       "labels": [],
       "body": "Fixes #83 \r\n\r\nCc @brentzundel ",
       "createdAt": "2024-08-07T04:23:25Z",
-      "updatedAt": "2024-08-07T19:30:50Z",
+      "updatedAt": "2024-08-09T01:32:00Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "45c73dd5568d3c5c08722a8dbe3fb1d1369148a5",
       "headRepository": "selfissued/json-web-proofs",
       "headRefName": "mbj-encryption",
-      "headRefOid": "ea53c45432d497e0cfa608ab2b10bf0d375ea6a3",
+      "headRefOid": "00598dac23e931f7eccac8922fd31740777adc27",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
