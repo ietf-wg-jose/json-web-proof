@@ -137,8 +137,7 @@ Each claim in the issued form of the JPT results in one of three things in the p
 
 ## Disclosed
 
-A disclosed payload is represented as a base64url-encoded UTF-encoded octet string
-representing a valid JSON value.
+A disclosed payload is represented as a UTF-encoded octet string representing a valid JSON value.
 
 ## Undisclosed
 
