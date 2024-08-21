@@ -468,7 +468,7 @@ the processing of other JWEs.
 The `cty` (content type) JWE Header Parameter is used to indicate
 that the content of the JWE is a JWP.
 The `cty` value of the JWE SHOULD be the same as
-the `typ` (type) JWP Header Parameter value of the JWP.
+the `typ` (type) JWP Header Parameter value of the unencrypted JWP to be encrypted.
 If the JWP has no `typ` value, then the following JWE Header Parameter `cty` (content type) values SHOULD be used:
 
 * `jwp` is used to indicate that the content of the JWE is a JWP using the JWP Compact Serialization.
