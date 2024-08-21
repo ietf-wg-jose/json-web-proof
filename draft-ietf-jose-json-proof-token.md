@@ -143,8 +143,7 @@ representing a valid JSON value.
 ## Undisclosed
 
 The placeholder indicating that a payload was not disclosed is represented as
-a `null` value for the JWP JSON Serialization
-or the empty string value for the JWP Compact Serialization.
+described in Section 6 (Serializations) of [@!I-D.ietf-jose-json-web-proof].
 
 ## Proof Methods
 
