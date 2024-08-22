@@ -425,31 +425,72 @@ The algorithm is responsible for representing selective disclosure of payloads i
 
 Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The headers and proof are also individually base64url encoded.
 
-Like JWS, JWP supports both a Compact Serialization and a JSON Serialization.
+Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. Additionally, a CBOR-based Serialization is defined. These three serializations represent the same JSON-based Header, payload and proof and are thus interchangeable.
 
 ## Compact Serialization {#CompactSerialization}
 
-The individually encoded payloads are concatenated with the `~` character to form an ordered delimited array. Any non-disclosed payloads are left blank, resulting in sequential `~~` characters such that all payload positions are preserved.
+The compact serialiation provides a space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.
 
-A payload which is disclosed but which contains no data (i.e. a zero-length octet string) is encoded as a single `_` character of data, which is not a valid result from base64url-encoding a value.
+All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.
 
-Additionally, an algorithm MAY supply multiple octet strings for a proof. These are concatenated with the `~` character to form an ordered delimited array.
+Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the `~` character.
 
-The headers, concatenated payloads, and proof value are then concatenated with a `.` character to form the final compact serialization.  The issued form will only contain one header and always have three `.` separated parts.  The presented form will always have four `.` separated parts, the issued header, followed by the protected header, then the payloads and the proof.
+Individual payloads are allowed to be omitted - if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive `~` characters in the concatenated form.
+
+If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single `_` character. This character does not represent a valid BASE64URL-encoded octet string such that it can be distinguished from other cases.
+
+The issued form is created by concatenating the issuer protected header, concatenated payloads, and concatenated proof separated each by a `.` character. The concatenated payloads MAY be omitted if the application is using detached payloads.
+
+The presented form is created by concatenating the presenter protected header, issuer protected header, concatenated payloads, and concatenated proof separated each by a `.` character. The concatenated payloads MAY be omitted if the application is using detached payloads.
 
 <{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}>
 Figure: Compact Serialization of Presentation
 
 ## JSON Serialization {#JSONSerialization}
 
-Non-disclosed payloads in the JSON serialization are represented with a `null` value in the `payloads` array. A zero-length payload is represented as a zero-length base64url encoded sequence, the empty string `""`.
+The JSON Serialization is in the form of a JSON array, with property names representing the various components.
 
-Proofs are represented as an array of one or more encoded octet strings.
+The `issuer` key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.
 
-This example flattened JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.
+The `presentation` key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.
+
+The `payloads` key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value `null`. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.
+
+The `proofs` key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.
+
+This example JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.
 
 <{{./fixtures/build/bbs-holder.json.jwp.wrapped}}>
 Figure: JSON Serialization of Presentation
+
+## CBOR Serialization {#CBORSerialization}
+
+The CBOR serialization provides a compact binary representation of a JWP interchangable with other serializations. Noteably, it does not define a CBOR representation of protected headers, which remain as UTF-8 encoded JSON.
+
+The issued form consists of a three-element array, while the presented form consists of a four-element array. Each of these has a corresponding optional tag.
+
+``` cddl
+
+CBOR_JWP_Issued = [
+       JSONIssuerHeaders,
+       payloads : [bstr / nil] / nil,
+       signature : [bstr]
+   ]
+
+CBOR_JWP_Presented = [
+      JSONPresentationHeaders,
+      JSONIssuerHeaders,
+      payloads : [bstr / nil] / nil,
+      signature : [bstr]
+   ]
+
+JSONPresentationHeaders = tstr;
+JSONIssuerHeaders = tstr;
+
+Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
+
+Tagged_CBOR_JWP_Presented = #6.xxx (CBOR_JWP_Presented)
+```
 
 # Encrypted JSON Web Proofs
 
