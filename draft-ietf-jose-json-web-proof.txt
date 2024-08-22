@@ -661,14 +661,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.qGX6MD2nKn7VoJtvxa6J1pQWtmKlkhTq
-   Fb3UytjXrfvhOtDUFC4fRMNFHzlJVKL1qoIHXhihYIID597GOhi540W6V8wzyrBz1LMI_
-   qFcrAt9Pl5EPPTQPkOW1qXX8pfQlp33Z9jBxdLykQXK9v4YpRMnCF4lZAC9MRm240KEyr
-   CYCPfsgpVYK-zH80M6TnUmLXEc4SLAped-2RTe9DoavaJw5nkxpnDm9X5OxEb5pF4S1sv
-   WpSeFaDYz5aN_3tmR1Rfl1QG2G27MOPA-3NXIKVoaSZXR3UZgq4xhkF7tRQ_k30YDSi4N
-   Tflx4ybbrGuQCLA9GzpD-ywRaZkcNkhtom61PiIla19-QyWPEmXnvBFGjO02RgBhQWnEp
-   aAHPvh63U6bowsrNrUpAuYogCAVMxABWTUb-qAanANQ-V9RXjVnJEP6x6QUQ3kt3wF3TP
-   UbCHCdyrV7j1X1FbPcrUTUaePyYxnPsI6IIeQxVisZk1I
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.he9Cyn2-GlDrqwQlRkCb6e7rVJqDcDs7
+   _RBFGrfjGoew5pl39hPmIGsTvGyH6W_lhSVtCEUK_y95abGHabX8TNwmpTYpFy0AxPhFr
+   PDRVegtO8HHrz4ibQJH_kb38IHopbVdDev2usJDNuRPqlQacHdEl0uqJmBSngsDR70FGQ
+   4UQ9_HBVjZ2x7M45u4YnnpQYdR1dRSEePHU96DorUyZobYPhCJIGDn11cQqhVws-s1C3f
+   1nWQ1MOCxhDgM7BCgweXlKteXlRC5_bhz6Lajc1doCMXjOasmY32MRDwZPon4dfx5JEfX
+   HjtutBt6t7s_HD15Dt1bYBVZDGTBqg4zhotqcPOHC2GXATNaoPcf_t0RSOLcQwRCCPUDo
+   pIiFDZtNKPuHNro1ijJ4Yf0-U59ZXOBiuweG5YmTo1uFdbbEVbnuOEcrv5-Hd_lIzbFxJ
+   BHbDIlHkr4AdRbaGLESmrJc_0SzMVQ_uCTJoZ_sj7bV28
 
    |  Figure: Compact Serialization of Presentation
 
@@ -701,14 +701,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "qGX6MD2nKn7VoJtvxa6J1pQWtmKlkhTqFb3UytjXrfvhOtDUFC4fRMNFHzlJVKL1
-          qoIHXhihYIID597GOhi540W6V8wzyrBz1LMI_qFcrAt9Pl5EPPTQPkOW1qXX8p
-          fQlp33Z9jBxdLykQXK9v4YpRMnCF4lZAC9MRm240KEyrCYCPfsgpVYK-zH80M6
-          TnUmLXEc4SLAped-2RTe9DoavaJw5nkxpnDm9X5OxEb5pF4S1svWpSeFaDYz5a
-          N_3tmR1Rfl1QG2G27MOPA-3NXIKVoaSZXR3UZgq4xhkF7tRQ_k30YDSi4NTflx
-          4ybbrGuQCLA9GzpD-ywRaZkcNkhtom61PiIla19-QyWPEmXnvBFGjO02RgBhQW
-          nEpaAHPvh63U6bowsrNrUpAuYogCAVMxABWTUb-qAanANQ-V9RXjVnJEP6x6QU
-          Q3kt3wF3TPUbCHCdyrV7j1X1FbPcrUTUaePyYxnPsI6IIeQxVisZk1I"
+       "he9Cyn2-GlDrqwQlRkCb6e7rVJqDcDs7_RBFGrfjGoew5pl39hPmIGsTvGyH6W_l
+          hSVtCEUK_y95abGHabX8TNwmpTYpFy0AxPhFrPDRVegtO8HHrz4ibQJH_kb38I
+          HopbVdDev2usJDNuRPqlQacHdEl0uqJmBSngsDR70FGQ4UQ9_HBVjZ2x7M45u4
+          YnnpQYdR1dRSEePHU96DorUyZobYPhCJIGDn11cQqhVws-s1C3f1nWQ1MOCxhD
+          gM7BCgweXlKteXlRC5_bhz6Lajc1doCMXjOasmY32MRDwZPon4dfx5JEfXHjtu
+          tBt6t7s_HD15Dt1bYBVZDGTBqg4zhotqcPOHC2GXATNaoPcf_t0RSOLcQwRCCP
+          UDopIiFDZtNKPuHNro1ijJ4Yf0-U59ZXOBiuweG5YmTo1uFdbbEVbnuOEcrv5-
+          Hd_lIzbFxJBHbDIlHkr4AdRbaGLESmrJc_0SzMVQ_uCTJoZ_sj7bV28"
      ]
    }
 
