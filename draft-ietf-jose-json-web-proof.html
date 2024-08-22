@@ -30,7 +30,7 @@
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.32.3
-    setuptools 69.5.1
+    setuptools 70.3.0
     wcwidth 0.2.13
 -->
 <link href="draft-ietf-jose-json-web-proof.xml" rel="alternate" type="application/rfc+xml">
@@ -1034,7 +1034,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Miller, et al.</td>
-<td class="center">Expires 8 February 2025</td>
+<td class="center">Expires 23 February 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-08-07" class="published">7 August 2024</time>
+<time datetime="2024-08-22" class="published">22 August 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-02-08">8 February 2025</time></dd>
+<dd class="expires"><time datetime="2025-02-23">23 February 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1095,7 +1095,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1232,98 +1232,101 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-encrypted-json-web-proofs" class="internal xref">Encrypted JSON Web Proofs</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-json-web-proof-header-param" class="internal xref">JSON Web Proof Header Parameters Registry</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.1">
-                    <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#section-8.1.1" class="auto internal xref">8.1.1</a>.  <a href="#name-registration-template" class="internal xref">Registration Template</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2">
-                    <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#section-8.1.2" class="auto internal xref">8.1.2</a>.  <a href="#name-initial-registry-contents" class="internal xref">Initial Registry Contents</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.1">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.1.1"><a href="#section-8.1.2.1" class="auto internal xref">8.1.2.1</a>.  <a href="#name-algorithm-header-parameter" class="internal xref">Algorithm Header Parameter</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.2">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.2.1"><a href="#section-8.1.2.2" class="auto internal xref">8.1.2.2</a>.  <a href="#name-key-id-header-parameter" class="internal xref">Key ID Header Parameter</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.3">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.3.1"><a href="#section-8.1.2.3" class="auto internal xref">8.1.2.3</a>.  <a href="#name-type-header-parameter" class="internal xref">Type Header Parameter</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.4">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.4.1"><a href="#section-8.1.2.4" class="auto internal xref">8.1.2.4</a>.  <a href="#name-critical-header-parameter" class="internal xref">Critical Header Parameter</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.5">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.5.1"><a href="#section-8.1.2.5" class="auto internal xref">8.1.2.5</a>.  <a href="#name-issuer-header-parameter" class="internal xref">Issuer Header Parameter</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.6">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.6.1"><a href="#section-8.1.2.6" class="auto internal xref">8.1.2.6</a>.  <a href="#name-audience-header-parameter" class="internal xref">Audience Header Parameter</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.7">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.7.1"><a href="#section-8.1.2.7" class="auto internal xref">8.1.2.7</a>.  <a href="#name-nonce-header-parameter" class="internal xref">Nonce Header Parameter</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.8">
-                        <p id="section-toc.1-1.8.2.1.2.2.2.8.1"><a href="#section-8.1.2.8" class="auto internal xref">8.1.2.8</a>.  <a href="#name-claims-header-parameter" class="internal xref">Claims Header Parameter</a></p>
-</li>
-                    </ul>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-media-type-registration" class="internal xref">Media Type Registration</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.1">
-                    <p id="section-toc.1-1.8.2.2.2.1.1"><a href="#section-8.2.1" class="auto internal xref">8.2.1</a>.  <a href="#name-registry-contents" class="internal xref">Registry Contents</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.1.2.1">
-                        <p id="section-toc.1-1.8.2.2.2.1.2.1.1"><a href="#section-8.2.1.1" class="auto internal xref">8.2.1.1</a>.  <a href="#name-the-application-jwp-media-t" class="internal xref">The application/jwp Media Type</a></p>
-</li>
-                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.1.2.2">
-                        <p id="section-toc.1-1.8.2.2.2.1.2.2.1"><a href="#section-8.2.1.2" class="auto internal xref">8.2.1.2</a>.  <a href="#name-the-application-jwpjson-med" class="internal xref">The application/jwp+json Media Type</a></p>
-</li>
-                    </ul>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-structured-syntax-suffix-re" class="internal xref">Structured Syntax Suffix Registration</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.1">
-                    <p id="section-toc.1-1.8.2.3.2.1.1"><a href="#section-8.3.1" class="auto internal xref">8.3.1</a>.  <a href="#name-registry-contents-2" class="internal xref">Registry Contents</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.1.2.1">
-                        <p id="section-toc.1-1.8.2.3.2.1.2.1.1"><a href="#section-8.3.1.1" class="auto internal xref">8.3.1.1</a>.  <a href="#name-the-jwp-structured-syntax-s" class="internal xref">The +jwp Structured Syntax Suffix</a></p>
-</li>
-                    </ul>
-</li>
-                </ul>
-</li>
-            </ul>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-json-web-proof-header-param" class="internal xref">JSON Web Proof Header Parameters Registry</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.1">
+                    <p id="section-toc.1-1.9.2.1.2.1.1"><a href="#section-9.1.1" class="auto internal xref">9.1.1</a>.  <a href="#name-registration-template" class="internal xref">Registration Template</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2">
+                    <p id="section-toc.1-1.9.2.1.2.2.1"><a href="#section-9.1.2" class="auto internal xref">9.1.2</a>.  <a href="#name-initial-registry-contents" class="internal xref">Initial Registry Contents</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.1">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.1.1"><a href="#section-9.1.2.1" class="auto internal xref">9.1.2.1</a>.  <a href="#name-algorithm-header-parameter" class="internal xref">Algorithm Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.2">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.2.1"><a href="#section-9.1.2.2" class="auto internal xref">9.1.2.2</a>.  <a href="#name-key-id-header-parameter" class="internal xref">Key ID Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.3">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.3.1"><a href="#section-9.1.2.3" class="auto internal xref">9.1.2.3</a>.  <a href="#name-type-header-parameter" class="internal xref">Type Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.4">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.4.1"><a href="#section-9.1.2.4" class="auto internal xref">9.1.2.4</a>.  <a href="#name-critical-header-parameter" class="internal xref">Critical Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.5">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.5.1"><a href="#section-9.1.2.5" class="auto internal xref">9.1.2.5</a>.  <a href="#name-issuer-header-parameter" class="internal xref">Issuer Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.6">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.6.1"><a href="#section-9.1.2.6" class="auto internal xref">9.1.2.6</a>.  <a href="#name-audience-header-parameter" class="internal xref">Audience Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.7">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.7.1"><a href="#section-9.1.2.7" class="auto internal xref">9.1.2.7</a>.  <a href="#name-nonce-header-parameter" class="internal xref">Nonce Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2.2.8">
+                        <p id="section-toc.1-1.9.2.1.2.2.2.8.1"><a href="#section-9.1.2.8" class="auto internal xref">9.1.2.8</a>.  <a href="#name-claims-header-parameter" class="internal xref">Claims Header Parameter</a></p>
+</li>
+                    </ul>
+</li>
+                </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-media-type-registration" class="internal xref">Media Type Registration</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.1">
+                    <p id="section-toc.1-1.9.2.2.2.1.1"><a href="#section-9.2.1" class="auto internal xref">9.2.1</a>.  <a href="#name-registry-contents" class="internal xref">Registry Contents</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.1.2.1">
+                        <p id="section-toc.1-1.9.2.2.2.1.2.1.1"><a href="#section-9.2.1.1" class="auto internal xref">9.2.1.1</a>.  <a href="#name-the-application-jwp-media-t" class="internal xref">The application/jwp Media Type</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.1.2.2">
+                        <p id="section-toc.1-1.9.2.2.2.1.2.2.1"><a href="#section-9.2.1.2" class="auto internal xref">9.2.1.2</a>.  <a href="#name-the-application-jwpjson-med" class="internal xref">The application/jwp+json Media Type</a></p>
+</li>
+                    </ul>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="auto internal xref">9.3</a>.  <a href="#name-structured-syntax-suffix-re" class="internal xref">Structured Syntax Suffix Registration</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.1">
+                    <p id="section-toc.1-1.9.2.3.2.1.1"><a href="#section-9.3.1" class="auto internal xref">9.3.1</a>.  <a href="#name-registry-contents-2" class="internal xref">Registry Contents</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.1.2.1">
+                        <p id="section-toc.1-1.9.2.3.2.1.2.1.1"><a href="#section-9.3.1.1" class="auto internal xref">9.3.1.1</a>.  <a href="#name-the-jwp-structured-syntax-s" class="internal xref">The +jwp Structured Syntax Suffix</a></p>
+</li>
+                    </ul>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-document-history" class="internal xref">Document History</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-document-history" class="internal xref">Document History</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1455,7 +1458,7 @@ and Private Header Parameter names.<a href="#section-4-3" class="pilcrow">¶</a>
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-registered-header-parameter" class="section-name selfRef">Registered Header Parameter Names</a>
         </h3>
 <p id="section-4.1-1">The following Header Parameter names for use in JWPs are registered
-in the IANA "JSON Web Proof Header Parameters" registry established by <a href="#HdrReg" class="auto internal xref">Section 8.1</a>,
+in the IANA "JSON Web Proof Header Parameters" registry established by <a href="#HdrReg" class="auto internal xref">Section 9.1</a>,
 with meanings as defined in the subsections below.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">As indicated by the common registry, Header Parameters used
 in the Issued Form (see <a href="#issued-form" class="auto internal xref">Section 5.1</a>) and the Presented Form <a href="#presented-form" class="auto internal xref">Section 5.2</a>
@@ -1673,7 +1676,7 @@ using JWPs. However, in order to prevent collisions, any new
 Header Parameter name should either be registered in the IANA
 "JSON Web Proof Header Parameters" registry
 established by
-<a href="#HdrReg" class="auto internal xref">Section 8.1</a> or be a Public Name
+<a href="#HdrReg" class="auto internal xref">Section 9.1</a> or be a Public Name
 (a value that contains a Collision-Resistant Name).
 In each case, the definer of the name
 or value needs to take reasonable precautions to make sure they
@@ -1816,14 +1819,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.p7HU_TUWJgaOWBM7E_szgDu1typrfQyE
-XQXLZfKF_LfH_dr9XGKv0ixMy8dWfeiVia0XgtNh5EGgB4x6c6DBVwWIhvtEeYXOQl7Fu
-vRGI4LBPdgizfksMIYZlFQRKrEDkhE3U2MgWrUuIlyhEnZcN_SzIQMzIyL_BrqFPHNHBP
-KUpzTFYx-OB4gmlAIQiwLhV1KTzrV3ZUV4_XYkBUXWwfpnw5P_Cy1WcqbUvsPe1IQ87me
-HcrszBrDb_-QJM52N6ij0D_DOdT60DQ9haUOyl1YuAofLpFrsRs6QXGhXUxf_tTZ0Ghgm
-z1Unc7MRr5-nMxnZCyq93s9sNArGhIrDgHyrhpEpAK5hXnmQcTAbNjc8mRetEjyfkb7kM
-c-coVEOv0PoncSdNccPOtv7zBHzbhOfxO5rV0A22r16R0FFe-VTqz43UYDmMb9XMzOLo8
-CEH3Cj-oam8af8GLgnSfAm5wdUAiJXrDiFgRtPwbZ0Lg0
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.qGX6MD2nKn7VoJtvxa6J1pQWtmKlkhTq
+Fb3UytjXrfvhOtDUFC4fRMNFHzlJVKL1qoIHXhihYIID597GOhi540W6V8wzyrBz1LMI_
+qFcrAt9Pl5EPPTQPkOW1qXX8pfQlp33Z9jBxdLykQXK9v4YpRMnCF4lZAC9MRm240KEyr
+CYCPfsgpVYK-zH80M6TnUmLXEc4SLAped-2RTe9DoavaJw5nkxpnDm9X5OxEb5pF4S1sv
+WpSeFaDYz5aN_3tmR1Rfl1QG2G27MOPA-3NXIKVoaSZXR3UZgq4xhkF7tRQ_k30YDSi4N
+Tflx4ybbrGuQCLA9GzpD-ywRaZkcNkhtom61PiIla19-QyWPEmXnvBFGjO02RgBhQWnEp
+aAHPvh63U6bowsrNrUpAuYogCAVMxABWTUb-qAanANQ-V9RXjVnJEP6x6QUQ3kt3wF3TP
+UbCHCdyrV7j1X1FbPcrUTUaePyYxnPsI6IIeQxVisZk1I
 
 </pre><a href="#section-6.1-5" class="pilcrow">¶</a>
 </div>
@@ -1856,14 +1859,14 @@ CEH3Cj-oam8af8GLgnSfAm5wdUAiJXrDiFgRtPwbZ0Lg0
     null
   ],
   "proof": [
-    "p7HU_TUWJgaOWBM7E_szgDu1typrfQyEXQXLZfKF_LfH_dr9XGKv0ixMy8dWfeiV
-       ia0XgtNh5EGgB4x6c6DBVwWIhvtEeYXOQl7FuvRGI4LBPdgizfksMIYZlFQRKr
-       EDkhE3U2MgWrUuIlyhEnZcN_SzIQMzIyL_BrqFPHNHBPKUpzTFYx-OB4gmlAIQ
-       iwLhV1KTzrV3ZUV4_XYkBUXWwfpnw5P_Cy1WcqbUvsPe1IQ87meHcrszBrDb_-
-       QJM52N6ij0D_DOdT60DQ9haUOyl1YuAofLpFrsRs6QXGhXUxf_tTZ0Ghgmz1Un
-       c7MRr5-nMxnZCyq93s9sNArGhIrDgHyrhpEpAK5hXnmQcTAbNjc8mRetEjyfkb
-       7kMc-coVEOv0PoncSdNccPOtv7zBHzbhOfxO5rV0A22r16R0FFe-VTqz43UYDm
-       Mb9XMzOLo8CEH3Cj-oam8af8GLgnSfAm5wdUAiJXrDiFgRtPwbZ0Lg0"
+    "qGX6MD2nKn7VoJtvxa6J1pQWtmKlkhTqFb3UytjXrfvhOtDUFC4fRMNFHzlJVKL1
+       qoIHXhihYIID597GOhi540W6V8wzyrBz1LMI_qFcrAt9Pl5EPPTQPkOW1qXX8p
+       fQlp33Z9jBxdLykQXK9v4YpRMnCF4lZAC9MRm240KEyrCYCPfsgpVYK-zH80M6
+       TnUmLXEc4SLAped-2RTe9DoavaJw5nkxpnDm9X5OxEb5pF4S1svWpSeFaDYz5a
+       N_3tmR1Rfl1QG2G27MOPA-3NXIKVoaSZXR3UZgq4xhkF7tRQ_k30YDSi4NTflx
+       4ybbrGuQCLA9GzpD-ywRaZkcNkhtom61PiIla19-QyWPEmXnvBFGjO02RgBhQW
+       nEpaAHPvh63U6bowsrNrUpAuYogCAVMxABWTUb-qAanANQ-V9RXjVnJEP6x6QU
+       Q3kt3wF3TPUbCHCdyrV7j1X1FbPcrUTUaePyYxnPsI6IIeQxVisZk1I"
   ]
 }
 
@@ -1876,65 +1879,100 @@ CEH3Cj-oam8af8GLgnSfAm5wdUAiJXrDiFgRtPwbZ0Lg0
 </div>
 </section>
 </div>
-<div id="SecurityConsiderations">
+<div id="encrypted-json-web-proofs">
 <section id="section-7">
-      <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-encrypted-json-web-proofs">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-encrypted-json-web-proofs" class="section-name selfRef">Encrypted JSON Web Proofs</a>
       </h2>
-<p id="section-7-1">Notes to be expanded:<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">Access to JWPs containing non-public material
+by parties without legitimate access to the non-public information
+MUST be prevented.
+This can be accomplished by encrypting the JWP
+when potentially observable by such parties
+to prevent the disclosure of private information.
+The use of an Encrypted JWP, which is a JWE <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span>
+with a JWP as its plaintext value,
+is recommended for this purpose.
+The processing of Encrypted JWPs is identical to
+the processing of other JWEs.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The <code>cty</code> (content type) JWE Header Parameter is used to indicate
+that the content of the JWE is a JWP.
+The <code>cty</code> value of the JWE SHOULD be the same as
+the <code>typ</code> (type) JWP Header Parameter value of the unencrypted JWP to be encrypted.
+If the JWP has no <code>typ</code> value, then the following JWE Header Parameter <code>cty</code> (content type) values SHOULD be used:<a href="#section-7-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-7-2.1">Requirements for supporting algorithms, see JPA<a href="#section-7-2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-7-3.1">
+          <code>jwp</code> is used to indicate that the content of the JWE is a JWP using the JWP Compact Serialization.<a href="#section-7-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-7-2.2">Application interface for verification<a href="#section-7-2.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-7-3.2">
+          <code>jwp+json</code> is used to indicate that the content of the JWE is the UTF-8 encoding of a JWP using the JWP JSON Serialization.<a href="#section-7-3.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-7-2.3">Data minimization of the protected header<a href="#section-7-2.3" class="pilcrow">¶</a>
+      </ul>
+<p id="section-7-4">The <code>cty</code> (content type) Header Parameter MUST be present
+unless the application knows that the encrypted content is
+a JWP by another means or convention,
+in which case the <code>cty</code> value MAY be omitted.<a href="#section-7-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="SecurityConsiderations">
+<section id="section-8">
+      <h2 id="name-security-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-8-1">Notes to be expanded:<a href="#section-8-1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-8-2.1">Requirements for supporting algorithms, see JPA<a href="#section-8-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-7-2.4">To prevent accidentally introducing linkability, when an issuer uses the same key with the same grouping of payload types, they SHOULD also use the same issuer protected header.  Each of these headers SHOULD have the same base64url-serialized value to avoid any non-deterministic JSON serialization.<a href="#section-7-2.4" class="pilcrow">¶</a>
+        <li class="compact" id="section-8-2.2">Application interface for verification<a href="#section-8-2.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="section-8-2.3">Data minimization of the protected header<a href="#section-8-2.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="section-8-2.4">To prevent accidentally introducing linkability, when an issuer uses the same key with the same grouping of payload types, they SHOULD also use the same issuer protected header.  Each of these headers SHOULD have the same base64url-serialized value to avoid any non-deterministic JSON serialization.<a href="#section-8-2.4" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-8">
+<section id="section-9">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">The following registration procedure is used for all the
-registries established by this specification.<a href="#section-8-1" class="pilcrow">¶</a></p>
-<p id="section-8-2">Values are registered on a Specification Required <span>[<a href="#RFC5226" class="cite xref">RFC5226</a>]</span> basis
+<p id="section-9-1">The following registration procedure is used for all the
+registries established by this specification.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">Values are registered on a Specification Required <span>[<a href="#RFC5226" class="cite xref">RFC5226</a>]</span> basis
 after a three-week review period on the jose-reg-review@ietf.org
 mailing list, on the advice of one or more Designated Experts.
 However, to allow for the allocation of values prior to publication,
 the Designated Experts may approve registration once they are
-satisfied that such a specification will be published.<a href="#section-8-2" class="pilcrow">¶</a></p>
-<p id="section-8-3">Registration requests sent to the mailing list for review should use
-an appropriate subject (e.g., "Request to register JWP header parameter: example").<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">Within the review period, the Designated Experts will either approve or deny
+satisfied that such a specification will be published.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-9-3">Registration requests sent to the mailing list for review should use
+an appropriate subject (e.g., "Request to register JWP header parameter: example").<a href="#section-9-3" class="pilcrow">¶</a></p>
+<p id="section-9-4">Within the review period, the Designated Experts will either approve or deny
 the registration request, communicating this decision to the review list and IANA.
 Denials should include an explanation and, if applicable,
 suggestions as to how to make the request successful.
 Registration requests that are undetermined for
 a period longer than 21 days can be brought to the IESG's attention
-(using the iesg@ietf.org mailing list) for resolution.<a href="#section-8-4" class="pilcrow">¶</a></p>
-<p id="section-8-5">Criteria that should be applied by the Designated Experts includes
+(using the iesg@ietf.org mailing list) for resolution.<a href="#section-9-4" class="pilcrow">¶</a></p>
+<p id="section-9-5">Criteria that should be applied by the Designated Experts includes
 determining whether the proposed registration duplicates existing functionality,
 whether it is likely to be of general applicability
 or useful only for a single application,
-and whether the registration description is clear.<a href="#section-8-5" class="pilcrow">¶</a></p>
-<p id="section-8-6">IANA must only accept registry updates from the Designated Experts and should direct
-all requests for registration to the review mailing list.<a href="#section-8-6" class="pilcrow">¶</a></p>
-<p id="section-8-7">It is suggested that multiple Designated Experts be appointed who are able to
+and whether the registration description is clear.<a href="#section-9-5" class="pilcrow">¶</a></p>
+<p id="section-9-6">IANA must only accept registry updates from the Designated Experts and should direct
+all requests for registration to the review mailing list.<a href="#section-9-6" class="pilcrow">¶</a></p>
+<p id="section-9-7">It is suggested that multiple Designated Experts be appointed who are able to
 represent the perspectives of different applications using this specification,
 in order to enable broadly informed review of registration decisions.
 In cases where a registration decision could be perceived as
 creating a conflict of interest for a particular Expert,
-that Expert should defer to the judgment of the other Experts.<a href="#section-8-7" class="pilcrow">¶</a></p>
+that Expert should defer to the judgment of the other Experts.<a href="#section-9-7" class="pilcrow">¶</a></p>
 <div id="HdrReg">
-<section id="section-8.1">
+<section id="section-9.1">
         <h3 id="name-json-web-proof-header-param">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-json-web-proof-header-param" class="section-name selfRef">JSON Web Proof Header Parameters Registry</a>
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-json-web-proof-header-param" class="section-name selfRef">JSON Web Proof Header Parameters Registry</a>
         </h3>
-<p id="section-8.1-1">This specification establishes the
+<p id="section-9.1-1">This specification establishes the
 IANA "JSON Web Proof Header Parameters" registry
 for Header Parameter names.
 The registry records the Header Parameter name
@@ -1942,181 +1980,181 @@ and a reference to the specification that defines it.
 The same Header Parameter name can be registered multiple times,
 provided that the parameter usage is compatible between the specifications.
 Different registrations of the same Header Parameter name
-will typically use different Header Parameter Usage Locations values.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+will typically use different Header Parameter Usage Locations values.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
 <div id="HdrTemplate">
-<section id="section-8.1.1">
+<section id="section-9.1.1">
           <h4 id="name-registration-template">
-<a href="#section-8.1.1" class="section-number selfRef">8.1.1. </a><a href="#name-registration-template" class="section-name selfRef">Registration Template</a>
+<a href="#section-9.1.1" class="section-number selfRef">9.1.1. </a><a href="#name-registration-template" class="section-name selfRef">Registration Template</a>
           </h4>
 <ul class="compact">
-<li class="compact" id="section-8.1.1-1.1">Header Parameter Name: The name requested (e.g., "kid"). Because a core goal of this specification is for the resulting representations to be compact, it is RECOMMENDED that the name be short -- not to exceed 8 characters without a compelling reason to do so. This name is case sensitive. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.<a href="#section-8.1.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.1-1.1">Header Parameter Name: The name requested (e.g., "kid"). Because a core goal of this specification is for the resulting representations to be compact, it is RECOMMENDED that the name be short -- not to exceed 8 characters without a compelling reason to do so. This name is case sensitive. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.<a href="#section-9.1.1-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="compact" id="section-8.1.1-1.2">Header Parameter Description: Brief description of the Header Parameter (e.g., "Key ID").<a href="#section-8.1.1-1.2" class="pilcrow">¶</a>
+            <li class="compact" id="section-9.1.1-1.2">Header Parameter Description: Brief description of the Header Parameter (e.g., "Key ID").<a href="#section-9.1.1-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="compact" id="section-8.1.1-1.3">Header Parameter Usage Location(s): The Header Parameter usage locations, which should be one or more of the values <code>Issued</code> or <code>Presented</code>.  Other values may be used with the approval of a Designated Expert.<a href="#section-8.1.1-1.3" class="pilcrow">¶</a>
+            <li class="compact" id="section-9.1.1-1.3">Header Parameter Usage Location(s): The Header Parameter usage locations, which should be one or more of the values <code>Issued</code> or <code>Presented</code>.  Other values may be used with the approval of a Designated Expert.<a href="#section-9.1.1-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="compact" id="section-8.1.1-1.4">Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.<a href="#section-8.1.1-1.4" class="pilcrow">¶</a>
+            <li class="compact" id="section-9.1.1-1.4">Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.<a href="#section-9.1.1-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="compact" id="section-8.1.1-1.5">Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.<a href="#section-8.1.1-1.5" class="pilcrow">¶</a>
+            <li class="compact" id="section-9.1.1-1.5">Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.<a href="#section-9.1.1-1.5" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
 </div>
 <div id="HdrContents">
-<section id="section-8.1.2">
+<section id="section-9.1.2">
           <h4 id="name-initial-registry-contents">
-<a href="#section-8.1.2" class="section-number selfRef">8.1.2. </a><a href="#name-initial-registry-contents" class="section-name selfRef">Initial Registry Contents</a>
+<a href="#section-9.1.2" class="section-number selfRef">9.1.2. </a><a href="#name-initial-registry-contents" class="section-name selfRef">Initial Registry Contents</a>
           </h4>
-<p id="section-8.1.2-1">This section registers the Header Parameter names defined in
-<a href="#RegisteredHeaderParameterNames" class="auto internal xref">Section 4.1</a> in this registry.<a href="#section-8.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-9.1.2-1">This section registers the Header Parameter names defined in
+<a href="#RegisteredHeaderParameterNames" class="auto internal xref">Section 4.1</a> in this registry.<a href="#section-9.1.2-1" class="pilcrow">¶</a></p>
 <div id="algorithm-header-parameter">
-<section id="section-8.1.2.1">
+<section id="section-9.1.2.1">
             <h5 id="name-algorithm-header-parameter">
-<a href="#section-8.1.2.1" class="section-number selfRef">8.1.2.1. </a><a href="#name-algorithm-header-parameter" class="section-name selfRef">Algorithm Header Parameter</a>
+<a href="#section-9.1.2.1" class="section-number selfRef">9.1.2.1. </a><a href="#name-algorithm-header-parameter" class="section-name selfRef">Algorithm Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.1-1.1">Header Parameter Name: <code>alg</code><a href="#section-8.1.2.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.1-1.1">Header Parameter Name: <code>alg</code><a href="#section-9.1.2.1-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.1-1.2">Header Parameter Description: Algorithm<a href="#section-8.1.2.1-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.1-1.2">Header Parameter Description: Algorithm<a href="#section-9.1.2.1-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.1-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-8.1.2.1-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.1-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-9.1.2.1-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.1-1.4">Change Controller: IETF<a href="#section-8.1.2.1-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.1-1.4">Change Controller: IETF<a href="#section-9.1.2.1-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.1-1.5">Specification Document(s): <a href="#algDef" class="auto internal xref">Section 4.1.1</a> of this specification<a href="#section-8.1.2.1-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.1-1.5">Specification Document(s): <a href="#algDef" class="auto internal xref">Section 4.1.1</a> of this specification<a href="#section-9.1.2.1-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="key-id-header-parameter">
-<section id="section-8.1.2.2">
+<section id="section-9.1.2.2">
             <h5 id="name-key-id-header-parameter">
-<a href="#section-8.1.2.2" class="section-number selfRef">8.1.2.2. </a><a href="#name-key-id-header-parameter" class="section-name selfRef">Key ID Header Parameter</a>
+<a href="#section-9.1.2.2" class="section-number selfRef">9.1.2.2. </a><a href="#name-key-id-header-parameter" class="section-name selfRef">Key ID Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.2-1.1">Header Parameter Name: <code>kid</code><a href="#section-8.1.2.2-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.2-1.1">Header Parameter Name: <code>kid</code><a href="#section-9.1.2.2-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.2-1.2">Header Parameter Description: Key ID<a href="#section-8.1.2.2-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.2-1.2">Header Parameter Description: Key ID<a href="#section-9.1.2.2-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.2-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-8.1.2.2-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.2-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-9.1.2.2-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.2-1.4">Change Controller: IETF<a href="#section-8.1.2.2-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.2-1.4">Change Controller: IETF<a href="#section-9.1.2.2-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.2-1.5">Specification Document(s): <a href="#kidDef" class="auto internal xref">Section 4.1.2</a> of this specification<a href="#section-8.1.2.2-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.2-1.5">Specification Document(s): <a href="#kidDef" class="auto internal xref">Section 4.1.2</a> of this specification<a href="#section-9.1.2.2-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="type-header-parameter">
-<section id="section-8.1.2.3">
+<section id="section-9.1.2.3">
             <h5 id="name-type-header-parameter">
-<a href="#section-8.1.2.3" class="section-number selfRef">8.1.2.3. </a><a href="#name-type-header-parameter" class="section-name selfRef">Type Header Parameter</a>
+<a href="#section-9.1.2.3" class="section-number selfRef">9.1.2.3. </a><a href="#name-type-header-parameter" class="section-name selfRef">Type Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.3-1.1">Header Parameter Name: <code>typ</code><a href="#section-8.1.2.3-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.3-1.1">Header Parameter Name: <code>typ</code><a href="#section-9.1.2.3-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.3-1.2">Header Parameter Description: Type<a href="#section-8.1.2.3-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.3-1.2">Header Parameter Description: Type<a href="#section-9.1.2.3-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.3-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-8.1.2.3-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.3-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-9.1.2.3-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.3-1.4">Change Controller: IETF<a href="#section-8.1.2.3-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.3-1.4">Change Controller: IETF<a href="#section-9.1.2.3-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.3-1.5">Specification Document(s): <a href="#typDef" class="auto internal xref">Section 4.1.3</a> of this specification<a href="#section-8.1.2.3-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.3-1.5">Specification Document(s): <a href="#typDef" class="auto internal xref">Section 4.1.3</a> of this specification<a href="#section-9.1.2.3-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="critical-header-parameter">
-<section id="section-8.1.2.4">
+<section id="section-9.1.2.4">
             <h5 id="name-critical-header-parameter">
-<a href="#section-8.1.2.4" class="section-number selfRef">8.1.2.4. </a><a href="#name-critical-header-parameter" class="section-name selfRef">Critical Header Parameter</a>
+<a href="#section-9.1.2.4" class="section-number selfRef">9.1.2.4. </a><a href="#name-critical-header-parameter" class="section-name selfRef">Critical Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.4-1.1">Header Parameter Name: <code>crit</code><a href="#section-8.1.2.4-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.4-1.1">Header Parameter Name: <code>crit</code><a href="#section-9.1.2.4-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.4-1.2">Header Parameter Description: Critical<a href="#section-8.1.2.4-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.4-1.2">Header Parameter Description: Critical<a href="#section-9.1.2.4-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.4-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-8.1.2.4-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.4-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-9.1.2.4-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.4-1.4">Change Controller: IETF<a href="#section-8.1.2.4-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.4-1.4">Change Controller: IETF<a href="#section-9.1.2.4-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.4-1.5">Specification Document(s): <a href="#critDef" class="auto internal xref">Section 4.1.4</a> of this specification<a href="#section-8.1.2.4-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.4-1.5">Specification Document(s): <a href="#critDef" class="auto internal xref">Section 4.1.4</a> of this specification<a href="#section-9.1.2.4-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="issuer-header-parameter">
-<section id="section-8.1.2.5">
+<section id="section-9.1.2.5">
             <h5 id="name-issuer-header-parameter">
-<a href="#section-8.1.2.5" class="section-number selfRef">8.1.2.5. </a><a href="#name-issuer-header-parameter" class="section-name selfRef">Issuer Header Parameter</a>
+<a href="#section-9.1.2.5" class="section-number selfRef">9.1.2.5. </a><a href="#name-issuer-header-parameter" class="section-name selfRef">Issuer Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.5-1.1">Header Parameter Name: <code>iss</code><a href="#section-8.1.2.5-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.5-1.1">Header Parameter Name: <code>iss</code><a href="#section-9.1.2.5-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.5-1.2">Header Parameter Description: Issuer<a href="#section-8.1.2.5-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.5-1.2">Header Parameter Description: Issuer<a href="#section-9.1.2.5-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.5-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-8.1.2.5-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.5-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-9.1.2.5-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.5-1.4">Change Controller: IETF<a href="#section-8.1.2.5-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.5-1.4">Change Controller: IETF<a href="#section-9.1.2.5-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.5-1.5">Specification Document(s): <a href="#issDef" class="auto internal xref">Section 4.1.7</a> of this specification<a href="#section-8.1.2.5-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.5-1.5">Specification Document(s): <a href="#issDef" class="auto internal xref">Section 4.1.7</a> of this specification<a href="#section-9.1.2.5-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="audience-header-parameter">
-<section id="section-8.1.2.6">
+<section id="section-9.1.2.6">
             <h5 id="name-audience-header-parameter">
-<a href="#section-8.1.2.6" class="section-number selfRef">8.1.2.6. </a><a href="#name-audience-header-parameter" class="section-name selfRef">Audience Header Parameter</a>
+<a href="#section-9.1.2.6" class="section-number selfRef">9.1.2.6. </a><a href="#name-audience-header-parameter" class="section-name selfRef">Audience Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.6-1.1">Header Parameter Name: <code>aud</code><a href="#section-8.1.2.6-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.6-1.1">Header Parameter Name: <code>aud</code><a href="#section-9.1.2.6-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.6-1.2">Header Parameter Description: Audience<a href="#section-8.1.2.6-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.6-1.2">Header Parameter Description: Audience<a href="#section-9.1.2.6-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.6-1.3">Header Parameter Usage Location(s): Presented<a href="#section-8.1.2.6-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.6-1.3">Header Parameter Usage Location(s): Presented<a href="#section-9.1.2.6-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.6-1.4">Change Controller: IETF<a href="#section-8.1.2.6-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.6-1.4">Change Controller: IETF<a href="#section-9.1.2.6-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.6-1.5">Specification Document(s): <a href="#audDef" class="auto internal xref">Section 4.1.8</a> of this specification<a href="#section-8.1.2.6-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.6-1.5">Specification Document(s): <a href="#audDef" class="auto internal xref">Section 4.1.8</a> of this specification<a href="#section-9.1.2.6-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="nonce-header-parameter">
-<section id="section-8.1.2.7">
+<section id="section-9.1.2.7">
             <h5 id="name-nonce-header-parameter">
-<a href="#section-8.1.2.7" class="section-number selfRef">8.1.2.7. </a><a href="#name-nonce-header-parameter" class="section-name selfRef">Nonce Header Parameter</a>
+<a href="#section-9.1.2.7" class="section-number selfRef">9.1.2.7. </a><a href="#name-nonce-header-parameter" class="section-name selfRef">Nonce Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.7-1.1">Header Parameter Name: <code>nonce</code><a href="#section-8.1.2.7-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.7-1.1">Header Parameter Name: <code>nonce</code><a href="#section-9.1.2.7-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.7-1.2">Header Parameter Description: Nonce<a href="#section-8.1.2.7-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.7-1.2">Header Parameter Description: Nonce<a href="#section-9.1.2.7-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.7-1.3">Header Parameter Usage Location(s): Presented<a href="#section-8.1.2.7-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.7-1.3">Header Parameter Usage Location(s): Presented<a href="#section-9.1.2.7-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.7-1.4">Change Controller: IETF<a href="#section-8.1.2.7-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.7-1.4">Change Controller: IETF<a href="#section-9.1.2.7-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.7-1.5">Specification Document(s): <a href="#nonceDef" class="auto internal xref">Section 4.1.9</a> of this specification<a href="#section-8.1.2.7-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.7-1.5">Specification Document(s): <a href="#nonceDef" class="auto internal xref">Section 4.1.9</a> of this specification<a href="#section-9.1.2.7-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="claims-header-parameter">
-<section id="section-8.1.2.8">
+<section id="section-9.1.2.8">
             <h5 id="name-claims-header-parameter">
-<a href="#section-8.1.2.8" class="section-number selfRef">8.1.2.8. </a><a href="#name-claims-header-parameter" class="section-name selfRef">Claims Header Parameter</a>
+<a href="#section-9.1.2.8" class="section-number selfRef">9.1.2.8. </a><a href="#name-claims-header-parameter" class="section-name selfRef">Claims Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.1.2.8-1.1">Header Parameter Name: <code>claims</code><a href="#section-8.1.2.8-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.1.2.8-1.1">Header Parameter Name: <code>claims</code><a href="#section-9.1.2.8-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.8-1.2">Header Parameter Description: claims<a href="#section-8.1.2.8-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.8-1.2">Header Parameter Description: claims<a href="#section-9.1.2.8-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.8-1.3">Header Parameter Usage Location(s): Issued<a href="#section-8.1.2.8-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.8-1.3">Header Parameter Usage Location(s): Issued<a href="#section-9.1.2.8-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.8-1.4">Change Controller: IETF<a href="#section-8.1.2.8-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.8-1.4">Change Controller: IETF<a href="#section-9.1.2.8-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.8-1.5">Specification Document(s): <a href="#claimsDef" class="auto internal xref">Section 4.1.10</a> of this specification<a href="#section-8.1.2.8-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.1.2.8-1.5">Specification Document(s): <a href="#claimsDef" class="auto internal xref">Section 4.1.10</a> of this specification<a href="#section-9.1.2.8-1.5" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2126,16 +2164,16 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 </section>
 </div>
 <div id="MediaReg">
-<section id="section-8.2">
+<section id="section-9.2">
         <h3 id="name-media-type-registration">
-<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-media-type-registration" class="section-name selfRef">Media Type Registration</a>
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-media-type-registration" class="section-name selfRef">Media Type Registration</a>
         </h3>
 <div id="MediaContents">
-<section id="section-8.2.1">
+<section id="section-9.2.1">
           <h4 id="name-registry-contents">
-<a href="#section-8.2.1" class="section-number selfRef">8.2.1. </a><a href="#name-registry-contents" class="section-name selfRef">Registry Contents</a>
+<a href="#section-9.2.1" class="section-number selfRef">9.2.1. </a><a href="#name-registry-contents" class="section-name selfRef">Registry Contents</a>
           </h4>
-<p id="section-8.2.1-1">This section registers the <code>application/jwp</code>
+<p id="section-9.2.1-1">This section registers the <code>application/jwp</code>
 media type <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span>
 in the IANA "Media Types" registry (#IANA.MediaTypes)
 in the manner described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>,
@@ -2144,107 +2182,107 @@ a JWP using the JWP Compact Serialization.
 This section also registers the <code>application/jwp+json</code>
 media type in the IANA "Media Types" registry,
 which can be used to indicate that the content is
-a JWP using the JWP JSON Serialization.<a href="#section-8.2.1-1" class="pilcrow">¶</a></p>
+a JWP using the JWP JSON Serialization.<a href="#section-9.2.1-1" class="pilcrow">¶</a></p>
 <div id="the-application-jwp-media-type">
-<section id="section-8.2.1.1">
+<section id="section-9.2.1.1">
             <h5 id="name-the-application-jwp-media-t">
-<a href="#section-8.2.1.1" class="section-number selfRef">8.2.1.1. </a><a href="#name-the-application-jwp-media-t" class="section-name selfRef">The application/jwp Media Type</a>
+<a href="#section-9.2.1.1" class="section-number selfRef">9.2.1.1. </a><a href="#name-the-application-jwp-media-t" class="section-name selfRef">The application/jwp Media Type</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.2.1.1-1.1">Type name: application<a href="#section-8.2.1.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.2.1.1-1.1">Type name: application<a href="#section-9.2.1.1-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.2">Subtype name: jwp<a href="#section-8.2.1.1-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.2">Subtype name: jwp<a href="#section-9.2.1.1-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.3">Required parameters: n/a<a href="#section-8.2.1.1-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.3">Required parameters: n/a<a href="#section-9.2.1.1-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.4">Optional parameters: n/a<a href="#section-8.2.1.1-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.4">Optional parameters: n/a<a href="#section-9.2.1.1-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.5">Encoding considerations: 8bit; application/jwp values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters<a href="#section-8.2.1.1-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.5">Encoding considerations: 8bit; application/jwp values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters<a href="#section-9.2.1.1-1.5" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.6">Security considerations: See <a href="#SecurityConsiderations" class="auto internal xref">Section 7</a> of this specification<a href="#section-8.2.1.1-1.6" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.6">Security considerations: See <a href="#SecurityConsiderations" class="auto internal xref">Section 8</a> of this specification<a href="#section-9.2.1.1-1.6" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.7">Interoperability considerations: n/a<a href="#section-8.2.1.1-1.7" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.7">Interoperability considerations: n/a<a href="#section-9.2.1.1-1.7" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.8">Published specification: this specification<a href="#section-8.2.1.1-1.8" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.8">Published specification: this specification<a href="#section-9.2.1.1-1.8" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.9">Applications that use this media type: TBD<a href="#section-8.2.1.1-1.9" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.9">Applications that use this media type: TBD<a href="#section-9.2.1.1-1.9" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.10">Fragment identifier considerations: n/a<a href="#section-8.2.1.1-1.10" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.10">Fragment identifier considerations: n/a<a href="#section-9.2.1.1-1.10" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.11">
-                <p id="section-8.2.1.1-1.11.1">Additional information:<a href="#section-8.2.1.1-1.11.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-9.2.1.1-1.11">
+                <p id="section-9.2.1.1-1.11.1">Additional information:<a href="#section-9.2.1.1-1.11.1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-8.2.1.1-1.11.2.1">Magic number(s): n/a<a href="#section-8.2.1.1-1.11.2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.2.1.1-1.11.2.1">Magic number(s): n/a<a href="#section-9.2.1.1-1.11.2.1" class="pilcrow">¶</a>
 </li>
-                  <li class="compact" id="section-8.2.1.1-1.11.2.2">File extension(s): n/a<a href="#section-8.2.1.1-1.11.2.2" class="pilcrow">¶</a>
+                  <li class="compact" id="section-9.2.1.1-1.11.2.2">File extension(s): n/a<a href="#section-9.2.1.1-1.11.2.2" class="pilcrow">¶</a>
 </li>
-                  <li class="compact" id="section-8.2.1.1-1.11.2.3">Macintosh file type code(s): n/a<a href="#section-8.2.1.1-1.11.2.3" class="pilcrow">¶</a>
+                  <li class="compact" id="section-9.2.1.1-1.11.2.3">Macintosh file type code(s): n/a<a href="#section-9.2.1.1-1.11.2.3" class="pilcrow">¶</a>
 </li>
                 </ul>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.12">Person &amp; email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-8.2.1.1-1.12" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.12">Person &amp; email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-9.2.1.1-1.12" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.13">Intended usage: COMMON<a href="#section-8.2.1.1-1.13" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.13">Intended usage: COMMON<a href="#section-9.2.1.1-1.13" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.14">Restrictions on usage: none<a href="#section-8.2.1.1-1.14" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.14">Restrictions on usage: none<a href="#section-9.2.1.1-1.14" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.15">Author: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-8.2.1.1-1.15" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.15">Author: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-9.2.1.1-1.15" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.16">Change Controller: IETF<a href="#section-8.2.1.1-1.16" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.16">Change Controller: IETF<a href="#section-9.2.1.1-1.16" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.1-1.17">Provisional registration? No<a href="#section-8.2.1.1-1.17" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.1-1.17">Provisional registration? No<a href="#section-9.2.1.1-1.17" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
 <div id="the-application-jwp-json-media-type">
-<section id="section-8.2.1.2">
+<section id="section-9.2.1.2">
             <h5 id="name-the-application-jwpjson-med">
-<a href="#section-8.2.1.2" class="section-number selfRef">8.2.1.2. </a><a href="#name-the-application-jwpjson-med" class="section-name selfRef">The application/jwp+json Media Type</a>
+<a href="#section-9.2.1.2" class="section-number selfRef">9.2.1.2. </a><a href="#name-the-application-jwpjson-med" class="section-name selfRef">The application/jwp+json Media Type</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.2.1.2-1.1">Type name: application<a href="#section-8.2.1.2-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.2.1.2-1.1">Type name: application<a href="#section-9.2.1.2-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.2">Subtype name: jwp+json<a href="#section-8.2.1.2-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.2">Subtype name: jwp+json<a href="#section-9.2.1.2-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.3">Required parameters: n/a<a href="#section-8.2.1.2-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.3">Required parameters: n/a<a href="#section-9.2.1.2-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.4">Optional parameters: n/a<a href="#section-8.2.1.2-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.4">Optional parameters: n/a<a href="#section-9.2.1.2-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.5">Encoding considerations: 8bit; application/jwp+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.<a href="#section-8.2.1.2-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.5">Encoding considerations: 8bit; application/jwp+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.<a href="#section-9.2.1.2-1.5" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.6">Security considerations: See <a href="#SecurityConsiderations" class="auto internal xref">Section 7</a> of this specification<a href="#section-8.2.1.2-1.6" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.6">Security considerations: See <a href="#SecurityConsiderations" class="auto internal xref">Section 8</a> of this specification<a href="#section-9.2.1.2-1.6" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.7">Interoperability considerations: n/a<a href="#section-8.2.1.2-1.7" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.7">Interoperability considerations: n/a<a href="#section-9.2.1.2-1.7" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.8">Published specification: this specification<a href="#section-8.2.1.2-1.8" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.8">Published specification: this specification<a href="#section-9.2.1.2-1.8" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.9">Applications that use this media type: TBD<a href="#section-8.2.1.2-1.9" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.9">Applications that use this media type: TBD<a href="#section-9.2.1.2-1.9" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.10">Fragment identifier considerations: n/a<a href="#section-8.2.1.2-1.10" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.10">Fragment identifier considerations: n/a<a href="#section-9.2.1.2-1.10" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.11">
-                <p id="section-8.2.1.2-1.11.1">Additional information:<a href="#section-8.2.1.2-1.11.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-9.2.1.2-1.11">
+                <p id="section-9.2.1.2-1.11.1">Additional information:<a href="#section-9.2.1.2-1.11.1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-8.2.1.2-1.11.2.1">Magic number(s): n/a<a href="#section-8.2.1.2-1.11.2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.2.1.2-1.11.2.1">Magic number(s): n/a<a href="#section-9.2.1.2-1.11.2.1" class="pilcrow">¶</a>
 </li>
-                  <li class="compact" id="section-8.2.1.2-1.11.2.2">File extension(s): n/a<a href="#section-8.2.1.2-1.11.2.2" class="pilcrow">¶</a>
+                  <li class="compact" id="section-9.2.1.2-1.11.2.2">File extension(s): n/a<a href="#section-9.2.1.2-1.11.2.2" class="pilcrow">¶</a>
 </li>
-                  <li class="compact" id="section-8.2.1.2-1.11.2.3">Macintosh file type code(s): n/a<a href="#section-8.2.1.2-1.11.2.3" class="pilcrow">¶</a>
+                  <li class="compact" id="section-9.2.1.2-1.11.2.3">Macintosh file type code(s): n/a<a href="#section-9.2.1.2-1.11.2.3" class="pilcrow">¶</a>
 </li>
                 </ul>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.12">Person &amp; email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-8.2.1.2-1.12" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.12">Person &amp; email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-9.2.1.2-1.12" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.13">Intended usage: COMMON<a href="#section-8.2.1.2-1.13" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.13">Intended usage: COMMON<a href="#section-9.2.1.2-1.13" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.14">Restrictions on usage: none<a href="#section-8.2.1.2-1.14" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.14">Restrictions on usage: none<a href="#section-9.2.1.2-1.14" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.15">Author: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-8.2.1.2-1.15" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.15">Author: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-9.2.1.2-1.15" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.16">Change Controller: IETF<a href="#section-8.2.1.2-1.16" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.16">Change Controller: IETF<a href="#section-9.2.1.2-1.16" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.2.1.2-1.17">Provisional registration? No<a href="#section-8.2.1.2-1.17" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.2.1.2-1.17">Provisional registration? No<a href="#section-9.2.1.2-1.17" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2254,54 +2292,55 @@ a JWP using the JWP JSON Serialization.<a href="#section-8.2.1-1" class="pilcrow
 </section>
 </div>
 <div id="SuffixReg">
-<section id="section-8.3">
+<section id="section-9.3">
         <h3 id="name-structured-syntax-suffix-re">
-<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-structured-syntax-suffix-re" class="section-name selfRef">Structured Syntax Suffix Registration</a>
+<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-structured-syntax-suffix-re" class="section-name selfRef">Structured Syntax Suffix Registration</a>
         </h3>
 <div id="SuffixContents">
-<section id="section-8.3.1">
+<section id="section-9.3.1">
           <h4 id="name-registry-contents-2">
-<a href="#section-8.3.1" class="section-number selfRef">8.3.1. </a><a href="#name-registry-contents-2" class="section-name selfRef">Registry Contents</a>
+<a href="#section-9.3.1" class="section-number selfRef">9.3.1. </a><a href="#name-registry-contents-2" class="section-name selfRef">Registry Contents</a>
           </h4>
-<p id="section-8.3.1-1">This section registers the <code>+jwp</code>
+<p id="section-9.3.1-1">This section registers the <code>+jwp</code>
 structured syntax suffix <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>
 in the IANA "Structured Syntax Suffix" registry (#IANA.StructuredSuffix)
 in the manner described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>,
-which can be used to indicate that the media type is encoded as a JWP.<a href="#section-8.3.1-1" class="pilcrow">¶</a></p>
+which can be used to indicate that the media type is encoded as a JWP
+using the JWP Compact Serialization.<a href="#section-9.3.1-1" class="pilcrow">¶</a></p>
 <div id="the-jwp-structured-syntax-suffix">
-<section id="section-8.3.1.1">
+<section id="section-9.3.1.1">
             <h5 id="name-the-jwp-structured-syntax-s">
-<a href="#section-8.3.1.1" class="section-number selfRef">8.3.1.1. </a><a href="#name-the-jwp-structured-syntax-s" class="section-name selfRef">The +jwp Structured Syntax Suffix</a>
+<a href="#section-9.3.1.1" class="section-number selfRef">9.3.1.1. </a><a href="#name-the-jwp-structured-syntax-s" class="section-name selfRef">The +jwp Structured Syntax Suffix</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-8.3.1.1-1.1">Name: JSON Web Proof (JWP)<a href="#section-8.3.1.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.3.1.1-1.1">Name: JSON Web Proof (JWP)<a href="#section-9.3.1.1-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.3.1.1-1.2">+suffix: +jwp<a href="#section-8.3.1.1-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.3.1.1-1.2">+suffix: +jwp<a href="#section-9.3.1.1-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.3.1.1-1.3">References: <a href="#CompactSerialization" class="auto internal xref">Section 6.1</a> of this specification<a href="#section-8.3.1.1-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.3.1.1-1.3">References: <a href="#CompactSerialization" class="auto internal xref">Section 6.1</a> of this specification<a href="#section-9.3.1.1-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.3.1.1-1.4">Encoding considerations: binary; JWP values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters<a href="#section-8.3.1.1-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.3.1.1-1.4">Encoding considerations: binary; JWP values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters<a href="#section-9.3.1.1-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.3.1.1-1.5">Interoperability considerations: n/a<a href="#section-8.3.1.1-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.3.1.1-1.5">Interoperability considerations: n/a<a href="#section-9.3.1.1-1.5" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.3.1.1-1.6">Fragment identifier considerations: The syntax and semantics of fragment identifiers specified for +jwp SHOULD be as specified for "application/jwp".  (At publication of this document, there is no fragment identification syntax defined for "application/jwp".)<a href="#section-8.3.1.1-1.6" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.3.1.1-1.6">Fragment identifier considerations: The syntax and semantics of fragment identifiers specified for +jwp SHOULD be as specified for "application/jwp".  (At publication of this document, there is no fragment identification syntax defined for "application/jwp".)<a href="#section-9.3.1.1-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
-<p id="section-8.3.1.1-2">The syntax and semantics for fragment identifiers for a specific
-  "xxx/yyy+jwp" SHOULD be processed as follows:<a href="#section-8.3.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-8.3.1.1-3">For cases defined in +jwp, where the fragment identifier resolves
-  per the +jwp rules, then process as specified in +jwp.<a href="#section-8.3.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-8.3.1.1-4">For cases defined in +jwp, where the fragment identifier does not
+<p id="section-9.3.1.1-2">The syntax and semantics for fragment identifiers for a specific
+  "xxx/yyy+jwp" SHOULD be processed as follows:<a href="#section-9.3.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-9.3.1.1-3">For cases defined in +jwp, where the fragment identifier resolves
+  per the +jwp rules, then process as specified in +jwp.<a href="#section-9.3.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-9.3.1.1-4">For cases defined in +jwp, where the fragment identifier does not
   resolve per the +jwp rules, then process as specified in
-  "xxx/yyy+jwp".<a href="#section-8.3.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-8.3.1.1-5">For cases not defined in +jwp, then process as specified in
-  "xxx/yyy+jwp".<a href="#section-8.3.1.1-5" class="pilcrow">¶</a></p>
+  "xxx/yyy+jwp".<a href="#section-9.3.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-9.3.1.1-5">For cases not defined in +jwp, then process as specified in
+  "xxx/yyy+jwp".<a href="#section-9.3.1.1-5" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-8.3.1.1-6.1">Security considerations: See <a href="#SecurityConsiderations" class="auto internal xref">Section 7</a> of this specification<a href="#section-8.3.1.1-6.1" class="pilcrow">¶</a>
+<li class="compact" id="section-9.3.1.1-6.1">Security considerations: See <a href="#SecurityConsiderations" class="auto internal xref">Section 8</a> of this specification<a href="#section-9.3.1.1-6.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.3.1.1-6.2">Contact: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-8.3.1.1-6.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.3.1.1-6.2">Contact: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-9.3.1.1-6.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.3.1.1-6.3">Author/Change controller: IETF<a href="#section-8.3.1.1-6.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-9.3.1.1-6.3">Author/Change controller: IETF<a href="#section-9.3.1.1-6.3" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2312,13 +2351,13 @@ which can be used to indicate that the media type is encoded as a JWP.<a href="#
 </div>
 </section>
 </div>
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
-<section id="section-9.1">
+<section id="section-10.1">
         <h3 id="name-normative-references">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-jose-json-proof-algorithms">[I-D.ietf-jose-json-proof-algorithms]</dt>
@@ -2329,15 +2368,19 @@ which can be used to indicate that the media type is encoded as a JWP.<a href="#
         <dd>
 <span class="refAuthor">Miller, J.</span>, <span class="refAuthor">Jones, M. B.</span>, and <span class="refAuthor">D. Waite</span>, <span class="refTitle">"JSON Proof Token"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-token-05</span>, <time datetime="2024-07-22" class="refDate">22 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-05">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7516">[RFC7516]</dt>
+        <dd>
+<span class="refAuthor">Jones, M.</span> and <span class="refAuthor">J. Hildebrand</span>, <span class="refTitle">"JSON Web Encryption (JWE)"</span>, <span class="seriesInfo">RFC 7516</span>, <span class="seriesInfo">DOI 10.17487/RFC7516</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7516">https://www.rfc-editor.org/info/rfc7516</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7519">[RFC7519]</dt>
       <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-9.2">
+<section id="section-10.2">
         <h3 id="name-informative-references">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="ECMAScript">[ECMAScript]</dt>
@@ -2371,10 +2414,6 @@ which can be used to indicate that the media type is encoded as a JWP.<a href="#
 <dt id="RFC7515">[RFC7515]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Signature (JWS)"</span>, <span class="seriesInfo">RFC 7515</span>, <span class="seriesInfo">DOI 10.17487/RFC7515</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7515">https://www.rfc-editor.org/info/rfc7515</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7516">[RFC7516]</dt>
-        <dd>
-<span class="refAuthor">Jones, M.</span> and <span class="refAuthor">J. Hildebrand</span>, <span class="refTitle">"JSON Web Encryption (JWE)"</span>, <span class="seriesInfo">RFC 7516</span>, <span class="seriesInfo">DOI 10.17487/RFC7516</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7516">https://www.rfc-editor.org/info/rfc7516</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7518">[RFC7518]</dt>
         <dd>
@@ -2413,7 +2452,9 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
       </h2>
 <p id="appendix-B-1">[[ To be removed from the final specification ]]<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-2.1">Update reference to new repository home<a href="#appendix-B-2.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-2.1">Update reference to new repository home.<a href="#appendix-B-2.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-2.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-2.2" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-3">-05<a href="#appendix-B-3" class="pilcrow">¶</a></p>
