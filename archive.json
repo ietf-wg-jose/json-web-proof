@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-20T00:42:52.403869+00:00",
+  "timestamp": "2024-08-22T00:43:52.541083+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -8512,13 +8512,13 @@
       "labels": [],
       "body": "Fixes #96 ",
       "createdAt": "2024-08-07T01:47:01Z",
-      "updatedAt": "2024-08-07T02:00:06Z",
+      "updatedAt": "2024-08-21T03:37:01Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
-      "baseRefOid": "45c73dd5568d3c5c08722a8dbe3fb1d1369148a5",
+      "baseRefOid": "7c266a405225447faa6f2db0e76759bf9edb03e3",
       "headRepository": "selfissued/json-web-proofs",
       "headRefName": "mbj-enhance-jpt-payload-description",
-      "headRefOid": "5827a5ce72a3081c83955f8869f0c4d05162e177",
+      "headRefOid": "fd74fcf3664cd3ed3061d1f07e638d2690524558",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -8532,7 +8532,60 @@
           "updatedAt": "2024-08-07T01:59:36Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6GDo0E",
+          "commit": {
+            "abbreviatedOid": "5827a5c"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-08-20T21:09:13Z",
+          "updatedAt": "2024-08-20T21:11:08Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\nA disclosed payload is represented as a UTF-encoded octet string representing a valid JSON value.\r\n```",
+              "createdAt": "2024-08-20T21:09:13Z",
+              "updatedAt": "2024-08-20T21:11:08Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "Recommend we leave this to the core JWP spec. I'm specifically trying to consolidate special cases like this under the serialization rules.",
+              "createdAt": "2024-08-20T21:10:23Z",
+              "updatedAt": "2024-08-20T21:11:08Z"
+            },
+            {
+              "originalPosition": 22,
+              "body": "payloads are binary until serialized",
+              "createdAt": "2024-08-20T21:10:30Z",
+              "updatedAt": "2024-08-20T21:11:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6GFlJD",
+          "commit": {
+            "abbreviatedOid": "5827a5c"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-21T03:37:00Z",
+          "updatedAt": "2024-08-21T03:37:00Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "I updated the text to reference the representation in JWP rather than repeating it.",
+              "createdAt": "2024-08-21T03:37:00Z",
+              "updatedAt": "2024-08-21T03:37:01Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 136,
@@ -8546,13 +8599,13 @@
       "labels": [],
       "body": "Fixes #83 \r\n\r\nCc @brentzundel ",
       "createdAt": "2024-08-07T04:23:25Z",
-      "updatedAt": "2024-08-09T01:32:00Z",
+      "updatedAt": "2024-08-21T03:45:35Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "45c73dd5568d3c5c08722a8dbe3fb1d1369148a5",
       "headRepository": "selfissued/json-web-proofs",
       "headRefName": "mbj-encryption",
-      "headRefOid": "00598dac23e931f7eccac8922fd31740777adc27",
+      "headRefOid": "9c53809931340247971b60134614bc03b3e1e2c9",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -8622,6 +8675,26 @@
               "body": "Oh wait - I get it now.  Now that we have explicit typing, we should use the \"typ\" value of the enclosed JWP as the JWE \"cty\" value.  I'll take a stab at that.",
               "createdAt": "2024-08-07T19:30:50Z",
               "updatedAt": "2024-08-07T19:30:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6GFn2s",
+          "commit": {
+            "abbreviatedOid": "ea53c45"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-21T03:45:35Z",
+          "updatedAt": "2024-08-21T03:45:35Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "@dwaite I updated the description to cater to explicit typing.  Please re-review.",
+              "createdAt": "2024-08-21T03:45:35Z",
+              "updatedAt": "2024-08-21T03:45:35Z"
             }
           ]
         }
