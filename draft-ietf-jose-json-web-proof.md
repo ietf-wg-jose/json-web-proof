@@ -425,7 +425,7 @@ The algorithm is responsible for representing selective disclosure of payloads i
 
 Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The headers and proof are also individually base64url encoded.
 
-Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. Additionally, a CBOR-based Serialization is defined. These three serializations represent the same JSON-based Header, payload and proof and are thus interchangeable.
+Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. Additionally, a CBOR-based Serialization is defined. These three serializations represent the same JSON-based Header, payload and proof and are thus interchangeable without breaking the proof value.
 
 ## Compact Serialization {#CompactSerialization}
 
@@ -465,32 +465,32 @@ Figure: JSON Serialization of Presentation
 
 ## CBOR Serialization {#CBORSerialization}
 
-The CBOR serialization provides a compact binary representation of a JWP interchangable with other serializations. Noteably, it does not define a CBOR representation of protected headers, which remain as UTF-8 encoded JSON.
+The CBOR serialization provides a compact binary representation of a JWP interchangable with other serializations. Noteably, it does not define a CBOR representation of protected headers, instead representing these as UTF-8 encoded JSON.
 
-The issued form consists of a three-element array, while the presented form consists of a four-element array. Each of these has a corresponding optional tag.
+The issued form consists of a three-element array, while the presented form consists of a four-element array. Each of these has a corresponding optional CBOR tag.
+
+If a payload has been omitted, it is represented by the CBOR value `nil`. Payloads MUST be included unless the application is using detached payloads, which is represented by setting the payloads value as `nil`.
 
 ``` cddl
 
 CBOR_JWP_Issued = [
-       JSONIssuerHeaders,
+       JSONIssuerHeader : tstr,
        payloads : [bstr / nil] / nil,
-       signature : [bstr]
+       proofs : [bstr]
    ]
 
 CBOR_JWP_Presented = [
-      JSONPresentationHeaders,
-      JSONIssuerHeaders,
+      JSONPresentationHeader : tstr,
+      JSONIssuerHeaders : tstr,
       payloads : [bstr / nil] / nil,
-      signature : [bstr]
+      proofs : [bstr]
    ]
-
-JSONPresentationHeaders = tstr;
-JSONIssuerHeaders = tstr;
 
 Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
 
 Tagged_CBOR_JWP_Presented = #6.xxx (CBOR_JWP_Presented)
 ```
+Figure: CDDL [@RFC8610] for CBOR Serializations.
 
 # Encrypted JSON Web Proofs
 
@@ -519,6 +519,16 @@ The `cty` (content type) Header Parameter MUST be present
 unless the application knows that the encrypted content is
 a JWP by another means or convention,
 in which case the `cty` value MAY be omitted.
+
+# Detached Payloads
+
+In some contexts, it is useful to make statements about payloads which are not themselves contained within the JWP, similar to "Detached Content" in JWS [@RFC7515].
+
+For this purpose, the compact, JSON and CBOR serializations allow for all payloads to be omitted from a serialized form. While this is a legal serialization, it is not on its own able to be verified.
+
+The recipient is expected to perform some sequence of steps defined by the application to recreate the array of payloads, including order and optionality. This effectively recreates the fully specfiied serialization of the JWP, even if the software implementation does not go through this final step.
+
+An application MAY also choose to detach individual payloads, indicating those payloads as omitted within serialization. Such applications SHOULD take steps to make sure holders/verifiers understand that reconstitution is required; otherwise, the serialization will look like a fully-formed but cryptographically invalid JWP.
 
 # Security Considerations {#SecurityConsiderations}
 
