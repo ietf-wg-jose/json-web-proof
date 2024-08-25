@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-22T00:43:52.541083+00:00",
+  "timestamp": "2024-08-25T00:47:39.730148+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2061,7 +2061,7 @@
       "id": "I_kwDOFsQObc5sjjGt",
       "title": "what about JWE?",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/83",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "brentzundel",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -2070,8 +2070,8 @@
       "labels": [],
       "body": "What, if any, should the relationship be between JWP and JWE?\r\n\r\nThis Issue is to track the question that was brought up during IETF 117.",
       "createdAt": "2023-07-25T22:27:38Z",
-      "updatedAt": "2024-02-17T00:08:20Z",
-      "closedAt": null,
+      "updatedAt": "2024-08-22T20:06:07Z",
+      "closedAt": "2024-08-22T20:06:07Z",
       "comments": [
         {
           "author": "selfissued",
@@ -2252,7 +2252,7 @@
       "id": "I_kwDOFsQObc57k6IW",
       "title": "Evaluate promoting parts of section 7 of JPT to the JWP spec",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/96",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2264,8 +2264,8 @@
       ],
       "body": "In evaluating rules described for JPT, it makes sense to describe these in the JWP spec for all applications.",
       "createdAt": "2024-01-09T22:26:48Z",
-      "updatedAt": "2024-03-02T19:30:55Z",
-      "closedAt": null,
+      "updatedAt": "2024-08-22T20:06:47Z",
+      "closedAt": "2024-08-22T20:06:47Z",
       "comments": []
     },
     {
@@ -8402,7 +8402,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-08-02T23:13:05Z",
-      "updatedAt": "2024-08-02T23:13:05Z",
+      "updatedAt": "2024-08-22T20:05:21Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "45c73dd5568d3c5c08722a8dbe3fb1d1369148a5",
@@ -8414,7 +8414,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6GcPat",
+          "commit": {
+            "abbreviatedOid": "00157fc"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Approved for -06 milestone",
+          "createdAt": "2024-08-22T20:05:13Z",
+          "updatedAt": "2024-08-22T20:05:13Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 133,
@@ -8505,24 +8519,26 @@
       "id": "PR_kwDOFsQObc53ob38",
       "title": "Discuss issued and presented forms of JPTs",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/135",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #96 ",
       "createdAt": "2024-08-07T01:47:01Z",
-      "updatedAt": "2024-08-21T03:37:01Z",
+      "updatedAt": "2024-08-22T20:06:46Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "7c266a405225447faa6f2db0e76759bf9edb03e3",
       "headRepository": "selfissued/json-web-proofs",
       "headRefName": "mbj-enhance-jpt-payload-description",
       "headRefOid": "fd74fcf3664cd3ed3061d1f07e638d2690524558",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-08-22T20:06:46Z",
+      "mergedAt": "2024-08-22T20:06:46Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "2b82c80f773e3353604ec1ba714fc6a6b94caaed"
+      },
       "comments": [
         {
           "author": "selfissued",
@@ -8584,6 +8600,19 @@
               "updatedAt": "2024-08-21T03:37:01Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6GcQIs",
+          "commit": {
+            "abbreviatedOid": "fd74fcf"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-22T20:06:41Z",
+          "updatedAt": "2024-08-22T20:06:41Z",
+          "comments": []
         }
       ]
     },
@@ -8592,24 +8621,26 @@
       "id": "PR_kwDOFsQObc53pmOO",
       "title": "Add encrypted JWPs",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/136",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #83 \r\n\r\nCc @brentzundel ",
       "createdAt": "2024-08-07T04:23:25Z",
-      "updatedAt": "2024-08-21T03:45:35Z",
+      "updatedAt": "2024-08-22T20:06:06Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "45c73dd5568d3c5c08722a8dbe3fb1d1369148a5",
       "headRepository": "selfissued/json-web-proofs",
       "headRefName": "mbj-encryption",
       "headRefOid": "9c53809931340247971b60134614bc03b3e1e2c9",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-08-22T20:06:06Z",
+      "mergedAt": "2024-08-22T20:06:06Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "ca6b904a02569b29c8cd362ff806f77794029300"
+      },
       "comments": [],
       "reviews": [
         {
@@ -8699,6 +8730,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 137,
+      "id": "PR_kwDOFsQObc55LiEE",
+      "title": "Adding CBOR Serialization",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/137",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This change adds CBOR serialization, as well as a few bite-sized additions along the way.\r\n\r\n1. Clean up text to be more prescriptive about various serializations\r\n2. Define the serializations as interchangeable\r\n3. Define new CBOR serialization\r\n4. Create new \"Detached Payloads\" section to clarify application behavior",
+      "createdAt": "2024-08-22T21:42:26Z",
+      "updatedAt": "2024-08-22T21:46:46Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "2b82c80f773e3353604ec1ba714fc6a6b94caaed",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "add-cbor-serialization",
+      "headRefOid": "87fbcd30560ae96311dc749d85efa6c8fda7538e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
