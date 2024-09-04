@@ -802,6 +802,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   * Update reference to new repository home
   * Fixed #77: Removed vestigial use of `presentation_header`.
+  * Correct `pjwk` to `presentation_jwk`
 
  -05
 
