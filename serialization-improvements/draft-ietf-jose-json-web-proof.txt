@@ -663,10 +663,10 @@ Table of Contents
    BASE64URL-encoded octet string, allowing it to be distinguished from
    normally encoded data.
 
-   The issued form is created by concatenating the issuer protected
-   header, concatenated payloads, and concatenated proof separated each
-   by a . character.  The concatenated payloads MAY be omitted if the
-   application is using detached payloads.
+   The issued form is created by concatenating the base64url-encoded
+   issuer protected header, concatenated payloads, and concatenated
+   proof separated each by a . character.  The concatenated payloads MAY
+   be omitted if the application is using detached payloads.
 
    The presented form is created by concatenating the presenter
    protected header, issuer protected header, concatenated payloads, and
@@ -677,14 +677,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.pJ9tb_0Ik6e0cPTyjAEmxhGYNTSr9qIi
-   drJt-SCx2LWgZhayWEDm-FisyoyzPcNvq134szMbUYG7dGCIKMKIl1Ln_puAHFb7MNYMa
-   5wGh6mHKE66wROiE4_jUBKKnnFpuYA5UReo1SHF0uoewRenG3BzVFXeit-b1OFTZ4jMO8
-   BnJFOMRT3H1zLpL5geYkP9C5F5JeWxU4IxTbh0FsKmN_MIX_VaEo2CygRFNdnt_LAZEFD
-   zXRVjVyzMd4qSMlTSvuklbnTZn5-5mDIQ3BqNJw2I_SFiZCQeTFDPjoPqsAlObVyuQ0EF
-   TXkXJsnkpyndcPNO_SHCslCeh_EkiEPBNIL6saR1CnDNnAp5TXsMv6JaySwq873ldDXqo
-   -1BNzqPG_YwUo1W5PXMHaDlGLDVeSI9yGLRiStauVCIOWvqkvmxJL4lK7DYWwgfi4RLjA
-   6QYUd64N2vyAIq-_m1ST-KLnnoX0whPhQ3RkosoWBV-5k
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.ip9a95s1oPkuGSglXpXH86ZH6hz4DWuh
+   5re64_xK4B6LltTIqH9Xe450dGHQ0o1GpwEzb6bCtC91UO4xqocGsKvowLH_qxvzLka_4
+   QHYXisuV_rlSONTuTpvGQDlc5gKjEDn1bG94iIJ2I9rkDIh-z_QZRZwIrgY42qGyuf2b9
+   WE92QqCG-7SeTD4QTo38azRHFe-Jk5GCUNbtfi9lxKj7cxUnR9LoeBMwIIsvhM04cluKr
+   iH6qOUTofL1AfrsNNhJyo4GIUAhcRJp5Fr3zJK29tFFrgeHRL-ngIlAJJxs97PflPfR69
+   0fqMVzzAHmEcC5M1ZZCV299k7Xj6pjKxruPMmMdZE9VSXGOXN2NID0BtP7ClMyPQ_L9XM
+   q9EKwWE-w9JQ5w9lv_eBBwA_weusSOU0EIVjeSi10vVU9wqfkwAlQWpyr5fhPUlvtZPa5
+   CCIud9FLR4wtJl5LWrEj7B61-BPb6eoINLyuhOfFy1qOg
 
    |  Figure: Compact Serialization of Presentation
 
@@ -732,14 +732,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "pJ9tb_0Ik6e0cPTyjAEmxhGYNTSr9qIidrJt-SCx2LWgZhayWEDm-FisyoyzPcNv
-          q134szMbUYG7dGCIKMKIl1Ln_puAHFb7MNYMa5wGh6mHKE66wROiE4_jUBKKnn
-          FpuYA5UReo1SHF0uoewRenG3BzVFXeit-b1OFTZ4jMO8BnJFOMRT3H1zLpL5ge
-          YkP9C5F5JeWxU4IxTbh0FsKmN_MIX_VaEo2CygRFNdnt_LAZEFDzXRVjVyzMd4
-          qSMlTSvuklbnTZn5-5mDIQ3BqNJw2I_SFiZCQeTFDPjoPqsAlObVyuQ0EFTXkX
-          JsnkpyndcPNO_SHCslCeh_EkiEPBNIL6saR1CnDNnAp5TXsMv6JaySwq873ldD
-          Xqo-1BNzqPG_YwUo1W5PXMHaDlGLDVeSI9yGLRiStauVCIOWvqkvmxJL4lK7DY
-          Wwgfi4RLjA6QYUd64N2vyAIq-_m1ST-KLnnoX0whPhQ3RkosoWBV-5k"
+       "ip9a95s1oPkuGSglXpXH86ZH6hz4DWuh5re64_xK4B6LltTIqH9Xe450dGHQ0o1G
+          pwEzb6bCtC91UO4xqocGsKvowLH_qxvzLka_4QHYXisuV_rlSONTuTpvGQDlc5
+          gKjEDn1bG94iIJ2I9rkDIh-z_QZRZwIrgY42qGyuf2b9WE92QqCG-7SeTD4QTo
+          38azRHFe-Jk5GCUNbtfi9lxKj7cxUnR9LoeBMwIIsvhM04cluKriH6qOUTofL1
+          AfrsNNhJyo4GIUAhcRJp5Fr3zJK29tFFrgeHRL-ngIlAJJxs97PflPfR690fqM
+          VzzAHmEcC5M1ZZCV299k7Xj6pjKxruPMmMdZE9VSXGOXN2NID0BtP7ClMyPQ_L
+          9XMq9EKwWE-w9JQ5w9lv_eBBwA_weusSOU0EIVjeSi10vVU9wqfkwAlQWpyr5f
+          hPUlvtZPa5CCIud9FLR4wtJl5LWrEj7B61-BPb6eoINLyuhOfFy1qOg"
      ]
    }
 
