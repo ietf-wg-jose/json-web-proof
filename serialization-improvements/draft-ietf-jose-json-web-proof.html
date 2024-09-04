@@ -1820,19 +1820,19 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <p id="section-6.1-4">Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
 <p id="section-6.1-5">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
 <p id="section-6.1-6">The issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
-<p id="section-6.1-7">The presented form is created by concatenating the presenter protected header, issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
+<p id="section-6.1-7">The presented form is created by concatenating the base64url-encoded presenter protected header, base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="section-6.1-8">
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.ip9a95s1oPkuGSglXpXH86ZH6hz4DWuh
-5re64_xK4B6LltTIqH9Xe450dGHQ0o1GpwEzb6bCtC91UO4xqocGsKvowLH_qxvzLka_4
-QHYXisuV_rlSONTuTpvGQDlc5gKjEDn1bG94iIJ2I9rkDIh-z_QZRZwIrgY42qGyuf2b9
-WE92QqCG-7SeTD4QTo38azRHFe-Jk5GCUNbtfi9lxKj7cxUnR9LoeBMwIIsvhM04cluKr
-iH6qOUTofL1AfrsNNhJyo4GIUAhcRJp5Fr3zJK29tFFrgeHRL-ngIlAJJxs97PflPfR69
-0fqMVzzAHmEcC5M1ZZCV299k7Xj6pjKxruPMmMdZE9VSXGOXN2NID0BtP7ClMyPQ_L9XM
-q9EKwWE-w9JQ5w9lv_eBBwA_weusSOU0EIVjeSi10vVU9wqfkwAlQWpyr5fhPUlvtZPa5
-CCIud9FLR4wtJl5LWrEj7B61-BPb6eoINLyuhOfFy1qOg
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.iID20CJ6Dn22lLC3U-VLENpW6t6QUtuL
+UngVZipPhwNNN4eAxl9FRvT59uqWhi2SiM5Sn3GKAe6FKFlVcBuJKW2OHrhbSF5Jik80A
+17fhOjsnwZ8V9ws87eSBeMeLKW4uJS0vSRDIRCf9fe4gGAdsj_tGTnrVdpzesvjdJ1VAs
+HehHL9RNJl6g0itMfANGMcXSCVCDVZz81EDwPq_6GmCm6KGTNy1aKFOVys_31EBNcsfdL
+Qr4YHmUHZaYLRGQF03-iL-5qSKThT2QLH1QCu0zTrPwMmPwu8kLheCu28zn95LT_OnA_x
+49pTpWxJ-v3hLU2-tRaWP2hQt_JX2qP46BTNb0MpxqYfmNEh-f5RX8FeJ3Sh1Q2ZH195U
+TZnnl7drF0Qd_C_o1qSmHT3G4XBeAVdT4snFXW-hmShN9ecrrkXI7Yout0SVQJbhzINft
+FNHITW2YCfvDjBHV6qDL4hyqBSljjYp_4A8D_LnRyeDjQ
 
 </pre><a href="#section-6.1-8" class="pilcrow">¶</a>
 </div>
@@ -1868,14 +1868,14 @@ CCIud9FLR4wtJl5LWrEj7B61-BPb6eoINLyuhOfFy1qOg
     null
   ],
   "proof": [
-    "ip9a95s1oPkuGSglXpXH86ZH6hz4DWuh5re64_xK4B6LltTIqH9Xe450dGHQ0o1G
-       pwEzb6bCtC91UO4xqocGsKvowLH_qxvzLka_4QHYXisuV_rlSONTuTpvGQDlc5
-       gKjEDn1bG94iIJ2I9rkDIh-z_QZRZwIrgY42qGyuf2b9WE92QqCG-7SeTD4QTo
-       38azRHFe-Jk5GCUNbtfi9lxKj7cxUnR9LoeBMwIIsvhM04cluKriH6qOUTofL1
-       AfrsNNhJyo4GIUAhcRJp5Fr3zJK29tFFrgeHRL-ngIlAJJxs97PflPfR690fqM
-       VzzAHmEcC5M1ZZCV299k7Xj6pjKxruPMmMdZE9VSXGOXN2NID0BtP7ClMyPQ_L
-       9XMq9EKwWE-w9JQ5w9lv_eBBwA_weusSOU0EIVjeSi10vVU9wqfkwAlQWpyr5f
-       hPUlvtZPa5CCIud9FLR4wtJl5LWrEj7B61-BPb6eoINLyuhOfFy1qOg"
+    "iID20CJ6Dn22lLC3U-VLENpW6t6QUtuLUngVZipPhwNNN4eAxl9FRvT59uqWhi2S
+       iM5Sn3GKAe6FKFlVcBuJKW2OHrhbSF5Jik80A17fhOjsnwZ8V9ws87eSBeMeLK
+       W4uJS0vSRDIRCf9fe4gGAdsj_tGTnrVdpzesvjdJ1VAsHehHL9RNJl6g0itMfA
+       NGMcXSCVCDVZz81EDwPq_6GmCm6KGTNy1aKFOVys_31EBNcsfdLQr4YHmUHZaY
+       LRGQF03-iL-5qSKThT2QLH1QCu0zTrPwMmPwu8kLheCu28zn95LT_OnA_x49pT
+       pWxJ-v3hLU2-tRaWP2hQt_JX2qP46BTNb0MpxqYfmNEh-f5RX8FeJ3Sh1Q2ZH1
+       95UTZnnl7drF0Qd_C_o1qSmHT3G4XBeAVdT4snFXW-hmShN9ecrrkXI7Yout0S
+       VQJbhzINftFNHITW2YCfvDjBHV6qDL4hyqBSljjYp_4A8D_LnRyeDjQ"
   ]
 }
 
