@@ -5,9 +5,9 @@
 jose                                                           J. Miller
 Internet-Draft                                                  D. Waite
 Intended status: Standards Track                           Ping Identity
-Expires: 23 February 2025                                       M. Jones
+Expires: 8 March 2025                                           M. Jones
                                                   Self-Issued Consulting
-                                                          22 August 2024
+                                                        4 September 2024
 
 
                              JSON Web Proof
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 February 2025.
+   This Internet-Draft will expire on 8 March 2025.
 
 Copyright Notice
 
@@ -662,8 +662,8 @@ Table of Contents
    If a payload or proof value was a zero-length octet string, it does
    not get output as its zero-length BASE64URL-encoded form but as a
    single _ character.  This character does not represent a valid
-   BASE64URL-encoded octet string such that it can be distinguished from
-   other cases.
+   BASE64URL-encoded octet string, allowing it to be distinguished from
+   normally encoded data.
 
    The issued form is created by concatenating the issuer protected
    header, concatenated payloads, and concatenated proof separated each
@@ -679,14 +679,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.g9ZI2AWCpv3oDNFzNg-gFtO1exUjajIk
-   6thIaL5fk_QqJMkLM3kPUKuqJXGzstFkif5zRjezoTnPvKknv1iF9miKjtDHmxvkKl9xv
-   KS4Mz_91c55aepdesb_OuoAz61esIAhnErH1atxG40OolZ_n7eGQ3G2mJ_UsieG_vpZlq
-   wcPdFUEpFWkJsOnifTM2l2RTDCIvAedq8iifApYLQ0XIAJTOUrUlUx2LJu_D1vaOUge2N
-   3r0T1gTIRPATfI5dG_ZjZxZtuFkMSYNVrH_3dgk3X8uakZ4fpeyZtKOM0gPNFWASk3kCg
-   SEk8PizGOqL3SaqvNe8sn_8znUin7b9gZ9I5eao7EocZYLwSmbiFhlA0MW6w0XHCLT4s9
-   XD0KoHprDL91lZa7zJ6hdxhUAoFimdkZHa5Ug8pOCLcw9VdLhsGx7rubIL8vTkSzXbMsu
-   R9QYCYEg1BpFp1Mcsd8b1RyUUtUKebuIByPBEO8pqRVyU
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.gUQpqPfpxbW5DIWNQPnNSuK-9Cv9bX4W
+   Wc71C4-LIQZLsoFhqHKHHQyYSdJKtVKLozCOD4cp0fuNilPug2_pUTpC_Yukkav69V9oS
+   oqBDYFeCld8Zoke5fQth9QuqDyirKD-Kw9t4Yb3iUVbgRO4xfR0W-qeahZpV7BdjaoQeH
+   fVTy6_OJU6stCd6CW4jaQQStEmhxW6Do9YrtmLvlBUH_WkRRvQXPB7rUQwlRTO-k8Ycef
+   G78_EsYVL3rClUzQJF5k0n-CUVbryATDAzkvNlRPBBXqe8m9rxhajzra32HvjCZNs5hDY
+   TkRM8oDF8qJzS5g94dNibUSXt1dmggIVCC6fVrcyWxFALiusuygT7d1mcLJMKBGDAnZ_w
+   HTT7Ny68Ida8wBed8CCg1mJzoQLmA3hc85HEl_YEEfvb94c5acmpSkKWeas2JYF9bNxWz
+   TtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco
 
    |  Figure: Compact Serialization of Presentation
 
@@ -734,14 +734,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "g9ZI2AWCpv3oDNFzNg-gFtO1exUjajIk6thIaL5fk_QqJMkLM3kPUKuqJXGzstFk
-          if5zRjezoTnPvKknv1iF9miKjtDHmxvkKl9xvKS4Mz_91c55aepdesb_OuoAz6
-          1esIAhnErH1atxG40OolZ_n7eGQ3G2mJ_UsieG_vpZlqwcPdFUEpFWkJsOnifT
-          M2l2RTDCIvAedq8iifApYLQ0XIAJTOUrUlUx2LJu_D1vaOUge2N3r0T1gTIRPA
-          TfI5dG_ZjZxZtuFkMSYNVrH_3dgk3X8uakZ4fpeyZtKOM0gPNFWASk3kCgSEk8
-          PizGOqL3SaqvNe8sn_8znUin7b9gZ9I5eao7EocZYLwSmbiFhlA0MW6w0XHCLT
-          4s9XD0KoHprDL91lZa7zJ6hdxhUAoFimdkZHa5Ug8pOCLcw9VdLhsGx7rubIL8
-          vTkSzXbMsuR9QYCYEg1BpFp1Mcsd8b1RyUUtUKebuIByPBEO8pqRVyU"
+       "gUQpqPfpxbW5DIWNQPnNSuK-9Cv9bX4WWc71C4-LIQZLsoFhqHKHHQyYSdJKtVKL
+          ozCOD4cp0fuNilPug2_pUTpC_Yukkav69V9oSoqBDYFeCld8Zoke5fQth9QuqD
+          yirKD-Kw9t4Yb3iUVbgRO4xfR0W-qeahZpV7BdjaoQeHfVTy6_OJU6stCd6CW4
+          jaQQStEmhxW6Do9YrtmLvlBUH_WkRRvQXPB7rUQwlRTO-k8YcefG78_EsYVL3r
+          ClUzQJF5k0n-CUVbryATDAzkvNlRPBBXqe8m9rxhajzra32HvjCZNs5hDYTkRM
+          8oDF8qJzS5g94dNibUSXt1dmggIVCC6fVrcyWxFALiusuygT7d1mcLJMKBGDAn
+          Z_wHTT7Ny68Ida8wBed8CCg1mJzoQLmA3hc85HEl_YEEfvb94c5acmpSkKWeas
+          2JYF9bNxWzTtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco"
      ]
    }
 

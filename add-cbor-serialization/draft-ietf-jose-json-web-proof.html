@@ -12,14 +12,14 @@
        The JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.  They also established IANA registries to enable the algorithms and representations used for them to be extended.  Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption. 
        This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a  JSON Web Proof (JWP) .  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.  It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay. 
     " name="description">
-<meta content="xml2rfc 3.22.0" name="generator">
+<meta content="xml2rfc 3.23.0" name="generator">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
 <meta content="jwp" name="keyword">
 <meta content="jws" name="keyword">
 <meta content="draft-ietf-jose-json-web-proof-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.22.0
+  xml2rfc 3.23.0
     Python 3.12.3
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -1030,11 +1030,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">json-web-proof</td>
-<td class="right">August 2024</td>
+<td class="right">September 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Miller, et al.</td>
-<td class="center">Expires 23 February 2025</td>
+<td class="center">Expires 8 March 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-08-22" class="published">22 August 2024</time>
+<time datetime="2024-09-04" class="published">4 September 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-02-23">23 February 2025</time></dd>
+<dd class="expires"><time datetime="2025-03-08">8 March 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1095,7 +1095,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1821,21 +1821,21 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <p id="section-6.1-2">All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.1-3">Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 <p id="section-6.1-4">Individual payloads are allowed to be omitted - if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
-<p id="section-6.1-5">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string such that it can be distinguished from other cases.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<p id="section-6.1-5">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
 <p id="section-6.1-6">The issued form is created by concatenating the issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
 <p id="section-6.1-7">The presented form is created by concatenating the presenter protected header, issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="section-6.1-8">
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.g9ZI2AWCpv3oDNFzNg-gFtO1exUjajIk
-6thIaL5fk_QqJMkLM3kPUKuqJXGzstFkif5zRjezoTnPvKknv1iF9miKjtDHmxvkKl9xv
-KS4Mz_91c55aepdesb_OuoAz61esIAhnErH1atxG40OolZ_n7eGQ3G2mJ_UsieG_vpZlq
-wcPdFUEpFWkJsOnifTM2l2RTDCIvAedq8iifApYLQ0XIAJTOUrUlUx2LJu_D1vaOUge2N
-3r0T1gTIRPATfI5dG_ZjZxZtuFkMSYNVrH_3dgk3X8uakZ4fpeyZtKOM0gPNFWASk3kCg
-SEk8PizGOqL3SaqvNe8sn_8znUin7b9gZ9I5eao7EocZYLwSmbiFhlA0MW6w0XHCLT4s9
-XD0KoHprDL91lZa7zJ6hdxhUAoFimdkZHa5Ug8pOCLcw9VdLhsGx7rubIL8vTkSzXbMsu
-R9QYCYEg1BpFp1Mcsd8b1RyUUtUKebuIByPBEO8pqRVyU
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.gUQpqPfpxbW5DIWNQPnNSuK-9Cv9bX4W
+Wc71C4-LIQZLsoFhqHKHHQyYSdJKtVKLozCOD4cp0fuNilPug2_pUTpC_Yukkav69V9oS
+oqBDYFeCld8Zoke5fQth9QuqDyirKD-Kw9t4Yb3iUVbgRO4xfR0W-qeahZpV7BdjaoQeH
+fVTy6_OJU6stCd6CW4jaQQStEmhxW6Do9YrtmLvlBUH_WkRRvQXPB7rUQwlRTO-k8Ycef
+G78_EsYVL3rClUzQJF5k0n-CUVbryATDAzkvNlRPBBXqe8m9rxhajzra32HvjCZNs5hDY
+TkRM8oDF8qJzS5g94dNibUSXt1dmggIVCC6fVrcyWxFALiusuygT7d1mcLJMKBGDAnZ_w
+HTT7Ny68Ida8wBed8CCg1mJzoQLmA3hc85HEl_YEEfvb94c5acmpSkKWeas2JYF9bNxWz
+TtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco
 
 </pre><a href="#section-6.1-8" class="pilcrow">¶</a>
 </div>
@@ -1871,14 +1871,14 @@ R9QYCYEg1BpFp1Mcsd8b1RyUUtUKebuIByPBEO8pqRVyU
     null
   ],
   "proof": [
-    "g9ZI2AWCpv3oDNFzNg-gFtO1exUjajIk6thIaL5fk_QqJMkLM3kPUKuqJXGzstFk
-       if5zRjezoTnPvKknv1iF9miKjtDHmxvkKl9xvKS4Mz_91c55aepdesb_OuoAz6
-       1esIAhnErH1atxG40OolZ_n7eGQ3G2mJ_UsieG_vpZlqwcPdFUEpFWkJsOnifT
-       M2l2RTDCIvAedq8iifApYLQ0XIAJTOUrUlUx2LJu_D1vaOUge2N3r0T1gTIRPA
-       TfI5dG_ZjZxZtuFkMSYNVrH_3dgk3X8uakZ4fpeyZtKOM0gPNFWASk3kCgSEk8
-       PizGOqL3SaqvNe8sn_8znUin7b9gZ9I5eao7EocZYLwSmbiFhlA0MW6w0XHCLT
-       4s9XD0KoHprDL91lZa7zJ6hdxhUAoFimdkZHa5Ug8pOCLcw9VdLhsGx7rubIL8
-       vTkSzXbMsuR9QYCYEg1BpFp1Mcsd8b1RyUUtUKebuIByPBEO8pqRVyU"
+    "gUQpqPfpxbW5DIWNQPnNSuK-9Cv9bX4WWc71C4-LIQZLsoFhqHKHHQyYSdJKtVKL
+       ozCOD4cp0fuNilPug2_pUTpC_Yukkav69V9oSoqBDYFeCld8Zoke5fQth9QuqD
+       yirKD-Kw9t4Yb3iUVbgRO4xfR0W-qeahZpV7BdjaoQeHfVTy6_OJU6stCd6CW4
+       jaQQStEmhxW6Do9YrtmLvlBUH_WkRRvQXPB7rUQwlRTO-k8YcefG78_EsYVL3r
+       ClUzQJF5k0n-CUVbryATDAzkvNlRPBBXqe8m9rxhajzra32HvjCZNs5hDYTkRM
+       8oDF8qJzS5g94dNibUSXt1dmggIVCC6fVrcyWxFALiusuygT7d1mcLJMKBGDAn
+       Z_wHTT7Ny68Ida8wBed8CCg1mJzoQLmA3hc85HEl_YEEfvb94c5acmpSkKWeas
+       2JYF9bNxWzTtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco"
   ]
 }
 
