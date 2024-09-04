@@ -1828,14 +1828,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.gUQpqPfpxbW5DIWNQPnNSuK-9Cv9bX4W
-Wc71C4-LIQZLsoFhqHKHHQyYSdJKtVKLozCOD4cp0fuNilPug2_pUTpC_Yukkav69V9oS
-oqBDYFeCld8Zoke5fQth9QuqDyirKD-Kw9t4Yb3iUVbgRO4xfR0W-qeahZpV7BdjaoQeH
-fVTy6_OJU6stCd6CW4jaQQStEmhxW6Do9YrtmLvlBUH_WkRRvQXPB7rUQwlRTO-k8Ycef
-G78_EsYVL3rClUzQJF5k0n-CUVbryATDAzkvNlRPBBXqe8m9rxhajzra32HvjCZNs5hDY
-TkRM8oDF8qJzS5g94dNibUSXt1dmggIVCC6fVrcyWxFALiusuygT7d1mcLJMKBGDAnZ_w
-HTT7Ny68Ida8wBed8CCg1mJzoQLmA3hc85HEl_YEEfvb94c5acmpSkKWeas2JYF9bNxWz
-TtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.q4Q-_0gB_LQgK8AqmcdatCDTZDXP8o3A
+fr-0PxgbHwr0gODkX6oDvp3hywfOp5uWk27tz7eICWfK-Dx6IDE9YjIvtYuXOHJzxX-fv
+u1SP_X360UQFPBvdaoz4zes8FjXlZWwcfOBnaFw-oPxm5PUPuo9P8aln42qVwW6p5oXbi
+Pun-4X8BgBxy_W1lJuuIUaTOSD3LLroUJ9Soxby3KL1zI5VsyilL9eAEGkuDkqHVpcWRp
+ZmKhj78ex6asErrz-8NOgJPgAe1TCmLSG9q5TbSKXS_6QlwhLAnCs5hff6kUsBuBXsO_M
+tGTgqgS8N1xJDGtcWLAXcTSehqQEn4pxWoMy0KalQX-OGcX2c_mO7LgVaTVQYqW472nVA
+MmZaN2lF64xTvB8A5XVLH08OLHdTQI9TbjRnf-DjbOYuf_323oSjKhxt6B0AWdItWiEV7
+36FmEAdO3YbLH-D-CLZNLVRNt5qhGMUjwbk94EQuVUsic
 
 </pre><a href="#section-6.1-8" class="pilcrow">¶</a>
 </div>
@@ -1849,7 +1849,7 @@ TtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco
         <h3 id="name-json-serialization">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-json-serialization" class="section-name selfRef">JSON Serialization</a>
         </h3>
-<p id="section-6.2-1">The JSON Serialization is in the form of a JSON array, with property names representing the various components.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-1">The JSON Serialization is in the form of a JSON object, with property names representing the various components.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-2">The <code>issuer</code> key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 <p id="section-6.2-3">The <code>presentation</code> key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <p id="section-6.2-4">The <code>payloads</code> key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value <code>null</code>. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
@@ -1871,14 +1871,14 @@ TtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco
     null
   ],
   "proof": [
-    "gUQpqPfpxbW5DIWNQPnNSuK-9Cv9bX4WWc71C4-LIQZLsoFhqHKHHQyYSdJKtVKL
-       ozCOD4cp0fuNilPug2_pUTpC_Yukkav69V9oSoqBDYFeCld8Zoke5fQth9QuqD
-       yirKD-Kw9t4Yb3iUVbgRO4xfR0W-qeahZpV7BdjaoQeHfVTy6_OJU6stCd6CW4
-       jaQQStEmhxW6Do9YrtmLvlBUH_WkRRvQXPB7rUQwlRTO-k8YcefG78_EsYVL3r
-       ClUzQJF5k0n-CUVbryATDAzkvNlRPBBXqe8m9rxhajzra32HvjCZNs5hDYTkRM
-       8oDF8qJzS5g94dNibUSXt1dmggIVCC6fVrcyWxFALiusuygT7d1mcLJMKBGDAn
-       Z_wHTT7Ny68Ida8wBed8CCg1mJzoQLmA3hc85HEl_YEEfvb94c5acmpSkKWeas
-       2JYF9bNxWzTtNw_YZvxfWK7TmD9zgqsB8CGdTI2-uIyoGxAoFXMqzco"
+    "q4Q-_0gB_LQgK8AqmcdatCDTZDXP8o3Afr-0PxgbHwr0gODkX6oDvp3hywfOp5uW
+       k27tz7eICWfK-Dx6IDE9YjIvtYuXOHJzxX-fvu1SP_X360UQFPBvdaoz4zes8F
+       jXlZWwcfOBnaFw-oPxm5PUPuo9P8aln42qVwW6p5oXbiPun-4X8BgBxy_W1lJu
+       uIUaTOSD3LLroUJ9Soxby3KL1zI5VsyilL9eAEGkuDkqHVpcWRpZmKhj78ex6a
+       sErrz-8NOgJPgAe1TCmLSG9q5TbSKXS_6QlwhLAnCs5hff6kUsBuBXsO_MtGTg
+       qgS8N1xJDGtcWLAXcTSehqQEn4pxWoMy0KalQX-OGcX2c_mO7LgVaTVQYqW472
+       nVAMmZaN2lF64xTvB8A5XVLH08OLHdTQI9TbjRnf-DjbOYuf_323oSjKhxt6B0
+       AWdItWiEV736FmEAdO3YbLH-D-CLZNLVRNt5qhGMUjwbk94EQuVUsic"
   ]
 }
 
