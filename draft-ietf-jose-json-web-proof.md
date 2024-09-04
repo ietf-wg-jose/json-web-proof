@@ -435,7 +435,7 @@ All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded 
 
 Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the `~` character.
 
-Individual payloads are allowed to be omitted - if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive `~` characters in the concatenated form.
+Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive `~` characters in the concatenated form.
 
 If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single `_` character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.
 
