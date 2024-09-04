@@ -448,7 +448,7 @@ Figure: Compact Serialization of Presentation
 
 ## JSON Serialization {#JSONSerialization}
 
-The JSON Serialization is in the form of a JSON array, with property names representing the various components.
+The JSON Serialization is in the form of a JSON object, with property names representing the various components.
 
 The `issuer` key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.
 
