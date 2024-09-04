@@ -526,7 +526,7 @@ In some contexts, it is useful to make statements about payloads which are not t
 
 For this purpose, the compact, JSON and CBOR serializations allow for all payloads to be omitted from a serialized form. While this is a legal serialization, it is not on its own able to be verified.
 
-The recipient is expected to perform some sequence of steps defined by the application to recreate the array of payloads, including order and optionality. This effectively recreates the fully specfiied serialization of the JWP, even if the software implementation does not go through this final step.
+The recipient is expected to perform some sequence of steps defined by the application to recreate the array of payloads, including order and optionality. This effectively recreates the fully specified serialization of the JWP.
 
 An application MAY also choose to detach individual payloads, indicating those payloads as omitted within serialization. Such applications SHOULD take steps to make sure holders/verifiers understand that reconstitution is required; otherwise, the serialization will look like a fully-formed but cryptographically invalid JWP.
 
