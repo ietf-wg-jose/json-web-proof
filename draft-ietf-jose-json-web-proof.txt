@@ -5,9 +5,9 @@
 jose                                                           J. Miller
 Internet-Draft                                                  D. Waite
 Intended status: Standards Track                           Ping Identity
-Expires: 23 February 2025                                       M. Jones
+Expires: 8 March 2025                                           M. Jones
                                                   Self-Issued Consulting
-                                                          22 August 2024
+                                                        4 September 2024
 
 
                              JSON Web Proof
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 February 2025.
+   This Internet-Draft will expire on 8 March 2025.
 
 Copyright Notice
 
@@ -95,29 +95,30 @@ Table of Contents
      6.1.  Compact Serialization
      6.2.  JSON Serialization
    7.  Encrypted JSON Web Proofs
-   8.  Security Considerations
-   9.  IANA Considerations
-     9.1.  JSON Web Proof Header Parameters Registry
-       9.1.1.  Registration Template
-       9.1.2.  Initial Registry Contents
-         9.1.2.1.  Algorithm Header Parameter
-         9.1.2.2.  Key ID Header Parameter
-         9.1.2.3.  Type Header Parameter
-         9.1.2.4.  Critical Header Parameter
-         9.1.2.5.  Issuer Header Parameter
-         9.1.2.6.  Audience Header Parameter
-         9.1.2.7.  Nonce Header Parameter
-         9.1.2.8.  Claims Header Parameter
-     9.2.  Media Type Registration
-       9.2.1.  Registry Contents
-         9.2.1.1.  The application/jwp Media Type
-         9.2.1.2.  The application/jwp+json Media Type
-     9.3.  Structured Syntax Suffix Registration
-       9.3.1.  Registry Contents
-         9.3.1.1.  The +jwp Structured Syntax Suffix
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   8.  Detached Payloads
+   9.  Security Considerations
+   10. IANA Considerations
+     10.1.  JSON Web Proof Header Parameters Registry
+       10.1.1.  Registration Template
+       10.1.2.  Initial Registry Contents
+         10.1.2.1.  Algorithm Header Parameter
+         10.1.2.2.  Key ID Header Parameter
+         10.1.2.3.  Type Header Parameter
+         10.1.2.4.  Critical Header Parameter
+         10.1.2.5.  Issuer Header Parameter
+         10.1.2.6.  Audience Header Parameter
+         10.1.2.7.  Nonce Header Parameter
+         10.1.2.8.  Claims Header Parameter
+     10.2.  Media Type Registration
+       10.2.1.  Registry Contents
+         10.2.1.1.  The application/jwp Media Type
+         10.2.1.2.  The application/jwp+json Media Type
+     10.3.  Structured Syntax Suffix Registration
+       10.3.1.  Registry Contents
+         10.3.1.1.  The +jwp Structured Syntax Suffix
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
    Appendix A.  Acknowledgements
    Appendix B.  Document History
    Authors' Addresses
@@ -291,7 +292,7 @@ Table of Contents
 
    The following Header Parameter names for use in JWPs are registered
    in the IANA "JSON Web Proof Header Parameters" registry established
-   by Section 9.1, with meanings as defined in the subsections below.
+   by Section 10.1, with meanings as defined in the subsections below.
 
    As indicated by the common registry, Header Parameters used in the
    Issued Form (see Section 5.1) and the Presented Form Section 5.2
@@ -458,7 +459,7 @@ Table of Contents
    Additional Header Parameter names can be defined by those using JWPs.
    However, in order to prevent collisions, any new Header Parameter
    name should either be registered in the IANA "JSON Web Proof Header
-   Parameters" registry established by Section 9.1 or be a Public Name
+   Parameters" registry established by Section 10.1 or be a Public Name
    (a value that contains a Collision-Resistant Name).  In each case,
    the definer of the name or value needs to take reasonable precautions
    to make sure they are in control of the part of the namespace they
@@ -634,57 +635,87 @@ Table of Contents
    encoded.
 
    Like JWS, JWP supports both a Compact Serialization and a JSON
-   Serialization.
+   Serialization.  These serializations both represent the same JSON-
+   based header, payload and proof, and are thus interchangeable without
+   breaking the proof value.
 
 6.1.  Compact Serialization
 
-   The individually encoded payloads are concatenated with the ~
-   character to form an ordered delimited array.  Any non-disclosed
-   payloads are left blank, resulting in sequential ~~ characters such
-   that all payload positions are preserved.
+   The compact serialiation provides a space-efficient encoding of a JWP
+   in URL-safe characters.  In addition to the alphabet of unpadded
+   BASE64 URL-safe encoding, it uses the "." and "~" characters as
+   separators.
 
-   A payload which is disclosed but which contains no data (i.e. a zero-
-   length octet string) is encoded as a single _ character of data,
-   which is not a valid result from base64url-encoding a value.
+   All binary data is BASE64URL encoded, including the octets of the
+   UTF-8 encoded headers and the individual payloads and proof values.
 
-   Additionally, an algorithm MAY supply multiple octet strings for a
-   proof.  These are concatenated with the ~ character to form an
-   ordered delimited array.
+   Payloads and proofs are each concatenated into a single text form by
+   concatenating the BASE64URL encoded values using the ~ character.
 
-   The headers, concatenated payloads, and proof value are then
-   concatenated with a . character to form the final compact
-   serialization.  The issued form will only contain one header and
-   always have three . separated parts.  The presented form will always
-   have four . separated parts, the issued header, followed by the
-   protected header, then the payloads and the proof.
+   Individual payloads are allowed to be omitted; if a payload is
+   omitted, it is represented as a zero-length text value, potentially
+   resulting in leading, trailing, or consecutive ~ characters in the
+   concatenated form.
+
+   If a payload or proof value was a zero-length octet string, it does
+   not get output as its zero-length BASE64URL-encoded form but as a
+   single _ character.  This character does not represent a valid
+   BASE64URL-encoded octet string, allowing it to be distinguished from
+   normally encoded data.
+
+   The issued form is created by concatenating the base64url-encoded
+   issuer protected header, concatenated payloads, and concatenated
+   proof separated each by a . character.  The concatenated payloads MAY
+   be omitted if the application is using detached payloads.
+
+   The presented form is created by concatenating the base64url-encoded
+   presenter protected header, base64url-encoded issuer protected
+   header, concatenated payloads, and concatenated proof separated each
+   by a . character.  The concatenated payloads MAY be omitted if the
+   application is using detached payloads.
 
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.he9Cyn2-GlDrqwQlRkCb6e7rVJqDcDs7
-   _RBFGrfjGoew5pl39hPmIGsTvGyH6W_lhSVtCEUK_y95abGHabX8TNwmpTYpFy0AxPhFr
-   PDRVegtO8HHrz4ibQJH_kb38IHopbVdDev2usJDNuRPqlQacHdEl0uqJmBSngsDR70FGQ
-   4UQ9_HBVjZ2x7M45u4YnnpQYdR1dRSEePHU96DorUyZobYPhCJIGDn11cQqhVws-s1C3f
-   1nWQ1MOCxhDgM7BCgweXlKteXlRC5_bhz6Lajc1doCMXjOasmY32MRDwZPon4dfx5JEfX
-   HjtutBt6t7s_HD15Dt1bYBVZDGTBqg4zhotqcPOHC2GXATNaoPcf_t0RSOLcQwRCCPUDo
-   pIiFDZtNKPuHNro1ijJ4Yf0-U59ZXOBiuweG5YmTo1uFdbbEVbnuOEcrv5-Hd_lIzbFxJ
-   BHbDIlHkr4AdRbaGLESmrJc_0SzMVQ_uCTJoZ_sj7bV28
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.r8ZGh72vlkBRulCMhxQ2fBKDa-0WYTj1
+   0aL74sAYQuAAqQUc9nJxTkzbwtYYyPPMkMZh2nzGgioexjegFD4EmrYFVXhBCt3n4d_6A
+   CWjDh2X7RuxiLUQ9QJYK9xcCii6qGlHSnm3efwVlA248WPlD8xDVkXF0ksltoMG1p8B1B
+   4Y1cACN6GGQm7Iqvp9kVqPc9m-rHB0yaG_wK6qN90v0YJdZywvoi-r2bqQeANGlFUYwua
+   jWx-t_FpL3MXIvUqOPxFz9Rwoxqt8xc-b8C3vfD6kq75ffp58hFk6Jpr8P3FawmMwyClg
+   atSynYdhaeb-YeVN58xOGNqovRZUpDCX9fjBdCcwls3l5gpuMPzB3CdLAHrX0vdMX4JGo
+   XLAYaqcuuu1FLbdeKJpf1-kPtoi5Frx7Gdnrn0CmhUemlzUXcGPfV8GiGNj8VJv-SIoFV
+   PoUUpKi28Vp9mGP2c6-bt17b8EtoKLydlwjuYsTHa6OpA
 
    |  Figure: Compact Serialization of Presentation
 
 6.2.  JSON Serialization
 
-   Non-disclosed payloads in the JSON serialization are represented with
-   a null value in the payloads array.  A zero-length payload is
-   represented as a zero-length base64url encoded sequence, the empty
-   string "".
+   The JSON Serialization is in the form of a JSON object, with property
+   names representing the various components.
 
-   Proofs are represented as an array of one or more encoded octet
-   strings.
+   The issuer key has a string value holding the BASE64URL-encoded
+   issuer protected header.  This key MUST be included.
 
-   This example flattened JSON serialization shows the presentation form
-   with both the issuer and presentation headers, and with the first and
-   third payloads hidden.
+   The presentation key has a string value holding the BASE64URL-encoded
+   presentation protected header.  It MUST be included for presented
+   form, and MUST be omitted for issued form.
+
+   The payloads key has an array value, representing the ordered
+   sequence of payloads.  If a payload has been omitted, it is
+   represented by the JSON value null.  A payload is otherwise reprented
+   by the BASE64URL-encoded form of the payload octets.  A zero-length
+   payload does not have special encoding rules as needed by compact
+   encoding, and is represented by the zero-length string output by
+   BASE64URL.  This key MUST be included unless the application is using
+   detached payloads.
+
+   The proofs key has an array value, representing the array of octet
+   strings produced by the chosen algorithm.  These octets are BASE64URL
+   encoded into a JSON array.
+
+   This example JSON serialization shows the presentation form with both
+   the issuer and presentation headers, and with the first and third
+   payloads hidden.
 
    {
      "presentation": "eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2
@@ -701,14 +732,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "he9Cyn2-GlDrqwQlRkCb6e7rVJqDcDs7_RBFGrfjGoew5pl39hPmIGsTvGyH6W_l
-          hSVtCEUK_y95abGHabX8TNwmpTYpFy0AxPhFrPDRVegtO8HHrz4ibQJH_kb38I
-          HopbVdDev2usJDNuRPqlQacHdEl0uqJmBSngsDR70FGQ4UQ9_HBVjZ2x7M45u4
-          YnnpQYdR1dRSEePHU96DorUyZobYPhCJIGDn11cQqhVws-s1C3f1nWQ1MOCxhD
-          gM7BCgweXlKteXlRC5_bhz6Lajc1doCMXjOasmY32MRDwZPon4dfx5JEfXHjtu
-          tBt6t7s_HD15Dt1bYBVZDGTBqg4zhotqcPOHC2GXATNaoPcf_t0RSOLcQwRCCP
-          UDopIiFDZtNKPuHNro1ijJ4Yf0-U59ZXOBiuweG5YmTo1uFdbbEVbnuOEcrv5-
-          Hd_lIzbFxJBHbDIlHkr4AdRbaGLESmrJc_0SzMVQ_uCTJoZ_sj7bV28"
+       "r8ZGh72vlkBRulCMhxQ2fBKDa-0WYTj10aL74sAYQuAAqQUc9nJxTkzbwtYYyPPM
+          kMZh2nzGgioexjegFD4EmrYFVXhBCt3n4d_6ACWjDh2X7RuxiLUQ9QJYK9xcCi
+          i6qGlHSnm3efwVlA248WPlD8xDVkXF0ksltoMG1p8B1B4Y1cACN6GGQm7Iqvp9
+          kVqPc9m-rHB0yaG_wK6qN90v0YJdZywvoi-r2bqQeANGlFUYwuajWx-t_FpL3M
+          XIvUqOPxFz9Rwoxqt8xc-b8C3vfD6kq75ffp58hFk6Jpr8P3FawmMwyClgatSy
+          nYdhaeb-YeVN58xOGNqovRZUpDCX9fjBdCcwls3l5gpuMPzB3CdLAHrX0vdMX4
+          JGoXLAYaqcuuu1FLbdeKJpf1-kPtoi5Frx7Gdnrn0CmhUemlzUXcGPfV8GiGNj
+          8VJv-SIoFVPoUUpKi28Vp9mGP2c6-bt17b8EtoKLydlwjuYsTHa6OpA"
      ]
    }
 
@@ -741,7 +772,22 @@ Table of Contents
    application knows that the encrypted content is a JWP by another
    means or convention, in which case the cty value MAY be omitted.
 
-8.  Security Considerations
+8.  Detached Payloads
+
+   In some contexts, it is useful to make statements about payloads
+   which are not themselves contained within the JWP, similar to
+   "Detached Content" in JWS [RFC7515].
+
+   For this purpose, the compact, JSON and CBOR serializations allow for
+   all payloads to be omitted from a serialized form.  While this is a
+   legal serialization, it is not on its own able to be verified.
+
+   The recipient is expected to perform some sequence of steps defined
+   by the application to recreate the array of payloads, including order
+   and optionality.  This effectively recreates the fully specified
+   serialization of the JWP.
+
+9.  Security Considerations
 
    Notes to be expanded:
 
@@ -754,7 +800,7 @@ Table of Contents
       headers SHOULD have the same base64url-serialized value to avoid
       any non-deterministic JSON serialization.
 
-9.  IANA Considerations
+10.  IANA Considerations
 
    The following registration procedure is used for all the registries
    established by this specification.
@@ -796,7 +842,7 @@ Table of Contents
    Expert, that Expert should defer to the judgment of the other
    Experts.
 
-9.1.  JSON Web Proof Header Parameters Registry
+10.1.  JSON Web Proof Header Parameters Registry
 
    This specification establishes the IANA "JSON Web Proof Header
    Parameters" registry for Header Parameter names.  The registry
@@ -807,7 +853,7 @@ Table of Contents
    the same Header Parameter name will typically use different Header
    Parameter Usage Locations values.
 
-9.1.1.  Registration Template
+10.1.1.  Registration Template
 
    *  Header Parameter Name: The name requested (e.g., "kid").  Because
       a core goal of this specification is for the resulting
@@ -832,12 +878,12 @@ Table of Contents
       used to retrieve copies of the documents.  An indication of the
       relevant sections may also be included but is not required.
 
-9.1.2.  Initial Registry Contents
+10.1.2.  Initial Registry Contents
 
    This section registers the Header Parameter names defined in
    Section 4.1 in this registry.
 
-9.1.2.1.  Algorithm Header Parameter
+10.1.2.1.  Algorithm Header Parameter
 
    *  Header Parameter Name: alg
    *  Header Parameter Description: Algorithm
@@ -845,7 +891,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.1 of this specification
 
-9.1.2.2.  Key ID Header Parameter
+10.1.2.2.  Key ID Header Parameter
 
    *  Header Parameter Name: kid
    *  Header Parameter Description: Key ID
@@ -853,7 +899,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.2 of this specification
 
-9.1.2.3.  Type Header Parameter
+10.1.2.3.  Type Header Parameter
 
    *  Header Parameter Name: typ
    *  Header Parameter Description: Type
@@ -861,7 +907,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.3 of this specification
 
-9.1.2.4.  Critical Header Parameter
+10.1.2.4.  Critical Header Parameter
 
    *  Header Parameter Name: crit
    *  Header Parameter Description: Critical
@@ -869,7 +915,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.4 of this specification
 
-9.1.2.5.  Issuer Header Parameter
+10.1.2.5.  Issuer Header Parameter
 
    *  Header Parameter Name: iss
    *  Header Parameter Description: Issuer
@@ -877,7 +923,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.7 of this specification
 
-9.1.2.6.  Audience Header Parameter
+10.1.2.6.  Audience Header Parameter
 
    *  Header Parameter Name: aud
    *  Header Parameter Description: Audience
@@ -885,7 +931,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.8 of this specification
 
-9.1.2.7.  Nonce Header Parameter
+10.1.2.7.  Nonce Header Parameter
 
    *  Header Parameter Name: nonce
    *  Header Parameter Description: Nonce
@@ -893,7 +939,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.9 of this specification
 
-9.1.2.8.  Claims Header Parameter
+10.1.2.8.  Claims Header Parameter
 
    *  Header Parameter Name: claims
    *  Header Parameter Description: claims
@@ -901,9 +947,9 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.1.10 of this specification
 
-9.2.  Media Type Registration
+10.2.  Media Type Registration
 
-9.2.1.  Registry Contents
+10.2.1.  Registry Contents
 
    This section registers the application/jwp media type [RFC2046] in
    the IANA "Media Types" registry (#IANA.MediaTypes) in the manner
@@ -913,7 +959,7 @@ Table of Contents
    Types" registry, which can be used to indicate that the content is a
    JWP using the JWP JSON Serialization.
 
-9.2.1.1.  The application/jwp Media Type
+10.2.1.1.  The application/jwp Media Type
 
    *  Type name: application
    *  Subtype name: jwp
@@ -922,7 +968,7 @@ Table of Contents
    *  Encoding considerations: 8bit; application/jwp values are encoded
       as a series of base64url-encoded values (some of which may be the
       empty string) separated by period ('.') and tilde ('~') characters
-   *  Security considerations: See Section 8 of this specification
+   *  Security considerations: See Section 9 of this specification
    *  Interoperability considerations: n/a
    *  Published specification: this specification
    *  Applications that use this media type: TBD
@@ -939,7 +985,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-9.2.1.2.  The application/jwp+json Media Type
+10.2.1.2.  The application/jwp+json Media Type
 
    *  Type name: application
    *  Subtype name: jwp+json
@@ -948,7 +994,7 @@ Table of Contents
    *  Encoding considerations: 8bit; application/jwp+json values are
       represented as a JSON Object; UTF-8 encoding SHOULD be employed
       for the JSON object.
-   *  Security considerations: See Section 8 of this specification
+   *  Security considerations: See Section 9 of this specification
    *  Interoperability considerations: n/a
    *  Published specification: this specification
    *  Applications that use this media type: TBD
@@ -965,9 +1011,9 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-9.3.  Structured Syntax Suffix Registration
+10.3.  Structured Syntax Suffix Registration
 
-9.3.1.  Registry Contents
+10.3.1.  Registry Contents
 
    This section registers the +jwp structured syntax suffix [RFC6838] in
    the IANA "Structured Syntax Suffix" registry (#IANA.StructuredSuffix)
@@ -975,7 +1021,7 @@ Table of Contents
    that the media type is encoded as a JWP using the JWP Compact
    Serialization.
 
-9.3.1.1.  The +jwp Structured Syntax Suffix
+10.3.1.1.  The +jwp Structured Syntax Suffix
 
    *  Name: JSON Web Proof (JWP)
    *  +suffix: +jwp
@@ -1002,13 +1048,13 @@ Table of Contents
    For cases not defined in +jwp, then process as specified in "xxx/
    yyy+jwp".
 
-   *  Security considerations: See Section 8 of this specification
+   *  Security considerations: See Section 9 of this specification
    *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
    *  Author/Change controller: IETF
 
-10.  References
+11.  References
 
-10.1.  Normative References
+11.1.  Normative References
 
    [I-D.ietf-jose-json-proof-algorithms]
               Miller, J., Jones, M. B., and D. Waite, "JSON Proof
@@ -1032,7 +1078,7 @@ Table of Contents
               (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
               <https://www.rfc-editor.org/info/rfc7519>.
 
-10.2.  Informative References
+11.2.  Informative References
 
    [ECMAScript]
               Ecma International, "ECMAScript Language Specification,
@@ -1107,6 +1153,9 @@ Appendix B.  Document History
 
    *  Update reference to new repository home.
    *  Fixed #83: Added encrypted JWPs.
+   *  Added additional clarification around the compact and JSON
+      serializations
+   *  Added text around fully detached payloads
 
    -05
 
