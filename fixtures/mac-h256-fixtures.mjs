@@ -35,7 +35,7 @@ const holderPrivateKey = crypto.createPrivateKey({
 /// Create Issued JWP
 
 // Modify the issuer protected header by adding the Holder's public key
-issuerProtectedHeaderJSON.pjwk = holderPublicKeyJSON;
+issuerProtectedHeaderJSON.presentation_jwk = holderPublicKeyJSON;
 
 // encode/sign the issuer protected header w/ the stable key
 const finalIssuerProtectedHeader = JSON.stringify(issuerProtectedHeaderJSON);
