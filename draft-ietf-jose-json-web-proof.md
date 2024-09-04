@@ -441,7 +441,7 @@ If a payload or proof value was a zero-length octet string, it does not get outp
 
 The issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a `.` character. The concatenated payloads MAY be omitted if the application is using detached payloads.
 
-The presented form is created by concatenating the presenter protected header, issuer protected header, concatenated payloads, and concatenated proof separated each by a `.` character. The concatenated payloads MAY be omitted if the application is using detached payloads.
+The presented form is created by concatenating the base64url-encoded presenter protected header, base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a `.` character. The concatenated payloads MAY be omitted if the application is using detached payloads.
 
 <{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}>
 Figure: Compact Serialization of Presentation
