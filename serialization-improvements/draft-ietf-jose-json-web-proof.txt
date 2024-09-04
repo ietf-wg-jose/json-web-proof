@@ -652,7 +652,7 @@ Table of Contents
    Payloads and proofs are each concatenated into a single text form by
    concatenating the BASE64URL encoded values using the ~ character.
 
-   Individual payloads are allowed to be omitted - if a payload is
+   Individual payloads are allowed to be omitted; if a payload is
    omitted, it is represented as a zero-length text value, potentially
    resulting in leading, trailing, or consecutive ~ characters in the
    concatenated form.
@@ -677,14 +677,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.jk5a7kgZd1pe5hfaCycTWfAY51XlZkKo
-   VokxUpiXNcGEvt2J4I3Xzw_D7PC3jVg0pYFEDofzDyQmXkdbUB7XRpfkhAo55KnC4lZ-A
-   XO6sNj_UEVa2Bv2Yjao3oUGxQ44rtRd3IIjU57v-LA8Pvj5u73psBifu699DF6ELWJ62o
-   8KbkkqgE_tJLcQotrnqW5jWuoOj3vaVAVIGrpm4t_g3ImzYZBdzn0fgMz8z2Lc3B8XY8j
-   gJXhRB8qahQhTIgY54Ia-DRJOc3qUaj4FJYFNXSZnosRaSHle-Roecsu1uBltxurjRi5b
-   0m880EAb8U9UANkX_fgAVVLbwdA51H7UhpsIcnYSPbgW4tx1pJOO8QtLwVt4W_IKuzdNa
-   6fAtD0H9u8htIe-CEGBbdliGBxRRx7rbN9wNWg2VnJdZDNkFHOpVVVOhcmy5uIO8A02Zx
-   JeWs2DvGPqb2zLtHQnC2vdIfxYu-kUmRzdSHkOV6UFcLk
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.pJ9tb_0Ik6e0cPTyjAEmxhGYNTSr9qIi
+   drJt-SCx2LWgZhayWEDm-FisyoyzPcNvq134szMbUYG7dGCIKMKIl1Ln_puAHFb7MNYMa
+   5wGh6mHKE66wROiE4_jUBKKnnFpuYA5UReo1SHF0uoewRenG3BzVFXeit-b1OFTZ4jMO8
+   BnJFOMRT3H1zLpL5geYkP9C5F5JeWxU4IxTbh0FsKmN_MIX_VaEo2CygRFNdnt_LAZEFD
+   zXRVjVyzMd4qSMlTSvuklbnTZn5-5mDIQ3BqNJw2I_SFiZCQeTFDPjoPqsAlObVyuQ0EF
+   TXkXJsnkpyndcPNO_SHCslCeh_EkiEPBNIL6saR1CnDNnAp5TXsMv6JaySwq873ldDXqo
+   -1BNzqPG_YwUo1W5PXMHaDlGLDVeSI9yGLRiStauVCIOWvqkvmxJL4lK7DYWwgfi4RLjA
+   6QYUd64N2vyAIq-_m1ST-KLnnoX0whPhQ3RkosoWBV-5k
 
    |  Figure: Compact Serialization of Presentation
 
@@ -732,14 +732,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "jk5a7kgZd1pe5hfaCycTWfAY51XlZkKoVokxUpiXNcGEvt2J4I3Xzw_D7PC3jVg0
-          pYFEDofzDyQmXkdbUB7XRpfkhAo55KnC4lZ-AXO6sNj_UEVa2Bv2Yjao3oUGxQ
-          44rtRd3IIjU57v-LA8Pvj5u73psBifu699DF6ELWJ62o8KbkkqgE_tJLcQotrn
-          qW5jWuoOj3vaVAVIGrpm4t_g3ImzYZBdzn0fgMz8z2Lc3B8XY8jgJXhRB8qahQ
-          hTIgY54Ia-DRJOc3qUaj4FJYFNXSZnosRaSHle-Roecsu1uBltxurjRi5b0m88
-          0EAb8U9UANkX_fgAVVLbwdA51H7UhpsIcnYSPbgW4tx1pJOO8QtLwVt4W_IKuz
-          dNa6fAtD0H9u8htIe-CEGBbdliGBxRRx7rbN9wNWg2VnJdZDNkFHOpVVVOhcmy
-          5uIO8A02ZxJeWs2DvGPqb2zLtHQnC2vdIfxYu-kUmRzdSHkOV6UFcLk"
+       "pJ9tb_0Ik6e0cPTyjAEmxhGYNTSr9qIidrJt-SCx2LWgZhayWEDm-FisyoyzPcNv
+          q134szMbUYG7dGCIKMKIl1Ln_puAHFb7MNYMa5wGh6mHKE66wROiE4_jUBKKnn
+          FpuYA5UReo1SHF0uoewRenG3BzVFXeit-b1OFTZ4jMO8BnJFOMRT3H1zLpL5ge
+          YkP9C5F5JeWxU4IxTbh0FsKmN_MIX_VaEo2CygRFNdnt_LAZEFDzXRVjVyzMd4
+          qSMlTSvuklbnTZn5-5mDIQ3BqNJw2I_SFiZCQeTFDPjoPqsAlObVyuQ0EFTXkX
+          JsnkpyndcPNO_SHCslCeh_EkiEPBNIL6saR1CnDNnAp5TXsMv6JaySwq873ldD
+          Xqo-1BNzqPG_YwUo1W5PXMHaDlGLDVeSI9yGLRiStauVCIOWvqkvmxJL4lK7DY
+          Wwgfi4RLjA6QYUd64N2vyAIq-_m1ST-KLnnoX0whPhQ3RkosoWBV-5k"
      ]
    }
 
