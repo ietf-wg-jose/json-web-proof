@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-03T00:44:23.018263+00:00",
+  "timestamp": "2024-09-05T00:45:11.119380+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -8743,19 +8743,244 @@
       "labels": [],
       "body": "This change adds CBOR serialization, as well as a few bite-sized additions along the way.\r\n\r\n1. Clean up text to be more prescriptive about various serializations\r\n2. Define the serializations as interchangeable\r\n3. Define new CBOR serialization\r\n4. Create new \"Detached Payloads\" section to clarify application behavior",
       "createdAt": "2024-08-22T21:42:26Z",
-      "updatedAt": "2024-08-22T21:46:46Z",
+      "updatedAt": "2024-09-04T06:50:15Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "2b82c80f773e3353604ec1ba714fc6a6b94caaed",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "add-cbor-serialization",
-      "headRefOid": "87fbcd30560ae96311dc749d85efa6c8fda7538e",
+      "headRefOid": "eec7dd78f01532e43ed2c147354a243598d90875",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6Hz3WI",
+          "commit": {
+            "abbreviatedOid": "87fbcd3"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T21:20:22Z",
+          "updatedAt": "2024-09-03T21:20:22Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\nIf a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single `_` character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.\r\n```",
+              "createdAt": "2024-09-03T21:20:22Z",
+              "updatedAt": "2024-09-03T21:20:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6Hz3yi",
+          "commit": {
+            "abbreviatedOid": "87fbcd3"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T21:21:46Z",
+          "updatedAt": "2024-09-03T21:21:46Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\nThe JSON Serialization is in the form of a JSON object, with property names representing the various components.\r\n```",
+              "createdAt": "2024-09-03T21:21:46Z",
+              "updatedAt": "2024-09-03T21:21:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6Hz4oX",
+          "commit": {
+            "abbreviatedOid": "87fbcd3"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T21:23:51Z",
+          "updatedAt": "2024-09-03T21:23:51Z",
+          "comments": [
+            {
+              "originalPosition": 92,
+              "body": "```suggestion\r\nThe recipient is expected to perform some sequence of steps defined by the application to recreate the array of payloads, including order and optionality. This effectively recreates the fully specified serialization of the JWP.\r\n```",
+              "createdAt": "2024-09-03T21:23:51Z",
+              "updatedAt": "2024-09-03T21:23:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6Hz4yR",
+          "commit": {
+            "abbreviatedOid": "87fbcd3"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T21:24:19Z",
+          "updatedAt": "2024-09-03T21:24:19Z",
+          "comments": [
+            {
+              "originalPosition": 94,
+              "body": "```suggestion\r\nAn application MAY also choose to detach individual payloads, indicating those payloads as omitted within serialization. Such applications SHOULD take steps to make sure holders/verifiers understand that reconstitution is required; otherwise, the serialization will look like a fully-formed (but cryptographically invalid) JWP.\r\n```",
+              "createdAt": "2024-09-03T21:24:19Z",
+              "updatedAt": "2024-09-03T21:24:19Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 138,
+      "id": "PR_kwDOFsQObc56WP_i",
+      "title": "Correct `pjwk` to `presentation_jwk`",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/138",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-09-04T06:47:01Z",
+      "updatedAt": "2024-09-04T23:19:04Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "2b82c80f773e3353604ec1ba714fc6a6b94caaed",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "presentation_jwk-consistency",
+      "headRefOid": "a50e259397b77884cc8c61250f4ba6caf9004d4e",
+      "closedAt": "2024-09-04T23:19:01Z",
+      "mergedAt": "2024-09-04T23:19:01Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "eefc012dceaf74069dbcdaab0def590150503ef8"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6H_cmk",
+          "commit": {
+            "abbreviatedOid": "a50e259"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-04T23:09:02Z",
+          "updatedAt": "2024-09-04T23:09:02Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 139,
+      "id": "PR_kwDOFsQObc56WW5f",
+      "title": "Serialization improvements",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/139",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "  * Added additional clarification around the compact and JSON serializations\r\n  * Added text around fully detached payloads",
+      "createdAt": "2024-09-04T07:05:01Z",
+      "updatedAt": "2024-09-04T23:18:48Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "2b82c80f773e3353604ec1ba714fc6a6b94caaed",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "serialization-improvements",
+      "headRefOid": "23a9b65fedb7b7fa921a3989b225042e306ca751",
+      "closedAt": "2024-09-04T23:18:42Z",
+      "mergedAt": "2024-09-04T23:18:42Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "a0a744ecd3a038e135b732470d20aab70deb8764"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6H_c8C",
+          "commit": {
+            "abbreviatedOid": "fb4d7c5"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-04T23:10:39Z",
+          "updatedAt": "2024-09-04T23:10:40Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\nIndividual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive `~` characters in the concatenated form.\r\n```",
+              "createdAt": "2024-09-04T23:10:39Z",
+              "updatedAt": "2024-09-04T23:10:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6H_d7U",
+          "commit": {
+            "abbreviatedOid": "fb4d7c5"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-04T23:15:51Z",
+          "updatedAt": "2024-09-04T23:15:51Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\r\nThe issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a `.` character. The concatenated payloads MAY be omitted if the application is using detached payloads.\r\n```",
+              "createdAt": "2024-09-04T23:15:51Z",
+              "updatedAt": "2024-09-04T23:15:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6H_d_4",
+          "commit": {
+            "abbreviatedOid": "fb4d7c5"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-04T23:16:16Z",
+          "updatedAt": "2024-09-04T23:16:16Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\nThe presented form is created by concatenating the base64url-encoded presenter protected header, base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a `.` character. The concatenated payloads MAY be omitted if the application is using detached payloads.\r\n```",
+              "createdAt": "2024-09-04T23:16:16Z",
+              "updatedAt": "2024-09-04T23:16:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6H_ebs",
+          "commit": {
+            "abbreviatedOid": "fb4d7c5"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Approved with suggested changes.",
+          "createdAt": "2024-09-04T23:18:34Z",
+          "updatedAt": "2024-09-04T23:18:34Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
