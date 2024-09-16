@@ -5,9 +5,9 @@
 jose                                                           J. Miller
 Internet-Draft                                                  D. Waite
 Intended status: Standards Track                           Ping Identity
-Expires: 8 March 2025                                           M. Jones
+Expires: 20 March 2025                                          M. Jones
                                                   Self-Issued Consulting
-                                                        4 September 2024
+                                                       16 September 2024
 
 
                              JSON Web Proof
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 March 2025.
+   This Internet-Draft will expire on 20 March 2025.
 
 Copyright Notice
 
@@ -677,14 +677,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.r8ZGh72vlkBRulCMhxQ2fBKDa-0WYTj1
-   0aL74sAYQuAAqQUc9nJxTkzbwtYYyPPMkMZh2nzGgioexjegFD4EmrYFVXhBCt3n4d_6A
-   CWjDh2X7RuxiLUQ9QJYK9xcCii6qGlHSnm3efwVlA248WPlD8xDVkXF0ksltoMG1p8B1B
-   4Y1cACN6GGQm7Iqvp9kVqPc9m-rHB0yaG_wK6qN90v0YJdZywvoi-r2bqQeANGlFUYwua
-   jWx-t_FpL3MXIvUqOPxFz9Rwoxqt8xc-b8C3vfD6kq75ffp58hFk6Jpr8P3FawmMwyClg
-   atSynYdhaeb-YeVN58xOGNqovRZUpDCX9fjBdCcwls3l5gpuMPzB3CdLAHrX0vdMX4JGo
-   XLAYaqcuuu1FLbdeKJpf1-kPtoi5Frx7Gdnrn0CmhUemlzUXcGPfV8GiGNj8VJv-SIoFV
-   PoUUpKi28Vp9mGP2c6-bt17b8EtoKLydlwjuYsTHa6OpA
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.qOesI5EZvswe9xWeD0-UR-SvlXUKj6P7
+   oH4bQ_OX62n7EqnHGgX3yUDs1BjWgayirOWW0NDzfb_IZBYh3OMDyabRvSaUYxOOT90VE
+   Cq2aWcksFfG5wBkMp0nVWBZAowGt8XukCtcgRSbumjGDnX-uTCXJe6Qx4X9tWYxEbjIR_
+   7dd-L2cteV41aOdBaVg4ZtQsPaIM-Hs2nvedu3idzDI9amzQKnzeyx-gWLIjtLAgkUBI7
+   pUJD8jZlpC9cUfubQ5rodz_DhnkDfmFZrN7j3cmzBL6hwfh7YwRqsFAhUH8h7XnOHIeIZ
+   Dfz6AVltIIKIL8J_tvQyZCGVlNxgu6SE42deR-nP0fw3tYaQ_bAxP6UzTGIDZMN4-KUUD
+   K2lzQZtWe6QqwY955Yo0-TagGlkSQvcN6MK3HacIJXTF14_Z2nb3xd4xGt8T7YU-zunVg
+   nbCgA0T-oFlhVjDRxPVR7x5x77ac1cvVqiy_TyTUAXkoE
 
    |  Figure: Compact Serialization of Presentation
 
@@ -732,14 +732,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "r8ZGh72vlkBRulCMhxQ2fBKDa-0WYTj10aL74sAYQuAAqQUc9nJxTkzbwtYYyPPM
-          kMZh2nzGgioexjegFD4EmrYFVXhBCt3n4d_6ACWjDh2X7RuxiLUQ9QJYK9xcCi
-          i6qGlHSnm3efwVlA248WPlD8xDVkXF0ksltoMG1p8B1B4Y1cACN6GGQm7Iqvp9
-          kVqPc9m-rHB0yaG_wK6qN90v0YJdZywvoi-r2bqQeANGlFUYwuajWx-t_FpL3M
-          XIvUqOPxFz9Rwoxqt8xc-b8C3vfD6kq75ffp58hFk6Jpr8P3FawmMwyClgatSy
-          nYdhaeb-YeVN58xOGNqovRZUpDCX9fjBdCcwls3l5gpuMPzB3CdLAHrX0vdMX4
-          JGoXLAYaqcuuu1FLbdeKJpf1-kPtoi5Frx7Gdnrn0CmhUemlzUXcGPfV8GiGNj
-          8VJv-SIoFVPoUUpKi28Vp9mGP2c6-bt17b8EtoKLydlwjuYsTHa6OpA"
+       "qOesI5EZvswe9xWeD0-UR-SvlXUKj6P7oH4bQ_OX62n7EqnHGgX3yUDs1BjWgayi
+          rOWW0NDzfb_IZBYh3OMDyabRvSaUYxOOT90VECq2aWcksFfG5wBkMp0nVWBZAo
+          wGt8XukCtcgRSbumjGDnX-uTCXJe6Qx4X9tWYxEbjIR_7dd-L2cteV41aOdBaV
+          g4ZtQsPaIM-Hs2nvedu3idzDI9amzQKnzeyx-gWLIjtLAgkUBI7pUJD8jZlpC9
+          cUfubQ5rodz_DhnkDfmFZrN7j3cmzBL6hwfh7YwRqsFAhUH8h7XnOHIeIZDfz6
+          AVltIIKIL8J_tvQyZCGVlNxgu6SE42deR-nP0fw3tYaQ_bAxP6UzTGIDZMN4-K
+          UUDK2lzQZtWe6QqwY955Yo0-TagGlkSQvcN6MK3HacIJXTF14_Z2nb3xd4xGt8
+          T7YU-zunVgnbCgA0T-oFlhVjDRxPVR7x5x77ac1cvVqiy_TyTUAXkoE"
      ]
    }
 
@@ -1150,6 +1150,8 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -06
 
    *  Update reference to new repository home.
    *  Fixed #83: Added encrypted JWPs.
