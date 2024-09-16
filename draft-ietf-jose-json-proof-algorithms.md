@@ -183,8 +183,6 @@ This specification registers the `nonce` header parameter for the presentation p
 
 The presentation protected header MAY contain other header parameters that are either provided by the verifier or by the holder.  These presentation header parameters SHOULD NOT contain values that are common across multiple presentations and SHOULD be unique to a single presentation and verifier.
 
-In various examples in this specification, the octet string serialized presentation header is referenced as `presentation_header`.
-
 ### Presentation
 
 > Editor's Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
@@ -275,7 +273,7 @@ Prior to the issuer creating a new JWP, it must have presentation binding inform
 
 The presentation key used by the holder must be transferred to the issuer and verified, likely through a challenge and self-signing mechanism.  If the holder requires unlinkability, it must also generate a new key that is verified and bound to each new JWP.
 
-How these holder presentation keys are transferred and verified is out of scope of this specification. Protocols such as OpenID Connect can be used to accomplish this.  What is required by this definition is that the holder's presentation key MUST be included in the issuer's protected header using the `pjwk` parameter with a JWK as the value.
+How these holder presentation keys are transferred and verified is out of scope of this specification. Protocols such as OpenID Connect can be used to accomplish this.  What is required by this definition is that the holder's presentation key MUST be included in the issuer's protected header using the `presentation_jwk` parameter with a JWK as the value.
 
 ### Issuer Setup
 
@@ -285,7 +283,7 @@ The Shared Secret is used by both the issuer and holder as the MAC method's key 
 
 ### Issuer Protected Header {#issuer-protected-header}
 
-The holder's presentation key JWK MUST be included in the issuer protected header using the `pjwk` parameter.  The issuer MUST validate that the holder has possession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
+The holder's presentation key JWK MUST be included in the issuer protected header using the `presentation_jwk` parameter.  The issuer MUST validate that the holder has possession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
 ### Combined MAC Representation
 
@@ -319,7 +317,7 @@ See the JWS [Presentation Protected Header](#presentation-protected-header) sect
 
 > Editor's Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
 
-The first value in the presentation proof is the presentation signature. This is a signature over the presentation protected header, using the key specified by the `pjwk` parameter in the issuer protected header.
+The first value in the presentation proof is the presentation signature. This is a signature over the presentation protected header, using the key specified by the `presentation_jwk` parameter in the issuer protected header.
 
 The second value is the issuer signature over the Combined MAC Representation provided with the issued form.
 
@@ -805,6 +803,8 @@ The BBS examples were generated using the library at https://github.com/mattrglo
  -06
 
   * Update reference to new repository home
+  * Fixed #77: Removed vestigial use of `presentation_header`.
+  * Correct `pjwk` to `presentation_jwk`
 
  -05
 
