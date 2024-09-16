@@ -816,6 +816,8 @@ for his valuable contributions to this specification.
 
   [[ To be removed from the final specification ]]
 
+ -06
+
   * Update reference to new repository home.
   * Fixed #83: Added encrypted JWPs.
   * Added additional clarification around the compact and JSON serializations
