@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-15T00:52:38.613726+00:00",
+  "timestamp": "2024-09-17T00:38:15.130243+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -8395,24 +8395,26 @@
       "id": "PR_kwDOFsQObc53Tkgh",
       "title": "Add -06 history labels",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/132",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-08-02T23:13:05Z",
-      "updatedAt": "2024-08-22T20:05:21Z",
+      "updatedAt": "2024-09-16T20:15:46Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
-      "baseRefOid": "45c73dd5568d3c5c08722a8dbe3fb1d1369148a5",
+      "baseRefOid": "eefc012dceaf74069dbcdaab0def590150503ef8",
       "headRepository": "selfissued/json-web-proofs",
       "headRefName": "mbj-06-history-labels",
-      "headRefOid": "00157fcd5b4fbe21c1b0dd7f8cdd0bbda7b40fe4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "5da17b92b012d838209e29d22ca5607d8d9156a3",
+      "closedAt": "2024-09-16T20:15:46Z",
+      "mergedAt": "2024-09-16T20:15:45Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "21ead88ff9ed0bcbfec8aa031adb7daedcf66c2a"
+      },
       "comments": [],
       "reviews": [
         {
