@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-17T00:38:15.130243+00:00",
+  "timestamp": "2024-09-19T00:46:56.911291+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -1540,15 +1540,15 @@
       "id": "I_kwDOFsQObc5I5ya_",
       "title": "Support for multiple signatures/proofs",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/50",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "quartzjer",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "H/T @OR13 on looping me into a thread about the difficulty (complete lack-of) of supporting multiple signatures in JWTs,  this is definitely a use case we should try to directly support for JWPs.\r\n\r\nMy initial take would be to extend the use of ~ to support compound issuer headers and proofs:\r\n`issuer_header_alice~issuer_header_bob.payload_1~payload_2~payload_3.issuer_proof_alice~issuer_proof_bob`\r\nand the presentation\r\n`issuer_header_alice~issuer_header_bob.payload_1~~payload_3.presentation_proof_alice~presentation_proof_bob`\r\n\r\nThe multiple issuer headers/proofs wouldn't have any intrinsic linking/relationship (unless they encoded such internally in their headers), so the presenter would be free to include/exclude whatever ones they choose to.  The verifier would be required to verify _all_ of them (that are included).",
       "createdAt": "2022-05-02T16:49:39Z",
-      "updatedAt": "2024-08-07T02:11:46Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-17T21:44:17Z",
+      "closedAt": "2024-09-17T21:44:16Z",
       "comments": [
         {
           "author": "OR13",
@@ -1647,6 +1647,13 @@
           "body": "Note that this somewhat related to #100, since like in JWS, it's much more straightforward to represent multiple signatures/proofs when the representation is a JSON Serialization that can contain arrays, versus a Compact Serialization that can't without utilizing unpleasant encoding tricks.  If we want multiple signatures/proofs, we probably only want that to be possible in a JSON Serialization.\r\n",
           "createdAt": "2024-08-07T02:11:45Z",
           "updatedAt": "2024-08-07T02:11:45Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing, since no use case was produced.",
+          "createdAt": "2024-09-17T21:44:16Z",
+          "updatedAt": "2024-09-17T21:44:16Z"
         }
       ]
     },
