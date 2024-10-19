@@ -240,7 +240,7 @@ Use of this Header Parameter is OPTIONAL.
 ### "typ" (Type) Header Parameter {#typDef}
 
 The `typ` (type) Header Parameter is used by JWP applications to declare the
-media type (#IANA.MediaTypes) of this complete JWP.
+media type [@IANA.MediaTypes] of this complete JWP.
 This is intended for use by the application when
 more than one kind of object could be present in
 an application data structure that can contain a JWP;
@@ -254,7 +254,7 @@ Use of this Header Parameter is OPTIONAL.
 
 For COSE Protected Headers, `typ` MAY also instead be an integer value
 which corresponds to the IANA "CoAP Content-Formats" registry
-[#IANA.CoAP.Formats], which describes the corresponding media type.
+[@IANA.CoAP.Formats], which describes the corresponding media type.
 
 Per [@RFC2045], all media type values,
 subtype values, and parameter names are case insensitive.
@@ -811,7 +811,7 @@ This section registers the Header Parameters defined in
 
 This section registers the `application/jwp`
 media type [@RFC2046]
-in the IANA "Media Types" registry (#IANA.MediaTypes)
+in the IANA "Media Types" registry [@IANA.MediaTypes]
 in the manner described in [@RFC6838],
 which can be used to indicate that the content is
 a JWP using the JWP Compact Serialization.
