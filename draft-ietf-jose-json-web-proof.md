@@ -18,14 +18,6 @@ status = "standard"
 toc = "yes"
 
 [[author]]
-initials = "J."
-surname = "Miller"
-fullname = "Jeremie Miller"
-organization = "Ping Identity"
-  [author.address]
-   email = "jmiller@pingidentity.com"
-
-[[author]]
 initials = "D."
 surname = "Waite"
 fullname = "David Waite"
@@ -41,6 +33,14 @@ organization = "Self-Issued Consulting"
   [author.address]
   email = "michael_b_jones@hotmail.com"
   uri = "https://self-issued.info/"
+
+[[author]]
+initials = "J."
+surname = "Miller"
+fullname = "Jeremie Miller"
+organization = "Ping Identity"
+  [author.address]
+   email = "jmiller@pingidentity.com"
 
 %%%
 
@@ -815,6 +815,10 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
+
+ -latest
+
+  * Changing primary editor
 
  -06
 
