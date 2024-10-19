@@ -1577,7 +1577,7 @@ the COSE_Key <code>kid</code> structure member.<a href="#section-4.2.2-4" class=
 <a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-typ-type-header-parameter" class="section-name selfRef">"typ" (Type) Header Parameter</a>
           </h4>
 <p id="section-4.2.3-1">The <code>typ</code> (type) Header Parameter is used by JWP applications to declare the
-media type (#IANA.MediaTypes) of this complete JWP.
+media type <span>[<a href="#IANA.MediaTypes" class="cite xref">IANA.MediaTypes</a>]</span> of this complete JWP.
 This is intended for use by the application when
 more than one kind of object could be present in
 an application data structure that can contain a JWP;
@@ -1590,7 +1590,7 @@ any processing of this parameter is performed by the JWP application.
 Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.3-2">For COSE Protected Headers, <code>typ</code> MAY also instead be an integer value
 which corresponds to the IANA "CoAP Content-Formats" registry
-[#IANA.CoAP.Formats], which describes the corresponding media type.<a href="#section-4.2.3-2" class="pilcrow">¶</a></p>
+<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>, which describes the corresponding media type.<a href="#section-4.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-4.2.3-3">Per <span>[<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values,
 subtype values, and parameter names are case insensitive.
 However, parameter values are case sensitive unless
@@ -1899,14 +1899,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.gV8ukhU71Gqll0ORppL1-hzhiRneoguF
-BYMvCqxgJz3Q8shnQVpqtlfIvwBoK4DmkHMonGNi44gQguqW2_9znI1bIGFzje2akjx2b
-EtL762Zmw7lcirr-vM1ZtAMuorMoImH1JOuf5-oWNrwspHqPmZVMEzFE7co4coEfkuG1_
--WOSrNjGiGV-8tQgfOjW2lIwWSWQqH-KNbu4v4wRVtAXg6vJNz5QbU4ACL-n5Z8z5TdwU
-Man5e7Q4lzKqJ-h80ENOMbCNub-JbHLxDD6HqT1fMkdKsbjLrSi1RoBoRyFc8mTS09a3f
-zVJMKnkr9lz4JzD6Gurid0ll6ryJevdaU5bn8PYgu9TIPN1I9nVXl_xmyPEFpBU-NySrS
-aW6b86UHlPYW7i5W58e4QD_ZB4cigGEpsQGOG__CQulw_CSkXzb5H9VPA6Xjv3FCttSMX
-DESMufM_rGHFQMuD2qZPpwX40UtxgLupxDXy_ju3FVjvQ
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.lqhl5STosrYFqmbmvPIIwZ2wS1jYL9nZ
+3WVd7P6XAnO7M5dS9m1rJ9EoVy1B4dC_uMlOJFpRBDaPDWSYP_X3qWZjTk75sANw0uAaq
+4P108LJv8hE5KDNMC0u41n3_FHxj3E_BC5S0SguE9slp-ukEWm-a7wdxn9XmsWOjG0Ff6
+J9WH-TwWCZlewJ-Fc8uW9eGQfci4afINeENfRW3Dqw7iRfenPTbNhGH-ED8-fHvX8ezqF
+l3dDAqc3Fpq7PFC6-5b6MAmCa7SRFW3TvFFXAIGL0eG-JRRAiRTMzmVbzcK7LfclHtvB3
+Qn9SGdc-hejHKAYKB3huzVuGX8JnDSUoZaD8lGhJQ7ZEEUNF5tbrXKgRFrzC-9q1czzki
+kgXXRWNtDhAz-pnTOlA__8eSwdm8EEU-G7IjT35d0fTcAHouSmJrQSXxjM5I7yqhuCwo8
+jxAlktcYrfq14NVHmRcDMn4rOa1fYbSbNxu1RadRADTjk
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -1943,14 +1943,14 @@ DESMufM_rGHFQMuD2qZPpwX40UtxgLupxDXy_ju3FVjvQ
     null
   ],
   "proof": [
-    "gV8ukhU71Gqll0ORppL1-hzhiRneoguFBYMvCqxgJz3Q8shnQVpqtlfIvwBoK4Dm
-       kHMonGNi44gQguqW2_9znI1bIGFzje2akjx2bEtL762Zmw7lcirr-vM1ZtAMuo
-       rMoImH1JOuf5-oWNrwspHqPmZVMEzFE7co4coEfkuG1_-WOSrNjGiGV-8tQgfO
-       jW2lIwWSWQqH-KNbu4v4wRVtAXg6vJNz5QbU4ACL-n5Z8z5TdwUMan5e7Q4lzK
-       qJ-h80ENOMbCNub-JbHLxDD6HqT1fMkdKsbjLrSi1RoBoRyFc8mTS09a3fzVJM
-       Knkr9lz4JzD6Gurid0ll6ryJevdaU5bn8PYgu9TIPN1I9nVXl_xmyPEFpBU-Ny
-       SrSaW6b86UHlPYW7i5W58e4QD_ZB4cigGEpsQGOG__CQulw_CSkXzb5H9VPA6X
-       jv3FCttSMXDESMufM_rGHFQMuD2qZPpwX40UtxgLupxDXy_ju3FVjvQ"
+    "lqhl5STosrYFqmbmvPIIwZ2wS1jYL9nZ3WVd7P6XAnO7M5dS9m1rJ9EoVy1B4dC_
+       uMlOJFpRBDaPDWSYP_X3qWZjTk75sANw0uAaq4P108LJv8hE5KDNMC0u41n3_F
+       Hxj3E_BC5S0SguE9slp-ukEWm-a7wdxn9XmsWOjG0Ff6J9WH-TwWCZlewJ-Fc8
+       uW9eGQfci4afINeENfRW3Dqw7iRfenPTbNhGH-ED8-fHvX8ezqFl3dDAqc3Fpq
+       7PFC6-5b6MAmCa7SRFW3TvFFXAIGL0eG-JRRAiRTMzmVbzcK7LfclHtvB3Qn9S
+       Gdc-hejHKAYKB3huzVuGX8JnDSUoZaD8lGhJQ7ZEEUNF5tbrXKgRFrzC-9q1cz
+       zkikgXXRWNtDhAz-pnTOlA__8eSwdm8EEU-G7IjT35d0fTcAHouSmJrQSXxjM5
+       I7yqhuCwo8jxAlktcYrfq14NVHmRcDMn4rOa1fYbSbNxu1RadRADTjk"
   ]
 }
 
@@ -2379,7 +2379,7 @@ relevant sections may also be included but is not required.<a href="#section-10.
           </h4>
 <p id="section-10.2.1-1">This section registers the <code>application/jwp</code>
 media type <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span>
-in the IANA "Media Types" registry (#IANA.MediaTypes)
+in the IANA "Media Types" registry <span>[<a href="#IANA.MediaTypes" class="cite xref">IANA.MediaTypes</a>]</span>
 in the manner described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>,
 which can be used to indicate that the content is
 a JWP using the JWP Compact Serialization.
@@ -2650,6 +2650,14 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
         <dd>
 <span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-07</span>, <time datetime="2024-09-23" class="refDate">23 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.CoAP.Formats">[IANA.CoAP.Formats]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CoAP Content Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.MediaTypes">[IANA.MediaTypes]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Media Types"</span>, <span>&lt;<a href="http://www.iana.org/assignments/media-types">http://www.iana.org/assignments/media-types</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2045">[RFC2045]</dt>
         <dd>

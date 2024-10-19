@@ -379,7 +379,7 @@ Table of Contents
 4.2.3.  "typ" (Type) Header Parameter
 
    The typ (type) Header Parameter is used by JWP applications to
-   declare the media type (#IANA.MediaTypes) of this complete JWP.  This
+   declare the media type [IANA.MediaTypes] of this complete JWP.  This
    is intended for use by the application when more than one kind of
    object could be present in an application data structure that can
    contain a JWP; the application can use this value to disambiguate
@@ -391,7 +391,7 @@ Table of Contents
 
    For COSE Protected Headers, typ MAY also instead be an integer value
    which corresponds to the IANA "CoAP Content-Formats" registry
-   [#IANA.CoAP.Formats], which describes the corresponding media type.
+   [IANA.CoAP.Formats], which describes the corresponding media type.
 
    Per [RFC2045], all media type values, subtype values, and parameter
    names are case insensitive.  However, parameter values are case
@@ -756,14 +756,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.gV8ukhU71Gqll0ORppL1-hzhiRneoguF
-   BYMvCqxgJz3Q8shnQVpqtlfIvwBoK4DmkHMonGNi44gQguqW2_9znI1bIGFzje2akjx2b
-   EtL762Zmw7lcirr-vM1ZtAMuorMoImH1JOuf5-oWNrwspHqPmZVMEzFE7co4coEfkuG1_
-   -WOSrNjGiGV-8tQgfOjW2lIwWSWQqH-KNbu4v4wRVtAXg6vJNz5QbU4ACL-n5Z8z5TdwU
-   Man5e7Q4lzKqJ-h80ENOMbCNub-JbHLxDD6HqT1fMkdKsbjLrSi1RoBoRyFc8mTS09a3f
-   zVJMKnkr9lz4JzD6Gurid0ll6ryJevdaU5bn8PYgu9TIPN1I9nVXl_xmyPEFpBU-NySrS
-   aW6b86UHlPYW7i5W58e4QD_ZB4cigGEpsQGOG__CQulw_CSkXzb5H9VPA6Xjv3FCttSMX
-   DESMufM_rGHFQMuD2qZPpwX40UtxgLupxDXy_ju3FVjvQ
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.lqhl5STosrYFqmbmvPIIwZ2wS1jYL9nZ
+   3WVd7P6XAnO7M5dS9m1rJ9EoVy1B4dC_uMlOJFpRBDaPDWSYP_X3qWZjTk75sANw0uAaq
+   4P108LJv8hE5KDNMC0u41n3_FHxj3E_BC5S0SguE9slp-ukEWm-a7wdxn9XmsWOjG0Ff6
+   J9WH-TwWCZlewJ-Fc8uW9eGQfci4afINeENfRW3Dqw7iRfenPTbNhGH-ED8-fHvX8ezqF
+   l3dDAqc3Fpq7PFC6-5b6MAmCa7SRFW3TvFFXAIGL0eG-JRRAiRTMzmVbzcK7LfclHtvB3
+   Qn9SGdc-hejHKAYKB3huzVuGX8JnDSUoZaD8lGhJQ7ZEEUNF5tbrXKgRFrzC-9q1czzki
+   kgXXRWNtDhAz-pnTOlA__8eSwdm8EEU-G7IjT35d0fTcAHouSmJrQSXxjM5I7yqhuCwo8
+   jxAlktcYrfq14NVHmRcDMn4rOa1fYbSbNxu1RadRADTjk
 
    |  Figure: Compact Serialization of Presentation
 
@@ -814,14 +814,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "gV8ukhU71Gqll0ORppL1-hzhiRneoguFBYMvCqxgJz3Q8shnQVpqtlfIvwBoK4Dm
-          kHMonGNi44gQguqW2_9znI1bIGFzje2akjx2bEtL762Zmw7lcirr-vM1ZtAMuo
-          rMoImH1JOuf5-oWNrwspHqPmZVMEzFE7co4coEfkuG1_-WOSrNjGiGV-8tQgfO
-          jW2lIwWSWQqH-KNbu4v4wRVtAXg6vJNz5QbU4ACL-n5Z8z5TdwUMan5e7Q4lzK
-          qJ-h80ENOMbCNub-JbHLxDD6HqT1fMkdKsbjLrSi1RoBoRyFc8mTS09a3fzVJM
-          Knkr9lz4JzD6Gurid0ll6ryJevdaU5bn8PYgu9TIPN1I9nVXl_xmyPEFpBU-Ny
-          SrSaW6b86UHlPYW7i5W58e4QD_ZB4cigGEpsQGOG__CQulw_CSkXzb5H9VPA6X
-          jv3FCttSMXDESMufM_rGHFQMuD2qZPpwX40UtxgLupxDXy_ju3FVjvQ"
+       "lqhl5STosrYFqmbmvPIIwZ2wS1jYL9nZ3WVd7P6XAnO7M5dS9m1rJ9EoVy1B4dC_
+          uMlOJFpRBDaPDWSYP_X3qWZjTk75sANw0uAaq4P108LJv8hE5KDNMC0u41n3_F
+          Hxj3E_BC5S0SguE9slp-ukEWm-a7wdxn9XmsWOjG0Ff6J9WH-TwWCZlewJ-Fc8
+          uW9eGQfci4afINeENfRW3Dqw7iRfenPTbNhGH-ED8-fHvX8ezqFl3dDAqc3Fpq
+          7PFC6-5b6MAmCa7SRFW3TvFFXAIGL0eG-JRRAiRTMzmVbzcK7LfclHtvB3Qn9S
+          Gdc-hejHKAYKB3huzVuGX8JnDSUoZaD8lGhJQ7ZEEUNF5tbrXKgRFrzC-9q1cz
+          zkikgXXRWNtDhAz-pnTOlA__8eSwdm8EEU-G7IjT35d0fTcAHouSmJrQSXxjM5
+          I7yqhuCwo8jxAlktcYrfq14NVHmRcDMn4rOa1fYbSbNxu1RadRADTjk"
      ]
    }
 
@@ -1103,7 +1103,7 @@ Table of Contents
 10.2.1.  Registry Contents
 
    This section registers the application/jwp media type [RFC2046] in
-   the IANA "Media Types" registry (#IANA.MediaTypes) in the manner
+   the IANA "Media Types" registry [IANA.MediaTypes] in the manner
    described in [RFC6838], which can be used to indicate that the
    content is a JWP using the JWP Compact Serialization.  This section
    also registers the application/jwp+json media type in the IANA "Media
@@ -1272,6 +1272,15 @@ Table of Contents
               draft-irtf-cfrg-bbs-signatures-07, 23 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
               bbs-signatures-07>.
+
+   [IANA.CoAP.Formats]
+              IANA, "CoAP Content Formats",
+              <https://www.iana.org/assignments/core-parameters/core-
+              parameters.xhtml#content-formats>.
+
+   [IANA.MediaTypes]
+              IANA, "Media Types",
+              <http://www.iana.org/assignments/media-types>.
 
    [RFC2045]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
               Extensions (MIME) Part One: Format of Internet Message
