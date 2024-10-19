@@ -128,9 +128,9 @@ Algorithm definitions that support JWPs are in separate companion specifications
 
 # JWP Header
 
-A JWP Header is a set of named Header Parameters which describes the
-JWP. These Header Parameters may be specific to the proof applied to
-the JWP, they may identify the party forming that proof, they may
+A JWP Header is a set of Header Parameters that apply to the JWP.
+These Header Parameters may be specific to the proof applied to
+the JWP, they may identify the party issuing the proof, and they may
 describe the application purpose and format of the JWP, as well as
 provide other potential metadata.
 
