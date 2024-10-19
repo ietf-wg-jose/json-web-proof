@@ -159,7 +159,7 @@ Unless listed as a critical Header Parameter, per (#critDef),
 all Header Parameters not defined by this specification
 MUST be ignored when not understood.
 
-## Header Parameter Labelling Requirements
+## Header Parameter Labeling Requirements
 
 As labels are the mechanism for semantically distinguishing parameter
 names, it is important to describe the mechanism to reduce the risk
