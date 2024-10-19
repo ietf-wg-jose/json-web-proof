@@ -109,7 +109,8 @@ unlinkability:
 
 # Background
 
-A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515] or COSE Signed Message [@RFC8152], with the addition that it can contain multiple individual secured payloads instead of a single one.  JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
+A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515] or COSE Signed Message [@RFC8152], with the addition that it can contain multiple individual secured payloads instead of a single one.
+JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
 The intent of JSON Web Proof is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.
 
