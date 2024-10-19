@@ -27,7 +27,7 @@ Abstract
 
    This document defines a new container format similar in purpose and
    design to JSON Web Signature (JWS) and COSE Signed Messages called a
-   _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a
+   _JSON Web Proof (JWP)_. Unlike JWS, which integrity-protects only a
    single payload, JWP can integrity-protect multiple payloads in one
    message.  It also specifies a new presentation form that supports
    selective disclosure of individual payloads, enables additional proof
@@ -72,7 +72,7 @@ Table of Contents
      2.2.  Abbreviations
    3.  Background
    4.  JWP Header
-     4.1.  Header Parameter Labelling Requirements
+     4.1.  Header Parameter Labeling Requirements
      4.2.  Registered Header Parameter Labels
        4.2.1.  "alg" (Algorithm) Header Parameter
        4.2.2.  "kid" (Key ID) Header Parameter
@@ -118,7 +118,7 @@ Table of Contents
        10.2.1.  Registry Contents
          10.2.1.1.  The application/jwp Media Type
          10.2.1.2.  The application/jwp+json Media Type
-         10.2.1.3.  The application/jwp+json Media Type
+         10.2.1.3.  The application/jwp+cbor Media Type
      10.3.  Structured Syntax Suffix Registration
        10.3.1.  Registry Contents
          10.3.1.1.  The +jwp Structured Syntax Suffix
@@ -270,9 +270,9 @@ Table of Contents
 
 4.  JWP Header
 
-   A JWP Header is a set of named Header Parameters which describes the
-   JWP.  These Header Parameters may be specific to the proof applied to
-   the JWP, they may identify the party forming that proof, they may
+   A JWP Header is a set of Header Parameters that apply to the JWP.
+   These Header Parameters may be specific to the proof applied to the
+   JWP, they may identify the party issuing the proof, and they may
    describe the application purpose and format of the JWP, as well as
    provide other potential metadata.
 
@@ -300,17 +300,17 @@ Table of Contents
    Section 4.2.4, all Header Parameters not defined by this
    specification MUST be ignored when not understood.
 
-4.1.  Header Parameter Labelling Requirements
+4.1.  Header Parameter Labeling Requirements
 
    As labels are the mechanism for semantically distinguishing parameter
    names, it is important to describe the mechanism to reduce the risk
    of conflicts.
 
-   There are three strategies for labelling header parameters:
+   There are three strategies for labeling header parameters:
 
    1.  Registered parameter labels.  These labels are coordinated
        through the IANA "JSON Web Proof Header Parameters" registry,
-       which protects against a parameter having the same label.
+       which protects against parameters having the same label.
 
    2.  Collision-resistant parameter labels.  These labels are not
        coordinated through IANA, but are otherwise namespaced to prevent
@@ -321,6 +321,9 @@ Table of Contents
    3.  Private parameter labels.  These labels are not coordinated
        through IANA or another party, but are expected to only be used
        for testing or in closed environments.
+
+   These classes of Header Parameters are intentionally parallel to
+   those in Section 4 of [RFC7515].
 
 4.2.  Registered Header Parameter Labels
 
@@ -386,8 +389,8 @@ Table of Contents
    processing of this parameter is performed by the JWP application.
    Use of this Header Parameter is OPTIONAL.
 
-   For COSE Protected Headers, typ MAY instead be an integer value which
-   corresponds to the IANA "CoAP Content-Formats" registry
+   For COSE Protected Headers, typ MAY also instead be an integer value
+   which corresponds to the IANA "CoAP Content-Formats" registry
    [#IANA.CoAP.Formats], which describes the corresponding media type.
 
    Per [RFC2045], all media type values, subtype values, and parameter
@@ -420,8 +423,8 @@ Table of Contents
    being used that MUST be understood and processed.  Its value is an
    array listing the Header Parameter labels present in the JWP Header
    that use those extensions.  For JSON Protected Headers this is a list
-   of strings, while a CBOR protected header may be a list containing
-   string and int values.
+   of strings, while for CBOR protected headers it is a list containing
+   string and/or int values.
 
    If any of the listed extension Header Parameters are not understood
    and supported by the recipient, then the JWP is invalid.  Producers
@@ -753,14 +756,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.ocqS5akOaIujICPqyHa6YWrqJ7B6LwWM
-   jJQI5Z6MCuRO5ULAxEdee-_0gcxmX5nVkccJrar48_AiyHXD8rCL3ym4ObVIv0YJs1Jh9
-   b8T67LIKlJ8NeqD_qyjxZUWKkgctIb6W3IuwRH43wo26gHkCSaFhpljbkJsSiVtVJeUIi
-   PmoRM7HUZL7KiVt_BIK3ldJwl6VvLGz-dVeBj74m6w7bzAxGoi3Yh-Su97QJbSs84UzIW
-   WPJe0z4dkST0p7gtb_i4nQxPopsPbyNjHa1eI5F0C4ZF-QOaoW1xkBlKyDXjBDJIiolVe
-   ZzwmqO1N-89oYl8aoafaoPodxNvLl6STie_S7NxUEnUgJ2UUKw7DBP9UDw1DuHDvkPD7a
-   fWAR-bS54Mpr2MaAug3zV-SoKmgCQTjupMDHq0ik7095sThzO44plqUe4rUBQQ2XKn9Aa
-   d4c3iXsXP090NyYxBYMIQwM7_7hR-8DVLjFmyQ0XqNlZQ
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.gV8ukhU71Gqll0ORppL1-hzhiRneoguF
+   BYMvCqxgJz3Q8shnQVpqtlfIvwBoK4DmkHMonGNi44gQguqW2_9znI1bIGFzje2akjx2b
+   EtL762Zmw7lcirr-vM1ZtAMuorMoImH1JOuf5-oWNrwspHqPmZVMEzFE7co4coEfkuG1_
+   -WOSrNjGiGV-8tQgfOjW2lIwWSWQqH-KNbu4v4wRVtAXg6vJNz5QbU4ACL-n5Z8z5TdwU
+   Man5e7Q4lzKqJ-h80ENOMbCNub-JbHLxDD6HqT1fMkdKsbjLrSi1RoBoRyFc8mTS09a3f
+   zVJMKnkr9lz4JzD6Gurid0ll6ryJevdaU5bn8PYgu9TIPN1I9nVXl_xmyPEFpBU-NySrS
+   aW6b86UHlPYW7i5W58e4QD_ZB4cigGEpsQGOG__CQulw_CSkXzb5H9VPA6Xjv3FCttSMX
+   DESMufM_rGHFQMuD2qZPpwX40UtxgLupxDXy_ju3FVjvQ
 
    |  Figure: Compact Serialization of Presentation
 
@@ -811,14 +814,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "ocqS5akOaIujICPqyHa6YWrqJ7B6LwWMjJQI5Z6MCuRO5ULAxEdee-_0gcxmX5nV
-          kccJrar48_AiyHXD8rCL3ym4ObVIv0YJs1Jh9b8T67LIKlJ8NeqD_qyjxZUWKk
-          gctIb6W3IuwRH43wo26gHkCSaFhpljbkJsSiVtVJeUIiPmoRM7HUZL7KiVt_BI
-          K3ldJwl6VvLGz-dVeBj74m6w7bzAxGoi3Yh-Su97QJbSs84UzIWWPJe0z4dkST
-          0p7gtb_i4nQxPopsPbyNjHa1eI5F0C4ZF-QOaoW1xkBlKyDXjBDJIiolVeZzwm
-          qO1N-89oYl8aoafaoPodxNvLl6STie_S7NxUEnUgJ2UUKw7DBP9UDw1DuHDvkP
-          D7afWAR-bS54Mpr2MaAug3zV-SoKmgCQTjupMDHq0ik7095sThzO44plqUe4rU
-          BQQ2XKn9Aad4c3iXsXP090NyYxBYMIQwM7_7hR-8DVLjFmyQ0XqNlZQ"
+       "gV8ukhU71Gqll0ORppL1-hzhiRneoguFBYMvCqxgJz3Q8shnQVpqtlfIvwBoK4Dm
+          kHMonGNi44gQguqW2_9znI1bIGFzje2akjx2bEtL762Zmw7lcirr-vM1ZtAMuo
+          rMoImH1JOuf5-oWNrwspHqPmZVMEzFE7co4coEfkuG1_-WOSrNjGiGV-8tQgfO
+          jW2lIwWSWQqH-KNbu4v4wRVtAXg6vJNz5QbU4ACL-n5Z8z5TdwUMan5e7Q4lzK
+          qJ-h80ENOMbCNub-JbHLxDD6HqT1fMkdKsbjLrSi1RoBoRyFc8mTS09a3fzVJM
+          Knkr9lz4JzD6Gurid0ll6ryJevdaU5bn8PYgu9TIPN1I9nVXl_xmyPEFpBU-Ny
+          SrSaW6b86UHlPYW7i5W58e4QD_ZB4cigGEpsQGOG__CQulw_CSkXzb5H9VPA6X
+          jv3FCttSMXDESMufM_rGHFQMuD2qZPpwX40UtxgLupxDXy_ju3FVjvQ"
      ]
    }
 
@@ -827,12 +830,11 @@ Table of Contents
 6.3.  CBOR Serialization
 
    The CBOR serialization provides a compact binary representation of a
-   JWP for bandwidth and space-constrained environments.  The
-   serialization consists of two optionally-tagged arrays, representing
-   issued and presented forms.
+   JWP.  The serialization consists of two arrays, representing issued
+   and presented forms.
 
    The protected headers MUST be CBOR formatted for CBOR serialization.
-   This includes both the issued and presented headers in presented
+   This includes both the issued and presented headers in the presented
    form.
 
    The issued form consists of a three-element array, while the
@@ -843,9 +845,9 @@ Table of Contents
    using detached payloads, which is represented by setting the payloads
    value as nil.¶
 
-   Two generalized tags are defined for representing issued and
-   presented JWP.  Applications MAY use their own tags to represent
-   other specific types of JWP, possibly as an alternative to typ.
+   Two tags are defined for representing issued and presented JWPs.
+   Applications MAY use their own tags to tag other specific types of
+   JWPs.
 
    CBOR_JWP_Issued = [
           IssuerHeader : serialized_map,
@@ -866,7 +868,7 @@ Table of Contents
 
    Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
 
-   Tagged_CBOR_JWP_Presented = #6.xxx (CBOR_JWP_Presented)
+   Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
 
    Figure 1: CDDL [RFC8610] for CBOR Serializations.
 
@@ -1001,7 +1003,7 @@ Table of Contents
       value SHOULD be supplied, but MAY be omitted if this header
       parameter will never be formatted as JSON.
    Header Parameter CBOR Label:  The string or integer label requested
-      within a CBOR context (e.g. 4).  This label may not match other
+      within a CBOR context (e.g. 2).  This label may not match other
       integer values, match other string values in a case-insensitive
       manner, or be a differing string value from the JSON label unless
       the Designated Experts state that there is a compelling reason to
@@ -1046,7 +1048,7 @@ Table of Contents
 
    *  Header Parameter Name: Type
    *  Header Parameter JSON Label: typ
-   *  Header Parameter CBOR Label: 16
+   *  Header Parameter CBOR Label: 3
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.3 of this specification
@@ -1055,7 +1057,7 @@ Table of Contents
 
    *  Header Parameter Name: Critical
    *  Header Parameter JSON Label: crit
-   *  Header Parameter CBOR Label: 2
+   *  Header Parameter CBOR Label: 4
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.4 of this specification
@@ -1064,7 +1066,7 @@ Table of Contents
 
    *  Header Parameter Name: Issuer
    *  Header Parameter JSON Label: iss
-   *  Header Parameter CBOR Label: 8
+   *  Header Parameter CBOR Label: 5
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.7 of this specification
@@ -1073,7 +1075,7 @@ Table of Contents
 
    *  Header Parameter Name: Audience
    *  Header Parameter JSON Label: aud
-   *  Header Parameter CBOR Label: 17
+   *  Header Parameter CBOR Label: 6
    *  Header Parameter Usage Location(s): Presented
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.8 of this specification
@@ -1082,7 +1084,7 @@ Table of Contents
 
    *  Header Parameter Name: Nonce
    *  Header Parameter JSON Label: nonce
-   *  Header Parameter CBOR Label: 18
+   *  Header Parameter CBOR Label: 7
    *  Header Parameter Usage Location(s): Presented
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.9 of this specification
@@ -1091,7 +1093,7 @@ Table of Contents
 
    *  Header Parameter Name: Claims
    *  Header Parameter JSON Label: claims
-   *  Header Parameter CBOR Label: 19
+   *  Header Parameter CBOR Label: 8
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.10 of this specification
@@ -1160,7 +1162,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-10.2.1.3.  The application/jwp+json Media Type
+10.2.1.3.  The application/jwp+cbor Media Type
 
    *  Type name: application
    *  Subtype name: jwp+cbor
