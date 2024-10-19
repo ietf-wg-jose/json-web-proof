@@ -165,11 +165,11 @@ As labels are the mechanism for semantically distinguishing parameter
 names, it is important to describe the mechanism to reduce the risk
 of conflicts.
 
-There are three strategies for labelling header parameters:
+There are three strategies for labeling header parameters:
 
 1. Registered parameter labels. These labels are coordinated through
 the IANA "JSON Web Proof Header Parameters" registry, which protects
-against a parameter having the same label.
+against parameters having the same label.
 
 2. Collision-resistant parameter labels. These labels are not
 coordinated through IANA, but are otherwise namespaced to prevent
@@ -180,6 +180,8 @@ header parameter.
 3. Private parameter labels. These labels are not coordinated through
 IANA or another party, but are expected to only be used for testing
 or in closed environments.
+
+These classes of Header Parameters are intentionally parallel to those in Section 4 of [@RFC7515].
 
 ## Registered Header Parameter Labels {#RegisteredHeaderParameterLabels}
 
@@ -250,7 +252,7 @@ This parameter is ignored by JWP implementations;
 any processing of this parameter is performed by the JWP application.
 Use of this Header Parameter is OPTIONAL.
 
-For COSE Protected Headers, `typ` MAY instead be an integer value
+For COSE Protected Headers, `typ` MAY also instead be an integer value
 which corresponds to the IANA "CoAP Content-Formats" registry
 [#IANA.CoAP.Formats], which describes the corresponding media type.
 
@@ -286,8 +288,8 @@ this specification and/or [@!I-D.ietf-jose-json-proof-algorithms]
 are being used that MUST be understood and processed.
 Its value is an array listing the Header Parameter labels
 present in the JWP Header that use those extensions. For JSON Protected
-Headers this is a list of strings, while a CBOR protected header may
-be a list containing string and int values.
+Headers this is a list of strings, while for CBOR protected headers
+it is a list containing string and/or int values.
 
 If any of the listed extension Header Parameters are not
 understood and supported by the recipient, then the JWP is invalid.
@@ -533,13 +535,11 @@ Figure: JSON Serialization of Presentation
 
 ## CBOR Serialization
 
-The CBOR serialization provides a compact binary representation of a
-JWP for bandwidth and space-constrained environments. The
-serialization consists of two optionally-tagged arrays, representing
-issued and presented forms.
+The CBOR serialization provides a compact binary representation of a JWP.
+The serialization consists of two arrays, representing issued and presented forms.
 
 The protected headers MUST be CBOR formatted for CBOR serialization.
-This includes both the issued and presented headers in presented form.
+This includes both the issued and presented headers in the presented form.
 
 The issued form consists of a three-element array, while the
 presented form consists of a four-element array.
@@ -549,9 +549,8 @@ CBOR value `nil`. Payloads MUST be included unless the application
 is using detached payloads, which is represented by setting the
 `payloads` value as `nil`.¶
 
-Two generalized tags are defined for representing issued and
-presented JWP. Applications MAY use their own tags to represent other
-specific types of JWP, possibly as an alternative to `typ`.
+Two tags are defined for representing issued and presented JWPs.
+Applications MAY use their own tags to tag other specific types of JWPs.
 
 ``` cddl
 CBOR_JWP_Issued = [
@@ -573,7 +572,7 @@ payload = bstr / nil
 
 Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
 
-Tagged_CBOR_JWP_Presented = #6.xxx (CBOR_JWP_Presented)
+Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
 
 ```
 Figure 1: CDDL [RFC8610] for CBOR Serializations.
@@ -706,7 +705,7 @@ Header Parameter JSON Label:
 
 Header Parameter CBOR Label:
 : The string or integer label requested
-  within a CBOR context (e.g. `4`).
+  within a CBOR context (e.g. `2`).
   This label may not match other integer values, match other string
   values in a case-insensitive manner, or be a differing string
   value from the JSON label unless the Designated Experts state that
@@ -756,7 +755,7 @@ This section registers the Header Parameters defined in
 
 * Header Parameter Name: Type
 * Header Parameter JSON Label: `typ`
-* Header Parameter CBOR Label: 16
+* Header Parameter CBOR Label: 3
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#typDef) of this specification
@@ -765,7 +764,7 @@ This section registers the Header Parameters defined in
 
 * Header Parameter Name: Critical
 * Header Parameter JSON Label: `crit`
-* Header Parameter CBOR Label: 2
+* Header Parameter CBOR Label: 4
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#critDef) of this specification
@@ -774,7 +773,7 @@ This section registers the Header Parameters defined in
 
 * Header Parameter Name: Issuer
 * Header Parameter JSON Label: `iss`
-* Header Parameter CBOR Label: 8
+* Header Parameter CBOR Label: 5
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#issDef) of this specification
@@ -783,7 +782,7 @@ This section registers the Header Parameters defined in
 
 * Header Parameter Name: Audience
 * Header Parameter JSON Label: `aud`
-* Header Parameter CBOR Label: 17
+* Header Parameter CBOR Label: 6
 * Header Parameter Usage Location(s): Presented
 * Change Controller: IETF
 * Specification Document(s): (#audDef) of this specification
@@ -792,7 +791,7 @@ This section registers the Header Parameters defined in
 
 * Header Parameter Name: Nonce
 * Header Parameter JSON Label: `nonce`
-* Header Parameter CBOR Label: 18
+* Header Parameter CBOR Label: 7
 * Header Parameter Usage Location(s): Presented
 * Change Controller: IETF
 * Specification Document(s): (#nonceDef) of this specification
@@ -801,7 +800,7 @@ This section registers the Header Parameters defined in
 
 * Header Parameter Name: Claims
 * Header Parameter JSON Label: `claims`
-* Header Parameter CBOR Label: 19
+* Header Parameter CBOR Label: 8
 * Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
 * Specification Document(s): (#claimsDef) of this specification
@@ -866,7 +865,7 @@ a JWP using the JWP JSON Serialization.
 * Change Controller: IETF
 * Provisional registration? No
 
-#### The application/jwp+json Media Type
+#### The application/jwp+cbor Media Type
 
 * Type name: application
 * Subtype name: jwp+cbor
