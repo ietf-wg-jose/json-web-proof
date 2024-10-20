@@ -1173,10 +1173,10 @@ It also specifies a new presentation form that supports selective disclosure of 
                     <p id="section-toc.1-1.4.2.2.2.4.1"><a href="#section-4.2.4" class="auto internal xref">4.2.4</a>.  <a href="#name-crit-critical-header-parame" class="internal xref">"crit" (Critical) Header Parameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.5">
-                    <p id="section-toc.1-1.4.2.2.2.5.1"><a href="#section-4.2.5" class="auto internal xref">4.2.5</a>.  <a href="#name-proof_jwk-proof-jwk-header-" class="internal xref">"proof_jwk" (Proof JWK) Header Parameter</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.5.1"><a href="#section-4.2.5" class="auto internal xref">4.2.5</a>.  <a href="#name-proof_key-proof-key-header-" class="internal xref">"proof_key" (Proof Key) Header Parameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.6">
-                    <p id="section-toc.1-1.4.2.2.2.6.1"><a href="#section-4.2.6" class="auto internal xref">4.2.6</a>.  <a href="#name-presentation_jwk-presentati" class="internal xref">"presentation_jwk" (Presentation JWK) Header Parameter</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.6.1"><a href="#section-4.2.6" class="auto internal xref">4.2.6</a>.  <a href="#name-presentation_key-presentati" class="internal xref">"presentation_key" (Presentation Key) Header Parameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.7">
                     <p id="section-toc.1-1.4.2.2.2.7.1"><a href="#section-4.2.7" class="auto internal xref">4.2.7</a>.  <a href="#name-iss-issuer-header-parameter" class="internal xref">"iss" (Issuer) Header Parameter</a></p>
@@ -1291,6 +1291,12 @@ It also specifies a new presentation form that supports selective disclosure of 
 </li>
                       <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2.2.8">
                         <p id="section-toc.1-1.10.2.1.2.2.2.8.1"><a href="#section-10.1.2.8" class="auto internal xref">10.1.2.8</a>.  <a href="#name-claims-header-parameter" class="internal xref">Claims Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2.2.9">
+                        <p id="section-toc.1-1.10.2.1.2.2.2.9.1"><a href="#section-10.1.2.9" class="auto internal xref">10.1.2.9</a>.  <a href="#name-proof-key-header-parameter" class="internal xref">Proof Key Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2.2.10">
+                        <p id="section-toc.1-1.10.2.1.2.2.2.10.1"><a href="#section-10.1.2.10" class="auto internal xref">10.1.2.10</a>. <a href="#name-presentation-key-header-par" class="internal xref">Presentation Key Header Parameter</a></p>
 </li>
                     </ul>
 </li>
@@ -1644,38 +1650,45 @@ Use of this Header Parameter is OPTIONAL.
 This Header Parameter MUST be understood and processed by implementations.<a href="#section-4.2.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="proof_jwkDef">
+<div id="proof_keyDef">
 <section id="section-4.2.5">
-          <h4 id="name-proof_jwk-proof-jwk-header-">
-<a href="#section-4.2.5" class="section-number selfRef">4.2.5. </a><a href="#name-proof_jwk-proof-jwk-header-" class="section-name selfRef">"proof_jwk" (Proof JWK) Header Parameter</a>
+          <h4 id="name-proof_key-proof-key-header-">
+<a href="#section-4.2.5" class="section-number selfRef">4.2.5. </a><a href="#name-proof_key-proof-key-header-" class="section-name selfRef">"proof_key" (Proof Key) Header Parameter</a>
           </h4>
-<p id="section-4.2.5-1">The <code>proof_jwk</code> (Proof JWK) represents the public key used by the issuer
-for proof of possession.
-This header parameter is references a JSON Web Key (JWK) public
+<p id="section-4.2.5-1">The <code>proof_key</code> (Proof Key) represents the public key used by the issuer
+for proof of possession within certain algorithms. This is an ephemeral
+key that MUST be unique for each issued JWP.<a href="#section-4.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.5-2">This header parameter is references a JSON Web Key (JWK) public
 key value when represented as a JSON Protected Header, and a COSE Key
-Object when represented as a CBOR Protected Header.<a href="#section-4.2.5-1" class="pilcrow">¶</a></p>
-<p id="section-4.2.5-2">It MUST contain only public key parameters and
+Object when represented as a CBOR Protected Header.<a href="#section-4.2.5-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.5-3">It MUST contain only public key parameters and
 SHOULD contain only the minimum parameters necessary to represent the key;
-other parameters included can be checked for consistency and honored, or they can be ignored.
-This Header Parameter MUST be present in the JWP issuer header parameters
-and MUST be understood and processed by implementations.<a href="#section-4.2.5-2" class="pilcrow">¶</a></p>
+other parameters included can be checked for consistency and honored, or they can be ignored.<a href="#section-4.2.5-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.5-4">When present, this Header Parameter MUST be understood and processed by implementations.<a href="#section-4.2.5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="presentation_jwkDef">
+<div id="presentation_keyDef">
 <section id="section-4.2.6">
-          <h4 id="name-presentation_jwk-presentati">
-<a href="#section-4.2.6" class="section-number selfRef">4.2.6. </a><a href="#name-presentation_jwk-presentati" class="section-name selfRef">"presentation_jwk" (Presentation JWK) Header Parameter</a>
+          <h4 id="name-presentation_key-presentati">
+<a href="#section-4.2.6" class="section-number selfRef">4.2.6. </a><a href="#name-presentation_key-presentati" class="section-name selfRef">"presentation_key" (Presentation Key) Header Parameter</a>
           </h4>
-<p id="section-4.2.6-1">The <code>presentation_jwk</code> (Presentation JWK) represents the public key used by the holder
-for proof of possession.<a href="#section-4.2.6-1" class="pilcrow">¶</a></p>
-<p id="section-4.2.6-2">This header parameter is references a JSON Web Key (JWK) public
+<p id="section-4.2.6-1">The <code>presentation_key</code> (Presentation Key) represents the public key
+with certain algorithms, and is used by the holder for proof of
+possession and integrity protection of the presented protected header.<a href="#section-4.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.6-2">The issuer MUST validate that the holder has possession of this key
+through a trusted mechanism, such as requiring the signature of a
+unique nonce value from the holder before issuing the JWP.<a href="#section-4.2.6-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.6-3">This header parameter is references a JSON Web Key (JWK) public
 key value when represented as a JSON Protected Header, and a COSE Key
-Object when represented as a CBOR Protected Header.<a href="#section-4.2.6-2" class="pilcrow">¶</a></p>
-<p id="section-4.2.6-3">It MUST contain only public key parameters and
-SHOULD contain only the minimum parameters necessary to represent the key;
-other parameters included can be checked for consistency and honored, or they can be ignored.
-This Header Parameter MUST be present in the JWP issuer header parameters
-and MUST be understood and processed by implementations.<a href="#section-4.2.6-3" class="pilcrow">¶</a></p>
+Object when represented as a CBOR Protected Header.<a href="#section-4.2.6-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.6-4">It MUST contain only public key parameters and SHOULD contain only the
+minimum parameters necessary to represent the key; other parameters
+included can be checked for consistency and honored, or they can be
+ignored.<a href="#section-4.2.6-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.6-5">If holder unlinkability is required, this value MUST not be repeated
+in multiple issued JWPs; a different presentation key MUST
+be included in each issuance.<a href="#section-4.2.6-5" class="pilcrow">¶</a></p>
+<p id="section-4.2.6-6">This Header Parameter MUST be understood and processed by implementations when present.<a href="#section-4.2.6-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issDef">
@@ -1684,10 +1697,10 @@ and MUST be understood and processed by implementations.<a href="#section-4.2.6-
 <a href="#section-4.2.7" class="section-number selfRef">4.2.7. </a><a href="#name-iss-issuer-header-parameter" class="section-name selfRef">"iss" (Issuer) Header Parameter</a>
           </h4>
 <p id="section-4.2.7-1">The <code>iss</code> (issuer) Header Parameter identifies the principal that issued the JWP.
-The processing of this claim is generally application specific.
-The <code>iss</code> value is a case-sensitive string containing a StringOrURI value.
-Its definition is intentionally parallel to the <code>iss</code> claim defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-4.2.7-1" class="pilcrow">¶</a></p>
-<p id="section-4.2.7-2">Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.7-2" class="pilcrow">¶</a></p>
+The processing of this claim is generally application specific.<a href="#section-4.2.7-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.7-2">The <code>iss</code> value is a case-sensitive string containing a StringOrURI value.
+Its definition is intentionally parallel to the <code>iss</code> claim defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-4.2.7-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.7-3">Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.7-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="audDef">
@@ -1899,14 +1912,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.t6AN-nAzj2yZRJYz8mW2n9WxcwRlhiYp
-wPiEM2phNBC9a2kCjebxfVSF8rrDiN2-o36ClsKjDnf17tIsgJwzD4vYtHbbIgB9u_AIQ
-TXaEuVXIwGsF1lkrWshqccvGwNuslUDS65e7LqxrJ7EQWO_ob1tWW4IFF0A6ociFWPued
-HP-_PqkpwSVzHW5QIT9q5fDI1HUyhihMrMTIqfJ1YtIuK0Vz7dFZz6P5e_lzPEfJEETzU
-Y9tUzMBDt3x9dHQgowAcuThtpOBe9N1cYnWGX2kvuRVlCzHlktXz59qrT1OAcwbZHTDzg
-8h4rvBD2sXD2Pzg2Sq87F6hpBKlYzuIiadEdGxjL9Letsee3dkXWN3kZwxRoud19AaW0q
-wlee_TT_RlthTsa0zsP95EGkWnAXDYbz0gDEE5kZtGljTpENajGNVPYnwY1Xgl3oamJrj
-UvG1lrGVoC1JqCgs5RIaZFMEsKEkK0Qfl3oKMA8QYb7ao
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.jJtrd_zOFgjy_WgjJiv4KXXFxRlcgAod
+GFqORovW_JSNlqRTDIu2RGbbOHz66KXhgOF71-1ZuB5wa4FODeEqB56KfmPQKNYOEfZ8S
+vXiFFVjU-8jygjiILSuT4ylw6Ecl_LdmDU2Oh-LcQvWJdLrMHms-aSpOMvqDYQeTjGo38
+zlVv4jeszte0iTqe2nPLgKBdYCGJ6kYVJ8YDL0Qt0UpAeBhIssYVpOwoUQS5ismTg2Ba2
+ImmlojpEs0cEqD1F0iCf9GbAnZ_H0N2sUnJDJEQR4uIcvc6qmX7repkKpM4_AGTbemwDa
+QzEkp5JiOWNfEGBskqiXsmDBrfnim4DN434ByWu8cTeprMn6tF7a3BZm0JkGt1wryaQsi
+9cg5iPHeK1tybOYvqtiN3MMqpIaiTKGwKWyR1xj5BpnzeTmhCVxAjXc57JgfaKHOW3ILP
+BrKMcN19A3ifZ8aJscr_wdvjrHJLjycUu9ubmyYsdHRI0
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -1943,14 +1956,14 @@ UvG1lrGVoC1JqCgs5RIaZFMEsKEkK0Qfl3oKMA8QYb7ao
     null
   ],
   "proof": [
-    "t6AN-nAzj2yZRJYz8mW2n9WxcwRlhiYpwPiEM2phNBC9a2kCjebxfVSF8rrDiN2-
-       o36ClsKjDnf17tIsgJwzD4vYtHbbIgB9u_AIQTXaEuVXIwGsF1lkrWshqccvGw
-       NuslUDS65e7LqxrJ7EQWO_ob1tWW4IFF0A6ociFWPuedHP-_PqkpwSVzHW5QIT
-       9q5fDI1HUyhihMrMTIqfJ1YtIuK0Vz7dFZz6P5e_lzPEfJEETzUY9tUzMBDt3x
-       9dHQgowAcuThtpOBe9N1cYnWGX2kvuRVlCzHlktXz59qrT1OAcwbZHTDzg8h4r
-       vBD2sXD2Pzg2Sq87F6hpBKlYzuIiadEdGxjL9Letsee3dkXWN3kZwxRoud19Aa
-       W0qwlee_TT_RlthTsa0zsP95EGkWnAXDYbz0gDEE5kZtGljTpENajGNVPYnwY1
-       Xgl3oamJrjUvG1lrGVoC1JqCgs5RIaZFMEsKEkK0Qfl3oKMA8QYb7ao"
+    "jJtrd_zOFgjy_WgjJiv4KXXFxRlcgAodGFqORovW_JSNlqRTDIu2RGbbOHz66KXh
+       gOF71-1ZuB5wa4FODeEqB56KfmPQKNYOEfZ8SvXiFFVjU-8jygjiILSuT4ylw6
+       Ecl_LdmDU2Oh-LcQvWJdLrMHms-aSpOMvqDYQeTjGo38zlVv4jeszte0iTqe2n
+       PLgKBdYCGJ6kYVJ8YDL0Qt0UpAeBhIssYVpOwoUQS5ismTg2Ba2ImmlojpEs0c
+       EqD1F0iCf9GbAnZ_H0N2sUnJDJEQR4uIcvc6qmX7repkKpM4_AGTbemwDaQzEk
+       p5JiOWNfEGBskqiXsmDBrfnim4DN434ByWu8cTeprMn6tF7a3BZm0JkGt1wrya
+       Qsi9cg5iPHeK1tybOYvqtiN3MMqpIaiTKGwKWyR1xj5BpnzeTmhCVxAjXc57Jg
+       faKHOW3ILPBrKMcN19A3ifZ8aJscr_wdvjrHJLjycUu9ubmyYsdHRI0"
   ]
 }
 
@@ -2363,6 +2376,48 @@ relevant sections may also be included but is not required.<a href="#section-10.
             </ul>
 </section>
 </div>
+<div id="proof-key-header-parameter">
+<section id="section-10.1.2.9">
+            <h5 id="name-proof-key-header-parameter">
+<a href="#section-10.1.2.9" class="section-number selfRef">10.1.2.9. </a><a href="#name-proof-key-header-parameter" class="section-name selfRef">Proof Key Header Parameter</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-10.1.2.9-1.1">Header Parameter Name: Proof Key<a href="#section-10.1.2.9-1.1" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.9-1.2">Header Parameter JSON Label: <code>proof_key</code><a href="#section-10.1.2.9-1.2" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.9-1.3">Header Parameter CBOR Label: 9<a href="#section-10.1.2.9-1.3" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.9-1.4">Header Parameter Usage Location(s): Issued<a href="#section-10.1.2.9-1.4" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.9-1.5">Change Controller: IETF<a href="#section-10.1.2.9-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.9-1.6">Specification Document(s): <a href="#proof_keyDef" class="auto internal xref">Section 4.2.5</a> of this specification<a href="#section-10.1.2.9-1.6" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
+<div id="presentation-key-header-parameter">
+<section id="section-10.1.2.10">
+            <h5 id="name-presentation-key-header-par">
+<a href="#section-10.1.2.10" class="section-number selfRef">10.1.2.10. </a><a href="#name-presentation-key-header-par" class="section-name selfRef">Presentation Key Header Parameter</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-10.1.2.10-1.1">Header Parameter Name: Presentation Key<a href="#section-10.1.2.10-1.1" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.10-1.2">Header Parameter JSON Label: <code>presentation_key</code><a href="#section-10.1.2.10-1.2" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.10-1.3">Header Parameter CBOR Label: 10<a href="#section-10.1.2.10-1.3" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.10-1.4">Header Parameter Usage Location(s): Issued<a href="#section-10.1.2.10-1.4" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.10-1.5">Change Controller: IETF<a href="#section-10.1.2.10-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.10-1.6">Specification Document(s): <a href="#presentation_keyDef" class="auto internal xref">Section 4.2.6</a> of this specification<a href="#section-10.1.2.10-1.6" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -2723,63 +2778,80 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
 <p id="appendix-B-1">[[ To be removed from the final specification ]]<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">-06<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">-latest<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-3.1">Update reference to new repository home.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-3.1">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-B-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-3.2">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
+<code>presentation_key</code> to better represent that the key may be JSON
+or CBOR-formatted.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.3">Added additional clarification around the compact and JSON serializations<a href="#appendix-B-3.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-3.3">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
+where they are defined. Consolidated usage, purpose and
+requirements from algorith musage under these definitions.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.4">Added text around fully detached payloads<a href="#appendix-B-3.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-3.4">Clarified that <code>proof_key</code> and <code>presentation_key</code> are required
+by particular algorithms and are not more generally required for
+issued and presented JWPs.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-4">-05<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">-06<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-5.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-5.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-5.1">Update reference to new repository home.<a href="#appendix-B-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.2">Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.<a href="#appendix-B-5.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-5.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-5.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.3">Added additional clarification around the compact and JSON serializations<a href="#appendix-B-5.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-5.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.4">Added text around fully detached payloads<a href="#appendix-B-5.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-6">-04<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+<p id="appendix-B-6">-05<a href="#appendix-B-6" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-7.1">Refactoring figures and examples to be built from a common set across all three documents.<a href="#appendix-B-7.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-7.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-7.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-7.2">Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.<a href="#appendix-B-7.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-7.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-7.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-7.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-7.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-8">-03<a href="#appendix-B-8" class="pilcrow">¶</a></p>
+<p id="appendix-B-8">-04<a href="#appendix-B-8" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-9.1">Improvements resulting from a full proofreading.<a href="#appendix-B-9.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-9.2">Populated IANA Considerations section.<a href="#appendix-B-9.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-9.3">Specified JWP Header Parameters.<a href="#appendix-B-9.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-9.4">Specified representation of zero-length disclosed payloads for the compact serialization.<a href="#appendix-B-9.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-9.5">Specified that algorithms may supply multiple octet strings for the proof, which are separated by <code>~</code> characters in the compact serialization.<a href="#appendix-B-9.5" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-9.6">Updated to use BBS draft -05.<a href="#appendix-B-9.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-9.7">Added Terminology Section.<a href="#appendix-B-9.7" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-9.1">Refactoring figures and examples to be built from a common set across all three documents.<a href="#appendix-B-9.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-10">-02<a href="#appendix-B-10" class="pilcrow">¶</a></p>
+<p id="appendix-B-10">-03<a href="#appendix-B-10" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-11.1">Update reference to current BBS algorithm<a href="#appendix-B-11.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-11.1">Improvements resulting from a full proofreading.<a href="#appendix-B-11.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.2">Populated IANA Considerations section.<a href="#appendix-B-11.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.3">Specified JWP Header Parameters.<a href="#appendix-B-11.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.4">Specified representation of zero-length disclosed payloads for the compact serialization.<a href="#appendix-B-11.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.5">Specified that algorithms may supply multiple octet strings for the proof, which are separated by <code>~</code> characters in the compact serialization.<a href="#appendix-B-11.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.6">Updated to use BBS draft -05.<a href="#appendix-B-11.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.7">Added Terminology Section.<a href="#appendix-B-11.7" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-12">-01<a href="#appendix-B-12" class="pilcrow">¶</a></p>
+<p id="appendix-B-12">-02<a href="#appendix-B-12" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-13.1">Correct cross-references within group.<a href="#appendix-B-13.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-13.1">Update reference to current BBS algorithm<a href="#appendix-B-13.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-14">-00<a href="#appendix-B-14" class="pilcrow">¶</a></p>
+<p id="appendix-B-14">-01<a href="#appendix-B-14" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-15.1">Created initial working group draft based on draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-15.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-15.1">Correct cross-references within group.<a href="#appendix-B-15.1" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="appendix-B-16">-00<a href="#appendix-B-16" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-17.1">Created initial working group draft based on draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-17.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
