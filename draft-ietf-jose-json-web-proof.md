@@ -312,7 +312,7 @@ This Header Parameter MUST be understood and processed by implementations.
 
 The `proof_key` (Proof Key) represents the public key used by the issuer
 for proof of possession within certain algorithms. This is an ephemeral
-key which MUST be unique for each issued JWP.
+key that MUST be unique for each issued JWP.
 
 This header parameter is references a JSON Web Key (JWK) public
 key value when represented as a JSON Protected Header, and a COSE Key
