@@ -79,8 +79,8 @@ Table of Contents
        4.2.2.  "kid" (Key ID) Header Parameter
        4.2.3.  "typ" (Type) Header Parameter
        4.2.4.  "crit" (Critical) Header Parameter
-       4.2.5.  "proof_jwk" (Proof JWK) Header Parameter
-       4.2.6.  "presentation_jwk" (Presentation JWK) Header Parameter
+       4.2.5.  "proof_key" (Proof Key) Header Parameter
+       4.2.6.  "presentation_key" (Presentation Key) Header Parameter
        4.2.7.  "iss" (Issuer) Header Parameter
        4.2.8.  "aud" (Audience) Header Parameter
        4.2.9.  "nonce" (Nonce) Header Parameter
@@ -115,6 +115,8 @@ Table of Contents
          10.1.2.6.  Audience Header Parameter
          10.1.2.7.  Nonce Header Parameter
          10.1.2.8.  Claims Header Parameter
+         10.1.2.9.  Proof Key Header Parameter
+         10.1.2.10. Presentation Key Header Parameter
      10.2.  Media Type Registration
        10.2.1.  Registry Contents
          10.2.1.1.  The application/jwp Media Type
@@ -443,25 +445,11 @@ Table of Contents
    OPTIONAL.  This Header Parameter MUST be understood and processed by
    implementations.
 
-4.2.5.  "proof_jwk" (Proof JWK) Header Parameter
+4.2.5.  "proof_key" (Proof Key) Header Parameter
 
-   The proof_jwk (Proof JWK) represents the public key used by the
-   issuer for proof of possession.  This header parameter is references
-   a JSON Web Key (JWK) public key value when represented as a JSON
-   Protected Header, and a COSE Key Object when represented as a CBOR
-   Protected Header.
-
-   It MUST contain only public key parameters and SHOULD contain only
-   the minimum parameters necessary to represent the key; other
-   parameters included can be checked for consistency and honored, or
-   they can be ignored.  This Header Parameter MUST be present in the
-   JWP issuer header parameters and MUST be understood and processed by
-   implementations.
-
-4.2.6.  "presentation_jwk" (Presentation JWK) Header Parameter
-
-   The presentation_jwk (Presentation JWK) represents the public key
-   used by the holder for proof of possession.
+   The proof_key (Proof Key) represents the public key used by the
+   issuer for proof of possession within certain algorithms.  This is an
+   ephemeral key that MUST be unique for each issued JWP.
 
    This header parameter is references a JSON Web Key (JWK) public key
    value when represented as a JSON Protected Header, and a COSE Key
@@ -470,17 +458,47 @@ Table of Contents
    It MUST contain only public key parameters and SHOULD contain only
    the minimum parameters necessary to represent the key; other
    parameters included can be checked for consistency and honored, or
-   they can be ignored.  This Header Parameter MUST be present in the
-   JWP issuer header parameters and MUST be understood and processed by
-   implementations.
+   they can be ignored.
+
+   When present, this Header Parameter MUST be understood and processed
+   by implementations.
+
+4.2.6.  "presentation_key" (Presentation Key) Header Parameter
+
+   The presentation_key (Presentation Key) represents the public key
+   with certain algorithms, and is used by the holder for proof of
+   possession and integrity protection of the presented protected
+   header.
+
+   The issuer MUST validate that the holder has possession of this key
+   through a trusted mechanism, such as requiring the signature of a
+   unique nonce value from the holder before issuing the JWP.
+
+   This header parameter is references a JSON Web Key (JWK) public key
+   value when represented as a JSON Protected Header, and a COSE Key
+   Object when represented as a CBOR Protected Header.
+
+   It MUST contain only public key parameters and SHOULD contain only
+   the minimum parameters necessary to represent the key; other
+   parameters included can be checked for consistency and honored, or
+   they can be ignored.
+
+   If holder unlinkability is required, this value MUST not be repeated
+   in multiple issued JWPs; a different presentation key MUST be
+   included in each issuance.
+
+   This Header Parameter MUST be understood and processed by
+   implementations when present.
 
 4.2.7.  "iss" (Issuer) Header Parameter
 
    The iss (issuer) Header Parameter identifies the principal that
    issued the JWP.  The processing of this claim is generally
-   application specific.  The iss value is a case-sensitive string
-   containing a StringOrURI value.  Its definition is intentionally
-   parallel to the iss claim defined in [RFC7519].
+   application specific.
+
+   The iss value is a case-sensitive string containing a StringOrURI
+   value.  Its definition is intentionally parallel to the iss claim
+   defined in [RFC7519].
 
    Use of this Header Parameter is OPTIONAL.
 
@@ -757,14 +775,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.iyFtpifPg7q-BPkDEUwdknPf5djBAJ8e
-   Vlu6xzlDuBUbw21rwBEhcEGpgnMQLGRxtWEpFxkQlLU7Iy_dW0bw6hQHfgqTsviqq1dzc
-   OhLhR9UvLI0TmHxMqtkX8pxo_SOtQvpS9neFssV6wpBfURvD0jU1EzyLFdWG23OyV5K_w
-   69tC-XybFj0mAWUeVHnFhhFm3lxccg3dnZaYbev3fC1BpPOlHbXZZE9K0zwahhpwVWY9o
-   akli8cnhid-j6bb_lO2X_wLFrKtIezJ6aStUUSzNgRQ1j8Wa2FIxH1zqJGP2XB9TdPzj1
-   NgBqXzvzFC9dZWcJdEZWPLXmVVpZpiunGpV04qO9HEJlffNcXl5LmPojsVN46hs5l25Wg
-   K1hW4S3X8-jekGd3lT4G4xUCycojxwblXpLL4b0ZajV44qpaX11xYF_SncpthDr5l3Klu
-   rYAkJ3ibsoUgC1-Zh9qrtAJTEYzvfYt43vQMypWQS4X1s
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.k2k70IU2q6UNSPIaJsT3TNvdxCBL4J4f
+   3PtptAOvWcImHjaZLliiVhD-WBSSVipyl-1ht8cMOByNM1z1CbAXp8AmToDLb20_II8j4
+   8135gu74nIkmFFJZBEadhTJBc9gi96nmmnwDYfmVrD1U2RbL0v1ltHGyCwZQfo1AWOV4d
+   7YTpDSLw6fMfcEnbfUoIPAcL16Ssrycq6Ok_h7QbdBStF2FCOk-1vpDtNFn2E2LOwenND
+   SZ8a3w4b7kVvkE7nChPAlBKH1s0DhRD9VA6qTlgtgNNgJ7YT3kg36D5kPHqyQyjgBiyoH
+   nSiK-pO-T8L6YMsmUPkOK-2ExiER5deZPEVdBbGvRHsxUXq8i10L2PcE_XG_VSilhISdb
+   ICaIIZXsvUmiuF3GiWCrVYwvVIBBzHqVhwBVKOTLYco_IYOTSesRVzbiEgoa1ELfu4pvg
+   -IF7iFlIhX9w4YeJ0er3-jV7rFzqmJ8ghkvfYCVi85rRc
 
    |  Figure: Compact Serialization of Presentation
 
@@ -815,14 +833,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "iyFtpifPg7q-BPkDEUwdknPf5djBAJ8eVlu6xzlDuBUbw21rwBEhcEGpgnMQLGRx
-          tWEpFxkQlLU7Iy_dW0bw6hQHfgqTsviqq1dzcOhLhR9UvLI0TmHxMqtkX8pxo_
-          SOtQvpS9neFssV6wpBfURvD0jU1EzyLFdWG23OyV5K_w69tC-XybFj0mAWUeVH
-          nFhhFm3lxccg3dnZaYbev3fC1BpPOlHbXZZE9K0zwahhpwVWY9oakli8cnhid-
-          j6bb_lO2X_wLFrKtIezJ6aStUUSzNgRQ1j8Wa2FIxH1zqJGP2XB9TdPzj1NgBq
-          XzvzFC9dZWcJdEZWPLXmVVpZpiunGpV04qO9HEJlffNcXl5LmPojsVN46hs5l2
-          5WgK1hW4S3X8-jekGd3lT4G4xUCycojxwblXpLL4b0ZajV44qpaX11xYF_Sncp
-          thDr5l3KlurYAkJ3ibsoUgC1-Zh9qrtAJTEYzvfYt43vQMypWQS4X1s"
+       "k2k70IU2q6UNSPIaJsT3TNvdxCBL4J4f3PtptAOvWcImHjaZLliiVhD-WBSSVipy
+          l-1ht8cMOByNM1z1CbAXp8AmToDLb20_II8j48135gu74nIkmFFJZBEadhTJBc
+          9gi96nmmnwDYfmVrD1U2RbL0v1ltHGyCwZQfo1AWOV4d7YTpDSLw6fMfcEnbfU
+          oIPAcL16Ssrycq6Ok_h7QbdBStF2FCOk-1vpDtNFn2E2LOwenNDSZ8a3w4b7kV
+          vkE7nChPAlBKH1s0DhRD9VA6qTlgtgNNgJ7YT3kg36D5kPHqyQyjgBiyoHnSiK
+          -pO-T8L6YMsmUPkOK-2ExiER5deZPEVdBbGvRHsxUXq8i10L2PcE_XG_VSilhI
+          SdbICaIIZXsvUmiuF3GiWCrVYwvVIBBzHqVhwBVKOTLYco_IYOTSesRVzbiEgo
+          a1ELfu4pvg-IF7iFlIhX9w4YeJ0er3-jV7rFzqmJ8ghkvfYCVi85rRc"
      ]
    }
 
@@ -1099,6 +1117,24 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.10 of this specification
 
+10.1.2.9.  Proof Key Header Parameter
+
+   *  Header Parameter Name: Proof Key
+   *  Header Parameter JSON Label: proof_key
+   *  Header Parameter CBOR Label: 9
+   *  Header Parameter Usage Location(s): Issued
+   *  Change Controller: IETF
+   *  Specification Document(s): Section 4.2.5 of this specification
+
+10.1.2.10.  Presentation Key Header Parameter
+
+   *  Header Parameter Name: Presentation Key
+   *  Header Parameter JSON Label: presentation_key
+   *  Header Parameter CBOR Label: 10
+   *  Header Parameter Usage Location(s): Issued
+   *  Change Controller: IETF
+   *  Specification Document(s): Section 4.2.6 of this specification
+
 10.2.  Media Type Registration
 
 10.2.1.  Registry Contents
@@ -1349,6 +1385,17 @@ Appendix B.  Document History
    -latest
 
    *  Changing primary editor
+   *  Modify example generation to use proof_key and presentation_key
+      names
+   *  Change proof_jwk to proof_key and presentation_jwk to
+      presentation_key to better represent that the key may be JSON or
+      CBOR-formatted.
+   *  Moved the registry for proof_key and presentation_key to JWP where
+      they are defined.  Consolidated usage, purpose and requirements
+      from algorith musage under these definitions.
+   *  Clarified that proof_key and presentation_key are required by
+      particular algorithms and are not more generally required for
+      issued and presented JWPs.
 
    -06
 
