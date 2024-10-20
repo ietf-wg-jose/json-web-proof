@@ -495,7 +495,7 @@ A CBOR-based serialization is also defined, which uses the CBOR for describing H
 
 ## Compact Serialization {#CompactSerialization}
 
-The compact serialiation provides a space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.
+The compact serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.
 
 The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.
 
