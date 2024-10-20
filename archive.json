@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-17T00:49:10.561143+00:00",
+  "timestamp": "2024-10-20T00:54:03.216052+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -8745,21 +8745,21 @@
       "id": "PR_kwDOFsQObc55LiEE",
       "title": "Adding CBOR Serialization",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/137",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This change adds CBOR serialization, as well as a few bite-sized additions along the way.\r\n\r\n1. Clean up text to be more prescriptive about various serializations\r\n2. Define the serializations as interchangeable\r\n3. Define new CBOR serialization\r\n4. Create new \"Detached Payloads\" section to clarify application behavior",
       "createdAt": "2024-08-22T21:42:26Z",
-      "updatedAt": "2024-09-04T06:50:15Z",
+      "updatedAt": "2024-10-18T20:23:38Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "2b82c80f773e3353604ec1ba714fc6a6b94caaed",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "add-cbor-serialization",
       "headRefOid": "eec7dd78f01532e43ed2c147354a243598d90875",
-      "closedAt": null,
+      "closedAt": "2024-10-18T20:23:38Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -8990,6 +8990,552 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 140,
+      "id": "PR_kwDOFsQObc5_JIFy",
+      "title": "Adding CBOR Headers and Serialization",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/140",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "First pass at what might be considered \"proper\" CBOR support.\r\n\r\nIncomplete list of tasks:\r\n\r\n- [ ] Algorithms registry to take into account numerical algorithm identifiers in CBOR\r\n- [ ] Nonce resolution due to rules added by EATS - do we keep the very different format requirements or adopt one/the other.\r\n- [ ] Additional editorial pass on the proof document\r\n- [ ] Align changes on each document\r\n- [ ] Change `proof_jwk` to `proof_key` and `presentation_jwk` to `presentation_key`\r\n- [ ] Change \"The compact serialiation provides a space-efficient encoding\" to \"The compact serialization provides a JSON-based space-efficient encoding\".\r\n- [x] Add the missing IANA.MediaTypes reference.\r\n\r\nGoal is to get this shared in advance for discussion/revision during 121. One overarching question is whether we try to further consolidate to have the headers have a consistent data model and rules, even if that means further deviating from JOSE rules for the similarly-named headers.",
+      "createdAt": "2024-10-18T20:22:36Z",
+      "updatedAt": "2024-10-19T23:56:35Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "21ead88ff9ed0bcbfec8aa031adb7daedcf66c2a",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "cbor-serialization",
+      "headRefOid": "ebdc0ba50f13bff14a02ae30c62bac58d842586b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6N1WLw",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T15:58:25Z",
+          "updatedAt": "2024-10-19T15:58:25Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nThe JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.\r\nThey also established IANA registries to enable the algorithms and representations used for them to be extended.\r\nSince those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.\r\nThe COSE set of standards likewise does this for CBOR-based containers, focusing on the needs of environments which are better served using CBOR, such as constrained devices and networks.\r\n```\r\nAdd line breaks at periods to make the source more readable and minimize future merge conflicts.",
+              "createdAt": "2024-10-19T15:58:25Z",
+              "updatedAt": "2024-10-19T15:58:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1Wib",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T15:59:42Z",
+          "updatedAt": "2024-10-19T15:59:43Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nThis document defines a new container format similar in purpose and design to JSON Web Signature (JWS) and COSE Signed Messages called a _JSON Web Proof (JWP)_. \r\nUnlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.\r\nIt also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay.\r\n```",
+              "createdAt": "2024-10-19T15:59:43Z",
+              "updatedAt": "2024-10-19T15:59:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1Wyc",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:00:24Z",
+          "updatedAt": "2024-10-19T16:00:24Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nWith these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.\r\nWhile such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE or COSE.\r\nThese new patterns are largely focused on two areas: supporting selective disclosure when presenting information and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.\r\n```",
+              "createdAt": "2024-10-19T16:00:24Z",
+              "updatedAt": "2024-10-19T16:00:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1XCt",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:00:54Z",
+          "updatedAt": "2024-10-19T16:00:55Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\nA _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515] or COSE Signed Message [@RFC8152], with the addition that it can contain multiple individual secured payloads instead of a single one.\r\nJWP-supporting algorithms are then able to separate and act on the individual payloads contained within.\r\n```",
+              "createdAt": "2024-10-19T16:00:54Z",
+              "updatedAt": "2024-10-19T16:00:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1YbJ",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:03:46Z",
+          "updatedAt": "2024-10-19T16:03:47Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "```suggestion\r\nA JWP Header is a set of Header Parameters that apply to the JWP.\r\nThese Header Parameters may be specific to the proof applied to\r\nthe JWP, they may identify the party issuing the proof, and they may\r\ndescribe the application purpose and format of the JWP, as well as\r\nprovide other potential metadata.\r\n```",
+              "createdAt": "2024-10-19T16:03:46Z",
+              "updatedAt": "2024-10-19T16:03:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1YgW",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:06:20Z",
+          "updatedAt": "2024-10-19T16:06:20Z",
+          "comments": [
+            {
+              "originalPosition": 71,
+              "body": "```suggestion\r\n## Header Parameter Labeling Requirements\r\n```",
+              "createdAt": "2024-10-19T16:06:20Z",
+              "updatedAt": "2024-10-19T16:06:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1Ymp",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:06:57Z",
+          "updatedAt": "2024-10-19T16:06:58Z",
+          "comments": [
+            {
+              "originalPosition": 79,
+              "body": "```suggestion\r\nThere are three strategies for labeling header parameters:\r\n```",
+              "createdAt": "2024-10-19T16:06:58Z",
+              "updatedAt": "2024-10-19T16:06:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1Ynt",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:07:30Z",
+          "updatedAt": "2024-10-19T16:07:30Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "```suggestion\r\nagainst parameters having the same label.\r\n```",
+              "createdAt": "2024-10-19T16:07:30Z",
+              "updatedAt": "2024-10-19T16:07:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1aG2",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:10:02Z",
+          "updatedAt": "2024-10-19T16:10:02Z",
+          "comments": [
+            {
+              "originalPosition": 94,
+              "body": "```suggestion\r\n\r\nThese classes of Header Parameters are intentionally parallel to those in Section 4 of [@RFC7515].\r\n\r\n```",
+              "createdAt": "2024-10-19T16:10:02Z",
+              "updatedAt": "2024-10-19T16:10:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1dfW",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:17:58Z",
+          "updatedAt": "2024-10-19T16:17:58Z",
+          "comments": [
+            {
+              "originalPosition": 162,
+              "body": "```suggestion\r\nFor COSE Protected Headers, `typ` MAY also instead be an integer value\r\n```",
+              "createdAt": "2024-10-19T16:17:58Z",
+              "updatedAt": "2024-10-19T16:17:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1d6y",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:19:10Z",
+          "updatedAt": "2024-10-19T16:19:10Z",
+          "comments": [
+            {
+              "originalPosition": 178,
+              "body": "```suggestion\r\nHeaders this is a list of strings, while for CBOR protected headers\r\nit is a list containing string and/or int values.\r\n```",
+              "createdAt": "2024-10-19T16:19:10Z",
+              "updatedAt": "2024-10-19T23:45:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1gwR",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:32:25Z",
+          "updatedAt": "2024-10-19T16:32:25Z",
+          "comments": [
+            {
+              "originalPosition": 304,
+              "body": "```suggestion\r\nThe CBOR serialization provides a compact binary representation of a JWP.\r\nThe serialization consists of two arrays, representing issued and presented forms.\r\n```",
+              "createdAt": "2024-10-19T16:32:25Z",
+              "updatedAt": "2024-10-19T16:32:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1hH3",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:33:03Z",
+          "updatedAt": "2024-10-19T16:33:04Z",
+          "comments": [
+            {
+              "originalPosition": 307,
+              "body": "```suggestion\r\nThis includes both the issued and presented headers in the presented form.\r\n```",
+              "createdAt": "2024-10-19T16:33:03Z",
+              "updatedAt": "2024-10-19T16:33:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1iWU",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:34:50Z",
+          "updatedAt": "2024-10-19T16:34:51Z",
+          "comments": [
+            {
+              "originalPosition": 319,
+              "body": "```suggestion\r\nTwo tags are defined for representing issued and presented JWPs.\r\nApplications MAY use their own tags to tag other specific types of JWPs.\r\n```",
+              "createdAt": "2024-10-19T16:34:50Z",
+              "updatedAt": "2024-10-19T16:34:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1iks",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:35:51Z",
+          "updatedAt": "2024-10-19T16:35:51Z",
+          "comments": [
+            {
+              "originalPosition": 341,
+              "body": "```suggestion\r\nTagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)\r\n```",
+              "createdAt": "2024-10-19T16:35:51Z",
+              "updatedAt": "2024-10-19T16:35:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1i3C",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:40:18Z",
+          "updatedAt": "2024-10-19T16:40:19Z",
+          "comments": [
+            {
+              "originalPosition": 418,
+              "body": "```suggestion\r\n  within a CBOR context (e.g. `2`).\r\n```",
+              "createdAt": "2024-10-19T16:40:18Z",
+              "updatedAt": "2024-10-19T16:40:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jGe",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:41:37Z",
+          "updatedAt": "2024-10-19T16:41:37Z",
+          "comments": [
+            {
+              "originalPosition": 476,
+              "body": "```suggestion\r\n* Header Parameter CBOR Label: 3\r\n```",
+              "createdAt": "2024-10-19T16:41:37Z",
+              "updatedAt": "2024-10-19T16:41:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jG6",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:41:48Z",
+          "updatedAt": "2024-10-19T16:41:48Z",
+          "comments": [
+            {
+              "originalPosition": 487,
+              "body": "```suggestion\r\n* Header Parameter CBOR Label: 4\r\n```",
+              "createdAt": "2024-10-19T16:41:48Z",
+              "updatedAt": "2024-10-19T16:41:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jHY",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:42:01Z",
+          "updatedAt": "2024-10-19T16:42:01Z",
+          "comments": [
+            {
+              "originalPosition": 498,
+              "body": "```suggestion\r\n* Header Parameter CBOR Label: 5\r\n```",
+              "createdAt": "2024-10-19T16:42:01Z",
+              "updatedAt": "2024-10-19T16:42:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jH5",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:42:21Z",
+          "updatedAt": "2024-10-19T16:42:21Z",
+          "comments": [
+            {
+              "originalPosition": 509,
+              "body": "```suggestion\r\n* Header Parameter CBOR Label: 6\r\n```",
+              "createdAt": "2024-10-19T16:42:21Z",
+              "updatedAt": "2024-10-19T16:42:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jJM",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:42:40Z",
+          "updatedAt": "2024-10-19T16:42:40Z",
+          "comments": [
+            {
+              "originalPosition": 520,
+              "body": "```suggestion\r\n* Header Parameter CBOR Label: 7\r\n```",
+              "createdAt": "2024-10-19T16:42:40Z",
+              "updatedAt": "2024-10-19T16:42:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jKI",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:43:01Z",
+          "updatedAt": "2024-10-19T16:43:02Z",
+          "comments": [
+            {
+              "originalPosition": 531,
+              "body": "```suggestion\r\n* Header Parameter CBOR Label: 8\r\n```",
+              "createdAt": "2024-10-19T16:43:01Z",
+              "updatedAt": "2024-10-19T16:43:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jRr",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T16:44:48Z",
+          "updatedAt": "2024-10-19T16:44:48Z",
+          "comments": [
+            {
+              "originalPosition": 539,
+              "body": "```suggestion\r\n#### The application/jwp+cbor Media Type\r\n```",
+              "createdAt": "2024-10-19T16:44:48Z",
+              "updatedAt": "2024-10-19T16:44:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N1jfN",
+          "commit": {
+            "abbreviatedOid": "8056039"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Please apply my change suggestions, then I'll approve.\r\n\r\nLet's also change `proof_jwk` to `proof_key` and `presentation_jwk` to `presentation_key` throughout because it's odd having _jwk named things referring to COSE_Key objects.\r\n\r\nPlease change \"The compact serialiation provides a space-efficient encoding\" to \"The compact serialization provides a JSON-based space-efficient encoding\".\r\n\r\nPlease add the missing IANA.MediaTypes reference.",
+          "createdAt": "2024-10-19T16:50:03Z",
+          "updatedAt": "2024-10-19T16:50:55Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N2PhP",
+          "commit": {
+            "abbreviatedOid": "830b30b"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T23:45:23Z",
+          "updatedAt": "2024-10-19T23:45:23Z",
+          "comments": [
+            {
+              "originalPosition": 178,
+              "body": "tweaking language slightly",
+              "createdAt": "2024-10-19T23:45:23Z",
+              "updatedAt": "2024-10-19T23:45:23Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "id": "PR_kwDOFsQObc5_MjT_",
+      "title": "Change primary editor",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/141",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Change primary editor from Jeremie Miller to David Waite, as discussed",
+      "createdAt": "2024-10-19T23:40:54Z",
+      "updatedAt": "2024-10-19T23:40:54Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "21ead88ff9ed0bcbfec8aa031adb7daedcf66c2a",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "change-primary-editor",
+      "headRefOid": "e3bbcaab8373fa0a3ea7fe37cd93c10683cb28ea",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
