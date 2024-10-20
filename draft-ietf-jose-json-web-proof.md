@@ -46,9 +46,14 @@ organization = "Ping Identity"
 
 .# Abstract
 
-The JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.  They also established IANA registries to enable the algorithms and representations used for them to be extended.  Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.
+The JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.
+They also established IANA registries to enable the algorithms and representations used for them to be extended.
+Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.
+The COSE set of standards likewise does this for CBOR-based containers, focusing on the needs of environments which are better served using CBOR, such as constrained devices and networks.
 
-This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.  It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay.
+This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) and COSE Signed Messages called a _JSON Web Proof (JWP)_.
+Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.
+It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay.
 
 {mainmatter}
 
@@ -56,7 +61,9 @@ This document defines a new container format similar in purpose and design to JS
 
 The JOSE specifications are very widely deployed and well supported, enabling use of cryptographic primitives with a JSON representation.  JWTs [@RFC7519] are one of the most common representations for identity and access claims.  For instance, they are used by the OpenID Connect and Secure Telephony Identity Revisited (STIR) standards.  Also, JWTs are used by W3C's Verifiable Credentials and are used in many decentralized identity systems.
 
-With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting information and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.
+With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.
+While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE or COSE.
+These new patterns are largely focused on two areas: supporting selective disclosure when presenting information and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.
 
 There are a growing number of these cryptographic primitives that support selective disclosure while protecting privacy across multiple presentations.  Examples used in the context of Verifiable Credentials are:
 
@@ -102,7 +109,8 @@ unlinkability:
 
 # Background
 
-A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515], with the addition that it can contain multiple individual secured payloads instead of a single one.  JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
+A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515] or COSE Signed Message [@RFC8152], with the addition that it can contain multiple individual secured payloads instead of a single one.
+JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
 The intent of JSON Web Proof is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.
 
@@ -120,13 +128,26 @@ Algorithm definitions that support JWPs are in separate companion specifications
 
 # JWP Header
 
-The members of the JSON object(s) representing the JWP Header describe
-the proof applied to the Protected Header and the Payload
-and optionally, additional properties of the JWP.
-The Header Parameter names within the JWP Header MUST be unique;
-JWP parsers MUST either reject JWPs with duplicate Header Parameter names
-or use a JSON parser that returns only the lexically last duplicate member name,
-as specified in Section 15.12 ("The JSON Object") of ECMAScript 5.1 [@ECMAScript].
+A JWP Header is a set of Header Parameters that apply to the JWP.
+These Header Parameters may be specific to the proof applied to
+the JWP, they may identify the party issuing the proof, and they may
+describe the application purpose and format of the JWP, as well as
+provide other potential metadata.
+
+A Header Parameter may be represented as JSON or as CBOR. When
+represented using JSON, each Header Parameter has a string label and
+has a JSON-structured value within a JSON Object. When described
+using CBOR, each parameter has either an integer (int) or string
+(tstr) label, and has a CBOR-structured value within a CBOR map.
+
+The Header Parameter labels within the JWP Header MUST be unique.
+CBOR processing MUST reject messages if two headers with the same
+parameter label are encountered. JSON processing SHOULD reject
+messages received with the same parameter label, but MAY instead
+represent only the lexically last member with that label, as
+specified in Section 15.12 ("The JSON Object") of ECMAScript 5.1
+[@ECMAScript]. JSON processing MUST take one of these two approaches
+with regards to encountering duplicate header parameter labels.
 
 Implementations are required to understand
 the specific Header Parameters defined by this specification
@@ -138,13 +159,31 @@ Unless listed as a critical Header Parameter, per (#critDef),
 all Header Parameters not defined by this specification
 MUST be ignored when not understood.
 
-There are three classes of Header Parameter names:
-Registered Header Parameter names, Public Header Parameter names,
-and Private Header Parameter names.
+## Header Parameter Labeling Requirements
 
-These requirements are intentionally parallel to those in Section 4 of [@RFC7515].
+As labels are the mechanism for semantically distinguishing parameter
+names, it is important to describe the mechanism to reduce the risk
+of conflicts.
 
-## Registered Header Parameter Names {#RegisteredHeaderParameterNames}
+There are three strategies for labeling header parameters:
+
+1. Registered parameter labels. These labels are coordinated through
+the IANA "JSON Web Proof Header Parameters" registry, which protects
+against parameters having the same label.
+
+2. Collision-resistant parameter labels. These labels are not
+coordinated through IANA, but are otherwise namespaced to prevent
+conflict. One example would a string label representing the URI of a
+controlled resource, such as the HTTPS-hosted documentation of the
+header parameter.
+
+3. Private parameter labels. These labels are not coordinated through
+IANA or another party, but are expected to only be used for testing
+or in closed environments.
+
+These classes of Header Parameters are intentionally parallel to those in Section 4 of [@RFC7515].
+
+## Registered Header Parameter Labels {#RegisteredHeaderParameterLabels}
 
 The following Header Parameter names for use in JWPs are registered
 in the IANA "JSON Web Proof Header Parameters" registry established by (#HdrReg),
@@ -154,8 +193,6 @@ As indicated by the common registry, Header Parameters used
 in the Issued Form (see (#issued-form)) and the Presented Form (#presented-form)
 share a common Header Parameter space;
 when a parameter is used by both forms, its usage must be compatible between them.
-
-These Header Parameters are intentionally parallel to those in Section 4.1 of [@RFC7515].
 
 ### "alg" (Algorithm) Header Parameter {#algDef}
 
@@ -168,33 +205,42 @@ associated with the party that secured the content.
 the IANA "JSON Web Proof Algorithms" registry
 established by [@!I-D.ietf-jose-json-proof-algorithms]
 or be a value that contains a Collision-Resistant Name.
-The `alg` value is a case-sensitive ASCII string containing a StringOrURI value.
-This Header Parameter MUST be present
-and MUST be understood and processed by implementations.
 
-A list of defined `alg` values for this use can be found
+As a JSON-formatted header parameter, the `alg` value is a
+case-sensitive ASCII string containing a StringOrURI value. As a
+CBOR-formatted header parameter, this value may also be an integer
+value.
+
+The list of defined `alg` values for this use can be found
 in the IANA "JSON Web Proof Algorithms" registry
 established by [@!I-D.ietf-jose-json-proof-algorithms];
 the initial contents of this registry are registered
 by [@!I-D.ietf-jose-json-proof-algorithms].
 
+Use of this Header Parameter is REQUIRED.
+
 ### "kid" (Key ID) Header Parameter {#kidDef}
 
-The `kid` (key ID) Header Parameter
-is a hint indicating which key was used to secure the JWP.
-This parameter allows originators to explicitly signal a change of
-key to recipients.
-The structure of the `kid` value is unspecified.
-Its value MUST be a case-sensitive string.
-Use of this Header Parameter is OPTIONAL.
+The `kid` (key ID) Header Parameter is a hint indicating which key
+was used to secure the JWP. This parameter allows originators to
+explicitly signal a change of key to recipients.
 
-When used with a JWK,
-the `kid` value is used to match a JWK `kid` parameter value.
+The structure of the `kid` value is unspecified.
+
+When `kid` is used for a JSON Protected Header, its value MUST be a
+case-sensitive string. When referencing a JWK, the `kid` value is
+matched to the JWK `kid` parameter value.
+
+When `kid` is used for a CBOR Protected Header, its value is a binary
+string. When referencing a COSE Key, the `kid` value is matched to
+the COSE_Key `kid` structure member.
+
+Use of this Header Parameter is OPTIONAL.
 
 ### "typ" (Type) Header Parameter {#typDef}
 
 The `typ` (type) Header Parameter is used by JWP applications to declare the
-media type (#IANA.MediaTypes) of this complete JWP.
+media type [@IANA.MediaTypes] of this complete JWP.
 This is intended for use by the application when
 more than one kind of object could be present in
 an application data structure that can contain a JWP;
@@ -205,6 +251,10 @@ the kind of object is already known.
 This parameter is ignored by JWP implementations;
 any processing of this parameter is performed by the JWP application.
 Use of this Header Parameter is OPTIONAL.
+
+For COSE Protected Headers, `typ` MAY also instead be an integer value
+which corresponds to the IANA "CoAP Content-Formats" registry
+[@IANA.CoAP.Formats], which describes the corresponding media type.
 
 Per [@RFC2045], all media type values,
 subtype values, and parameter names are case insensitive.
@@ -236,8 +286,11 @@ in parallel to the recommendations in Section 3.11 of [@RFC8725].
 The `crit` (critical) Header Parameter indicates that extensions to
 this specification and/or [@!I-D.ietf-jose-json-proof-algorithms]
 are being used that MUST be understood and processed.
-Its value is an array listing the Header Parameter names
-present in the JWP Header that use those extensions.
+Its value is an array listing the Header Parameter labels
+present in the JWP Header that use those extensions. For JSON Protected
+Headers this is a list of strings, while for CBOR protected headers
+it is a list containing string and/or int values.
+
 If any of the listed extension Header Parameters are not
 understood and supported by the recipient, then the JWP is invalid.
 Producers MUST NOT include Header Parameter names defined by
@@ -259,10 +312,13 @@ This Header Parameter MUST be understood and processed by implementations.
 
 The `proof_jwk` (Proof JWK) represents the public key used by the issuer
 for proof of possession.
-This key is represented as a JSON Web Key public key value.
+This header parameter is references a JSON Web Key (JWK) public
+key value when represented as a JSON Protected Header, and a COSE Key
+Object when represented as a CBOR Protected Header.
+
 It MUST contain only public key parameters and
-SHOULD contain only the minimum JWK parameters necessary to represent the key;
-other JWK parameters included can be checked for consistency and honored, or they can be ignored.
+SHOULD contain only the minimum parameters necessary to represent the key;
+other parameters included can be checked for consistency and honored, or they can be ignored.
 This Header Parameter MUST be present in the JWP issuer header parameters
 and MUST be understood and processed by implementations.
 
@@ -270,10 +326,14 @@ and MUST be understood and processed by implementations.
 
 The `presentation_jwk` (Presentation JWK) represents the public key used by the holder
 for proof of possession.
-This key is represented as a JSON Web Key public key value.
+
+This header parameter is references a JSON Web Key (JWK) public
+key value when represented as a JSON Protected Header, and a COSE Key
+Object when represented as a CBOR Protected Header.
+
 It MUST contain only public key parameters and
-SHOULD contain only the minimum JWK parameters necessary to represent the key;
-other JWK parameters included can be checked for consistency and honored, or they can be ignored.
+SHOULD contain only the minimum parameters necessary to represent the key;
+other parameters included can be checked for consistency and honored, or they can be ignored.
 This Header Parameter MUST be present in the JWP issuer header parameters
 and MUST be understood and processed by implementations.
 
@@ -281,9 +341,9 @@ and MUST be understood and processed by implementations.
 
 The `iss` (issuer) Header Parameter identifies the principal that issued the JWP.
 The processing of this claim is generally application specific.
-The `iss` value is a case-sensitive string
-containing a StringOrURI value.
+The `iss` value is a case-sensitive string containing a StringOrURI value.
 Its definition is intentionally parallel to the `iss` claim defined in [@!RFC7519].
+
 Use of this Header Parameter is OPTIONAL.
 
 ### "aud" (Audience) Header Parameter {#audDef}
@@ -295,17 +355,21 @@ with a value in the audience Header Parameter.  If the principal
 processing the Header Parameter does not identify itself with a
 value in the `aud` Header Parameter when this Header Parameter is present,
 then the JWP MUST be rejected.
-In the general case,
-the `aud` value is an array of
-case-sensitive strings, each containing a StringOrURI value.
-In the special case when the JWP has one audience,
-the `aud` value MAY be a single
+
+In the general case, the `aud` value is an array of case-sensitive
+strings, each containing a StringOrURI value. In the special case
+when the JWP has one audience, the `aud` value MAY be a single
 case-sensitive string containing a StringOrURI value.
-The interpretation of audience values is generally application specific.
+
+The interpretation of audience values is application specific.
+
 Its definition is intentionally parallel to the `aud` claim defined in [@!RFC7519].
+
 Use of this Header Parameter is OPTIONAL.
 
 ### "nonce" (Nonce) Header Parameter {#nonceDef}
+
+> Editor's note: Need to resolve the difference between nonce in CBOR and JSON caused by EATS
 
 The `nonce` (nonce) Header Parameter is a case-sensitive string value
 used to associate protocol state with a JWP.
@@ -343,7 +407,7 @@ they can result in non-interoperable JWPs.
 
 A producer and consumer of a JWP may agree to use Header Parameter names
 that are Private Names (names that are
-not Registered Header Parameter names (#RegisteredHeaderParameterNames)
+not Registered Header Parameter labels (#RegisteredHeaderParameterLabels)
 or Public Header Parameter names (#PublicHeaderParameterName).)
 Unlike Public Header Parameter names,
 Private Header Parameter names are subject to collision and
@@ -425,11 +489,15 @@ The algorithm is responsible for representing selective disclosure of payloads i
 
 Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The headers and proof are also individually base64url encoded.
 
-Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. These serializations both represent the same JSON-based header, payload and proof, and are thus interchangeable without breaking the proof value.
+Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. These serializations both represent the same JSON-based Protected Header, payloads and proof, and are thus interchangeable without breaking the proof value.
+
+A CBOR-based serialization is also defined, which uses the CBOR for describing Header Parameters. While this supports the same data model and algorithms, the difference in header representations does not allow interchangeability with the Compact Serialization and JSON Serializations.
 
 ## Compact Serialization {#CompactSerialization}
 
-The compact serialiation provides a space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.
+The compact serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.
+
+The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.
 
 All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.
 
@@ -450,6 +518,8 @@ Figure: Compact Serialization of Presentation
 
 The JSON Serialization is in the form of a JSON object, with property names representing the various components.
 
+The Protected Headers MUST be JSON-formatted for JSON Serialization. This includes both headers sets in presented form.
+
 The `issuer` key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.
 
 The `presentation` key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.
@@ -463,6 +533,50 @@ This example JSON serialization shows the presentation form with both the issuer
 <{{./fixtures/build/bbs-holder.json.jwp.wrapped}}>
 Figure: JSON Serialization of Presentation
 
+## CBOR Serialization
+
+The CBOR serialization provides a compact binary representation of a JWP.
+The serialization consists of two arrays, representing issued and presented forms.
+
+The protected headers MUST be CBOR formatted for CBOR serialization.
+This includes both the issued and presented headers in the presented form.
+
+The issued form consists of a three-element array, while the
+presented form consists of a four-element array.
+
+If an individual payload has been omitted, it is represented by the
+CBOR value `nil`. Payloads MUST be included unless the application
+is using detached payloads, which is represented by setting the
+`payloads` value as `nil`.¶
+
+Two tags are defined for representing issued and presented JWPs.
+Applications MAY use their own tags to tag other specific types of JWPs.
+
+``` cddl
+CBOR_JWP_Issued = [
+       IssuerHeader : serialized_map,
+       payloads : [payload] / nil,
+       proofs : [bstr]
+   ]
+
+CBOR_JWP_Presented = [
+      PresenterHeader : serialized_map,
+      IssuerHeaders : serialized_map,
+      payloads : [payload] / nil,
+      proofs : [bstr]
+   ]
+
+empty_or_serialized_map = bstr .cbor header_map
+
+payload = bstr / nil
+
+Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
+
+Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
+
+```
+Figure 1: CDDL [RFC8610] for CBOR Serializations.
+
 # Encrypted JSON Web Proofs
 
 Access to JWPs containing non-public material
@@ -471,20 +585,29 @@ MUST be prevented.
 This can be accomplished by encrypting the JWP
 when potentially observable by such parties
 to prevent the disclosure of private information.
-The use of an Encrypted JWP, which is a JWE [@!RFC7516]
-with a JWP as its plaintext value,
-is recommended for this purpose.
+The use of an Encrypted JWP is recommended for this purpose.
 The processing of Encrypted JWPs is identical to
 the processing of other JWEs.
 
-The `cty` (content type) JWE Header Parameter is used to indicate
-that the content of the JWE is a JWP.
-The `cty` value of the JWE SHOULD be the same as
-the `typ` (type) JWP Header Parameter value of the unencrypted JWP to be encrypted.
-If the JWP has no `typ` value, then the following JWE Header Parameter `cty` (content type) values SHOULD be used:
+For a JWP with JSON-formatted headers, an Encrypted JWP is a JWE
+[@!RFC7516] with a JWP in Compact Serialization as its plaintext
+value. For a JWP with CBOR-formatted headers, an Encrypted JWP should
+use `COSE_Encrypt0` or `COSE_Encrypt` [@!RFC9052] with the CBOR
+Serialization as its plaintext.
 
-* `jwp` is used to indicate that the content of the JWE is a JWP using the JWP Compact Serialization.
-* `jwp+json` is used to indicate that the content of the JWE is the UTF-8 encoding of a JWP using the JWP JSON Serialization.
+The `cty` (content type) JWE/COSE Header Parameter is used to
+indicate that the content of the JWE is a JWP.
+The `cty` value of the JWE/COSE message SHOULD be the same as
+the `typ` (type) JWP Header Parameter value of the unencrypted JWP
+to be encrypted. If the JWP has no `typ` value, then the following
+JWE Header Parameter `cty` (content type) values SHOULD be used:
+
+* `jwp` is used to indicate that the content of the JWE is a JWP
+using the JWP Compact Serialization.
+* `jwp+json` is used to indicate that the content of the JWE is the
+UTF-8 encoding of a JWP using the JWP JSON Serialization.
+* `jwp+cbor` is used to indicate that the plaintext of the COSE
+message is a JWP in CBOR Serialization.
 
 The `cty` (content type) Header Parameter MUST be present
 unless the application knows that the encrypted content is
@@ -562,77 +685,122 @@ will typically use different Header Parameter Usage Locations values.
 
 ### Registration Template {#HdrTemplate}
 
-* Header Parameter Name: The name requested (e.g., "kid"). Because a core goal of this specification is for the resulting representations to be compact, it is RECOMMENDED that the name be short -- not to exceed 8 characters without a compelling reason to do so. This name is case sensitive. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.
-* Header Parameter Description: Brief description of the Header Parameter (e.g., "Key ID").
-* Header Parameter Usage Location(s): The Header Parameter usage locations, which should be one or more of the values `Issued` or `Presented`.  Other values may be used with the approval of a Designated Expert.
-* Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.
-* Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.
+Header Parameter Name:
+: The descriptive name of the parameter.
+  (e.g. "Key Identifier").
+
+Header Parameter JSON Label:
+: The string label requested within a
+  JSON context. (e.g., `kid`).
+  Because a core goal of this specification is for the resulting
+  representations to be compact, it is RECOMMENDED that the label be
+  short -- not to exceed 8 characters without a compelling reason to
+  do so. This label is case sensitive, and it is RECOMMENDED to
+  avoid upper-case characters. Labels may not match another
+  registered names in a case-insensitive manner unless the
+  Designated Experts state that there is a compelling reason to
+  allow an exception. This registry value SHOULD be supplied, but
+  MAY be omitted if this header parameter will never be formatted
+  as JSON.
+
+Header Parameter CBOR Label:
+: The string or integer label requested
+  within a CBOR context (e.g. `2`).
+  This label may not match other integer values, match other string
+  values in a case-insensitive manner, or be a differing string
+  value from the JSON label unless the Designated Experts state that
+  there is a compelling reason to allow an exception.
+
+Header Parameter Usage Location(s):
+: The Header Parameter usage locations, which should be one or more
+  of the values `Issued` or `Presented`.  Other values may be used
+  with the approval of a Designated Expert.
+
+Change Controller:
+: For Standards Track RFCs, list the "IETF". For
+  others, give the name of the responsible party. Other details
+  (e.g., postal address, email address, home page URI) may also be
+  included.
+
+Specification Document(s):
+: Reference to the document or documents
+  that specify the parameter, preferably including URIs that can be
+  used to retrieve copies of the documents. An indication of the
+  relevant sections may also be included but is not required.
 
 ### Initial Registry Contents {#HdrContents}
 
-This section registers the Header Parameter names defined in
-(#RegisteredHeaderParameterNames) in this registry.
+This section registers the Header Parameters defined in
+(#RegisteredHeaderParameterLabels) in this registry.
 
 #### Algorithm Header Parameter
 
-* Header Parameter Name: `alg`
-* Header Parameter Description: Algorithm
+* Header Parameter Name: Algorithm
+* Header Parameter JSON Label: `alg`
+* Header Parameter CBOR Label: 1
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#algDef) of this specification
 
 #### Key ID Header Parameter
 
-* Header Parameter Name: `kid`
-* Header Parameter Description: Key ID
+* Header Parameter Name: Key Identifier
+* Header Parameter JSON Label: `kid`
+* Header Parameter CBOR Label: 2
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#kidDef) of this specification
 
 #### Type Header Parameter
 
-* Header Parameter Name: `typ`
-* Header Parameter Description: Type
+* Header Parameter Name: Type
+* Header Parameter JSON Label: `typ`
+* Header Parameter CBOR Label: 3
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#typDef) of this specification
 
 #### Critical Header Parameter
 
-* Header Parameter Name: `crit`
-* Header Parameter Description: Critical
+* Header Parameter Name: Critical
+* Header Parameter JSON Label: `crit`
+* Header Parameter CBOR Label: 4
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#critDef) of this specification
 
 #### Issuer Header Parameter
 
-* Header Parameter Name: `iss`
-* Header Parameter Description: Issuer
+* Header Parameter Name: Issuer
+* Header Parameter JSON Label: `iss`
+* Header Parameter CBOR Label: 5
 * Header Parameter Usage Location(s): Issued, Presented
 * Change Controller: IETF
 * Specification Document(s): (#issDef) of this specification
 
 #### Audience Header Parameter
 
-* Header Parameter Name: `aud`
-* Header Parameter Description: Audience
+* Header Parameter Name: Audience
+* Header Parameter JSON Label: `aud`
+* Header Parameter CBOR Label: 6
 * Header Parameter Usage Location(s): Presented
 * Change Controller: IETF
 * Specification Document(s): (#audDef) of this specification
 
 #### Nonce Header Parameter
 
-* Header Parameter Name: `nonce`
-* Header Parameter Description: Nonce
+* Header Parameter Name: Nonce
+* Header Parameter JSON Label: `nonce`
+* Header Parameter CBOR Label: 7
 * Header Parameter Usage Location(s): Presented
 * Change Controller: IETF
 * Specification Document(s): (#nonceDef) of this specification
 
 #### Claims Header Parameter
 
-* Header Parameter Name: `claims`
-* Header Parameter Description: claims
+* Header Parameter Name: Claims
+* Header Parameter JSON Label: `claims`
+* Header Parameter CBOR Label: 8
 * Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
 * Specification Document(s): (#claimsDef) of this specification
@@ -643,7 +811,7 @@ This section registers the Header Parameter names defined in
 
 This section registers the `application/jwp`
 media type [@RFC2046]
-in the IANA "Media Types" registry (#IANA.MediaTypes)
+in the IANA "Media Types" registry [@IANA.MediaTypes]
 in the manner described in [@RFC6838],
 which can be used to indicate that the content is
 a JWP using the JWP Compact Serialization.
@@ -681,6 +849,29 @@ a JWP using the JWP JSON Serialization.
 * Required parameters: n/a
 * Optional parameters: n/a
 * Encoding considerations: 8bit; application/jwp+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
+* Security considerations: See (#SecurityConsiderations) of this specification
+* Interoperability considerations: n/a
+* Published specification: this specification
+* Applications that use this media type: TBD
+* Fragment identifier considerations: n/a
+* Additional information:
+  - Magic number(s): n/a
+  - File extension(s): n/a
+  - Macintosh file type code(s): n/a
+* Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
+* Intended usage: COMMON
+* Restrictions on usage: none
+* Author: Michael B. Jones, michael_b_jones@hotmail.com
+* Change Controller: IETF
+* Provisional registration? No
+
+#### The application/jwp+cbor Media Type
+
+* Type name: application
+* Subtype name: jwp+cbor
+* Required parameters: n/a
+* Optional parameters: n/a
+* Encoding considerations: 8bit; application/jwp+cbor values are represented as a CBOR data item.
 * Security considerations: See (#SecurityConsiderations) of this specification
 * Interoperability considerations: n/a
 * Published specification: this specification
@@ -796,6 +987,16 @@ using the JWP Compact Serialization.
 <reference anchor="IANA.JWT.Claims" target="https://www.iana.org/assignments/jwt">
   <front>
     <title>JSON Web Token Claims</title>
+    <author>
+      <organization>IANA</organization>
+    </author>
+    <date/>
+  </front>
+</reference>
+
+<reference anchor="IANA.CoAP.Formats" target="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">
+  <front>
+    <title>CoAP Content Formats</title>
     <author>
       <organization>IANA</organization>
     </author>

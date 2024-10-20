@@ -436,41 +436,110 @@ defining the revised implementation requirements level.
 
 ### Registration Template {#AlgsTemplate}
 
-* Algorithm Name: The name requested (e.g., "SU-ES256"). This name is a case-sensitive ASCII string. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.
-* Algorithm Description: Brief description of the algorithm (e.g., "Single-Use JWP using ES256").
-* Algorithm Usage Location(s): The algorithm usage locations, which should be one or more of the values `Issued` or `Presented`.  Other values may be used with the approval of a Designated Expert.
-* JWP Implementation Requirements: The algorithm implementation requirements for JWP, which must be one the words Required, Recommended, Optional, Deprecated, or Prohibited. Optionally, the word can be followed by a "+" or "-". The use of "+" indicates that the requirement strength is likely to be increased in a future version of the specification.  The use of "-" indicates that the requirement strength is likely to be decreased in a future version of the specification. Any identifiers registered for non-authenticated encryption algorithms or other algorithms that are otherwise unsuitable for direct use as JWP algorithms must be registered as "Prohibited".
-* Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.
-* Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.
-* Algorithm Analysis Documents(s): References to a publication or publications in well-known cryptographic conferences, by national standards bodies, or by other authoritative sources analyzing the cryptographic soundness of the algorithm to be registered. The Designated Experts may require convincing evidence of the cryptographic soundness of a new algorithm to be provided with the registration request unless the algorithm is being registered as Deprecated or Prohibited. Having gone through working group and IETF review, the initial registrations made by this document are exempt from the need to provide this information.
+Algorithm Name:
+: Brief descriptive name of the algorithm
+  (e.g., `Single-Use JWP using ES256`.)
+  Descriptive names may not match other registered names unless the
+  Designated Experts state that there is a compelling reason to
+  allow an exception.
+
+Algorithm JSON Label:
+: The string label requested (e.g., `SU-ES256`). This label is a
+  case-sensitive ASCII string. JSON Labels may not match other
+  registered labels in a case-insensitive manner unless the
+  Designated Experts state that there is a compelling reason to
+  allow an exception.
+
+Algorithm CBOR Label:
+: The integer label requested (e.g. `1`). CBOR Labels may not match
+  other registered labels unless the Designated Experts state that
+  there is a compelling reason to allow an exception.
+
+Algorithm Description:
+: Optional additional information clarifying the algorithm. This may
+  be used for example to document additional chosen parameters.
+
+Algorithm Usage Location(s):
+: The algorithm usage locations, which should be one or more of the
+  values `Issued` or `Presented`.  Other values may be used with the
+  approval of a Designated Expert.
+
+JWP Implementation Requirements:
+: The algorithm implementation requirements for JWP, which must be
+  one the words `Required`, `Recommended`, `Optional`, `Deprecated`,
+  or `Prohibited`.
+  Optionally, the word can be followed by a `+` or `-`. The use of
+  `+` indicates that the requirement strength is likely to be
+  increased in a future version of the specification.  The use of
+  `-` indicates that the requirement strength is likely to be
+  decreased in a future version of the specification.
+  Any identifiers registered for algorithms that are otherwise
+  unsuitable for direct use as JWP algorithms must be registered as
+  `Prohibited`.
+
+Change Controller:
+: For Standards Track RFCs, list the "IETF". For others, give the
+  name of the responsible party. Other details (e.g., postal address,
+  email address, home page URI) may also be included.
+
+Specification Document(s):
+: Reference to the document or documents that specify the parameter,
+  preferably including URIs that can be used to retrieve copies of
+  the documents. An indication of the relevant sections may also be
+  included but is not required.
+
+Algorithm Analysis Documents(s):
+: References to a publication or publications in well-known
+  cryptographic conferences, by national standards bodies, or by
+  other authoritative sources analyzing the cryptographic soundness
+  of the algorithm to be registered. The Designated Experts may
+  require convincing evidence of the cryptographic soundness of a
+  new algorithm to be provided with the registration request unless
+  the algorithm is being registered as Deprecated or Prohibited.
+  Having gone through working group and IETF review, the initial
+  registrations made by this document are exempt from the need to
+  provide this information.
 
 ### Initial Registry Contents {#AlgsContents}
 
-* Algorithm Name: `SU-ES256`
-* Algorithm Description: Single-Use JWP using ES256
+#### Single-Use JWP using ES256 Algorithm
+
+* Algorithm Name: Single-Use JWP using ES256
+* Algorithm JSON Label: `SU-ES256`
+* Algorithm CBOR Label: 1
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Recommended
 * Change Controller: IETF
 * Specification Document(s): (#SU-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `SU-ES384`
-* Algorithm Description: Single-Use JWP using ES384
+#### Single-Use JWP using ES384 Algorithm
+
+* Algorithm Name: Single-Use JWP using ES384
+* Algorithm JSON Label: `SU-ES384`
+* Algorithm CBOR Label: 2
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
 * Specification Document(s): (#SU-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `SU-ES512`
-* Algorithm Description: Single-Use JWP using ES512
+#### Single-Use JWP using ES512 Algorithm
+
+* Algorithm Name: Single-Use JWP using ES512
+* Algorithm JSON Label: `SU-ES512`
+* Algorithm CBOR Label: 3
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
 * Specification Document(s): (#SU-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `BBS`
+#### BBS using SHA-256 Algorithm
+
+* Algorithm Name: BBS using SHA-256
+* Algorithm JSON Label: `BBS`
+* Algorithm CBOR Label: 4
 * Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
 * Algorithm Usage Location(s): Issued
 * JWP Implementation Requirements: Required
@@ -478,7 +547,11 @@ defining the revised implementation requirements level.
 * Specification Document(s): (#BBS-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `BBS-PROOF`
+#### BBS Proof using SHA-256 Algorithm
+
+* Algorithm Name: BBS Proof with SHA-256
+* Algorithm JSON Label: `BBS-PROOF`
+* Algorithm CBOR Label: 5
 * Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
 * Algorithm Usage Location(s): Presented
 * JWP Implementation Requirements: Required
@@ -486,48 +559,78 @@ defining the revised implementation requirements level.
 * Specification Document(s): (#BBS-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `MAC-H256`
-* Algorithm Description: `MAC-H256` uses `HMAC SHA-256` as the MAC and `ECDSA using P-256 and SHA-256` for the signatures
+#### MAC-H256 Algorithm
+
+* Algorithm Name: MAC-H256
+* Algorithm JSON Label: `MAC-H256`
+* Algorithm CBOR Label: 6
+* Algorithm Description: `MAC-H256` uses `HMAC SHA-256` as the MAC,
+  and `ECDSA using P-256 and SHA-256` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
 * Specification Document(s): (#MAC-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `MAC-H384`
-* Algorithm Description: `MAC-H384` uses `HMAC SHA-384` as the MAC and `ECDSA using P-384 and SHA-384` for the signatures
+#### MAC-H384 Algorithm
+
+* Algorithm Name: MAC-H384
+* Algorithm JSON Label: `MAC-H384`
+* Algorithm CBOR Label: 7
+* Algorithm Description: `MAC-H384` uses `HMAC SHA-384` as the MAC,
+  and `ECDSA using P-384 and SHA-384` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
 * Specification Document(s): (#MAC-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `MAC-H512`
-* Algorithm Description: `MAC-H512` uses `HMAC SHA-512` as the MAC and `ECDSA using P-521 and SHA-512` for the signatures
+#### MAC-H512 Algorithm
+
+* Algorithm Name: MAC-H512
+* Algorithm JSON Label: `MAC-H512`
+* Algorithm CBOR Label: 8
+* Algorithm Description: `MAC-H512` uses `HMAC SHA-512` as the MAC,
+  and `ECDSA using P-521 and SHA-512` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
 * Specification Document(s): (#MAC-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `MAC-K25519`
-* Algorithm Description: `MAC-K25519` uses `KMAC SHAKE128` as the MAC and `EdDSA using Curve25519` for the signatures
+#### MAC-K25519 Algorithm
+
+* Algorithm Name: MAC-K25519
+* Algorithm JSON Label: `MAC-K25519`
+* Algorithm CBOR Label: 9
+* Algorithm Description: `MAC-K25519` uses `KMAC SHAKE128` as the
+  MAC, and `EdDSA using Curve25519` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
 * Specification Document(s): (#MAC-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `MAC-K448`
-* Algorithm Description: `MAC-K448` uses `KMAC SHAKE256` as the MAC and `EdDSA using Curve448` for the signatures
+#### MAC-K448 Algorithm
+
+* Algorithm Name: MAC-K448
+* Algorithm JSON Label: `MAC-K448`
+* Algorithm CBOR Label: 10
+* Algorithm Description: `MAC-K448` uses `KMAC SHAKE256` as the MAC,
+  and `EdDSA using Curve448` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
 * Specification Document(s): (#MAC-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-* Algorithm Name: `MAC-H256K`
-* Algorithm Description: `MAC-H256K` uses `HMAC SHA-256` as the MAC and `ECDSA using secp256k1 and SHA-256` for the signatures
+#### MAC-H256K Algorithm
+
+* Algorithm Name: MAC-H256K
+* Algorithm JSON Label: `MAC-H256K`
+* Algorithm CBOR Label: 11
+* Algorithm Description: `MAC-H256K` uses `HMAC SHA-256` as the MAC,
+  and `ECDSA using secp256k1 and SHA-256` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Optional
 * Change Controller: IETF
