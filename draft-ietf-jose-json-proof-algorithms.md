@@ -46,7 +46,7 @@ organization = "Ping Identity"
 
 .# Abstract
 
-The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof and JSON Web Key (JWK) specifications. It defines IANA registries for these identifiers.
+The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof, JSON Web Key (JWK), and COSE specifications. It defines IANA registries for these identifiers.
 
 {mainmatter}
 
@@ -221,11 +221,9 @@ The `BBS-PROOF` `alg` parameter value in the presentation protected header corre
 
 ### Key Format
 
-The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4]
+The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4]. The JWK and Cose Key Object representations of the key are detailed in [@!I-D.ietf-cose-bls-key-representations].
 
-The JWK form of this key is an `OKP` type with a curve of `BLS12381G2`, with `x` being the base64url-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
-
-There is no additional holder key necessary for presentation proofs.
+There is no additional holder presentation key necessary for presentation proofs.
 
 ### Issuance
 
