@@ -1264,6 +1264,41 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2">
                     <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#section-8.1.2" class="auto internal xref">8.1.2</a>.  <a href="#name-initial-registry-contents" class="internal xref">Initial Registry Contents</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.1">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.1.1"><a href="#section-8.1.2.1" class="auto internal xref">8.1.2.1</a>.  <a href="#name-single-use-jwp-using-es256-" class="internal xref">Single-Use JWP using ES256 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.2">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.2.1"><a href="#section-8.1.2.2" class="auto internal xref">8.1.2.2</a>.  <a href="#name-single-use-jwp-using-es384-" class="internal xref">Single-Use JWP using ES384 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.3">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.3.1"><a href="#section-8.1.2.3" class="auto internal xref">8.1.2.3</a>.  <a href="#name-single-use-jwp-using-es512-" class="internal xref">Single-Use JWP using ES512 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.4">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.4.1"><a href="#section-8.1.2.4" class="auto internal xref">8.1.2.4</a>.  <a href="#name-bbs-using-sha-256-algorithm" class="internal xref">BBS using SHA-256 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.5">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.5.1"><a href="#section-8.1.2.5" class="auto internal xref">8.1.2.5</a>.  <a href="#name-bbs-proof-using-sha-256-alg" class="internal xref">BBS Proof using SHA-256 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.6">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.6.1"><a href="#section-8.1.2.6" class="auto internal xref">8.1.2.6</a>.  <a href="#name-mac-h256-algorithm" class="internal xref">MAC-H256 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.7">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.7.1"><a href="#section-8.1.2.7" class="auto internal xref">8.1.2.7</a>.  <a href="#name-mac-h384-algorithm" class="internal xref">MAC-H384 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.8">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.8.1"><a href="#section-8.1.2.8" class="auto internal xref">8.1.2.8</a>.  <a href="#name-mac-h512-algorithm" class="internal xref">MAC-H512 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.9">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.9.1"><a href="#section-8.1.2.9" class="auto internal xref">8.1.2.9</a>.  <a href="#name-mac-k25519-algorithm" class="internal xref">MAC-K25519 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.10">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.10.1"><a href="#section-8.1.2.10" class="auto internal xref">8.1.2.10</a>. <a href="#name-mac-k448-algorithm" class="internal xref">MAC-K448 Algorithm</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2.2.11">
+                        <p id="section-toc.1-1.8.2.1.2.2.2.11.1"><a href="#section-8.1.2.11" class="auto internal xref">8.1.2.11</a>. <a href="#name-mac-h256k-algorithm" class="internal xref">MAC-H256K Algorithm</a></p>
+</li>
+                    </ul>
 </li>
                 </ul>
 </li>
@@ -1837,22 +1872,81 @@ defining the revised implementation requirements level.<a href="#section-8.1-4" 
           <h4 id="name-registration-template">
 <a href="#section-8.1.1" class="section-number selfRef">8.1.1. </a><a href="#name-registration-template" class="section-name selfRef">Registration Template</a>
           </h4>
-<ul class="compact">
-<li class="compact" id="section-8.1.1-1.1">Algorithm Name: The name requested (e.g., "SU-ES256"). This name is a case-sensitive ASCII string. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.<a href="#section-8.1.1-1.1" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-8.1.1-1.2">Algorithm Description: Brief description of the algorithm (e.g., "Single-Use JWP using ES256").<a href="#section-8.1.1-1.2" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-8.1.1-1.3">Algorithm Usage Location(s): The algorithm usage locations, which should be one or more of the values <code>Issued</code> or <code>Presented</code>.  Other values may be used with the approval of a Designated Expert.<a href="#section-8.1.1-1.3" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-8.1.1-1.4">JWP Implementation Requirements: The algorithm implementation requirements for JWP, which must be one the words Required, Recommended, Optional, Deprecated, or Prohibited. Optionally, the word can be followed by a "+" or "-". The use of "+" indicates that the requirement strength is likely to be increased in a future version of the specification.  The use of "-" indicates that the requirement strength is likely to be decreased in a future version of the specification. Any identifiers registered for non-authenticated encryption algorithms or other algorithms that are otherwise unsuitable for direct use as JWP algorithms must be registered as "Prohibited".<a href="#section-8.1.1-1.4" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-8.1.1-1.5">Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.<a href="#section-8.1.1-1.5" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-8.1.1-1.6">Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.<a href="#section-8.1.1-1.6" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-8.1.1-1.7">Algorithm Analysis Documents(s): References to a publication or publications in well-known cryptographic conferences, by national standards bodies, or by other authoritative sources analyzing the cryptographic soundness of the algorithm to be registered. The Designated Experts may require convincing evidence of the cryptographic soundness of a new algorithm to be provided with the registration request unless the algorithm is being registered as Deprecated or Prohibited. Having gone through working group and IETF review, the initial registrations made by this document are exempt from the need to provide this information.<a href="#section-8.1.1-1.7" class="pilcrow">¶</a>
-</li>
-          </ul>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-8.1.1-1">
+            <dt id="section-8.1.1-1.1">Algorithm Name:</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.2">Brief descriptive name of the algorithm
+(e.g., <code>Single-Use JWP using ES256</code>.)
+Descriptive names may not match other registered names unless the
+Designated Experts state that there is a compelling reason to
+allow an exception.<a href="#section-8.1.1-1.2" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.3">Algorithm JSON Label:</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.4">The string label requested (e.g., <code>SU-ES256</code>). This label is a
+case-sensitive ASCII string. JSON Labels may not match other
+registered labels in a case-insensitive manner unless the
+Designated Experts state that there is a compelling reason to
+allow an exception.<a href="#section-8.1.1-1.4" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.5">Algorithm CBOR Label:</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.6">The integer label requested (e.g. <code>1</code>). CBOR Labels may not match
+other registered labels unless the Designated Experts state that
+there is a compelling reason to allow an exception.<a href="#section-8.1.1-1.6" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.7">Algorithm Description:</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.8">Optional additional information clarifying the algorithm. This may
+be used for example to document additional chosen parameters.<a href="#section-8.1.1-1.8" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.9">Algorithm Usage Location(s):</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.10">The algorithm usage locations, which should be one or more of the
+values <code>Issued</code> or <code>Presented</code>.  Other values may be used with the
+approval of a Designated Expert.<a href="#section-8.1.1-1.10" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.11">JWP Implementation Requirements:</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.12">The algorithm implementation requirements for JWP, which must be
+one the words <code>Required</code>, <code>Recommended</code>, <code>Optional</code>, <code>Deprecated</code>,
+or <code>Prohibited</code>.
+Optionally, the word can be followed by a <code>+</code> or <code>-</code>. The use of
+<code>+</code> indicates that the requirement strength is likely to be
+increased in a future version of the specification.  The use of
+<code>-</code> indicates that the requirement strength is likely to be
+decreased in a future version of the specification.
+Any identifiers registered for algorithms that are otherwise
+unsuitable for direct use as JWP algorithms must be registered as
+<code>Prohibited</code>.<a href="#section-8.1.1-1.12" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.13">Change Controller:</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.14">For Standards Track RFCs, list the "IETF". For others, give the
+name of the responsible party. Other details (e.g., postal address,
+email address, home page URI) may also be included.<a href="#section-8.1.1-1.14" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.15">Specification Document(s):</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.16">Reference to the document or documents that specify the parameter,
+preferably including URIs that can be used to retrieve copies of
+the documents. An indication of the relevant sections may also be
+included but is not required.<a href="#section-8.1.1-1.16" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-8.1.1-1.17">Algorithm Analysis Documents(s):</dt>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.18">References to a publication or publications in well-known
+cryptographic conferences, by national standards bodies, or by
+other authoritative sources analyzing the cryptographic soundness
+of the algorithm to be registered. The Designated Experts may
+require convincing evidence of the cryptographic soundness of a
+new algorithm to be provided with the registration request unless
+the algorithm is being registered as Deprecated or Prohibited.
+Having gone through working group and IETF review, the initial
+registrations made by this document are exempt from the need to
+provide this information.<a href="#section-8.1.1-1.18" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+</dl>
 </section>
 </div>
 <div id="AlgsContents">
@@ -1860,233 +1954,303 @@ defining the revised implementation requirements level.<a href="#section-8.1-4" 
           <h4 id="name-initial-registry-contents">
 <a href="#section-8.1.2" class="section-number selfRef">8.1.2. </a><a href="#name-initial-registry-contents" class="section-name selfRef">Initial Registry Contents</a>
           </h4>
-<ul class="normal">
-<li class="normal" id="section-8.1.2-1.1">Algorithm Name: <code>SU-ES256</code><a href="#section-8.1.2-1.1" class="pilcrow">¶</a>
+<div id="single-use-jwp-using-es256-algorithm">
+<section id="section-8.1.2.1">
+            <h5 id="name-single-use-jwp-using-es256-">
+<a href="#section-8.1.2.1" class="section-number selfRef">8.1.2.1. </a><a href="#name-single-use-jwp-using-es256-" class="section-name selfRef">Single-Use JWP using ES256 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.1-1.1">Algorithm Name: Single-Use JWP using ES256<a href="#section-8.1.2.1-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.2">Algorithm Description: Single-Use JWP using ES256<a href="#section-8.1.2-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.1-1.2">Algorithm JSON Label: <code>SU-ES256</code><a href="#section-8.1.2.1-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.3">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.1-1.3">Algorithm CBOR Label: 1<a href="#section-8.1.2.1-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.4">JWP Implementation Requirements: Recommended<a href="#section-8.1.2-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.1-1.4">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.1-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.5">Change Controller: IETF<a href="#section-8.1.2-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.1-1.5">JWP Implementation Requirements: Recommended<a href="#section-8.1.2.1-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.6">Specification Document(s): <a href="#SU-registration" class="auto internal xref">Section 6.1.11</a> of this specification<a href="#section-8.1.2-1.6" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.1-1.6">Change Controller: IETF<a href="#section-8.1.2.1-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.7">
-              <p id="section-8.1.2-1.7.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.7.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.1-1.7">Specification Document(s): <a href="#SU-registration" class="auto internal xref">Section 6.1.11</a> of this specification<a href="#section-8.1.2.1-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.8">
-              <p id="section-8.1.2-1.8.1">Algorithm Name: <code>SU-ES384</code><a href="#section-8.1.2-1.8.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.1-1.8">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.1-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.9">
-              <p id="section-8.1.2-1.9.1">Algorithm Description: Single-Use JWP using ES384<a href="#section-8.1.2-1.9.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="single-use-jwp-using-es384-algorithm">
+<section id="section-8.1.2.2">
+            <h5 id="name-single-use-jwp-using-es384-">
+<a href="#section-8.1.2.2" class="section-number selfRef">8.1.2.2. </a><a href="#name-single-use-jwp-using-es384-" class="section-name selfRef">Single-Use JWP using ES384 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.2-1.1">Algorithm Name: Single-Use JWP using ES384<a href="#section-8.1.2.2-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.10">
-              <p id="section-8.1.2-1.10.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.10.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.2-1.2">Algorithm JSON Label: <code>SU-ES384</code><a href="#section-8.1.2.2-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.11">
-              <p id="section-8.1.2-1.11.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.11.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.2-1.3">Algorithm CBOR Label: 2<a href="#section-8.1.2.2-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.12">
-              <p id="section-8.1.2-1.12.1">Change Controller: IETF<a href="#section-8.1.2-1.12.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.2-1.4">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.2-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.13">
-              <p id="section-8.1.2-1.13.1">Specification Document(s): <a href="#SU-registration" class="auto internal xref">Section 6.1.11</a> of this specification<a href="#section-8.1.2-1.13.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.2-1.5">JWP Implementation Requirements: Optional<a href="#section-8.1.2.2-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.14">
-              <p id="section-8.1.2-1.14.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.14.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.2-1.6">Change Controller: IETF<a href="#section-8.1.2.2-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.15">
-              <p id="section-8.1.2-1.15.1">Algorithm Name: <code>SU-ES512</code><a href="#section-8.1.2-1.15.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.2-1.7">Specification Document(s): <a href="#SU-registration" class="auto internal xref">Section 6.1.11</a> of this specification<a href="#section-8.1.2.2-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.16">
-              <p id="section-8.1.2-1.16.1">Algorithm Description: Single-Use JWP using ES512<a href="#section-8.1.2-1.16.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.2-1.8">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.2-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.17">
-              <p id="section-8.1.2-1.17.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.17.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="single-use-jwp-using-es512-algorithm">
+<section id="section-8.1.2.3">
+            <h5 id="name-single-use-jwp-using-es512-">
+<a href="#section-8.1.2.3" class="section-number selfRef">8.1.2.3. </a><a href="#name-single-use-jwp-using-es512-" class="section-name selfRef">Single-Use JWP using ES512 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.3-1.1">Algorithm Name: Single-Use JWP using ES512<a href="#section-8.1.2.3-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.18">
-              <p id="section-8.1.2-1.18.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.18.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.3-1.2">Algorithm JSON Label: <code>SU-ES512</code><a href="#section-8.1.2.3-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.19">
-              <p id="section-8.1.2-1.19.1">Change Controller: IETF<a href="#section-8.1.2-1.19.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.3-1.3">Algorithm CBOR Label: 3<a href="#section-8.1.2.3-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.20">
-              <p id="section-8.1.2-1.20.1">Specification Document(s): <a href="#SU-registration" class="auto internal xref">Section 6.1.11</a> of this specification<a href="#section-8.1.2-1.20.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.3-1.4">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.3-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.21">
-              <p id="section-8.1.2-1.21.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.21.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.3-1.5">JWP Implementation Requirements: Optional<a href="#section-8.1.2.3-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.22">
-              <p id="section-8.1.2-1.22.1">Algorithm Name: <code>BBS</code><a href="#section-8.1.2-1.22.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.3-1.6">Change Controller: IETF<a href="#section-8.1.2.3-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.23">
-              <p id="section-8.1.2-1.23.1">Algorithm Description: Corresponds to a ciphersuite identifier of <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_</code><a href="#section-8.1.2-1.23.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.3-1.7">Specification Document(s): <a href="#SU-registration" class="auto internal xref">Section 6.1.11</a> of this specification<a href="#section-8.1.2.3-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.24">
-              <p id="section-8.1.2-1.24.1">Algorithm Usage Location(s): Issued<a href="#section-8.1.2-1.24.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.3-1.8">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.3-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.25">
-              <p id="section-8.1.2-1.25.1">JWP Implementation Requirements: Required<a href="#section-8.1.2-1.25.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="bbs-using-sha-256-algorithm">
+<section id="section-8.1.2.4">
+            <h5 id="name-bbs-using-sha-256-algorithm">
+<a href="#section-8.1.2.4" class="section-number selfRef">8.1.2.4. </a><a href="#name-bbs-using-sha-256-algorithm" class="section-name selfRef">BBS using SHA-256 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.4-1.1">Algorithm Name: BBS using SHA-256<a href="#section-8.1.2.4-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.26">
-              <p id="section-8.1.2-1.26.1">Change Controller: IETF<a href="#section-8.1.2-1.26.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.2">Algorithm JSON Label: <code>BBS</code><a href="#section-8.1.2.4-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.27">
-              <p id="section-8.1.2-1.27.1">Specification Document(s): <a href="#BBS-registration" class="auto internal xref">Section 6.2.1</a> of this specification<a href="#section-8.1.2-1.27.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.3">Algorithm CBOR Label: 4<a href="#section-8.1.2.4-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.28">
-              <p id="section-8.1.2-1.28.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.28.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.4">Algorithm Description: Corresponds to a ciphersuite identifier of <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_</code><a href="#section-8.1.2.4-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.29">
-              <p id="section-8.1.2-1.29.1">Algorithm Name: <code>BBS-PROOF</code><a href="#section-8.1.2-1.29.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.5">Algorithm Usage Location(s): Issued<a href="#section-8.1.2.4-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.30">
-              <p id="section-8.1.2-1.30.1">Algorithm Description: Corresponds to a ciphersuite identifier of <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_</code><a href="#section-8.1.2-1.30.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.6">JWP Implementation Requirements: Required<a href="#section-8.1.2.4-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.31">
-              <p id="section-8.1.2-1.31.1">Algorithm Usage Location(s): Presented<a href="#section-8.1.2-1.31.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.7">Change Controller: IETF<a href="#section-8.1.2.4-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.32">
-              <p id="section-8.1.2-1.32.1">JWP Implementation Requirements: Required<a href="#section-8.1.2-1.32.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.8">Specification Document(s): <a href="#BBS-registration" class="auto internal xref">Section 6.2.1</a> of this specification<a href="#section-8.1.2.4-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.33">
-              <p id="section-8.1.2-1.33.1">Change Controller: IETF<a href="#section-8.1.2-1.33.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.4-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.4-1.9" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.34">
-              <p id="section-8.1.2-1.34.1">Specification Document(s): <a href="#BBS-registration" class="auto internal xref">Section 6.2.1</a> of this specification<a href="#section-8.1.2-1.34.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="bbs-proof-using-sha-256-algorithm">
+<section id="section-8.1.2.5">
+            <h5 id="name-bbs-proof-using-sha-256-alg">
+<a href="#section-8.1.2.5" class="section-number selfRef">8.1.2.5. </a><a href="#name-bbs-proof-using-sha-256-alg" class="section-name selfRef">BBS Proof using SHA-256 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.5-1.1">Algorithm Name: BBS Proof with SHA-256<a href="#section-8.1.2.5-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.35">
-              <p id="section-8.1.2-1.35.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.35.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.2">Algorithm JSON Label: <code>BBS-PROOF</code><a href="#section-8.1.2.5-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.36">
-              <p id="section-8.1.2-1.36.1">Algorithm Name: <code>MAC-H256</code><a href="#section-8.1.2-1.36.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.3">Algorithm CBOR Label: 5<a href="#section-8.1.2.5-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.37">
-              <p id="section-8.1.2-1.37.1">Algorithm Description: <code>MAC-H256</code> uses <code>HMAC SHA-256</code> as the MAC and <code>ECDSA using P-256 and SHA-256</code> for the signatures<a href="#section-8.1.2-1.37.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.4">Algorithm Description: Corresponds to a ciphersuite identifier of <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_</code><a href="#section-8.1.2.5-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.38">
-              <p id="section-8.1.2-1.38.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.38.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.5">Algorithm Usage Location(s): Presented<a href="#section-8.1.2.5-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.39">
-              <p id="section-8.1.2-1.39.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.39.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.6">JWP Implementation Requirements: Required<a href="#section-8.1.2.5-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.40">
-              <p id="section-8.1.2-1.40.1">Change Controller: IETF<a href="#section-8.1.2-1.40.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.7">Change Controller: IETF<a href="#section-8.1.2.5-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.41">
-              <p id="section-8.1.2-1.41.1">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2-1.41.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.8">Specification Document(s): <a href="#BBS-registration" class="auto internal xref">Section 6.2.1</a> of this specification<a href="#section-8.1.2.5-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.42">
-              <p id="section-8.1.2-1.42.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.42.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.5-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.5-1.9" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.43">
-              <p id="section-8.1.2-1.43.1">Algorithm Name: <code>MAC-H384</code><a href="#section-8.1.2-1.43.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="mac-h256-algorithm">
+<section id="section-8.1.2.6">
+            <h5 id="name-mac-h256-algorithm">
+<a href="#section-8.1.2.6" class="section-number selfRef">8.1.2.6. </a><a href="#name-mac-h256-algorithm" class="section-name selfRef">MAC-H256 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.6-1.1">Algorithm Name: MAC-H256<a href="#section-8.1.2.6-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.44">
-              <p id="section-8.1.2-1.44.1">Algorithm Description: <code>MAC-H384</code> uses <code>HMAC SHA-384</code> as the MAC and <code>ECDSA using P-384 and SHA-384</code> for the signatures<a href="#section-8.1.2-1.44.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.2">Algorithm JSON Label: <code>MAC-H256</code><a href="#section-8.1.2.6-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.45">
-              <p id="section-8.1.2-1.45.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.45.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.3">Algorithm CBOR Label: 6<a href="#section-8.1.2.6-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.46">
-              <p id="section-8.1.2-1.46.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.46.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.4">Algorithm Description: <code>MAC-H256</code> uses <code>HMAC SHA-256</code> as the MAC,
+and <code>ECDSA using P-256 and SHA-256</code> for the signatures<a href="#section-8.1.2.6-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.47">
-              <p id="section-8.1.2-1.47.1">Change Controller: IETF<a href="#section-8.1.2-1.47.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.6-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.48">
-              <p id="section-8.1.2-1.48.1">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2-1.48.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.6">JWP Implementation Requirements: Optional<a href="#section-8.1.2.6-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.49">
-              <p id="section-8.1.2-1.49.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.49.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.7">Change Controller: IETF<a href="#section-8.1.2.6-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.50">
-              <p id="section-8.1.2-1.50.1">Algorithm Name: <code>MAC-H512</code><a href="#section-8.1.2-1.50.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.8">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2.6-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.51">
-              <p id="section-8.1.2-1.51.1">Algorithm Description: <code>MAC-H512</code> uses <code>HMAC SHA-512</code> as the MAC and <code>ECDSA using P-521 and SHA-512</code> for the signatures<a href="#section-8.1.2-1.51.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.6-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.6-1.9" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.52">
-              <p id="section-8.1.2-1.52.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.52.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="mac-h384-algorithm">
+<section id="section-8.1.2.7">
+            <h5 id="name-mac-h384-algorithm">
+<a href="#section-8.1.2.7" class="section-number selfRef">8.1.2.7. </a><a href="#name-mac-h384-algorithm" class="section-name selfRef">MAC-H384 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.7-1.1">Algorithm Name: MAC-H384<a href="#section-8.1.2.7-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.53">
-              <p id="section-8.1.2-1.53.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.53.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.2">Algorithm JSON Label: <code>MAC-H384</code><a href="#section-8.1.2.7-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.54">
-              <p id="section-8.1.2-1.54.1">Change Controller: IETF<a href="#section-8.1.2-1.54.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.3">Algorithm CBOR Label: 7<a href="#section-8.1.2.7-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.55">
-              <p id="section-8.1.2-1.55.1">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2-1.55.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.4">Algorithm Description: <code>MAC-H384</code> uses <code>HMAC SHA-384</code> as the MAC,
+and <code>ECDSA using P-384 and SHA-384</code> for the signatures<a href="#section-8.1.2.7-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.56">
-              <p id="section-8.1.2-1.56.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.56.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.7-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.57">
-              <p id="section-8.1.2-1.57.1">Algorithm Name: <code>MAC-K25519</code><a href="#section-8.1.2-1.57.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.6">JWP Implementation Requirements: Optional<a href="#section-8.1.2.7-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.58">
-              <p id="section-8.1.2-1.58.1">Algorithm Description: <code>MAC-K25519</code> uses <code>KMAC SHAKE128</code> as the MAC and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.2-1.58.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.7">Change Controller: IETF<a href="#section-8.1.2.7-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.59">
-              <p id="section-8.1.2-1.59.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.59.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.8">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2.7-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.60">
-              <p id="section-8.1.2-1.60.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.60.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.7-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.7-1.9" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.61">
-              <p id="section-8.1.2-1.61.1">Change Controller: IETF<a href="#section-8.1.2-1.61.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="mac-h512-algorithm">
+<section id="section-8.1.2.8">
+            <h5 id="name-mac-h512-algorithm">
+<a href="#section-8.1.2.8" class="section-number selfRef">8.1.2.8. </a><a href="#name-mac-h512-algorithm" class="section-name selfRef">MAC-H512 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.8-1.1">Algorithm Name: MAC-H512<a href="#section-8.1.2.8-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.62">
-              <p id="section-8.1.2-1.62.1">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2-1.62.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.2">Algorithm JSON Label: <code>MAC-H512</code><a href="#section-8.1.2.8-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.63">
-              <p id="section-8.1.2-1.63.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.63.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.3">Algorithm CBOR Label: 8<a href="#section-8.1.2.8-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.64">
-              <p id="section-8.1.2-1.64.1">Algorithm Name: <code>MAC-K448</code><a href="#section-8.1.2-1.64.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.4">Algorithm Description: <code>MAC-H512</code> uses <code>HMAC SHA-512</code> as the MAC,
+and <code>ECDSA using P-521 and SHA-512</code> for the signatures<a href="#section-8.1.2.8-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.65">
-              <p id="section-8.1.2-1.65.1">Algorithm Description: <code>MAC-K448</code> uses <code>KMAC SHAKE256</code> as the MAC and <code>EdDSA using Curve448</code> for the signatures<a href="#section-8.1.2-1.65.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.8-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.66">
-              <p id="section-8.1.2-1.66.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.66.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.6">JWP Implementation Requirements: Optional<a href="#section-8.1.2.8-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.67">
-              <p id="section-8.1.2-1.67.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.67.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.7">Change Controller: IETF<a href="#section-8.1.2.8-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.68">
-              <p id="section-8.1.2-1.68.1">Change Controller: IETF<a href="#section-8.1.2-1.68.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.8">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2.8-1.8" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.69">
-              <p id="section-8.1.2-1.69.1">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2-1.69.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.8-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.8-1.9" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.70">
-              <p id="section-8.1.2-1.70.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.70.1" class="pilcrow">¶</a></p>
+            </ul>
+</section>
+</div>
+<div id="mac-k25519-algorithm">
+<section id="section-8.1.2.9">
+            <h5 id="name-mac-k25519-algorithm">
+<a href="#section-8.1.2.9" class="section-number selfRef">8.1.2.9. </a><a href="#name-mac-k25519-algorithm" class="section-name selfRef">MAC-K25519 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.9-1.1">Algorithm Name: MAC-K25519<a href="#section-8.1.2.9-1.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.71">
-              <p id="section-8.1.2-1.71.1">Algorithm Name: <code>MAC-H256K</code><a href="#section-8.1.2-1.71.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.9-1.2">Algorithm JSON Label: <code>MAC-K25519</code><a href="#section-8.1.2.9-1.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.72">
-              <p id="section-8.1.2-1.72.1">Algorithm Description: <code>MAC-H256K</code> uses <code>HMAC SHA-256</code> as the MAC and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#section-8.1.2-1.72.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.9-1.3">Algorithm CBOR Label: 9<a href="#section-8.1.2.9-1.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.73">
-              <p id="section-8.1.2-1.73.1">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2-1.73.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.9-1.4">Algorithm Description: <code>MAC-K25519</code> uses <code>KMAC SHAKE128</code> as the
+MAC, and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.2.9-1.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.74">
-              <p id="section-8.1.2-1.74.1">JWP Implementation Requirements: Optional<a href="#section-8.1.2-1.74.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.9-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.9-1.5" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.75">
-              <p id="section-8.1.2-1.75.1">Change Controller: IETF<a href="#section-8.1.2-1.75.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.9-1.6">JWP Implementation Requirements: Optional<a href="#section-8.1.2.9-1.6" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.76">
-              <p id="section-8.1.2-1.76.1">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2-1.76.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.9-1.7">Change Controller: IETF<a href="#section-8.1.2.9-1.7" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.2-1.77">
-              <p id="section-8.1.2-1.77.1">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2-1.77.1" class="pilcrow">¶</a></p>
+              <li class="compact" id="section-8.1.2.9-1.8">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2.9-1.8" class="pilcrow">¶</a>
 </li>
-          </ul>
+              <li class="compact" id="section-8.1.2.9-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.9-1.9" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
+<div id="mac-k448-algorithm">
+<section id="section-8.1.2.10">
+            <h5 id="name-mac-k448-algorithm">
+<a href="#section-8.1.2.10" class="section-number selfRef">8.1.2.10. </a><a href="#name-mac-k448-algorithm" class="section-name selfRef">MAC-K448 Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.10-1.1">Algorithm Name: MAC-K448<a href="#section-8.1.2.10-1.1" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.2">Algorithm JSON Label: <code>MAC-K448</code><a href="#section-8.1.2.10-1.2" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.3">Algorithm CBOR Label: 10<a href="#section-8.1.2.10-1.3" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.4">Algorithm Description: <code>MAC-K448</code> uses <code>KMAC SHAKE256</code> as the MAC,
+and <code>EdDSA using Curve448</code> for the signatures<a href="#section-8.1.2.10-1.4" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.10-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.6">JWP Implementation Requirements: Optional<a href="#section-8.1.2.10-1.6" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.7">Change Controller: IETF<a href="#section-8.1.2.10-1.7" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.8">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2.10-1.8" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.10-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.10-1.9" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
+<div id="mac-h256k-algorithm">
+<section id="section-8.1.2.11">
+            <h5 id="name-mac-h256k-algorithm">
+<a href="#section-8.1.2.11" class="section-number selfRef">8.1.2.11. </a><a href="#name-mac-h256k-algorithm" class="section-name selfRef">MAC-H256K Algorithm</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-8.1.2.11-1.1">Algorithm Name: MAC-H256K<a href="#section-8.1.2.11-1.1" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.2">Algorithm JSON Label: <code>MAC-H256K</code><a href="#section-8.1.2.11-1.2" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.3">Algorithm CBOR Label: 11<a href="#section-8.1.2.11-1.3" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.4">Algorithm Description: <code>MAC-H256K</code> uses <code>HMAC SHA-256</code> as the MAC,
+and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#section-8.1.2.11-1.4" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.11-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.6">JWP Implementation Requirements: Optional<a href="#section-8.1.2.11-1.6" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.7">Change Controller: IETF<a href="#section-8.1.2.11-1.7" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.8">Specification Document(s): <a href="#MAC-registration" class="auto internal xref">Section 6.3.9</a> of this specification<a href="#section-8.1.2.11-1.8" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-8.1.2.11-1.9">Algorithm Analysis Documents(s): n/a<a href="#section-8.1.2.11-1.9" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -2226,9 +2390,9 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "JbWHMyrmeaQ7RPPPiGBInbNoFbeNFwTGlCEHpTjA9C8",
-  "y": "Hrrjo5ywLsnuQ15WOUM0xu18soOwuOsSkw3NS_gKRGQ",
-  "d": "3jU7Qkp0nfTDjerOv1M9EJvsR1kk_G5IPMZB00cMVWA"
+  "x": "6ffahfk-EqCnm078N8nX84_HZaYmdwlWh3ksyqEdMQE",
+  "y": "JiZwpaeNji_4H_wWoMjqbf3ejNbF1L2STQiesLWxFa8",
+  "d": "SZGpGZQVbeeqwAVJ9BH1uVk1CpqzZSbGTNIsXgarLAs"
 }
 
 </pre>
@@ -2242,9 +2406,9 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "v9ALpjc13Eh1q5aK96DfwYCB3GEuroeCzJeS3OKz_gU",
-  "y": "314pDleS_f1otNwiza2ZZQTmAMrjnyjGkvQ2DIghoV4",
-  "d": "3c557DD4vzAfr98dcHC9rxfZ9Xqosu8ZwIqM3bKspQk"
+  "x": "G1n1LqfudZPYyoCgOTO2mmyBv5EA_EjMJXeBWNQQNTg",
+  "y": "mi-10v72tCbkkdQvdfeOVoUlzQZsvwhpEAaqKB89p8A",
+  "d": "LAzAXf3yAxNrW3xy6qHdDiEf5Pm5hIxaQjCY3d8fSX8"
 }
 
 </pre>
@@ -2258,9 +2422,9 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "d9XsH8ELO2WYAK0SXhW_GkTXf6xHDSwZf__OWzaj_Hk",
-  "y": "UoerHDP9gC8SQIJecwu8FaSYp-P9R7aeMje1daFcn1I",
-  "d": "nvKIuEK764nsZtsCz292HsEk6Wfx7SMugqC4HgzasbA"
+  "x": "JC26kZ3-ztu6Z0r6OoOuOKXHB_EPI2s-_dplmkaQr1o",
+  "y": "R6hL06c4-CyoH_vzWaMoTsMlFat8nFaSBd0oJQ2TXm4",
+  "d": "lA9rOWgpiVa87NiC9kUhNX2Zip1gzp8VrjiWe-C1DXo"
 }
 
 </pre>
@@ -2287,16 +2451,16 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
   "proof_jwk": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "v9ALpjc13Eh1q5aK96DfwYCB3GEuroeCzJeS3OKz_gU",
-    "y": "314pDleS_f1otNwiza2ZZQTmAMrjnyjGkvQ2DIghoV4",
-    "d": "3c557DD4vzAfr98dcHC9rxfZ9Xqosu8ZwIqM3bKspQk"
+    "x": "G1n1LqfudZPYyoCgOTO2mmyBv5EA_EjMJXeBWNQQNTg",
+    "y": "mi-10v72tCbkkdQvdfeOVoUlzQZsvwhpEAaqKB89p8A",
+    "d": "LAzAXf3yAxNrW3xy6qHdDiEf5Pm5hIxaQjCY3d8fSX8"
   },
   "presentation_jwk": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "d9XsH8ELO2WYAK0SXhW_GkTXf6xHDSwZf__OWzaj_Hk",
-    "y": "UoerHDP9gC8SQIJecwu8FaSYp-P9R7aeMje1daFcn1I",
-    "d": "nvKIuEK764nsZtsCz292HsEk6Wfx7SMugqC4HgzasbA"
+    "x": "JC26kZ3-ztu6Z0r6OoOuOKXHB_EPI2s-_dplmkaQr1o",
+    "y": "R6hL06c4-CyoH_vzWaMoTsMlFat8nFaSBd0oJQ2TXm4",
+    "d": "lA9rOWgpiVa87NiC9kUhNX2Zip1gzp8VrjiWe-C1DXo"
   }
 }
 
@@ -2311,14 +2475,14 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2ZfandrIjp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoidjlBTHBqYzEzRWgxcTVhSzk2RGZ3
-WUNCM0dFdXJvZUN6SmVTM09Lel9nVSIsInkiOiIzMTRwRGxlU19mMW90TndpemEyWlpRV
-G1BTXJqbnlqR2t2UTJESWdob1Y0IiwiZCI6IjNjNTU3REQ0dnpBZnI5OGRjSEM5cnhmWj
-lYcW9zdThad0lxTTNiS3NwUWsifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyI
-sImNydiI6IlAtMjU2IiwieCI6ImQ5WHNIOEVMTzJXWUFLMFNYaFdfR2tUWGY2eEhEU3da
-Zl9fT1d6YWpfSGsiLCJ5IjoiVW9lckhEUDlnQzhTUUlKZWN3dThGYVNZcC1QOVI3YWVNa
-mUxZGFGY24xSSIsImQiOiJudktJdUVLNzY0bnNadHNDejI5MkhzRWs2V2Z4N1NNdWdxQz
-RIZ3phc2JBIn19
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiRzFuMUxxZnVkWlBZeW9DZ09UTzJt
+bXlCdjVFQV9Fak1KWGVCV05RUU5UZyIsInkiOiJtaS0xMHY3MnRDYmtrZFF2ZGZlT1ZvV
+Wx6UVpzdndocEVBYXFLQjg5cDhBIiwiZCI6IkxBekFYZjN5QXhOclczeHk2cUhkRGlFZj
+VQbTVoSXhhUWpDWTNkOGZTWDgifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyI
+sImNydiI6IlAtMjU2IiwieCI6IkpDMjZrWjMtenR1NlowcjZPb091T0tYSEJfRVBJMnMt
+X2RwbG1rYVFyMW8iLCJ5IjoiUjZoTDA2YzQtQ3lvSF92eldhTW9Uc01sRmF0OG5GYVNCZ
+DBvSlEyVFhtNCIsImQiOiJsQTlyT1dncGlWYTg3TmlDOWtVaE5YMlppcDFnenA4VnJqaV
+dlLUMxRFhvIn19
 
 </pre>
 </div>
@@ -2335,14 +2499,14 @@ RIZ3phc2JBIn19
        Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
        x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
        ZXJfMjEiXSwicHJvb2ZfandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoidjlBTHBqYzEzRWgxcTVhSzk2RGZ3WUNCM0dFdXJvZUN6SmVTM09Lel9n
-       VSIsInkiOiIzMTRwRGxlU19mMW90TndpemEyWlpRVG1BTXJqbnlqR2t2UTJESW
-       dob1Y0IiwiZCI6IjNjNTU3REQ0dnpBZnI5OGRjSEM5cnhmWjlYcW9zdThad0lx
-       TTNiS3NwUWsifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyIsImNydi
-       I6IlAtMjU2IiwieCI6ImQ5WHNIOEVMTzJXWUFLMFNYaFdfR2tUWGY2eEhEU3da
-       Zl9fT1d6YWpfSGsiLCJ5IjoiVW9lckhEUDlnQzhTUUlKZWN3dThGYVNZcC1QOV
-       I3YWVNamUxZGFGY24xSSIsImQiOiJudktJdUVLNzY0bnNadHNDejI5MkhzRWs2
-       V2Z4N1NNdWdxQzRIZ3phc2JBIn19",
+       J4IjoiRzFuMUxxZnVkWlBZeW9DZ09UTzJtbXlCdjVFQV9Fak1KWGVCV05RUU5U
+       ZyIsInkiOiJtaS0xMHY3MnRDYmtrZFF2ZGZlT1ZvVWx6UVpzdndocEVBYXFLQj
+       g5cDhBIiwiZCI6IkxBekFYZjN5QXhOclczeHk2cUhkRGlFZjVQbTVoSXhhUWpD
+       WTNkOGZTWDgifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyIsImNydi
+       I6IlAtMjU2IiwieCI6IkpDMjZrWjMtenR1NlowcjZPb091T0tYSEJfRVBJMnMt
+       X2RwbG1rYVFyMW8iLCJ5IjoiUjZoTDA2YzQtQ3lvSF92eldhTW9Uc01sRmF0OG
+       5GYVNCZDBvSlEyVFhtNCIsImQiOiJsQTlyT1dncGlWYTg3TmlDOWtVaE5YMlpp
+       cDFnenA4VnJqaVdlLUMxRFhvIn19",
   "payloads": [
     "MTcxNDUyMTYwMA",
     "MTcxNzE5OTk5OQ",
@@ -2356,22 +2520,22 @@ RIZ3phc2JBIn19
     "dHJ1ZQ"
   ],
   "proof": [
-    "J6OSQ9wIDB38GMnIuZNqWRxi6P7E0qFW5Ky89EIeI2rT60amkCVNWsree_oWeUwD
-       qLcqrm7jr6MevW08yGTCTQ",
-    "Fq5dJQW6HwThrIDiYEWAnXD8INVPz0f6hjDJDMYFuiZEATeQd8Gg3_Sn1uXx8C6t
-       ug31rDZIs6Nb-0Qsz5FgFA",
-    "oQi8VkQIzw-MK3ZGBt3VxWys5QSbFgGpP9Q8XknNNTBfr7i0soqd2TfwWMwsjaYM
-       yK6eQGdHudtoWbOHDjLgSA",
-    "iER2smIG9x8pus7QZGsCE0CCOAMABo3scBfFBvnNEdr4fxWLqsAi13Dg8hyX0Di8
-       M79qT3v2PL-EOQ1fqJU-VQ",
-    "qHOowSYTK_QIedgbPqKSvVi47dFoBqrA68sgrjaLUCZC4ldTM7RJ3QHoolGJqCy8
-       XIr1mAmhkleL9694KisTbQ",
-    "VnTUSRud5FaiSLrgU2vR5od3crGQbed7nlgCgl0DBKz4CD1ANBdjMArhd_kte1Gg
-       oS-LDqAZRzK8ht-OWPIV-A",
-    "6CjdtzlkRKmq-YLfBxFh-QS52uMbSF82YyEH8H3u8lGiy0zQ910W_SI9sOxxg0cj
-       RUJyM0aWR0qwdlCqzgpP0w",
-    "eRQucuWDpYLc_eTrp6G0NrU8XwapcxRkARC_1m4Rb66l5w7d-_0yup_O1lxnl9Dm
-       MwtJF1Jzf7IgTca1F6BQAQ"
+    "3oQsnkI9eSZ8XrdE0sG4pO0BWRLO6s4nBfAnwPqhC2B_5-Ds2Oe9BpUOejhLKZDd
+       De6sZEuBgv_YnQzhLGchxA",
+    "ZZpl91i4ar6oYpMeDY70y4cq2sLQyQe7mbSKS8pDhUKdbD8Of2cmDngfw-SN_ECZ
+       uslTDMdCcGxQGpA9UkrlKQ",
+    "6bpIfR6GlghfAdS_2-EolIzX5OdpEZicww5WpGAe0XAfWWbwqs9lpKJTGwz7-zI_
+       j1iFs4W8RANiSK5kTDm5HQ",
+    "GlXDRLLnwvWIWlkWtm3YS3FaoeYH1_PlxlaGmh_Pw-Ab06nwh7CJHjl47y1RcOO4
+       iNxPbeO-26WoS86ZEtwggw",
+    "4-CTo_CrRQYNkDhtM5iY9ZmBJBZFeufZMJtivhK_OvhI7Lp-V2N89VhlN9HDwnFW
+       fbCsxVtTwxYwcF7LENN_MQ",
+    "tSnCtJ0-8ZIJ_8FXJ8aitLkKb0i6ccYeFKHCBeqbfrk9tNHMROQlK8UV5-yniyxj
+       3uoPnSQdfnpOXkwCN757pw",
+    "RT_KEzayibbJ8Qdsh5YzTjg4FgKJZzfQw-cn0anVdGTuILjD61RPZLavM0LY9BZn
+       Y4HWjYp_JQH3jJDwcwCFSA",
+    "qPaZY8FqqPpHrgZfR2z6mEAo2LTSh7JkxAKA01vSTtaI10EChCBlsxdajTfop--o
+       7T19R6OKJI0VDvTnQ4PYEg"
   ]
 }
 
@@ -2386,28 +2550,28 @@ RIZ3phc2JBIn19
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2ZfandrIjp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoidjlBTHBqYzEzRWgxcTVhSzk2RGZ3
-WUNCM0dFdXJvZUN6SmVTM09Lel9nVSIsInkiOiIzMTRwRGxlU19mMW90TndpemEyWlpRV
-G1BTXJqbnlqR2t2UTJESWdob1Y0IiwiZCI6IjNjNTU3REQ0dnpBZnI5OGRjSEM5cnhmWj
-lYcW9zdThad0lxTTNiS3NwUWsifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyI
-sImNydiI6IlAtMjU2IiwieCI6ImQ5WHNIOEVMTzJXWUFLMFNYaFdfR2tUWGY2eEhEU3da
-Zl9fT1d6YWpfSGsiLCJ5IjoiVW9lckhEUDlnQzhTUUlKZWN3dThGYVNZcC1QOVI3YWVNa
-mUxZGFGY24xSSIsImQiOiJudktJdUVLNzY0bnNadHNDejI5MkhzRWs2V2Z4N1NNdWdxQz
-RIZ3phc2JBIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiRzFuMUxxZnVkWlBZeW9DZ09UTzJt
+bXlCdjVFQV9Fak1KWGVCV05RUU5UZyIsInkiOiJtaS0xMHY3MnRDYmtrZFF2ZGZlT1ZvV
+Wx6UVpzdndocEVBYXFLQjg5cDhBIiwiZCI6IkxBekFYZjN5QXhOclczeHk2cUhkRGlFZj
+VQbTVoSXhhUWpDWTNkOGZTWDgifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyI
+sImNydiI6IlAtMjU2IiwieCI6IkpDMjZrWjMtenR1NlowcjZPb091T0tYSEJfRVBJMnMt
+X2RwbG1rYVFyMW8iLCJ5IjoiUjZoTDA2YzQtQ3lvSF92eldhTW9Uc01sRmF0OG5GYVNCZ
+DBvSlEyVFhtNCIsImQiOiJsQTlyT1dncGlWYTg3TmlDOWtVaE5YMlppcDFnenA4VnJqaV
+dlLUMxRFhvIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
 ZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duL
 CBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG
 9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDU
-sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.J6OSQ9wIDB38GMnIuZNqWRxi6P7E0qFW5Ky89E
-IeI2rT60amkCVNWsree_oWeUwDqLcqrm7jr6MevW08yGTCTQ~Fq5dJQW6HwThrIDiYEWA
-nXD8INVPz0f6hjDJDMYFuiZEATeQd8Gg3_Sn1uXx8C6tug31rDZIs6Nb-0Qsz5FgFA~oQ
-i8VkQIzw-MK3ZGBt3VxWys5QSbFgGpP9Q8XknNNTBfr7i0soqd2TfwWMwsjaYMyK6eQGd
-HudtoWbOHDjLgSA~iER2smIG9x8pus7QZGsCE0CCOAMABo3scBfFBvnNEdr4fxWLqsAi1
-3Dg8hyX0Di8M79qT3v2PL-EOQ1fqJU-VQ~qHOowSYTK_QIedgbPqKSvVi47dFoBqrA68s
-grjaLUCZC4ldTM7RJ3QHoolGJqCy8XIr1mAmhkleL9694KisTbQ~VnTUSRud5FaiSLrgU
-2vR5od3crGQbed7nlgCgl0DBKz4CD1ANBdjMArhd_kte1GgoS-LDqAZRzK8ht-OWPIV-A
-~6CjdtzlkRKmq-YLfBxFh-QS52uMbSF82YyEH8H3u8lGiy0zQ910W_SI9sOxxg0cjRUJy
-M0aWR0qwdlCqzgpP0w~eRQucuWDpYLc_eTrp6G0NrU8XwapcxRkARC_1m4Rb66l5w7d-_
-0yup_O1lxnl9DmMwtJF1Jzf7IgTca1F6BQAQ
+sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.3oQsnkI9eSZ8XrdE0sG4pO0BWRLO6s4nBfAnwP
+qhC2B_5-Ds2Oe9BpUOejhLKZDdDe6sZEuBgv_YnQzhLGchxA~ZZpl91i4ar6oYpMeDY70
+y4cq2sLQyQe7mbSKS8pDhUKdbD8Of2cmDngfw-SN_ECZuslTDMdCcGxQGpA9UkrlKQ~6b
+pIfR6GlghfAdS_2-EolIzX5OdpEZicww5WpGAe0XAfWWbwqs9lpKJTGwz7-zI_j1iFs4W
+8RANiSK5kTDm5HQ~GlXDRLLnwvWIWlkWtm3YS3FaoeYH1_PlxlaGmh_Pw-Ab06nwh7CJH
+jl47y1RcOO4iNxPbeO-26WoS86ZEtwggw~4-CTo_CrRQYNkDhtM5iY9ZmBJBZFeufZMJt
+ivhK_OvhI7Lp-V2N89VhlN9HDwnFWfbCsxVtTwxYwcF7LENN_MQ~tSnCtJ0-8ZIJ_8FXJ
+8aitLkKb0i6ccYeFKHCBeqbfrk9tNHMROQlK8UV5-yniyxj3uoPnSQdfnpOXkwCN757pw
+~RT_KEzayibbJ8Qdsh5YzTjg4FgKJZzfQw-cn0anVdGTuILjD61RPZLavM0LY9BZnY4HW
+jYp_JQH3jJDwcwCFSA~qPaZY8FqqPpHrgZfR2z6mEAo2LTSh7JkxAKA01vSTtaI10EChC
+BlsxdajTfop--o7T19R6OKJI0VDvTnQ4PYEg
 
 </pre>
 </div>
@@ -2420,7 +2584,7 @@ M0aWR0qwdlCqzgpP0w~eRQucuWDpYLc_eTrp6G0NrU8XwapcxRkARC_1m4Rb66l5w7d-_
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "r-2oVVARajZPYUtmjK1Rkz-QDvoXsb5hSpAznAdS7kg"
+  "nonce": "6kOUwoTHA7V6hWJJxIRSM9lSf-lBOg-aHOWYy607OJg"
 }
 
 </pre>
@@ -2432,8 +2596,8 @@ M0aWR0qwdlCqzgpP0w~eRQucuWDpYLc_eTrp6G0NrU8XwapcxRkARC_1m4Rb66l5w7d-_
 <span id="name-presentation-header-base64u"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-22.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJyLTJvVlZBUmFqWlBZVXRtaksxUmt6LVFEdm9Yc2I1aFNwQXpuQW
-RTN2tnIn0
+29tIiwibm9uY2UiOiI2a09Vd29USEE3VjZoV0pKeElSU005bFNmLWxCT2ctYUhPV1l5Nj
+A3T0pnIn0
 
 </pre>
 </div>
@@ -2442,8 +2606,8 @@ RTN2tnIn0
           </figcaption></figure>
 <p id="appendix-A.1-23">When signed with the holder's presentation key, the resulting signature are:<a href="#appendix-A.1-23" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-24">
-<pre>mO432AFsUvXfdi-edvbZrp7osFd1Eqa0_dvtGo12o63F3zWz3Q-8wg2JdXf3d2s1TOpb9
-No4yrd_PcaHBxsGQA
+<pre>p79ItS9EdHGahzNMsP5nZxIVnFLm_6sNoVlWUc8yY6U8cxxjMet5v3hu5VJ9PNcxhtxT8
+86l7G4uG7me5VDUgw
 
 </pre><a href="#appendix-A.1-24" class="pilcrow">¶</a>
 </div>
@@ -2454,20 +2618,20 @@ No4yrd_PcaHBxsGQA
 <div class="lang-wrapped sourcecode" id="appendix-A.1-27">
 <pre>{
   "presentation": "eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-       BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJyLTJvVlZBUmFqWlBZVXRtaksx
-       Umt6LVFEdm9Yc2I1aFNwQXpuQWRTN2tnIn0",
+       BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiI2a09Vd29USEE3VjZoV0pKeElS
+       U005bFNmLWxCT2ctYUhPV1l5NjA3T0pnIn0",
   "issuer": "eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
        Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
        x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
        ZXJfMjEiXSwicHJvb2ZfandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoidjlBTHBqYzEzRWgxcTVhSzk2RGZ3WUNCM0dFdXJvZUN6SmVTM09Lel9n
-       VSIsInkiOiIzMTRwRGxlU19mMW90TndpemEyWlpRVG1BTXJqbnlqR2t2UTJESW
-       dob1Y0IiwiZCI6IjNjNTU3REQ0dnpBZnI5OGRjSEM5cnhmWjlYcW9zdThad0lx
-       TTNiS3NwUWsifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyIsImNydi
-       I6IlAtMjU2IiwieCI6ImQ5WHNIOEVMTzJXWUFLMFNYaFdfR2tUWGY2eEhEU3da
-       Zl9fT1d6YWpfSGsiLCJ5IjoiVW9lckhEUDlnQzhTUUlKZWN3dThGYVNZcC1QOV
-       I3YWVNamUxZGFGY24xSSIsImQiOiJudktJdUVLNzY0bnNadHNDejI5MkhzRWs2
-       V2Z4N1NNdWdxQzRIZ3phc2JBIn19",
+       J4IjoiRzFuMUxxZnVkWlBZeW9DZ09UTzJtbXlCdjVFQV9Fak1KWGVCV05RUU5U
+       ZyIsInkiOiJtaS0xMHY3MnRDYmtrZFF2ZGZlT1ZvVWx6UVpzdndocEVBYXFLQj
+       g5cDhBIiwiZCI6IkxBekFYZjN5QXhOclczeHk2cUhkRGlFZjVQbTVoSXhhUWpD
+       WTNkOGZTWDgifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyIsImNydi
+       I6IlAtMjU2IiwieCI6IkpDMjZrWjMtenR1NlowcjZPb091T0tYSEJfRVBJMnMt
+       X2RwbG1rYVFyMW8iLCJ5IjoiUjZoTDA2YzQtQ3lvSF92eldhTW9Uc01sRmF0OG
+       5GYVNCZDBvSlEyVFhtNCIsImQiOiJsQTlyT1dncGlWYTg3TmlDOWtVaE5YMlpp
+       cDFnenA4VnJqaVdlLUMxRFhvIn19",
   "payloads": [
     "MTcxNDUyMTYwMA",
     "MTcxNzE5OTk5OQ",
@@ -2483,20 +2647,20 @@ No4yrd_PcaHBxsGQA
     null
   ],
   "proof": [
-    "J6OSQ9wIDB38GMnIuZNqWRxi6P7E0qFW5Ky89EIeI2rT60amkCVNWsree_oWeUwD
-       qLcqrm7jr6MevW08yGTCTQ",
-    "mO432AFsUvXfdi-edvbZrp7osFd1Eqa0_dvtGo12o63F3zWz3Q-8wg2JdXf3d2s1
-       TOpb9No4yrd_PcaHBxsGQA",
-    "Fq5dJQW6HwThrIDiYEWAnXD8INVPz0f6hjDJDMYFuiZEATeQd8Gg3_Sn1uXx8C6t
-       ug31rDZIs6Nb-0Qsz5FgFA",
-    "oQi8VkQIzw-MK3ZGBt3VxWys5QSbFgGpP9Q8XknNNTBfr7i0soqd2TfwWMwsjaYM
-       yK6eQGdHudtoWbOHDjLgSA",
-    "iER2smIG9x8pus7QZGsCE0CCOAMABo3scBfFBvnNEdr4fxWLqsAi13Dg8hyX0Di8
-       M79qT3v2PL-EOQ1fqJU-VQ",
-    "qHOowSYTK_QIedgbPqKSvVi47dFoBqrA68sgrjaLUCZC4ldTM7RJ3QHoolGJqCy8
-       XIr1mAmhkleL9694KisTbQ",
-    "VnTUSRud5FaiSLrgU2vR5od3crGQbed7nlgCgl0DBKz4CD1ANBdjMArhd_kte1Gg
-       oS-LDqAZRzK8ht-OWPIV-A"
+    "3oQsnkI9eSZ8XrdE0sG4pO0BWRLO6s4nBfAnwPqhC2B_5-Ds2Oe9BpUOejhLKZDd
+       De6sZEuBgv_YnQzhLGchxA",
+    "p79ItS9EdHGahzNMsP5nZxIVnFLm_6sNoVlWUc8yY6U8cxxjMet5v3hu5VJ9PNcx
+       htxT886l7G4uG7me5VDUgw",
+    "ZZpl91i4ar6oYpMeDY70y4cq2sLQyQe7mbSKS8pDhUKdbD8Of2cmDngfw-SN_ECZ
+       uslTDMdCcGxQGpA9UkrlKQ",
+    "6bpIfR6GlghfAdS_2-EolIzX5OdpEZicww5WpGAe0XAfWWbwqs9lpKJTGwz7-zI_
+       j1iFs4W8RANiSK5kTDm5HQ",
+    "GlXDRLLnwvWIWlkWtm3YS3FaoeYH1_PlxlaGmh_Pw-Ab06nwh7CJHjl47y1RcOO4
+       iNxPbeO-26WoS86ZEtwggw",
+    "4-CTo_CrRQYNkDhtM5iY9ZmBJBZFeufZMJtivhK_OvhI7Lp-V2N89VhlN9HDwnFW
+       fbCsxVtTwxYwcF7LENN_MQ",
+    "tSnCtJ0-8ZIJ_8FXJ8aitLkKb0i6ccYeFKHCBeqbfrk9tNHMROQlK8UV5-yniyxj
+       3uoPnSQdfnpOXkwCN757pw"
   ]
 }
 
@@ -2508,31 +2672,31 @@ No4yrd_PcaHBxsGQA
 <p id="appendix-A.1-29">And also in compact serialization:<a href="#appendix-A.1-29" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-30">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJyLTJvVlZBUmFqWlBZVXRtaksxUmt6LVFEdm9Yc2I1aFNwQXpuQW
-RTN2tnIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiI2a09Vd29USEE3VjZoV0pKeElSU005bFNmLWxCT2ctYUhPV1l5Nj
+A3T0pnIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb
-2ZfandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoidjlBTHBqYzEzRWgxcT
-VhSzk2RGZ3WUNCM0dFdXJvZUN6SmVTM09Lel9nVSIsInkiOiIzMTRwRGxlU19mMW90Tnd
-pemEyWlpRVG1BTXJqbnlqR2t2UTJESWdob1Y0IiwiZCI6IjNjNTU3REQ0dnpBZnI5OGRj
-SEM5cnhmWjlYcW9zdThad0lxTTNiS3NwUWsifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrd
-HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6ImQ5WHNIOEVMTzJXWUFLMFNYaFdfR2tUWG
-Y2eEhEU3daZl9fT1d6YWpfSGsiLCJ5IjoiVW9lckhEUDlnQzhTUUlKZWN3dThGYVNZcC1
-QOVI3YWVNamUxZGFGY24xSSIsImQiOiJudktJdUVLNzY0bnNadHNDejI5MkhzRWs2V2Z4
-N1NNdWdxQzRIZ3phc2JBIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
+2ZfandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiRzFuMUxxZnVkWlBZeW
+9DZ09UTzJtbXlCdjVFQV9Fak1KWGVCV05RUU5UZyIsInkiOiJtaS0xMHY3MnRDYmtrZFF
+2ZGZlT1ZvVWx6UVpzdndocEVBYXFLQjg5cDhBIiwiZCI6IkxBekFYZjN5QXhOclczeHk2
+cUhkRGlFZjVQbTVoSXhhUWpDWTNkOGZTWDgifSwicHJlc2VudGF0aW9uX2p3ayI6eyJrd
+HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IkpDMjZrWjMtenR1NlowcjZPb091T0tYSE
+JfRVBJMnMtX2RwbG1rYVFyMW8iLCJ5IjoiUjZoTDA2YzQtQ3lvSF92eldhTW9Uc01sRmF
+0OG5GYVNCZDBvSlEyVFhtNCIsImQiOiJsQTlyT1dncGlWYTg3TmlDOWtVaE5YMlppcDFn
+enA4VnJqaVdlLUMxRFhvIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
 I~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5
 Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4g
 U3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZ
-SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.J6OSQ9wIDB38GMnIuZNqWRxi6P
-7E0qFW5Ky89EIeI2rT60amkCVNWsree_oWeUwDqLcqrm7jr6MevW08yGTCTQ~mO432AFs
-UvXfdi-edvbZrp7osFd1Eqa0_dvtGo12o63F3zWz3Q-8wg2JdXf3d2s1TOpb9No4yrd_P
-caHBxsGQA~Fq5dJQW6HwThrIDiYEWAnXD8INVPz0f6hjDJDMYFuiZEATeQd8Gg3_Sn1uX
-x8C6tug31rDZIs6Nb-0Qsz5FgFA~oQi8VkQIzw-MK3ZGBt3VxWys5QSbFgGpP9Q8XknNN
-TBfr7i0soqd2TfwWMwsjaYMyK6eQGdHudtoWbOHDjLgSA~iER2smIG9x8pus7QZGsCE0C
-COAMABo3scBfFBvnNEdr4fxWLqsAi13Dg8hyX0Di8M79qT3v2PL-EOQ1fqJU-VQ~qHOow
-SYTK_QIedgbPqKSvVi47dFoBqrA68sgrjaLUCZC4ldTM7RJ3QHoolGJqCy8XIr1mAmhkl
-eL9694KisTbQ~VnTUSRud5FaiSLrgU2vR5od3crGQbed7nlgCgl0DBKz4CD1ANBdjMArh
-d_kte1GgoS-LDqAZRzK8ht-OWPIV-A
+SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.3oQsnkI9eSZ8XrdE0sG4pO0BWR
+LO6s4nBfAnwPqhC2B_5-Ds2Oe9BpUOejhLKZDdDe6sZEuBgv_YnQzhLGchxA~p79ItS9E
+dHGahzNMsP5nZxIVnFLm_6sNoVlWUc8yY6U8cxxjMet5v3hu5VJ9PNcxhtxT886l7G4uG
+7me5VDUgw~ZZpl91i4ar6oYpMeDY70y4cq2sLQyQe7mbSKS8pDhUKdbD8Of2cmDngfw-S
+N_ECZuslTDMdCcGxQGpA9UkrlKQ~6bpIfR6GlghfAdS_2-EolIzX5OdpEZicww5WpGAe0
+XAfWWbwqs9lpKJTGwz7-zI_j1iFs4W8RANiSK5kTDm5HQ~GlXDRLLnwvWIWlkWtm3YS3F
+aoeYH1_PlxlaGmh_Pw-Ab06nwh7CJHjl47y1RcOO4iNxPbeO-26WoS86ZEtwggw~4-CTo
+_CrRQYNkDhtM5iY9ZmBJBZFeufZMJtivhK_OvhI7Lp-V2N89VhlN9HDwnFWfbCsxVtTwx
+YwcF7LENN_MQ~tSnCtJ0-8ZIJ_8FXJ8aitLkKb0i6ccYeFKHCBeqbfrk9tNHMROQlK8UV
+5-yniyxj3uoPnSQdfnpOXkwCN757pw
 
 </pre><a href="#appendix-A.1-30" class="pilcrow">¶</a>
 </div>
@@ -2555,13 +2719,13 @@ d_kte1GgoS-LDqAZRzK8ht-OWPIV-A
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "GLp5zqHIn1_51-wkB0AVrCX8mmbevi7zvSO3odBNOeu6A-6UyylE_eyUUdF4n
-       HgUBvm0MqWV1N8xPKMKCI1mHOzwpnd0-qCeNMX86gETzlCCnpMp6xosaHDXsdl
-       SWox9",
-  "y": "F7vbn9d4BRcYdk1XKX0gIM9S8KzZEWqRqjPUR4reoDvbUQ98PABW0_u8L937I
-       jlUAxNfEjJp_eCAVXLKKVbcDvyF9kcJqsIZ6PZhEE6Q7D7qJ9jzPVue7W8uDXr
-       _hPnC",
-  "d": "aq7ad3-E7K67wcTcw4AeD-qSnoHgAlZ6hU-kBG776Yg"
+  "x": "Bp91utHJoKaB6mjWGVot8-kTxtQpt736OfEccXRw3rSzNpicoYPjvdUzFkLsY
+       v7WAFR8y2zHrguR-LcKAmRFJdevIqyEUiIN9-qHDUaG7ByaysMb8QMzJIB_4C3
+       tYEqR",
+  "y": "Cmi-BL-KyVe0Hxe8hrV8iXpuMnOm-GojWCa7W6MHhQMnFFyj-PvAxDAHLcOb0
+       aaWBhzbRWcttyb5M3MTiANWrH08ENDhrvB2Xl4Xuzneko664Usa7OjGMpL2tXQ
+       NhJN6",
+  "d": "aJqsob6i3iJtukPRP8RWBz9zx0kNq-UkVh_yow6-E8Q"
 }
 
 </pre>
@@ -2626,8 +2790,8 @@ d_kte1GgoS-LDqAZRzK8ht-OWPIV-A
     "dHJ1ZQ"
   ],
   "proof": [
-    "uLbfLQvpv21UA6bExPIpD2DaRKqqiO5sFP7ae_UML_8Zng6FPvzRM0j79gC7mh4K
-       SGMFD2AAYxq-VmRckc1IgE9pOOO_UNBY9Xoixp5sVGM"
+    "qis3P9mUfl3wtiW9TFmoZDjy9ahPuSFRHZm-DKQbcnOFGvQ2nLDxWUs4_lqITgE9
+       IkbKEnLcxezerPdgHx-UlZzfWWHH2i-REK60T0W0w40"
   ]
 }
 
@@ -2643,9 +2807,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.uLbfLQvpv21UA6bExPIpD2DaRKqqiO5sFP
-7ae_UML_8Zng6FPvzRM0j79gC7mh4KSGMFD2AAYxq-VmRckc1IgE9pOOO_UNBY9Xoixp5
-sVGM
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.qis3P9mUfl3wtiW9TFmoZDjy9ahPuSFRHZ
+m-DKQbcnOFGvQ2nLDxWUs4_lqITgE9IkbKEnLcxezerPdgHx-UlZzfWWHH2i-REK60T0W
+0w40
 
 </pre>
 </div>
@@ -2684,14 +2848,14 @@ sVGM
     null
   ],
   "proof": [
-    "j1nzXjpZeJmxT8RnU-8hZ4t9wGWH_k0YMcfhvAo6k5ys_kElGG9qGBMRFKaVOX4U
-       kjbd_5DbW0H_VQfW0uwvEl5KDMWeqJFHZftJU6WSFIwwJW45IxXkudLHNYQA0c
-       qOtjJLyaYwo3a1DzdgqlWoWenji2XXSmK5uunvtgoUsHPJdlF6WVkMpRlS_iB9
-       2a5_IGWsBi4lyORSlLHhkRBu7-dju7eFRSwjbJSCqeZ9Ae4JEmJkz138tVYJGz
-       kBsZfs3xh94OjDSpxWDqqu1SXQeRfbTR2BKwYpfGWmSoirrTYuA8gzx81HaaEZ
-       oJ5785iPYpK0lXBSR9oTeJxFpyLrLt3lTJpPSDvbTdV2cyHPC9BKBDN4knmFAD
-       N7cQIb5r6T0FfjH1ypQaoRLLMhKqU5NDjkhxtDhw80v9KNl34OgQDEaaN3G83S
-       sdkCFHyVX3b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg"
+    "iyFtpifPg7q-BPkDEUwdknPf5djBAJ8eVlu6xzlDuBUbw21rwBEhcEGpgnMQLGRx
+       tWEpFxkQlLU7Iy_dW0bw6hQHfgqTsviqq1dzcOhLhR9UvLI0TmHxMqtkX8pxo_
+       SOtQvpS9neFssV6wpBfURvD0jU1EzyLFdWG23OyV5K_w69tC-XybFj0mAWUeVH
+       nFhhFm3lxccg3dnZaYbev3fC1BpPOlHbXZZE9K0zwahhpwVWY9oakli8cnhid-
+       j6bb_lO2X_wLFrKtIezJ6aStUUSzNgRQ1j8Wa2FIxH1zqJGP2XB9TdPzj1NgBq
+       XzvzFC9dZWcJdEZWPLXmVVpZpiunGpV04qO9HEJlffNcXl5LmPojsVN46hs5l2
+       5WgK1hW4S3X8-jekGd3lT4G4xUCycojxwblXpLL4b0ZajV44qpaX11xYF_Sncp
+       thDr5l3KlurYAkJ3ibsoUgC1-Zh9qrtAJTEYzvfYt43vQMypWQS4X1s"
   ]
 }
 
@@ -2705,14 +2869,14 @@ sVGM
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.j1nzXjpZeJmxT8RnU-8hZ4t9wGWH_k0Y
-McfhvAo6k5ys_kElGG9qGBMRFKaVOX4Ukjbd_5DbW0H_VQfW0uwvEl5KDMWeqJFHZftJU
-6WSFIwwJW45IxXkudLHNYQA0cqOtjJLyaYwo3a1DzdgqlWoWenji2XXSmK5uunvtgoUsH
-PJdlF6WVkMpRlS_iB92a5_IGWsBi4lyORSlLHhkRBu7-dju7eFRSwjbJSCqeZ9Ae4JEmJ
-kz138tVYJGzkBsZfs3xh94OjDSpxWDqqu1SXQeRfbTR2BKwYpfGWmSoirrTYuA8gzx81H
-aaEZoJ5785iPYpK0lXBSR9oTeJxFpyLrLt3lTJpPSDvbTdV2cyHPC9BKBDN4knmFADN7c
-QIb5r6T0FfjH1ypQaoRLLMhKqU5NDjkhxtDhw80v9KNl34OgQDEaaN3G83SsdkCFHyVX3
-b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.iyFtpifPg7q-BPkDEUwdknPf5djBAJ8e
+Vlu6xzlDuBUbw21rwBEhcEGpgnMQLGRxtWEpFxkQlLU7Iy_dW0bw6hQHfgqTsviqq1dzc
+OhLhR9UvLI0TmHxMqtkX8pxo_SOtQvpS9neFssV6wpBfURvD0jU1EzyLFdWG23OyV5K_w
+69tC-XybFj0mAWUeVHnFhhFm3lxccg3dnZaYbev3fC1BpPOlHbXZZE9K0zwahhpwVWY9o
+akli8cnhid-j6bb_lO2X_wLFrKtIezJ6aStUUSzNgRQ1j8Wa2FIxH1zqJGP2XB9TdPzj1
+NgBqXzvzFC9dZWcJdEZWPLXmVVpZpiunGpV04qO9HEJlffNcXl5LmPojsVN46hs5l25Wg
+K1hW4S3X8-jekGd3lT4G4xUCycojxwblXpLL4b0ZajV44qpaX11xYF_SncpthDr5l3Klu
+rYAkJ3ibsoUgC1-Zh9qrtAJTEYzvfYt43vQMypWQS4X1s
 
 </pre>
 </div>
@@ -2733,9 +2897,9 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "JbWHMyrmeaQ7RPPPiGBInbNoFbeNFwTGlCEHpTjA9C8",
-  "y": "Hrrjo5ywLsnuQ15WOUM0xu18soOwuOsSkw3NS_gKRGQ",
-  "d": "3jU7Qkp0nfTDjerOv1M9EJvsR1kk_G5IPMZB00cMVWA"
+  "x": "6ffahfk-EqCnm078N8nX84_HZaYmdwlWh3ksyqEdMQE",
+  "y": "JiZwpaeNji_4H_wWoMjqbf3ejNbF1L2STQiesLWxFa8",
+  "d": "SZGpGZQVbeeqwAVJ9BH1uVk1CpqzZSbGTNIsXgarLAs"
 }
 
 </pre>
@@ -2746,7 +2910,7 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <p id="appendix-A.3-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-19">
           <div class="lang-json sourcecode" id="appendix-A.3-5.1">
-<pre>"EzrPIn-1ej2fPOItscmyH4uVPAFHx37hkW2YIjsLOzQ"
+<pre>"p1h2uerDnq3PM4_oFmQ48xOcgqQT1SHP98ts6TJ6u10"
 
 </pre>
 </div>
@@ -2759,9 +2923,9 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "d9XsH8ELO2WYAK0SXhW_GkTXf6xHDSwZf__OWzaj_Hk",
-  "y": "UoerHDP9gC8SQIJecwu8FaSYp-P9R7aeMje1daFcn1I",
-  "d": "nvKIuEK764nsZtsCz292HsEk6Wfx7SMugqC4HgzasbA"
+  "x": "JC26kZ3-ztu6Z0r6OoOuOKXHB_EPI2s-_dplmkaQr1o",
+  "y": "R6hL06c4-CyoH_vzWaMoTsMlFat8nFaSBd0oJQ2TXm4",
+  "d": "lA9rOWgpiVa87NiC9kUhNX2Zip1gzp8VrjiWe-C1DXo"
 }
 
 </pre>
@@ -2789,8 +2953,8 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "d9XsH8ELO2WYAK0SXhW_GkTXf6xHDSwZf__OWzaj_Hk",
-    "y": "UoerHDP9gC8SQIJecwu8FaSYp-P9R7aeMje1daFcn1I"
+    "x": "JC26kZ3-ztu6Z0r6OoOuOKXHB_EPI2s-_dplmkaQr1o",
+    "y": "R6hL06c4-CyoH_vzWaMoTsMlFat8nFaSBd0oJQ2TXm4"
   }
 }
 
@@ -2826,7 +2990,7 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <p id="appendix-A.3-11">The first MAC is generated using the key <code>issuer_header</code> and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <span id="name-issuer-mac-of-protected-hea"></span><figure id="figure-23">
           <div class="lang-txt sourcecode" id="appendix-A.3-12.1">
-<pre>DGsjrm7j4u_EFK0sXoRN7TGp7_elGqyYs5UU7-W9MTk
+<pre>VzbKj9u_ZeQhNoXLasMris9r5jfoStSPlauw_uPeimI
 
 </pre>
 </div>
@@ -2837,13 +3001,13 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-24">
           <div class="lang-json sourcecode" id="appendix-A.3-14.1">
 <pre>[
-  "pOmQqsPazEfooKRim6eWhK4PN29uFi9wO87b1m-2ByE",
-  "o4-Y53BxWZrPhkwBMfS7rsY2_LzfecnAz2oA2i3p14k",
-  "FSZxbBCHFNXLjmCSYrTLD2s09cWCihve4NV5PCYhwKg",
-  "2bmI5_4_ADzEcv4nj8ifr_uH3-Yqkv81IJPqs-pans8",
-  "VCiU4ZzpnJc-RtJGk8B-hT9Kiy9evXUg_uK49UrWa68",
-  "e7WVBdcEAc67WNMsQhcojFhKVnXe0MM-fCKDkr4vvPo",
-  "nxvdONWrspzgD_LZEfS-gvUHFlDW5OBCMGvlMdqc-TQ"
+  "Sw6BYUqwXvc8krE-8SDKmu5PnTM_rE3NvfwvbkU5DxA",
+  "wVAb4fAhJQxAtPzjgkUzvdDFpISdCxCKBF8C_gVhReQ",
+  "TOXFywiORIXAatpbj7vKha8L4Jsc4eubYQv1Zv3XHpc",
+  "gtzD-gviF-c6rlhegqY07FMvspXILYzBOVxQDbyTnjw",
+  "zmvt9ehYC59q6tP1l7jzattz63REKB9QFxufQAj3ZHA",
+  "xk0gG0fn8BUApHI4NBKj5C9I98EiGmNg_7FSvBhLHY0",
+  "l2-8cVkbHFq6y4oiIKDxHghojYRTtqb_WaveLhzEJXM"
 ]
 
 </pre>
@@ -2855,13 +3019,13 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-25">
           <div class="lang-json sourcecode" id="appendix-A.3-16.1">
 <pre>[
-  "GtUCt-MzV7wz98ifmTp6Tig3sxwfHetEfHZX_E3yGek",
-  "HP3yb1303FpSEXiVBK-Cm9PjCe8Qc7VXmFu8ZcHot4w",
-  "1-yuB3z4sMPgvOApLUtwQcHeG7IEXfs0zXGEdfAGVfo",
-  "XjqhTgl19z2HZj3B2FtwfIx5WNFPKZfFtmWxRm8e1zY",
-  "DazqsvvCPand2KuQC0_3VrIdH09XQhgckTAIUcV0RGU",
-  "V74bRpGJJHPcDw7suwEfGFIsW-hivbG5CEsvhNd7Yvs",
-  "4BLsYFKp9KOfgztLr7rv53ocanUD79jLC7M3zqjHzg0"
+  "8tnMRSQswsxSh-cyLFErNgjginzy-AILS2sjmY9buDw",
+  "dwB23UVHQPNuB76UHKzlJPuHJJ_avj1PKdSv5yLyN78",
+  "ZF9A8Fitoso_euCeQipUiR9iKizzeJKVCow3xk-C0Kk",
+  "Zktg5O1g229N7nVwkL0PczIKjqj3fVrcXSs_iZT1z6E",
+  "XIISvpErJYdvIlYsp0PVIO9kyu7is4OBdH6rrJA09wo",
+  "SeARFbw10IqOuhNgq9xwTH3PlUEIcz1yG2IqE9HlyAk",
+  "j36kR67uvYYCy4dz1-86NTwmBjd2WAVLuGQKEXBWPQc"
 ]
 
 </pre>
@@ -2874,9 +3038,9 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-19.1">
 <pre>[
-  "B45icHEJgy5mzIfuCwpABoJE3_xkD9UO_1BIr3mQIW-VB97v5UQAdVfsSn4vnIUpo5
-_TbyYhi-naPQBAe9rf-Q",
-  "J5YJ0QFuM6W_kTHtgVhTQSwFNgfuQNspq70PLS1uMFU"
+  "E6h2h9l5IHWovYu6XGayQntunmM7XfSDRb9JU6W9iZ9TzfPmAGrAy9UXiegE7iY1oH
+kMQO22xqiRLhO-oJoV7Q",
+  "J8rkZLUz_RSQyDsXY-F06sFWHoej4pf9bLSD-MiMG4k"
 ]
 
 </pre>
@@ -2892,8 +3056,8 @@ _TbyYhi-naPQBAe9rf-Q",
 Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
 WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
 Jlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiJkOVhzSDhFTE8yV1lBSzBTWGhXX0drVFhmNnhIRFN3WmZfX09XemFqX0hr
-IiwieSI6IlVvZXJIRFA5Z0M4U1FJSmVjd3U4RmFTWXAtUDlSN2FlTWplMWRhRmNuMUkif
+nbiIsIngiOiJKQzI2a1ozLXp0dTZaMHI2T29PdU9LWEhCX0VQSTJzLV9kcGxta2FRcjFv
+IiwieSI6IlI2aEwwNmM0LUN5b0hfdnpXYU1vVHNNbEZhdDhuRmFTQmQwb0pRMlRYbTQif
 X0",
   "payloads": [
     "MTcxNDUyMTYwMA",
@@ -2908,9 +3072,9 @@ JVU0EifQ",
     "dHJ1ZQ"
   ],
   "proof": [
-    "B45icHEJgy5mzIfuCwpABoJE3_xkD9UO_1BIr3mQIW-VB97v5UQAdVfsSn4vnIUp
-o5_TbyYhi-naPQBAe9rf-Q",
-    "J5YJ0QFuM6W_kTHtgVhTQSwFNgfuQNspq70PLS1uMFU"
+    "E6h2h9l5IHWovYu6XGayQntunmM7XfSDRb9JU6W9iZ9TzfPmAGrAy9UXiegE7iY1
+oHkMQO22xqiRLhO-oJoV7Q",
+    "J8rkZLUz_RSQyDsXY-F06sFWHoej4pf9bLSD-MiMG4k"
   ]
 }
 
@@ -2925,15 +3089,15 @@ o5_TbyYhi-naPQBAe9rf-Q",
 <pre>eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc2VudGF0aW9
-uX2p3ayI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJk
-OVhzSDhFTE8yV1lBSzBTWGhXX0drVFhmNnhIRFN3WmZfX09XemFqX0hrIiwieSI6IlVvZ
-XJIRFA5Z0M4U1FJSmVjd3U4RmFTWXAtUDlSN2FlTWplMWRhRmNuMUkifX0.MTcxNDUyMT
+uX2p3ayI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJK
+QzI2a1ozLXp0dTZaMHI2T29PdU9LWEhCX0VQSTJzLV9kcGxta2FRcjFvIiwieSI6IlI2a
+EwwNmM0LUN5b0hfdnpXYU1vVHNNbEZhdDhuRmFTQmQwb0pRMlRYbTQifX0.MTcxNDUyMT
 YwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb
 3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3
 RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiw
 icmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~d
-HJ1ZQ.B45icHEJgy5mzIfuCwpABoJE3_xkD9UO_1BIr3mQIW-VB97v5UQAdVfsSn4vnIU
-po5_TbyYhi-naPQBAe9rf-Q~J5YJ0QFuM6W_kTHtgVhTQSwFNgfuQNspq70PLS1uMFU
+HJ1ZQ.E6h2h9l5IHWovYu6XGayQntunmM7XfSDRb9JU6W9iZ9TzfPmAGrAy9UXiegE7iY
+1oHkMQO22xqiRLhO-oJoV7Q~J8rkZLUz_RSQyDsXY-F06sFWHoej4pf9bLSD-MiMG4k
 
 </pre>
 </div>
@@ -2947,7 +3111,7 @@ po5_TbyYhi-naPQBAe9rf-Q~J5YJ0QFuM6W_kTHtgVhTQSwFNgfuQNspq70PLS1uMFU
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "r-2oVVARajZPYUtmjK1Rkz-QDvoXsb5hSpAznAdS7kg"
+  "nonce": "6kOUwoTHA7V6hWJJxIRSM9lSf-lBOg-aHOWYy607OJg"
 }
 
 </pre>
@@ -2962,17 +3126,17 @@ po5_TbyYhi-naPQBAe9rf-Q~J5YJ0QFuM6W_kTHtgVhTQSwFNgfuQNspq70PLS1uMFU
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-30">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-31.1">
 <pre>[
-  "pRG74t53oRmyC0DxPRDZHNdwLsFbHdDlvBVKsqIblh5YEV_sHU50BmXPP2aa-_c4XE
-nqpCI3k-NRivmERKKvJw",
-  "B45icHEJgy5mzIfuCwpABoJE3_xkD9UO_1BIr3mQIW-VB97v5UQAdVfsSn4vnIUpo5
-_TbyYhi-naPQBAe9rf-Q",
-  "pOmQqsPazEfooKRim6eWhK4PN29uFi9wO87b1m-2ByE",
-  "o4-Y53BxWZrPhkwBMfS7rsY2_LzfecnAz2oA2i3p14k",
-  "FSZxbBCHFNXLjmCSYrTLD2s09cWCihve4NV5PCYhwKg",
-  "2bmI5_4_ADzEcv4nj8ifr_uH3-Yqkv81IJPqs-pans8",
-  "DazqsvvCPand2KuQC0_3VrIdH09XQhgckTAIUcV0RGU",
-  "V74bRpGJJHPcDw7suwEfGFIsW-hivbG5CEsvhNd7Yvs",
-  "4BLsYFKp9KOfgztLr7rv53ocanUD79jLC7M3zqjHzg0"
+  "XSNyRMApokZ1lae49xDkScPMmmK-lrbPo185qw6Mn_-pIiFKj6AzdCUaum2WJab-P1
+vwf6cVznaCyGuf8MHDWA",
+  "E6h2h9l5IHWovYu6XGayQntunmM7XfSDRb9JU6W9iZ9TzfPmAGrAy9UXiegE7iY1oH
+kMQO22xqiRLhO-oJoV7Q",
+  "Sw6BYUqwXvc8krE-8SDKmu5PnTM_rE3NvfwvbkU5DxA",
+  "wVAb4fAhJQxAtPzjgkUzvdDFpISdCxCKBF8C_gVhReQ",
+  "TOXFywiORIXAatpbj7vKha8L4Jsc4eubYQv1Zv3XHpc",
+  "gtzD-gviF-c6rlhegqY07FMvspXILYzBOVxQDbyTnjw",
+  "XIISvpErJYdvIlYsp0PVIO9kyu7is4OBdH6rrJA09wo",
+  "SeARFbw10IqOuhNgq9xwTH3PlUEIcz1yG2IqE9HlyAk",
+  "j36kR67uvYYCy4dz1-86NTwmBjd2WAVLuGQKEXBWPQc"
 ]
 
 </pre>
@@ -2985,14 +3149,14 @@ _TbyYhi-naPQBAe9rf-Q",
           <div class="lang-wrapped sourcecode" id="appendix-A.3-33.1">
 <pre>{
   "presentation": "eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJyLTJvVlZBUmFqWlBZVXRtaksxUmt6LVF
-Edm9Yc2I1aFNwQXpuQWRTN2tnIn0",
+BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiI2a09Vd29USEE3VjZoV0pKeElSU005bFN
+mLWxCT2ctYUhPV1l5NjA3T0pnIn0",
   "issuer": "eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
 Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
 WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
 Jlc2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiJkOVhzSDhFTE8yV1lBSzBTWGhXX0drVFhmNnhIRFN3WmZfX09XemFqX0hr
-IiwieSI6IlVvZXJIRFA5Z0M4U1FJSmVjd3U4RmFTWXAtUDlSN2FlTWplMWRhRmNuMUkif
+nbiIsIngiOiJKQzI2a1ozLXp0dTZaMHI2T29PdU9LWEhCX0VQSTJzLV9kcGxta2FRcjFv
+IiwieSI6IlI2aEwwNmM0LUN5b0hfdnpXYU1vVHNNbEZhdDhuRmFTQmQwb0pRMlRYbTQif
 X0",
   "payloads": [
     "MTcxNDUyMTYwMA",
@@ -3004,17 +3168,17 @@ X0",
     null
   ],
   "proof": [
-    "pRG74t53oRmyC0DxPRDZHNdwLsFbHdDlvBVKsqIblh5YEV_sHU50BmXPP2aa-_c4
-XEnqpCI3k-NRivmERKKvJw",
-    "B45icHEJgy5mzIfuCwpABoJE3_xkD9UO_1BIr3mQIW-VB97v5UQAdVfsSn4vnIUp
-o5_TbyYhi-naPQBAe9rf-Q",
-    "pOmQqsPazEfooKRim6eWhK4PN29uFi9wO87b1m-2ByE",
-    "o4-Y53BxWZrPhkwBMfS7rsY2_LzfecnAz2oA2i3p14k",
-    "FSZxbBCHFNXLjmCSYrTLD2s09cWCihve4NV5PCYhwKg",
-    "2bmI5_4_ADzEcv4nj8ifr_uH3-Yqkv81IJPqs-pans8",
-    "DazqsvvCPand2KuQC0_3VrIdH09XQhgckTAIUcV0RGU",
-    "V74bRpGJJHPcDw7suwEfGFIsW-hivbG5CEsvhNd7Yvs",
-    "4BLsYFKp9KOfgztLr7rv53ocanUD79jLC7M3zqjHzg0"
+    "XSNyRMApokZ1lae49xDkScPMmmK-lrbPo185qw6Mn_-pIiFKj6AzdCUaum2WJab-
+P1vwf6cVznaCyGuf8MHDWA",
+    "E6h2h9l5IHWovYu6XGayQntunmM7XfSDRb9JU6W9iZ9TzfPmAGrAy9UXiegE7iY1
+oHkMQO22xqiRLhO-oJoV7Q",
+    "Sw6BYUqwXvc8krE-8SDKmu5PnTM_rE3NvfwvbkU5DxA",
+    "wVAb4fAhJQxAtPzjgkUzvdDFpISdCxCKBF8C_gVhReQ",
+    "TOXFywiORIXAatpbj7vKha8L4Jsc4eubYQv1Zv3XHpc",
+    "gtzD-gviF-c6rlhegqY07FMvspXILYzBOVxQDbyTnjw",
+    "XIISvpErJYdvIlYsp0PVIO9kyu7is4OBdH6rrJA09wo",
+    "SeARFbw10IqOuhNgq9xwTH3PlUEIcz1yG2IqE9HlyAk",
+    "j36kR67uvYYCy4dz1-86NTwmBjd2WAVLuGQKEXBWPQc"
   ]
 }
 
@@ -3027,21 +3191,21 @@ o5_TbyYhi-naPQBAe9rf-Q",
 <span id="name-presented-jwp-in-compact-se"></span><figure id="figure-32">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-35.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJyLTJvVlZBUmFqWlBZVXRtaksxUmt6LVFEdm9Yc2I1aFNwQXpuQW
-RTN2tnIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiI2a09Vd29USEE3VjZoV0pKeElSU005bFNmLWxCT2ctYUhPV1l5Nj
+A3T0pnIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc
 2VudGF0aW9uX2p3ayI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbi
-IsIngiOiJkOVhzSDhFTE8yV1lBSzBTWGhXX0drVFhmNnhIRFN3WmZfX09XemFqX0hrIiw
-ieSI6IlVvZXJIRFA5Z0M4U1FJSmVjd3U4RmFTWXAtUDlSN2FlTWplMWRhRmNuMUkifX0.
-MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.pRG74t53oRmyC0DxPRDZ
-HNdwLsFbHdDlvBVKsqIblh5YEV_sHU50BmXPP2aa-_c4XEnqpCI3k-NRivmERKKvJw~B4
-5icHEJgy5mzIfuCwpABoJE3_xkD9UO_1BIr3mQIW-VB97v5UQAdVfsSn4vnIUpo5_TbyY
-hi-naPQBAe9rf-Q~pOmQqsPazEfooKRim6eWhK4PN29uFi9wO87b1m-2ByE~o4-Y53BxW
-ZrPhkwBMfS7rsY2_LzfecnAz2oA2i3p14k~FSZxbBCHFNXLjmCSYrTLD2s09cWCihve4N
-V5PCYhwKg~2bmI5_4_ADzEcv4nj8ifr_uH3-Yqkv81IJPqs-pans8~DazqsvvCPand2Ku
-QC0_3VrIdH09XQhgckTAIUcV0RGU~V74bRpGJJHPcDw7suwEfGFIsW-hivbG5CEsvhNd7
-Yvs~4BLsYFKp9KOfgztLr7rv53ocanUD79jLC7M3zqjHzg0
+IsIngiOiJKQzI2a1ozLXp0dTZaMHI2T29PdU9LWEhCX0VQSTJzLV9kcGxta2FRcjFvIiw
+ieSI6IlI2aEwwNmM0LUN5b0hfdnpXYU1vVHNNbEZhdDhuRmFTQmQwb0pRMlRYbTQifX0.
+MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.XSNyRMApokZ1lae49xDk
+ScPMmmK-lrbPo185qw6Mn_-pIiFKj6AzdCUaum2WJab-P1vwf6cVznaCyGuf8MHDWA~E6
+h2h9l5IHWovYu6XGayQntunmM7XfSDRb9JU6W9iZ9TzfPmAGrAy9UXiegE7iY1oHkMQO2
+2xqiRLhO-oJoV7Q~Sw6BYUqwXvc8krE-8SDKmu5PnTM_rE3NvfwvbkU5DxA~wVAb4fAhJ
+QxAtPzjgkUzvdDFpISdCxCKBF8C_gVhReQ~TOXFywiORIXAatpbj7vKha8L4Jsc4eubYQ
+v1Zv3XHpc~gtzD-gviF-c6rlhegqY07FMvspXILYzBOVxQDbyTnjw~XIISvpErJYdvIlY
+sp0PVIO9kyu7is4OBdH6rrJA09wo~SeARFbw10IqOuhNgq9xwTH3PlUEIcz1yG2IqE9Hl
+yAk~j36kR67uvYYCy4dz1-86NTwmBjd2WAVLuGQKEXBWPQc
 
 </pre>
 </div>

@@ -9,8 +9,13 @@
 <meta content="Michael B. Jones" name="author">
 <meta content="Jeremie Miller" name="author">
 <meta content="
-       The JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.  They also established IANA registries to enable the algorithms and representations used for them to be extended.  Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption. 
-       This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a  JSON Web Proof (JWP) .  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.  It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay. 
+       The JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.
+They also established IANA registries to enable the algorithms and representations used for them to be extended.
+Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.
+The COSE set of standards likewise does this for CBOR-based containers, focusing on the needs of environments which are better served using CBOR, such as constrained devices and networks. 
+       This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) and COSE Signed Messages called a  JSON Web Proof (JWP) .
+Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.
+It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay. 
     " name="description">
 <meta content="xml2rfc 3.23.2" name="generator">
 <meta content="jose" name="keyword">
@@ -1073,8 +1078,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">JSON Web Proof</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">The JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.  They also established IANA registries to enable the algorithms and representations used for them to be extended.  Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) called a <em>JSON Web Proof (JWP)</em>.  Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.  It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">The JOSE set of standards established JSON-based container formats for Keys, Signatures, and Encryption.
+They also established IANA registries to enable the algorithms and representations used for them to be extended.
+Since those were created, newer cryptographic algorithms that support selective disclosure and unlinkability have matured and started seeing early market adoption.
+The COSE set of standards likewise does this for CBOR-based containers, focusing on the needs of environments which are better served using CBOR, such as constrained devices and networks.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This document defines a new container format similar in purpose and design to JSON Web Signature (JWS) and COSE Signed Messages called a <em>JSON Web Proof (JWP)</em>.
+Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.
+It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1145,45 +1155,48 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-jwp-header" class="internal xref">JWP Header</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-registered-header-parameter" class="internal xref">Registered Header Parameter Names</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-header-parameter-labeling-r" class="internal xref">Header Parameter Labeling Requirements</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-registered-header-parameter" class="internal xref">Registered Header Parameter Labels</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-alg-algorithm-header-parame" class="internal xref">"alg" (Algorithm) Header Parameter</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-alg-algorithm-header-parame" class="internal xref">"alg" (Algorithm) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.2">
-                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-kid-key-id-header-parameter" class="internal xref">"kid" (Key ID) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-kid-key-id-header-parameter" class="internal xref">"kid" (Key ID) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.3">
-                    <p id="section-toc.1-1.4.2.1.2.3.1"><a href="#section-4.1.3" class="auto internal xref">4.1.3</a>.  <a href="#name-typ-type-header-parameter" class="internal xref">"typ" (Type) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
+                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-typ-type-header-parameter" class="internal xref">"typ" (Type) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.4">
-                    <p id="section-toc.1-1.4.2.1.2.4.1"><a href="#section-4.1.4" class="auto internal xref">4.1.4</a>.  <a href="#name-crit-critical-header-parame" class="internal xref">"crit" (Critical) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.4">
+                    <p id="section-toc.1-1.4.2.2.2.4.1"><a href="#section-4.2.4" class="auto internal xref">4.2.4</a>.  <a href="#name-crit-critical-header-parame" class="internal xref">"crit" (Critical) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.5">
-                    <p id="section-toc.1-1.4.2.1.2.5.1"><a href="#section-4.1.5" class="auto internal xref">4.1.5</a>.  <a href="#name-proof_jwk-proof-jwk-header-" class="internal xref">"proof_jwk" (Proof JWK) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.5">
+                    <p id="section-toc.1-1.4.2.2.2.5.1"><a href="#section-4.2.5" class="auto internal xref">4.2.5</a>.  <a href="#name-proof_jwk-proof-jwk-header-" class="internal xref">"proof_jwk" (Proof JWK) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.6">
-                    <p id="section-toc.1-1.4.2.1.2.6.1"><a href="#section-4.1.6" class="auto internal xref">4.1.6</a>.  <a href="#name-presentation_jwk-presentati" class="internal xref">"presentation_jwk" (Presentation JWK) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.6">
+                    <p id="section-toc.1-1.4.2.2.2.6.1"><a href="#section-4.2.6" class="auto internal xref">4.2.6</a>.  <a href="#name-presentation_jwk-presentati" class="internal xref">"presentation_jwk" (Presentation JWK) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.7">
-                    <p id="section-toc.1-1.4.2.1.2.7.1"><a href="#section-4.1.7" class="auto internal xref">4.1.7</a>.  <a href="#name-iss-issuer-header-parameter" class="internal xref">"iss" (Issuer) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.7">
+                    <p id="section-toc.1-1.4.2.2.2.7.1"><a href="#section-4.2.7" class="auto internal xref">4.2.7</a>.  <a href="#name-iss-issuer-header-parameter" class="internal xref">"iss" (Issuer) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.8">
-                    <p id="section-toc.1-1.4.2.1.2.8.1"><a href="#section-4.1.8" class="auto internal xref">4.1.8</a>.  <a href="#name-aud-audience-header-paramet" class="internal xref">"aud" (Audience) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.8">
+                    <p id="section-toc.1-1.4.2.2.2.8.1"><a href="#section-4.2.8" class="auto internal xref">4.2.8</a>.  <a href="#name-aud-audience-header-paramet" class="internal xref">"aud" (Audience) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.9">
-                    <p id="section-toc.1-1.4.2.1.2.9.1"><a href="#section-4.1.9" class="auto internal xref">4.1.9</a>.  <a href="#name-nonce-nonce-header-paramete" class="internal xref">"nonce" (Nonce) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.9">
+                    <p id="section-toc.1-1.4.2.2.2.9.1"><a href="#section-4.2.9" class="auto internal xref">4.2.9</a>.  <a href="#name-nonce-nonce-header-paramete" class="internal xref">"nonce" (Nonce) Header Parameter</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.10">
-                    <p id="section-toc.1-1.4.2.1.2.10.1"><a href="#section-4.1.10" class="auto internal xref">4.1.10</a>. <a href="#name-claims-claims-header-parame" class="internal xref">"claims" (Claims) Header Parameter</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.10">
+                    <p id="section-toc.1-1.4.2.2.2.10.1"><a href="#section-4.2.10" class="auto internal xref">4.2.10</a>. <a href="#name-claims-claims-header-parame" class="internal xref">"claims" (Claims) Header Parameter</a></p>
 </li>
                 </ul>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-public-header-parameter-nam" class="internal xref">Public Header Parameter Names</a></p>
-</li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-private-header-parameter-na" class="internal xref">Private Header Parameter Names</a></p>
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-public-header-parameter-nam" class="internal xref">Public Header Parameter Names</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-private-header-parameter-na" class="internal xref">Private Header Parameter Names</a></p>
 </li>
             </ul>
 </li>
@@ -1228,6 +1241,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-json-serialization" class="internal xref">JSON Serialization</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-cbor-serialization" class="internal xref">CBOR Serialization</a></p>
 </li>
             </ul>
 </li>
@@ -1292,6 +1308,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
                       <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2.2.1.2.2">
                         <p id="section-toc.1-1.10.2.2.2.1.2.2.1"><a href="#section-10.2.1.2" class="auto internal xref">10.2.1.2</a>.  <a href="#name-the-application-jwpjson-med" class="internal xref">The application/jwp+json Media Type</a></p>
 </li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2.2.1.2.3">
+                        <p id="section-toc.1-1.10.2.2.2.1.2.3.1"><a href="#section-10.2.1.3" class="auto internal xref">10.2.1.3</a>.  <a href="#name-the-application-jwpcbor-med" class="internal xref">The application/jwp+cbor Media Type</a></p>
+</li>
                     </ul>
 </li>
                 </ul>
@@ -1341,7 +1360,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">The JOSE specifications are very widely deployed and well supported, enabling use of cryptographic primitives with a JSON representation.  JWTs <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span> are one of the most common representations for identity and access claims.  For instance, they are used by the OpenID Connect and Secure Telephony Identity Revisited (STIR) standards.  Also, JWTs are used by W3C's Verifiable Credentials and are used in many decentralized identity systems.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.  While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE.  These new patterns are largely focused on two areas: supporting selective disclosure when presenting information and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-2">With these new use cases, there is an increased focus on adopting privacy-protecting cryptographic primitives.
+While such primitives are still an active area of academic and applied research, the leading candidates introduce new patterns that are not currently supported by JOSE or COSE.
+These new patterns are largely focused on two areas: supporting selective disclosure when presenting information and minimizing correlation through the use of Zero-Knowledge Proofs (ZKPs) in addition to traditional signatures.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">There are a growing number of these cryptographic primitives that support selective disclosure while protecting privacy across multiple presentations.  Examples used in the context of Verifiable Credentials are:<a href="#section-1-3" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-1-4.1">
@@ -1420,7 +1441,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-background">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-background" class="section-name selfRef">Background</a>
       </h2>
-<p id="section-3-1">A <em>JSON Web Proof (JWP)</em> is very similar to a JWS <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>, with the addition that it can contain multiple individual secured payloads instead of a single one.  JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">A <em>JSON Web Proof (JWP)</em> is very similar to a JWS <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span> or COSE Signed Message <span>[<a href="#RFC8152" class="cite xref">RFC8152</a>]</span>, with the addition that it can contain multiple individual secured payloads instead of a single one.
+JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The intent of JSON Web Proof is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">To fully support the newer privacy primitives, JWP utilizes the three roles of issuer, holder, and verifier, as defined by the VC Data Model <span>[<a href="#VC-DATA-MODEL-2.0" class="cite xref">VC-DATA-MODEL-2.0</a>]</span>.  There are also two forms of a JWP: the issued form created by an issuer for a holder, and the presented form created by a holder for a verifier.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">The four principal interactions used by JWP are <code>issue</code>, <code>confirm</code>, <code>present</code>, and <code>verify</code>.<a href="#section-3-4" class="pilcrow">¶</a></p>
@@ -1435,45 +1457,82 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-jwp-header">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-jwp-header" class="section-name selfRef">JWP Header</a>
       </h2>
-<p id="section-4-1">The members of the JSON object(s) representing the JWP Header describe
-the proof applied to the Protected Header and the Payload
-and optionally, additional properties of the JWP.
-The Header Parameter names within the JWP Header MUST be unique;
-JWP parsers MUST either reject JWPs with duplicate Header Parameter names
-or use a JSON parser that returns only the lexically last duplicate member name,
-as specified in Section 15.12 ("The JSON Object") of ECMAScript 5.1 <span>[<a href="#ECMAScript" class="cite xref">ECMAScript</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Implementations are required to understand
+<p id="section-4-1">A JWP Header is a set of Header Parameters that apply to the JWP.
+These Header Parameters may be specific to the proof applied to
+the JWP, they may identify the party issuing the proof, and they may
+describe the application purpose and format of the JWP, as well as
+provide other potential metadata.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">A Header Parameter may be represented as JSON or as CBOR. When
+represented using JSON, each Header Parameter has a string label and
+has a JSON-structured value within a JSON Object. When described
+using CBOR, each parameter has either an integer (int) or string
+(tstr) label, and has a CBOR-structured value within a CBOR map.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">The Header Parameter labels within the JWP Header MUST be unique.
+CBOR processing MUST reject messages if two headers with the same
+parameter label are encountered. JSON processing SHOULD reject
+messages received with the same parameter label, but MAY instead
+represent only the lexically last member with that label, as
+specified in Section 15.12 ("The JSON Object") of ECMAScript 5.1
+<span>[<a href="#ECMAScript" class="cite xref">ECMAScript</a>]</span>. JSON processing MUST take one of these two approaches
+with regards to encountering duplicate header parameter labels.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Implementations are required to understand
 the specific Header Parameters defined by this specification
 that are designated as "MUST be understood"
 and process them in the manner defined in this specification.
 All other Header Parameters defined by this specification that
 are not so designated MUST be ignored when not understood.
-Unless listed as a critical Header Parameter, per <a href="#critDef" class="auto internal xref">Section 4.1.4</a>,
+Unless listed as a critical Header Parameter, per <a href="#critDef" class="auto internal xref">Section 4.2.4</a>,
 all Header Parameters not defined by this specification
-MUST be ignored when not understood.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">There are three classes of Header Parameter names:
-Registered Header Parameter names, Public Header Parameter names,
-and Private Header Parameter names.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<p id="section-4-4">These requirements are intentionally parallel to those in Section 4 of <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-4-4" class="pilcrow">¶</a></p>
-<div id="RegisteredHeaderParameterNames">
+MUST be ignored when not understood.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<div id="header-parameter-labeling-requirements">
 <section id="section-4.1">
-        <h3 id="name-registered-header-parameter">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-registered-header-parameter" class="section-name selfRef">Registered Header Parameter Names</a>
+        <h3 id="name-header-parameter-labeling-r">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-header-parameter-labeling-r" class="section-name selfRef">Header Parameter Labeling Requirements</a>
         </h3>
-<p id="section-4.1-1">The following Header Parameter names for use in JWPs are registered
+<p id="section-4.1-1">As labels are the mechanism for semantically distinguishing parameter
+names, it is important to describe the mechanism to reduce the risk
+of conflicts.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">There are three strategies for labeling header parameters:<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-4.1-3">
+<li id="section-4.1-3.1">
+            <p id="section-4.1-3.1.1">Registered parameter labels. These labels are coordinated through
+the IANA "JSON Web Proof Header Parameters" registry, which protects
+against parameters having the same label.<a href="#section-4.1-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.1-3.2">
+            <p id="section-4.1-3.2.1">Collision-resistant parameter labels. These labels are not
+coordinated through IANA, but are otherwise namespaced to prevent
+conflict. One example would a string label representing the URI of a
+controlled resource, such as the HTTPS-hosted documentation of the
+header parameter.<a href="#section-4.1-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.1-3.3">
+            <p id="section-4.1-3.3.1">Private parameter labels. These labels are not coordinated through
+IANA or another party, but are expected to only be used for testing
+or in closed environments.<a href="#section-4.1-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-4.1-4">These classes of Header Parameters are intentionally parallel to those in Section 4 of <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="RegisteredHeaderParameterLabels">
+<section id="section-4.2">
+        <h3 id="name-registered-header-parameter">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-registered-header-parameter" class="section-name selfRef">Registered Header Parameter Labels</a>
+        </h3>
+<p id="section-4.2-1">The following Header Parameter names for use in JWPs are registered
 in the IANA "JSON Web Proof Header Parameters" registry established by <a href="#HdrReg" class="auto internal xref">Section 10.1</a>,
-with meanings as defined in the subsections below.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">As indicated by the common registry, Header Parameters used
+with meanings as defined in the subsections below.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">As indicated by the common registry, Header Parameters used
 in the Issued Form (see <a href="#issued-form" class="auto internal xref">Section 5.1</a>) and the Presented Form <a href="#presented-form" class="auto internal xref">Section 5.2</a>
 share a common Header Parameter space;
-when a parameter is used by both forms, its usage must be compatible between them.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1-3">These Header Parameters are intentionally parallel to those in Section 4.1 of <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+when a parameter is used by both forms, its usage must be compatible between them.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <div id="algDef">
-<section id="section-4.1.1">
+<section id="section-4.2.1">
           <h4 id="name-alg-algorithm-header-parame">
-<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-alg-algorithm-header-parame" class="section-name selfRef">"alg" (Algorithm) Header Parameter</a>
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-alg-algorithm-header-parame" class="section-name selfRef">"alg" (Algorithm) Header Parameter</a>
           </h4>
-<p id="section-4.1.1-1">The <code>alg</code> (algorithm) Header Parameter identifies the cryptographic algorithm
+<p id="section-4.2.1-1">The <code>alg</code> (algorithm) Header Parameter identifies the cryptographic algorithm
 used to secure the JWP.
 The JWP Proof value is not valid if the <code>alg</code> value does not represent
 a supported algorithm or if there is not a key for use with that algorithm
@@ -1481,40 +1540,44 @@ associated with the party that secured the content.
 <code>alg</code> values should either be registered in
 the IANA "JSON Web Proof Algorithms" registry
 established by <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span>
-or be a value that contains a Collision-Resistant Name.
-The <code>alg</code> value is a case-sensitive ASCII string containing a StringOrURI value.
-This Header Parameter MUST be present
-and MUST be understood and processed by implementations.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-2">A list of defined <code>alg</code> values for this use can be found
+or be a value that contains a Collision-Resistant Name.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-2">As a JSON-formatted header parameter, the <code>alg</code> value is a
+case-sensitive ASCII string containing a StringOrURI value. As a
+CBOR-formatted header parameter, this value may also be an integer
+value.<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-3">The list of defined <code>alg</code> values for this use can be found
 in the IANA "JSON Web Proof Algorithms" registry
 established by <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span>;
 the initial contents of this registry are registered
-by <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span>.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
+by <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span>.<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-4">Use of this Header Parameter is REQUIRED.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="kidDef">
-<section id="section-4.1.2">
+<section id="section-4.2.2">
           <h4 id="name-kid-key-id-header-parameter">
-<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-kid-key-id-header-parameter" class="section-name selfRef">"kid" (Key ID) Header Parameter</a>
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-kid-key-id-header-parameter" class="section-name selfRef">"kid" (Key ID) Header Parameter</a>
           </h4>
-<p id="section-4.1.2-1">The <code>kid</code> (key ID) Header Parameter
-is a hint indicating which key was used to secure the JWP.
-This parameter allows originators to explicitly signal a change of
-key to recipients.
-The structure of the <code>kid</code> value is unspecified.
-Its value MUST be a case-sensitive string.
-Use of this Header Parameter is OPTIONAL.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.2-2">When used with a JWK,
-the <code>kid</code> value is used to match a JWK <code>kid</code> parameter value.<a href="#section-4.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.2-1">The <code>kid</code> (key ID) Header Parameter is a hint indicating which key
+was used to secure the JWP. This parameter allows originators to
+explicitly signal a change of key to recipients.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.2-2">The structure of the <code>kid</code> value is unspecified.<a href="#section-4.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.2-3">When <code>kid</code> is used for a JSON Protected Header, its value MUST be a
+case-sensitive string. When referencing a JWK, the <code>kid</code> value is
+matched to the JWK <code>kid</code> parameter value.<a href="#section-4.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.2-4">When <code>kid</code> is used for a CBOR Protected Header, its value is a binary
+string. When referencing a COSE Key, the <code>kid</code> value is matched to
+the COSE_Key <code>kid</code> structure member.<a href="#section-4.2.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.2-5">Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="typDef">
-<section id="section-4.1.3">
+<section id="section-4.2.3">
           <h4 id="name-typ-type-header-parameter">
-<a href="#section-4.1.3" class="section-number selfRef">4.1.3. </a><a href="#name-typ-type-header-parameter" class="section-name selfRef">"typ" (Type) Header Parameter</a>
+<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-typ-type-header-parameter" class="section-name selfRef">"typ" (Type) Header Parameter</a>
           </h4>
-<p id="section-4.1.3-1">The <code>typ</code> (type) Header Parameter is used by JWP applications to declare the
-media type (#IANA.MediaTypes) of this complete JWP.
+<p id="section-4.2.3-1">The <code>typ</code> (type) Header Parameter is used by JWP applications to declare the
+media type <span>[<a href="#IANA.MediaTypes" class="cite xref">IANA.MediaTypes</a>]</span> of this complete JWP.
 This is intended for use by the application when
 more than one kind of object could be present in
 an application data structure that can contain a JWP;
@@ -1524,12 +1587,15 @@ It will typically not be used by applications when
 the kind of object is already known.
 This parameter is ignored by JWP implementations;
 any processing of this parameter is performed by the JWP application.
-Use of this Header Parameter is OPTIONAL.<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-2">Per <span>[<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values,
+Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.3-2">For COSE Protected Headers, <code>typ</code> MAY also instead be an integer value
+which corresponds to the IANA "CoAP Content-Formats" registry
+<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>, which describes the corresponding media type.<a href="#section-4.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.3-3">Per <span>[<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values,
 subtype values, and parameter names are case insensitive.
 However, parameter values are case sensitive unless
-otherwise specified for the specific parameter.<a href="#section-4.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-3">To keep messages compact in common situations,
+otherwise specified for the specific parameter.<a href="#section-4.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.3-4">To keep messages compact in common situations,
 it is RECOMMENDED that producers omit an "application/" prefix
 of a media type value in a <code>typ</code>
 Header Parameter when no other '/' appears in the media type value.
@@ -1538,27 +1604,29 @@ A recipient using the media type value MUST treat it as if
 For instance, a <code>typ</code> value of <code>example</code> SHOULD be used to represent
 the <code>application/example</code> media type,
 whereas the media type <code>application/example;part="1/2"</code> cannot
-be shortened to <code>example;part="1/2"</code>.<a href="#section-4.1.3-3" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-4">The <code>typ</code> value <code>jwp</code> can be used by applications
+be shortened to <code>example;part="1/2"</code>.<a href="#section-4.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.3-5">The <code>typ</code> value <code>jwp</code> can be used by applications
 to indicate that this object is a JWP using the JWP Compact Serialization.
 The <code>typ</code> value <code>jwp+json</code> can be used by applications
 to indicate that this object is a JWP using the JWP JSON Serialization.
-Other type values can also be used by applications.<a href="#section-4.1.3-4" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-5">It is RECOMMENDED that the <code>typ</code> Header Parameter be used for explicit typing,
-in parallel to the recommendations in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-4.1.3-5" class="pilcrow">¶</a></p>
+Other type values can also be used by applications.<a href="#section-4.2.3-5" class="pilcrow">¶</a></p>
+<p id="section-4.2.3-6">It is RECOMMENDED that the <code>typ</code> Header Parameter be used for explicit typing,
+in parallel to the recommendations in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-4.2.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="critDef">
-<section id="section-4.1.4">
+<section id="section-4.2.4">
           <h4 id="name-crit-critical-header-parame">
-<a href="#section-4.1.4" class="section-number selfRef">4.1.4. </a><a href="#name-crit-critical-header-parame" class="section-name selfRef">"crit" (Critical) Header Parameter</a>
+<a href="#section-4.2.4" class="section-number selfRef">4.2.4. </a><a href="#name-crit-critical-header-parame" class="section-name selfRef">"crit" (Critical) Header Parameter</a>
           </h4>
-<p id="section-4.1.4-1">The <code>crit</code> (critical) Header Parameter indicates that extensions to
+<p id="section-4.2.4-1">The <code>crit</code> (critical) Header Parameter indicates that extensions to
 this specification and/or <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span>
 are being used that MUST be understood and processed.
-Its value is an array listing the Header Parameter names
-present in the JWP Header that use those extensions.
-If any of the listed extension Header Parameters are not
+Its value is an array listing the Header Parameter labels
+present in the JWP Header that use those extensions. For JSON Protected
+Headers this is a list of strings, while for CBOR protected headers
+it is a list containing string and/or int values.<a href="#section-4.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.4-2">If any of the listed extension Header Parameters are not
 understood and supported by the recipient, then the JWP is invalid.
 Producers MUST NOT include Header Parameter names defined by
 this specification or <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span> for use with JWP,
@@ -1573,108 +1641,112 @@ or if any other constraints on its use are violated.
 When used, this Header Parameter MUST be integrity protected;
 therefore, it MUST occur only within the JWP Protected Header.
 Use of this Header Parameter is OPTIONAL.
-This Header Parameter MUST be understood and processed by implementations.<a href="#section-4.1.4-1" class="pilcrow">¶</a></p>
+This Header Parameter MUST be understood and processed by implementations.<a href="#section-4.2.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="proof_jwkDef">
-<section id="section-4.1.5">
+<section id="section-4.2.5">
           <h4 id="name-proof_jwk-proof-jwk-header-">
-<a href="#section-4.1.5" class="section-number selfRef">4.1.5. </a><a href="#name-proof_jwk-proof-jwk-header-" class="section-name selfRef">"proof_jwk" (Proof JWK) Header Parameter</a>
+<a href="#section-4.2.5" class="section-number selfRef">4.2.5. </a><a href="#name-proof_jwk-proof-jwk-header-" class="section-name selfRef">"proof_jwk" (Proof JWK) Header Parameter</a>
           </h4>
-<p id="section-4.1.5-1">The <code>proof_jwk</code> (Proof JWK) represents the public key used by the issuer
+<p id="section-4.2.5-1">The <code>proof_jwk</code> (Proof JWK) represents the public key used by the issuer
 for proof of possession.
-This key is represented as a JSON Web Key public key value.
-It MUST contain only public key parameters and
-SHOULD contain only the minimum JWK parameters necessary to represent the key;
-other JWK parameters included can be checked for consistency and honored, or they can be ignored.
+This header parameter is references a JSON Web Key (JWK) public
+key value when represented as a JSON Protected Header, and a COSE Key
+Object when represented as a CBOR Protected Header.<a href="#section-4.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.5-2">It MUST contain only public key parameters and
+SHOULD contain only the minimum parameters necessary to represent the key;
+other parameters included can be checked for consistency and honored, or they can be ignored.
 This Header Parameter MUST be present in the JWP issuer header parameters
-and MUST be understood and processed by implementations.<a href="#section-4.1.5-1" class="pilcrow">¶</a></p>
+and MUST be understood and processed by implementations.<a href="#section-4.2.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation_jwkDef">
-<section id="section-4.1.6">
+<section id="section-4.2.6">
           <h4 id="name-presentation_jwk-presentati">
-<a href="#section-4.1.6" class="section-number selfRef">4.1.6. </a><a href="#name-presentation_jwk-presentati" class="section-name selfRef">"presentation_jwk" (Presentation JWK) Header Parameter</a>
+<a href="#section-4.2.6" class="section-number selfRef">4.2.6. </a><a href="#name-presentation_jwk-presentati" class="section-name selfRef">"presentation_jwk" (Presentation JWK) Header Parameter</a>
           </h4>
-<p id="section-4.1.6-1">The <code>presentation_jwk</code> (Presentation JWK) represents the public key used by the holder
-for proof of possession.
-This key is represented as a JSON Web Key public key value.
-It MUST contain only public key parameters and
-SHOULD contain only the minimum JWK parameters necessary to represent the key;
-other JWK parameters included can be checked for consistency and honored, or they can be ignored.
+<p id="section-4.2.6-1">The <code>presentation_jwk</code> (Presentation JWK) represents the public key used by the holder
+for proof of possession.<a href="#section-4.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.6-2">This header parameter is references a JSON Web Key (JWK) public
+key value when represented as a JSON Protected Header, and a COSE Key
+Object when represented as a CBOR Protected Header.<a href="#section-4.2.6-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.6-3">It MUST contain only public key parameters and
+SHOULD contain only the minimum parameters necessary to represent the key;
+other parameters included can be checked for consistency and honored, or they can be ignored.
 This Header Parameter MUST be present in the JWP issuer header parameters
-and MUST be understood and processed by implementations.<a href="#section-4.1.6-1" class="pilcrow">¶</a></p>
+and MUST be understood and processed by implementations.<a href="#section-4.2.6-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issDef">
-<section id="section-4.1.7">
+<section id="section-4.2.7">
           <h4 id="name-iss-issuer-header-parameter">
-<a href="#section-4.1.7" class="section-number selfRef">4.1.7. </a><a href="#name-iss-issuer-header-parameter" class="section-name selfRef">"iss" (Issuer) Header Parameter</a>
+<a href="#section-4.2.7" class="section-number selfRef">4.2.7. </a><a href="#name-iss-issuer-header-parameter" class="section-name selfRef">"iss" (Issuer) Header Parameter</a>
           </h4>
-<p id="section-4.1.7-1">The <code>iss</code> (issuer) Header Parameter identifies the principal that issued the JWP.
+<p id="section-4.2.7-1">The <code>iss</code> (issuer) Header Parameter identifies the principal that issued the JWP.
 The processing of this claim is generally application specific.
-The <code>iss</code> value is a case-sensitive string
-containing a StringOrURI value.
-Its definition is intentionally parallel to the <code>iss</code> claim defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.
-Use of this Header Parameter is OPTIONAL.<a href="#section-4.1.7-1" class="pilcrow">¶</a></p>
+The <code>iss</code> value is a case-sensitive string containing a StringOrURI value.
+Its definition is intentionally parallel to the <code>iss</code> claim defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-4.2.7-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.7-2">Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.7-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="audDef">
-<section id="section-4.1.8">
+<section id="section-4.2.8">
           <h4 id="name-aud-audience-header-paramet">
-<a href="#section-4.1.8" class="section-number selfRef">4.1.8. </a><a href="#name-aud-audience-header-paramet" class="section-name selfRef">"aud" (Audience) Header Parameter</a>
+<a href="#section-4.2.8" class="section-number selfRef">4.2.8. </a><a href="#name-aud-audience-header-paramet" class="section-name selfRef">"aud" (Audience) Header Parameter</a>
           </h4>
-<p id="section-4.1.8-1">The <code>aud</code> (audience) Header Parameter
+<p id="section-4.2.8-1">The <code>aud</code> (audience) Header Parameter
 identifies the recipients that the JWP is intended for.
 Each principal intended to process the JWP MUST identify itself
 with a value in the audience Header Parameter.  If the principal
 processing the Header Parameter does not identify itself with a
 value in the <code>aud</code> Header Parameter when this Header Parameter is present,
-then the JWP MUST be rejected.
-In the general case,
-the <code>aud</code> value is an array of
-case-sensitive strings, each containing a StringOrURI value.
-In the special case when the JWP has one audience,
-the <code>aud</code> value MAY be a single
-case-sensitive string containing a StringOrURI value.
-The interpretation of audience values is generally application specific.
-Its definition is intentionally parallel to the <code>aud</code> claim defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.
-Use of this Header Parameter is OPTIONAL.<a href="#section-4.1.8-1" class="pilcrow">¶</a></p>
+then the JWP MUST be rejected.<a href="#section-4.2.8-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.8-2">In the general case, the <code>aud</code> value is an array of case-sensitive
+strings, each containing a StringOrURI value. In the special case
+when the JWP has one audience, the <code>aud</code> value MAY be a single
+case-sensitive string containing a StringOrURI value.<a href="#section-4.2.8-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.8-3">The interpretation of audience values is application specific.<a href="#section-4.2.8-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.8-4">Its definition is intentionally parallel to the <code>aud</code> claim defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-4.2.8-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.8-5">Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.8-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="nonceDef">
-<section id="section-4.1.9">
+<section id="section-4.2.9">
           <h4 id="name-nonce-nonce-header-paramete">
-<a href="#section-4.1.9" class="section-number selfRef">4.1.9. </a><a href="#name-nonce-nonce-header-paramete" class="section-name selfRef">"nonce" (Nonce) Header Parameter</a>
+<a href="#section-4.2.9" class="section-number selfRef">4.2.9. </a><a href="#name-nonce-nonce-header-paramete" class="section-name selfRef">"nonce" (Nonce) Header Parameter</a>
           </h4>
-<p id="section-4.1.9-1">The <code>nonce</code> (nonce) Header Parameter is a case-sensitive string value
+<blockquote id="section-4.2.9-1">
+            <p id="section-4.2.9-1.1">Editor's note: Need to resolve the difference between nonce in CBOR and JSON caused by EATS<a href="#section-4.2.9-1.1" class="pilcrow">¶</a></p>
+</blockquote>
+<p id="section-4.2.9-2">The <code>nonce</code> (nonce) Header Parameter is a case-sensitive string value
 used to associate protocol state with a JWP.
 This can be used, for instance, to mitigate replay attacks.
 The use of nonce values is generally protocol specific.
 Its definition is intentionally parallel to the <code>nonce</code> claim
 registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).
-Use of this Header Parameter is OPTIONAL.<a href="#section-4.1.9-1" class="pilcrow">¶</a></p>
+Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.9-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="claimsDef">
-<section id="section-4.1.10">
+<section id="section-4.2.10">
           <h4 id="name-claims-claims-header-parame">
-<a href="#section-4.1.10" class="section-number selfRef">4.1.10. </a><a href="#name-claims-claims-header-parame" class="section-name selfRef">"claims" (Claims) Header Parameter</a>
+<a href="#section-4.2.10" class="section-number selfRef">4.2.10. </a><a href="#name-claims-claims-header-parame" class="section-name selfRef">"claims" (Claims) Header Parameter</a>
           </h4>
-<p id="section-4.1.10-1">The <code>claims</code> Header Parameter is an array listing the Claim Names
+<p id="section-4.2.10-1">The <code>claims</code> Header Parameter is an array listing the Claim Names
 corresponding to the JWP payloads, in the same order as the payloads.
 Each array value is a Claim Name, as defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.
-Use of this Header Parameter is OPTIONAL.<a href="#section-4.1.10-1" class="pilcrow">¶</a></p>
+Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.10-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="PublicHeaderParameterName">
-<section id="section-4.2">
+<section id="section-4.3">
         <h3 id="name-public-header-parameter-nam">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-public-header-parameter-nam" class="section-name selfRef">Public Header Parameter Names</a>
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-public-header-parameter-nam" class="section-name selfRef">Public Header Parameter Names</a>
         </h3>
-<p id="section-4.2-1">Additional Header Parameter names can be defined by those
+<p id="section-4.3-1">Additional Header Parameter names can be defined by those
 using JWPs. However, in order to prevent collisions, any new
 Header Parameter name should either be registered in the IANA
 "JSON Web Proof Header Parameters" registry
@@ -1684,23 +1756,23 @@ established by
 In each case, the definer of the name
 or value needs to take reasonable precautions to make sure they
 are in control of the part of the namespace they use to
-define the Header Parameter name.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">New Header Parameters should be introduced sparingly, as
-they can result in non-interoperable JWPs.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+define the Header Parameter name.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">New Header Parameters should be introduced sparingly, as
+they can result in non-interoperable JWPs.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="PrivateHeaderParameterName">
-<section id="section-4.3">
+<section id="section-4.4">
         <h3 id="name-private-header-parameter-na">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-private-header-parameter-na" class="section-name selfRef">Private Header Parameter Names</a>
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-private-header-parameter-na" class="section-name selfRef">Private Header Parameter Names</a>
         </h3>
-<p id="section-4.3-1">A producer and consumer of a JWP may agree to use Header Parameter names
+<p id="section-4.4-1">A producer and consumer of a JWP may agree to use Header Parameter names
 that are Private Names (names that are
-not Registered Header Parameter names <a href="#RegisteredHeaderParameterNames" class="auto internal xref">Section 4.1</a>
-or Public Header Parameter names <a href="#PublicHeaderParameterName" class="auto internal xref">Section 4.2</a>.)
+not Registered Header Parameter labels <a href="#RegisteredHeaderParameterLabels" class="auto internal xref">Section 4.2</a>
+or Public Header Parameter names <a href="#PublicHeaderParameterName" class="auto internal xref">Section 4.3</a>.)
 Unlike Public Header Parameter names,
 Private Header Parameter names are subject to collision and
-should be used with caution.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+should be used with caution.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1808,36 +1880,38 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-serializations" class="section-name selfRef">Serializations</a>
       </h2>
 <p id="section-6-1">Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The headers and proof are also individually base64url encoded.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. These serializations both represent the same JSON-based header, payload and proof, and are thus interchangeable without breaking the proof value.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-2">Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. These serializations both represent the same JSON-based Protected Header, payloads and proof, and are thus interchangeable without breaking the proof value.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">A CBOR-based serialization is also defined, which uses the CBOR for describing Header Parameters. While this supports the same data model and algorithms, the difference in header representations does not allow interchangeability with the Compact Serialization and JSON Serializations.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <div id="CompactSerialization">
 <section id="section-6.1">
         <h3 id="name-compact-serialization">
 <a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-compact-serialization" class="section-name selfRef">Compact Serialization</a>
         </h3>
-<p id="section-6.1-1">The compact serialiation provides a space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3">Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1-4">Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
-<p id="section-6.1-5">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
-<p id="section-6.1-6">The issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
-<p id="section-6.1-7">The presented form is created by concatenating the base64url-encoded presenter protected header, base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
-<div class="lang-wrapped sourcecode" id="section-6.1-8">
+<p id="section-6.1-1">The compact serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.1-4">Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.1-5">Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<p id="section-6.1-6">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
+<p id="section-6.1-7">The issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
+<p id="section-6.1-8">The presented form is created by concatenating the base64url-encoded presenter protected header, base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-8" class="pilcrow">¶</a></p>
+<div class="lang-wrapped sourcecode" id="section-6.1-9">
 <pre>eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
 mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
 yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.j1nzXjpZeJmxT8RnU-8hZ4t9wGWH_k0Y
-McfhvAo6k5ys_kElGG9qGBMRFKaVOX4Ukjbd_5DbW0H_VQfW0uwvEl5KDMWeqJFHZftJU
-6WSFIwwJW45IxXkudLHNYQA0cqOtjJLyaYwo3a1DzdgqlWoWenji2XXSmK5uunvtgoUsH
-PJdlF6WVkMpRlS_iB92a5_IGWsBi4lyORSlLHhkRBu7-dju7eFRSwjbJSCqeZ9Ae4JEmJ
-kz138tVYJGzkBsZfs3xh94OjDSpxWDqqu1SXQeRfbTR2BKwYpfGWmSoirrTYuA8gzx81H
-aaEZoJ5785iPYpK0lXBSR9oTeJxFpyLrLt3lTJpPSDvbTdV2cyHPC9BKBDN4knmFADN7c
-QIb5r6T0FfjH1ypQaoRLLMhKqU5NDjkhxtDhw80v9KNl34OgQDEaaN3G83SsdkCFHyVX3
-b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
+MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.iyFtpifPg7q-BPkDEUwdknPf5djBAJ8e
+Vlu6xzlDuBUbw21rwBEhcEGpgnMQLGRxtWEpFxkQlLU7Iy_dW0bw6hQHfgqTsviqq1dzc
+OhLhR9UvLI0TmHxMqtkX8pxo_SOtQvpS9neFssV6wpBfURvD0jU1EzyLFdWG23OyV5K_w
+69tC-XybFj0mAWUeVHnFhhFm3lxccg3dnZaYbev3fC1BpPOlHbXZZE9K0zwahhpwVWY9o
+akli8cnhid-j6bb_lO2X_wLFrKtIezJ6aStUUSzNgRQ1j8Wa2FIxH1zqJGP2XB9TdPzj1
+NgBqXzvzFC9dZWcJdEZWPLXmVVpZpiunGpV04qO9HEJlffNcXl5LmPojsVN46hs5l25Wg
+K1hW4S3X8-jekGd3lT4G4xUCycojxwblXpLL4b0ZajV44qpaX11xYF_SncpthDr5l3Klu
+rYAkJ3ibsoUgC1-Zh9qrtAJTEYzvfYt43vQMypWQS4X1s
 
-</pre><a href="#section-6.1-8" class="pilcrow">¶</a>
+</pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
-<blockquote id="section-6.1-9">
-          <p id="section-6.1-9.1">Figure: Compact Serialization of Presentation<a href="#section-6.1-9.1" class="pilcrow">¶</a></p>
+<blockquote id="section-6.1-10">
+          <p id="section-6.1-10.1">Figure: Compact Serialization of Presentation<a href="#section-6.1-10.1" class="pilcrow">¶</a></p>
 </blockquote>
 </section>
 </div>
@@ -1847,12 +1921,13 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-json-serialization" class="section-name selfRef">JSON Serialization</a>
         </h3>
 <p id="section-6.2-1">The JSON Serialization is in the form of a JSON object, with property names representing the various components.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">The <code>issuer</code> key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
-<p id="section-6.2-3">The <code>presentation</code> key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
-<p id="section-6.2-4">The <code>payloads</code> key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value <code>null</code>. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2-5">The <code>proofs</code> key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.2-6">This example JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
-<div class="lang-wrapped sourcecode" id="section-6.2-7">
+<p id="section-6.2-2">The Protected Headers MUST be JSON-formatted for JSON Serialization. This includes both headers sets in presented form.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">The <code>issuer</code> key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">The <code>presentation</code> key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">The <code>payloads</code> key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value <code>null</code>. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">The <code>proofs</code> key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-7">This example JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
+<div class="lang-wrapped sourcecode" id="section-6.2-8">
 <pre>{
   "presentation": "eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2
        lwaWVudC5leGFtcGxlLmNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ",
@@ -1868,22 +1943,67 @@ b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
     null
   ],
   "proof": [
-    "j1nzXjpZeJmxT8RnU-8hZ4t9wGWH_k0YMcfhvAo6k5ys_kElGG9qGBMRFKaVOX4U
-       kjbd_5DbW0H_VQfW0uwvEl5KDMWeqJFHZftJU6WSFIwwJW45IxXkudLHNYQA0c
-       qOtjJLyaYwo3a1DzdgqlWoWenji2XXSmK5uunvtgoUsHPJdlF6WVkMpRlS_iB9
-       2a5_IGWsBi4lyORSlLHhkRBu7-dju7eFRSwjbJSCqeZ9Ae4JEmJkz138tVYJGz
-       kBsZfs3xh94OjDSpxWDqqu1SXQeRfbTR2BKwYpfGWmSoirrTYuA8gzx81HaaEZ
-       oJ5785iPYpK0lXBSR9oTeJxFpyLrLt3lTJpPSDvbTdV2cyHPC9BKBDN4knmFAD
-       N7cQIb5r6T0FfjH1ypQaoRLLMhKqU5NDjkhxtDhw80v9KNl34OgQDEaaN3G83S
-       sdkCFHyVX3b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg"
+    "iyFtpifPg7q-BPkDEUwdknPf5djBAJ8eVlu6xzlDuBUbw21rwBEhcEGpgnMQLGRx
+       tWEpFxkQlLU7Iy_dW0bw6hQHfgqTsviqq1dzcOhLhR9UvLI0TmHxMqtkX8pxo_
+       SOtQvpS9neFssV6wpBfURvD0jU1EzyLFdWG23OyV5K_w69tC-XybFj0mAWUeVH
+       nFhhFm3lxccg3dnZaYbev3fC1BpPOlHbXZZE9K0zwahhpwVWY9oakli8cnhid-
+       j6bb_lO2X_wLFrKtIezJ6aStUUSzNgRQ1j8Wa2FIxH1zqJGP2XB9TdPzj1NgBq
+       XzvzFC9dZWcJdEZWPLXmVVpZpiunGpV04qO9HEJlffNcXl5LmPojsVN46hs5l2
+       5WgK1hW4S3X8-jekGd3lT4G4xUCycojxwblXpLL4b0ZajV44qpaX11xYF_Sncp
+       thDr5l3KlurYAkJ3ibsoUgC1-Zh9qrtAJTEYzvfYt43vQMypWQS4X1s"
   ]
 }
 
-</pre><a href="#section-6.2-7" class="pilcrow">¶</a>
+</pre><a href="#section-6.2-8" class="pilcrow">¶</a>
 </div>
-<blockquote id="section-6.2-8">
-          <p id="section-6.2-8.1">Figure: JSON Serialization of Presentation<a href="#section-6.2-8.1" class="pilcrow">¶</a></p>
+<blockquote id="section-6.2-9">
+          <p id="section-6.2-9.1">Figure: JSON Serialization of Presentation<a href="#section-6.2-9.1" class="pilcrow">¶</a></p>
 </blockquote>
+</section>
+</div>
+<div id="cbor-serialization">
+<section id="section-6.3">
+        <h3 id="name-cbor-serialization">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-cbor-serialization" class="section-name selfRef">CBOR Serialization</a>
+        </h3>
+<p id="section-6.3-1">The CBOR serialization provides a compact binary representation of a JWP.
+The serialization consists of two arrays, representing issued and presented forms.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3-2">The protected headers MUST be CBOR formatted for CBOR serialization.
+This includes both the issued and presented headers in the presented form.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.3-3">The issued form consists of a three-element array, while the
+presented form consists of a four-element array.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
+<p id="section-6.3-4">If an individual payload has been omitted, it is represented by the
+CBOR value <code>nil</code>. Payloads MUST be included unless the application
+is using detached payloads, which is represented by setting the
+<code>payloads</code> value as <code>nil</code>.¶<a href="#section-6.3-4" class="pilcrow">¶</a></p>
+<p id="section-6.3-5">Two tags are defined for representing issued and presented JWPs.
+Applications MAY use their own tags to tag other specific types of JWPs.<a href="#section-6.3-5" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-6.3-6">
+<pre>CBOR_JWP_Issued = [
+       IssuerHeader : serialized_map,
+       payloads : [payload] / nil,
+       proofs : [bstr]
+   ]
+
+CBOR_JWP_Presented = [
+      PresenterHeader : serialized_map,
+      IssuerHeaders : serialized_map,
+      payloads : [payload] / nil,
+      proofs : [bstr]
+   ]
+
+empty_or_serialized_map = bstr .cbor header_map
+
+payload = bstr / nil
+
+Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
+
+Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
+
+
+</pre><a href="#section-6.3-6" class="pilcrow">¶</a>
+</div>
+<p id="section-6.3-7">Figure 1: CDDL [RFC8610] for CBOR Serializations.<a href="#section-6.3-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1899,28 +2019,38 @@ MUST be prevented.
 This can be accomplished by encrypting the JWP
 when potentially observable by such parties
 to prevent the disclosure of private information.
-The use of an Encrypted JWP, which is a JWE <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span>
-with a JWP as its plaintext value,
-is recommended for this purpose.
+The use of an Encrypted JWP is recommended for this purpose.
 The processing of Encrypted JWPs is identical to
 the processing of other JWEs.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">The <code>cty</code> (content type) JWE Header Parameter is used to indicate
-that the content of the JWE is a JWP.
-The <code>cty</code> value of the JWE SHOULD be the same as
-the <code>typ</code> (type) JWP Header Parameter value of the unencrypted JWP to be encrypted.
-If the JWP has no <code>typ</code> value, then the following JWE Header Parameter <code>cty</code> (content type) values SHOULD be used:<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-2">For a JWP with JSON-formatted headers, an Encrypted JWP is a JWE
+<span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span> with a JWP in Compact Serialization as its plaintext
+value. For a JWP with CBOR-formatted headers, an Encrypted JWP should
+use <code>COSE_Encrypt0</code> or <code>COSE_Encrypt</code> <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> with the CBOR
+Serialization as its plaintext.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">The <code>cty</code> (content type) JWE/COSE Header Parameter is used to
+indicate that the content of the JWE is a JWP.
+The <code>cty</code> value of the JWE/COSE message SHOULD be the same as
+the <code>typ</code> (type) JWP Header Parameter value of the unencrypted JWP
+to be encrypted. If the JWP has no <code>typ</code> value, then the following
+JWE Header Parameter <code>cty</code> (content type) values SHOULD be used:<a href="#section-7-3" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-7-3.1">
-          <code>jwp</code> is used to indicate that the content of the JWE is a JWP using the JWP Compact Serialization.<a href="#section-7-3.1" class="pilcrow">¶</a>
+<li class="compact" id="section-7-4.1">
+          <code>jwp</code> is used to indicate that the content of the JWE is a JWP
+using the JWP Compact Serialization.<a href="#section-7-4.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-7-3.2">
-          <code>jwp+json</code> is used to indicate that the content of the JWE is the UTF-8 encoding of a JWP using the JWP JSON Serialization.<a href="#section-7-3.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-7-4.2">
+          <code>jwp+json</code> is used to indicate that the content of the JWE is the
+UTF-8 encoding of a JWP using the JWP JSON Serialization.<a href="#section-7-4.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="section-7-4.3">
+          <code>jwp+cbor</code> is used to indicate that the plaintext of the COSE
+message is a JWP in CBOR Serialization.<a href="#section-7-4.3" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-7-4">The <code>cty</code> (content type) Header Parameter MUST be present
+<p id="section-7-5">The <code>cty</code> (content type) Header Parameter MUST be present
 unless the application knows that the encrypted content is
 a JWP by another means or convention,
-in which case the <code>cty</code> value MAY be omitted.<a href="#section-7-4" class="pilcrow">¶</a></p>
+in which case the <code>cty</code> value MAY be omitted.<a href="#section-7-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="detached-payloads">
@@ -2005,18 +2135,57 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
           <h4 id="name-registration-template">
 <a href="#section-10.1.1" class="section-number selfRef">10.1.1. </a><a href="#name-registration-template" class="section-name selfRef">Registration Template</a>
           </h4>
-<ul class="compact">
-<li class="compact" id="section-10.1.1-1.1">Header Parameter Name: The name requested (e.g., "kid"). Because a core goal of this specification is for the resulting representations to be compact, it is RECOMMENDED that the name be short -- not to exceed 8 characters without a compelling reason to do so. This name is case sensitive. Names may not match other registered names in a case-insensitive manner unless the Designated Experts state that there is a compelling reason to allow an exception.<a href="#section-10.1.1-1.1" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-10.1.1-1.2">Header Parameter Description: Brief description of the Header Parameter (e.g., "Key ID").<a href="#section-10.1.1-1.2" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-10.1.1-1.3">Header Parameter Usage Location(s): The Header Parameter usage locations, which should be one or more of the values <code>Issued</code> or <code>Presented</code>.  Other values may be used with the approval of a Designated Expert.<a href="#section-10.1.1-1.3" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-10.1.1-1.4">Change Controller: For Standards Track RFCs, list the "IETF". For others, give the name of the responsible party. Other details (e.g., postal address, email address, home page URI) may also be included.<a href="#section-10.1.1-1.4" class="pilcrow">¶</a>
-</li>
-            <li class="compact" id="section-10.1.1-1.5">Specification Document(s): Reference to the document or documents that specify the parameter, preferably including URIs that can be used to retrieve copies of the documents. An indication of the relevant sections may also be included but is not required.<a href="#section-10.1.1-1.5" class="pilcrow">¶</a>
-</li>
-          </ul>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-10.1.1-1">
+            <dt id="section-10.1.1-1.1">Header Parameter Name:</dt>
+            <dd style="margin-left: 1.5em" id="section-10.1.1-1.2">The descriptive name of the parameter.
+(e.g. "Key Identifier").<a href="#section-10.1.1-1.2" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-10.1.1-1.3">Header Parameter JSON Label:</dt>
+            <dd style="margin-left: 1.5em" id="section-10.1.1-1.4">The string label requested within a
+JSON context. (e.g., <code>kid</code>).
+Because a core goal of this specification is for the resulting
+representations to be compact, it is RECOMMENDED that the label be
+short -- not to exceed 8 characters without a compelling reason to
+do so. This label is case sensitive, and it is RECOMMENDED to
+avoid upper-case characters. Labels may not match another
+registered names in a case-insensitive manner unless the
+Designated Experts state that there is a compelling reason to
+allow an exception. This registry value SHOULD be supplied, but
+MAY be omitted if this header parameter will never be formatted
+as JSON.<a href="#section-10.1.1-1.4" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-10.1.1-1.5">Header Parameter CBOR Label:</dt>
+            <dd style="margin-left: 1.5em" id="section-10.1.1-1.6">The string or integer label requested
+within a CBOR context (e.g. <code>2</code>).
+This label may not match other integer values, match other string
+values in a case-insensitive manner, or be a differing string
+value from the JSON label unless the Designated Experts state that
+there is a compelling reason to allow an exception.<a href="#section-10.1.1-1.6" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-10.1.1-1.7">Header Parameter Usage Location(s):</dt>
+            <dd style="margin-left: 1.5em" id="section-10.1.1-1.8">The Header Parameter usage locations, which should be one or more
+of the values <code>Issued</code> or <code>Presented</code>.  Other values may be used
+with the approval of a Designated Expert.<a href="#section-10.1.1-1.8" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-10.1.1-1.9">Change Controller:</dt>
+            <dd style="margin-left: 1.5em" id="section-10.1.1-1.10">For Standards Track RFCs, list the "IETF". For
+others, give the name of the responsible party. Other details
+(e.g., postal address, email address, home page URI) may also be
+included.<a href="#section-10.1.1-1.10" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-10.1.1-1.11">Specification Document(s):</dt>
+            <dd style="margin-left: 1.5em" id="section-10.1.1-1.12">Reference to the document or documents
+that specify the parameter, preferably including URIs that can be
+used to retrieve copies of the documents. An indication of the
+relevant sections may also be included but is not required.<a href="#section-10.1.1-1.12" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+</dl>
 </section>
 </div>
 <div id="HdrContents">
@@ -2024,23 +2193,25 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
           <h4 id="name-initial-registry-contents">
 <a href="#section-10.1.2" class="section-number selfRef">10.1.2. </a><a href="#name-initial-registry-contents" class="section-name selfRef">Initial Registry Contents</a>
           </h4>
-<p id="section-10.1.2-1">This section registers the Header Parameter names defined in
-<a href="#RegisteredHeaderParameterNames" class="auto internal xref">Section 4.1</a> in this registry.<a href="#section-10.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-1">This section registers the Header Parameters defined in
+<a href="#RegisteredHeaderParameterLabels" class="auto internal xref">Section 4.2</a> in this registry.<a href="#section-10.1.2-1" class="pilcrow">¶</a></p>
 <div id="algorithm-header-parameter">
 <section id="section-10.1.2.1">
             <h5 id="name-algorithm-header-parameter">
 <a href="#section-10.1.2.1" class="section-number selfRef">10.1.2.1. </a><a href="#name-algorithm-header-parameter" class="section-name selfRef">Algorithm Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.1-1.1">Header Parameter Name: <code>alg</code><a href="#section-10.1.2.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.1-1.1">Header Parameter Name: Algorithm<a href="#section-10.1.2.1-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.1-1.2">Header Parameter Description: Algorithm<a href="#section-10.1.2.1-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.1-1.2">Header Parameter JSON Label: <code>alg</code><a href="#section-10.1.2.1-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.1-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.1-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.1-1.3">Header Parameter CBOR Label: 1<a href="#section-10.1.2.1-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.1-1.4">Change Controller: IETF<a href="#section-10.1.2.1-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.1-1.4">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.1-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.1-1.5">Specification Document(s): <a href="#algDef" class="auto internal xref">Section 4.1.1</a> of this specification<a href="#section-10.1.2.1-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.1-1.5">Change Controller: IETF<a href="#section-10.1.2.1-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.1-1.6">Specification Document(s): <a href="#algDef" class="auto internal xref">Section 4.2.1</a> of this specification<a href="#section-10.1.2.1-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2051,15 +2222,17 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 <a href="#section-10.1.2.2" class="section-number selfRef">10.1.2.2. </a><a href="#name-key-id-header-parameter" class="section-name selfRef">Key ID Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.2-1.1">Header Parameter Name: <code>kid</code><a href="#section-10.1.2.2-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.2-1.1">Header Parameter Name: Key Identifier<a href="#section-10.1.2.2-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.2-1.2">Header Parameter Description: Key ID<a href="#section-10.1.2.2-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.2-1.2">Header Parameter JSON Label: <code>kid</code><a href="#section-10.1.2.2-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.2-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.2-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.2-1.3">Header Parameter CBOR Label: 2<a href="#section-10.1.2.2-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.2-1.4">Change Controller: IETF<a href="#section-10.1.2.2-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.2-1.4">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.2-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.2-1.5">Specification Document(s): <a href="#kidDef" class="auto internal xref">Section 4.1.2</a> of this specification<a href="#section-10.1.2.2-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.2-1.5">Change Controller: IETF<a href="#section-10.1.2.2-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.2-1.6">Specification Document(s): <a href="#kidDef" class="auto internal xref">Section 4.2.2</a> of this specification<a href="#section-10.1.2.2-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2070,15 +2243,17 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 <a href="#section-10.1.2.3" class="section-number selfRef">10.1.2.3. </a><a href="#name-type-header-parameter" class="section-name selfRef">Type Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.3-1.1">Header Parameter Name: <code>typ</code><a href="#section-10.1.2.3-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.3-1.1">Header Parameter Name: Type<a href="#section-10.1.2.3-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.3-1.2">Header Parameter Description: Type<a href="#section-10.1.2.3-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.3-1.2">Header Parameter JSON Label: <code>typ</code><a href="#section-10.1.2.3-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.3-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.3-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.3-1.3">Header Parameter CBOR Label: 3<a href="#section-10.1.2.3-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.3-1.4">Change Controller: IETF<a href="#section-10.1.2.3-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.3-1.4">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.3-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.3-1.5">Specification Document(s): <a href="#typDef" class="auto internal xref">Section 4.1.3</a> of this specification<a href="#section-10.1.2.3-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.3-1.5">Change Controller: IETF<a href="#section-10.1.2.3-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.3-1.6">Specification Document(s): <a href="#typDef" class="auto internal xref">Section 4.2.3</a> of this specification<a href="#section-10.1.2.3-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2089,15 +2264,17 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 <a href="#section-10.1.2.4" class="section-number selfRef">10.1.2.4. </a><a href="#name-critical-header-parameter" class="section-name selfRef">Critical Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.4-1.1">Header Parameter Name: <code>crit</code><a href="#section-10.1.2.4-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.4-1.1">Header Parameter Name: Critical<a href="#section-10.1.2.4-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.4-1.2">Header Parameter Description: Critical<a href="#section-10.1.2.4-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.4-1.2">Header Parameter JSON Label: <code>crit</code><a href="#section-10.1.2.4-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.4-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.4-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.4-1.3">Header Parameter CBOR Label: 4<a href="#section-10.1.2.4-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.4-1.4">Change Controller: IETF<a href="#section-10.1.2.4-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.4-1.4">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.4-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.4-1.5">Specification Document(s): <a href="#critDef" class="auto internal xref">Section 4.1.4</a> of this specification<a href="#section-10.1.2.4-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.4-1.5">Change Controller: IETF<a href="#section-10.1.2.4-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.4-1.6">Specification Document(s): <a href="#critDef" class="auto internal xref">Section 4.2.4</a> of this specification<a href="#section-10.1.2.4-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2108,15 +2285,17 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 <a href="#section-10.1.2.5" class="section-number selfRef">10.1.2.5. </a><a href="#name-issuer-header-parameter" class="section-name selfRef">Issuer Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.5-1.1">Header Parameter Name: <code>iss</code><a href="#section-10.1.2.5-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.5-1.1">Header Parameter Name: Issuer<a href="#section-10.1.2.5-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.5-1.2">Header Parameter Description: Issuer<a href="#section-10.1.2.5-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.5-1.2">Header Parameter JSON Label: <code>iss</code><a href="#section-10.1.2.5-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.5-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.5-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.5-1.3">Header Parameter CBOR Label: 5<a href="#section-10.1.2.5-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.5-1.4">Change Controller: IETF<a href="#section-10.1.2.5-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.5-1.4">Header Parameter Usage Location(s): Issued, Presented<a href="#section-10.1.2.5-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.5-1.5">Specification Document(s): <a href="#issDef" class="auto internal xref">Section 4.1.7</a> of this specification<a href="#section-10.1.2.5-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.5-1.5">Change Controller: IETF<a href="#section-10.1.2.5-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.5-1.6">Specification Document(s): <a href="#issDef" class="auto internal xref">Section 4.2.7</a> of this specification<a href="#section-10.1.2.5-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2127,15 +2306,17 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 <a href="#section-10.1.2.6" class="section-number selfRef">10.1.2.6. </a><a href="#name-audience-header-parameter" class="section-name selfRef">Audience Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.6-1.1">Header Parameter Name: <code>aud</code><a href="#section-10.1.2.6-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.6-1.1">Header Parameter Name: Audience<a href="#section-10.1.2.6-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.6-1.2">Header Parameter Description: Audience<a href="#section-10.1.2.6-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.6-1.2">Header Parameter JSON Label: <code>aud</code><a href="#section-10.1.2.6-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.6-1.3">Header Parameter Usage Location(s): Presented<a href="#section-10.1.2.6-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.6-1.3">Header Parameter CBOR Label: 6<a href="#section-10.1.2.6-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.6-1.4">Change Controller: IETF<a href="#section-10.1.2.6-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.6-1.4">Header Parameter Usage Location(s): Presented<a href="#section-10.1.2.6-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.6-1.5">Specification Document(s): <a href="#audDef" class="auto internal xref">Section 4.1.8</a> of this specification<a href="#section-10.1.2.6-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.6-1.5">Change Controller: IETF<a href="#section-10.1.2.6-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.6-1.6">Specification Document(s): <a href="#audDef" class="auto internal xref">Section 4.2.8</a> of this specification<a href="#section-10.1.2.6-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2146,15 +2327,17 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 <a href="#section-10.1.2.7" class="section-number selfRef">10.1.2.7. </a><a href="#name-nonce-header-parameter" class="section-name selfRef">Nonce Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.7-1.1">Header Parameter Name: <code>nonce</code><a href="#section-10.1.2.7-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.7-1.1">Header Parameter Name: Nonce<a href="#section-10.1.2.7-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.7-1.2">Header Parameter Description: Nonce<a href="#section-10.1.2.7-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.7-1.2">Header Parameter JSON Label: <code>nonce</code><a href="#section-10.1.2.7-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.7-1.3">Header Parameter Usage Location(s): Presented<a href="#section-10.1.2.7-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.7-1.3">Header Parameter CBOR Label: 7<a href="#section-10.1.2.7-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.7-1.4">Change Controller: IETF<a href="#section-10.1.2.7-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.7-1.4">Header Parameter Usage Location(s): Presented<a href="#section-10.1.2.7-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.7-1.5">Specification Document(s): <a href="#nonceDef" class="auto internal xref">Section 4.1.9</a> of this specification<a href="#section-10.1.2.7-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.7-1.5">Change Controller: IETF<a href="#section-10.1.2.7-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.7-1.6">Specification Document(s): <a href="#nonceDef" class="auto internal xref">Section 4.2.9</a> of this specification<a href="#section-10.1.2.7-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2165,15 +2348,17 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
 <a href="#section-10.1.2.8" class="section-number selfRef">10.1.2.8. </a><a href="#name-claims-header-parameter" class="section-name selfRef">Claims Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.8-1.1">Header Parameter Name: <code>claims</code><a href="#section-10.1.2.8-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.8-1.1">Header Parameter Name: Claims<a href="#section-10.1.2.8-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.8-1.2">Header Parameter Description: claims<a href="#section-10.1.2.8-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.8-1.2">Header Parameter JSON Label: <code>claims</code><a href="#section-10.1.2.8-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.8-1.3">Header Parameter Usage Location(s): Issued<a href="#section-10.1.2.8-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.8-1.3">Header Parameter CBOR Label: 8<a href="#section-10.1.2.8-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.8-1.4">Change Controller: IETF<a href="#section-10.1.2.8-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.8-1.4">Header Parameter Usage Location(s): Issued<a href="#section-10.1.2.8-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.8-1.5">Specification Document(s): <a href="#claimsDef" class="auto internal xref">Section 4.1.10</a> of this specification<a href="#section-10.1.2.8-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.8-1.5">Change Controller: IETF<a href="#section-10.1.2.8-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.1.2.8-1.6">Specification Document(s): <a href="#claimsDef" class="auto internal xref">Section 4.2.10</a> of this specification<a href="#section-10.1.2.8-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -2194,7 +2379,7 @@ will typically use different Header Parameter Usage Locations values.<a href="#s
           </h4>
 <p id="section-10.2.1-1">This section registers the <code>application/jwp</code>
 media type <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span>
-in the IANA "Media Types" registry (#IANA.MediaTypes)
+in the IANA "Media Types" registry <span>[<a href="#IANA.MediaTypes" class="cite xref">IANA.MediaTypes</a>]</span>
 in the manner described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>,
 which can be used to indicate that the content is
 a JWP using the JWP Compact Serialization.
@@ -2306,6 +2491,58 @@ a JWP using the JWP JSON Serialization.<a href="#section-10.2.1-1" class="pilcro
             </ul>
 </section>
 </div>
+<div id="the-application-jwp-cbor-media-type">
+<section id="section-10.2.1.3">
+            <h5 id="name-the-application-jwpcbor-med">
+<a href="#section-10.2.1.3" class="section-number selfRef">10.2.1.3. </a><a href="#name-the-application-jwpcbor-med" class="section-name selfRef">The application/jwp+cbor Media Type</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-10.2.1.3-1.1">Type name: application<a href="#section-10.2.1.3-1.1" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.2">Subtype name: jwp+cbor<a href="#section-10.2.1.3-1.2" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.3">Required parameters: n/a<a href="#section-10.2.1.3-1.3" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.4">Optional parameters: n/a<a href="#section-10.2.1.3-1.4" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.5">Encoding considerations: 8bit; application/jwp+cbor values are represented as a CBOR data item.<a href="#section-10.2.1.3-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.6">Security considerations: See <a href="#SecurityConsiderations" class="auto internal xref">Section 9</a> of this specification<a href="#section-10.2.1.3-1.6" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.7">Interoperability considerations: n/a<a href="#section-10.2.1.3-1.7" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.8">Published specification: this specification<a href="#section-10.2.1.3-1.8" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.9">Applications that use this media type: TBD<a href="#section-10.2.1.3-1.9" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.10">Fragment identifier considerations: n/a<a href="#section-10.2.1.3-1.10" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.11">
+                <p id="section-10.2.1.3-1.11.1">Additional information:<a href="#section-10.2.1.3-1.11.1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-10.2.1.3-1.11.2.1">Magic number(s): n/a<a href="#section-10.2.1.3-1.11.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="compact" id="section-10.2.1.3-1.11.2.2">File extension(s): n/a<a href="#section-10.2.1.3-1.11.2.2" class="pilcrow">¶</a>
+</li>
+                  <li class="compact" id="section-10.2.1.3-1.11.2.3">Macintosh file type code(s): n/a<a href="#section-10.2.1.3-1.11.2.3" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.12">Person &amp; email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-10.2.1.3-1.12" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.13">Intended usage: COMMON<a href="#section-10.2.1.3-1.13" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.14">Restrictions on usage: none<a href="#section-10.2.1.3-1.14" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.15">Author: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-10.2.1.3-1.15" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.16">Change Controller: IETF<a href="#section-10.2.1.3-1.16" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-10.2.1.3-1.17">Provisional registration? No<a href="#section-10.2.1.3-1.17" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -2392,8 +2629,12 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <span class="refAuthor">Jones, M.</span> and <span class="refAuthor">J. Hildebrand</span>, <span class="refTitle">"JSON Web Encryption (JWE)"</span>, <span class="seriesInfo">RFC 7516</span>, <span class="seriesInfo">DOI 10.17487/RFC7516</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7516">https://www.rfc-editor.org/info/rfc7516</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7519">[RFC7519]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9052">[RFC9052]</dt>
+      <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9052">https://www.rfc-editor.org/info/rfc9052</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2409,6 +2650,14 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
         <dd>
 <span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-07</span>, <time datetime="2024-09-23" class="refDate">23 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.CoAP.Formats">[IANA.CoAP.Formats]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CoAP Content Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.MediaTypes">[IANA.MediaTypes]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Media Types"</span>, <span>&lt;<a href="http://www.iana.org/assignments/media-types">http://www.iana.org/assignments/media-types</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2045">[RFC2045]</dt>
         <dd>
@@ -2437,6 +2686,10 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dt id="RFC7518">[RFC7518]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Algorithms (JWA)"</span>, <span class="seriesInfo">RFC 7518</span>, <span class="seriesInfo">DOI 10.17487/RFC7518</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7518">https://www.rfc-editor.org/info/rfc7518</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8152">[RFC8152]</dt>
+        <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 8152</span>, <span class="seriesInfo">DOI 10.17487/RFC8152</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8152">https://www.rfc-editor.org/info/rfc8152</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
