@@ -2,12 +2,13 @@
 
 
 
-jose                                                           J. Miller
-Internet-Draft                                                  D. Waite
-Intended status: Standards Track                           Ping Identity
-Expires: 20 March 2025                                          M. Jones
-                                                  Self-Issued Consulting
-                                                       16 September 2024
+jose                                                            D. Waite
+Internet-Draft                                             Ping Identity
+Intended status: Standards Track                                M. Jones
+Expires: 23 April 2025                            Self-Issued Consulting
+                                                               J. Miller
+                                                           Ping Identity
+                                                         20 October 2024
 
 
                              JSON Web Proof
@@ -45,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2025.
+   This Internet-Draft will expire on 23 April 2025.
 
 Copyright Notice
 
@@ -677,14 +678,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.qOesI5EZvswe9xWeD0-UR-SvlXUKj6P7
-   oH4bQ_OX62n7EqnHGgX3yUDs1BjWgayirOWW0NDzfb_IZBYh3OMDyabRvSaUYxOOT90VE
-   Cq2aWcksFfG5wBkMp0nVWBZAowGt8XukCtcgRSbumjGDnX-uTCXJe6Qx4X9tWYxEbjIR_
-   7dd-L2cteV41aOdBaVg4ZtQsPaIM-Hs2nvedu3idzDI9amzQKnzeyx-gWLIjtLAgkUBI7
-   pUJD8jZlpC9cUfubQ5rodz_DhnkDfmFZrN7j3cmzBL6hwfh7YwRqsFAhUH8h7XnOHIeIZ
-   Dfz6AVltIIKIL8J_tvQyZCGVlNxgu6SE42deR-nP0fw3tYaQ_bAxP6UzTGIDZMN4-KUUD
-   K2lzQZtWe6QqwY955Yo0-TagGlkSQvcN6MK3HacIJXTF14_Z2nb3xd4xGt8T7YU-zunVg
-   nbCgA0T-oFlhVjDRxPVR7x5x77ac1cvVqiy_TyTUAXkoE
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.j1nzXjpZeJmxT8RnU-8hZ4t9wGWH_k0Y
+   McfhvAo6k5ys_kElGG9qGBMRFKaVOX4Ukjbd_5DbW0H_VQfW0uwvEl5KDMWeqJFHZftJU
+   6WSFIwwJW45IxXkudLHNYQA0cqOtjJLyaYwo3a1DzdgqlWoWenji2XXSmK5uunvtgoUsH
+   PJdlF6WVkMpRlS_iB92a5_IGWsBi4lyORSlLHhkRBu7-dju7eFRSwjbJSCqeZ9Ae4JEmJ
+   kz138tVYJGzkBsZfs3xh94OjDSpxWDqqu1SXQeRfbTR2BKwYpfGWmSoirrTYuA8gzx81H
+   aaEZoJ5785iPYpK0lXBSR9oTeJxFpyLrLt3lTJpPSDvbTdV2cyHPC9BKBDN4knmFADN7c
+   QIb5r6T0FfjH1ypQaoRLLMhKqU5NDjkhxtDhw80v9KNl34OgQDEaaN3G83SsdkCFHyVX3
+   b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg
 
    |  Figure: Compact Serialization of Presentation
 
@@ -732,14 +733,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "qOesI5EZvswe9xWeD0-UR-SvlXUKj6P7oH4bQ_OX62n7EqnHGgX3yUDs1BjWgayi
-          rOWW0NDzfb_IZBYh3OMDyabRvSaUYxOOT90VECq2aWcksFfG5wBkMp0nVWBZAo
-          wGt8XukCtcgRSbumjGDnX-uTCXJe6Qx4X9tWYxEbjIR_7dd-L2cteV41aOdBaV
-          g4ZtQsPaIM-Hs2nvedu3idzDI9amzQKnzeyx-gWLIjtLAgkUBI7pUJD8jZlpC9
-          cUfubQ5rodz_DhnkDfmFZrN7j3cmzBL6hwfh7YwRqsFAhUH8h7XnOHIeIZDfz6
-          AVltIIKIL8J_tvQyZCGVlNxgu6SE42deR-nP0fw3tYaQ_bAxP6UzTGIDZMN4-K
-          UUDK2lzQZtWe6QqwY955Yo0-TagGlkSQvcN6MK3HacIJXTF14_Z2nb3xd4xGt8
-          T7YU-zunVgnbCgA0T-oFlhVjDRxPVR7x5x77ac1cvVqiy_TyTUAXkoE"
+       "j1nzXjpZeJmxT8RnU-8hZ4t9wGWH_k0YMcfhvAo6k5ys_kElGG9qGBMRFKaVOX4U
+          kjbd_5DbW0H_VQfW0uwvEl5KDMWeqJFHZftJU6WSFIwwJW45IxXkudLHNYQA0c
+          qOtjJLyaYwo3a1DzdgqlWoWenji2XXSmK5uunvtgoUsHPJdlF6WVkMpRlS_iB9
+          2a5_IGWsBi4lyORSlLHhkRBu7-dju7eFRSwjbJSCqeZ9Ae4JEmJkz138tVYJGz
+          kBsZfs3xh94OjDSpxWDqqu1SXQeRfbTR2BKwYpfGWmSoirrTYuA8gzx81HaaEZ
+          oJ5785iPYpK0lXBSR9oTeJxFpyLrLt3lTJpPSDvbTdV2cyHPC9BKBDN4knmFAD
+          N7cQIb5r6T0FfjH1ypQaoRLLMhKqU5NDjkhxtDhw80v9KNl34OgQDEaaN3G83S
+          sdkCFHyVX3b7X__w0cfIBXJnWP3PQknVrKBrYOv__A7x9uCMtyzkvpg"
      ]
    }
 
@@ -1059,16 +1060,16 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms]
               Miller, J., Jones, M. B., and D. Waite, "JSON Proof
               Algorithms", Work in Progress, Internet-Draft, draft-ietf-
-              jose-json-proof-algorithms-05, 22 July 2024,
+              jose-json-proof-algorithms-06, 16 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-algorithms-05>.
+              json-proof-algorithms-06>.
 
    [I-D.ietf-jose-json-proof-token]
               Miller, J., Jones, M. B., and D. Waite, "JSON Proof
               Token", Work in Progress, Internet-Draft, draft-ietf-jose-
-              json-proof-token-05, 22 July 2024,
+              json-proof-token-06, 16 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-token-05>.
+              json-proof-token-06>.
 
    [RFC7516]  Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)",
               RFC 7516, DOI 10.17487/RFC7516, May 2015,
@@ -1088,9 +1089,9 @@ Table of Contents
    [I-D.irtf-cfrg-bbs-signatures]
               Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
               BBS Signature Scheme", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-bbs-signatures-06, 26 June 2024,
+              draft-irtf-cfrg-bbs-signatures-07, 23 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              bbs-signatures-06>.
+              bbs-signatures-07>.
 
    [RFC2045]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
               Extensions (MIME) Part One: Format of Internet Message
@@ -1151,6 +1152,10 @@ Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
 
+   -latest
+
+   *  Changing primary editor
+
    -06
 
    *  Update reference to new repository home.
@@ -1200,11 +1205,6 @@ Appendix B.  Document History
 
 Authors' Addresses
 
-   Jeremie Miller
-   Ping Identity
-   Email: jmiller@pingidentity.com
-
-
    David Waite
    Ping Identity
    Email: dwaite+jwp@pingidentity.com
@@ -1214,3 +1214,8 @@ Authors' Addresses
    Self-Issued Consulting
    Email: michael_b_jones@hotmail.com
    URI:   https://self-issued.info/
+
+
+   Jeremie Miller
+   Ping Identity
+   Email: jmiller@pingidentity.com
