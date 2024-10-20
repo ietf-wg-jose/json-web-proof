@@ -1048,6 +1048,19 @@ for his valuable contributions to this specification.
 
   [[ To be removed from the final specification ]]
 
+ -latest
+
+  * Modify example generation to use `proof_key` and `presentation_key` names
+  * Change `proof_jwk` to `proof_key` and `presentation_jwk` to
+    `presentation_key` to better represent that the key may be JSON
+    or CBOR-formatted.
+  * Moved the registry for `proof_key` and `presentation_key` to JWP
+    where they are defined. Consolidated usage, purpose and
+    requirements from algorith musage under these definitions.
+  * Clarified that `proof_key` and `presentation_key` are required
+    by particular algorithms and are not more generally required for
+    issued and presented JWPs.
+
  -06
 
   * Update reference to new repository home.

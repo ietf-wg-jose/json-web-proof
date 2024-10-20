@@ -766,6 +766,17 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   [[ To be removed from the final specification ]]
 
+ -latest
+
+  * Defer BBS key definition to [@I-D.ietf-cose-bls-key-representations]
+  * Modify example generation to use `proof_key` and `presentation_key` names
+  * Change `proof_jwk` to `proof_key` and `presentation_jwk` to
+    `presentation_key` to better represent that the key may be JSON
+    or CBOR-formatted.
+  * Moved the registry for `proof_key` and `presentation_key` to JWP
+    where they are defined. Consolidated usage, purpose and
+    requirements from algorith musage under these definitions.
+
  -06
 
   * Update reference to new repository home
