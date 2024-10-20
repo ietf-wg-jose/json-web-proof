@@ -46,7 +46,7 @@ organization = "Ping Identity"
 
 .# Abstract
 
-The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof and JSON Web Key (JWK) specifications. It defines IANA registries for these identifiers.
+The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof, JSON Web Key (JWK), and COSE specifications. It defines IANA registries for these identifiers.
 
 {mainmatter}
 
@@ -160,9 +160,9 @@ Each individual payload is signed using the selected internal algorithm using th
 
 ### Issuer Protected Header
 
-The JWK of the issuer's Ephemeral Key MUST be included in the issuer protected header with the property name of `proof_jwk` and contain only the REQUIRED values to represent the public key.
+The issuer's Ephemeral Key MUST be included in the issuer protected header via the Proof Key header parameter.
 
-The holder's Presentation Key JWK MUST be included in issuer protected header using the `presentation_jwk` parameter.
+The holder's Presentation Key MUST be included in issuer protected header via the Presentation Key header parameter.
 
 The issuer protected header is signed using the given JWA and the issuer's Stable Key.
 
@@ -199,9 +199,9 @@ Since the individual signatures in the proof value are unique and remain unchang
 
 ### Verification
 
-The verifier MUST verify the issuer protected header octets against the first part in the proof using the issuer's Stable Key. It MUST also verify the presentation protected header octets against the second part in the proof value using the holder's Presentation Key, as provided in the `presentation_jwk` claim in the issuer protected header.
+The verifier MUST verify the issuer protected header octets against the first part in the proof using the issuer's Stable Key. It MUST also verify the presentation protected header octets against the second part in the proof value using the holder's Presentation Key, as provided in the Presentation Key header parameter.
 
-With the headers verified, the issuer's Ephemeral Key as given in the issuer protected header `proof_jwk` parameter can then be used to verify each of the disclosed payload signatures.
+With the headers verified, the Proof Key header parameter can then be used to verify each of the disclosed payload signatures.
 
 ### JPA Registration {#SU-registration}
 
@@ -221,11 +221,9 @@ The `BBS-PROOF` `alg` parameter value in the presentation protected header corre
 
 ### Key Format
 
-The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4]
+The key used for the `BBS` algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in [@!I-D.irtf-cfrg-bbs-signatures, Section 3.4]. The JWK and Cose Key Object representations of the key are detailed in [@!I-D.ietf-cose-bls-key-representations].
 
-The JWK form of this key is an `OKP` type with a curve of `BLS12381G2`, with `x` being the base64url-encoded form of the output of `point_to_octets_E2`. The use of this curve is described in [@!I-D.ietf-cose-bls-key-representations].
-
-There is no additional holder key necessary for presentation proofs.
+There is no additional holder presentation key necessary for presentation proofs.
 
 ### Issuance
 
@@ -269,21 +267,15 @@ The design is intentionally minimal and only involves using a single standardize
 
 ### Holder Setup
 
-Prior to the issuer creating a new JWP, it must have presentation binding information provided by the holder.  This enables the holder to perform replay prevention while presenting the JWP.
+Prior to the issuer creating a new JWP, the issuer MUST have a presentation public key provided by the holder.
 
-The presentation key used by the holder must be transferred to the issuer and verified, likely through a challenge and self-signing mechanism.  If the holder requires unlinkability, it must also generate a new key that is verified and bound to each new JWP.
-
-How these holder presentation keys are transferred and verified is out of scope of this specification. Protocols such as OpenID Connect can be used to accomplish this.  What is required by this definition is that the holder's presentation key MUST be included in the issuer's protected header using the `presentation_jwk` parameter with a JWK as the value.
+The holder's presentation key MUST be included in the issuer's protected header using the Presentation Key header parameter.
 
 ### Issuer Setup
 
 To use the MAC algorithm, the issuer must have a stable public key pair to perform signing.  To start the issuance process, a single 32-byte random Shared Secret must first be generated.  This value will be shared privately to the holder as part of the issuer's JWP proof value.
 
 The Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique ephemeral keys.  These keys are then used as the input to generate a MAC that protects each payload.
-
-### Issuer Protected Header {#issuer-protected-header}
-
-The holder's presentation key JWK MUST be included in the issuer protected header using the `presentation_jwk` parameter.  The issuer MUST validate that the holder has possession of this key through a trusted mechanism such as verifying the signature of a unique nonce value from the holder.
 
 ### Combined MAC Representation
 
@@ -317,7 +309,7 @@ See the JWS [Presentation Protected Header](#presentation-protected-header) sect
 
 > Editor's Note: The current definition here is incomplete, the holder's signature needs to also incorporate the presented proof.
 
-The first value in the presentation proof is the presentation signature. This is a signature over the presentation protected header, using the key specified by the `presentation_jwk` parameter in the issuer protected header.
+The first value in the presentation proof is the presentation signature. This is a signature over the presentation protected header, using the key specified by the Presentation Key header parameter in the issuer protected header.
 
 The second value is the issuer signature over the Combined MAC Representation provided with the issued form.
 
@@ -637,31 +629,6 @@ Algorithm Analysis Documents(s):
 * Specification Document(s): (#MAC-registration) of this specification
 * Algorithm Analysis Documents(s): n/a
 
-## JSON Web Proof Header Parameters Registration {#HdrReg}
-
-This section registers the following JWP Header Parameters in the
-IANA "JSON Web Proof Header Parameters" registry
-established by [@!I-D.ietf-jose-json-web-proof].
-
-### Registry Contents {#HdrContents}
-
-#### Proof JWK Header Parameter
-
-* Header Parameter Name: `proof_jwk`
-* Header Parameter Description: Issuer's Ephemeral Key
-* Header Parameter Usage Location(s): Issued
-* Change Controller: IETF
-* Specification Document(s): (#issuer-protected-header) of this specification
-
-#### Presentation JWK Header Parameter
-
-* Header Parameter Name: `presentation_jwk`
-* Header Parameter Description: Holder's Presentation Key
-* Header Parameter Usage Location(s): Issued
-* Change Controller: IETF
-* Specification Document(s): (#issuer-protected-header) of this specification
-
-
 {backmatter}
 
 <reference anchor="VC-DATA-MODEL-2.0" target="https://www.w3.org/TR/vc-data-model-2.0">
@@ -685,7 +652,6 @@ established by [@!I-D.ietf-jose-json-web-proof].
    <date day="27" month="December" year="2023"/>
   </front>
 </reference>
-
 
 # Example JWPs
 
@@ -905,6 +871,17 @@ The BBS examples were generated using the library at https://github.com/mattrglo
  -latest
 
   * Changing primary editor
+
+ -latest
+
+  * Defer BBS key definition to [@I-D.ietf-cose-bls-key-representations]
+  * Modify example generation to use `proof_key` and `presentation_key` names
+  * Change `proof_jwk` to `proof_key` and `presentation_jwk` to
+    `presentation_key` to better represent that the key may be JSON
+    or CBOR-formatted.
+  * Moved the registry for `proof_key` and `presentation_key` to JWP
+    where they are defined. Consolidated usage, purpose and
+    requirements from algorith musage under these definitions.
 
  -06
 

@@ -308,24 +308,11 @@ therefore, it MUST occur only within the JWP Protected Header.
 Use of this Header Parameter is OPTIONAL.
 This Header Parameter MUST be understood and processed by implementations.
 
-### "proof_jwk" (Proof JWK) Header Parameter {#proof_jwkDef}
+### "proof_key" (Proof Key) Header Parameter {#proof_keyDef}
 
-The `proof_jwk` (Proof JWK) represents the public key used by the issuer
-for proof of possession.
-This header parameter is references a JSON Web Key (JWK) public
-key value when represented as a JSON Protected Header, and a COSE Key
-Object when represented as a CBOR Protected Header.
-
-It MUST contain only public key parameters and
-SHOULD contain only the minimum parameters necessary to represent the key;
-other parameters included can be checked for consistency and honored, or they can be ignored.
-This Header Parameter MUST be present in the JWP issuer header parameters
-and MUST be understood and processed by implementations.
-
-### "presentation_jwk" (Presentation JWK) Header Parameter {#presentation_jwkDef}
-
-The `presentation_jwk` (Presentation JWK) represents the public key used by the holder
-for proof of possession.
+The `proof_key` (Proof Key) represents the public key used by the issuer
+for proof of possession within certain algorithms. This is an ephemeral
+key that MUST be unique for each issued JWP.
 
 This header parameter is references a JSON Web Key (JWK) public
 key value when represented as a JSON Protected Header, and a COSE Key
@@ -334,13 +321,39 @@ Object when represented as a CBOR Protected Header.
 It MUST contain only public key parameters and
 SHOULD contain only the minimum parameters necessary to represent the key;
 other parameters included can be checked for consistency and honored, or they can be ignored.
-This Header Parameter MUST be present in the JWP issuer header parameters
-and MUST be understood and processed by implementations.
+
+When present, this Header Parameter MUST be understood and processed by implementations.
+
+### "presentation_key" (Presentation Key) Header Parameter {#presentation_keyDef}
+
+The `presentation_key` (Presentation Key) represents the public key
+with certain algorithms, and is used by the holder for proof of
+possession and integrity protection of the presented protected header.
+
+The issuer MUST validate that the holder has possession of this key
+through a trusted mechanism, such as requiring the signature of a
+unique nonce value from the holder before issuing the JWP.
+
+This header parameter is references a JSON Web Key (JWK) public
+key value when represented as a JSON Protected Header, and a COSE Key
+Object when represented as a CBOR Protected Header.
+
+It MUST contain only public key parameters and SHOULD contain only the
+minimum parameters necessary to represent the key; other parameters
+included can be checked for consistency and honored, or they can be
+ignored.
+
+If holder unlinkability is required, this value MUST not be repeated
+in multiple issued JWPs; a different presentation key MUST
+be included in each issuance.
+
+This Header Parameter MUST be understood and processed by implementations when present.
 
 ### "iss" (Issuer) Header Parameter {#issDef}
 
 The `iss` (issuer) Header Parameter identifies the principal that issued the JWP.
 The processing of this claim is generally application specific.
+
 The `iss` value is a case-sensitive string containing a StringOrURI value.
 Its definition is intentionally parallel to the `iss` claim defined in [@!RFC7519].
 
@@ -805,6 +818,24 @@ This section registers the Header Parameters defined in
 * Change Controller: IETF
 * Specification Document(s): (#claimsDef) of this specification
 
+#### Proof Key Header Parameter
+
+* Header Parameter Name: Proof Key
+* Header Parameter JSON Label: `proof_key`
+* Header Parameter CBOR Label: 9
+* Header Parameter Usage Location(s): Issued
+* Change Controller: IETF
+* Specification Document(s): (#proof_keyDef) of this specification
+
+#### Presentation Key Header Parameter
+
+* Header Parameter Name: Presentation Key
+* Header Parameter JSON Label: `presentation_key`
+* Header Parameter CBOR Label: 10
+* Header Parameter Usage Location(s): Issued
+* Change Controller: IETF
+* Specification Document(s): (#presentation_keyDef) of this specification
+
 ## Media Type Registration {#MediaReg}
 
 ### Registry Contents {#MediaContents}
@@ -1020,6 +1051,16 @@ for his valuable contributions to this specification.
  -latest
 
   * Changing primary editor
+  * Modify example generation to use `proof_key` and `presentation_key` names
+  * Change `proof_jwk` to `proof_key` and `presentation_jwk` to
+    `presentation_key` to better represent that the key may be JSON
+    or CBOR-formatted.
+  * Moved the registry for `proof_key` and `presentation_key` to JWP
+    where they are defined. Consolidated usage, purpose and
+    requirements from algorith musage under these definitions.
+  * Clarified that `proof_key` and `presentation_key` are required
+    by particular algorithms and are not more generally required for
+    issued and presented JWPs.
 
  -06
 
