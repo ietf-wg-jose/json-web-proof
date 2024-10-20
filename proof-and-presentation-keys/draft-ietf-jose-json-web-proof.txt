@@ -774,14 +774,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.gtO9LimCtd-i98rMst0YTtZekupXsqVe
-   9vmsoEozgxvxPIDeBEKoBCwuk6wcAzw7tqHS70Fd-OS2wwS7PFhr05VaUYtYOB8VEMvB2
-   dNUITNFy-9XJFiPrLuDH-H3-0_Pt0KfzbaUvuFANLJlC_MA6Z5Kk963Fg_U1ANHAGnJFe
-   u5AGY7rSgBFEV3ZTLBJeyTbDI1gzIuZBh7Q8H_SnEFcfV-7AA3cPrtIqQud3DtnJA9Asy
-   8sbFtsCeKHUtGju74X31lIhYks2zAuEHXyUN6lkPyZd3tDbMSNxXWraQKOvr6_gdsqgXk
-   hzANxGvmJe1ZKWGznG8ZjbAS0ViCjpwLcPRV7aOQWNHtRmvUrIq053sG2gX9jvvsaR9WM
-   189W0Jav9ifwCPlumxLWpaC27RsqzO6MV1Oa_8TWg51BemOJhbUAJh7EWckTQZGfM-Yf-
-   CvF5PiKeFZYvJgYPoJ0FmUSDuz31jKvJvXHwzXpybxFm8
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.qXD0pB0dngdRRLpnfM2aOOzZzVEYgNzt
+   9DRNUU1-RRzVg2sSwhO-rfL1TjfqG394uKqn9rEba5bZWPKiRZqynP_zXwpH58xNuPLGr
+   bGWg1Ro7DQ54WAISiQfOfFkGKtAr6b6Fg4RzZchgppuYhDL_1YR7mhIgiPUrErMoRBoBR
+   lJAh3h4QFitJqQdv5hbX4OQwniyyxSRiregJinCka9KZ91LC3GRgxrApTifk1C-M9Ty-4
+   PwDcMC0XBQA9uecSI-Dn6UIywwdMe6lH1XlVpZyRAykxTfwgQHab-bZslAuLZ8xAKf-bP
+   t6WT86Ui0GFpcE0x45QYD3cCcMp00yRDqxJ5WEUWItJrEImQnWNcVu0IIk1LDE1WDEP88
+   9FPdIt5FtZhNGoa_kx1CY2BZ212rSf79RJMcV-Jee7wlyzJaMRxjSID834JhHZTQ8FvQ6
+   PKZ35hHGgznU6rcHWkLNtcxhx9ZChyVZH785hb0Db4BkQ
 
    |  Figure: Compact Serialization of Presentation
 
@@ -832,14 +832,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "gtO9LimCtd-i98rMst0YTtZekupXsqVe9vmsoEozgxvxPIDeBEKoBCwuk6wcAzw7
-          tqHS70Fd-OS2wwS7PFhr05VaUYtYOB8VEMvB2dNUITNFy-9XJFiPrLuDH-H3-0
-          _Pt0KfzbaUvuFANLJlC_MA6Z5Kk963Fg_U1ANHAGnJFeu5AGY7rSgBFEV3ZTLB
-          JeyTbDI1gzIuZBh7Q8H_SnEFcfV-7AA3cPrtIqQud3DtnJA9Asy8sbFtsCeKHU
-          tGju74X31lIhYks2zAuEHXyUN6lkPyZd3tDbMSNxXWraQKOvr6_gdsqgXkhzAN
-          xGvmJe1ZKWGznG8ZjbAS0ViCjpwLcPRV7aOQWNHtRmvUrIq053sG2gX9jvvsaR
-          9WM189W0Jav9ifwCPlumxLWpaC27RsqzO6MV1Oa_8TWg51BemOJhbUAJh7EWck
-          TQZGfM-Yf-CvF5PiKeFZYvJgYPoJ0FmUSDuz31jKvJvXHwzXpybxFm8"
+       "qXD0pB0dngdRRLpnfM2aOOzZzVEYgNzt9DRNUU1-RRzVg2sSwhO-rfL1TjfqG394
+          uKqn9rEba5bZWPKiRZqynP_zXwpH58xNuPLGrbGWg1Ro7DQ54WAISiQfOfFkGK
+          tAr6b6Fg4RzZchgppuYhDL_1YR7mhIgiPUrErMoRBoBRlJAh3h4QFitJqQdv5h
+          bX4OQwniyyxSRiregJinCka9KZ91LC3GRgxrApTifk1C-M9Ty-4PwDcMC0XBQA
+          9uecSI-Dn6UIywwdMe6lH1XlVpZyRAykxTfwgQHab-bZslAuLZ8xAKf-bPt6WT
+          86Ui0GFpcE0x45QYD3cCcMp00yRDqxJ5WEUWItJrEImQnWNcVu0IIk1LDE1WDE
+          P889FPdIt5FtZhNGoa_kx1CY2BZ212rSf79RJMcV-Jee7wlyzJaMRxjSID834J
+          hHZTQ8FvQ6PKZ35hHGgznU6rcHWkLNtcxhx9ZChyVZH785hb0Db4BkQ"
      ]
    }
 
