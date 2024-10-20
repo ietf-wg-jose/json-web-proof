@@ -18,14 +18,6 @@ status = "standard"
 toc = "yes"
 
 [[author]]
-initials = "J."
-surname = "Miller"
-fullname = "Jeremie Miller"
-organization = "Ping Identity"
-  [author.address]
-   email = "jmiller@pingidentity.com"
-
-[[author]]
 initials = "M."
 surname = "Jones"
 fullname = "Michael B. Jones"
@@ -41,6 +33,14 @@ fullname = "David Waite"
 organization = "Ping Identity"
   [author.address]
   email = "dwaite+jwp@pingidentity.com"
+
+[[author]]
+initials = "J."
+surname = "Miller"
+fullname = "Jeremie Miller"
+organization = "Ping Identity"
+  [author.address]
+   email = "jmiller@pingidentity.com"
 
 %%%
 
@@ -799,6 +799,9 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 # Document History
 
   [[ To be removed from the final specification ]]
+ -latest
+
+  * Changing primary editor
 
  -06
 
