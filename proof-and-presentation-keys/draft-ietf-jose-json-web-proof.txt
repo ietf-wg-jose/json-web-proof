@@ -774,14 +774,14 @@ Table of Contents
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.qXD0pB0dngdRRLpnfM2aOOzZzVEYgNzt
-   9DRNUU1-RRzVg2sSwhO-rfL1TjfqG394uKqn9rEba5bZWPKiRZqynP_zXwpH58xNuPLGr
-   bGWg1Ro7DQ54WAISiQfOfFkGKtAr6b6Fg4RzZchgppuYhDL_1YR7mhIgiPUrErMoRBoBR
-   lJAh3h4QFitJqQdv5hbX4OQwniyyxSRiregJinCka9KZ91LC3GRgxrApTifk1C-M9Ty-4
-   PwDcMC0XBQA9uecSI-Dn6UIywwdMe6lH1XlVpZyRAykxTfwgQHab-bZslAuLZ8xAKf-bP
-   t6WT86Ui0GFpcE0x45QYD3cCcMp00yRDqxJ5WEUWItJrEImQnWNcVu0IIk1LDE1WDEP88
-   9FPdIt5FtZhNGoa_kx1CY2BZ212rSf79RJMcV-Jee7wlyzJaMRxjSID834JhHZTQ8FvQ6
-   PKZ35hHGgznU6rcHWkLNtcxhx9ZChyVZH785hb0Db4BkQ
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.s437yQaJ29pzuHnv7-oXkSEsPmztR-3V
+   Aei402BY3HYefC4CSA7H9Hk8GwpaLd7brAMjhpcvvyD9mLEbaCIOtyzBbmjJhxBEDXGG1
+   ozuK7gTtSimdGjYaTVK7imCt5GOgc8q7cHvhA9P0Mds82MrmLecKnvI0IN9j_XqW-ZFMJ
+   f9nXWDhnXq8-uyj_Lzhom3LqhaRpucIowXsRYgR9oMlHqYTQPVLEtP2qKl4GI81iNl1OK
+   juYXdv9uHhfMJKKbqP6MMiOvz6N_MJXoA8NhAw1BeOeFeUzUGFjCoCtvaddk-dhmIbnww
+   CBp2AYrRNBvnWtR0VZI4fSdDZtsWjy3bf4Kbyu0gnrtSp0nPLVgTCLEKYHEy-4C9KjPht
+   mrODUf7xe34YYbRUIM8zFhlytQl3GWIYZq_ftREzl_N1Ot5KziruSgxYXF-rXrdBcNfuX
+   kpQOXTrUpqFB-M5e4NIKAhjkz3IsvS9RFHhQf9UDm1Z_E
 
    |  Figure: Compact Serialization of Presentation
 
@@ -832,14 +832,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "qXD0pB0dngdRRLpnfM2aOOzZzVEYgNzt9DRNUU1-RRzVg2sSwhO-rfL1TjfqG394
-          uKqn9rEba5bZWPKiRZqynP_zXwpH58xNuPLGrbGWg1Ro7DQ54WAISiQfOfFkGK
-          tAr6b6Fg4RzZchgppuYhDL_1YR7mhIgiPUrErMoRBoBRlJAh3h4QFitJqQdv5h
-          bX4OQwniyyxSRiregJinCka9KZ91LC3GRgxrApTifk1C-M9Ty-4PwDcMC0XBQA
-          9uecSI-Dn6UIywwdMe6lH1XlVpZyRAykxTfwgQHab-bZslAuLZ8xAKf-bPt6WT
-          86Ui0GFpcE0x45QYD3cCcMp00yRDqxJ5WEUWItJrEImQnWNcVu0IIk1LDE1WDE
-          P889FPdIt5FtZhNGoa_kx1CY2BZ212rSf79RJMcV-Jee7wlyzJaMRxjSID834J
-          hHZTQ8FvQ6PKZ35hHGgznU6rcHWkLNtcxhx9ZChyVZH785hb0Db4BkQ"
+       "s437yQaJ29pzuHnv7-oXkSEsPmztR-3VAei402BY3HYefC4CSA7H9Hk8GwpaLd7b
+          rAMjhpcvvyD9mLEbaCIOtyzBbmjJhxBEDXGG1ozuK7gTtSimdGjYaTVK7imCt5
+          GOgc8q7cHvhA9P0Mds82MrmLecKnvI0IN9j_XqW-ZFMJf9nXWDhnXq8-uyj_Lz
+          hom3LqhaRpucIowXsRYgR9oMlHqYTQPVLEtP2qKl4GI81iNl1OKjuYXdv9uHhf
+          MJKKbqP6MMiOvz6N_MJXoA8NhAw1BeOeFeUzUGFjCoCtvaddk-dhmIbnwwCBp2
+          AYrRNBvnWtR0VZI4fSdDZtsWjy3bf4Kbyu0gnrtSp0nPLVgTCLEKYHEy-4C9Kj
+          PhtmrODUf7xe34YYbRUIM8zFhlytQl3GWIYZq_ftREzl_N1Ot5KziruSgxYXF-
+          rXrdBcNfuXkpQOXTrUpqFB-M5e4NIKAhjkz3IsvS9RFHhQf9UDm1Z_E"
      ]
    }
 
@@ -1380,6 +1380,20 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -latest
+
+   *  Modify example generation to use proof_key and presentation_key
+      names
+   *  Change proof_jwk to proof_key and presentation_jwk to
+      presentation_key to better represent that the key may be JSON or
+      CBOR-formatted.
+   *  Moved the registry for proof_key and presentation_key to JWP where
+      they are defined.  Consolidated usage, purpose and requirements
+      from algorith musage under these definitions.
+   *  Clarified that proof_key and presentation_key are required by
+      particular algorithms and are not more generally required for
+      issued and presented JWPs.
 
    -06
 
