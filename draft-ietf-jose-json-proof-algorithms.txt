@@ -1001,9 +1001,9 @@ A.1.  Example Single-Use JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "sHVkxLGT2eZJSHW-s7fgKof3Cp4465E5zUtNeFJXS_k",
-     "y": "EkfhzdCt-30-mA8FxdbiN6uhDWQWAWcMubRRPQooNZw",
-     "d": "2pskrrWDZ1w80gaquCmXQAYkiaWFrRokQmM8tHxtHAY"
+     "x": "aQUAsFiXh0oYoTCgJVDonksbbn-faBMoDuIDRG4ayxc",
+     "y": "-gRIocesVHlTI00gQPnm-dZnEHn_oHoq4PVBHSg_Zkg",
+     "d": "t1_JYCQ0R3jxiaCJNR9Yu_iYoxrAsgBCMgufWJieG80"
    }
 
                     Figure 1: Issuer Private Key (es256)
@@ -1014,9 +1014,9 @@ A.1.  Example Single-Use JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "VGy5kisQC68EOlHsNLVi0TORMvbeutibhmp-56d_KXI",
-     "y": "3UG_VYulp544hxuANrO4unrjj30QT4FpMLpy8xhb1EE",
-     "d": "4McrCsK8nSqG4ELSfVS6q-IwVq-bHc47BWVQ22AJk54"
+     "x": "ht5WRNyFoG_jMYlYKRnBbGtxx0e21ePm1DJ1YhV1Jwk",
+     "y": "TYPOp-Jbh8GvcQyTuQTLOyzUISjOCN6UEOaH_7_aIAM",
+     "d": "pgUjSiB5z96zTYFQ28VJNd2SYMChSanMeqBDy3eAzyM"
    }
 
                Figure 2: Issuer Ephemeral Private Key (es256)
@@ -1027,9 +1027,9 @@ A.1.  Example Single-Use JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "X7GZko2ZCbCQvU5_vDp2Zdvo6BcXEBYHm1bqoO0phaI",
-     "y": "A8uMkU2vPR1TeIdovVOiiBCDTNzXOVNbZeKzll9dswk",
-     "d": "ynuXA-zSZiBi6uY1u4_bWEi5bplJIR9TqaS16lAdlA0"
+     "x": "U6FNi1iIcrc_0_KDSj-9VjtoTmvRVywF-EcYFg7u7KA",
+     "y": "dP3egb_DDsms-lWc5qG3J0ZSbM6Ce9ZbSX_cdbd8auA",
+     "d": "bPj3RjOf06qza7ZSaH52BeOvVMo-J4XOQB9PQN6TKVc"
    }
 
                  Figure 3: Holder Presentation Private Key
@@ -1056,16 +1056,16 @@ A.1.  Example Single-Use JWP
      "proof_key": {
        "kty": "EC",
        "crv": "P-256",
-       "x": "VGy5kisQC68EOlHsNLVi0TORMvbeutibhmp-56d_KXI",
-       "y": "3UG_VYulp544hxuANrO4unrjj30QT4FpMLpy8xhb1EE",
-       "d": "4McrCsK8nSqG4ELSfVS6q-IwVq-bHc47BWVQ22AJk54"
+       "x": "ht5WRNyFoG_jMYlYKRnBbGtxx0e21ePm1DJ1YhV1Jwk",
+       "y": "TYPOp-Jbh8GvcQyTuQTLOyzUISjOCN6UEOaH_7_aIAM",
+       "d": "pgUjSiB5z96zTYFQ28VJNd2SYMChSanMeqBDy3eAzyM"
      },
      "presentation_key": {
        "kty": "EC",
        "crv": "P-256",
-       "x": "X7GZko2ZCbCQvU5_vDp2Zdvo6BcXEBYHm1bqoO0phaI",
-       "y": "A8uMkU2vPR1TeIdovVOiiBCDTNzXOVNbZeKzll9dswk",
-       "d": "ynuXA-zSZiBi6uY1u4_bWEi5bplJIR9TqaS16lAdlA0"
+       "x": "U6FNi1iIcrc_0_KDSj-9VjtoTmvRVywF-EcYFg7u7KA",
+       "y": "dP3egb_DDsms-lWc5qG3J0ZSbM6Ce9ZbSX_cdbd8auA",
+       "d": "bPj3RjOf06qza7ZSaH52BeOvVMo-J4XOQB9PQN6TKVc"
      }
    }
 
@@ -1078,14 +1078,14 @@ A.1.  Example Single-Use JWP
    eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
    mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
    9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-   7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiVkd5NWtpc1FDNjhFT2xIc05MVmkw
-   VE9STXZiZXV0aWJobXAtNTZkX0tYSSIsInkiOiIzVUdfVll1bHA1NDRoeHVBTnJPNHVuc
-   mpqMzBRVDRGcE1McHk4eGhiMUVFIiwiZCI6IjRNY3JDc0s4blNxRzRFTFNmVlM2cS1Jd1
-   ZxLWJIYzQ3QldWUTIyQUprNTQifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
-   sImNydiI6IlAtMjU2IiwieCI6Ilg3R1prbzJaQ2JDUXZVNV92RHAyWmR2bzZCY1hFQllI
-   bTFicW9PMHBoYUkiLCJ5IjoiQTh1TWtVMnZQUjFUZUlkb3ZWT2lpQkNEVE56WE9WTmJaZ
-   Ut6bGw5ZHN3ayIsImQiOiJ5bnVYQS16U1ppQmk2dVkxdTRfYldFaTVicGxKSVI5VHFhUz
-   E2bEFkbEEwIn19
+   7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiaHQ1V1JOeUZvR19qTVlsWUtSbkJi
+   R3R4eDBlMjFlUG0xREoxWWhWMUp3ayIsInkiOiJUWVBPcC1KYmg4R3ZjUXlUdVFUTE95e
+   lVJU2pPQ042VUVPYUhfN19hSUFNIiwiZCI6InBnVWpTaUI1ejk2elRZRlEyOFZKTmQyU1
+   lNQ2hTYW5NZXFCRHkzZUF6eU0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
+   sImNydiI6IlAtMjU2IiwieCI6IlU2Rk5pMWlJY3JjXzBfS0RTai05Vmp0b1RtdlJWeXdG
+   LUVjWUZnN3U3S0EiLCJ5IjoiZFAzZWdiX0REc21zLWxXYzVxRzNKMFpTYk02Q2U5WmJTW
+   F9jZGJkOGF1QSIsImQiOiJiUGozUmpPZjA2cXphN1pTYUg1MkJlT3ZWTW8tSjRYT1FCOV
+   BRTjZUS1ZjIn19
 
     Figure 5: Encoded Issuer Protected Header (es256, base64url-encoded)
 
@@ -1108,14 +1108,14 @@ A.1.  Example Single-Use JWP
           Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
           x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
           ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-          J4IjoiVkd5NWtpc1FDNjhFT2xIc05MVmkwVE9STXZiZXV0aWJobXAtNTZkX0tY
-          SSIsInkiOiIzVUdfVll1bHA1NDRoeHVBTnJPNHVucmpqMzBRVDRGcE1McHk4eG
-          hiMUVFIiwiZCI6IjRNY3JDc0s4blNxRzRFTFNmVlM2cS1Jd1ZxLWJIYzQ3QldW
-          UTIyQUprNTQifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
-          I6IlAtMjU2IiwieCI6Ilg3R1prbzJaQ2JDUXZVNV92RHAyWmR2bzZCY1hFQllI
-          bTFicW9PMHBoYUkiLCJ5IjoiQTh1TWtVMnZQUjFUZUlkb3ZWT2lpQkNEVE56WE
-          9WTmJaZUt6bGw5ZHN3ayIsImQiOiJ5bnVYQS16U1ppQmk2dVkxdTRfYldFaTVi
-          cGxKSVI5VHFhUzE2bEFkbEEwIn19",
+          J4IjoiaHQ1V1JOeUZvR19qTVlsWUtSbkJiR3R4eDBlMjFlUG0xREoxWWhWMUp3
+          ayIsInkiOiJUWVBPcC1KYmg4R3ZjUXlUdVFUTE95elVJU2pPQ042VUVPYUhfN1
+          9hSUFNIiwiZCI6InBnVWpTaUI1ejk2elRZRlEyOFZKTmQyU1lNQ2hTYW5NZXFC
+          RHkzZUF6eU0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
+          I6IlAtMjU2IiwieCI6IlU2Rk5pMWlJY3JjXzBfS0RTai05Vmp0b1RtdlJWeXdG
+          LUVjWUZnN3U3S0EiLCJ5IjoiZFAzZWdiX0REc21zLWxXYzVxRzNKMFpTYk02Q2
+          U5WmJTWF9jZGJkOGF1QSIsImQiOiJiUGozUmpPZjA2cXphN1pTYUg1MkJlT3ZW
+          TW8tSjRYT1FCOVBRTjZUS1ZjIn19",
      "payloads": [
        "MTcxNDUyMTYwMA",
        "MTcxNzE5OTk5OQ",
@@ -1129,22 +1129,22 @@ A.1.  Example Single-Use JWP
        "dHJ1ZQ"
      ],
      "proof": [
-       "pTayi12JYT4ib5vxtnDXwaUx94UKJUsDSRQYGlaC5I4dtGfEfrWdXrKS7Z5rXEb_
-          r4tyxAGB5u7eWtHWVGLGFA",
-       "8EbhNuWThEP69j7UnkcYgiyEcLoD9tglR1aUiYkj54TQDzTFAKj3MM96twRfj6sx
-          SVpxPUOLwIvuYvE7Td3BbA",
-       "KZJOqOi8vCDu8FqhH_H5mmh8BjD-G0r_ATKe2iKNxvAADEl6Mkd3CQBciLaIRmqC
-          f32sCbvpdBYu7Cwcv7SVng",
-       "g96cPw0qY98NycSahMUS-vnR3rVSiv3N2YRtxdz8djLsqeYdgmeCz4I7aYwAjToU
-          OEoJjpArTc642VGf_terAQ",
-       "Vet4IBiB4oawWC3M54hJ4G6ucxYCCDITuudexSLyjTPlhgXk9O8rFbCtFRlmDxt1
-          MScwPP3XWxJTzc0x8zlPzA",
-       "AQT1w9-d_eotlVHzam5b4I-okICeOzMjj_awkK15YuE5x7jk1pEjsncqHZcKc4GQ
-          mX6n5uRAXSUA4dFNETZZPg",
-       "FrGnD14r1EMD5LNRU2kopupKFlZPv6qcMbADdtKzrgj0m-WL5AdlvmD30mHZ5qWs
-          12RcrErt49jnI1cTT4XL_A",
-       "YOb5H7_A2IhJV3JSkwoVuTiQHQAL6tJSY2EkR4QA_atPDdifbjcrDZaW5OOYJp8g
-          3dqMO81NPVCFhskczAWHhw"
+       "jV8QklgxJZuLE17QI6wq2lqdZYHQyXOO3dRGfMFqbmWjMh_8CIwZQjeA_jDwWsiI
+          aq_exNeQWhznw16su4yjJA",
+       "DLPqQLB1BFmKD8DWQho245eIpe63do6ltDqJQ0GqRYjbnklX2_CPU4BfXJLaxinY
+          6M3SsdiZ_PK6A33cXgJoew",
+       "iz8iFMFcRAGeOBDmMe91Y4Zy2M9aXpBp4py-_baVZ90dPkW59UowtBhFzqP_oxQi
+          FDQp8CCF5S_Ikd3MBaMScQ",
+       "zD4AZQgGEhhoNHXTRbYYc11hJbOnc1HWsV2lZAAUpJhCdmIp1vDbFqSX4cYFad5g
+          PE3ayiwinG-jL7pD8X9I4A",
+       "uIB-fKWYFVeA5c95wxPnbKK5HWt8qqcAZO2rQuR4VyBSIIVh397imDvkg9G6oR78
+          cDyRGdtYVnKuX_WLdvtSeQ",
+       "aX-rvFmqv9GBF4zmKZDXWhcNuxTbwTGZpCqwfGKF7aFWoCm15e9eYN168R7GyVQE
+          M-Lv6hmTYk-Z9X56LEObIQ",
+       "ov4Iwq9a2NjEkx9Pt_MOVwLRAwgtk3RWABM7-5yXxkkpB-EzQip5Av98kX6c5i4l
+          ht7-F4EBmOoe1YFTQsSP1g",
+       "Ea6LK7fEf2fRpqoQwVyGEIwtRUGWhxDbc2GsMwLYt2GghDEpPVPO9pSR2_7hqWJG
+          WuWOtqEDGg3_XFBEsFIosw"
      ]
    }
 
@@ -1155,28 +1155,28 @@ A.1.  Example Single-Use JWP
    eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
    mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
    9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-   7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiVkd5NWtpc1FDNjhFT2xIc05MVmkw
-   VE9STXZiZXV0aWJobXAtNTZkX0tYSSIsInkiOiIzVUdfVll1bHA1NDRoeHVBTnJPNHVuc
-   mpqMzBRVDRGcE1McHk4eGhiMUVFIiwiZCI6IjRNY3JDc0s4blNxRzRFTFNmVlM2cS1Jd1
-   ZxLWJIYzQ3QldWUTIyQUprNTQifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
-   sImNydiI6IlAtMjU2IiwieCI6Ilg3R1prbzJaQ2JDUXZVNV92RHAyWmR2bzZCY1hFQllI
-   bTFicW9PMHBoYUkiLCJ5IjoiQTh1TWtVMnZQUjFUZUlkb3ZWT2lpQkNEVE56WE9WTmJaZ
-   Ut6bGw5ZHN3ayIsImQiOiJ5bnVYQS16U1ppQmk2dVkxdTRfYldFaTVicGxKSVI5VHFhUz
-   E2bEFkbEEwIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
+   7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiaHQ1V1JOeUZvR19qTVlsWUtSbkJi
+   R3R4eDBlMjFlUG0xREoxWWhWMUp3ayIsInkiOiJUWVBPcC1KYmg4R3ZjUXlUdVFUTE95e
+   lVJU2pPQ042VUVPYUhfN19hSUFNIiwiZCI6InBnVWpTaUI1ejk2elRZRlEyOFZKTmQyU1
+   lNQ2hTYW5NZXFCRHkzZUF6eU0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
+   sImNydiI6IlAtMjU2IiwieCI6IlU2Rk5pMWlJY3JjXzBfS0RTai05Vmp0b1RtdlJWeXdG
+   LUVjWUZnN3U3S0EiLCJ5IjoiZFAzZWdiX0REc21zLWxXYzVxRzNKMFpTYk02Q2U5WmJTW
+   F9jZGJkOGF1QSIsImQiOiJiUGozUmpPZjA2cXphN1pTYUg1MkJlT3ZWTW8tSjRYT1FCOV
+   BRTjZUS1ZjIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
    ZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duL
    CBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG
    9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDU
-   sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.pTayi12JYT4ib5vxtnDXwaUx94UKJUsDSRQYGl
-   aC5I4dtGfEfrWdXrKS7Z5rXEb_r4tyxAGB5u7eWtHWVGLGFA~8EbhNuWThEP69j7UnkcY
-   giyEcLoD9tglR1aUiYkj54TQDzTFAKj3MM96twRfj6sxSVpxPUOLwIvuYvE7Td3BbA~KZ
-   JOqOi8vCDu8FqhH_H5mmh8BjD-G0r_ATKe2iKNxvAADEl6Mkd3CQBciLaIRmqCf32sCbv
-   pdBYu7Cwcv7SVng~g96cPw0qY98NycSahMUS-vnR3rVSiv3N2YRtxdz8djLsqeYdgmeCz
-   4I7aYwAjToUOEoJjpArTc642VGf_terAQ~Vet4IBiB4oawWC3M54hJ4G6ucxYCCDITuud
-   exSLyjTPlhgXk9O8rFbCtFRlmDxt1MScwPP3XWxJTzc0x8zlPzA~AQT1w9-d_eotlVHza
-   m5b4I-okICeOzMjj_awkK15YuE5x7jk1pEjsncqHZcKc4GQmX6n5uRAXSUA4dFNETZZPg
-   ~FrGnD14r1EMD5LNRU2kopupKFlZPv6qcMbADdtKzrgj0m-WL5AdlvmD30mHZ5qWs12Rc
-   rErt49jnI1cTT4XL_A~YOb5H7_A2IhJV3JSkwoVuTiQHQAL6tJSY2EkR4QA_atPDdifbj
-   crDZaW5OOYJp8g3dqMO81NPVCFhskczAWHhw
+   sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.jV8QklgxJZuLE17QI6wq2lqdZYHQyXOO3dRGfM
+   FqbmWjMh_8CIwZQjeA_jDwWsiIaq_exNeQWhznw16su4yjJA~DLPqQLB1BFmKD8DWQho2
+   45eIpe63do6ltDqJQ0GqRYjbnklX2_CPU4BfXJLaxinY6M3SsdiZ_PK6A33cXgJoew~iz
+   8iFMFcRAGeOBDmMe91Y4Zy2M9aXpBp4py-_baVZ90dPkW59UowtBhFzqP_oxQiFDQp8CC
+   F5S_Ikd3MBaMScQ~zD4AZQgGEhhoNHXTRbYYc11hJbOnc1HWsV2lZAAUpJhCdmIp1vDbF
+   qSX4cYFad5gPE3ayiwinG-jL7pD8X9I4A~uIB-fKWYFVeA5c95wxPnbKK5HWt8qqcAZO2
+   rQuR4VyBSIIVh397imDvkg9G6oR78cDyRGdtYVnKuX_WLdvtSeQ~aX-rvFmqv9GBF4zmK
+   ZDXWhcNuxTbwTGZpCqwfGKF7aFWoCm15e9eYN168R7GyVQEM-Lv6hmTYk-Z9X56LEObIQ
+   ~ov4Iwq9a2NjEkx9Pt_MOVwLRAwgtk3RWABM7-5yXxkkpB-EzQip5Av98kX6c5i4lht7-
+   F4EBmOoe1YFTQsSP1g~Ea6LK7fEf2fRpqoQwVyGEIwtRUGWhxDbc2GsMwLYt2GghDEpPV
+   PO9pSR2_7hqWJGWuWOtqEDGg3_XFBEsFIosw
 
            Figure 7: Issued JWP in Compact Serialization (es256)
 
@@ -1186,7 +1186,7 @@ A.1.  Example Single-Use JWP
    {
      "alg": "SU-ES256",
      "aud": "https://recipient.example.com",
-     "nonce": "u7SN2ty90MVOfCBatlM5Xb5SU93dULGQ8c_2g1Fp7iI"
+     "nonce": "y6ZqzhFNqpUE2AqEWYEHAYKSDR7f3Didor_Dueadv-k"
    }
 
                        Figure 8: Presentation Header
@@ -1195,16 +1195,16 @@ A.1.  Example Single-Use JWP
    an octet string.  This gives:
 
    eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-   29tIiwibm9uY2UiOiJ1N1NOMnR5OTBNVk9mQ0JhdGxNNVhiNVNVOTNkVUxHUThjXzJnMU
-   ZwN2lJIn0
+   29tIiwibm9uY2UiOiJ5NlpxemhGTnFwVUUyQXFFV1lFSEFZS1NEUjdmM0RpZG9yX0R1ZW
+   Fkdi1rIn0
 
              Figure 9: Presentation Header (base64url-encoded)
 
    When signed with the holder's presentation key, the resulting
    signature are:
 
-   6SsWlVAc96FLno8pGb7mjjeUYMIUShoSyo50Df3X2Cb3A59Xcaa1H2-JHpyNY97q18MKD
-   EjjL69JkPdVIHje9g
+   zWTKqca5B6THDI_R4Sm8X3iBIe5XHtYLjcL9teEmb6X2ZEVrAK1gdhotRiO92i1t1qg-X
+   mC5YTfJEyhPn-EDTQ
 
    |  Figure: Holder Proof-of-Possession (base64url-encoded)
 
@@ -1214,20 +1214,20 @@ A.1.  Example Single-Use JWP
 
    {
      "presentation": "eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-          BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJ1N1NOMnR5OTBNVk9mQ0JhdGxN
-          NVhiNVNVOTNkVUxHUThjXzJnMUZwN2lJIn0",
+          BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJ5NlpxemhGTnFwVUUyQXFFV1lF
+          SEFZS1NEUjdmM0RpZG9yX0R1ZWFkdi1rIn0",
      "issuer": "eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
           Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
           x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
           ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-          J4IjoiVkd5NWtpc1FDNjhFT2xIc05MVmkwVE9STXZiZXV0aWJobXAtNTZkX0tY
-          SSIsInkiOiIzVUdfVll1bHA1NDRoeHVBTnJPNHVucmpqMzBRVDRGcE1McHk4eG
-          hiMUVFIiwiZCI6IjRNY3JDc0s4blNxRzRFTFNmVlM2cS1Jd1ZxLWJIYzQ3QldW
-          UTIyQUprNTQifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
-          I6IlAtMjU2IiwieCI6Ilg3R1prbzJaQ2JDUXZVNV92RHAyWmR2bzZCY1hFQllI
-          bTFicW9PMHBoYUkiLCJ5IjoiQTh1TWtVMnZQUjFUZUlkb3ZWT2lpQkNEVE56WE
-          9WTmJaZUt6bGw5ZHN3ayIsImQiOiJ5bnVYQS16U1ppQmk2dVkxdTRfYldFaTVi
-          cGxKSVI5VHFhUzE2bEFkbEEwIn19",
+          J4IjoiaHQ1V1JOeUZvR19qTVlsWUtSbkJiR3R4eDBlMjFlUG0xREoxWWhWMUp3
+          ayIsInkiOiJUWVBPcC1KYmg4R3ZjUXlUdVFUTE95elVJU2pPQ042VUVPYUhfN1
+          9hSUFNIiwiZCI6InBnVWpTaUI1ejk2elRZRlEyOFZKTmQyU1lNQ2hTYW5NZXFC
+          RHkzZUF6eU0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
+          I6IlAtMjU2IiwieCI6IlU2Rk5pMWlJY3JjXzBfS0RTai05Vmp0b1RtdlJWeXdG
+          LUVjWUZnN3U3S0EiLCJ5IjoiZFAzZWdiX0REc21zLWxXYzVxRzNKMFpTYk02Q2
+          U5WmJTWF9jZGJkOGF1QSIsImQiOiJiUGozUmpPZjA2cXphN1pTYUg1MkJlT3ZW
+          TW8tSjRYT1FCOVBRTjZUS1ZjIn19",
      "payloads": [
        "MTcxNDUyMTYwMA",
        "MTcxNzE5OTk5OQ",
@@ -1243,20 +1243,20 @@ A.1.  Example Single-Use JWP
        null
      ],
      "proof": [
-       "pTayi12JYT4ib5vxtnDXwaUx94UKJUsDSRQYGlaC5I4dtGfEfrWdXrKS7Z5rXEb_
-          r4tyxAGB5u7eWtHWVGLGFA",
-       "6SsWlVAc96FLno8pGb7mjjeUYMIUShoSyo50Df3X2Cb3A59Xcaa1H2-JHpyNY97q
-          18MKDEjjL69JkPdVIHje9g",
-       "8EbhNuWThEP69j7UnkcYgiyEcLoD9tglR1aUiYkj54TQDzTFAKj3MM96twRfj6sx
-          SVpxPUOLwIvuYvE7Td3BbA",
-       "KZJOqOi8vCDu8FqhH_H5mmh8BjD-G0r_ATKe2iKNxvAADEl6Mkd3CQBciLaIRmqC
-          f32sCbvpdBYu7Cwcv7SVng",
-       "g96cPw0qY98NycSahMUS-vnR3rVSiv3N2YRtxdz8djLsqeYdgmeCz4I7aYwAjToU
-          OEoJjpArTc642VGf_terAQ",
-       "Vet4IBiB4oawWC3M54hJ4G6ucxYCCDITuudexSLyjTPlhgXk9O8rFbCtFRlmDxt1
-          MScwPP3XWxJTzc0x8zlPzA",
-       "AQT1w9-d_eotlVHzam5b4I-okICeOzMjj_awkK15YuE5x7jk1pEjsncqHZcKc4GQ
-          mX6n5uRAXSUA4dFNETZZPg"
+       "jV8QklgxJZuLE17QI6wq2lqdZYHQyXOO3dRGfMFqbmWjMh_8CIwZQjeA_jDwWsiI
+          aq_exNeQWhznw16su4yjJA",
+       "zWTKqca5B6THDI_R4Sm8X3iBIe5XHtYLjcL9teEmb6X2ZEVrAK1gdhotRiO92i1t
+          1qg-XmC5YTfJEyhPn-EDTQ",
+       "DLPqQLB1BFmKD8DWQho245eIpe63do6ltDqJQ0GqRYjbnklX2_CPU4BfXJLaxinY
+          6M3SsdiZ_PK6A33cXgJoew",
+       "iz8iFMFcRAGeOBDmMe91Y4Zy2M9aXpBp4py-_baVZ90dPkW59UowtBhFzqP_oxQi
+          FDQp8CCF5S_Ikd3MBaMScQ",
+       "zD4AZQgGEhhoNHXTRbYYc11hJbOnc1HWsV2lZAAUpJhCdmIp1vDbFqSX4cYFad5g
+          PE3ayiwinG-jL7pD8X9I4A",
+       "uIB-fKWYFVeA5c95wxPnbKK5HWt8qqcAZO2rQuR4VyBSIIVh397imDvkg9G6oR78
+          cDyRGdtYVnKuX_WLdvtSeQ",
+       "aX-rvFmqv9GBF4zmKZDXWhcNuxTbwTGZpCqwfGKF7aFWoCm15e9eYN168R7GyVQE
+          M-Lv6hmTYk-Z9X56LEObIQ"
      ]
    }
 
@@ -1265,31 +1265,31 @@ A.1.  Example Single-Use JWP
    And also in compact serialization:
 
    eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-   29tIiwibm9uY2UiOiJ1N1NOMnR5OTBNVk9mQ0JhdGxNNVhiNVNVOTNkVUxHUThjXzJnMU
-   ZwN2lJIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+   29tIiwibm9uY2UiOiJ5NlpxemhGTnFwVUUyQXFFV1lFSEFZS1NEUjdmM0RpZG9yX0R1ZW
+   Fkdi1rIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
    vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
    LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb
-   2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiVkd5NWtpc1FDNjhFT2
-   xIc05MVmkwVE9STXZiZXV0aWJobXAtNTZkX0tYSSIsInkiOiIzVUdfVll1bHA1NDRoeHV
-   BTnJPNHVucmpqMzBRVDRGcE1McHk4eGhiMUVFIiwiZCI6IjRNY3JDc0s4blNxRzRFTFNm
-   VlM2cS1Jd1ZxLWJIYzQ3QldWUTIyQUprNTQifSwicHJlc2VudGF0aW9uX2tleSI6eyJrd
-   HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6Ilg3R1prbzJaQ2JDUXZVNV92RHAyWmR2bz
-   ZCY1hFQllIbTFicW9PMHBoYUkiLCJ5IjoiQTh1TWtVMnZQUjFUZUlkb3ZWT2lpQkNEVE5
-   6WE9WTmJaZUt6bGw5ZHN3ayIsImQiOiJ5bnVYQS16U1ppQmk2dVkxdTRfYldFaTVicGxK
-   SVI5VHFhUzE2bEFkbEEwIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
+   2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiaHQ1V1JOeUZvR19qTV
+   lsWUtSbkJiR3R4eDBlMjFlUG0xREoxWWhWMUp3ayIsInkiOiJUWVBPcC1KYmg4R3ZjUXl
+   UdVFUTE95elVJU2pPQ042VUVPYUhfN19hSUFNIiwiZCI6InBnVWpTaUI1ejk2elRZRlEy
+   OFZKTmQyU1lNQ2hTYW5NZXFCRHkzZUF6eU0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrd
+   HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IlU2Rk5pMWlJY3JjXzBfS0RTai05Vmp0b1
+   RtdlJWeXdGLUVjWUZnN3U3S0EiLCJ5IjoiZFAzZWdiX0REc21zLWxXYzVxRzNKMFpTYk0
+   2Q2U5WmJTWF9jZGJkOGF1QSIsImQiOiJiUGozUmpPZjA2cXphN1pTYUg1MkJlT3ZWTW8t
+   SjRYT1FCOVBRTjZUS1ZjIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
    I~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5
    Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4g
    U3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZ
-   SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.pTayi12JYT4ib5vxtnDXwaUx94
-   UKJUsDSRQYGlaC5I4dtGfEfrWdXrKS7Z5rXEb_r4tyxAGB5u7eWtHWVGLGFA~6SsWlVAc
-   96FLno8pGb7mjjeUYMIUShoSyo50Df3X2Cb3A59Xcaa1H2-JHpyNY97q18MKDEjjL69Jk
-   PdVIHje9g~8EbhNuWThEP69j7UnkcYgiyEcLoD9tglR1aUiYkj54TQDzTFAKj3MM96twR
-   fj6sxSVpxPUOLwIvuYvE7Td3BbA~KZJOqOi8vCDu8FqhH_H5mmh8BjD-G0r_ATKe2iKNx
-   vAADEl6Mkd3CQBciLaIRmqCf32sCbvpdBYu7Cwcv7SVng~g96cPw0qY98NycSahMUS-vn
-   R3rVSiv3N2YRtxdz8djLsqeYdgmeCz4I7aYwAjToUOEoJjpArTc642VGf_terAQ~Vet4I
-   BiB4oawWC3M54hJ4G6ucxYCCDITuudexSLyjTPlhgXk9O8rFbCtFRlmDxt1MScwPP3XWx
-   JTzc0x8zlPzA~AQT1w9-d_eotlVHzam5b4I-okICeOzMjj_awkK15YuE5x7jk1pEjsncq
-   HZcKc4GQmX6n5uRAXSUA4dFNETZZPg
+   SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.jV8QklgxJZuLE17QI6wq2lqdZY
+   HQyXOO3dRGfMFqbmWjMh_8CIwZQjeA_jDwWsiIaq_exNeQWhznw16su4yjJA~zWTKqca5
+   B6THDI_R4Sm8X3iBIe5XHtYLjcL9teEmb6X2ZEVrAK1gdhotRiO92i1t1qg-XmC5YTfJE
+   yhPn-EDTQ~DLPqQLB1BFmKD8DWQho245eIpe63do6ltDqJQ0GqRYjbnklX2_CPU4BfXJL
+   axinY6M3SsdiZ_PK6A33cXgJoew~iz8iFMFcRAGeOBDmMe91Y4Zy2M9aXpBp4py-_baVZ
+   90dPkW59UowtBhFzqP_oxQiFDQp8CCF5S_Ikd3MBaMScQ~zD4AZQgGEhhoNHXTRbYYc11
+   hJbOnc1HWsV2lZAAUpJhCdmIp1vDbFqSX4cYFad5gPE3ayiwinG-jL7pD8X9I4A~uIB-f
+   KWYFVeA5c95wxPnbKK5HWt8qqcAZO2rQuR4VyBSIIVh397imDvkg9G6oR78cDyRGdtYVn
+   KuX_WLdvtSeQ~aX-rvFmqv9GBF4zmKZDXWhcNuxTbwTGZpCqwfGKF7aFWoCm15e9eYN16
+   8R7GyVQEM-Lv6hmTYk-Z9X56LEObIQ
 
    |  Figure: Final Presentation in Compact Serialization
 
@@ -1304,13 +1304,13 @@ A.2.  Example BBS JWP
      "alg": "BBS",
      "use": "proof",
      "crv": "BLS12381G2",
-     "x": "C9wHag9u7vA62URIN9cmbnC0LRD6aKhCSJ3PEIrepGFCQeeC4mfN6Ju292LF1
-          490DpDXK28Mh_9kk90wlaS6NmPva8GHOW2cuwzIYXWSJHAAUOAitPiryYXA7QQ
-          PW-q8",
-     "y": "DqCYYan8-jXWBnsxqhsbaB1tLH6T0_MYKf-vML_0PdJQMUzQ6dUGhgG210BuE
-          h7XCSkDgL_TY4__sufulNhxt6r9J7t0axQLjzlT6kpuYdojDRZlQjHBBgckeuA
-          uGlP3",
-     "d": "HDDZlGYd4Ky-Z09wviqMFgik-BY7H4x0sU8vMcIqIyY"
+     "x": "CLOIR2swxV22plP6na2ZE-TpQNUSycfK3sfzENLUzpsKD07RSi25ZnhESiYVT
+          _vcFSc5dDY3qChwO5WzmmyY54kpgpEbYm_2hoMGGAGtT7VV25Cc8kHRscc0Nwp
+          2orB5",
+     "y": "AeuFaEW4ld8qtLaxu_yP4rS4dvSMLEIiymsD_AAZGruwQOgaKTY_ev7KF0Hec
+          rflB0RjrWj-sy0E9qTNrFGa4c4VMYySwfhcXBPB6ZS6bpDDPTmA-OSjrfrMaoH
+          3A75J",
+     "d": "W1qc5Q5tdH5fuQCADNeTxkAh69xkhbnMwTfvu5scDkQ"
    }
 
                   Figure 10: BBS private key in JWK format
@@ -1364,8 +1364,8 @@ A.2.  Example BBS JWP
        "dHJ1ZQ"
      ],
      "proof": [
-       "ie8F9J-2k9LDlFu2YO6Oa-S0aJfN4-uNkztxICfK4HYDRODYf9QgusAh0O0dtEcG
-          GW6KFnCSBBChQHZpd2wJZcfjTqiCp8MGiV0G6UWXuC8"
+       "pIU5-Eweu4aQF4uxKNOwFg5mfuE-8X8o2XWN3KpFMeVRD_4jcpFqxHdeMuxeoGV9
+          X0Wcf9RKqzLl3Hpx1NIa-AOPYNKdRzdmMONEFCUuzDk"
      ]
    }
 
@@ -1376,9 +1376,9 @@ A.2.  Example BBS JWP
    eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
    3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
    wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-   zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.ie8F9J-2k9LDlFu2YO6Oa-S0aJfN4-uNkz
-   txICfK4HYDRODYf9QgusAh0O0dtEcGGW6KFnCSBBChQHZpd2wJZcfjTqiCp8MGiV0G6UW
-   XuC8
+   zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.pIU5-Eweu4aQF4uxKNOwFg5mfuE-8X8o2X
+   WN3KpFMeVRD_4jcpFqxHdeMuxeoGV9X0Wcf9RKqzLl3Hpx1NIa-AOPYNKdRzdmMONEFCU
+   uzDk
 
                Figure 14: Issued JWP (compact serialization)
 
@@ -1411,14 +1411,14 @@ A.2.  Example BBS JWP
        null
      ],
      "proof": [
-       "k2k70IU2q6UNSPIaJsT3TNvdxCBL4J4f3PtptAOvWcImHjaZLliiVhD-WBSSVipy
-          l-1ht8cMOByNM1z1CbAXp8AmToDLb20_II8j48135gu74nIkmFFJZBEadhTJBc
-          9gi96nmmnwDYfmVrD1U2RbL0v1ltHGyCwZQfo1AWOV4d7YTpDSLw6fMfcEnbfU
-          oIPAcL16Ssrycq6Ok_h7QbdBStF2FCOk-1vpDtNFn2E2LOwenNDSZ8a3w4b7kV
-          vkE7nChPAlBKH1s0DhRD9VA6qTlgtgNNgJ7YT3kg36D5kPHqyQyjgBiyoHnSiK
-          -pO-T8L6YMsmUPkOK-2ExiER5deZPEVdBbGvRHsxUXq8i10L2PcE_XG_VSilhI
-          SdbICaIIZXsvUmiuF3GiWCrVYwvVIBBzHqVhwBVKOTLYco_IYOTSesRVzbiEgo
-          a1ELfu4pvg-IF7iFlIhX9w4YeJ0er3-jV7rFzqmJ8ghkvfYCVi85rRc"
+       "hwycJ8jPyKFNAVKQ8T76M7KUJumjQ44bMEdKu3iPIJEkk1VHxelsVDm7lJRm7Pu1
+          i-QN_8tOzA_44GwFSe9ZO9WpYmKrEi9DTJkSlciKJ3ac-0U7lYzgKj9a3j4qLx
+          D1qGf9b4F_kqYerNtyr1TUrbIe1vmYqHvt8TjjTV58G3YTVcH0RqJFHr7RvF_b
+          nFIyUpX12D5Z8TVEYCSeRxoM2hdthu-HMVCFTLot-V6_vt4bQfg3Ew6vLUxgWJ
+          Ma-AoduzPVTyZxkDIpuqsdNWarEDlFx5WvYXGWGtembxAYZnerqvD7Zg_kj93t
+          _VD69PkDJkiIhxneC0Wya6I4GlyqBQ4ZDBLZzfUoFBqFBThKySY9Ilgvt6KnLY
+          pTdeP8OMe28BB39Lt_0wINECEm-Ipyfz9dEC5xYZbAN5aYnM01h6vTuvfBaqa-
+          UvX1I4ouWdQKHZ_SGqSTS6H3maWleOgLLCVxFSKSE17f7yy3qbJsLE4"
      ]
    }
 
@@ -1427,14 +1427,14 @@ A.2.  Example BBS JWP
    eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
    mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
    yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.k2k70IU2q6UNSPIaJsT3TNvdxCBL4J4f
-   3PtptAOvWcImHjaZLliiVhD-WBSSVipyl-1ht8cMOByNM1z1CbAXp8AmToDLb20_II8j4
-   8135gu74nIkmFFJZBEadhTJBc9gi96nmmnwDYfmVrD1U2RbL0v1ltHGyCwZQfo1AWOV4d
-   7YTpDSLw6fMfcEnbfUoIPAcL16Ssrycq6Ok_h7QbdBStF2FCOk-1vpDtNFn2E2LOwenND
-   SZ8a3w4b7kVvkE7nChPAlBKH1s0DhRD9VA6qTlgtgNNgJ7YT3kg36D5kPHqyQyjgBiyoH
-   nSiK-pO-T8L6YMsmUPkOK-2ExiER5deZPEVdBbGvRHsxUXq8i10L2PcE_XG_VSilhISdb
-   ICaIIZXsvUmiuF3GiWCrVYwvVIBBzHqVhwBVKOTLYco_IYOTSesRVzbiEgoa1ELfu4pvg
-   -IF7iFlIhX9w4YeJ0er3-jV7rFzqmJ8ghkvfYCVi85rRc
+   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.hwycJ8jPyKFNAVKQ8T76M7KUJumjQ44b
+   MEdKu3iPIJEkk1VHxelsVDm7lJRm7Pu1i-QN_8tOzA_44GwFSe9ZO9WpYmKrEi9DTJkSl
+   ciKJ3ac-0U7lYzgKj9a3j4qLxD1qGf9b4F_kqYerNtyr1TUrbIe1vmYqHvt8TjjTV58G3
+   YTVcH0RqJFHr7RvF_bnFIyUpX12D5Z8TVEYCSeRxoM2hdthu-HMVCFTLot-V6_vt4bQfg
+   3Ew6vLUxgWJMa-AoduzPVTyZxkDIpuqsdNWarEDlFx5WvYXGWGtembxAYZnerqvD7Zg_k
+   j93t_VD69PkDJkiIhxneC0Wya6I4GlyqBQ4ZDBLZzfUoFBqFBThKySY9Ilgvt6KnLYpTd
+   eP8OMe28BB39Lt_0wINECEm-Ipyfz9dEC5xYZbAN5aYnM01h6vTuvfBaqa-UvX1I4ouWd
+   QKHZ_SGqSTS6H3maWleOgLLCVxFSKSE17f7yy3qbJsLE4
 
             Figure 17: Presentation JWP (compact serialization)
 
@@ -1447,16 +1447,16 @@ A.3.  Example MAC JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "sHVkxLGT2eZJSHW-s7fgKof3Cp4465E5zUtNeFJXS_k",
-     "y": "EkfhzdCt-30-mA8FxdbiN6uhDWQWAWcMubRRPQooNZw",
-     "d": "2pskrrWDZ1w80gaquCmXQAYkiaWFrRokQmM8tHxtHAY"
+     "x": "aQUAsFiXh0oYoTCgJVDonksbbn-faBMoDuIDRG4ayxc",
+     "y": "-gRIocesVHlTI00gQPnm-dZnEHn_oHoq4PVBHSg_Zkg",
+     "d": "t1_JYCQ0R3jxiaCJNR9Yu_iYoxrAsgBCMgufWJieG80"
    }
 
                        Figure 18: Issuer private key
 
    This is the Issuer's ephemerally generated shared secret:
 
-   "hmKHAekrOPkP02nNindwxO1lck_BBmkmlhaT9pexfUU"
+   "P07sXaxHZf_cB0cs0Hs-LSjvn_IQBMtRzeD0eSC0E4g"
 
                           Figure 19: Shared Secret
 
@@ -1465,9 +1465,9 @@ A.3.  Example MAC JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "X7GZko2ZCbCQvU5_vDp2Zdvo6BcXEBYHm1bqoO0phaI",
-     "y": "A8uMkU2vPR1TeIdovVOiiBCDTNzXOVNbZeKzll9dswk",
-     "d": "ynuXA-zSZiBi6uY1u4_bWEi5bplJIR9TqaS16lAdlA0"
+     "x": "U6FNi1iIcrc_0_KDSj-9VjtoTmvRVywF-EcYFg7u7KA",
+     "y": "dP3egb_DDsms-lWc5qG3J0ZSbM6Ce9ZbSX_cdbd8auA",
+     "d": "bPj3RjOf06qza7ZSaH52BeOvVMo-J4XOQB9PQN6TKVc"
    }
 
                        Figure 20: Holder private key
@@ -1491,8 +1491,8 @@ A.3.  Example MAC JWP
        "kty": "EC",
        "crv": "P-256",
        "use": "sign",
-       "x": "X7GZko2ZCbCQvU5_vDp2Zdvo6BcXEBYHm1bqoO0phaI",
-       "y": "A8uMkU2vPR1TeIdovVOiiBCDTNzXOVNbZeKzll9dswk"
+       "x": "U6FNi1iIcrc_0_KDSj-9VjtoTmvRVywF-EcYFg7u7KA",
+       "y": "dP3egb_DDsms-lWc5qG3J0ZSbM6Ce9ZbSX_cdbd8auA"
      }
    }
 
@@ -1521,7 +1521,7 @@ A.3.  Example MAC JWP
    the issuer protected header as a UTF-8 encoded octet string.  This
    results in the following MAC:
 
-   zS49n81ms_pi9UeJIgWrJpy9NmWOHLmaLLvIQpRnfSc
+   odOYACd3HFd9uJwi7ao6ZgQTZBypTJoJqvrcf-BxYyw
 
        Figure 23: Issuer MAC of protected header (base64url-encoded)
 
@@ -1531,13 +1531,13 @@ A.3.  Example MAC JWP
    HMAC operation.  This results in the following set of derived keys:
 
    [
-     "Hy6SDXDYEHByvsqFZmVjowsHvFC6KtNm6u14Ew1QSZ0",
-     "Zz6Elzh5QUnVzAdrt2ne6Jes3OnShrbkH7uVIGK_6Pw",
-     "Sey8Yox7wi6zrLuejjCUuhYu_ivCoTmfMwwJNyLe2bM",
-     "s0VtyyDuOaz9Vm5rU4RPU6eB2DSZjYKRSyHEKPALjZE",
-     "RNe3ajGVsoxMPICLgb_QPvRQG5L0FHX6uaqYnidjWMA",
-     "PAOx1LUZjVcamZl8BhtXfBMQVBDf5Tfy04L5CV3dNpU",
-     "3uwui4BmS8FxHFhRLvPCvxNHeVOvgEquN0b4ul_hvfQ"
+     "UT7IuTuur6LQlvU9kWDXGZnn2NNrJ8E-YJF74VViTvU",
+     "vdyQrRwjY5BxBGK0SS7VIOBe2-iWCtv_xV1ttkEtcDo",
+     "bavbavUWHapnk8fOUydc8AJfsjBNUvq-LB7YaKzoGk0",
+     "zsRZ2UM-QhuKzIr2tmhf--N8imNg-dBB8g7IvQyxOis",
+     "RWmugwVCoeWpC9Q-xLs3sm-38aAd5UZedHtObWAttCM",
+     "lpkU9E7uHHgS1D_uJVrNr-GQ7vmHpFFiNwukvIwT_r8",
+     "tFZiN43xvgqhW9EJouQ9_P9Y79lOENJtLEu3CWj0hxs"
    ]
 
             Figure 24: Derived payload keys (base64url-encoded)
@@ -1546,13 +1546,13 @@ A.3.  Example MAC JWP
    payload key.  This results in the following set of MAC values:
 
    [
-     "iTePJMRb7IkZ1RY_TuYEb8ciQZqfsqP_6miSmIuJdTI",
-     "uHIMRyqlc9RxXWCt1SAo1WXPfzSMUVu2MbDEaTnFYLM",
-     "ftJpPjahdVnOCCCPt3YQdm9o8O9IUNaWuXLcQthSsH8",
-     "rNAOAi3RAMvGiopVT72pdvB0HYW0RA__RTLvcImYa84",
-     "RbWgGg6s_P2bp1TkeXhTcYCufSdmJqZBuefpSmyuSOk",
-     "bJRLwgTSS2PJ0vCbrRMHfe8mPtGHRzk7B10kBAtw9v8",
-     "zt6NQfW35xqFHBN3tVLqZGa20sZN3fwUH5XwxE0nKAk"
+     "KG5iO_j46sDGIhReOrHu6JNMa8obTwH0ymeB87EbQBA",
+     "A9ibwnZkK8mlqTN_NzF-xbkQU89A5UHhUM0tcLfCNh4",
+     "UayfukjM1cG3hmCtdQZcOqoIMCzUJHlrGk7LEZsVGdY",
+     "hgrhDYe3XLgeYdfYdfLhWays9jwHwagHTc4aKI_FDnI",
+     "pNjGcXMvZT3JfO_ML6Rr22oQ74Xfo26hp77KUvNn8Ec",
+     "-4JukRp5Ksxw6v6XN_EZLOmEfxyXUL1APjDYJ9lTITg",
+     "DgrwMjodcg_qKMj1R0rnBnXX7AfFlQ2-lLPEabAA0TY"
    ]
 
              Figure 25: Payload MAC values (base64url-encoded)
@@ -1566,9 +1566,9 @@ A.3.  Example MAC JWP
    combined MAC representation, and the shared secret.
 
    [
-     "DQxpSBdGxUQrDOgClFuS6m6HtW4sq2nrvH5pTsJhEbpPgekyaH44YWhf4j0q_POjYJ
-   fToXMKzsY5r0juiZ-ILA",
-     "f6nxgBXA-a6gk3ODHDNsOS8K6fD4fKhhtnEboJ3e6eo"
+     "OX2nrmJxTc8bj0GWPJ8uG2mnS-SCe335kjF7MQv4g55S2bNtWUjx35rD_lUB2Px0Ep
+   RkWwRQL6Wc4QJ8-NSoqg",
+     "rd1QDQBNzofrl73vBptJwp7-ydqo1IM1C7MkggmCPGg"
    ]
 
                 Figure 26: Issued Proof (base64url-encoded)
@@ -1580,8 +1580,8 @@ A.3.  Example MAC JWP
    Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
    WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
    Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-   nbiIsIngiOiJYN0daa28yWkNiQ1F2VTVfdkRwMlpkdm82QmNYRUJZSG0xYnFvTzBwaGFJ
-   IiwieSI6IkE4dU1rVTJ2UFIxVGVJZG92Vk9paUJDRFROelhPVk5iWmVLemxsOWRzd2sif
+   nbiIsIngiOiJVNkZOaTFpSWNyY18wX0tEU2otOVZqdG9UbXZSVnl3Ri1FY1lGZzd1N0tB
+   IiwieSI6ImRQM2VnYl9ERHNtcy1sV2M1cUczSjBaU2JNNkNlOVpiU1hfY2RiZDhhdUEif
    X0",
      "payloads": [
        "MTcxNDUyMTYwMA",
@@ -1596,9 +1596,9 @@ A.3.  Example MAC JWP
        "dHJ1ZQ"
      ],
      "proof": [
-       "DQxpSBdGxUQrDOgClFuS6m6HtW4sq2nrvH5pTsJhEbpPgekyaH44YWhf4j0q_POj
-   YJfToXMKzsY5r0juiZ-ILA",
-       "f6nxgBXA-a6gk3ODHDNsOS8K6fD4fKhhtnEboJ3e6eo"
+       "OX2nrmJxTc8bj0GWPJ8uG2mnS-SCe335kjF7MQv4g55S2bNtWUjx35rD_lUB2Px0
+   EpRkWwRQL6Wc4QJ8-NSoqg",
+       "rd1QDQBNzofrl73vBptJwp7-ydqo1IM1C7MkggmCPGg"
      ]
    }
 
@@ -1609,15 +1609,15 @@ A.3.  Example MAC JWP
    eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
    mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
    9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc2VudGF0aW9
-   uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJY
-   N0daa28yWkNiQ1F2VTVfdkRwMlpkdm82QmNYRUJZSG0xYnFvTzBwaGFJIiwieSI6IkE4d
-   U1rVTJ2UFIxVGVJZG92Vk9paUJDRFROelhPVk5iWmVLemxsOWRzd2sifX0.MTcxNDUyMT
+   uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJV
+   NkZOaTFpSWNyY18wX0tEU2otOVZqdG9UbXZSVnl3Ri1FY1lGZzd1N0tBIiwieSI6ImRQM
+   2VnYl9ERHNtcy1sV2M1cUczSjBaU2JNNkNlOVpiU1hfY2RiZDhhdUEifX0.MTcxNDUyMT
    YwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb
    3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3
    RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiw
    icmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~d
-   HJ1ZQ.DQxpSBdGxUQrDOgClFuS6m6HtW4sq2nrvH5pTsJhEbpPgekyaH44YWhf4j0q_PO
-   jYJfToXMKzsY5r0juiZ-ILA~f6nxgBXA-a6gk3ODHDNsOS8K6fD4fKhhtnEboJ3e6eo
+   HJ1ZQ.OX2nrmJxTc8bj0GWPJ8uG2mnS-SCe335kjF7MQv4g55S2bNtWUjx35rD_lUB2Px
+   0EpRkWwRQL6Wc4QJ8-NSoqg~rd1QDQBNzofrl73vBptJwp7-ydqo1IM1C7MkggmCPGg
 
               Figure 28: Issued JWP (in compact serialization)
 
@@ -1628,7 +1628,7 @@ A.3.  Example MAC JWP
    {
      "alg": "MAC-H256",
      "aud": "https://recipient.example.com",
-     "nonce": "u7SN2ty90MVOfCBatlM5Xb5SU93dULGQ8c_2g1Fp7iI"
+     "nonce": "y6ZqzhFNqpUE2AqEWYEHAYKSDR7f3Didor_Dueadv-k"
    }
 
                   Figure 29: Presentation Protected Header
@@ -1650,17 +1650,17 @@ A.3.  Example MAC JWP
    This results in the following proof:
 
    [
-     "xDiaP81WnjG142pf_fKaXdVzfSYJ0XuZsxSJuKZqrJ8agUjQ_Q_--UscQtwVdpsq_Z
-   57TR6GtlQiIO8PJK8F2w",
-     "DQxpSBdGxUQrDOgClFuS6m6HtW4sq2nrvH5pTsJhEbpPgekyaH44YWhf4j0q_POjYJ
-   fToXMKzsY5r0juiZ-ILA",
-     "Hy6SDXDYEHByvsqFZmVjowsHvFC6KtNm6u14Ew1QSZ0",
-     "Zz6Elzh5QUnVzAdrt2ne6Jes3OnShrbkH7uVIGK_6Pw",
-     "Sey8Yox7wi6zrLuejjCUuhYu_ivCoTmfMwwJNyLe2bM",
-     "s0VtyyDuOaz9Vm5rU4RPU6eB2DSZjYKRSyHEKPALjZE",
-     "RbWgGg6s_P2bp1TkeXhTcYCufSdmJqZBuefpSmyuSOk",
-     "bJRLwgTSS2PJ0vCbrRMHfe8mPtGHRzk7B10kBAtw9v8",
-     "zt6NQfW35xqFHBN3tVLqZGa20sZN3fwUH5XwxE0nKAk"
+     "cJLwmpulUGUd43jy34gz72wQhvbp-4vuxfcNjipWYLe3WKV4yqXY_Cc2_ocAuZ0-yn
+   E5N9v_09xCsBj8ivGIcA",
+     "OX2nrmJxTc8bj0GWPJ8uG2mnS-SCe335kjF7MQv4g55S2bNtWUjx35rD_lUB2Px0Ep
+   RkWwRQL6Wc4QJ8-NSoqg",
+     "UT7IuTuur6LQlvU9kWDXGZnn2NNrJ8E-YJF74VViTvU",
+     "vdyQrRwjY5BxBGK0SS7VIOBe2-iWCtv_xV1ttkEtcDo",
+     "bavbavUWHapnk8fOUydc8AJfsjBNUvq-LB7YaKzoGk0",
+     "zsRZ2UM-QhuKzIr2tmhf--N8imNg-dBB8g7IvQyxOis",
+     "pNjGcXMvZT3JfO_ML6Rr22oQ74Xfo26hp77KUvNn8Ec",
+     "-4JukRp5Ksxw6v6XN_EZLOmEfxyXUL1APjDYJ9lTITg",
+     "DgrwMjodcg_qKMj1R0rnBnXX7AfFlQ2-lLPEabAA0TY"
    ]
 
              Figure 30: Presentation proof (base64url-encoded)
@@ -1669,14 +1669,14 @@ A.3.  Example MAC JWP
 
    {
      "presentation": "eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-   BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJ1N1NOMnR5OTBNVk9mQ0JhdGxNNVhiNVN
-   VOTNkVUxHUThjXzJnMUZwN2lJIn0",
+   BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJ5NlpxemhGTnFwVUUyQXFFV1lFSEFZS1N
+   EUjdmM0RpZG9yX0R1ZWFkdi1rIn0",
      "issuer": "eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
    Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
    WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
    Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-   nbiIsIngiOiJYN0daa28yWkNiQ1F2VTVfdkRwMlpkdm82QmNYRUJZSG0xYnFvTzBwaGFJ
-   IiwieSI6IkE4dU1rVTJ2UFIxVGVJZG92Vk9paUJDRFROelhPVk5iWmVLemxsOWRzd2sif
+   nbiIsIngiOiJVNkZOaTFpSWNyY18wX0tEU2otOVZqdG9UbXZSVnl3Ri1FY1lGZzd1N0tB
+   IiwieSI6ImRQM2VnYl9ERHNtcy1sV2M1cUczSjBaU2JNNkNlOVpiU1hfY2RiZDhhdUEif
    X0",
      "payloads": [
        "MTcxNDUyMTYwMA",
@@ -1688,17 +1688,17 @@ A.3.  Example MAC JWP
        null
      ],
      "proof": [
-       "xDiaP81WnjG142pf_fKaXdVzfSYJ0XuZsxSJuKZqrJ8agUjQ_Q_--UscQtwVdpsq
-   _Z57TR6GtlQiIO8PJK8F2w",
-       "DQxpSBdGxUQrDOgClFuS6m6HtW4sq2nrvH5pTsJhEbpPgekyaH44YWhf4j0q_POj
-   YJfToXMKzsY5r0juiZ-ILA",
-       "Hy6SDXDYEHByvsqFZmVjowsHvFC6KtNm6u14Ew1QSZ0",
-       "Zz6Elzh5QUnVzAdrt2ne6Jes3OnShrbkH7uVIGK_6Pw",
-       "Sey8Yox7wi6zrLuejjCUuhYu_ivCoTmfMwwJNyLe2bM",
-       "s0VtyyDuOaz9Vm5rU4RPU6eB2DSZjYKRSyHEKPALjZE",
-       "RbWgGg6s_P2bp1TkeXhTcYCufSdmJqZBuefpSmyuSOk",
-       "bJRLwgTSS2PJ0vCbrRMHfe8mPtGHRzk7B10kBAtw9v8",
-       "zt6NQfW35xqFHBN3tVLqZGa20sZN3fwUH5XwxE0nKAk"
+       "cJLwmpulUGUd43jy34gz72wQhvbp-4vuxfcNjipWYLe3WKV4yqXY_Cc2_ocAuZ0-
+   ynE5N9v_09xCsBj8ivGIcA",
+       "OX2nrmJxTc8bj0GWPJ8uG2mnS-SCe335kjF7MQv4g55S2bNtWUjx35rD_lUB2Px0
+   EpRkWwRQL6Wc4QJ8-NSoqg",
+       "UT7IuTuur6LQlvU9kWDXGZnn2NNrJ8E-YJF74VViTvU",
+       "vdyQrRwjY5BxBGK0SS7VIOBe2-iWCtv_xV1ttkEtcDo",
+       "bavbavUWHapnk8fOUydc8AJfsjBNUvq-LB7YaKzoGk0",
+       "zsRZ2UM-QhuKzIr2tmhf--N8imNg-dBB8g7IvQyxOis",
+       "pNjGcXMvZT3JfO_ML6Rr22oQ74Xfo26hp77KUvNn8Ec",
+       "-4JukRp5Ksxw6v6XN_EZLOmEfxyXUL1APjDYJ9lTITg",
+       "DgrwMjodcg_qKMj1R0rnBnXX7AfFlQ2-lLPEabAA0TY"
      ]
    }
 
@@ -1707,21 +1707,21 @@ A.3.  Example MAC JWP
    The same JWP in compact serialization:
 
    eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-   29tIiwibm9uY2UiOiJ1N1NOMnR5OTBNVk9mQ0JhdGxNNVhiNVNVOTNkVUxHUThjXzJnMU
-   ZwN2lJIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+   29tIiwibm9uY2UiOiJ5NlpxemhGTnFwVUUyQXFFV1lFSEFZS1NEUjdmM0RpZG9yX0R1ZW
+   Fkdi1rIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
    vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
    LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc
    2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbi
-   IsIngiOiJYN0daa28yWkNiQ1F2VTVfdkRwMlpkdm82QmNYRUJZSG0xYnFvTzBwaGFJIiw
-   ieSI6IkE4dU1rVTJ2UFIxVGVJZG92Vk9paUJDRFROelhPVk5iWmVLemxsOWRzd2sifX0.
-   MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.xDiaP81WnjG142pf_fKa
-   XdVzfSYJ0XuZsxSJuKZqrJ8agUjQ_Q_--UscQtwVdpsq_Z57TR6GtlQiIO8PJK8F2w~DQ
-   xpSBdGxUQrDOgClFuS6m6HtW4sq2nrvH5pTsJhEbpPgekyaH44YWhf4j0q_POjYJfToXM
-   KzsY5r0juiZ-ILA~Hy6SDXDYEHByvsqFZmVjowsHvFC6KtNm6u14Ew1QSZ0~Zz6Elzh5Q
-   UnVzAdrt2ne6Jes3OnShrbkH7uVIGK_6Pw~Sey8Yox7wi6zrLuejjCUuhYu_ivCoTmfMw
-   wJNyLe2bM~s0VtyyDuOaz9Vm5rU4RPU6eB2DSZjYKRSyHEKPALjZE~RbWgGg6s_P2bp1T
-   keXhTcYCufSdmJqZBuefpSmyuSOk~bJRLwgTSS2PJ0vCbrRMHfe8mPtGHRzk7B10kBAtw
-   9v8~zt6NQfW35xqFHBN3tVLqZGa20sZN3fwUH5XwxE0nKAk
+   IsIngiOiJVNkZOaTFpSWNyY18wX0tEU2otOVZqdG9UbXZSVnl3Ri1FY1lGZzd1N0tBIiw
+   ieSI6ImRQM2VnYl9ERHNtcy1sV2M1cUczSjBaU2JNNkNlOVpiU1hfY2RiZDhhdUEifX0.
+   MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.cJLwmpulUGUd43jy34gz
+   72wQhvbp-4vuxfcNjipWYLe3WKV4yqXY_Cc2_ocAuZ0-ynE5N9v_09xCsBj8ivGIcA~OX
+   2nrmJxTc8bj0GWPJ8uG2mnS-SCe335kjF7MQv4g55S2bNtWUjx35rD_lUB2Px0EpRkWwR
+   QL6Wc4QJ8-NSoqg~UT7IuTuur6LQlvU9kWDXGZnn2NNrJ8E-YJF74VViTvU~vdyQrRwjY
+   5BxBGK0SS7VIOBe2-iWCtv_xV1ttkEtcDo~bavbavUWHapnk8fOUydc8AJfsjBNUvq-LB
+   7YaKzoGk0~zsRZ2UM-QhuKzIr2tmhf--N8imNg-dBB8g7IvQyxOis~pNjGcXMvZT3JfO_
+   ML6Rr22oQ74Xfo26hp77KUvNn8Ec~-4JukRp5Ksxw6v6XN_EZLOmEfxyXUL1APjDYJ9lT
+   ITg~DgrwMjodcg_qKMj1R0rnBnXX7AfFlQ2-lLPEabAA0TY
 
             Figure 32: Presented JWP (in compact serialization)
 
@@ -1739,12 +1739,11 @@ Appendix B.  Acknowledgements
 
 Appendix C.  Document History
 
-   [[ To be removed from the final specification ]] -latest
-
-   *  Changing primary editor
+   [[ To be removed from the final specification ]]
 
    -latest
 
+   *  Changing primary editor
    *  Defer BBS key definition to
       [I-D.ietf-cose-bls-key-representations]
    *  Modify example generation to use proof_key and presentation_key
