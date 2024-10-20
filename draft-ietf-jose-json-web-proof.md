@@ -344,7 +344,7 @@ included can be checked for consistency and honored, or they can be
 ignored.
 
 If holder unlinkability is required, this value MUST not be repeated
-in multiple issued JWP; a different presentation key MUST
+in multiple issued JWPs; a different presentation key MUST
 be included in each issuance.
 
 This Header Parameter MUST be understood and processed by implementations when present.
