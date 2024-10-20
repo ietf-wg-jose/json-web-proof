@@ -868,12 +868,10 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 # Document History
 
   [[ To be removed from the final specification ]]
+
  -latest
 
   * Changing primary editor
-
- -latest
-
   * Defer BBS key definition to [@I-D.ietf-cose-bls-key-representations]
   * Modify example generation to use `proof_key` and `presentation_key` names
   * Change `proof_jwk` to `proof_key` and `presentation_jwk` to
