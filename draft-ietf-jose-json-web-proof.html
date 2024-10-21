@@ -1729,16 +1729,17 @@ case-sensitive string containing a StringOrURI value.<a href="#section-4.2.8-2" 
           <h4 id="name-nonce-nonce-header-paramete">
 <a href="#section-4.2.9" class="section-number selfRef">4.2.9. </a><a href="#name-nonce-nonce-header-paramete" class="section-name selfRef">"nonce" (Nonce) Header Parameter</a>
           </h4>
-<blockquote id="section-4.2.9-1">
-            <p id="section-4.2.9-1.1">Editor's note: Need to resolve the difference between nonce in CBOR and JSON caused by EATS<a href="#section-4.2.9-1.1" class="pilcrow">¶</a></p>
-</blockquote>
-<p id="section-4.2.9-2">The <code>nonce</code> (nonce) Header Parameter is a case-sensitive string value
-used to associate protocol state with a JWP.
-This can be used, for instance, to mitigate replay attacks.
-The use of nonce values is generally protocol specific.
-Its definition is intentionally parallel to the <code>nonce</code> claim
-registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).
-Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.9-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.9-1">The <code>nonce</code> (nonce) Header Parameter is used to associate protocol
+state with a presented JWP. Usage is protocol-specific, but examples
+include requiring a unique nonce in requests as part of a strategy to
+prevent replay, or for associating a JWP back to the context where
+it was requested.<a href="#section-4.2.9-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.9-2">When used as a JSON Protected Header, the value is a case-sensitive
+string value.<a href="#section-4.2.9-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.9-3">When used as a CBOR Protected Header, the value is a binary string.<a href="#section-4.2.9-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.9-4">This definition is intentionally parallel to the <code>nonce</code> claim
+registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).<a href="#section-4.2.9-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.9-5">Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="claimsDef">
@@ -1912,14 +1913,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qbAuwh91u6dVFBmUOXcXpXceXQtj1riwK-xwtLtf
-0Qucilk3mbRTnf89Vo6ritIBonjARNRcYl5fuKELAWdhVPP8F5RNSGTKxvyBrtVWJlp_1
-QkarsxEET5l74JmgKCarzX1ySWYLn2jHBvXUAOMdiFV29oTt7vIp8zrD9XapZzMMWKBI8
-LpqDF5lL1wgn28b1XsnjYRy0AzG_F7L1TfWozdWcNSjDvzM_wACLIpGwchw2ijpjJLuR2
-zIOqaU_vE9ZOwbQ3FBPTf7flDOdgCg1OkIHmhF6yWMh4_GYg3iuHe8-__UdxI_-B1jqUY
-oA0_EDINpvmvUoa_zTI1KYAeIBpxYmg5wGBYKOtFh-kDwZlBz3-Y3-uPqTURzHvnoTAhf
-gJ8qtiVEqlh3-V7jo1jW0-Q2NSv8hNxj9K6O3ObgAkhV7N1pusAHR4Su_NM0CWLKD-8zn
-pnq7BbeTvqGVRnzvCHGeqWOjTtBWo9v8S3ge4
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.maEyD9RwE5mNBIazlofcjNpi5RbPajmRXcVvY34x
+0ZjUYsuvHmTIq3EhN3GAsOFVs8CkFccon774ObBxAZbmlnRWnlNgkz8wGmXodD9rZSM3i
+T0rTB_tLKI-yhtZKYVktRsxMysh5EkotzblGj7ptSUN28AK_Ikamvq-MS6IEQqn8BZ69A
+guCbOthmzA7jIaU1WcnNU5ZVx_NPMHXDSpfkcl3ZQ99F7CtrzZSuPtRnJMAhPC4gRC4hJ
+-mca1yawlkQfdXGUdId3FsDl-s99Hjg5mLYh8VrPK6_r3W4Fl7KzCXoai4vDfi48H5T6u
+q3K6auvKS4feoKQgzIk9qxvqup20otTbskUsWXQejT4_bqAhminVn7wBuK5v5_kbDbqOS
+oXTeuRMst2pge67YCPFhkejEDp1IyLy4c6lbHzqxgtzsUo-qQnC05D57U6PSwM4ND4idT
+kbAKV3RXqmQASaD_nr2nGnsAqeZggc3-_xxu8
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -1956,14 +1957,14 @@ pnq7BbeTvqGVRnzvCHGeqWOjTtBWo9v8S3ge4
     null
   ],
   "proof": [
-    "qbAuwh91u6dVFBmUOXcXpXceXQtj1riwK-xwtLtf0Qucilk3mbRTnf89Vo6ritIB
-       onjARNRcYl5fuKELAWdhVPP8F5RNSGTKxvyBrtVWJlp_1QkarsxEET5l74JmgK
-       CarzX1ySWYLn2jHBvXUAOMdiFV29oTt7vIp8zrD9XapZzMMWKBI8LpqDF5lL1w
-       gn28b1XsnjYRy0AzG_F7L1TfWozdWcNSjDvzM_wACLIpGwchw2ijpjJLuR2zIO
-       qaU_vE9ZOwbQ3FBPTf7flDOdgCg1OkIHmhF6yWMh4_GYg3iuHe8-__UdxI_-B1
-       jqUYoA0_EDINpvmvUoa_zTI1KYAeIBpxYmg5wGBYKOtFh-kDwZlBz3-Y3-uPqT
-       URzHvnoTAhfgJ8qtiVEqlh3-V7jo1jW0-Q2NSv8hNxj9K6O3ObgAkhV7N1pusA
-       HR4Su_NM0CWLKD-8znpnq7BbeTvqGVRnzvCHGeqWOjTtBWo9v8S3ge4"
+    "maEyD9RwE5mNBIazlofcjNpi5RbPajmRXcVvY34x0ZjUYsuvHmTIq3EhN3GAsOFV
+       s8CkFccon774ObBxAZbmlnRWnlNgkz8wGmXodD9rZSM3iT0rTB_tLKI-yhtZKY
+       VktRsxMysh5EkotzblGj7ptSUN28AK_Ikamvq-MS6IEQqn8BZ69AguCbOthmzA
+       7jIaU1WcnNU5ZVx_NPMHXDSpfkcl3ZQ99F7CtrzZSuPtRnJMAhPC4gRC4hJ-mc
+       a1yawlkQfdXGUdId3FsDl-s99Hjg5mLYh8VrPK6_r3W4Fl7KzCXoai4vDfi48H
+       5T6uq3K6auvKS4feoKQgzIk9qxvqup20otTbskUsWXQejT4_bqAhminVn7wBuK
+       5v5_kbDbqOSoXTeuRMst2pge67YCPFhkejEDp1IyLy4c6lbHzqxgtzsUo-qQnC
+       05D57U6PSwM4ND4idTkbAKV3RXqmQASaD_nr2nGnsAqeZggc3-_xxu8"
   ]
 }
 
