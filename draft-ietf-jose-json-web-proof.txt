@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 23 April 2025                            Self-Issued Consulting
+Expires: 24 April 2025                            Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                         20 October 2024
+                                                         21 October 2024
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 April 2025.
+   This Internet-Draft will expire on 24 April 2025.
 
 Copyright Notice
 
@@ -772,17 +772,17 @@ Table of Contents
    by a . character.  The concatenated payloads MAY be omitted if the
    application is using detached payloads.
 
-   eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlL
-   mNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWU
-   yaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYw
-   MA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.hwycJ8jPyKFNAVKQ8T76M7KUJumjQ44b
-   MEdKu3iPIJEkk1VHxelsVDm7lJRm7Pu1i-QN_8tOzA_44GwFSe9ZO9WpYmKrEi9DTJkSl
-   ciKJ3ac-0U7lYzgKj9a3j4qLxD1qGf9b4F_kqYerNtyr1TUrbIe1vmYqHvt8TjjTV58G3
-   YTVcH0RqJFHr7RvF_bnFIyUpX12D5Z8TVEYCSeRxoM2hdthu-HMVCFTLot-V6_vt4bQfg
-   3Ew6vLUxgWJMa-AoduzPVTyZxkDIpuqsdNWarEDlFx5WvYXGWGtembxAYZnerqvD7Zg_k
-   j93t_VD69PkDJkiIhxneC0Wya6I4GlyqBQ4ZDBLZzfUoFBqFBThKySY9Ilgvt6KnLYpTd
-   eP8OMe28BB39Lt_0wINECEm-Ipyfz9dEC5xYZbAN5aYnM01h6vTuvfBaqa-UvX1I4ouWd
-   QKHZ_SGqSTS6H3maWleOgLLCVxFSKSE17f7yy3qbJsLE4
+   eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
+   m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
+   UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qbAuwh91u6dVFBmUOXcXpXceXQtj1riwK-xwtLtf
+   0Qucilk3mbRTnf89Vo6ritIBonjARNRcYl5fuKELAWdhVPP8F5RNSGTKxvyBrtVWJlp_1
+   QkarsxEET5l74JmgKCarzX1ySWYLn2jHBvXUAOMdiFV29oTt7vIp8zrD9XapZzMMWKBI8
+   LpqDF5lL1wgn28b1XsnjYRy0AzG_F7L1TfWozdWcNSjDvzM_wACLIpGwchw2ijpjJLuR2
+   zIOqaU_vE9ZOwbQ3FBPTf7flDOdgCg1OkIHmhF6yWMh4_GYg3iuHe8-__UdxI_-B1jqUY
+   oA0_EDINpvmvUoa_zTI1KYAeIBpxYmg5wGBYKOtFh-kDwZlBz3-Y3-uPqTURzHvnoTAhf
+   gJ8qtiVEqlh3-V7jo1jW0-Q2NSv8hNxj9K6O3ObgAkhV7N1pusAHR4Su_NM0CWLKD-8zn
+   pnq7BbeTvqGVRnzvCHGeqWOjTtBWo9v8S3ge4
 
    |  Figure: Compact Serialization of Presentation
 
@@ -819,8 +819,8 @@ Table of Contents
    payloads hidden.
 
    {
-     "presentation": "eyJhbGciOiJCQlMtUFJPT0YiLCJhdWQiOiJodHRwczovL3JlY2
-          lwaWVudC5leGFtcGxlLmNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ",
+     "presentation": "eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC
+          5leGFtcGxlLmNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ",
      "issuer": "eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRu
           RXhSMERValU4IiwiYWxnIjoiQkJTIn0",
      "payloads": [
@@ -833,14 +833,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "hwycJ8jPyKFNAVKQ8T76M7KUJumjQ44bMEdKu3iPIJEkk1VHxelsVDm7lJRm7Pu1
-          i-QN_8tOzA_44GwFSe9ZO9WpYmKrEi9DTJkSlciKJ3ac-0U7lYzgKj9a3j4qLx
-          D1qGf9b4F_kqYerNtyr1TUrbIe1vmYqHvt8TjjTV58G3YTVcH0RqJFHr7RvF_b
-          nFIyUpX12D5Z8TVEYCSeRxoM2hdthu-HMVCFTLot-V6_vt4bQfg3Ew6vLUxgWJ
-          Ma-AoduzPVTyZxkDIpuqsdNWarEDlFx5WvYXGWGtembxAYZnerqvD7Zg_kj93t
-          _VD69PkDJkiIhxneC0Wya6I4GlyqBQ4ZDBLZzfUoFBqFBThKySY9Ilgvt6KnLY
-          pTdeP8OMe28BB39Lt_0wINECEm-Ipyfz9dEC5xYZbAN5aYnM01h6vTuvfBaqa-
-          UvX1I4ouWdQKHZ_SGqSTS6H3maWleOgLLCVxFSKSE17f7yy3qbJsLE4"
+       "qbAuwh91u6dVFBmUOXcXpXceXQtj1riwK-xwtLtf0Qucilk3mbRTnf89Vo6ritIB
+          onjARNRcYl5fuKELAWdhVPP8F5RNSGTKxvyBrtVWJlp_1QkarsxEET5l74JmgK
+          CarzX1ySWYLn2jHBvXUAOMdiFV29oTt7vIp8zrD9XapZzMMWKBI8LpqDF5lL1w
+          gn28b1XsnjYRy0AzG_F7L1TfWozdWcNSjDvzM_wACLIpGwchw2ijpjJLuR2zIO
+          qaU_vE9ZOwbQ3FBPTf7flDOdgCg1OkIHmhF6yWMh4_GYg3iuHe8-__UdxI_-B1
+          jqUYoA0_EDINpvmvUoa_zTI1KYAeIBpxYmg5wGBYKOtFh-kDwZlBz3-Y3-uPqT
+          URzHvnoTAhfgJ8qtiVEqlh3-V7jo1jW0-Q2NSv8hNxj9K6O3ObgAkhV7N1pusA
+          HR4Su_NM0CWLKD-8znpnq7BbeTvqGVRnzvCHGeqWOjTtBWo9v8S3ge4"
      ]
    }
 
