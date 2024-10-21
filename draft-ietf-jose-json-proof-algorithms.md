@@ -855,9 +855,12 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   [[ To be removed from the final specification ]]
 
- -latest
+ -07
 
   * Changing primary editor
+  * Update registry template for algorithms to account for integer
+    CBOR labels
+  * Restylize initial registry entries for readability
   * Defer BBS key definition to [@I-D.ietf-cose-bls-key-representations]
   * Modify example generation to use `proof_key` and `presentation_key` names
   * Change `proof_jwk` to `proof_key` and `presentation_jwk` to

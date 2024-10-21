@@ -1038,9 +1038,22 @@ for his valuable contributions to this specification.
 
   [[ To be removed from the final specification ]]
 
- -latest
+ -07
 
   * Changing primary editor
+  * Broad changes to define a CBOR serialization, which leverage
+    new CBOR Protected Headers
+  * Deemphasis of JSON in some parts of the document to represent
+    CBOR alternatives
+  * Rewrite Header Parameter parsing requirements for JSON to
+    emphasize preference to fail on duplicate headers (to match
+    CBOR behavior). Last-encountered remains as an option to match
+    ECMA definition.
+  * Add option to use CoAP Formats for `typ` in CBOR mode to match
+    COSE, as a compact indirection over full media types.
+  * Modify IANA registry template to account for CBOR Labels in
+    header parameters
+  * Add application/jwp+cbor media type
   * Modify example generation to use `proof_key` and `presentation_key` names
   * Change `proof_jwk` to `proof_key` and `presentation_jwk` to
     `presentation_key` to better represent that the key may be JSON
