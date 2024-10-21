@@ -382,14 +382,20 @@ Use of this Header Parameter is OPTIONAL.
 
 ### "nonce" (Nonce) Header Parameter {#nonceDef}
 
-> Editor's note: Need to resolve the difference between nonce in CBOR and JSON caused by EATS
+The `nonce` (nonce) Header Parameter is used to associate protocol
+state with a presented JWP. Usage is protocol-specific, but examples
+include requiring a unique nonce in requests as part of a strategy to
+prevent replay, or for associating a JWP back to the context where
+it was requested.
 
-The `nonce` (nonce) Header Parameter is a case-sensitive string value
-used to associate protocol state with a JWP.
-This can be used, for instance, to mitigate replay attacks.
-The use of nonce values is generally protocol specific.
-Its definition is intentionally parallel to the `nonce` claim
+When used as a JSON Protected Header, the value is a case-sensitive
+string value.
+
+When used as a CBOR Protected Header, the value is a binary string.
+
+This definition is intentionally parallel to the `nonce` claim
 registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).
+
 Use of this Header Parameter is OPTIONAL.
 
 ### "claims" (Claims) Header Parameter {#claimsDef}
