@@ -215,9 +215,7 @@ This algorithm supports both selective disclosure and unlinkability, enabling th
 
 ### JPA Algorithms {#BBS-registration}
 
-The `BBS` `alg` parameter value in the issuance protected header corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_`.
-
-The `BBS-PROOF` `alg` parameter value in the presentation protected header corresponds to the same ciphersuite, but used in presentation form.
+The `BBS` algorithm corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_`.
 
 ### Key Format
 
@@ -533,19 +531,7 @@ Algorithm Analysis Documents(s):
 * Algorithm JSON Label: `BBS`
 * Algorithm CBOR Label: 4
 * Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
-* Algorithm Usage Location(s): Issued
-* JWP Implementation Requirements: Required
-* Change Controller: IETF
-* Specification Document(s): (#BBS-registration) of this specification
-* Algorithm Analysis Documents(s): n/a
-
-#### BBS Proof using SHA-256 Algorithm
-
-* Algorithm Name: BBS Proof with SHA-256
-* Algorithm JSON Label: `BBS-PROOF`
-* Algorithm CBOR Label: 5
-* Algorithm Description: Corresponds to a ciphersuite identifier of `BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_`
-* Algorithm Usage Location(s): Presented
+* Algorithm Usage Location(s): Issued, Presented
 * JWP Implementation Requirements: Required
 * Change Controller: IETF
 * Specification Document(s): (#BBS-registration) of this specification
@@ -555,7 +541,7 @@ Algorithm Analysis Documents(s):
 
 * Algorithm Name: MAC-H256
 * Algorithm JSON Label: `MAC-H256`
-* Algorithm CBOR Label: 6
+* Algorithm CBOR Label: 5
 * Algorithm Description: `MAC-H256` uses `HMAC SHA-256` as the MAC,
   and `ECDSA using P-256 and SHA-256` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
@@ -568,7 +554,7 @@ Algorithm Analysis Documents(s):
 
 * Algorithm Name: MAC-H384
 * Algorithm JSON Label: `MAC-H384`
-* Algorithm CBOR Label: 7
+* Algorithm CBOR Label: 6
 * Algorithm Description: `MAC-H384` uses `HMAC SHA-384` as the MAC,
   and `ECDSA using P-384 and SHA-384` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
@@ -581,7 +567,7 @@ Algorithm Analysis Documents(s):
 
 * Algorithm Name: MAC-H512
 * Algorithm JSON Label: `MAC-H512`
-* Algorithm CBOR Label: 8
+* Algorithm CBOR Label: 7
 * Algorithm Description: `MAC-H512` uses `HMAC SHA-512` as the MAC,
   and `ECDSA using P-521 and SHA-512` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
@@ -594,7 +580,7 @@ Algorithm Analysis Documents(s):
 
 * Algorithm Name: MAC-K25519
 * Algorithm JSON Label: `MAC-K25519`
-* Algorithm CBOR Label: 9
+* Algorithm CBOR Label: 8
 * Algorithm Description: `MAC-K25519` uses `KMAC SHAKE128` as the
   MAC, and `EdDSA using Curve25519` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
@@ -607,7 +593,7 @@ Algorithm Analysis Documents(s):
 
 * Algorithm Name: MAC-K448
 * Algorithm JSON Label: `MAC-K448`
-* Algorithm CBOR Label: 10
+* Algorithm CBOR Label: 9
 * Algorithm Description: `MAC-K448` uses `KMAC SHAKE256` as the MAC,
   and `EdDSA using Curve448` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
@@ -620,7 +606,7 @@ Algorithm Analysis Documents(s):
 
 * Algorithm Name: MAC-H256K
 * Algorithm JSON Label: `MAC-H256K`
-* Algorithm CBOR Label: 11
+* Algorithm CBOR Label: 10
 * Algorithm Description: `MAC-H256K` uses `HMAC SHA-256` as the MAC,
   and `ECDSA using secp256k1 and SHA-256` for the signatures
 * Algorithm Usage Location(s): Issued, Presented
@@ -880,6 +866,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
   * Moved the registry for `proof_key` and `presentation_key` to JWP
     where they are defined. Consolidated usage, purpose and
     requirements from algorith musage under these definitions.
+  * Combined `BBS-PROOF` into `BBS`
 
  -06
 
