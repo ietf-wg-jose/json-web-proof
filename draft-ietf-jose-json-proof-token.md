@@ -224,7 +224,7 @@ for his valuable contributions to this specification.
 
   [[ To be removed from the final specification ]]
 
- -latest
+ -07
 
   * Changing primary editor
   * Move `claims` definition from JWP, to live beside `cid`
