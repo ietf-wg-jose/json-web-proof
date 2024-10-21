@@ -84,7 +84,6 @@ Table of Contents
        4.2.7.  "iss" (Issuer) Header Parameter
        4.2.8.  "aud" (Audience) Header Parameter
        4.2.9.  "nonce" (Nonce) Header Parameter
-       4.2.10. "claims" (Claims) Header Parameter
      4.3.  Public Header Parameter Names
      4.4.  Private Header Parameter Names
    5.  JWP Forms
@@ -114,9 +113,8 @@ Table of Contents
          10.1.2.5.  Issuer Header Parameter
          10.1.2.6.  Audience Header Parameter
          10.1.2.7.  Nonce Header Parameter
-         10.1.2.8.  Claims Header Parameter
-         10.1.2.9.  Proof Key Header Parameter
-         10.1.2.10. Presentation Key Header Parameter
+         10.1.2.8.  Proof Key Header Parameter
+         10.1.2.9.  Presentation Key Header Parameter
      10.2.  Media Type Registration
        10.2.1.  Registry Contents
          10.2.1.1.  The application/jwp Media Type
@@ -542,13 +540,6 @@ Table of Contents
 
    Use of this Header Parameter is OPTIONAL.
 
-4.2.10.  "claims" (Claims) Header Parameter
-
-   The claims Header Parameter is an array listing the Claim Names
-   corresponding to the JWP payloads, in the same order as the payloads.
-   Each array value is a Claim Name, as defined in [RFC7519].  Use of
-   this Header Parameter is OPTIONAL.
-
 4.3.  Public Header Parameter Names
 
    Additional Header Parameter names can be defined by those using JWPs.
@@ -781,14 +772,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.maEyD9RwE5mNBIazlofcjNpi5RbPajmRXcVvY34x
-   0ZjUYsuvHmTIq3EhN3GAsOFVs8CkFccon774ObBxAZbmlnRWnlNgkz8wGmXodD9rZSM3i
-   T0rTB_tLKI-yhtZKYVktRsxMysh5EkotzblGj7ptSUN28AK_Ikamvq-MS6IEQqn8BZ69A
-   guCbOthmzA7jIaU1WcnNU5ZVx_NPMHXDSpfkcl3ZQ99F7CtrzZSuPtRnJMAhPC4gRC4hJ
-   -mca1yawlkQfdXGUdId3FsDl-s99Hjg5mLYh8VrPK6_r3W4Fl7KzCXoai4vDfi48H5T6u
-   q3K6auvKS4feoKQgzIk9qxvqup20otTbskUsWXQejT4_bqAhminVn7wBuK5v5_kbDbqOS
-   oXTeuRMst2pge67YCPFhkejEDp1IyLy4c6lbHzqxgtzsUo-qQnC05D57U6PSwM4ND4idT
-   kbAKV3RXqmQASaD_nr2nGnsAqeZggc3-_xxu8
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.uQGaS2sFN2h1OcC4ugDqT8U2NzebWvI_lZm2XHMt
+   5w9G_Nyo9m1sq04crwwQATitpqkyhLAXpdvIfuPGRBZEbVFdvJ6hJDA214YWw_WxH_9jP
+   iVxmTJt6AjCLwEDlQCjgcTLXcDPF4EddU6ZDnOUh2lstOsQNQtiYgF4WE-gaOkC4XY1ed
+   doudbcNVwZfjuraPwcAvK3NulGE7Y38IaMttFZE18Ekt1eHnnZzN-nOusJkaloGXsaKAI
+   1DD7CKJ4qh4Ujt9Kz1hAthotizPSUxWcVNJDUDKd4v4nZf2SvJuhlolc0Ym8rLlyDKrrD
+   GssENTFpfzXzpciOlEDj4xtSyddFw3PxEn512eQzrE0qz1EVhXR9EBw_JjJAroCeRNCSA
+   dSFDzz2qG1MthVzx8ZWYj_hWRczEy3G6Qjua3MKhifuHvIuaS2hfroqzut1HNDiaMbNGx
+   U7pONVWiu2KWXp7YPVL6OPno3e-ipT7EbyjJs
 
    |  Figure: Compact Serialization of Presentation
 
@@ -839,14 +830,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "maEyD9RwE5mNBIazlofcjNpi5RbPajmRXcVvY34x0ZjUYsuvHmTIq3EhN3GAsOFV
-          s8CkFccon774ObBxAZbmlnRWnlNgkz8wGmXodD9rZSM3iT0rTB_tLKI-yhtZKY
-          VktRsxMysh5EkotzblGj7ptSUN28AK_Ikamvq-MS6IEQqn8BZ69AguCbOthmzA
-          7jIaU1WcnNU5ZVx_NPMHXDSpfkcl3ZQ99F7CtrzZSuPtRnJMAhPC4gRC4hJ-mc
-          a1yawlkQfdXGUdId3FsDl-s99Hjg5mLYh8VrPK6_r3W4Fl7KzCXoai4vDfi48H
-          5T6uq3K6auvKS4feoKQgzIk9qxvqup20otTbskUsWXQejT4_bqAhminVn7wBuK
-          5v5_kbDbqOSoXTeuRMst2pge67YCPFhkejEDp1IyLy4c6lbHzqxgtzsUo-qQnC
-          05D57U6PSwM4ND4idTkbAKV3RXqmQASaD_nr2nGnsAqeZggc3-_xxu8"
+       "uQGaS2sFN2h1OcC4ugDqT8U2NzebWvI_lZm2XHMt5w9G_Nyo9m1sq04crwwQATit
+          pqkyhLAXpdvIfuPGRBZEbVFdvJ6hJDA214YWw_WxH_9jPiVxmTJt6AjCLwEDlQ
+          CjgcTLXcDPF4EddU6ZDnOUh2lstOsQNQtiYgF4WE-gaOkC4XY1eddoudbcNVwZ
+          fjuraPwcAvK3NulGE7Y38IaMttFZE18Ekt1eHnnZzN-nOusJkaloGXsaKAI1DD
+          7CKJ4qh4Ujt9Kz1hAthotizPSUxWcVNJDUDKd4v4nZf2SvJuhlolc0Ym8rLlyD
+          KrrDGssENTFpfzXzpciOlEDj4xtSyddFw3PxEn512eQzrE0qz1EVhXR9EBw_Jj
+          JAroCeRNCSAdSFDzz2qG1MthVzx8ZWYj_hWRczEy3G6Qjua3MKhifuHvIuaS2h
+          froqzut1HNDiaMbNGxU7pONVWiu2KWXp7YPVL6OPno3e-ipT7EbyjJs"
      ]
    }
 
@@ -1114,29 +1105,20 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.9 of this specification
 
-10.1.2.8.  Claims Header Parameter
-
-   *  Header Parameter Name: Claims
-   *  Header Parameter JSON Label: claims
-   *  Header Parameter CBOR Label: 8
-   *  Header Parameter Usage Location(s): Issued
-   *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.10 of this specification
-
-10.1.2.9.  Proof Key Header Parameter
+10.1.2.8.  Proof Key Header Parameter
 
    *  Header Parameter Name: Proof Key
    *  Header Parameter JSON Label: proof_key
-   *  Header Parameter CBOR Label: 9
+   *  Header Parameter CBOR Label: 8
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.5 of this specification
 
-10.1.2.10.  Presentation Key Header Parameter
+10.1.2.9.  Presentation Key Header Parameter
 
    *  Header Parameter Name: Presentation Key
    *  Header Parameter JSON Label: presentation_key
-   *  Header Parameter CBOR Label: 10
+   *  Header Parameter CBOR Label: 9
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.6 of this specification
@@ -1402,6 +1384,8 @@ Appendix B.  Document History
    *  Clarified that proof_key and presentation_key are required by
       particular algorithms and are not more generally required for
       issued and presented JWPs.
+   *  Move claims to JPT to live beside cid, and renumber CBOR labels so
+      that they may be adjacent
 
    -06
 

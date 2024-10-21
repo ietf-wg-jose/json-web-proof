@@ -1153,7 +1153,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-claim-names" class="internal xref">Claim Names</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-claims" class="internal xref">Claims</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-claims-header-parameter" class="internal xref">Claims Header Parameter</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-claims-id-cid-jwp-header-pa" class="internal xref">Claims ID ("cid") JWP Header Parameter</a></p>
@@ -1188,7 +1188,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.11.2.1.2.1.1"><a href="#section-11.1.1" class="auto internal xref">11.1.1</a>.  <a href="#name-registry-contents" class="internal xref">Registry Contents</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1.2.1.2.1">
-                        <p id="section-toc.1-1.11.2.1.2.1.2.1.1"><a href="#section-11.1.1.1" class="auto internal xref">11.1.1.1</a>.  <a href="#name-claims-id-header-parameter" class="internal xref">Claims ID Header Parameter</a></p>
+                        <p id="section-toc.1-1.11.2.1.2.1.2.1.1"><a href="#section-11.1.1.1" class="auto internal xref">11.1.1.1</a>.  <a href="#name-claims-claims-header-parame" class="internal xref">"claims" (Claims) Header Parameter</a></p>
+</li>
+                      <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1.2.1.2.2">
+                        <p id="section-toc.1-1.11.2.1.2.1.2.2.1"><a href="#section-11.1.1.2" class="auto internal xref">11.1.1.2</a>.  <a href="#name-cid-claims-id-header-parame" class="internal xref">"cid" (Claims ID) Header Parameter</a></p>
 </li>
                     </ul>
 </li>
@@ -1300,17 +1303,21 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-5-1">It is RECOMMENDED that the claim names used with JPTs come from those in the IANA JSON Web Token Claims Registry <span>[<a href="#IANA.JWT.Claims" class="cite xref">IANA.JWT.Claims</a>]</span> established by <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>, when those fit the application's needs.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="claims">
+<div id="claimsDef">
 <section id="section-6">
-      <h2 id="name-claims">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-claims" class="section-name selfRef">Claims</a>
+      <h2 id="name-claims-header-parameter">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-claims-header-parameter" class="section-name selfRef">Claims Header Parameter</a>
       </h2>
-<p id="section-6-1">A JSON Proof Token assigns each playload a claim name. Payloads MUST each have a negotiated and understood claim name within the application context. The simplest solution to establish payload claim names is as an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the Issuer Protected Header using the <code>claims</code> key.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">All payloads are claim values and MUST be the base64url encoding of the UTF-8 representation of a JSON value.
+<p id="section-6-1">A JSON Proof Token assigns each playload a claim name. Payloads MUST each have a negotiated and understood claim name within the application context. The simplest solution to establish payload claim names is as an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the Claims header parameter.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The <code>claims</code> Header Parameter is an array listing the Claim Names
+corresponding to the JWP payloads, in the same order as the payloads.
+Each array value is a Claim Name, as defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.
+Use of this Header Parameter is OPTIONAL.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">All payloads are claim values and MUST be the base64url encoding of the UTF-8 representation of a JSON value.
 That said, predicate proofs derived from payload values are not represented as claims;
-they are contained in the presentation proof using algorithm-specific representations.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">The following is an example JWP Issuer Protected Header that includes a claims property:<a href="#section-6-3" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-6-4">
+they are contained in the presentation proof using algorithm-specific representations.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">The following is an example JWP Issuer Protected Header that includes a claims property:<a href="#section-6-4" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-6-5">
 <pre>{
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
   "alg": "BBS",
@@ -1325,9 +1332,9 @@ they are contained in the presentation proof using algorithm-specific representa
   ]
 }
 
-</pre><a href="#section-6-4" class="pilcrow">¶</a>
+</pre><a href="#section-6-5" class="pilcrow">¶</a>
 </div>
-<p id="section-6-5">In this example, the "iat" and "exp" would be JSON-formatted numbers, "family_name", "given_name" and "email" would be JSON strings (in quotes), "address" would be a JSON object and "age_over_21" would be expected to be either <code>true</code> or <code>false</code>.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">In this example, the "iat" and "exp" would be JSON-formatted numbers, "family_name", "given_name" and "email" would be JSON strings (in quotes), "address" would be a JSON object and "age_over_21" would be expected to be either <code>true</code> or <code>false</code>.<a href="#section-6-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="cidDef">
@@ -1335,22 +1342,22 @@ they are contained in the presentation proof using algorithm-specific representa
       <h2 id="name-claims-id-cid-jwp-header-pa">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-claims-id-cid-jwp-header-pa" class="section-name selfRef">Claims ID ("cid") JWP Header Parameter</a>
       </h2>
-<p id="section-7-1">A Claims ID ("cid") value can be used as an identifier for a set of claim names without explicitly listing them.
-The structure of the <code>cid</code> value is unspecified.
+<p id="section-7-1">A Claims ID ("cid") value can be used as an identifier for a set of claim names without explicitly listing them.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The structure of the <code>cid</code> value is unspecified.
 Its value MUST be a case-sensitive string.
-Use of this JWP Header Parameter is OPTIONAL.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">The <code>cid</code> can be used similarly to a <code>kid</code> in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">If there is an associated JWK containing the signing key information, the <code>claims</code> key is also registered there as a convenient location for the claim names.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">When the claims array is transferred as a property in the Issuer Protected Header, any variations of that array between JWP will be visible to the verifier, and can leak information about the subject or provide an additional vector for linkability.  Given the privacy design considerations around linkability, it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">The following is an example JWP Protected Header that includes a <code>cid</code>:<a href="#section-7-5" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-7-6">
+Use of this JWP Header Parameter is OPTIONAL.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">The <code>cid</code> can be used similarly to a <code>kid</code> in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">If there is an associated JWK containing the signing key information, the <code>claims</code> key is also registered there as a convenient location for the claim names.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5">When the claims array is transferred as a property in the Issuer Protected Header, any variations of that array between JWP will be visible to the verifier, and can leak information about the subject or provide an additional vector for linkability.  Given the privacy design considerations around linkability, it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.<a href="#section-7-5" class="pilcrow">¶</a></p>
+<p id="section-7-6">The following is an example JWP Protected Header that includes a <code>cid</code>:<a href="#section-7-6" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-7-7">
 <pre>{
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
   "alg": "BBS",
   "cid": "guA8PAI14Gkn4273f1rR606yMbRMFg4y"
 }
 
-</pre><a href="#section-7-6" class="pilcrow">¶</a>
+</pre><a href="#section-7-7" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -1446,21 +1453,44 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
           <h4 id="name-registry-contents">
 <a href="#section-11.1.1" class="section-number selfRef">11.1.1. </a><a href="#name-registry-contents" class="section-name selfRef">Registry Contents</a>
           </h4>
-<div id="claims-id-header-parameter">
+<div id="claims-claims-header-parameter">
 <section id="section-11.1.1.1">
-            <h5 id="name-claims-id-header-parameter">
-<a href="#section-11.1.1.1" class="section-number selfRef">11.1.1.1. </a><a href="#name-claims-id-header-parameter" class="section-name selfRef">Claims ID Header Parameter</a>
+            <h5 id="name-claims-claims-header-parame">
+<a href="#section-11.1.1.1" class="section-number selfRef">11.1.1.1. </a><a href="#name-claims-claims-header-parame" class="section-name selfRef">"claims" (Claims) Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-11.1.1.1-1.1">Header Parameter Name: <code>cid</code><a href="#section-11.1.1.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-11.1.1.1-1.1">Header Parameter Name: Claims<a href="#section-11.1.1.1-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-11.1.1.1-1.2">Header Parameter Description: Claims ID<a href="#section-11.1.1.1-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-11.1.1.1-1.2">Header Parameter JSON Label: <code>claims</code><a href="#section-11.1.1.1-1.2" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-11.1.1.1-1.3">Header Parameter Usage Location(s): Issued, Presented<a href="#section-11.1.1.1-1.3" class="pilcrow">¶</a>
+              <li class="compact" id="section-11.1.1.1-1.3">Header Parameter CBOR Label: 10<a href="#section-11.1.1.1-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-11.1.1.1-1.4">Change Controller: IETF<a href="#section-11.1.1.1-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-11.1.1.1-1.4">Header Parameter Usage Location(s): Issued<a href="#section-11.1.1.1-1.4" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-11.1.1.1-1.5">Specification Document(s): <a href="#cidDef" class="auto internal xref">Section 7</a> of this specification<a href="#section-11.1.1.1-1.5" class="pilcrow">¶</a>
+              <li class="compact" id="section-11.1.1.1-1.5">Change Controller: IETF<a href="#section-11.1.1.1-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-11.1.1.1-1.6">Specification Document(s): <a href="#claimsDef" class="auto internal xref">Section 6</a> of this specification<a href="#section-11.1.1.1-1.6" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
+<div id="cid-claims-id-header-parameter">
+<section id="section-11.1.1.2">
+            <h5 id="name-cid-claims-id-header-parame">
+<a href="#section-11.1.1.2" class="section-number selfRef">11.1.1.2. </a><a href="#name-cid-claims-id-header-parame" class="section-name selfRef">"cid" (Claims ID) Header Parameter</a>
+            </h5>
+<ul class="compact">
+<li class="compact" id="section-11.1.1.2-1.1">Header Parameter Name: Claims ID<a href="#section-11.1.1.2-1.1" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-11.1.1.2-1.2">Header Parameter JSON Label: <code>cid</code><a href="#section-11.1.1.2-1.2" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-11.1.1.2-1.3">Header Parameter CBOR Label: 11<a href="#section-11.1.1.2-1.3" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-11.1.1.2-1.4">Header Parameter Usage Location(s): Issued<a href="#section-11.1.1.2-1.4" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-11.1.1.2-1.5">Change Controller: IETF<a href="#section-11.1.1.2-1.5" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-11.1.1.2-1.6">Specification Document(s): <a href="#cidDef" class="auto internal xref">Section 7</a> of this specification<a href="#section-11.1.1.2-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
@@ -1534,6 +1564,10 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <p id="appendix-B-2">-latest<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="appendix-B-3.1">Changing primary editor<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.2">Move <code>claims</code> definition from JWP, to live beside <code>cid</code><a href="#appendix-B-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.3">Update <code>cid</code> registry entry to assign CBOR label<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-06<a href="#appendix-B-4" class="pilcrow">¶</a></p>
