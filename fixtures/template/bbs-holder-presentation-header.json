@@ -1,5 +1,5 @@
 {
-    "alg": "BBS-PROOF",
+    "alg": "BBS",
     "aud": "https://recipient.example.com",
     "nonce": "wrmBRkKtXjQ"
 }
