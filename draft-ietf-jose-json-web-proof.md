@@ -398,13 +398,6 @@ registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).
 
 Use of this Header Parameter is OPTIONAL.
 
-### "claims" (Claims) Header Parameter {#claimsDef}
-
-The `claims` Header Parameter is an array listing the Claim Names
-corresponding to the JWP payloads, in the same order as the payloads.
-Each array value is a Claim Name, as defined in [@!RFC7519].
-Use of this Header Parameter is OPTIONAL.
-
 ## Public Header Parameter Names {#PublicHeaderParameterName}
 
 Additional Header Parameter names can be defined by those
@@ -815,20 +808,11 @@ This section registers the Header Parameters defined in
 * Change Controller: IETF
 * Specification Document(s): (#nonceDef) of this specification
 
-#### Claims Header Parameter
-
-* Header Parameter Name: Claims
-* Header Parameter JSON Label: `claims`
-* Header Parameter CBOR Label: 8
-* Header Parameter Usage Location(s): Issued
-* Change Controller: IETF
-* Specification Document(s): (#claimsDef) of this specification
-
 #### Proof Key Header Parameter
 
 * Header Parameter Name: Proof Key
 * Header Parameter JSON Label: `proof_key`
-* Header Parameter CBOR Label: 9
+* Header Parameter CBOR Label: 8
 * Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
 * Specification Document(s): (#proof_keyDef) of this specification
@@ -837,7 +821,7 @@ This section registers the Header Parameters defined in
 
 * Header Parameter Name: Presentation Key
 * Header Parameter JSON Label: `presentation_key`
-* Header Parameter CBOR Label: 10
+* Header Parameter CBOR Label: 9
 * Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
 * Specification Document(s): (#presentation_keyDef) of this specification
@@ -1067,6 +1051,8 @@ for his valuable contributions to this specification.
   * Clarified that `proof_key` and `presentation_key` are required
     by particular algorithms and are not more generally required for
     issued and presented JWPs.
+  * Move `claims` to JPT to live beside `cid`, and renumber CBOR
+    labels so that they may be adjacent
 
  -06
 

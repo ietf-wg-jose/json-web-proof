@@ -97,9 +97,14 @@ To generate a variety of efficient ZKPs of knowledge, range, membership, or othe
 
 It is RECOMMENDED that the claim names used with JPTs come from those in the IANA JSON Web Token Claims Registry [@IANA.JWT.Claims] established by [@!RFC7519], when those fit the application's needs.
 
-# Claims
+# Claims Header Parameter {#claimsDef}
 
-A JSON Proof Token assigns each playload a claim name. Payloads MUST each have a negotiated and understood claim name within the application context. The simplest solution to establish payload claim names is as an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the Issuer Protected Header using the `claims` key.
+A JSON Proof Token assigns each playload a claim name. Payloads MUST each have a negotiated and understood claim name within the application context. The simplest solution to establish payload claim names is as an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the Claims header parameter.
+
+The `claims` Header Parameter is an array listing the Claim Names
+corresponding to the JWP payloads, in the same order as the payloads.
+Each array value is a Claim Name, as defined in [@!RFC7519].
+Use of this Header Parameter is OPTIONAL.
 
 All payloads are claim values and MUST be the base64url encoding of the UTF-8 representation of a JSON value.
 That said, predicate proofs derived from payload values are not represented as claims;
@@ -114,6 +119,7 @@ In this example, the "iat" and "exp" would be JSON-formatted numbers, "family_na
 # Claims ID ("cid") JWP Header Parameter {#cidDef}
 
 A Claims ID ("cid") value can be used as an identifier for a set of claim names without explicitly listing them.
+
 The structure of the `cid` value is unspecified.
 Its value MUST be a case-sensitive string.
 Use of this JWP Header Parameter is OPTIONAL.
@@ -176,14 +182,23 @@ established by [@!I-D.ietf-jose-json-web-proof].
 
 ### Registry Contents {#HdrContents}
 
-#### Claims ID Header Parameter
+#### "claims" (Claims) Header Parameter
 
-* Header Parameter Name: `cid`
-* Header Parameter Description: Claims ID
-* Header Parameter Usage Location(s): Issued, Presented
+* Header Parameter Name: Claims
+* Header Parameter JSON Label: `claims`
+* Header Parameter CBOR Label: 10
+* Header Parameter Usage Location(s): Issued
+* Change Controller: IETF
+* Specification Document(s): (#claimsDef) of this specification
+
+#### "cid" (Claims ID) Header Parameter
+
+* Header Parameter Name: Claims ID
+* Header Parameter JSON Label: `cid`
+* Header Parameter CBOR Label: 11
+* Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
 * Specification Document(s): (#cidDef) of this specification
-
 
 {backmatter}
 
@@ -212,6 +227,8 @@ for his valuable contributions to this specification.
  -latest
 
   * Changing primary editor
+  * Move `claims` definition from JWP, to live beside `cid`
+  * Update `cid` registry entry to assign CBOR label
 
  -06
 
