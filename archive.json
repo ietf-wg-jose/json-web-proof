@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-20T00:54:03.216052+00:00",
+  "timestamp": "2024-10-22T00:50:16.065740+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2587,6 +2587,33 @@
       "updatedAt": "2024-07-21T17:11:25Z",
       "closedAt": "2024-07-21T17:11:25Z",
       "comments": []
+    },
+    {
+      "number": 143,
+      "id": "I_kwDOFsQObc6a-rvs",
+      "title": "Change `BBS-PROOF` to `BBS`",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/143",
+      "state": "CLOSED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite",
+        "selfissued"
+      ],
+      "labels": [],
+      "body": "No other algorithm currently divides naming for issued and presented form - recommend consolidating BBS and BBS-PROOF to a single value.",
+      "createdAt": "2024-10-20T07:27:57Z",
+      "updatedAt": "2024-10-21T21:16:36Z",
+      "closedAt": "2024-10-21T21:16:36Z",
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree with this change.",
+          "createdAt": "2024-10-20T18:14:17Z",
+          "updatedAt": "2024-10-20T18:14:17Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -8996,24 +9023,26 @@
       "id": "PR_kwDOFsQObc5_JIFy",
       "title": "Adding CBOR Headers and Serialization",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/140",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "First pass at what might be considered \"proper\" CBOR support.\r\n\r\nIncomplete list of tasks:\r\n\r\n- [ ] Algorithms registry to take into account numerical algorithm identifiers in CBOR\r\n- [ ] Nonce resolution due to rules added by EATS - do we keep the very different format requirements or adopt one/the other.\r\n- [ ] Additional editorial pass on the proof document\r\n- [ ] Align changes on each document\r\n- [ ] Change `proof_jwk` to `proof_key` and `presentation_jwk` to `presentation_key`\r\n- [ ] Change \"The compact serialiation provides a space-efficient encoding\" to \"The compact serialization provides a JSON-based space-efficient encoding\".\r\n- [x] Add the missing IANA.MediaTypes reference.\r\n\r\nGoal is to get this shared in advance for discussion/revision during 121. One overarching question is whether we try to further consolidate to have the headers have a consistent data model and rules, even if that means further deviating from JOSE rules for the similarly-named headers.",
+      "body": "First pass at what might be considered \"proper\" CBOR support.\r\n\r\nIncomplete list of tasks:\r\n\r\n- [x] Algorithms registry to take into account numerical algorithm identifiers in CBOR\r\n- [x] Nonce resolution due to rules added by EATS - do we keep the very different format requirements or adopt one/the other.\r\n- [x] Additional editorial pass on the proof document\r\n- [x] Align changes on each document\r\n- [x] Change `proof_jwk` to `proof_key` and `presentation_jwk` to `presentation_key` (see: #142 )\r\n- [x] Change \"The compact serialiation provides a space-efficient encoding\" to \"The compact serialization provides a JSON-based space-efficient encoding\".\r\n- [x] Add the missing IANA.MediaTypes reference.\r\n\r\nGoal is to get this shared in advance for discussion/revision during 121. One overarching question is whether we try to further consolidate to have the headers have a consistent data model and rules, even if that means further deviating from JOSE rules for the similarly-named headers.",
       "createdAt": "2024-10-18T20:22:36Z",
-      "updatedAt": "2024-10-19T23:56:35Z",
+      "updatedAt": "2024-10-21T04:52:12Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "21ead88ff9ed0bcbfec8aa031adb7daedcf66c2a",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "cbor-serialization",
-      "headRefOid": "ebdc0ba50f13bff14a02ae30c62bac58d842586b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "f22dbdb5c9212b44e56fa8d30e120b8e1fc7c742",
+      "closedAt": "2024-10-20T16:54:35Z",
+      "mergedAt": "2024-10-20T16:54:35Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "cbf9c4f86d1037b7b0f8fdbb03929e88aece603c"
+      },
       "comments": [],
       "reviews": [
         {
@@ -9508,6 +9537,19 @@
               "updatedAt": "2024-10-19T23:45:23Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N5OF9",
+          "commit": {
+            "abbreviatedOid": "f22dbdb"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-20T16:54:10Z",
+          "updatedAt": "2024-10-20T16:54:10Z",
+          "comments": []
         }
       ]
     },
@@ -9516,26 +9558,294 @@
       "id": "PR_kwDOFsQObc5_MjT_",
       "title": "Change primary editor",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/141",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Change primary editor from Jeremie Miller to David Waite, as discussed",
       "createdAt": "2024-10-19T23:40:54Z",
-      "updatedAt": "2024-10-19T23:40:54Z",
+      "updatedAt": "2024-10-20T16:46:52Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "21ead88ff9ed0bcbfec8aa031adb7daedcf66c2a",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "change-primary-editor",
       "headRefOid": "e3bbcaab8373fa0a3ea7fe37cd93c10683cb28ea",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-20T16:46:52Z",
+      "mergedAt": "2024-10-20T16:46:52Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "bc4633123e03c0919780ce24c46d55a94437f288"
+      },
       "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6N5N1s",
+          "commit": {
+            "abbreviatedOid": "e3bbcaa"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-20T16:46:47Z",
+          "updatedAt": "2024-10-20T16:46:47Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 142,
+      "id": "PR_kwDOFsQObc5_NZb0",
+      "title": "Change Issued JWK / Presented JWK Protected Headers",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/142",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "New headers instead describe Issued/Presented Keys as part of CBOR addition.\r\n\r\nThis resulted in a slightly larger change with some additional editorial cleanups.\r\n\r\n1. The Proof Key and Presented Key definitions were in JWP, while the registry was in JPA. Moved the registry to JWP.\r\n2. The text was simplified by referring to e.g. \"Proof Key protected header\" rather than \"the `proof_key` issuer protected header value\"\r\n3. Requirements and usage purpose information inline in the algorithms leveraging these header parameters were moved to JWP under the header definitions.\r\n4. There was clarification in the new definition that the header parameters are not mandatory in general (specific algorithms mandate them).",
+      "createdAt": "2024-10-20T06:15:51Z",
+      "updatedAt": "2024-10-20T16:57:33Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "cbor-serialization",
+      "baseRefOid": "ebdc0ba50f13bff14a02ae30c62bac58d842586b",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "proof-and-presentation-keys",
+      "headRefOid": "88bc11acdb1297d9810110419e1b3cf7f485316c",
+      "closedAt": "2024-10-20T16:57:33Z",
+      "mergedAt": "2024-10-20T16:57:33Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "f7fbfebd29e1b43e2470492496e67ee8471529c0"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6N5N99",
+          "commit": {
+            "abbreviatedOid": "159fd8f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-20T16:50:32Z",
+          "updatedAt": "2024-10-20T16:50:32Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nkey that MUST be unique for each issued JWP.\r\n```",
+              "createdAt": "2024-10-20T16:50:32Z",
+              "updatedAt": "2024-10-20T16:50:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N5OAP",
+          "commit": {
+            "abbreviatedOid": "159fd8f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-20T16:51:40Z",
+          "updatedAt": "2024-10-20T16:51:40Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\r\nin multiple issued JWPs; a different presentation key MUST\r\n```",
+              "createdAt": "2024-10-20T16:51:40Z",
+              "updatedAt": "2024-10-20T16:51:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6N5OCC",
+          "commit": {
+            "abbreviatedOid": "159fd8f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-20T16:52:35Z",
+          "updatedAt": "2024-10-20T16:52:35Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "id": "PR_kwDOFsQObc5_QiWE",
+      "title": "Merge `BBS-PROOF` algorithm into `BBS` algorithm",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/144",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Eliminate the additional algorithm, as the form (issued vs presented) serves to differentiate.",
+      "createdAt": "2024-10-21T04:27:22Z",
+      "updatedAt": "2024-10-21T04:28:02Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "85d4f8a03100b56791cdf01d30f910e33295db0d",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "bbs-proof-algorithm-merge-into-bbs",
+      "headRefOid": "ff0af89543e8dcc3c50749988164b9d2132cf750",
+      "closedAt": "2024-10-21T04:28:02Z",
+      "mergedAt": "2024-10-21T04:28:02Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "c6911d20249c16d450ebf6f9ccabb91b62afb627"
+      },
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closes #143",
+          "createdAt": "2024-10-21T04:27:56Z",
+          "updatedAt": "2024-10-21T04:27:56Z"
+        }
+      ],
       "reviews": []
+    },
+    {
+      "number": 145,
+      "id": "PR_kwDOFsQObc5_QocA",
+      "title": "Expand nonce proteceted header definition; define CBOR data format",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/145",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Describe the CBOR protected header as containing a binary string.\r\n\r\nWhile in the section, ellaborate usage of the nonce protected header.",
+      "createdAt": "2024-10-21T04:49:54Z",
+      "updatedAt": "2024-10-21T05:43:48Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "c6911d20249c16d450ebf6f9ccabb91b62afb627",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "add-nonce-to-cbor",
+      "headRefOid": "ff0b65842b5b8e1937ce4cb2e0c51ed5b42444f9",
+      "closedAt": "2024-10-21T05:43:47Z",
+      "mergedAt": "2024-10-21T05:43:47Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "254ad3c55dd737b3ceea6628b06c69cda72e20d5"
+      },
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I ultimately decided to stick with the simpler form until I hear use cases otherwise - in particular, the EATS document defining multiple nonce values in the CBOR claim:\r\n\r\n1. Does not give any justification for wanting such flexibility\r\n2. Does not provide examples of such flexibility in use",
+          "createdAt": "2024-10-21T04:51:10Z",
+          "updatedAt": "2024-10-21T04:51:10Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6N6laV",
+          "commit": {
+            "abbreviatedOid": "ff0b658"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-21T05:22:10Z",
+          "updatedAt": "2024-10-21T05:22:10Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 146,
+      "id": "PR_kwDOFsQObc5_YPVm",
+      "title": "Move `claims` to JPT from JWP",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/146",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Also updates `cid` to the new registry format, and renumbers the CBOR labels (before first publication) so `claims` and `cid` are adjacent.",
+      "createdAt": "2024-10-21T21:42:56Z",
+      "updatedAt": "2024-10-21T21:53:56Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "254ad3c55dd737b3ceea6628b06c69cda72e20d5",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "move-claims-to-jpt",
+      "headRefOid": "60f89b7425a618de48dd72cc7d89a80b60c8637b",
+      "closedAt": "2024-10-21T21:53:56Z",
+      "mergedAt": "2024-10-21T21:53:56Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "9c507cfe30b5031b33ab0cc216facd7c289f8d86"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6OD0hY",
+          "commit": {
+            "abbreviatedOid": "60f89b7"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-21T21:46:39Z",
+          "updatedAt": "2024-10-21T21:46:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 147,
+      "id": "PR_kwDOFsQObc5_YS5U",
+      "title": "Update document history for draft 07",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/147",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-21T21:55:23Z",
+      "updatedAt": "2024-10-21T22:37:25Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "9c507cfe30b5031b33ab0cc216facd7c289f8d86",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "update-document-history-draft-07",
+      "headRefOid": "25e688f6f543fc8f068ba708e7e7b160a246fe93",
+      "closedAt": "2024-10-21T22:37:25Z",
+      "mergedAt": "2024-10-21T22:37:25Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "2d02f05c2256081100b5ae41913d8c8496ecb52c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6OD31A",
+          "commit": {
+            "abbreviatedOid": "25e688f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-21T21:57:00Z",
+          "updatedAt": "2024-10-21T21:57:00Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
