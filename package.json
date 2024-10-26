@@ -11,6 +11,6 @@
   "dependencies": {
     "jose": "^5",
     "jsonpath": "^1.1.1",
-    "@mattrglobal/pairing-crypto": "file:mattrglobal-pairing-crypto-192addc1.tgz"
+    "@mattrglobal/pairing-crypto": "file:mattrglobal-pairing-crypto-df72bf1b.tgz"
   }
 }
