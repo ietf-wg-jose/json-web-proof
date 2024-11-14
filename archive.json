@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-12T00:47:41.790586+00:00",
+  "timestamp": "2024-11-14T00:49:14.629703+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2621,6 +2621,62 @@
           "updatedAt": "2024-10-20T18:14:17Z"
         }
       ]
+    },
+    {
+      "number": 148,
+      "id": "I_kwDOFsQObc6eInN_",
+      "title": "Evaluate feasibility of ZKP over ECDSA-based signed message",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/148",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A recent presentation from @abhvious showed a ZKP over a mdoc presentation. this used specifically optimized processing and circuit design to achieve acceptable performance, while also allowing for use of P256 and SHA-256 to meet the reality of today's secure enclaves/elements.\r\n\r\nIt would be useful to evaluate these techniques once they are published to see how they apply to JWP, and if there are changes we could make within JWP to optimize ZKP evaluation.",
+      "createdAt": "2024-11-12T18:58:05Z",
+      "updatedAt": "2024-11-12T19:44:09Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree.  @abhvious, is there a public description of the approach at this point?",
+          "createdAt": "2024-11-12T19:44:08Z",
+          "updatedAt": "2024-11-12T19:44:08Z"
+        }
+      ]
+    },
+    {
+      "number": 149,
+      "id": "I_kwDOFsQObc6eIvNp",
+      "title": "Refine claims and header parameters in JWP",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/149",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "For issued messages, there is motivation to have as little in the protected header as possible, as this data is exposed to all participants and even small changes like formatting could serve to leak bits of information that could lead to additional fingerprinting of presentations.\r\n\r\nThrough ZKP it is also possible to formulate presentation proofs that a message came from a valid issuer, and not a particular key from a particular issuer. With such a setup, even these normally important header parameters might be omitted.\r\n\r\nFor presentation, we have promoted a number of header parameters from claims, however this is really a function of the header being an application block, e.g. information from the holder to the verifier as part of the protocol that presentation is happening under.  This is something which also has happened with other JOSE/COSE protocols, such as \"CBOR Web Token (CWT) Claims in COSE Headers\" (RFC 9597).\r\n\r\nFinally, there is motivation to try to evaluate JWP with a common data model, e.g. that CBOR and JSON form their headers from a common data model, and that it is possible (although not required) for JSON Proof Tokens (and their CBOR equivalent) to do the same. This means that certain values like nonces and key identifiers which differ somewhat arbitrarily between the two should have a common data model (with nonce being a JWT/CWT claim, and kid being a JWS/COSE Header Parameter which we may want to represent as a payload).\r\n\r\nThe proposal I put forth here is:\r\n\r\n1. Within JWP, Header Parameters and Claims are based on a common named value root concept called a Parameter.\r\n2. Parameters may be present either in the header (where they are in a JSON Object or CBOR Map) or as individual payloads with names mapped to offsets\r\n3. We define a way for claims from other registries (JWT and CWT) to be used in a manner where they do not have name conflicts, such as a name prefix and CBOR labels of non-overlapping numeric ranges between CWT and JWP. There is specifically not a way defined for headers from these registries to be mapped in, preferring they be respecified as JWP headers.\r\n4. We define a suitable set of Parameters in JWP specifically for the purpose of providing a baseline common data model, e.g. binary string in CBOR represented as base64uri in JSON, CBOR resolved to string name via table lookup.\r\n",
+      "createdAt": "2024-11-12T19:17:21Z",
+      "updatedAt": "2024-11-12T19:17:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 150,
+      "id": "I_kwDOFsQObc6eI1cy",
+      "title": "`kid` restrictions for JSON headers and new `kyu`",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/150",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The definition of `kid` is binary in CBOR and string in JSON, with no mapping between the two defined.\r\n\r\nI propose JWP `kid` is restricted to be a binary value represented in BASE64URI encoding. This will limit the ability give keys friendly names or names which correspond to some other system, e.g. GUIDs.\r\n\r\nI also propose a new header parameter, `kyu`, for key URL, to represent keys which are not identified by identifying labels but by location. An example of `kid` in JWS being used this way would be DIDs.",
+      "createdAt": "2024-11-12T19:23:28Z",
+      "updatedAt": "2024-11-12T19:23:28Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
