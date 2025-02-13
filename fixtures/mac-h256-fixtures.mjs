@@ -4,15 +4,15 @@ import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256 } 
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 
-import payloadsJSON from "./template/jpt-issuer-payloads.json" assert {type: "json"};
-import issuerPrivateKeyJSON from "./build/issuer-private-key-es256.jwk.json" assert {type: "json"};
-import holderPrivateKeyJSON from "./build/holder-private-key-es256.jwk.json" assert {type: "json"};
-import holderPublicKeyJSON from "./build/holder-public-key-es256.jwk.json" assert {type: "json"};
-import issuerNonceStr from "./build/issuer-nonce.json" assert {type: "json"};
-import presentationNonceStr from "./build/presentation-nonce.json" assert {type: "json"};
-import issuerProtectedHeaderJSON from "./template/mac-h256-issuer-protected-header.json" assert {type: "json"};
-import holderProtectedHeaderJSON from "./template/mac-h256-holder-protected-header.json" assert {type: "json"};
-import holderSharedSecretStr from "./build/mac-h256-holder-shared-secret.json" assert {type: "json"};
+import payloadsJSON from "./template/jpt-issuer-payloads.json" with {type: "json"};
+import issuerPrivateKeyJSON from "./build/issuer-private-key-es256.jwk.json" with {type: "json"};
+import holderPrivateKeyJSON from "./build/holder-private-key-es256.jwk.json" with {type: "json"};
+import holderPublicKeyJSON from "./build/holder-public-key-es256.jwk.json" with {type: "json"};
+import issuerNonceStr from "./build/issuer-nonce.json" with {type: "json"};
+import presentationNonceStr from "./build/presentation-nonce.json" with {type: "json"};
+import issuerProtectedHeaderJSON from "./template/mac-h256-issuer-protected-header.json" with {type: "json"};
+import holderProtectedHeaderJSON from "./template/mac-h256-holder-protected-header.json" with {type: "json"};
+import holderSharedSecretStr from "./build/mac-h256-holder-shared-secret.json" with {type: "json"};
 
 const { encode, decode } = base64url;
 

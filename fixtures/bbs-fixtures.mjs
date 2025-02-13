@@ -6,9 +6,9 @@ import { base64url } from 'jose';
 import { keyRead } from './bbs-keyread.mjs';
 import { lineWrap, compactPayloadEncode, jsonPayloadEncode } from './utils.mjs';
 
-import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" assert {type: "json"};
-import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" assert {type: "json"};
-import payloadsJSON from "./template/jpt-issuer-payloads.json" assert {type: "json"};
+import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" with {type: "json"};
+import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" with {type: "json"};
+import payloadsJSON from "./template/jpt-issuer-payloads.json" with {type: "json"};
 
 const encode = base64url.encode;
 
