@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 29 April 2025                            Self-Issued Consulting
+Expires: 17 August 2025                           Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                         26 October 2024
+                                                        13 February 2025
 
 
                              JSON Web Proof
@@ -49,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 April 2025.
+   This Internet-Draft will expire on 17 August 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -772,14 +772,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pSsbZ6ZJHyPJnNtHN2cmYDWVDZdS1zzgIG4rUuKx
-   cLS3OMXKFfCu1BzMVWBkoEhYhOz8ej8vDDdkiEywXZnpGB0Ei_MtZ98qeRV1oioUNFYb9
-   E5Q3HbQIA_hJ75Qqvi5kSubQ44Y5wJFgxm1ADQd2mhmxWUgByTqTpoxAUPSwI7Kb1QoQa
-   Yy8NvhzU8cRRvoFKCnEEoeQcnu4uWwaks1UceuisJdp4pi97vzViwG97JSxZEfr1UPqNB
-   2S1e8IfgcTBlzIm4pjyfzAy51ZXdmelrOBFIvGDMCdDMt4-sRAe0KCtdnnWfbo4Ywx3OY
-   6NPMKpN3ewtBwURgILsxKtCyaoSy20qAqZvFQa-JyL9Uavoj1sxu6N3zjKdX4t0HZN8ow
-   ziFtdDdWxs8oCUU_VhIfTwuTfIdupWfy8DzPQ6f0h3o9SW8xNEDyIgIfAlSqMNXQ1JJ0Y
-   icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7Kgym
+   UGo-YZ6M_g5j06QqKWczJ5W-lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIF
+   HMewBpnzc2E30kzf_1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAax
+   fk2W8JVjw3dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9
+   SJskxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6aFvp3
+   pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V91R2CnYWt8m
+   vN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7TbPKeuVxzOuoK242Ob
+   lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 
    |  Figure: Compact Serialization of Presentation
 
@@ -830,14 +830,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "pSsbZ6ZJHyPJnNtHN2cmYDWVDZdS1zzgIG4rUuKxcLS3OMXKFfCu1BzMVWBkoEhY
-          hOz8ej8vDDdkiEywXZnpGB0Ei_MtZ98qeRV1oioUNFYb9E5Q3HbQIA_hJ75Qqv
-          i5kSubQ44Y5wJFgxm1ADQd2mhmxWUgByTqTpoxAUPSwI7Kb1QoQaYy8NvhzU8c
-          RRvoFKCnEEoeQcnu4uWwaks1UceuisJdp4pi97vzViwG97JSxZEfr1UPqNB2S1
-          e8IfgcTBlzIm4pjyfzAy51ZXdmelrOBFIvGDMCdDMt4-sRAe0KCtdnnWfbo4Yw
-          x3OY6NPMKpN3ewtBwURgILsxKtCyaoSy20qAqZvFQa-JyL9Uavoj1sxu6N3zjK
-          dX4t0HZN8owziFtdDdWxs8oCUU_VhIfTwuTfIdupWfy8DzPQ6f0h3o9SW8xNED
-          yIgIfAlSqMNXQ1JJ0YicBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI"
+       "gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7KgymUGo-YZ6M_g5j06QqKWczJ5W-
+          lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIFHMewBpnzc2E30kzf_
+          1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAaxfk2W8JVjw3
+          dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9SJs
+          kxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6a
+          Fvp3pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V
+          91R2CnYWt8mvN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7
+          TbPKeuVxzOuoK242OblKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0"
      ]
    }
 
@@ -1258,18 +1258,18 @@ Table of Contents
 11.1.  Normative References
 
    [I-D.ietf-jose-json-proof-algorithms]
-              Miller, J., Jones, M. B., and D. Waite, "JSON Proof
+              Jones, M. B., Waite, D., and J. Miller, "JSON Proof
               Algorithms", Work in Progress, Internet-Draft, draft-ietf-
-              jose-json-proof-algorithms-06, 16 September 2024,
+              jose-json-proof-algorithms-07, 21 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-algorithms-06>.
+              json-proof-algorithms-07>.
 
    [I-D.ietf-jose-json-proof-token]
-              Miller, J., Jones, M. B., and D. Waite, "JSON Proof
+              Jones, M. B., Waite, D., and J. Miller, "JSON Proof
               Token", Work in Progress, Internet-Draft, draft-ietf-jose-
-              json-proof-token-06, 16 September 2024,
+              json-proof-token-07, 21 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-token-06>.
+              json-proof-token-07>.
 
    [RFC7516]  Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)",
               RFC 7516, DOI 10.17487/RFC7516, May 2015,

@@ -11,7 +11,7 @@
 <meta content="
        The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof, JSON Web Key (JWK), and COSE specifications. It defines IANA registries for these identifiers. 
     " name="description">
-<meta content="xml2rfc 3.23.2" name="generator">
+<meta content="xml2rfc 3.26.0" name="generator">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
 <meta content="jwp" name="keyword">
@@ -19,16 +19,16 @@
 <meta content="jpa" name="keyword">
 <meta content="draft-ietf-jose-json-proof-algorithms-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.23.2
-    Python 3.12.7
+  xml2rfc 3.26.0
+    Python 3.12.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.4
-    lxml 4.9.4
+    Jinja2 3.1.5
+    lxml 5.3.0
     platformdirs 4.3.6
-    pycountry 22.3.5
-    PyYAML 6.0.1
+    pycountry 24.6.1
+    PyYAML 6.0.2
     requests 2.32.3
     setuptools 70.3.0
     wcwidth 0.2.13
@@ -167,31 +167,6 @@
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -208,6 +183,77 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -220,6 +266,7 @@
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -237,9 +284,15 @@ body {
 }
 
 /* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -268,6 +321,7 @@ h4, h5, h6 {
 /* general structure */
 .author {
   padding-bottom: 0.3em;
+  vertical-align: top;
 }
 #abstract+p {
   font-size: 18px;
@@ -345,25 +399,26 @@ svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
 ol, ul {
   padding: 0;
   margin: 0 0 0.5em 2em;
-}
-:is(ol, ul) :is(ol, ul) {
-  margin-left: 1em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
 }
 li {
   margin: 0 0 0.25em 0;
 }
-.ulCompact li {
-  margin: 0;
-}
 ul.empty, .ulEmpty {
   list-style-type: none;
-}
-ul.empty li, .ulEmpty li {
-  margin-top: 0.5em;
+  & li {
+    margin-top: 0.5em;
+  }
 }
 :is(ul, ol).compact, .ulCompact, .olCompact {
-  line-height: 1;
   margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
 }
 
 /* definition lists */
@@ -371,38 +426,39 @@ dl {
   clear: left;
   --indent: 3ch;
   /* --indent: attr(indent ch); not supported in any browser, but we can dream */
-}
-dl.olPercent {
-  --indent: 5ch;
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
 }
 dl > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
 }
-dl.dlNewline > dt {
-  float: none;
-}
 dl > dd {
   margin-bottom: .8em;
   margin-left: var(--indent) !important; /* stupid element overrides */
   min-height: 2ex;
 }
-dl.olPercent > dt {
-  min-width: calc(var(--indent) - 2ch);
-}
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
-  margin-top: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
-  margin-bottom: 0;
-}
-dl > dd > dl {
-  margin-top: 0.5em;
-  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
 }
 :is(dd, span).break {
   display: none;
@@ -466,6 +522,7 @@ figcaption, caption {
   font-style: italic;
   margin: 0.5em 1.5em;
   text-align: left;
+  caption-side: bottom;
 }
 @media screen {
   /* Auto-collapse boilerplate. */
@@ -483,7 +540,11 @@ figcaption, caption {
   }
   pre, svg {
     display: inline-block;
-    overflow-x: auto;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
   }
   pre {
     max-width: 100%;
@@ -520,6 +581,7 @@ cite {
 
 /* tables */
 table {
+  width: auto;
   max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
@@ -534,6 +596,16 @@ table.center {
 table.left {
   margin-right: auto;
 }
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
 thead, tbody {
   border: 1px solid var(--line-color);
 }
@@ -564,9 +636,11 @@ a.pilcrow {
   margin-left: 3px;
   opacity: 0.2;
   user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
 }
-a.pilcrow[href] { color: var(--pilcrow-weak); }
-a.pilcrow[href]:hover { text-decoration: none; }
 @media not print {
   :hover > a.pilcrow {
     opacity: 1;
@@ -606,26 +680,28 @@ sub, sup {
   font-size: var(--small-font-size);
   line-height: 18px;
   --identifier-width: 15ch;
-}
-#identifiers dt {
-  width: var(--identifier-width);
-  min-width: var(--identifier-width);
-  clear: left;
-  float: left;
-  text-align: right;
-  margin-right: 1ch;
-}
-#identifiers dd {
-  margin: 0;
-  margin-left: calc(1em + var(--identifier-width)) !important;
-  min-width: 5em;
-}
-#identifiers .authors .author {
-  display: inline-block;
-  margin-right: 1.5em;
-}
-#identifiers .authors .org {
-  font-style: italic;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
 }
 
 /* The prepared/rendered info at the very bottom of the page */
@@ -636,9 +712,6 @@ sub, sup {
   margin-top: 2em;
 }
 .docInfo .prepared {
-  float: left;
-}
-.docInfo .prepared {
   float: right;
 }
 
@@ -646,47 +719,48 @@ sub, sup {
 #toc {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
-}
-#toc nav ul {
-  margin: 0 0.5em 0 0;
-  padding: 0;
-  list-style: none;
-}
-#toc nav li {
-  line-height: 1.3em;
-  margin: 2px 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em;
-}
-#toc a.xref {
-  white-space: normal;
-}
-/* references */
-.references dt {
-  text-align: right;
-  font-weight: bold;
-  min-width: 10ch;
-  margin-right: 1.5ch;
-}
-.references dt:target::before {
-  content: "⇒";
-  width: 15px;
-  margin: 0 10px 0 -25px;
-}
-.references dd {
-  margin-left: 12ch !important;
-  overflow: auto;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
 }
 
-.refInstance {
-  margin-bottom: 1.25em;
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
 }
 
-.references .ascii {
-  margin-bottom: 0.25em;
-}
-
-/* index */
 #rfc\.index\.index + ul {
   margin-left: 0;
 }
@@ -694,21 +768,33 @@ sub, sup {
 /* authors */
 address.vcard {
   font-style: normal;
-  margin: 1em 0;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
 }
-address.vcard .nameRole {
-  font-weight: 700;
-  margin-left: 0;
-}
-address.vcard .label {
-  margin: 0.5em 0;
-}
-address.vcard .type {
-  display: none;
-}
-.alternative-contact {
-  margin: 1.5em 0 1em;
-}
+
 hr.addr {
   border-top: 1px dashed;
   margin: 0;
@@ -730,6 +816,7 @@ hr.addr {
   }
 }
 
+/* Comments */
 .rfcEditorRemove p:first-of-type {
   font-style: italic;
 }
@@ -740,7 +827,31 @@ hr.addr {
 .crefSource {
   font-style: italic;
 }
-/* alternative layout for smaller screens */
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
 @media screen and (max-width: 929px) {
   #toc {
     position: fixed;
@@ -751,9 +862,6 @@ hr.addr {
     margin: 0;
     border-bottom: 1px solid #ccc;
     opacity: 0.6;
-  }
-  #toc.active {
-      opacity: 1;
   }
   #toc h2 {
     margin: 0;
@@ -766,17 +874,17 @@ hr.addr {
     background-color: #444;
     color: white;
     cursor: pointer;
-  }
-  #toc h2::before { /* css hamburger */
-    float: right;
-    position: relative;
-    width: 1em;
-    height: 1px;
-    left: -164px;
-    margin: 8px 0 0 0;
-    background: white none repeat scroll 0 0;
-    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
-    content: "";
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
   }
   #toc nav {
     display: none;
@@ -787,14 +895,13 @@ hr.addr {
     height: calc(100vh - 48px);
     border-left: 1px solid #ddd;
   }
-  #toc.active nav {
-    display: block;
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
   }
   /* Make the collapsed ToC header render white on gray also when it's a link */
   #toc h2 a,
-  #toc h2 a:link,
-  #toc h2 a:focus,
-  #toc h2 a:hover,
+  #toc h2 a:is(:link, :focus, :hover),
   #toc a.toplink,
   #toc a.toplink:hover {
     color: white;
@@ -802,11 +909,11 @@ hr.addr {
     text-decoration: none;
   }
   #toc a.toplink {
-    margin-top: 2px;
+    margin: 2px 0.5em 0;
   }
 }
 
-/* alternative layout for wide screens */
+/* TOC layout for wide screens */
 @media screen and (min-width: 930px) {
   body {
     padding-right: 360px;
@@ -835,20 +942,12 @@ hr.addr {
     overscroll-behavior: contain;
     scrollbar-width: thin;
   }
-  #toc nav > ul  {
-    margin-bottom: 2em;
-  }
-  #toc ul {
-    margin: 0 0 0 4px;
-    font-size: var(--small-font-size);
-  }
-  #toc ul :is(p, li) {
-    margin: 2px 0;
-    line-height: 22px;
-  }
   img { /* future proofing */
     max-width: 100%;
     height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
   }
 }
 
@@ -891,9 +990,6 @@ hr.addr {
   td {
     border-top: 1px solid #ddd;
   }
-  .toplink {
-    display: none;
-  }
 }
 
 @page :first {
@@ -916,82 +1012,6 @@ hr.addr {
   size: A4;
   margin-bottom: 45mm;
   padding-top: 20px;
-}
-
-/* Changes introduced to fix issues found during implementation */
-
-/* Separate body from document info even without intervening H1 */
-section {
-  clear: both;
-}
-
-/* Top align author divs, to avoid names without organization dropping level with org names */
-.author {
-  vertical-align: top;
-}
-
-/* Style section numbers with more space between number and title */
-.section-number {
-  padding-right: 0.5em;
-}
-
-/* Add styling for a link in the ToC that points to the top of the document */
-a.toplink {
-  float: right;
-  margin: 8px 0.5em 0;
-}
-
-/* Provide styling for table cell text alignment */
-table .text-left {
-  text-align: left;
-}
-table .text-center {
-  text-align: center;
-}
-table .text-right {
-  text-align: right;
-}
-
-/* Make the alternative author contact information look less like just another
-   author, and group it closer with the primary author contact information */
-.alternative-contact {
-  margin: 0.5em 0 0.25em 0;
-}
-address .non-ascii {
-  margin: 0 0 0 2em;
-}
-
-/* With it being possible to set tables with alignment
-  left, center, and right, { width: 100%; } does not make sense */
-table {
-  width: auto;
-}
-
-/* Avoid reference text that sits in a block with very wide left margin,
-   because of a long floating dt label.*/
-.references dd {
-  overflow: visible;
-}
-
-/* Control caption placement */
-caption {
-  caption-side: bottom;
-}
-
-/* Limit the width of the author address vcard, so names in right-to-left
-   script don't end up on the other side of the page. */
-
-address.vcard {
-  max-width: 20em;
-  margin-right: auto;
-}
-
-/* For address alignment dependent on LTR or RTL scripts */
-address div.left {
-  text-align: left;
-}
-address div.right {
-  text-align: right;
 }
 
 /* Dark mode. */
@@ -1030,11 +1050,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">json-proof-algorithms</td>
-<td class="right">October 2024</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 29 April 2025</td>
+<td class="center">Expires 17 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-proof-algorithms-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-26" class="published">26 October 2024</time>
+<time datetime="2025-02-13" class="published">13 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-29">29 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-17">17 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1094,7 +1114,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 29 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1103,7 +1123,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -2208,7 +2228,7 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <dl class="references">
 <dt id="I-D.ietf-jose-json-web-proof">[I-D.ietf-jose-json-web-proof]</dt>
         <dd>
-<span class="refAuthor">Miller, J.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"JSON Web Proof"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-web-proof-06</span>, <time datetime="2024-09-16" class="refDate">16 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof-06">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Waite, D.</span>, <span class="refAuthor">Jones, M. B.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Web Proof"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-web-proof-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof-07">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
       <dd>
@@ -2223,7 +2243,7 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <dl class="references">
 <dt id="I-D.ietf-cose-bls-key-representations">[I-D.ietf-cose-bls-key-representations]</dt>
         <dd>
-<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Barreto-Lynn-Scott Elliptic Curve Key Representations for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-bls-key-representations-05</span>, <time datetime="2024-03-17" class="refDate">17 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-05">https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-05</a>&gt;</span>. </dd>
+<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Barreto-Lynn-Scott Elliptic Curve Key Representations for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-bls-key-representations-06</span>, <time datetime="2025-01-18" class="refDate">18 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-06">https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2104">[RFC2104]</dt>
         <dd>
@@ -2275,9 +2295,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "Gi2ZRxFygJMcgxwxldSUDwBpLFzKmfrNhvBPYre1Hk0",
-  "y": "gxB3lVAJnQsIyft6x6NZSel3guiZiH5Ov_EzYrpLa1g",
-  "d": "24jjfSXJVD7-j-EQmsWnDyTWBOAssWzRiiECSwiNUgo"
+  "x": "9XrdCIk6kGAgNTNa-ZgMcC-LYYuyNkQNi8RixLOGQa8",
+  "y": "myGOsuM-JLzYKju09AWBlhiofBsOjXmmxWI0fYzf78c",
+  "d": "hELfU6OhgDaccOV68cEZZyFii06WOEbt6T5_ibeTahA"
 }
 
 </pre>
@@ -2291,9 +2311,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "C9OZUEa9FjpogGFlA03rDXa09zV73ueuxJjtZLmrVmw",
-  "y": "e4Mokx_vvpe8nuWeQhHAsKDCexXcsDewKlwtjaee_jA",
-  "d": "PpuXnAFSJzsc3phM5G0VznYOzj7CB1Ugr9KTPALUlJM"
+  "x": "reVnFzAVHGz2tmJIk977XsoG3hP9I9aA3YQ3Z35tHXE",
+  "y": "Kd38IcxivmppWj_X6pYAkagA4Ds6I7dXgUyXUWP23_k",
+  "d": "I_sfqPRRfht8vfdJ4WNfOewG4jgayttp-NbmLPi4oHA"
 }
 
 </pre>
@@ -2307,9 +2327,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "nXqzjuZ3njPxtQ463RFNp9Wua3vAMGjxERzoFwMBlGI",
-  "y": "Vl_H1vQGk0OGq39Vo8LJPOKcXX4mu6VP6GUzd00XZnE",
-  "d": "LxkLum2g78oSqwfrsxleWW7bsX92QVAOT4Fi8mYFFU0"
+  "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
+  "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU",
+  "d": "a404Bz77IOZnmF_T3EHv_i_U9Up7ov0dK1raFhuGTt8"
 }
 
 </pre>
@@ -2336,16 +2356,16 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
   "proof_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "C9OZUEa9FjpogGFlA03rDXa09zV73ueuxJjtZLmrVmw",
-    "y": "e4Mokx_vvpe8nuWeQhHAsKDCexXcsDewKlwtjaee_jA",
-    "d": "PpuXnAFSJzsc3phM5G0VznYOzj7CB1Ugr9KTPALUlJM"
+    "x": "reVnFzAVHGz2tmJIk977XsoG3hP9I9aA3YQ3Z35tHXE",
+    "y": "Kd38IcxivmppWj_X6pYAkagA4Ds6I7dXgUyXUWP23_k",
+    "d": "I_sfqPRRfht8vfdJ4WNfOewG4jgayttp-NbmLPi4oHA"
   },
   "presentation_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "nXqzjuZ3njPxtQ463RFNp9Wua3vAMGjxERzoFwMBlGI",
-    "y": "Vl_H1vQGk0OGq39Vo8LJPOKcXX4mu6VP6GUzd00XZnE",
-    "d": "LxkLum2g78oSqwfrsxleWW7bsX92QVAOT4Fi8mYFFU0"
+    "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
+    "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU",
+    "d": "a404Bz77IOZnmF_T3EHv_i_U9Up7ov0dK1raFhuGTt8"
   }
 }
 
@@ -2360,14 +2380,14 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiQzlPWlVFYTlGanBvZ0dGbEEwM3JE
-WGEwOXpWNzN1ZXV4Smp0WkxtclZtdyIsInkiOiJlNE1va3hfdnZwZThudVdlUWhIQXNLR
-ENleFhjc0Rld0tsd3RqYWVlX2pBIiwiZCI6IlBwdVhuQUZTSnpzYzNwaE01RzBWem5ZT3
-pqN0NCMVVncjlLVFBBTFVsSk0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
-sImNydiI6IlAtMjU2IiwieCI6Im5YcXpqdVozbmpQeHRRNDYzUkZOcDlXdWEzdkFNR2p4
-RVJ6b0Z3TUJsR0kiLCJ5IjoiVmxfSDF2UUdrME9HcTM5Vm84TEpQT0tjWFg0bXU2VlA2R
-1V6ZDAwWFpuRSIsImQiOiJMeGtMdW0yZzc4b1Nxd2Zyc3hsZVdXN2JzWDkyUVZBT1Q0Rm
-k4bVlGRlUwIn19
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdY
+c29HM2hQOUk5YUEzWVEzWjM1dEhYRSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ
+0E0RHM2STdkWGdVeVhVV1AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3Rz
+RqZ2F5dHRwLU5ibUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
+sImNydiI6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
+RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcWctVnB5d
+FF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5VXA3b3YwZEsxcm
+FGaHVHVHQ4In19
 
 </pre>
 </div>
@@ -2384,14 +2404,14 @@ k4bVlGRlUwIn19
        Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
        x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
        ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoiQzlPWlVFYTlGanBvZ0dGbEEwM3JEWGEwOXpWNzN1ZXV4Smp0WkxtclZt
-       dyIsInkiOiJlNE1va3hfdnZwZThudVdlUWhIQXNLRENleFhjc0Rld0tsd3RqYW
-       VlX2pBIiwiZCI6IlBwdVhuQUZTSnpzYzNwaE01RzBWem5ZT3pqN0NCMVVncjlL
-       VFBBTFVsSk0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
-       I6IlAtMjU2IiwieCI6Im5YcXpqdVozbmpQeHRRNDYzUkZOcDlXdWEzdkFNR2p4
-       RVJ6b0Z3TUJsR0kiLCJ5IjoiVmxfSDF2UUdrME9HcTM5Vm84TEpQT0tjWFg0bX
-       U2VlA2R1V6ZDAwWFpuRSIsImQiOiJMeGtMdW0yZzc4b1Nxd2Zyc3hsZVdXN2Jz
-       WDkyUVZBT1Q0Rmk4bVlGRlUwIn19",
+       J4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdYc29HM2hQOUk5YUEzWVEzWjM1dEhY
+       RSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ0E0RHM2STdkWGdVeVhVV1
+       AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3RzRqZ2F5dHRwLU5i
+       bUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
+       I6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
+       RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcW
+       ctVnB5dFF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5
+       VXA3b3YwZEsxcmFGaHVHVHQ4In19",
   "payloads": [
     "MTcxNDUyMTYwMA",
     "MTcxNzE5OTk5OQ",
@@ -2405,22 +2425,22 @@ k4bVlGRlUwIn19
     "dHJ1ZQ"
   ],
   "proof": [
-    "zf5LsUgsvcZ5HOXWF3HrR3zaKYUpTxJceVUbnlAoscR-hY5WF8FwZ6HKPiJXh25D
-       sge9v00dAisD5yHBdDHWAA",
-    "7oiD2kwbJpmZOuEaEEYXcIEUScvsN5TbsF5hNmSn35wFxWvjqD3c7naezzIguwcF
-       NcdeHuC_5zh8rmi_oMtbYQ",
-    "1I6tjm1WPM7LNZDBeRHIFc4ue1sEa-DP8hlqXp2QJ0xn2R0OW2TCNbWKtlChOpHG
-       Q0bhugcWr3TftFhl4UFFMQ",
-    "69jZh-vEmszIDyfLaoqR8lZTRspP_1w6jNSZdY4Dj4yb0HDUeCqKWVn1_CQAm4vj
-       TRikhhLJ6IS1-FINncWoZw",
-    "QI2nw4swKv3f52mIOSt9bo5OUF51L9z0Hb6dv7P9Uzvknu5FYzV3m7o9nGfoAW58
-       -VM9zZCg9zAPRq6Csz2Kvw",
-    "kuRPagBhZwz3exZLNXJh9IITwTjteZjMFDpP4E0h9FWYaDG2vFrmylQ0fNW1B5-2
-       HPUvmn2wbGMQNz7BbGjzyg",
-    "foyMHp9NoF_G2_3NbhxQe3wSDKVHvpqOW9kJug44DCL0oG_y_bsB9JQzFYy79Yif
-       o0dKwUICl1p_fKSEwEd3Bw",
-    "p7SROy-WI4RYz7FAOhU90eTVtVBe9-3hJzGQNTgVxSzaGCDJaAZ9eoBlDX5a2Mc2
-       aLui_sU13w8rUbioGJ8VmQ"
+    "slRj_KZKs0lyGboxbsdSYFoq4Pmi2B9DDbY4IPPo8ItmpzUK9lMp1jom2U3qCkEB
+       vYnZPCQuTMWt76-pjlQGCg",
+    "hQqNPM54Y9_Ce8ZGxLNDHUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phAEzVB_
+       K0RnoidvlpJptKmpUe8hJg",
+    "m5p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9hF5Jbz04bRarmbFTaaSFil08
+       3TaJTejzDQZkazgwQpbgaQ",
+    "iwikodYh8-dN8hQU3IaL-QVuWxCqWrlJkRXfwW8GNeJGxWr1W5TfpTHCk0t3b8A9
+       qS7FTU9hrc39_cuc06QUbA",
+    "v1SBfPjNnaoZDvedxCisCPCbvGzKjxqF6SxCQRXG9tYjw3qWr2vGIFwWvtY-3WLy
+       kyPkvbEDQWEy99X1xToZow",
+    "w1UJKbAzwWG7C6qZswkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSsHhg-RbSQ
+       7JQzWK97PjYrTOhBcOWmGw",
+    "m_pcQjJnQJqHyFhkAolJxzMWa-qWsbIKifR5fc1BTcwglHxA77GRvTGeoFIHJj82
+       XZOm6fSZ61TroK0Vg3mhjw",
+    "DM6PFllpRpKIZ5tWcfmeWwHBBjTF_guHdTsyUtZJLNCaT30p7uMW4rcseNGCJOVM
+       iaBJXyoiFkb0mF4fpIj_aA"
   ]
 }
 
@@ -2435,28 +2455,28 @@ k4bVlGRlUwIn19
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiQzlPWlVFYTlGanBvZ0dGbEEwM3JE
-WGEwOXpWNzN1ZXV4Smp0WkxtclZtdyIsInkiOiJlNE1va3hfdnZwZThudVdlUWhIQXNLR
-ENleFhjc0Rld0tsd3RqYWVlX2pBIiwiZCI6IlBwdVhuQUZTSnpzYzNwaE01RzBWem5ZT3
-pqN0NCMVVncjlLVFBBTFVsSk0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
-sImNydiI6IlAtMjU2IiwieCI6Im5YcXpqdVozbmpQeHRRNDYzUkZOcDlXdWEzdkFNR2p4
-RVJ6b0Z3TUJsR0kiLCJ5IjoiVmxfSDF2UUdrME9HcTM5Vm84TEpQT0tjWFg0bXU2VlA2R
-1V6ZDAwWFpuRSIsImQiOiJMeGtMdW0yZzc4b1Nxd2Zyc3hsZVdXN2JzWDkyUVZBT1Q0Rm
-k4bVlGRlUwIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdY
+c29HM2hQOUk5YUEzWVEzWjM1dEhYRSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ
+0E0RHM2STdkWGdVeVhVV1AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3Rz
+RqZ2F5dHRwLU5ibUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
+sImNydiI6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
+RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcWctVnB5d
+FF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5VXA3b3YwZEsxcm
+FGaHVHVHQ4In19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
 ZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duL
 CBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG
 9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDU
-sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.zf5LsUgsvcZ5HOXWF3HrR3zaKYUpTxJceVUbnl
-AoscR-hY5WF8FwZ6HKPiJXh25Dsge9v00dAisD5yHBdDHWAA~7oiD2kwbJpmZOuEaEEYX
-cIEUScvsN5TbsF5hNmSn35wFxWvjqD3c7naezzIguwcFNcdeHuC_5zh8rmi_oMtbYQ~1I
-6tjm1WPM7LNZDBeRHIFc4ue1sEa-DP8hlqXp2QJ0xn2R0OW2TCNbWKtlChOpHGQ0bhugc
-Wr3TftFhl4UFFMQ~69jZh-vEmszIDyfLaoqR8lZTRspP_1w6jNSZdY4Dj4yb0HDUeCqKW
-Vn1_CQAm4vjTRikhhLJ6IS1-FINncWoZw~QI2nw4swKv3f52mIOSt9bo5OUF51L9z0Hb6
-dv7P9Uzvknu5FYzV3m7o9nGfoAW58-VM9zZCg9zAPRq6Csz2Kvw~kuRPagBhZwz3exZLN
-XJh9IITwTjteZjMFDpP4E0h9FWYaDG2vFrmylQ0fNW1B5-2HPUvmn2wbGMQNz7BbGjzyg
-~foyMHp9NoF_G2_3NbhxQe3wSDKVHvpqOW9kJug44DCL0oG_y_bsB9JQzFYy79Yifo0dK
-wUICl1p_fKSEwEd3Bw~p7SROy-WI4RYz7FAOhU90eTVtVBe9-3hJzGQNTgVxSzaGCDJaA
-Z9eoBlDX5a2Mc2aLui_sU13w8rUbioGJ8VmQ
+sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.slRj_KZKs0lyGboxbsdSYFoq4Pmi2B9DDbY4IP
+Po8ItmpzUK9lMp1jom2U3qCkEBvYnZPCQuTMWt76-pjlQGCg~hQqNPM54Y9_Ce8ZGxLND
+HUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phAEzVB_K0RnoidvlpJptKmpUe8hJg~m5
+p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9hF5Jbz04bRarmbFTaaSFil083TaJTej
+zDQZkazgwQpbgaQ~iwikodYh8-dN8hQU3IaL-QVuWxCqWrlJkRXfwW8GNeJGxWr1W5Tfp
+THCk0t3b8A9qS7FTU9hrc39_cuc06QUbA~v1SBfPjNnaoZDvedxCisCPCbvGzKjxqF6Sx
+CQRXG9tYjw3qWr2vGIFwWvtY-3WLykyPkvbEDQWEy99X1xToZow~w1UJKbAzwWG7C6qZs
+wkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSsHhg-RbSQ7JQzWK97PjYrTOhBcOWmGw
+~m_pcQjJnQJqHyFhkAolJxzMWa-qWsbIKifR5fc1BTcwglHxA77GRvTGeoFIHJj82XZOm
+6fSZ61TroK0Vg3mhjw~DM6PFllpRpKIZ5tWcfmeWwHBBjTF_guHdTsyUtZJLNCaT30p7u
+MW4rcseNGCJOVMiaBJXyoiFkb0mF4fpIj_aA
 
 </pre>
 </div>
@@ -2469,7 +2489,7 @@ Z9eoBlDX5a2Mc2aLui_sU13w8rUbioGJ8VmQ
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "grwbxwb5ltearu58028GQXtP39do2jdLkvMvzJBnSEM"
+  "nonce": "UXHp0Q6fqwwJK0mvlx08QmJMjs9V5xhFI2D6UnyG75c"
 }
 
 </pre>
@@ -2481,8 +2501,8 @@ Z9eoBlDX5a2Mc2aLui_sU13w8rUbioGJ8VmQ
 <span id="name-presentation-header-base64u"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-22.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJncndieHdiNWx0ZWFydTU4MDI4R1FYdFAzOWRvMmpkTGt2TXZ6Sk
-JuU0VNIn0
+29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1qczlWNXhoRkkyRDZVbn
+lHNzVjIn0
 
 </pre>
 </div>
@@ -2491,8 +2511,8 @@ JuU0VNIn0
           </figcaption></figure>
 <p id="appendix-A.1-23">When signed with the holder's presentation key, the resulting signature are:<a href="#appendix-A.1-23" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-24">
-<pre>8dOtDgdFzxEOxYfrE3j4usxF1JEmr8UMAG3d0CPoHp2fqcRJxPCO7_wkWM0lkMg1KSROi
-9hYX2XWYvH5U0rwTQ
+<pre>CcpkDrRlDQNaQii69g7V1QnNQeLHKgk-1o34wR7BiV8E32E0BPvJp6Ug6dxYtlaXV0m6s
+triN50brIPpWZU9Zw
 
 </pre><a href="#appendix-A.1-24" class="pilcrow">¶</a>
 </div>
@@ -2503,20 +2523,20 @@ JuU0VNIn0
 <div class="lang-wrapped sourcecode" id="appendix-A.1-27">
 <pre>{
   "presentation": "eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-       BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJncndieHdiNWx0ZWFydTU4MDI4
-       R1FYdFAzOWRvMmpkTGt2TXZ6SkJuU0VNIn0",
+       BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgw
+       OFFtSk1qczlWNXhoRkkyRDZVbnlHNzVjIn0",
   "issuer": "eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
        Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
        x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
        ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoiQzlPWlVFYTlGanBvZ0dGbEEwM3JEWGEwOXpWNzN1ZXV4Smp0WkxtclZt
-       dyIsInkiOiJlNE1va3hfdnZwZThudVdlUWhIQXNLRENleFhjc0Rld0tsd3RqYW
-       VlX2pBIiwiZCI6IlBwdVhuQUZTSnpzYzNwaE01RzBWem5ZT3pqN0NCMVVncjlL
-       VFBBTFVsSk0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
-       I6IlAtMjU2IiwieCI6Im5YcXpqdVozbmpQeHRRNDYzUkZOcDlXdWEzdkFNR2p4
-       RVJ6b0Z3TUJsR0kiLCJ5IjoiVmxfSDF2UUdrME9HcTM5Vm84TEpQT0tjWFg0bX
-       U2VlA2R1V6ZDAwWFpuRSIsImQiOiJMeGtMdW0yZzc4b1Nxd2Zyc3hsZVdXN2Jz
-       WDkyUVZBT1Q0Rmk4bVlGRlUwIn19",
+       J4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdYc29HM2hQOUk5YUEzWVEzWjM1dEhY
+       RSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ0E0RHM2STdkWGdVeVhVV1
+       AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3RzRqZ2F5dHRwLU5i
+       bUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
+       I6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
+       RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcW
+       ctVnB5dFF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5
+       VXA3b3YwZEsxcmFGaHVHVHQ4In19",
   "payloads": [
     "MTcxNDUyMTYwMA",
     "MTcxNzE5OTk5OQ",
@@ -2532,20 +2552,20 @@ JuU0VNIn0
     null
   ],
   "proof": [
-    "zf5LsUgsvcZ5HOXWF3HrR3zaKYUpTxJceVUbnlAoscR-hY5WF8FwZ6HKPiJXh25D
-       sge9v00dAisD5yHBdDHWAA",
-    "8dOtDgdFzxEOxYfrE3j4usxF1JEmr8UMAG3d0CPoHp2fqcRJxPCO7_wkWM0lkMg1
-       KSROi9hYX2XWYvH5U0rwTQ",
-    "7oiD2kwbJpmZOuEaEEYXcIEUScvsN5TbsF5hNmSn35wFxWvjqD3c7naezzIguwcF
-       NcdeHuC_5zh8rmi_oMtbYQ",
-    "1I6tjm1WPM7LNZDBeRHIFc4ue1sEa-DP8hlqXp2QJ0xn2R0OW2TCNbWKtlChOpHG
-       Q0bhugcWr3TftFhl4UFFMQ",
-    "69jZh-vEmszIDyfLaoqR8lZTRspP_1w6jNSZdY4Dj4yb0HDUeCqKWVn1_CQAm4vj
-       TRikhhLJ6IS1-FINncWoZw",
-    "QI2nw4swKv3f52mIOSt9bo5OUF51L9z0Hb6dv7P9Uzvknu5FYzV3m7o9nGfoAW58
-       -VM9zZCg9zAPRq6Csz2Kvw",
-    "kuRPagBhZwz3exZLNXJh9IITwTjteZjMFDpP4E0h9FWYaDG2vFrmylQ0fNW1B5-2
-       HPUvmn2wbGMQNz7BbGjzyg"
+    "slRj_KZKs0lyGboxbsdSYFoq4Pmi2B9DDbY4IPPo8ItmpzUK9lMp1jom2U3qCkEB
+       vYnZPCQuTMWt76-pjlQGCg",
+    "CcpkDrRlDQNaQii69g7V1QnNQeLHKgk-1o34wR7BiV8E32E0BPvJp6Ug6dxYtlaX
+       V0m6striN50brIPpWZU9Zw",
+    "hQqNPM54Y9_Ce8ZGxLNDHUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phAEzVB_
+       K0RnoidvlpJptKmpUe8hJg",
+    "m5p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9hF5Jbz04bRarmbFTaaSFil08
+       3TaJTejzDQZkazgwQpbgaQ",
+    "iwikodYh8-dN8hQU3IaL-QVuWxCqWrlJkRXfwW8GNeJGxWr1W5TfpTHCk0t3b8A9
+       qS7FTU9hrc39_cuc06QUbA",
+    "v1SBfPjNnaoZDvedxCisCPCbvGzKjxqF6SxCQRXG9tYjw3qWr2vGIFwWvtY-3WLy
+       kyPkvbEDQWEy99X1xToZow",
+    "w1UJKbAzwWG7C6qZswkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSsHhg-RbSQ
+       7JQzWK97PjYrTOhBcOWmGw"
   ]
 }
 
@@ -2557,31 +2577,31 @@ JuU0VNIn0
 <p id="appendix-A.1-29">And also in compact serialization:<a href="#appendix-A.1-29" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-30">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJncndieHdiNWx0ZWFydTU4MDI4R1FYdFAzOWRvMmpkTGt2TXZ6Sk
-JuU0VNIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1qczlWNXhoRkkyRDZVbn
+lHNzVjIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb
-2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiQzlPWlVFYTlGanBvZ0
-dGbEEwM3JEWGEwOXpWNzN1ZXV4Smp0WkxtclZtdyIsInkiOiJlNE1va3hfdnZwZThudVd
-lUWhIQXNLRENleFhjc0Rld0tsd3RqYWVlX2pBIiwiZCI6IlBwdVhuQUZTSnpzYzNwaE01
-RzBWem5ZT3pqN0NCMVVncjlLVFBBTFVsSk0ifSwicHJlc2VudGF0aW9uX2tleSI6eyJrd
-HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6Im5YcXpqdVozbmpQeHRRNDYzUkZOcDlXdW
-EzdkFNR2p4RVJ6b0Z3TUJsR0kiLCJ5IjoiVmxfSDF2UUdrME9HcTM5Vm84TEpQT0tjWFg
-0bXU2VlA2R1V6ZDAwWFpuRSIsImQiOiJMeGtMdW0yZzc4b1Nxd2Zyc3hsZVdXN2JzWDky
-UVZBT1Q0Rmk4bVlGRlUwIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
+2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoicmVWbkZ6QVZIR3oydG
+1KSWs5NzdYc29HM2hQOUk5YUEzWVEzWjM1dEhYRSIsInkiOiJLZDM4SWN4aXZtcHBXal9
+YNnBZQWthZ0E0RHM2STdkWGdVeVhVV1AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0
+V05mT2V3RzRqZ2F5dHRwLU5ibUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrd
+HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0Rm
+J2V2xQMm9mRFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0l
+McWctVnB5dFF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5VXA3
+b3YwZEsxcmFGaHVHVHQ4In19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
 I~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5
 Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4g
 U3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZ
-SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.zf5LsUgsvcZ5HOXWF3HrR3zaKY
-UpTxJceVUbnlAoscR-hY5WF8FwZ6HKPiJXh25Dsge9v00dAisD5yHBdDHWAA~8dOtDgdF
-zxEOxYfrE3j4usxF1JEmr8UMAG3d0CPoHp2fqcRJxPCO7_wkWM0lkMg1KSROi9hYX2XWY
-vH5U0rwTQ~7oiD2kwbJpmZOuEaEEYXcIEUScvsN5TbsF5hNmSn35wFxWvjqD3c7naezzI
-guwcFNcdeHuC_5zh8rmi_oMtbYQ~1I6tjm1WPM7LNZDBeRHIFc4ue1sEa-DP8hlqXp2QJ
-0xn2R0OW2TCNbWKtlChOpHGQ0bhugcWr3TftFhl4UFFMQ~69jZh-vEmszIDyfLaoqR8lZ
-TRspP_1w6jNSZdY4Dj4yb0HDUeCqKWVn1_CQAm4vjTRikhhLJ6IS1-FINncWoZw~QI2nw
-4swKv3f52mIOSt9bo5OUF51L9z0Hb6dv7P9Uzvknu5FYzV3m7o9nGfoAW58-VM9zZCg9z
-APRq6Csz2Kvw~kuRPagBhZwz3exZLNXJh9IITwTjteZjMFDpP4E0h9FWYaDG2vFrmylQ0
-fNW1B5-2HPUvmn2wbGMQNz7BbGjzyg
+SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.slRj_KZKs0lyGboxbsdSYFoq4P
+mi2B9DDbY4IPPo8ItmpzUK9lMp1jom2U3qCkEBvYnZPCQuTMWt76-pjlQGCg~CcpkDrRl
+DQNaQii69g7V1QnNQeLHKgk-1o34wR7BiV8E32E0BPvJp6Ug6dxYtlaXV0m6striN50br
+IPpWZU9Zw~hQqNPM54Y9_Ce8ZGxLNDHUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phA
+EzVB_K0RnoidvlpJptKmpUe8hJg~m5p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9h
+F5Jbz04bRarmbFTaaSFil083TaJTejzDQZkazgwQpbgaQ~iwikodYh8-dN8hQU3IaL-QV
+uWxCqWrlJkRXfwW8GNeJGxWr1W5TfpTHCk0t3b8A9qS7FTU9hrc39_cuc06QUbA~v1SBf
+PjNnaoZDvedxCisCPCbvGzKjxqF6SxCQRXG9tYjw3qWr2vGIFwWvtY-3WLykyPkvbEDQW
+Ey99X1xToZow~w1UJKbAzwWG7C6qZswkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSs
+Hhg-RbSQ7JQzWK97PjYrTOhBcOWmGw
 
 </pre><a href="#appendix-A.1-30" class="pilcrow">¶</a>
 </div>
@@ -2604,13 +2624,13 @@ fNW1B5-2HPUvmn2wbGMQNz7BbGjzyg
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "DrkRlg8szy4Sl2c0AQJXcLeaOlE_j7nRhnY3TYuvXjaLSTzXhl-0VNuobLTma
-       -nOB1XqLB9XSahCHLFlVoj8LUpwEYMLO-o3h-2Byy0ohp95Kv3KnBWHmb1DSFQ
-       SA35U",
-  "y": "F2QwIGoMbYKtSENxVy-tzCMJ5F-4cX6mRmHEDanoTwWNAKU2pSMVGCDqNnvXK
-       aBSEM8ojiQK9Km_LoZ7FrgGfb7yF383yPhJrZglKLu_ZMXvMfv8w5aif3YQRIL
-       PyO9r",
-  "d": "TqnE8hJluDLweAGXwzZl0BimXF4EjHKP6exZRR1u7oQ"
+  "x": "DPV5JaYHouoaK5dMTMktmv3XrJqJClCcjJm7nRoK7-G7a9ghDrhaH1JssNHT0
+       qctAR5KJTI1kor3vNNUiaMk58PjrQU55_MkirOzqXNJ9CgBYsm5wEj0PZHCjlj
+       Ikj4C",
+  "y": "E-7pYhkXYWLZYmlhU4ItAewGrTF1Pna2LxQolHPS89nTV071kdsUhi5yXZYuX
+       weYBEg957l-tDqSOPvf28IlUnu4-gHvrskOmTBJ2RRsoiFEffYXDZio8PRDJyI
+       Ln0Mn",
+  "d": "VM7acbyPm47tuQobUJ4Otr_PqWU_dXsl01jk88ANBMY"
 }
 
 </pre>
@@ -2675,8 +2695,8 @@ fNW1B5-2HPUvmn2wbGMQNz7BbGjzyg
     "dHJ1ZQ"
   ],
   "proof": [
-    "tzEKg9VMtNDEtTpauk6SAcBIo1gq-HDjMrsHiV_Bqe2I1lmjDDk2fiLjZj6X6vSv
-       GvLYJIi86WzuHzL4mKfpTUpP-hKsWJHAN2RJFPyHqDs"
+    "ovq_rehm1YfV8lCA7AUp-K2mMKKpgRHpxW1WVLWkYmm4QvczHQkukUu-100CdnTn
+       LNo3gGD4aZCe4KVev3GYXOstU1Kel-X5tloPoOB69pw"
   ]
 }
 
@@ -2692,9 +2712,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.tzEKg9VMtNDEtTpauk6SAcBIo1gq-HDjMr
-sHiV_Bqe2I1lmjDDk2fiLjZj6X6vSvGvLYJIi86WzuHzL4mKfpTUpP-hKsWJHAN2RJFPy
-HqDs
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.ovq_rehm1YfV8lCA7AUp-K2mMKKpgRHpxW
+1WVLWkYmm4QvczHQkukUu-100CdnTnLNo3gGD4aZCe4KVev3GYXOstU1Kel-X5tloPoOB
+69pw
 
 </pre>
 </div>
@@ -2733,14 +2753,14 @@ HqDs
     null
   ],
   "proof": [
-    "pSsbZ6ZJHyPJnNtHN2cmYDWVDZdS1zzgIG4rUuKxcLS3OMXKFfCu1BzMVWBkoEhY
-       hOz8ej8vDDdkiEywXZnpGB0Ei_MtZ98qeRV1oioUNFYb9E5Q3HbQIA_hJ75Qqv
-       i5kSubQ44Y5wJFgxm1ADQd2mhmxWUgByTqTpoxAUPSwI7Kb1QoQaYy8NvhzU8c
-       RRvoFKCnEEoeQcnu4uWwaks1UceuisJdp4pi97vzViwG97JSxZEfr1UPqNB2S1
-       e8IfgcTBlzIm4pjyfzAy51ZXdmelrOBFIvGDMCdDMt4-sRAe0KCtdnnWfbo4Yw
-       x3OY6NPMKpN3ewtBwURgILsxKtCyaoSy20qAqZvFQa-JyL9Uavoj1sxu6N3zjK
-       dX4t0HZN8owziFtdDdWxs8oCUU_VhIfTwuTfIdupWfy8DzPQ6f0h3o9SW8xNED
-       yIgIfAlSqMNXQ1JJ0YicBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI"
+    "gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7KgymUGo-YZ6M_g5j06QqKWczJ5W-
+       lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIFHMewBpnzc2E30kzf_
+       1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAaxfk2W8JVjw3
+       dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9SJs
+       kxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6a
+       Fvp3pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V
+       91R2CnYWt8mvN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7
+       TbPKeuVxzOuoK242OblKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0"
   ]
 }
 
@@ -2754,14 +2774,14 @@ HqDs
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pSsbZ6ZJHyPJnNtHN2cmYDWVDZdS1zzgIG4rUuKx
-cLS3OMXKFfCu1BzMVWBkoEhYhOz8ej8vDDdkiEywXZnpGB0Ei_MtZ98qeRV1oioUNFYb9
-E5Q3HbQIA_hJ75Qqvi5kSubQ44Y5wJFgxm1ADQd2mhmxWUgByTqTpoxAUPSwI7Kb1QoQa
-Yy8NvhzU8cRRvoFKCnEEoeQcnu4uWwaks1UceuisJdp4pi97vzViwG97JSxZEfr1UPqNB
-2S1e8IfgcTBlzIm4pjyfzAy51ZXdmelrOBFIvGDMCdDMt4-sRAe0KCtdnnWfbo4Ywx3OY
-6NPMKpN3ewtBwURgILsxKtCyaoSy20qAqZvFQa-JyL9Uavoj1sxu6N3zjKdX4t0HZN8ow
-ziFtdDdWxs8oCUU_VhIfTwuTfIdupWfy8DzPQ6f0h3o9SW8xNEDyIgIfAlSqMNXQ1JJ0Y
-icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7Kgym
+UGo-YZ6M_g5j06QqKWczJ5W-lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIF
+HMewBpnzc2E30kzf_1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAax
+fk2W8JVjw3dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9
+SJskxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6aFvp3
+pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V91R2CnYWt8m
+vN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7TbPKeuVxzOuoK242Ob
+lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 
 </pre>
 </div>
@@ -2782,9 +2802,9 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "Gi2ZRxFygJMcgxwxldSUDwBpLFzKmfrNhvBPYre1Hk0",
-  "y": "gxB3lVAJnQsIyft6x6NZSel3guiZiH5Ov_EzYrpLa1g",
-  "d": "24jjfSXJVD7-j-EQmsWnDyTWBOAssWzRiiECSwiNUgo"
+  "x": "9XrdCIk6kGAgNTNa-ZgMcC-LYYuyNkQNi8RixLOGQa8",
+  "y": "myGOsuM-JLzYKju09AWBlhiofBsOjXmmxWI0fYzf78c",
+  "d": "hELfU6OhgDaccOV68cEZZyFii06WOEbt6T5_ibeTahA"
 }
 
 </pre>
@@ -2795,7 +2815,7 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
 <p id="appendix-A.3-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-19">
           <div class="lang-json sourcecode" id="appendix-A.3-5.1">
-<pre>"ykwOSdcA2D_piXSEjzDFQHOgpn9TSOsk0B10pVHRsus"
+<pre>"4Hi2BSN_jVCboCcURqSajaUX1GRnHyOsepgd9ncXR_w"
 
 </pre>
 </div>
@@ -2808,9 +2828,9 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "nXqzjuZ3njPxtQ463RFNp9Wua3vAMGjxERzoFwMBlGI",
-  "y": "Vl_H1vQGk0OGq39Vo8LJPOKcXX4mu6VP6GUzd00XZnE",
-  "d": "LxkLum2g78oSqwfrsxleWW7bsX92QVAOT4Fi8mYFFU0"
+  "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
+  "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU",
+  "d": "a404Bz77IOZnmF_T3EHv_i_U9Up7ov0dK1raFhuGTt8"
 }
 
 </pre>
@@ -2838,8 +2858,8 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "nXqzjuZ3njPxtQ463RFNp9Wua3vAMGjxERzoFwMBlGI",
-    "y": "Vl_H1vQGk0OGq39Vo8LJPOKcXX4mu6VP6GUzd00XZnE"
+    "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
+    "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU"
   }
 }
 
@@ -2875,7 +2895,7 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
 <p id="appendix-A.3-11">The first MAC is generated using the key <code>issuer_header</code> and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <span id="name-issuer-mac-of-protected-hea"></span><figure id="figure-23">
           <div class="lang-txt sourcecode" id="appendix-A.3-12.1">
-<pre>SNsmLVE5VcQ-kgxZlTOP6re-qQY-mbevGBb_H55xtkc
+<pre>Jx9poBhGsf8qjM7iZUbINl2ICLwYC5KS3-ErSiZDtsQ
 
 </pre>
 </div>
@@ -2886,13 +2906,13 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-24">
           <div class="lang-json sourcecode" id="appendix-A.3-14.1">
 <pre>[
-  "MKSLH0NaQzNmDih30BwFetlJUL23-oaZ13KdDz9sewE",
-  "3ufjytwGXP_DQhKDWZJCfwgAm54FzeomZL1TzkL87sQ",
-  "6fSzL6lnV3AL3F1FQfdsvjVPRgTtcykdTH4Ldk8BNh0",
-  "otQTwNqCpLyrBEMEO5_EDacGukXbLrmsVXIrX3W0ZF0",
-  "NgoelHqKuAnAsLXTXU3CvTZFvgNg-YrDOBYh3F_gKxA",
-  "q91VHK7RVBktoj9Dmqbz0OASKQf_uAMGdJH4DWwtqS8",
-  "PWi9SLHf_-Tb7yUyNEd5NJBuL0boaRcqydBXfeHzpvI"
+  "kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q",
+  "bJKyLp6OEn7POuXee0AAFfIwPE2HknDNbNW57OIfsyI",
+  "vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UKyXs6clgw4",
+  "yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c",
+  "DMhpLli-9jJDQkNwkeaumcW5a8A5SfnRsYZlMCLmvR4",
+  "jfWT72PmpClhaTz7HsK5QIrpXdQuTpz8sxeCLaecZ2A",
+  "N5Rn5dHMN3AtXdEctCDFquTXAlTfDCZTcXcjCmxAHVE"
 ]
 
 </pre>
@@ -2904,13 +2924,13 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-25">
           <div class="lang-json sourcecode" id="appendix-A.3-16.1">
 <pre>[
-  "8ysgwYg1-cKR6qVJPv7JmIfj1tZPPouRV2qYteIOMyc",
-  "YqtLOQMw_thWn33hb-8J9RWdPslZD3WFL2d_71ekINU",
-  "IlKktA8jiIvUjFZBwdj3itT2LEcr8E4W5hGVSs-PVkU",
-  "yD58D7qVQa3UoeAi2CO-eHbj4e4DiTctXrDTGy0hffE",
-  "hbqzFDkRjIgahsG2AaWV9Z2npsgf95Z5yoBljbKhUng",
-  "_nizWeOMv6Aujh32b7xYIOJ3Px-1KSWhY-tcWwvjX6I",
-  "g544s0e6ZfoyLYkPMBh39g4dnu4eoGlaWJKCtCvfMLM"
+  "V1mVGUp-DOAHFP0LTrdFJ-vOm3SkgnGrDLzBgATCMvk",
+  "bfh9OyALF5m1C_zgxQu8pXHGgvCFtsciA6vM8uk2UO0",
+  "un6STYjq7MNu3Gv9LoPBiOtKu3Bxjoxk12njg5PWSEY",
+  "R_tvBXKi1HffgQ5O985KMeTugpfkex5u72u0IJJLCF8",
+  "XReoZ17tB57j_MysjzX4DYZVxMcHrvvqgrS5-BZ-CP8",
+  "dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rWOv8",
+  "AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM"
 ]
 
 </pre>
@@ -2923,9 +2943,9 @@ icBrl_t2jXtDKT3vjXlJhjkPj5EUlHGS79lDI
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-19.1">
 <pre>[
-  "EaudjTu7B1G2Zb_L-smaIMz0BZ0JRXonJWDVvPtUZomYfXDTKxBvjTdOGTnjCuAJbf
-TLk8zrpNo2O1dpxAZJHA",
-  "CvYhuMY_djiHCs3QOP6WFPZuVC02izawOkN1O6GNYHA"
+  "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSmaH
+sV_FltJJZg_VITeON3ZA",
+  "nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ"
 ]
 
 </pre>
@@ -2941,8 +2961,8 @@ TLk8zrpNo2O1dpxAZJHA",
 Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
 WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
 Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiJuWHF6anVaM25qUHh0UTQ2M1JGTnA5V3VhM3ZBTUdqeEVSem9Gd01CbEdJ
-IiwieSI6IlZsX0gxdlFHazBPR3EzOVZvOExKUE9LY1hYNG11NlZQNkdVemQwMFhabkUif
+nbiIsIngiOiI3WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3Qw
+IiwieSI6InY5X1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUif
 X0",
   "payloads": [
     "MTcxNDUyMTYwMA",
@@ -2957,9 +2977,9 @@ JVU0EifQ",
     "dHJ1ZQ"
   ],
   "proof": [
-    "EaudjTu7B1G2Zb_L-smaIMz0BZ0JRXonJWDVvPtUZomYfXDTKxBvjTdOGTnjCuAJ
-bfTLk8zrpNo2O1dpxAZJHA",
-    "CvYhuMY_djiHCs3QOP6WFPZuVC02izawOkN1O6GNYHA"
+    "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSm
+aHsV_FltJJZg_VITeON3ZA",
+    "nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ"
   ]
 }
 
@@ -2974,15 +2994,15 @@ bfTLk8zrpNo2O1dpxAZJHA",
 <pre>eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc2VudGF0aW9
-uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJu
-WHF6anVaM25qUHh0UTQ2M1JGTnA5V3VhM3ZBTUdqeEVSem9Gd01CbEdJIiwieSI6IlZsX
-0gxdlFHazBPR3EzOVZvOExKUE9LY1hYNG11NlZQNkdVemQwMFhabkUifX0.MTcxNDUyMT
+uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiI3
+WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3QwIiwieSI6InY5X
+1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUifX0.MTcxNDUyMT
 YwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb
 3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3
 RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiw
 icmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~d
-HJ1ZQ.EaudjTu7B1G2Zb_L-smaIMz0BZ0JRXonJWDVvPtUZomYfXDTKxBvjTdOGTnjCuA
-JbfTLk8zrpNo2O1dpxAZJHA~CvYhuMY_djiHCs3QOP6WFPZuVC02izawOkN1O6GNYHA
+HJ1ZQ.USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqS
+maHsV_FltJJZg_VITeON3ZA~nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ
 
 </pre>
 </div>
@@ -2996,7 +3016,7 @@ JbfTLk8zrpNo2O1dpxAZJHA~CvYhuMY_djiHCs3QOP6WFPZuVC02izawOkN1O6GNYHA
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "grwbxwb5ltearu58028GQXtP39do2jdLkvMvzJBnSEM"
+  "nonce": "UXHp0Q6fqwwJK0mvlx08QmJMjs9V5xhFI2D6UnyG75c"
 }
 
 </pre>
@@ -3011,17 +3031,17 @@ JbfTLk8zrpNo2O1dpxAZJHA~CvYhuMY_djiHCs3QOP6WFPZuVC02izawOkN1O6GNYHA
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-30">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-31.1">
 <pre>[
-  "l3qY6X0p-eYICVDsH8iIwnnJ9LMUxUSf45YAPHeW0KkhA9qIEXy20dW8dvzrZvDYDH
-fRW51AJScZ_95u_E4zlg",
-  "EaudjTu7B1G2Zb_L-smaIMz0BZ0JRXonJWDVvPtUZomYfXDTKxBvjTdOGTnjCuAJbf
-TLk8zrpNo2O1dpxAZJHA",
-  "MKSLH0NaQzNmDih30BwFetlJUL23-oaZ13KdDz9sewE",
-  "3ufjytwGXP_DQhKDWZJCfwgAm54FzeomZL1TzkL87sQ",
-  "6fSzL6lnV3AL3F1FQfdsvjVPRgTtcykdTH4Ldk8BNh0",
-  "otQTwNqCpLyrBEMEO5_EDacGukXbLrmsVXIrX3W0ZF0",
-  "hbqzFDkRjIgahsG2AaWV9Z2npsgf95Z5yoBljbKhUng",
-  "_nizWeOMv6Aujh32b7xYIOJ3Px-1KSWhY-tcWwvjX6I",
-  "g544s0e6ZfoyLYkPMBh39g4dnu4eoGlaWJKCtCvfMLM"
+  "t3TK6dFCK-hbbcRYQEgxr_B0E2HkAFcF5sO_hJ1zY8Qx4j09kY46uFR9Eu9x7TVDF5
+H720OBpxO1Y72k_nJwQA",
+  "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSmaH
+sV_FltJJZg_VITeON3ZA",
+  "kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q",
+  "bJKyLp6OEn7POuXee0AAFfIwPE2HknDNbNW57OIfsyI",
+  "vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UKyXs6clgw4",
+  "yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c",
+  "XReoZ17tB57j_MysjzX4DYZVxMcHrvvqgrS5-BZ-CP8",
+  "dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rWOv8",
+  "AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM"
 ]
 
 </pre>
@@ -3034,14 +3054,14 @@ TLk8zrpNo2O1dpxAZJHA",
           <div class="lang-wrapped sourcecode" id="appendix-A.3-33.1">
 <pre>{
   "presentation": "eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJncndieHdiNWx0ZWFydTU4MDI4R1FYdFA
-zOWRvMmpkTGt2TXZ6SkJuU0VNIn0",
+BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1
+qczlWNXhoRkkyRDZVbnlHNzVjIn0",
   "issuer": "eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
 Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
 WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
 Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiJuWHF6anVaM25qUHh0UTQ2M1JGTnA5V3VhM3ZBTUdqeEVSem9Gd01CbEdJ
-IiwieSI6IlZsX0gxdlFHazBPR3EzOVZvOExKUE9LY1hYNG11NlZQNkdVemQwMFhabkUif
+nbiIsIngiOiI3WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3Qw
+IiwieSI6InY5X1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUif
 X0",
   "payloads": [
     "MTcxNDUyMTYwMA",
@@ -3053,17 +3073,17 @@ X0",
     null
   ],
   "proof": [
-    "l3qY6X0p-eYICVDsH8iIwnnJ9LMUxUSf45YAPHeW0KkhA9qIEXy20dW8dvzrZvDY
-DHfRW51AJScZ_95u_E4zlg",
-    "EaudjTu7B1G2Zb_L-smaIMz0BZ0JRXonJWDVvPtUZomYfXDTKxBvjTdOGTnjCuAJ
-bfTLk8zrpNo2O1dpxAZJHA",
-    "MKSLH0NaQzNmDih30BwFetlJUL23-oaZ13KdDz9sewE",
-    "3ufjytwGXP_DQhKDWZJCfwgAm54FzeomZL1TzkL87sQ",
-    "6fSzL6lnV3AL3F1FQfdsvjVPRgTtcykdTH4Ldk8BNh0",
-    "otQTwNqCpLyrBEMEO5_EDacGukXbLrmsVXIrX3W0ZF0",
-    "hbqzFDkRjIgahsG2AaWV9Z2npsgf95Z5yoBljbKhUng",
-    "_nizWeOMv6Aujh32b7xYIOJ3Px-1KSWhY-tcWwvjX6I",
-    "g544s0e6ZfoyLYkPMBh39g4dnu4eoGlaWJKCtCvfMLM"
+    "t3TK6dFCK-hbbcRYQEgxr_B0E2HkAFcF5sO_hJ1zY8Qx4j09kY46uFR9Eu9x7TVD
+F5H720OBpxO1Y72k_nJwQA",
+    "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSm
+aHsV_FltJJZg_VITeON3ZA",
+    "kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q",
+    "bJKyLp6OEn7POuXee0AAFfIwPE2HknDNbNW57OIfsyI",
+    "vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UKyXs6clgw4",
+    "yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c",
+    "XReoZ17tB57j_MysjzX4DYZVxMcHrvvqgrS5-BZ-CP8",
+    "dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rWOv8",
+    "AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM"
   ]
 }
 
@@ -3076,21 +3096,21 @@ bfTLk8zrpNo2O1dpxAZJHA",
 <span id="name-presented-jwp-in-compact-se"></span><figure id="figure-32">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-35.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJncndieHdiNWx0ZWFydTU4MDI4R1FYdFAzOWRvMmpkTGt2TXZ6Sk
-JuU0VNIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1qczlWNXhoRkkyRDZVbn
+lHNzVjIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc
 2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbi
-IsIngiOiJuWHF6anVaM25qUHh0UTQ2M1JGTnA5V3VhM3ZBTUdqeEVSem9Gd01CbEdJIiw
-ieSI6IlZsX0gxdlFHazBPR3EzOVZvOExKUE9LY1hYNG11NlZQNkdVemQwMFhabkUifX0.
-MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.l3qY6X0p-eYICVDsH8iI
-wnnJ9LMUxUSf45YAPHeW0KkhA9qIEXy20dW8dvzrZvDYDHfRW51AJScZ_95u_E4zlg~Ea
-udjTu7B1G2Zb_L-smaIMz0BZ0JRXonJWDVvPtUZomYfXDTKxBvjTdOGTnjCuAJbfTLk8z
-rpNo2O1dpxAZJHA~MKSLH0NaQzNmDih30BwFetlJUL23-oaZ13KdDz9sewE~3ufjytwGX
-P_DQhKDWZJCfwgAm54FzeomZL1TzkL87sQ~6fSzL6lnV3AL3F1FQfdsvjVPRgTtcykdTH
-4Ldk8BNh0~otQTwNqCpLyrBEMEO5_EDacGukXbLrmsVXIrX3W0ZF0~hbqzFDkRjIgahsG
-2AaWV9Z2npsgf95Z5yoBljbKhUng~_nizWeOMv6Aujh32b7xYIOJ3Px-1KSWhY-tcWwvj
-X6I~g544s0e6ZfoyLYkPMBh39g4dnu4eoGlaWJKCtCvfMLM
+IsIngiOiI3WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3QwIiw
+ieSI6InY5X1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUifX0.
+MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.t3TK6dFCK-hbbcRYQEgx
+r_B0E2HkAFcF5sO_hJ1zY8Qx4j09kY46uFR9Eu9x7TVDF5H720OBpxO1Y72k_nJwQA~US
+LcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSmaHsV_Fl
+tJJZg_VITeON3ZA~kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q~bJKyLp6OE
+n7POuXee0AAFfIwPE2HknDNbNW57OIfsyI~vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UK
+yXs6clgw4~yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c~XReoZ17tB57j_My
+sjzX4DYZVxMcHrvvqgrS5-BZ-CP8~dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rW
+Ov8~AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM
 
 </pre>
 </div>
