@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-06T00:52:19.514853+00:00",
+  "timestamp": "2025-03-09T00:44:37.269657+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2634,7 +2634,7 @@
       "labels": [],
       "body": "A recent presentation from @abhvious showed a ZKP over a mdoc presentation. this used specifically optimized processing and circuit design to achieve acceptable performance, while also allowing for use of P256 and SHA-256 to meet the reality of today's secure enclaves/elements.\r\n\r\nIt would be useful to evaluate these techniques once they are published to see how they apply to JWP, and if there are changes we could make within JWP to optimize ZKP evaluation.",
       "createdAt": "2024-11-12T18:58:05Z",
-      "updatedAt": "2025-03-04T22:06:50Z",
+      "updatedAt": "2025-03-06T02:41:38Z",
       "closedAt": null,
       "comments": [
         {
@@ -2657,6 +2657,13 @@
           "body": "https://datatracker.ietf.org/doc/draft-google-cfrg-libzk/",
           "createdAt": "2025-03-04T22:06:49Z",
           "updatedAt": "2025-03-04T22:06:49Z"
+        },
+        {
+          "author": "abhvious",
+          "authorAssociation": "NONE",
+          "body": "We also published an academic paper: https://eprint.iacr.org/2024/2010 that describes the rationale behind the system.\n\nI would like to learn more about the JWP usecase you mention. ",
+          "createdAt": "2025-03-06T02:41:37Z",
+          "updatedAt": "2025-03-06T02:41:37Z"
         }
       ]
     },
