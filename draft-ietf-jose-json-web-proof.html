@@ -17,15 +17,15 @@ The COSE set of standards likewise does this for CBOR-based containers, focusing
 Unlike JWS, which integrity-protects only a single payload, JWP can integrity-protect multiple payloads in one message.
 It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay. 
     " name="description">
-<meta content="xml2rfc 3.26.0" name="generator">
+<meta content="xml2rfc 3.28.0" name="generator">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
 <meta content="jwp" name="keyword">
 <meta content="jws" name="keyword">
 <meta content="draft-ietf-jose-json-web-proof-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.26.0
-    Python 3.12.8
+  xml2rfc 3.28.0
+    Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -446,7 +446,7 @@ dl {
     margin-bottom: 0;
   }
 }
-dl > dt {
+dl:not(.dlNewline) > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
@@ -1055,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">json-web-proof</td>
-<td class="right">February 2025</td>
+<td class="right">March 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 17 August 2025</td>
+<td class="center">Expires 12 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-02-13" class="published">13 February 2025</time>
+<time datetime="2025-03-11" class="published">11 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-08-17">17 August 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-12">12 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 17 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1916,14 +1916,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7Kgym
-UGo-YZ6M_g5j06QqKWczJ5W-lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIF
-HMewBpnzc2E30kzf_1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAax
-fk2W8JVjw3dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9
-SJskxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6aFvp3
-pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V91R2CnYWt8m
-vN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7TbPKeuVxzOuoK242Ob
-lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfn
+nz8n7R9oILdTopdo-3IvLoj4jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtE
+jv5O9AfbiyArdziylmrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRm
+gsx6xK9iNGcc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-
+tJRVVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTOtsyz
+UCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYRmAzUKI5dBIb
+zeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpOQhrfL73Hp8N4NBF623
+NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -1960,14 +1960,14 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
     null
   ],
   "proof": [
-    "gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7KgymUGo-YZ6M_g5j06QqKWczJ5W-
-       lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIFHMewBpnzc2E30kzf_
-       1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAaxfk2W8JVjw3
-       dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9SJs
-       kxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6a
-       Fvp3pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V
-       91R2CnYWt8mvN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7
-       TbPKeuVxzOuoK242OblKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0"
+    "jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfnnz8n7R9oILdTopdo-3IvLoj4
+       jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtEjv5O9AfbiyArdziyl
+       mrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRmgsx6xK9iNG
+       cc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-tJR
+       VVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTO
+       tsyzUCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYR
+       mAzUKI5dBIbzeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpO
+       QhrfL73Hp8N4NBF623NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I"
   ]
 }
 
@@ -2662,6 +2662,10 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
         <dd>
 <span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Token"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-token-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-07">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7516">[RFC7516]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span> and <span class="refAuthor">J. Hildebrand</span>, <span class="refTitle">"JSON Web Encryption (JWE)"</span>, <span class="seriesInfo">RFC 7516</span>, <span class="seriesInfo">DOI 10.17487/RFC7516</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7516">https://www.rfc-editor.org/info/rfc7516</a>&gt;</span>. </dd>
@@ -2669,6 +2673,10 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dt id="RFC7519">[RFC7519]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9052">[RFC9052]</dt>
       <dd>
@@ -2687,7 +2695,7 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dd class="break"></dd>
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
         <dd>
-<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-07</span>, <time datetime="2024-09-23" class="refDate">23 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-08</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/api/v1/doc/document/draft-irtf-cfrg-bbs-signatures/">https://datatracker.ietf.org/api/v1/doc/document/draft-irtf-cfrg-bbs-signatures/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.CoAP.Formats">[IANA.CoAP.Formats]</dt>
         <dd>
@@ -2704,10 +2712,6 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dt id="RFC2046">[RFC2046]</dt>
         <dd>
 <span class="refAuthor">Freed, N.</span> and <span class="refAuthor">N. Borenstein</span>, <span class="refTitle">"Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types"</span>, <span class="seriesInfo">RFC 2046</span>, <span class="seriesInfo">DOI 10.17487/RFC2046</span>, <time datetime="1996-11" class="refDate">November 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2046">https://www.rfc-editor.org/info/rfc2046</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC2119">[RFC2119]</dt>
-        <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5226">[RFC5226]</dt>
         <dd>
@@ -2728,10 +2732,6 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dt id="RFC8152">[RFC8152]</dt>
         <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 8152</span>, <span class="seriesInfo">DOI 10.17487/RFC8152</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8152">https://www.rfc-editor.org/info/rfc8152</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8174">[RFC8174]</dt>
-        <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8725">[RFC8725]</dt>
         <dd>
@@ -2761,104 +2761,109 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
 <p id="appendix-B-1">[[ To be removed from the final specification ]]<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">-07<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">-08<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-3.1">Changing primary editor<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-3.1">Made some additional references normative.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.2">Broad changes to define a CBOR serialization, which leverage
-new CBOR Protected Headers<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+      </ul>
+<p id="appendix-B-4">-07<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-5.1">Changing primary editor<a href="#appendix-B-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.3">Deemphasis of JSON in some parts of the document to represent
-CBOR alternatives<a href="#appendix-B-3.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.2">Broad changes to define a CBOR serialization, which leverage
+new CBOR Protected Headers<a href="#appendix-B-5.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.4">Rewrite Header Parameter parsing requirements for JSON to
+        <li class="compact" id="appendix-B-5.3">Deemphasis of JSON in some parts of the document to represent
+CBOR alternatives<a href="#appendix-B-5.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-5.4">Rewrite Header Parameter parsing requirements for JSON to
 emphasize preference to fail on duplicate headers (to match
 CBOR behavior). Last-encountered remains as an option to match
-ECMA definition.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
+ECMA definition.<a href="#appendix-B-5.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.5">Add option to use CoAP Formats for <code>typ</code> in CBOR mode to match
-COSE, as a compact indirection over full media types.<a href="#appendix-B-3.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.5">Add option to use CoAP Formats for <code>typ</code> in CBOR mode to match
+COSE, as a compact indirection over full media types.<a href="#appendix-B-5.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.6">Modify IANA registry template to account for CBOR Labels in
-header parameters<a href="#appendix-B-3.6" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.6">Modify IANA registry template to account for CBOR Labels in
+header parameters<a href="#appendix-B-5.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.7">Add application/jwp+cbor media type<a href="#appendix-B-3.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.7">Add application/jwp+cbor media type<a href="#appendix-B-5.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.8">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-B-3.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.8">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-B-5.8" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.9">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
+        <li class="compact" id="appendix-B-5.9">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
 <code>presentation_key</code> to better represent that the key may be JSON
-or CBOR-formatted.<a href="#appendix-B-3.9" class="pilcrow">¶</a>
+or CBOR-formatted.<a href="#appendix-B-5.9" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.10">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
+        <li class="compact" id="appendix-B-5.10">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
 where they are defined. Consolidated usage, purpose and
-requirements from algorith musage under these definitions.<a href="#appendix-B-3.10" class="pilcrow">¶</a>
+requirements from algorith musage under these definitions.<a href="#appendix-B-5.10" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.11">Clarified that <code>proof_key</code> and <code>presentation_key</code> are required
+        <li class="compact" id="appendix-B-5.11">Clarified that <code>proof_key</code> and <code>presentation_key</code> are required
 by particular algorithms and are not more generally required for
-issued and presented JWPs.<a href="#appendix-B-3.11" class="pilcrow">¶</a>
+issued and presented JWPs.<a href="#appendix-B-5.11" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.12">Move <code>claims</code> to JPT to live beside <code>cid</code>, and renumber CBOR
-labels so that they may be adjacent<a href="#appendix-B-3.12" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-B-4">-06<a href="#appendix-B-4" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-B-5.1">Update reference to new repository home.<a href="#appendix-B-5.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-5.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-5.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-5.3">Added additional clarification around the compact and JSON serializations<a href="#appendix-B-5.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-5.4">Added text around fully detached payloads<a href="#appendix-B-5.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.12">Move <code>claims</code> to JPT to live beside <code>cid</code>, and renumber CBOR
+labels so that they may be adjacent<a href="#appendix-B-5.12" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-6">-05<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+<p id="appendix-B-6">-06<a href="#appendix-B-6" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-7.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-7.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-7.1">Update reference to new repository home.<a href="#appendix-B-7.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-7.2">Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.<a href="#appendix-B-7.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-7.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-7.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-7.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.3">Added additional clarification around the compact and JSON serializations<a href="#appendix-B-7.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-7.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-7.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.4">Added text around fully detached payloads<a href="#appendix-B-7.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-8">-04<a href="#appendix-B-8" class="pilcrow">¶</a></p>
+<p id="appendix-B-8">-05<a href="#appendix-B-8" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-9.1">Refactoring figures and examples to be built from a common set across all three documents.<a href="#appendix-B-9.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-9.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-9.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-9.2">Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.<a href="#appendix-B-9.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-9.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-9.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-9.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-9.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-10">-03<a href="#appendix-B-10" class="pilcrow">¶</a></p>
+<p id="appendix-B-10">-04<a href="#appendix-B-10" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-11.1">Improvements resulting from a full proofreading.<a href="#appendix-B-11.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-11.2">Populated IANA Considerations section.<a href="#appendix-B-11.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-11.3">Specified JWP Header Parameters.<a href="#appendix-B-11.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-11.4">Specified representation of zero-length disclosed payloads for the compact serialization.<a href="#appendix-B-11.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-11.5">Specified that algorithms may supply multiple octet strings for the proof, which are separated by <code>~</code> characters in the compact serialization.<a href="#appendix-B-11.5" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-11.6">Updated to use BBS draft -05.<a href="#appendix-B-11.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-11.7">Added Terminology Section.<a href="#appendix-B-11.7" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-11.1">Refactoring figures and examples to be built from a common set across all three documents.<a href="#appendix-B-11.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-12">-02<a href="#appendix-B-12" class="pilcrow">¶</a></p>
+<p id="appendix-B-12">-03<a href="#appendix-B-12" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-13.1">Update reference to current BBS algorithm<a href="#appendix-B-13.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-13.1">Improvements resulting from a full proofreading.<a href="#appendix-B-13.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-13.2">Populated IANA Considerations section.<a href="#appendix-B-13.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-13.3">Specified JWP Header Parameters.<a href="#appendix-B-13.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-13.4">Specified representation of zero-length disclosed payloads for the compact serialization.<a href="#appendix-B-13.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-13.5">Specified that algorithms may supply multiple octet strings for the proof, which are separated by <code>~</code> characters in the compact serialization.<a href="#appendix-B-13.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-13.6">Updated to use BBS draft -05.<a href="#appendix-B-13.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-13.7">Added Terminology Section.<a href="#appendix-B-13.7" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-14">-01<a href="#appendix-B-14" class="pilcrow">¶</a></p>
+<p id="appendix-B-14">-02<a href="#appendix-B-14" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-15.1">Correct cross-references within group.<a href="#appendix-B-15.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-15.1">Update reference to current BBS algorithm<a href="#appendix-B-15.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-16">-00<a href="#appendix-B-16" class="pilcrow">¶</a></p>
+<p id="appendix-B-16">-01<a href="#appendix-B-16" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-17.1">Created initial working group draft based on draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-17.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-17.1">Correct cross-references within group.<a href="#appendix-B-17.1" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="appendix-B-18">-00<a href="#appendix-B-18" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-19.1">Created initial working group draft based on draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-19.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>

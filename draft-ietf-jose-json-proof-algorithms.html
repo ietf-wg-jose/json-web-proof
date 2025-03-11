@@ -11,7 +11,7 @@
 <meta content="
        The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof, JSON Web Key (JWK), and COSE specifications. It defines IANA registries for these identifiers. 
     " name="description">
-<meta content="xml2rfc 3.26.0" name="generator">
+<meta content="xml2rfc 3.28.0" name="generator">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
 <meta content="jwp" name="keyword">
@@ -19,8 +19,8 @@
 <meta content="jpa" name="keyword">
 <meta content="draft-ietf-jose-json-proof-algorithms-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.26.0
-    Python 3.12.8
+  xml2rfc 3.28.0
+    Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -441,7 +441,7 @@ dl {
     margin-bottom: 0;
   }
 }
-dl > dt {
+dl:not(.dlNewline) > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
@@ -1050,11 +1050,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">json-proof-algorithms</td>
-<td class="right">February 2025</td>
+<td class="right">March 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 17 August 2025</td>
+<td class="center">Expires 12 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-proof-algorithms-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-02-13" class="published">13 February 2025</time>
+<time datetime="2025-03-11" class="published">11 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-08-17">17 August 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-12">12 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1114,7 +1114,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 17 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1599,7 +1599,7 @@ Use of the <code>nonce</code> header parameter is RECOMMENDED for this purpose.<
           <h4 id="name-key-format">
 <a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-key-format" class="section-name selfRef">Key Format</a>
           </h4>
-<p id="section-6.2.2-1">The key used for the <code>BBS</code> algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07#appendix-Section%203.4" class="relref">Section 3.4</a>. The JWK and Cose Key Object representations of the key are detailed in <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span>.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-1">The key used for the <code>BBS</code> algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#appendix-Section%203.4" class="relref">Section 3.4</a>. The JWK and Cose Key Object representations of the key are detailed in <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span>.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.2-2">There is no additional holder presentation key necessary for presentation proofs.<a href="#section-6.2.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1608,7 +1608,7 @@ Use of the <code>nonce</code> header parameter is RECOMMENDED for this purpose.<
           <h4 id="name-issuance">
 <a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-issuance" class="section-name selfRef">Issuance</a>
           </h4>
-<p id="section-6.2.3-1">Issuance is performed using the <code>Sign</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>. This operation utilizes the issuer's BLS12-381 G2 key pair as <code>SK</code> and <code>PK</code>, along with desired protected header and payloads as the octets <code>header</code> and the octets array <code>messages</code>.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.3-1">Issuance is performed using the <code>Sign</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>. This operation utilizes the issuer's BLS12-381 G2 key pair as <code>SK</code> and <code>PK</code>, along with desired protected header and payloads as the octets <code>header</code> and the octets array <code>messages</code>.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.3-2">The octets resulting from this operation form a single octet string in the issuance proof array, to be used along with the protected header and payloads to serialize the JWP.<a href="#section-6.2.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1617,7 +1617,7 @@ Use of the <code>nonce</code> header parameter is RECOMMENDED for this purpose.<
           <h4 id="name-issuance-proof-verification">
 <a href="#section-6.2.4" class="section-number selfRef">6.2.4. </a><a href="#name-issuance-proof-verification" class="section-name selfRef">Issuance Proof Verification</a>
           </h4>
-<p id="section-6.2.4-1">Holder verification of the signature on issuance form is performed using the <code>Verify</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07#section-3.5.2" class="relref">Section 3.5.2</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.4-1">Holder verification of the signature on issuance form is performed using the <code>Verify</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.2" class="relref">Section 3.5.2</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.4-2">This operation utilizes the issuer's public key as <code>PK</code>, the proof as <code>signature</code>, the protected header octets as <code>header</code> and the array of payload octets as <code>messages</code>.<a href="#section-6.2.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1626,7 +1626,7 @@ Use of the <code>nonce</code> header parameter is RECOMMENDED for this purpose.<
           <h4 id="name-presentation-2">
 <a href="#section-6.2.5" class="section-number selfRef">6.2.5. </a><a href="#name-presentation-2" class="section-name selfRef">Presentation</a>
           </h4>
-<p id="section-6.2.5-1">Derivation of a presentation is done by the holder using the <code>ProofGen</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.5-1">Derivation of a presentation is done by the holder using the <code>ProofGen</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.2.5-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.5-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer protected header as <code>header</code>, the issuance proof as <code>signature</code>, the issuance payloads as <code>messages</code>, and the holder's presentation protected header as <code>ph</code>.<a href="#section-6.2.5-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.5-3">The operation also takes a vector of indexes into <code>messages</code>, describing which payloads the holder wishes to disclose. All payloads are required for proof generation, but only these indicated payloads will be required to be disclosed for later proof verification.<a href="#section-6.2.5-3" class="pilcrow">¶</a></p>
 <p id="section-6.2.5-4">The output of this operation is the presentation proof, as a single octet string.<a href="#section-6.2.5-4" class="pilcrow">¶</a></p>
@@ -1638,7 +1638,7 @@ Use of the <code>nonce</code> header parameter is RECOMMENDED for this purpose.<
           <h4 id="name-presentation-verification">
 <a href="#section-6.2.6" class="section-number selfRef">6.2.6. </a><a href="#name-presentation-verification" class="section-name selfRef">Presentation Verification</a>
           </h4>
-<p id="section-6.2.6-1">Verification of a presentation is done by the verifier using the <code>ProofVerify</code> operation from <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07#appendix-Section%203.5.4" class="relref">Section 3.5.4</a>.<a href="#section-6.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.6-1">Verification of a presentation is done by the verifier using the <code>ProofVerify</code> operation from <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#appendix-Section%203.5.4" class="relref">Section 3.5.4</a>.<a href="#section-6.2.6-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.6-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer protected header as <code>header</code>, the issuance proof as <code>signature</code>, the holder's presentation protected header as <code>ph</code>, and the payloads as <code>disclosed_messages</code>.<a href="#section-6.2.6-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.6-3">In addition, the <code>disclosed_indexes</code> scalar array is calculated from the payloads provided. Values disclosed in the presented payloads have a zero-based index in this array, while the indices of absent payloads are omitted.<a href="#section-6.2.6-3" class="pilcrow">¶</a></p>
 </section>
@@ -2231,8 +2231,20 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <span class="refAuthor">Waite, D.</span>, <span class="refAuthor">Jones, M. B.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Web Proof"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-web-proof-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof-07">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
+        <dd>
+<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-08</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/api/v1/doc/document/draft-irtf-cfrg-bbs-signatures/">https://datatracker.ietf.org/api/v1/doc/document/draft-irtf-cfrg-bbs-signatures/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7515">[RFC7515]</dt>
+        <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Signature (JWS)"</span>, <span class="seriesInfo">RFC 7515</span>, <span class="seriesInfo">DOI 10.17487/RFC7515</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7515">https://www.rfc-editor.org/info/rfc7515</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
       <dd>
-<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-07</span>, <time datetime="2024-09-23" class="refDate">23 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2249,25 +2261,13 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
         <dd>
 <span class="refAuthor">Krawczyk, H.</span>, <span class="refAuthor">Bellare, M.</span>, and <span class="refAuthor">R. Canetti</span>, <span class="refTitle">"HMAC: Keyed-Hashing for Message Authentication"</span>, <span class="seriesInfo">RFC 2104</span>, <span class="seriesInfo">DOI 10.17487/RFC2104</span>, <time datetime="1997-02" class="refDate">February 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2104">https://www.rfc-editor.org/info/rfc2104</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC2119">[RFC2119]</dt>
-        <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC5226">[RFC5226]</dt>
         <dd>
 <span class="refAuthor">Narten, T.</span> and <span class="refAuthor">H. Alvestrand</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">RFC 5226</span>, <span class="seriesInfo">DOI 10.17487/RFC5226</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5226">https://www.rfc-editor.org/info/rfc5226</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC7515">[RFC7515]</dt>
-        <dd>
-<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Signature (JWS)"</span>, <span class="seriesInfo">RFC 7515</span>, <span class="seriesInfo">DOI 10.17487/RFC7515</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7515">https://www.rfc-editor.org/info/rfc7515</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC7518">[RFC7518]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Algorithms (JWA)"</span>, <span class="seriesInfo">RFC 7518</span>, <span class="seriesInfo">DOI 10.17487/RFC7518</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7518">https://www.rfc-editor.org/info/rfc7518</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8174">[RFC8174]</dt>
-        <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="VC-DATA-MODEL-2.0">[VC-DATA-MODEL-2.0]</dt>
       <dd>
@@ -2295,9 +2295,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "9XrdCIk6kGAgNTNa-ZgMcC-LYYuyNkQNi8RixLOGQa8",
-  "y": "myGOsuM-JLzYKju09AWBlhiofBsOjXmmxWI0fYzf78c",
-  "d": "hELfU6OhgDaccOV68cEZZyFii06WOEbt6T5_ibeTahA"
+  "x": "N4XXh4MGyFyNb2LLMSflS202hRJ1hDSIMkpzP16DuIk",
+  "y": "riCfrzPD4fgh0hzgvnqX9Bfa9900hY8GIXeN-5dTh6Y",
+  "d": "TrIrkvywA_OYQgTtddqmvNA2leM_GHsVhRJYhTrmSqg"
 }
 
 </pre>
@@ -2311,9 +2311,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "reVnFzAVHGz2tmJIk977XsoG3hP9I9aA3YQ3Z35tHXE",
-  "y": "Kd38IcxivmppWj_X6pYAkagA4Ds6I7dXgUyXUWP23_k",
-  "d": "I_sfqPRRfht8vfdJ4WNfOewG4jgayttp-NbmLPi4oHA"
+  "x": "9NuWsYzSXXY7RASNJK0U-vs7Ywj5C1e0YXHN706X6mk",
+  "y": "ujgLFGbp5cXg9oIkqPu_TmJncRGud7_qhpUzKl1SZIY",
+  "d": "XDZ8nptMKxye23i2buKh7kvyp_R6BzRooiyz2JIsk3w"
 }
 
 </pre>
@@ -2327,9 +2327,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
-  "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU",
-  "d": "a404Bz77IOZnmF_T3EHv_i_U9Up7ov0dK1raFhuGTt8"
+  "x": "7ywGmLKrt75B0A6Xo0myG1AcCMWBpGALums6sAEanq0",
+  "y": "CXlMJ8kJl22ZgioqiHOKrHU9VbPXiUjwi-Li6_TOhoA",
+  "d": "4wZ7fE0u64tD-oJVMccImt9OaVG3viKdRNT0Pqp17JM"
 }
 
 </pre>
@@ -2356,16 +2356,16 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
   "proof_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "reVnFzAVHGz2tmJIk977XsoG3hP9I9aA3YQ3Z35tHXE",
-    "y": "Kd38IcxivmppWj_X6pYAkagA4Ds6I7dXgUyXUWP23_k",
-    "d": "I_sfqPRRfht8vfdJ4WNfOewG4jgayttp-NbmLPi4oHA"
+    "x": "9NuWsYzSXXY7RASNJK0U-vs7Ywj5C1e0YXHN706X6mk",
+    "y": "ujgLFGbp5cXg9oIkqPu_TmJncRGud7_qhpUzKl1SZIY",
+    "d": "XDZ8nptMKxye23i2buKh7kvyp_R6BzRooiyz2JIsk3w"
   },
   "presentation_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
-    "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU",
-    "d": "a404Bz77IOZnmF_T3EHv_i_U9Up7ov0dK1raFhuGTt8"
+    "x": "7ywGmLKrt75B0A6Xo0myG1AcCMWBpGALums6sAEanq0",
+    "y": "CXlMJ8kJl22ZgioqiHOKrHU9VbPXiUjwi-Li6_TOhoA",
+    "d": "4wZ7fE0u64tD-oJVMccImt9OaVG3viKdRNT0Pqp17JM"
   }
 }
 
@@ -2380,14 +2380,14 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdY
-c29HM2hQOUk5YUEzWVEzWjM1dEhYRSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ
-0E0RHM2STdkWGdVeVhVV1AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3Rz
-RqZ2F5dHRwLU5ibUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
-sImNydiI6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
-RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcWctVnB5d
-FF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5VXA3b3YwZEsxcm
-FGaHVHVHQ4In19
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiOU51V3NZelNYWFk3UkFTTkpLMFUt
+dnM3WXdqNUMxZTBZWEhONzA2WDZtayIsInkiOiJ1amdMRkdicDVjWGc5b0lrcVB1X1RtS
+m5jUkd1ZDdfcWhwVXpLbDFTWklZIiwiZCI6IlhEWjhucHRNS3h5ZTIzaTJidUtoN2t2eX
+BfUjZCelJvb2l5ejJKSXNrM3cifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
+sImNydiI6IlAtMjU2IiwieCI6Ijd5d0dtTEtydDc1QjBBNlhvMG15RzFBY0NNV0JwR0FM
+dW1zNnNBRWFucTAiLCJ5IjoiQ1hsTUo4a0psMjJaZ2lvcWlIT0tySFU5VmJQWGlVandpL
+UxpNl9UT2hvQSIsImQiOiI0d1o3ZkUwdTY0dEQtb0pWTWNjSW10OU9hVkczdmlLZFJOVD
+BQcXAxN0pNIn19
 
 </pre>
 </div>
@@ -2404,14 +2404,14 @@ FGaHVHVHQ4In19
        Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
        x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
        ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdYc29HM2hQOUk5YUEzWVEzWjM1dEhY
-       RSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ0E0RHM2STdkWGdVeVhVV1
-       AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3RzRqZ2F5dHRwLU5i
-       bUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
-       I6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
-       RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcW
-       ctVnB5dFF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5
-       VXA3b3YwZEsxcmFGaHVHVHQ4In19",
+       J4IjoiOU51V3NZelNYWFk3UkFTTkpLMFUtdnM3WXdqNUMxZTBZWEhONzA2WDZt
+       ayIsInkiOiJ1amdMRkdicDVjWGc5b0lrcVB1X1RtSm5jUkd1ZDdfcWhwVXpLbD
+       FTWklZIiwiZCI6IlhEWjhucHRNS3h5ZTIzaTJidUtoN2t2eXBfUjZCelJvb2l5
+       ejJKSXNrM3cifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
+       I6IlAtMjU2IiwieCI6Ijd5d0dtTEtydDc1QjBBNlhvMG15RzFBY0NNV0JwR0FM
+       dW1zNnNBRWFucTAiLCJ5IjoiQ1hsTUo4a0psMjJaZ2lvcWlIT0tySFU5VmJQWG
+       lVandpLUxpNl9UT2hvQSIsImQiOiI0d1o3ZkUwdTY0dEQtb0pWTWNjSW10OU9h
+       VkczdmlLZFJOVDBQcXAxN0pNIn19",
   "payloads": [
     "MTcxNDUyMTYwMA",
     "MTcxNzE5OTk5OQ",
@@ -2425,22 +2425,22 @@ FGaHVHVHQ4In19
     "dHJ1ZQ"
   ],
   "proof": [
-    "slRj_KZKs0lyGboxbsdSYFoq4Pmi2B9DDbY4IPPo8ItmpzUK9lMp1jom2U3qCkEB
-       vYnZPCQuTMWt76-pjlQGCg",
-    "hQqNPM54Y9_Ce8ZGxLNDHUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phAEzVB_
-       K0RnoidvlpJptKmpUe8hJg",
-    "m5p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9hF5Jbz04bRarmbFTaaSFil08
-       3TaJTejzDQZkazgwQpbgaQ",
-    "iwikodYh8-dN8hQU3IaL-QVuWxCqWrlJkRXfwW8GNeJGxWr1W5TfpTHCk0t3b8A9
-       qS7FTU9hrc39_cuc06QUbA",
-    "v1SBfPjNnaoZDvedxCisCPCbvGzKjxqF6SxCQRXG9tYjw3qWr2vGIFwWvtY-3WLy
-       kyPkvbEDQWEy99X1xToZow",
-    "w1UJKbAzwWG7C6qZswkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSsHhg-RbSQ
-       7JQzWK97PjYrTOhBcOWmGw",
-    "m_pcQjJnQJqHyFhkAolJxzMWa-qWsbIKifR5fc1BTcwglHxA77GRvTGeoFIHJj82
-       XZOm6fSZ61TroK0Vg3mhjw",
-    "DM6PFllpRpKIZ5tWcfmeWwHBBjTF_guHdTsyUtZJLNCaT30p7uMW4rcseNGCJOVM
-       iaBJXyoiFkb0mF4fpIj_aA"
+    "qpfuKgaiV3ip5MKlEyTPfrg0oHcnlf_0zIQ1qQAF-VU0k1eF2brQtMwse93TRMCl
+       Sm61C-KvEqYldOHhJHXQ-w",
+    "cf-osfstybb8QmBwdSw5wXk1Hcp9RG8wu_iUJswz0TtljG5jrj1_fgF1oFi-aoV5
+       Ei1H-d3iLpyJ8Lli9gcszw",
+    "xVWSbNN3jgWx1jWoeqvRlEF3QE9vFf9XwRp0hkpQRSF1hIQibgI6dWzdPael2V4U
+       KlOpbLjLH40db_lbczq-Eg",
+    "HiON2RFubvXBpD3WeYeeHYQvv0TDpArajVQIj1mC4--VcarHc0er0BFzqNtyiff2
+       2H3_GrI5CwY0hRQZd3H_2w",
+    "FIjodZpJkxUinuxX43Tc-i0lQdfZGjzLdebdq6CLxtwkjcOY3uQYOmHhj4nQLp5H
+       YYLRQNu-xwS76jqIzxwOgw",
+    "fpI9jgfLZ9nn76mvMz28zZFIPpm2Px4ru6wUJvcQ0lYewBgXLb2EN_eO3MasPUkJ
+       gpSpixU6zTp4V2s3MeUGtw",
+    "gKV7vgPAEvWhVQE57EdNy81fZiTH5sl57m_3kcRcitIgIRZXY6Nz5JUh09SaYv1B
+       kJJhQm32QAnfyZhTx0DunA",
+    "g_U0qtJXs7oXC-eLLrdZ32NsYEKjHRl_oQJjmxOHEjI8Z4FW_2HcmftRteKHrHf4
+       ZS067JK5b_4i9o15kjN_3g"
   ]
 }
 
@@ -2455,28 +2455,28 @@ FGaHVHVHQ4In19
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdY
-c29HM2hQOUk5YUEzWVEzWjM1dEhYRSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ
-0E0RHM2STdkWGdVeVhVV1AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3Rz
-RqZ2F5dHRwLU5ibUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
-sImNydiI6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
-RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcWctVnB5d
-FF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5VXA3b3YwZEsxcm
-FGaHVHVHQ4In19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiOU51V3NZelNYWFk3UkFTTkpLMFUt
+dnM3WXdqNUMxZTBZWEhONzA2WDZtayIsInkiOiJ1amdMRkdicDVjWGc5b0lrcVB1X1RtS
+m5jUkd1ZDdfcWhwVXpLbDFTWklZIiwiZCI6IlhEWjhucHRNS3h5ZTIzaTJidUtoN2t2eX
+BfUjZCelJvb2l5ejJKSXNrM3cifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyI
+sImNydiI6IlAtMjU2IiwieCI6Ijd5d0dtTEtydDc1QjBBNlhvMG15RzFBY0NNV0JwR0FM
+dW1zNnNBRWFucTAiLCJ5IjoiQ1hsTUo4a0psMjJaZ2lvcWlIT0tySFU5VmJQWGlVandpL
+UxpNl9UT2hvQSIsImQiOiI0d1o3ZkUwdTY0dEQtb0pWTWNjSW10OU9hVkczdmlLZFJOVD
+BQcXAxN0pNIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRv
 ZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duL
 CBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG
 9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDU
-sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.slRj_KZKs0lyGboxbsdSYFoq4Pmi2B9DDbY4IP
-Po8ItmpzUK9lMp1jom2U3qCkEBvYnZPCQuTMWt76-pjlQGCg~hQqNPM54Y9_Ce8ZGxLND
-HUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phAEzVB_K0RnoidvlpJptKmpUe8hJg~m5
-p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9hF5Jbz04bRarmbFTaaSFil083TaJTej
-zDQZkazgwQpbgaQ~iwikodYh8-dN8hQU3IaL-QVuWxCqWrlJkRXfwW8GNeJGxWr1W5Tfp
-THCk0t3b8A9qS7FTU9hrc39_cuc06QUbA~v1SBfPjNnaoZDvedxCisCPCbvGzKjxqF6Sx
-CQRXG9tYjw3qWr2vGIFwWvtY-3WLykyPkvbEDQWEy99X1xToZow~w1UJKbAzwWG7C6qZs
-wkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSsHhg-RbSQ7JQzWK97PjYrTOhBcOWmGw
-~m_pcQjJnQJqHyFhkAolJxzMWa-qWsbIKifR5fc1BTcwglHxA77GRvTGeoFIHJj82XZOm
-6fSZ61TroK0Vg3mhjw~DM6PFllpRpKIZ5tWcfmeWwHBBjTF_guHdTsyUtZJLNCaT30p7u
-MW4rcseNGCJOVMiaBJXyoiFkb0mF4fpIj_aA
+sImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.qpfuKgaiV3ip5MKlEyTPfrg0oHcnlf_0zIQ1qQ
+AF-VU0k1eF2brQtMwse93TRMClSm61C-KvEqYldOHhJHXQ-w~cf-osfstybb8QmBwdSw5
+wXk1Hcp9RG8wu_iUJswz0TtljG5jrj1_fgF1oFi-aoV5Ei1H-d3iLpyJ8Lli9gcszw~xV
+WSbNN3jgWx1jWoeqvRlEF3QE9vFf9XwRp0hkpQRSF1hIQibgI6dWzdPael2V4UKlOpbLj
+LH40db_lbczq-Eg~HiON2RFubvXBpD3WeYeeHYQvv0TDpArajVQIj1mC4--VcarHc0er0
+BFzqNtyiff22H3_GrI5CwY0hRQZd3H_2w~FIjodZpJkxUinuxX43Tc-i0lQdfZGjzLdeb
+dq6CLxtwkjcOY3uQYOmHhj4nQLp5HYYLRQNu-xwS76jqIzxwOgw~fpI9jgfLZ9nn76mvM
+z28zZFIPpm2Px4ru6wUJvcQ0lYewBgXLb2EN_eO3MasPUkJgpSpixU6zTp4V2s3MeUGtw
+~gKV7vgPAEvWhVQE57EdNy81fZiTH5sl57m_3kcRcitIgIRZXY6Nz5JUh09SaYv1BkJJh
+Qm32QAnfyZhTx0DunA~g_U0qtJXs7oXC-eLLrdZ32NsYEKjHRl_oQJjmxOHEjI8Z4FW_2
+HcmftRteKHrHf4ZS067JK5b_4i9o15kjN_3g
 
 </pre>
 </div>
@@ -2489,7 +2489,7 @@ MW4rcseNGCJOVMiaBJXyoiFkb0mF4fpIj_aA
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "UXHp0Q6fqwwJK0mvlx08QmJMjs9V5xhFI2D6UnyG75c"
+  "nonce": "s6nhIPUn9_l2qxxP-LWK4d07TR88S6lV3Ojt7mO3xyE"
 }
 
 </pre>
@@ -2501,8 +2501,8 @@ MW4rcseNGCJOVMiaBJXyoiFkb0mF4fpIj_aA
 <span id="name-presentation-header-base64u"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-22.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1qczlWNXhoRkkyRDZVbn
-lHNzVjIn0
+29tIiwibm9uY2UiOiJzNm5oSVBVbjlfbDJxeHhQLUxXSzRkMDdUUjg4UzZsVjNPanQ3bU
+8zeHlFIn0
 
 </pre>
 </div>
@@ -2511,8 +2511,8 @@ lHNzVjIn0
           </figcaption></figure>
 <p id="appendix-A.1-23">When signed with the holder's presentation key, the resulting signature are:<a href="#appendix-A.1-23" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-24">
-<pre>CcpkDrRlDQNaQii69g7V1QnNQeLHKgk-1o34wR7BiV8E32E0BPvJp6Ug6dxYtlaXV0m6s
-triN50brIPpWZU9Zw
+<pre>bCzF3zWof84L2YdjJXqk-DEgWVLQGquFmAEe9FtjPGjbbeKoU3ePDkXM6fZBwk9MhAAHm
+Kc8lD9sujuFhVbaEw
 
 </pre><a href="#appendix-A.1-24" class="pilcrow">¶</a>
 </div>
@@ -2523,20 +2523,20 @@ triN50brIPpWZU9Zw
 <div class="lang-wrapped sourcecode" id="appendix-A.1-27">
 <pre>{
   "presentation": "eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-       BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgw
-       OFFtSk1qczlWNXhoRkkyRDZVbnlHNzVjIn0",
+       BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJzNm5oSVBVbjlfbDJxeHhQLUxX
+       SzRkMDdUUjg4UzZsVjNPanQ3bU8zeHlFIn0",
   "issuer": "eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
        Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
        x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
        ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoicmVWbkZ6QVZIR3oydG1KSWs5NzdYc29HM2hQOUk5YUEzWVEzWjM1dEhY
-       RSIsInkiOiJLZDM4SWN4aXZtcHBXal9YNnBZQWthZ0E0RHM2STdkWGdVeVhVV1
-       AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0V05mT2V3RzRqZ2F5dHRwLU5i
-       bUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
-       I6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0RmJ2V2xQMm9m
-       RFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0lMcW
-       ctVnB5dFF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5
-       VXA3b3YwZEsxcmFGaHVHVHQ4In19",
+       J4IjoiOU51V3NZelNYWFk3UkFTTkpLMFUtdnM3WXdqNUMxZTBZWEhONzA2WDZt
+       ayIsInkiOiJ1amdMRkdicDVjWGc5b0lrcVB1X1RtSm5jUkd1ZDdfcWhwVXpLbD
+       FTWklZIiwiZCI6IlhEWjhucHRNS3h5ZTIzaTJidUtoN2t2eXBfUjZCelJvb2l5
+       ejJKSXNrM3cifSwicHJlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydi
+       I6IlAtMjU2IiwieCI6Ijd5d0dtTEtydDc1QjBBNlhvMG15RzFBY0NNV0JwR0FM
+       dW1zNnNBRWFucTAiLCJ5IjoiQ1hsTUo4a0psMjJaZ2lvcWlIT0tySFU5VmJQWG
+       lVandpLUxpNl9UT2hvQSIsImQiOiI0d1o3ZkUwdTY0dEQtb0pWTWNjSW10OU9h
+       VkczdmlLZFJOVDBQcXAxN0pNIn19",
   "payloads": [
     "MTcxNDUyMTYwMA",
     "MTcxNzE5OTk5OQ",
@@ -2552,20 +2552,20 @@ triN50brIPpWZU9Zw
     null
   ],
   "proof": [
-    "slRj_KZKs0lyGboxbsdSYFoq4Pmi2B9DDbY4IPPo8ItmpzUK9lMp1jom2U3qCkEB
-       vYnZPCQuTMWt76-pjlQGCg",
-    "CcpkDrRlDQNaQii69g7V1QnNQeLHKgk-1o34wR7BiV8E32E0BPvJp6Ug6dxYtlaX
-       V0m6striN50brIPpWZU9Zw",
-    "hQqNPM54Y9_Ce8ZGxLNDHUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phAEzVB_
-       K0RnoidvlpJptKmpUe8hJg",
-    "m5p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9hF5Jbz04bRarmbFTaaSFil08
-       3TaJTejzDQZkazgwQpbgaQ",
-    "iwikodYh8-dN8hQU3IaL-QVuWxCqWrlJkRXfwW8GNeJGxWr1W5TfpTHCk0t3b8A9
-       qS7FTU9hrc39_cuc06QUbA",
-    "v1SBfPjNnaoZDvedxCisCPCbvGzKjxqF6SxCQRXG9tYjw3qWr2vGIFwWvtY-3WLy
-       kyPkvbEDQWEy99X1xToZow",
-    "w1UJKbAzwWG7C6qZswkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSsHhg-RbSQ
-       7JQzWK97PjYrTOhBcOWmGw"
+    "qpfuKgaiV3ip5MKlEyTPfrg0oHcnlf_0zIQ1qQAF-VU0k1eF2brQtMwse93TRMCl
+       Sm61C-KvEqYldOHhJHXQ-w",
+    "bCzF3zWof84L2YdjJXqk-DEgWVLQGquFmAEe9FtjPGjbbeKoU3ePDkXM6fZBwk9M
+       hAAHmKc8lD9sujuFhVbaEw",
+    "cf-osfstybb8QmBwdSw5wXk1Hcp9RG8wu_iUJswz0TtljG5jrj1_fgF1oFi-aoV5
+       Ei1H-d3iLpyJ8Lli9gcszw",
+    "xVWSbNN3jgWx1jWoeqvRlEF3QE9vFf9XwRp0hkpQRSF1hIQibgI6dWzdPael2V4U
+       KlOpbLjLH40db_lbczq-Eg",
+    "HiON2RFubvXBpD3WeYeeHYQvv0TDpArajVQIj1mC4--VcarHc0er0BFzqNtyiff2
+       2H3_GrI5CwY0hRQZd3H_2w",
+    "FIjodZpJkxUinuxX43Tc-i0lQdfZGjzLdebdq6CLxtwkjcOY3uQYOmHhj4nQLp5H
+       YYLRQNu-xwS76jqIzxwOgw",
+    "fpI9jgfLZ9nn76mvMz28zZFIPpm2Px4ru6wUJvcQ0lYewBgXLb2EN_eO3MasPUkJ
+       gpSpixU6zTp4V2s3MeUGtw"
   ]
 }
 
@@ -2577,31 +2577,31 @@ triN50brIPpWZU9Zw
 <p id="appendix-A.1-29">And also in compact serialization:<a href="#appendix-A.1-29" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-30">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1qczlWNXhoRkkyRDZVbn
-lHNzVjIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJzNm5oSVBVbjlfbDJxeHhQLUxXSzRkMDdUUjg4UzZsVjNPanQ3bU
+8zeHlFIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb
-2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoicmVWbkZ6QVZIR3oydG
-1KSWs5NzdYc29HM2hQOUk5YUEzWVEzWjM1dEhYRSIsInkiOiJLZDM4SWN4aXZtcHBXal9
-YNnBZQWthZ0E0RHM2STdkWGdVeVhVV1AyM19rIiwiZCI6Iklfc2ZxUFJSZmh0OHZmZEo0
-V05mT2V3RzRqZ2F5dHRwLU5ibUxQaTRvSEEifSwicHJlc2VudGF0aW9uX2tleSI6eyJrd
-HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjdZZTBJbmk5eWZacEZ6bEk2ODFNeFo0Rm
-J2V2xQMm9mRFB2RElLM2xHdDAiLCJ5IjoidjlfUkhUYkFHaW5ialdNd2t3UEFpSkxYY0l
-McWctVnB5dFF1VVJVYW56VSIsImQiOiJhNDA0Qno3N0lPWm5tRl9UM0VIdl9pX1U5VXA3
-b3YwZEsxcmFGaHVHVHQ4In19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
+2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiOU51V3NZelNYWFk3Uk
+FTTkpLMFUtdnM3WXdqNUMxZTBZWEhONzA2WDZtayIsInkiOiJ1amdMRkdicDVjWGc5b0l
+rcVB1X1RtSm5jUkd1ZDdfcWhwVXpLbDFTWklZIiwiZCI6IlhEWjhucHRNS3h5ZTIzaTJi
+dUtoN2t2eXBfUjZCelJvb2l5ejJKSXNrM3cifSwicHJlc2VudGF0aW9uX2tleSI6eyJrd
+HkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6Ijd5d0dtTEtydDc1QjBBNlhvMG15RzFBY0
+NNV0JwR0FMdW1zNnNBRWFucTAiLCJ5IjoiQ1hsTUo4a0psMjJaZ2lvcWlIT0tySFU5VmJ
+QWGlVandpLUxpNl9UT2hvQSIsImQiOiI0d1o3ZkUwdTY0dEQtb0pWTWNjSW10OU9hVkcz
+dmlLZFJOVDBQcXAxN0pNIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheS
 I~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5
 Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4g
 U3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZ
-SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.slRj_KZKs0lyGboxbsdSYFoq4P
-mi2B9DDbY4IPPo8ItmpzUK9lMp1jom2U3qCkEBvYnZPCQuTMWt76-pjlQGCg~CcpkDrRl
-DQNaQii69g7V1QnNQeLHKgk-1o34wR7BiV8E32E0BPvJp6Ug6dxYtlaXV0m6striN50br
-IPpWZU9Zw~hQqNPM54Y9_Ce8ZGxLNDHUFWWWeuNwwBEH_t5upu9pCG5rieER2G-Fy6phA
-EzVB_K0RnoidvlpJptKmpUe8hJg~m5p_PI-yVkodSStEn46tLZzl9dUlR4rOc3Z3GFN9h
-F5Jbz04bRarmbFTaaSFil083TaJTejzDQZkazgwQpbgaQ~iwikodYh8-dN8hQU3IaL-QV
-uWxCqWrlJkRXfwW8GNeJGxWr1W5TfpTHCk0t3b8A9qS7FTU9hrc39_cuc06QUbA~v1SBf
-PjNnaoZDvedxCisCPCbvGzKjxqF6SxCQRXG9tYjw3qWr2vGIFwWvtY-3WLykyPkvbEDQW
-Ey99X1xToZow~w1UJKbAzwWG7C6qZswkeBVYSAqhDSEdrOmcs6AIcZIuwsz1_oh1pyHSs
-Hhg-RbSQ7JQzWK97PjYrTOhBcOWmGw
+SI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.qpfuKgaiV3ip5MKlEyTPfrg0oH
+cnlf_0zIQ1qQAF-VU0k1eF2brQtMwse93TRMClSm61C-KvEqYldOHhJHXQ-w~bCzF3zWo
+f84L2YdjJXqk-DEgWVLQGquFmAEe9FtjPGjbbeKoU3ePDkXM6fZBwk9MhAAHmKc8lD9su
+juFhVbaEw~cf-osfstybb8QmBwdSw5wXk1Hcp9RG8wu_iUJswz0TtljG5jrj1_fgF1oFi
+-aoV5Ei1H-d3iLpyJ8Lli9gcszw~xVWSbNN3jgWx1jWoeqvRlEF3QE9vFf9XwRp0hkpQR
+SF1hIQibgI6dWzdPael2V4UKlOpbLjLH40db_lbczq-Eg~HiON2RFubvXBpD3WeYeeHYQ
+vv0TDpArajVQIj1mC4--VcarHc0er0BFzqNtyiff22H3_GrI5CwY0hRQZd3H_2w~FIjod
+ZpJkxUinuxX43Tc-i0lQdfZGjzLdebdq6CLxtwkjcOY3uQYOmHhj4nQLp5HYYLRQNu-xw
+S76jqIzxwOgw~fpI9jgfLZ9nn76mvMz28zZFIPpm2Px4ru6wUJvcQ0lYewBgXLb2EN_eO
+3MasPUkJgpSpixU6zTp4V2s3MeUGtw
 
 </pre><a href="#appendix-A.1-30" class="pilcrow">¶</a>
 </div>
@@ -2624,13 +2624,13 @@ Hhg-RbSQ7JQzWK97PjYrTOhBcOWmGw
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "DPV5JaYHouoaK5dMTMktmv3XrJqJClCcjJm7nRoK7-G7a9ghDrhaH1JssNHT0
-       qctAR5KJTI1kor3vNNUiaMk58PjrQU55_MkirOzqXNJ9CgBYsm5wEj0PZHCjlj
-       Ikj4C",
-  "y": "E-7pYhkXYWLZYmlhU4ItAewGrTF1Pna2LxQolHPS89nTV071kdsUhi5yXZYuX
-       weYBEg957l-tDqSOPvf28IlUnu4-gHvrskOmTBJ2RRsoiFEffYXDZio8PRDJyI
-       Ln0Mn",
-  "d": "VM7acbyPm47tuQobUJ4Otr_PqWU_dXsl01jk88ANBMY"
+  "x": "F0mBhQa-zYTjw9Z9XUk3MveYgzk9EGuY1KTK6hbwbl6y-qRFMLzIQiGU1J_ZQ
+       cI5AyOM5Jn5S7rIAe6QSXr4RwBotbb3NRjMyBBhs91MnzmQYJmBfFhOW-jcUTg
+       SEbnw",
+  "y": "CzQLczsbjwcVu0-pFgJjMCcRdd0qASvSC3UR_7kj3pO6VA68xcDd2FW9w9zM2
+       lywAqp64ZjsVrjrpMQ859_FG9IFQOw1GsPu_oybC2I1vFLN5hT9E_KIpm89RcV
+       d1Okk",
+  "d": "G1FsmnfWuaGOJnF5PGZiRUpxZdQ4QU3omNzzipgzhB0"
 }
 
 </pre>
@@ -2695,8 +2695,8 @@ Hhg-RbSQ7JQzWK97PjYrTOhBcOWmGw
     "dHJ1ZQ"
   ],
   "proof": [
-    "ovq_rehm1YfV8lCA7AUp-K2mMKKpgRHpxW1WVLWkYmm4QvczHQkukUu-100CdnTn
-       LNo3gGD4aZCe4KVev3GYXOstU1Kel-X5tloPoOB69pw"
+    "jxUFEIAoZ57kS1urdGxq3nGknz-ueaTr3Inbs9W5htz9_M69YLwFAcFx9GYZL6uO
+       WdIYWSjgZ-uJbyrmjD_4wdPvHe8cRt6qY6DV4D6rcHs"
   ]
 }
 
@@ -2712,9 +2712,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.ovq_rehm1YfV8lCA7AUp-K2mMKKpgRHpxW
-1WVLWkYmm4QvczHQkukUu-100CdnTnLNo3gGD4aZCe4KVev3GYXOstU1Kel-X5tloPoOB
-69pw
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.jxUFEIAoZ57kS1urdGxq3nGknz-ueaTr3I
+nbs9W5htz9_M69YLwFAcFx9GYZL6uOWdIYWSjgZ-uJbyrmjD_4wdPvHe8cRt6qY6DV4D6
+rcHs
 
 </pre>
 </div>
@@ -2753,14 +2753,14 @@ zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.ovq_rehm1YfV8lCA7AUp-K2mMKKpgRHpxW
     null
   ],
   "proof": [
-    "gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7KgymUGo-YZ6M_g5j06QqKWczJ5W-
-       lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIFHMewBpnzc2E30kzf_
-       1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAaxfk2W8JVjw3
-       dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9SJs
-       kxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6a
-       Fvp3pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V
-       91R2CnYWt8mvN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7
-       TbPKeuVxzOuoK242OblKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0"
+    "jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfnnz8n7R9oILdTopdo-3IvLoj4
+       jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtEjv5O9AfbiyArdziyl
+       mrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRmgsx6xK9iNG
+       cc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-tJR
+       VVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTO
+       tsyzUCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYR
+       mAzUKI5dBIbzeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpO
+       QhrfL73Hp8N4NBF623NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I"
   ]
 }
 
@@ -2774,14 +2774,14 @@ zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.ovq_rehm1YfV8lCA7AUp-K2mMKKpgRHpxW
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7Kgym
-UGo-YZ6M_g5j06QqKWczJ5W-lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIF
-HMewBpnzc2E30kzf_1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAax
-fk2W8JVjw3dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9
-SJskxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6aFvp3
-pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V91R2CnYWt8m
-vN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7TbPKeuVxzOuoK242Ob
-lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfn
+nz8n7R9oILdTopdo-3IvLoj4jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtE
+jv5O9AfbiyArdziylmrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRm
+gsx6xK9iNGcc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-
+tJRVVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTOtsyz
+UCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYRmAzUKI5dBIb
+zeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpOQhrfL73Hp8N4NBF623
+NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I
 
 </pre>
 </div>
@@ -2802,9 +2802,9 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "9XrdCIk6kGAgNTNa-ZgMcC-LYYuyNkQNi8RixLOGQa8",
-  "y": "myGOsuM-JLzYKju09AWBlhiofBsOjXmmxWI0fYzf78c",
-  "d": "hELfU6OhgDaccOV68cEZZyFii06WOEbt6T5_ibeTahA"
+  "x": "N4XXh4MGyFyNb2LLMSflS202hRJ1hDSIMkpzP16DuIk",
+  "y": "riCfrzPD4fgh0hzgvnqX9Bfa9900hY8GIXeN-5dTh6Y",
+  "d": "TrIrkvywA_OYQgTtddqmvNA2leM_GHsVhRJYhTrmSqg"
 }
 
 </pre>
@@ -2815,7 +2815,7 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 <p id="appendix-A.3-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-19">
           <div class="lang-json sourcecode" id="appendix-A.3-5.1">
-<pre>"4Hi2BSN_jVCboCcURqSajaUX1GRnHyOsepgd9ncXR_w"
+<pre>"K-3n6B2wJv73UCAJmTvc1heJYsQoskThmIYIGFDRhzw"
 
 </pre>
 </div>
@@ -2828,9 +2828,9 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
-  "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU",
-  "d": "a404Bz77IOZnmF_T3EHv_i_U9Up7ov0dK1raFhuGTt8"
+  "x": "7ywGmLKrt75B0A6Xo0myG1AcCMWBpGALums6sAEanq0",
+  "y": "CXlMJ8kJl22ZgioqiHOKrHU9VbPXiUjwi-Li6_TOhoA",
+  "d": "4wZ7fE0u64tD-oJVMccImt9OaVG3viKdRNT0Pqp17JM"
 }
 
 </pre>
@@ -2858,8 +2858,8 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "7Ye0Ini9yfZpFzlI681MxZ4FbvWlP2ofDPvDIK3lGt0",
-    "y": "v9_RHTbAGinbjWMwkwPAiJLXcILqg-VpytQuURUanzU"
+    "x": "7ywGmLKrt75B0A6Xo0myG1AcCMWBpGALums6sAEanq0",
+    "y": "CXlMJ8kJl22ZgioqiHOKrHU9VbPXiUjwi-Li6_TOhoA"
   }
 }
 
@@ -2895,7 +2895,7 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 <p id="appendix-A.3-11">The first MAC is generated using the key <code>issuer_header</code> and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <span id="name-issuer-mac-of-protected-hea"></span><figure id="figure-23">
           <div class="lang-txt sourcecode" id="appendix-A.3-12.1">
-<pre>Jx9poBhGsf8qjM7iZUbINl2ICLwYC5KS3-ErSiZDtsQ
+<pre>DwpuZUpx8qbH4SJeTqVhOljqcoUocIesjXoDthez1T4
 
 </pre>
 </div>
@@ -2906,13 +2906,13 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-24">
           <div class="lang-json sourcecode" id="appendix-A.3-14.1">
 <pre>[
-  "kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q",
-  "bJKyLp6OEn7POuXee0AAFfIwPE2HknDNbNW57OIfsyI",
-  "vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UKyXs6clgw4",
-  "yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c",
-  "DMhpLli-9jJDQkNwkeaumcW5a8A5SfnRsYZlMCLmvR4",
-  "jfWT72PmpClhaTz7HsK5QIrpXdQuTpz8sxeCLaecZ2A",
-  "N5Rn5dHMN3AtXdEctCDFquTXAlTfDCZTcXcjCmxAHVE"
+  "c1Fqx05uqa4rzK4ZrzmWdqcA7QG54_x5nwD7i4wKsqU",
+  "ctidstb0Jh3WloF6jeZUhq-w2fwtDMOaz2VMY3yttsQ",
+  "egHEJJldYNMpJLVvSKqc9UCwcsj2GyTnv_W4Ty-V4HQ",
+  "nxwgLCB3rK-etn-2RJLCLfBVh1_ir2-U6YNAsXQoA7Q",
+  "rHWuk92sTBS8vwf8bCtWt3_HFOBRXC7DpfHcFiQqB9Y",
+  "_YqTvy6A_6ArDwMP0EqYsraT5Mtt1S5xvaPVdAF7qc4",
+  "VKQQmno6qtkCjwK6f-qR12MpcB7rQNQ7_W1hsUhNuU4"
 ]
 
 </pre>
@@ -2924,13 +2924,13 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-25">
           <div class="lang-json sourcecode" id="appendix-A.3-16.1">
 <pre>[
-  "V1mVGUp-DOAHFP0LTrdFJ-vOm3SkgnGrDLzBgATCMvk",
-  "bfh9OyALF5m1C_zgxQu8pXHGgvCFtsciA6vM8uk2UO0",
-  "un6STYjq7MNu3Gv9LoPBiOtKu3Bxjoxk12njg5PWSEY",
-  "R_tvBXKi1HffgQ5O985KMeTugpfkex5u72u0IJJLCF8",
-  "XReoZ17tB57j_MysjzX4DYZVxMcHrvvqgrS5-BZ-CP8",
-  "dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rWOv8",
-  "AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM"
+  "zeXK77N_8XHqlRdMSGUTVVlI3-BqdjgUEHpf9x1p1Uw",
+  "AVr_YEjzOhRzbZDkXvARCW27wANOZXP-_xxxFTuO6Vs",
+  "fTlL6REzEsI5qhmygDDs3cd29ewuNdxFYPD2AHLwBPc",
+  "4HmBSeSNPusPeHq0C37ied7_6Zdooh2nWBzcr0a9EZ0",
+  "GS4AlRiJIa4uywUVdH4VMsXcxFCiDfyMxApyMnfTeWs",
+  "4hNyPaK_RgHIjb4tAFwins-_dGeTmkkVJt8hpyPOztE",
+  "acv_cyYIyTZ66VRgaYWMzhTvZv5FhPZWBRSt4ST_V50"
 ]
 
 </pre>
@@ -2943,9 +2943,9 @@ lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-19.1">
 <pre>[
-  "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSmaH
-sV_FltJJZg_VITeON3ZA",
-  "nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ"
+  "Haop5wYj5VyzVlofcxi7e-BrT2JBpVxrBeBs8DubxWtsrkuE3rHg8YEULmZyHQ2HqN
+8lBZWA5umO7Qth0G7Zsw",
+  "5pwiYkI3KImJOqxd0GE4_MFJJNnuC0Vu5ielcy3IJBk"
 ]
 
 </pre>
@@ -2961,8 +2961,8 @@ sV_FltJJZg_VITeON3ZA",
 Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
 WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
 Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiI3WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3Qw
-IiwieSI6InY5X1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUif
+nbiIsIngiOiI3eXdHbUxLcnQ3NUIwQTZYbzBteUcxQWNDTVdCcEdBTHVtczZzQUVhbnEw
+IiwieSI6IkNYbE1KOGtKbDIyWmdpb3FpSE9LckhVOVZiUFhpVWp3aS1MaTZfVE9ob0Eif
 X0",
   "payloads": [
     "MTcxNDUyMTYwMA",
@@ -2977,9 +2977,9 @@ JVU0EifQ",
     "dHJ1ZQ"
   ],
   "proof": [
-    "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSm
-aHsV_FltJJZg_VITeON3ZA",
-    "nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ"
+    "Haop5wYj5VyzVlofcxi7e-BrT2JBpVxrBeBs8DubxWtsrkuE3rHg8YEULmZyHQ2H
+qN8lBZWA5umO7Qth0G7Zsw",
+    "5pwiYkI3KImJOqxd0GE4_MFJJNnuC0Vu5ielcy3IJBk"
   ]
 }
 
@@ -2995,14 +2995,14 @@ aHsV_FltJJZg_VITeON3ZA",
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc2VudGF0aW9
 uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiI3
-WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3QwIiwieSI6InY5X
-1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUifX0.MTcxNDUyMT
+eXdHbUxLcnQ3NUIwQTZYbzBteUcxQWNDTVdCcEdBTHVtczZzQUVhbnEwIiwieSI6IkNYb
+E1KOGtKbDIyWmdpb3FpSE9LckhVOVZiUFhpVWp3aS1MaTZfVE9ob0EifX0.MTcxNDUyMT
 YwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb
 3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3
 RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiw
 icmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~d
-HJ1ZQ.USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqS
-maHsV_FltJJZg_VITeON3ZA~nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ
+HJ1ZQ.Haop5wYj5VyzVlofcxi7e-BrT2JBpVxrBeBs8DubxWtsrkuE3rHg8YEULmZyHQ2
+HqN8lBZWA5umO7Qth0G7Zsw~5pwiYkI3KImJOqxd0GE4_MFJJNnuC0Vu5ielcy3IJBk
 
 </pre>
 </div>
@@ -3016,7 +3016,7 @@ maHsV_FltJJZg_VITeON3ZA~nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "UXHp0Q6fqwwJK0mvlx08QmJMjs9V5xhFI2D6UnyG75c"
+  "nonce": "s6nhIPUn9_l2qxxP-LWK4d07TR88S6lV3Ojt7mO3xyE"
 }
 
 </pre>
@@ -3031,17 +3031,17 @@ maHsV_FltJJZg_VITeON3ZA~nJW4UxOCfWtXfCcv83q8Z_xl1rGX9j92qiLuFFoWdmQ
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-30">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-31.1">
 <pre>[
-  "t3TK6dFCK-hbbcRYQEgxr_B0E2HkAFcF5sO_hJ1zY8Qx4j09kY46uFR9Eu9x7TVDF5
-H720OBpxO1Y72k_nJwQA",
-  "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSmaH
-sV_FltJJZg_VITeON3ZA",
-  "kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q",
-  "bJKyLp6OEn7POuXee0AAFfIwPE2HknDNbNW57OIfsyI",
-  "vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UKyXs6clgw4",
-  "yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c",
-  "XReoZ17tB57j_MysjzX4DYZVxMcHrvvqgrS5-BZ-CP8",
-  "dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rWOv8",
-  "AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM"
+  "lBCOkWdlGYwY6jw-tom4v5UpL1XWFdGo26hgJWYk0mvV2uo-6u83CZS3XLniVH_J_f
+ah7zCttydc-h-iptOdJA",
+  "Haop5wYj5VyzVlofcxi7e-BrT2JBpVxrBeBs8DubxWtsrkuE3rHg8YEULmZyHQ2HqN
+8lBZWA5umO7Qth0G7Zsw",
+  "c1Fqx05uqa4rzK4ZrzmWdqcA7QG54_x5nwD7i4wKsqU",
+  "ctidstb0Jh3WloF6jeZUhq-w2fwtDMOaz2VMY3yttsQ",
+  "egHEJJldYNMpJLVvSKqc9UCwcsj2GyTnv_W4Ty-V4HQ",
+  "nxwgLCB3rK-etn-2RJLCLfBVh1_ir2-U6YNAsXQoA7Q",
+  "GS4AlRiJIa4uywUVdH4VMsXcxFCiDfyMxApyMnfTeWs",
+  "4hNyPaK_RgHIjb4tAFwins-_dGeTmkkVJt8hpyPOztE",
+  "acv_cyYIyTZ66VRgaYWMzhTvZv5FhPZWBRSt4ST_V50"
 ]
 
 </pre>
@@ -3054,14 +3054,14 @@ sV_FltJJZg_VITeON3ZA",
           <div class="lang-wrapped sourcecode" id="appendix-A.3-33.1">
 <pre>{
   "presentation": "eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1
-qczlWNXhoRkkyRDZVbnlHNzVjIn0",
+BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJzNm5oSVBVbjlfbDJxeHhQLUxXSzRkMDd
+UUjg4UzZsVjNPanQ3bU8zeHlFIn0",
   "issuer": "eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
 Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
 WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
 Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiI3WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3Qw
-IiwieSI6InY5X1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUif
+nbiIsIngiOiI3eXdHbUxLcnQ3NUIwQTZYbzBteUcxQWNDTVdCcEdBTHVtczZzQUVhbnEw
+IiwieSI6IkNYbE1KOGtKbDIyWmdpb3FpSE9LckhVOVZiUFhpVWp3aS1MaTZfVE9ob0Eif
 X0",
   "payloads": [
     "MTcxNDUyMTYwMA",
@@ -3073,17 +3073,17 @@ X0",
     null
   ],
   "proof": [
-    "t3TK6dFCK-hbbcRYQEgxr_B0E2HkAFcF5sO_hJ1zY8Qx4j09kY46uFR9Eu9x7TVD
-F5H720OBpxO1Y72k_nJwQA",
-    "USLcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSm
-aHsV_FltJJZg_VITeON3ZA",
-    "kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q",
-    "bJKyLp6OEn7POuXee0AAFfIwPE2HknDNbNW57OIfsyI",
-    "vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UKyXs6clgw4",
-    "yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c",
-    "XReoZ17tB57j_MysjzX4DYZVxMcHrvvqgrS5-BZ-CP8",
-    "dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rWOv8",
-    "AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM"
+    "lBCOkWdlGYwY6jw-tom4v5UpL1XWFdGo26hgJWYk0mvV2uo-6u83CZS3XLniVH_J
+_fah7zCttydc-h-iptOdJA",
+    "Haop5wYj5VyzVlofcxi7e-BrT2JBpVxrBeBs8DubxWtsrkuE3rHg8YEULmZyHQ2H
+qN8lBZWA5umO7Qth0G7Zsw",
+    "c1Fqx05uqa4rzK4ZrzmWdqcA7QG54_x5nwD7i4wKsqU",
+    "ctidstb0Jh3WloF6jeZUhq-w2fwtDMOaz2VMY3yttsQ",
+    "egHEJJldYNMpJLVvSKqc9UCwcsj2GyTnv_W4Ty-V4HQ",
+    "nxwgLCB3rK-etn-2RJLCLfBVh1_ir2-U6YNAsXQoA7Q",
+    "GS4AlRiJIa4uywUVdH4VMsXcxFCiDfyMxApyMnfTeWs",
+    "4hNyPaK_RgHIjb4tAFwins-_dGeTmkkVJt8hpyPOztE",
+    "acv_cyYIyTZ66VRgaYWMzhTvZv5FhPZWBRSt4ST_V50"
   ]
 }
 
@@ -3096,21 +3096,21 @@ aHsV_FltJJZg_VITeON3ZA",
 <span id="name-presented-jwp-in-compact-se"></span><figure id="figure-32">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-35.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJVWEhwMFE2ZnF3d0pLMG12bHgwOFFtSk1qczlWNXhoRkkyRDZVbn
-lHNzVjIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJzNm5oSVBVbjlfbDJxeHhQLUxXSzRkMDdUUjg4UzZsVjNPanQ3bU
+8zeHlFIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc
 2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbi
-IsIngiOiI3WWUwSW5pOXlmWnBGemxJNjgxTXhaNEZidldsUDJvZkRQdkRJSzNsR3QwIiw
-ieSI6InY5X1JIVGJBR2luYmpXTXdrd1BBaUpMWGNJTHFnLVZweXRRdVVSVWFuelUifX0.
-MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.t3TK6dFCK-hbbcRYQEgx
-r_B0E2HkAFcF5sO_hJ1zY8Qx4j09kY46uFR9Eu9x7TVDF5H720OBpxO1Y72k_nJwQA~US
-LcKl7-IqCLSL2DLegqNinmAOOwxJTZdAmOpcqX5Gk42dAczcF5xh62Q6awdqSmaHsV_Fl
-tJJZg_VITeON3ZA~kYZF5b3VHWQ4usV1M8JOk-Xk04HU_5Y-3azEAfQIV_Q~bJKyLp6OE
-n7POuXee0AAFfIwPE2HknDNbNW57OIfsyI~vQV08zlbRS4R6rOP0U-cBsTLTPzUnsh8UK
-yXs6clgw4~yIgBypcZSvGp5KqVgHBgjrZQzeOM8m9iOh6w2HePZ_c~XReoZ17tB57j_My
-sjzX4DYZVxMcHrvvqgrS5-BZ-CP8~dUbLrT2Y15UNsMbUYOTax8kFwfRzmDtk_8lCz5rW
-Ov8~AqM6by5SFKk4BRVcuVYC78ea0bQrBKYTmysgr0fW-IM
+IsIngiOiI3eXdHbUxLcnQ3NUIwQTZYbzBteUcxQWNDTVdCcEdBTHVtczZzQUVhbnEwIiw
+ieSI6IkNYbE1KOGtKbDIyWmdpb3FpSE9LckhVOVZiUFhpVWp3aS1MaTZfVE9ob0EifX0.
+MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.lBCOkWdlGYwY6jw-tom4
+v5UpL1XWFdGo26hgJWYk0mvV2uo-6u83CZS3XLniVH_J_fah7zCttydc-h-iptOdJA~Ha
+op5wYj5VyzVlofcxi7e-BrT2JBpVxrBeBs8DubxWtsrkuE3rHg8YEULmZyHQ2HqN8lBZW
+A5umO7Qth0G7Zsw~c1Fqx05uqa4rzK4ZrzmWdqcA7QG54_x5nwD7i4wKsqU~ctidstb0J
+h3WloF6jeZUhq-w2fwtDMOaz2VMY3yttsQ~egHEJJldYNMpJLVvSKqc9UCwcsj2GyTnv_
+W4Ty-V4HQ~nxwgLCB3rK-etn-2RJLCLfBVh1_ir2-U6YNAsXQoA7Q~GS4AlRiJIa4uywU
+VdH4VMsXcxFCiDfyMxApyMnfTeWs~4hNyPaK_RgHIjb4tAFwins-_dGeTmkkVJt8hpyPO
+ztE~acv_cyYIyTZ66VRgaYWMzhTvZv5FhPZWBRSt4ST_V50
 
 </pre>
 </div>
@@ -3139,105 +3139,110 @@ for his valuable contributions to this specification.<a href="#appendix-B-2" cla
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
 <p id="appendix-C-1">[[ To be removed from the final specification ]]<a href="#appendix-C-1" class="pilcrow">¶</a></p>
-<p id="appendix-C-2">-07<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">-08<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-3.1">Changing primary editor<a href="#appendix-C-3.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-3.1">Made some additional references normative.<a href="#appendix-C-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.2">Update registry template for algorithms to account for integer
-CBOR labels<a href="#appendix-C-3.2" class="pilcrow">¶</a>
+      </ul>
+<p id="appendix-C-4">-07<a href="#appendix-C-4" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-C-5.1">Changing primary editor<a href="#appendix-C-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.3">Restylize initial registry entries for readability<a href="#appendix-C-3.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-5.2">Update registry template for algorithms to account for integer
+CBOR labels<a href="#appendix-C-5.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.4">Defer BBS key definition to <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span><a href="#appendix-C-3.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-5.3">Restylize initial registry entries for readability<a href="#appendix-C-5.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.5">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-C-3.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-5.4">Defer BBS key definition to <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span><a href="#appendix-C-5.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.6">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
+        <li class="compact" id="appendix-C-5.5">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-C-5.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-5.6">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
 <code>presentation_key</code> to better represent that the key may be JSON
-or CBOR-formatted.<a href="#appendix-C-3.6" class="pilcrow">¶</a>
+or CBOR-formatted.<a href="#appendix-C-5.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.7">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
+        <li class="compact" id="appendix-C-5.7">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
 where they are defined. Consolidated usage, purpose and
-requirements from algorith musage under these definitions.<a href="#appendix-C-3.7" class="pilcrow">¶</a>
+requirements from algorith musage under these definitions.<a href="#appendix-C-5.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.8">Combined <code>BBS-PROOF</code> into <code>BBS</code><a href="#appendix-C-3.8" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-C-4">-06<a href="#appendix-C-4" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-C-5.1">Update reference to new repository home<a href="#appendix-C-5.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-5.2">Fixed #77: Removed vestigial use of <code>presentation_header</code>.<a href="#appendix-C-5.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-5.3">Correct <code>pjwk</code> to <code>presentation_jwk</code><a href="#appendix-C-5.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-5.8">Combined <code>BBS-PROOF</code> into <code>BBS</code><a href="#appendix-C-5.8" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-6">-05<a href="#appendix-C-6" class="pilcrow">¶</a></p>
+<p id="appendix-C-6">-06<a href="#appendix-C-6" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-7.1">Update of appendix describing MAC-H256 to now also be generated by the build system from a common set of code and templates.<a href="#appendix-C-7.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-7.1">Update reference to new repository home<a href="#appendix-C-7.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.2">Update single use algorithm to use an array of octet values rather than requiring splitting an octet buffer into parts during generation of a presentation and during verification.<a href="#appendix-C-7.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-7.2">Fixed #77: Removed vestigial use of <code>presentation_header</code>.<a href="#appendix-C-7.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.3">Update BBS algorithm description and examples to clarify the proof is an array with a single octet string.<a href="#appendix-C-7.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-7.4">Update MAC algorithm to use an array of octet values for the proof, rather than requiring splitting an octet buffer into parts.<a href="#appendix-C-7.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-7.5">Add new section on the Combined MAC Representation to clarify operations are serving to recreate this octet string value.<a href="#appendix-C-7.5" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-7.6">Correct reference to the latest BBS draft.<a href="#appendix-C-7.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-7.7">SU and MAC families now use raw JWA rather than JWS and synthesized headers<a href="#appendix-C-7.7" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-7.8">Change algorithms to not use base64url-encoding internally. Algorithms are meant to operate on octets, while base64url-encoding is used to represent those octets in JSON and compact serializations.<a href="#appendix-C-7.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-7.3">Correct <code>pjwk</code> to <code>presentation_jwk</code><a href="#appendix-C-7.3" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-8">-04<a href="#appendix-C-8" class="pilcrow">¶</a></p>
+<p id="appendix-C-8">-05<a href="#appendix-C-8" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-9.1">Refactoring figures and examples to be built from a common set across all three documents<a href="#appendix-C-9.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-9.1">Update of appendix describing MAC-H256 to now also be generated by the build system from a common set of code and templates.<a href="#appendix-C-9.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-9.2">Move single-use example appendix from JWP to JPA<a href="#appendix-C-9.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.2">Update single use algorithm to use an array of octet values rather than requiring splitting an octet buffer into parts during generation of a presentation and during verification.<a href="#appendix-C-9.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-9.3">Change algorithm from <code>BBS-DRAFT-5</code> to <code>BBS</code>, and from <code>BBS-PROOF-DRAFT-5</code> to <code>BBS-PROOF</code><a href="#appendix-C-9.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.3">Update BBS algorithm description and examples to clarify the proof is an array with a single octet string.<a href="#appendix-C-9.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-9.4">Update BBS ciphersuite ID to <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code><a href="#appendix-C-9.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.4">Update MAC algorithm to use an array of octet values for the proof, rather than requiring splitting an octet buffer into parts.<a href="#appendix-C-9.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-9.5">Update to draft 5 BLS key representations<a href="#appendix-C-9.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.5">Add new section on the Combined MAC Representation to clarify operations are serving to recreate this octet string value.<a href="#appendix-C-9.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.6">Correct reference to the latest BBS draft.<a href="#appendix-C-9.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.7">SU and MAC families now use raw JWA rather than JWS and synthesized headers<a href="#appendix-C-9.7" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.8">Change algorithms to not use base64url-encoding internally. Algorithms are meant to operate on octets, while base64url-encoding is used to represent those octets in JSON and compact serializations.<a href="#appendix-C-9.8" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-10">-03<a href="#appendix-C-10" class="pilcrow">¶</a></p>
+<p id="appendix-C-10">-04<a href="#appendix-C-10" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-11.1">Improvements resulting from a full proofreading.<a href="#appendix-C-11.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-11.1">Refactoring figures and examples to be built from a common set across all three documents<a href="#appendix-C-11.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-11.2">Populated IANA Considerations section.<a href="#appendix-C-11.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-11.2">Move single-use example appendix from JWP to JPA<a href="#appendix-C-11.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-11.3">Updated to use BBS draft -05.<a href="#appendix-C-11.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-11.3">Change algorithm from <code>BBS-DRAFT-5</code> to <code>BBS</code>, and from <code>BBS-PROOF-DRAFT-5</code> to <code>BBS-PROOF</code><a href="#appendix-C-11.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-11.4">Updated examples.<a href="#appendix-C-11.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-11.4">Update BBS ciphersuite ID to <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code><a href="#appendix-C-11.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-11.5">Update to draft 5 BLS key representations<a href="#appendix-C-11.5" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-12">-02<a href="#appendix-C-12" class="pilcrow">¶</a></p>
+<p id="appendix-C-12">-03<a href="#appendix-C-12" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-13.1">Add new <code>BBS-DRAFT-3</code> and <code>BBS-PROOF-DRAFT-3</code> algorithms based on draft-irtf-cfrg-bbs-signatures-03.<a href="#appendix-C-13.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-13.1">Improvements resulting from a full proofreading.<a href="#appendix-C-13.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.2">Remove prior <code>BBS-X</code> algorithm based on a particular implementation of earlier drafts.<a href="#appendix-C-13.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-13.2">Populated IANA Considerations section.<a href="#appendix-C-13.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-13.3">Updated to use BBS draft -05.<a href="#appendix-C-13.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-13.4">Updated examples.<a href="#appendix-C-13.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-14">-01<a href="#appendix-C-14" class="pilcrow">¶</a></p>
+<p id="appendix-C-14">-02<a href="#appendix-C-14" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-15.1">Correct cross-references within group<a href="#appendix-C-15.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-15.1">Add new <code>BBS-DRAFT-3</code> and <code>BBS-PROOF-DRAFT-3</code> algorithms based on draft-irtf-cfrg-bbs-signatures-03.<a href="#appendix-C-15.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-15.2">Describe <code>issuer_header</code> and <code>presentation_header</code><a href="#appendix-C-15.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-15.3">Update BBS references to CFRG drafts<a href="#appendix-C-15.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-15.4">Rework reference to HMAC ( RFC2104 )<a href="#appendix-C-15.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-15.5">Remove ZKSnark placeholder<a href="#appendix-C-15.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-15.2">Remove prior <code>BBS-X</code> algorithm based on a particular implementation of earlier drafts.<a href="#appendix-C-15.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-16">-00<a href="#appendix-C-16" class="pilcrow">¶</a></p>
+<p id="appendix-C-16">-01<a href="#appendix-C-16" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-17.1">Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01<a href="#appendix-C-17.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-17.1">Correct cross-references within group<a href="#appendix-C-17.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-17.2">Describe <code>issuer_header</code> and <code>presentation_header</code><a href="#appendix-C-17.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-17.3">Update BBS references to CFRG drafts<a href="#appendix-C-17.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-17.4">Rework reference to HMAC ( RFC2104 )<a href="#appendix-C-17.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-17.5">Remove ZKSnark placeholder<a href="#appendix-C-17.5" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="appendix-C-18">-00<a href="#appendix-C-18" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-C-19.1">Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01<a href="#appendix-C-19.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>

@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 17 August 2025                           Self-Issued Consulting
+Expires: 12 September 2025                        Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                        13 February 2025
+                                                           11 March 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 August 2025.
+   This Internet-Draft will expire on 12 September 2025.
 
 Copyright Notice
 
@@ -772,14 +772,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7Kgym
-   UGo-YZ6M_g5j06QqKWczJ5W-lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIF
-   HMewBpnzc2E30kzf_1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAax
-   fk2W8JVjw3dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9
-   SJskxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6aFvp3
-   pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V91R2CnYWt8m
-   vN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7TbPKeuVxzOuoK242Ob
-   lKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfn
+   nz8n7R9oILdTopdo-3IvLoj4jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtE
+   jv5O9AfbiyArdziylmrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRm
+   gsx6xK9iNGcc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-
+   tJRVVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTOtsyz
+   UCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYRmAzUKI5dBIb
+   zeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpOQhrfL73Hp8N4NBF623
+   NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I
 
    |  Figure: Compact Serialization of Presentation
 
@@ -830,14 +830,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "gCAOyE0ih7tkgBakVPcBB-DvwuyJPueAGo-7KgymUGo-YZ6M_g5j06QqKWczJ5W-
-          lyYsIhikxtBPm7_4kjyg95PBKuVG65cvJbv5fIWNQcFIFHMewBpnzc2E30kzf_
-          1lgwOZId5eMY0L7FO5jX0UFanTP2NIuYkNorTnAMKmGcdCWBgAaxfk2W8JVjw3
-          dokMPincBL3Xo_Jy_IItEV1OICgF6zGq_j8NpUVG9oSIHplpCddiqiJflX9SJs
-          kxD257LmJu7FBYlq2yDXX2OJImy1zk7XXU8QlozvnHVBRcpARV3BaoVtrTIX6a
-          Fvp3pxx2XKY_vg8t49NqrLXcav62HzNkzRQfzwBugmWCJwOD2nkMLxaAp_1T2V
-          91R2CnYWt8mvN_Xb9iH4b1hLMmrM1m-EXeBR1TF-eji4hHuwbm3yfCzN5XEQC7
-          TbPKeuVxzOuoK242OblKLCj9TH14IiDgl8ogd82DBz9-pG4hCfoikO0"
+       "jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfnnz8n7R9oILdTopdo-3IvLoj4
+          jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtEjv5O9AfbiyArdziyl
+          mrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRmgsx6xK9iNG
+          cc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-tJR
+          VVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTO
+          tsyzUCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYR
+          mAzUKI5dBIbzeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpO
+          QhrfL73Hp8N4NBF623NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I"
      ]
    }
 
@@ -1271,6 +1271,11 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
               json-proof-token-07>.
 
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
    [RFC7516]  Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)",
               RFC 7516, DOI 10.17487/RFC7516, May 2015,
               <https://www.rfc-editor.org/info/rfc7516>.
@@ -1278,6 +1283,10 @@ Table of Contents
    [RFC7519]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
               (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
               <https://www.rfc-editor.org/info/rfc7519>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
    [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Structures and Process", STD 96, RFC 9052,
@@ -1294,9 +1303,9 @@ Table of Contents
    [I-D.irtf-cfrg-bbs-signatures]
               Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
               BBS Signature Scheme", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-bbs-signatures-07, 23 September 2024,
-              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              bbs-signatures-07>.
+              draft-irtf-cfrg-bbs-signatures-08, 3 March 2025,
+              <https://datatracker.ietf.org/api/v1/doc/document/draft-
+              irtf-cfrg-bbs-signatures/>.
 
    [IANA.CoAP.Formats]
               IANA, "CoAP Content Formats",
@@ -1316,11 +1325,6 @@ Table of Contents
               Extensions (MIME) Part Two: Media Types", RFC 2046,
               DOI 10.17487/RFC2046, November 1996,
               <https://www.rfc-editor.org/info/rfc2046>.
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
               IANA Considerations Section in RFCs", RFC 5226,
@@ -1344,10 +1348,6 @@ Table of Contents
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
               <https://www.rfc-editor.org/info/rfc8152>.
 
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
    [RFC8725]  Sheffer, Y., Hardt, D., and M. Jones, "JSON Web Token Best
               Current Practices", BCP 225, RFC 8725,
               DOI 10.17487/RFC8725, February 2020,
@@ -1369,6 +1369,10 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -08
+
+   *  Made some additional references normative.
 
    -07
 
