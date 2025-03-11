@@ -83,7 +83,7 @@ All of these follow the same pattern of taking multiple claims (a.k.a., "attribu
 # Conventions and Definitions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-"MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@RFC2119] [@RFC8174] when, and only when, they appear in all capitals, as shown here.
+"MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174] when, and only when, they appear in all capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier" are used as defined by the VC Data Model [@VC-DATA-MODEL-2.0].  The term "presentation" is also used as defined by this source, but the term "credential" is avoided in this specification to minimize confusion with other definitions.
 
@@ -1037,6 +1037,10 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
+
+ -08
+
+  * Made some additional references normative.
 
  -07
 
