@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-11T00:52:52.802836+00:00",
+  "timestamp": "2025-03-13T00:52:57.652638+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -9946,6 +9946,108 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 151,
+      "id": "PR_kwDOFsQObc6OOrKo",
+      "title": "Made some additional references normative",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/151",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "and started the history entries for -08.",
+      "createdAt": "2025-03-11T20:04:23Z",
+      "updatedAt": "2025-03-11T21:00:59Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "8335cc680cafc1eac638402fe34092cbc75ca81a",
+      "headRepository": "selfissued/json-web-proofs",
+      "headRefName": "mbj-normative-references",
+      "headRefOid": "c3d8114b2433cd964fc3b2f1c1703fee54ea37d4",
+      "closedAt": "2025-03-11T21:00:59Z",
+      "mergedAt": "2025-03-11T21:00:59Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "5fa751cd7ebe8e0bffd042215b2f4f778b34faff"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6fgjp1",
+          "commit": {
+            "abbreviatedOid": "c3d8114"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-11T21:00:54Z",
+          "updatedAt": "2025-03-11T21:00:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 152,
+      "id": "PR_kwDOFsQObc6OPCmi",
+      "title": "Initial pass at parameter unification",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/152",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Aiming to unify header parameters and claims, and to define a mechanism to reference the existing claims registries for JWT/CWT.\r\n\r\nImmediate tasks:\r\n\r\n- [ ] Determine if [draft-bormann-cbor-draft-numbers](https://datatracker.ietf.org/doc/draft-bormann-cbor-draft-numbers/) is planned to be a recommendation by the CBOR WG, and how to properly use it for tags\r\n- [ ] Convert Header Parameter -> Parameter in JPA, and verify there aren't other impacts\r\n- [ ] Coordinate JPT changes with @selfissued \r\n- [ ] Parameter validity must be defined by the application - parameters exist to have common semantics for processing",
+      "createdAt": "2025-03-11T20:57:45Z",
+      "updatedAt": "2025-03-11T21:22:01Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "8335cc680cafc1eac638402fe34092cbc75ca81a",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "parameters-refactor",
+      "headRefOid": "d86b041e72827f1e400839adc076eb39c3618469",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closes #149",
+          "createdAt": "2025-03-11T21:02:13Z",
+          "updatedAt": "2025-03-11T21:02:13Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 153,
+      "id": "PR_kwDOFsQObc6ORgLB",
+      "title": "Add reference to RFC 9596 for COSE typ header parameter",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/153",
+      "state": "OPEN",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-12T04:24:14Z",
+      "updatedAt": "2025-03-12T04:24:14Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "5fa751cd7ebe8e0bffd042215b2f4f778b34faff",
+      "headRepository": "selfissued/json-web-proofs",
+      "headRefName": "mbj-cose-typ",
+      "headRefOid": "d8337173c045b7fe2234e3937a1cdcb525859f2a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
