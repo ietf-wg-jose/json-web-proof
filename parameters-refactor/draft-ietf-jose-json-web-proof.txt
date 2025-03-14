@@ -130,6 +130,7 @@ Table of Contents
      11.3.  Structured Syntax Suffix Registration
        11.3.1.  Registry Contents
          11.3.1.1.  The +jwp Structured Syntax Suffix
+     11.4.  CBOR Tag Registration
    12. References
      12.1.  Normative References
      12.2.  Informative References
@@ -423,7 +424,7 @@ Table of Contents
    the CWT registry SHOULD NOT be used when an appropriate JWP Parameter
    is available.
 
-   claim-ref = #CPA-CLAIM-REF (int)
+   cwt-claim-ref = #6.<CPA202> (uint)
 
 5.2.  Registered Parameter Labels
 
@@ -859,14 +860,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pkfhdImjs5ySBQJQxZwELNb1Dh-thjK8sTJ3Jx1C
-   Qlg3uRXP6kQdjRijw-dzV131hgIsdhv5uCXWw1PrszW74bO-W_0YaLnAuBtoYEliLLsDF
-   KtEe_FUG4CIod5NVmtUqaphJyQ2JHGzMAR3kZjwF-QC2twxmbFMVFaxCtA7I42_XzdJG6
-   1611hqHM15NYWYXics8upkWvgOkiQP3jTFIWeOMJvV_a9lnRaAIRSncGgF9FA7Ru4KsSH
-   33lQTg_sSBG0qXb4VvwQBBTwIVu29EzJku756sGpV9aefDmFht8zcK4YSgjnZ0_u8qPo_
-   sYNecd9EMMHDwkrcf6Rz9vWHF0UpBWn1OaUslmRqOhoA6ZMO9K2b9-oTvA2sFQw4vBd4n
-   sTHDt0FEAGnHKJr1_JdVgr39SRHEd21wv3XJ-QSNVrDhAxFojaGWzw8_wd88XhMKYOmkv
-   EnNlRPWkW3BVv0EZd5y-b_DFXXwVjQ6tvIAWg
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.rl0z3WwXnugmFYu8ndJG76jB1YOmbWJc0kpoh_A1
+   mt2pA-eQuGC3VKSX1F1wdaanraCPimeJNMCp4AoyFHYWYqgKD9H6KtAXomwo4jx4FrzBS
+   CZMn2lUrOeoKnHJVv54o2IFxkNPECnADETsWSsmiMtTx4Xh0W4HOz_zHBc98qyDKnVLh1
+   qUb6dMl8mTL0HBZ9ZkvuVRIoz_qClRkJzsbjIPFtUVrihm8Hgww0CTeyZaCbXFfyOuYp-
+   W7E6IrMrgGnv_JfTO0Ma0IqWUai6YyiphZVuuc0v11gvXIaK3mDoQPoPfHyg4HYELYmeI
+   eB46ZyiKup9bDQd3BgAsl-JJ8tc7jb4XixjgWQRsjy6fXHhrRmqjPHqf9EPI3mZqZw0Mq
+   qGfgc9Hhk9cnDPaoyRfBzS9ykmSWE2OSZT_ehng7Kv1Ha6QyzuS4iU9NpOMqOsQctUYnr
+   1rXI4nJEX7-pHIpTiLoHvBEXVIfLUGIm4mGYM
 
    |  Figure: Compact Serialization of Presentation
 
@@ -917,14 +918,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "pkfhdImjs5ySBQJQxZwELNb1Dh-thjK8sTJ3Jx1CQlg3uRXP6kQdjRijw-dzV131
-          hgIsdhv5uCXWw1PrszW74bO-W_0YaLnAuBtoYEliLLsDFKtEe_FUG4CIod5NVm
-          tUqaphJyQ2JHGzMAR3kZjwF-QC2twxmbFMVFaxCtA7I42_XzdJG61611hqHM15
-          NYWYXics8upkWvgOkiQP3jTFIWeOMJvV_a9lnRaAIRSncGgF9FA7Ru4KsSH33l
-          QTg_sSBG0qXb4VvwQBBTwIVu29EzJku756sGpV9aefDmFht8zcK4YSgjnZ0_u8
-          qPo_sYNecd9EMMHDwkrcf6Rz9vWHF0UpBWn1OaUslmRqOhoA6ZMO9K2b9-oTvA
-          2sFQw4vBd4nsTHDt0FEAGnHKJr1_JdVgr39SRHEd21wv3XJ-QSNVrDhAxFojaG
-          Wzw8_wd88XhMKYOmkvEnNlRPWkW3BVv0EZd5y-b_DFXXwVjQ6tvIAWg"
+       "rl0z3WwXnugmFYu8ndJG76jB1YOmbWJc0kpoh_A1mt2pA-eQuGC3VKSX1F1wdaan
+          raCPimeJNMCp4AoyFHYWYqgKD9H6KtAXomwo4jx4FrzBSCZMn2lUrOeoKnHJVv
+          54o2IFxkNPECnADETsWSsmiMtTx4Xh0W4HOz_zHBc98qyDKnVLh1qUb6dMl8mT
+          L0HBZ9ZkvuVRIoz_qClRkJzsbjIPFtUVrihm8Hgww0CTeyZaCbXFfyOuYp-W7E
+          6IrMrgGnv_JfTO0Ma0IqWUai6YyiphZVuuc0v11gvXIaK3mDoQPoPfHyg4HYEL
+          YmeIeB46ZyiKup9bDQd3BgAsl-JJ8tc7jb4XixjgWQRsjy6fXHhrRmqjPHqf9E
+          PI3mZqZw0MqqGfgc9Hhk9cnDPaoyRfBzS9ykmSWE2OSZT_ehng7Kv1Ha6QyzuS
+          4iU9NpOMqOsQctUYnr1rXI4nJEX7-pHIpTiLoHvBEXVIfLUGIm4mGYM"
      ]
    }
 
@@ -952,15 +953,15 @@ Table of Contents
    Applications MAY use their own tags to tag other specific types of
    JWPs.
 
-   CBOR_JWP_Issued = [
-          IssuerHeader : serialized_map,
+   cbor-jwp-issued = [
+          issuer-header : serialized_map,
           payloads : [payload] / nil,
           proofs : [bstr]
       ]
 
-   CBOR_JWP_Presented = [
-         PresenterHeader : serialized_map,
-         IssuerHeaders : serialized_map,
+   cbor-jwp-presented = [
+         presenter-header : serialized_map,
+         issuer-header : serialized_map,
          payloads : [payload] / nil,
          proofs : [bstr]
       ]
@@ -969,9 +970,9 @@ Table of Contents
 
    payload = bstr / nil
 
-   Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
+   tagged-jwp-issued = #6.<CPA55802> (cbor-jwp-issued)
 
-   Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
+   tagged-jwp-presented = #6.<CPA55803> (cbor-jwp-presented)
 
    Figure 1: CDDL [RFC8610] for CBOR Serializations.
 
@@ -1038,6 +1039,13 @@ Table of Contents
       any non-deterministic JSON serialization.
 
 11.  IANA Considerations
+
+   // RFC Editor: This document uses the CPA (code point allocation)
+   convention described in [I-D.bormann-cbor-draft-numbers].  For each
+   usage of the term "CPA", please remove the prefix "CPA" from the
+   indicated value and replace the residue with the value assigned by
+   IANA; perform an analogous substitution for all other occurrences of
+   the prefix "CPA" in the document.  Finally, please remove this note.
 
    The following registration procedure is used for all the registries
    established by this specification.
@@ -1338,6 +1346,29 @@ Table of Contents
    *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
    *  Author/Change controller: IETF
 
+11.4.  CBOR Tag Registration
+
+   IANA is requested to add the following tag to the "CBOR Tags"
+   [IANA.cbor-tags] registry.
+
+   +==========+===========+================================+===========+
+   | CBOR Tag | Data Item | Semantics                      | Reference |
+   +==========+===========+================================+===========+
+   | CPA202   | uint      | Referencing CWT                | Section   |
+   |          |           | Claim Registration             | 5.1.2     |
+   |          |           | [IANA.CWT.Claims]              |           |
+   +----------+-----------+--------------------------------+-----------+
+   | CPA55802 | JWP       | Distinguishing mark            | Section   |
+   |          | issued    | for JWP issued form            | 7.3       |
+   |          | form      | data                           |           |
+   +----------+-----------+--------------------------------+-----------+
+   | CPA55803 | JWP       | Distinguishing mark            | Section   |
+   |          | presented | for JWP presented              | 7.3       |
+   |          | form      | form data                      |           |
+   +----------+-----------+--------------------------------+-----------+
+
+                                  Table 1
+
 12.  References
 
 12.1.  Normative References
@@ -1457,11 +1488,17 @@ Appendix A.  Acknowledgements
 
 Appendix B.  Document History
 
-   [[ To be removed from the final specification ]] -latest
+   [[ To be removed from the final specification ]]
+
+   -latest
 
    *  Refactoring Header Parameters into Parameters, which encompases
       both the JOSE/COSE concept of header parameters and the JWT/CWT
       concept of claims
+   *  Change usage of "JWP Protected Header" and "JWP Proof" to
+      "Protected Header" and "Proof"
+   *  Use draft-bormann-cbor-draft-numbers for externally defined
+      codepoints (e.g. tags)
 
    -07
 
