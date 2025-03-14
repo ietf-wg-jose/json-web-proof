@@ -1059,7 +1059,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 12 September 2025</td>
+<td class="center">Expires 15 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-11" class="published">11 March 2025</time>
+<time datetime="2025-03-14" class="published">14 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-12">12 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-15">15 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 12 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1633,7 +1633,7 @@ when a parameter is used by both forms, its usage must be compatible between the
           </h4>
 <p id="section-5.2.1-1">The <code>alg</code> (algorithm) Header Parameter identifies the cryptographic algorithm
 used to secure the JWP.
-The JWP Proof value is not valid if the <code>alg</code> value does not represent
+The Proof value is not valid if the <code>alg</code> value does not represent
 a supported algorithm or if there is not a key for use with that algorithm
 associated with the party that secured the content.
 <code>alg</code> values should either be registered in
@@ -1738,7 +1738,7 @@ contains any Header Parameter names defined by
 this specification or <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span> for use with JWP
 or if any other constraints on its use are violated.
 When used, this Header Parameter MUST be integrity protected;
-therefore, it MUST occur only within the JWP Protected Header.
+therefore, it MUST occur only within the Protected Header.
 Use of this Header Parameter is OPTIONAL.
 This Header Parameter MUST be understood and processed by implementations.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
 </section>
@@ -1993,14 +1993,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pL9sj0heRjxAEMechifArlwkjmZtYymNapQS6bRK
-8Dq681LRmbJeoVe3yegUhbanpIX2UgB-kDZ92j3BgVMGIqv0dFDTotm6eEWl87IRTOXTH
-SCPWychdxvjnp4yB_iSgJr2OnC7y5do2P3E3B-litSvARhp2Nkgs_gyE84xb2ld4yYToP
-3Yogsm0SUliaBgQhzOfyVsMRfhRxSR6b7eHqbPpeG2EXIB4sPVdeDNziUpHUFeNCnwaMu
-5iP648xa3YRWux0CPyKd0qhTWxkKI4FMPxZ9aBj7BExD_SX2tOYDlR89qje-DQBa28AQU
-IF3DX9ESCjfVSrERTHJXUVHlSDSSHJbuEWjfqYvDtXoTkQhhciAA491hPySTHwVWLFQUa
-xekFNZLmJlCWX5_onvr3D7mUnCxBnx972zWXLY7b48i9wABO2NX-SvYG1ZdX7mQR3gUE0
-CE8jJQxzVI4gKoB8IYvGt5cPtJxFTX18yMmMk
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pkfhdImjs5ySBQJQxZwELNb1Dh-thjK8sTJ3Jx1C
+Qlg3uRXP6kQdjRijw-dzV131hgIsdhv5uCXWw1PrszW74bO-W_0YaLnAuBtoYEliLLsDF
+KtEe_FUG4CIod5NVmtUqaphJyQ2JHGzMAR3kZjwF-QC2twxmbFMVFaxCtA7I42_XzdJG6
+1611hqHM15NYWYXics8upkWvgOkiQP3jTFIWeOMJvV_a9lnRaAIRSncGgF9FA7Ru4KsSH
+33lQTg_sSBG0qXb4VvwQBBTwIVu29EzJku756sGpV9aefDmFht8zcK4YSgjnZ0_u8qPo_
+sYNecd9EMMHDwkrcf6Rz9vWHF0UpBWn1OaUslmRqOhoA6ZMO9K2b9-oTvA2sFQw4vBd4n
+sTHDt0FEAGnHKJr1_JdVgr39SRHEd21wv3XJ-QSNVrDhAxFojaGWzw8_wd88XhMKYOmkv
+EnNlRPWkW3BVv0EZd5y-b_DFXXwVjQ6tvIAWg
 
 </pre><a href="#section-7.1-9" class="pilcrow">¶</a>
 </div>
@@ -2037,14 +2037,14 @@ CE8jJQxzVI4gKoB8IYvGt5cPtJxFTX18yMmMk
     null
   ],
   "proof": [
-    "pL9sj0heRjxAEMechifArlwkjmZtYymNapQS6bRK8Dq681LRmbJeoVe3yegUhban
-       pIX2UgB-kDZ92j3BgVMGIqv0dFDTotm6eEWl87IRTOXTHSCPWychdxvjnp4yB_
-       iSgJr2OnC7y5do2P3E3B-litSvARhp2Nkgs_gyE84xb2ld4yYToP3Yogsm0SUl
-       iaBgQhzOfyVsMRfhRxSR6b7eHqbPpeG2EXIB4sPVdeDNziUpHUFeNCnwaMu5iP
-       648xa3YRWux0CPyKd0qhTWxkKI4FMPxZ9aBj7BExD_SX2tOYDlR89qje-DQBa2
-       8AQUIF3DX9ESCjfVSrERTHJXUVHlSDSSHJbuEWjfqYvDtXoTkQhhciAA491hPy
-       STHwVWLFQUaxekFNZLmJlCWX5_onvr3D7mUnCxBnx972zWXLY7b48i9wABO2NX
-       -SvYG1ZdX7mQR3gUE0CE8jJQxzVI4gKoB8IYvGt5cPtJxFTX18yMmMk"
+    "pkfhdImjs5ySBQJQxZwELNb1Dh-thjK8sTJ3Jx1CQlg3uRXP6kQdjRijw-dzV131
+       hgIsdhv5uCXWw1PrszW74bO-W_0YaLnAuBtoYEliLLsDFKtEe_FUG4CIod5NVm
+       tUqaphJyQ2JHGzMAR3kZjwF-QC2twxmbFMVFaxCtA7I42_XzdJG61611hqHM15
+       NYWYXics8upkWvgOkiQP3jTFIWeOMJvV_a9lnRaAIRSncGgF9FA7Ru4KsSH33l
+       QTg_sSBG0qXb4VvwQBBTwIVu29EzJku756sGpV9aefDmFht8zcK4YSgjnZ0_u8
+       qPo_sYNecd9EMMHDwkrcf6Rz9vWHF0UpBWn1OaUslmRqOhoA6ZMO9K2b9-oTvA
+       2sFQw4vBd4nsTHDt0FEAGnHKJr1_JdVgr39SRHEd21wv3XJ-QSNVrDhAxFojaG
+       Wzw8_wd88XhMKYOmkvEnNlRPWkW3BVv0EZd5y-b_DFXXwVjQ6tvIAWg"
   ]
 }
 

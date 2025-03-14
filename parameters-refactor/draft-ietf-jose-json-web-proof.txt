@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 12 September 2025                        Self-Issued Consulting
+Expires: 15 September 2025                        Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                           11 March 2025
+                                                           14 March 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2025.
+   This Internet-Draft will expire on 15 September 2025.
 
 Copyright Notice
 
@@ -439,11 +439,11 @@ Table of Contents
 5.2.1.  "alg" (Algorithm) Header Parameter
 
    The alg (algorithm) Header Parameter identifies the cryptographic
-   algorithm used to secure the JWP.  The JWP Proof value is not valid
-   if the alg value does not represent a supported algorithm or if there
-   is not a key for use with that algorithm associated with the party
-   that secured the content. alg values should either be registered in
-   the IANA "JSON Web Proof Algorithms" registry established by
+   algorithm used to secure the JWP.  The Proof value is not valid if
+   the alg value does not represent a supported algorithm or if there is
+   not a key for use with that algorithm associated with the party that
+   secured the content. alg values should either be registered in the
+   IANA "JSON Web Proof Algorithms" registry established by
    [I-D.ietf-jose-json-proof-algorithms] or be a value that contains a
    Collision-Resistant Name.
 
@@ -538,7 +538,7 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms] for use with JWP or if any
    other constraints on its use are violated.  When used, this Header
    Parameter MUST be integrity protected; therefore, it MUST occur only
-   within the JWP Protected Header.  Use of this Header Parameter is
+   within the Protected Header.  Use of this Header Parameter is
    OPTIONAL.  This Header Parameter MUST be understood and processed by
    implementations.
 
@@ -859,14 +859,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pL9sj0heRjxAEMechifArlwkjmZtYymNapQS6bRK
-   8Dq681LRmbJeoVe3yegUhbanpIX2UgB-kDZ92j3BgVMGIqv0dFDTotm6eEWl87IRTOXTH
-   SCPWychdxvjnp4yB_iSgJr2OnC7y5do2P3E3B-litSvARhp2Nkgs_gyE84xb2ld4yYToP
-   3Yogsm0SUliaBgQhzOfyVsMRfhRxSR6b7eHqbPpeG2EXIB4sPVdeDNziUpHUFeNCnwaMu
-   5iP648xa3YRWux0CPyKd0qhTWxkKI4FMPxZ9aBj7BExD_SX2tOYDlR89qje-DQBa28AQU
-   IF3DX9ESCjfVSrERTHJXUVHlSDSSHJbuEWjfqYvDtXoTkQhhciAA491hPySTHwVWLFQUa
-   xekFNZLmJlCWX5_onvr3D7mUnCxBnx972zWXLY7b48i9wABO2NX-SvYG1ZdX7mQR3gUE0
-   CE8jJQxzVI4gKoB8IYvGt5cPtJxFTX18yMmMk
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pkfhdImjs5ySBQJQxZwELNb1Dh-thjK8sTJ3Jx1C
+   Qlg3uRXP6kQdjRijw-dzV131hgIsdhv5uCXWw1PrszW74bO-W_0YaLnAuBtoYEliLLsDF
+   KtEe_FUG4CIod5NVmtUqaphJyQ2JHGzMAR3kZjwF-QC2twxmbFMVFaxCtA7I42_XzdJG6
+   1611hqHM15NYWYXics8upkWvgOkiQP3jTFIWeOMJvV_a9lnRaAIRSncGgF9FA7Ru4KsSH
+   33lQTg_sSBG0qXb4VvwQBBTwIVu29EzJku756sGpV9aefDmFht8zcK4YSgjnZ0_u8qPo_
+   sYNecd9EMMHDwkrcf6Rz9vWHF0UpBWn1OaUslmRqOhoA6ZMO9K2b9-oTvA2sFQw4vBd4n
+   sTHDt0FEAGnHKJr1_JdVgr39SRHEd21wv3XJ-QSNVrDhAxFojaGWzw8_wd88XhMKYOmkv
+   EnNlRPWkW3BVv0EZd5y-b_DFXXwVjQ6tvIAWg
 
    |  Figure: Compact Serialization of Presentation
 
@@ -917,14 +917,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "pL9sj0heRjxAEMechifArlwkjmZtYymNapQS6bRK8Dq681LRmbJeoVe3yegUhban
-          pIX2UgB-kDZ92j3BgVMGIqv0dFDTotm6eEWl87IRTOXTHSCPWychdxvjnp4yB_
-          iSgJr2OnC7y5do2P3E3B-litSvARhp2Nkgs_gyE84xb2ld4yYToP3Yogsm0SUl
-          iaBgQhzOfyVsMRfhRxSR6b7eHqbPpeG2EXIB4sPVdeDNziUpHUFeNCnwaMu5iP
-          648xa3YRWux0CPyKd0qhTWxkKI4FMPxZ9aBj7BExD_SX2tOYDlR89qje-DQBa2
-          8AQUIF3DX9ESCjfVSrERTHJXUVHlSDSSHJbuEWjfqYvDtXoTkQhhciAA491hPy
-          STHwVWLFQUaxekFNZLmJlCWX5_onvr3D7mUnCxBnx972zWXLY7b48i9wABO2NX
-          -SvYG1ZdX7mQR3gUE0CE8jJQxzVI4gKoB8IYvGt5cPtJxFTX18yMmMk"
+       "pkfhdImjs5ySBQJQxZwELNb1Dh-thjK8sTJ3Jx1CQlg3uRXP6kQdjRijw-dzV131
+          hgIsdhv5uCXWw1PrszW74bO-W_0YaLnAuBtoYEliLLsDFKtEe_FUG4CIod5NVm
+          tUqaphJyQ2JHGzMAR3kZjwF-QC2twxmbFMVFaxCtA7I42_XzdJG61611hqHM15
+          NYWYXics8upkWvgOkiQP3jTFIWeOMJvV_a9lnRaAIRSncGgF9FA7Ru4KsSH33l
+          QTg_sSBG0qXb4VvwQBBTwIVu29EzJku756sGpV9aefDmFht8zcK4YSgjnZ0_u8
+          qPo_sYNecd9EMMHDwkrcf6Rz9vWHF0UpBWn1OaUslmRqOhoA6ZMO9K2b9-oTvA
+          2sFQw4vBd4nsTHDt0FEAGnHKJr1_JdVgr39SRHEd21wv3XJ-QSNVrDhAxFojaG
+          Wzw8_wd88XhMKYOmkvEnNlRPWkW3BVv0EZd5y-b_DFXXwVjQ6tvIAWg"
      ]
    }
 
