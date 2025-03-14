@@ -222,7 +222,7 @@ when a parameter is used by both forms, its usage must be compatible between the
 
 The `alg` (algorithm) Header Parameter identifies the cryptographic algorithm
 used to secure the JWP.
-The JWP Proof value is not valid if the `alg` value does not represent
+The Proof value is not valid if the `alg` value does not represent
 a supported algorithm or if there is not a key for use with that algorithm
 associated with the party that secured the content.
 `alg` values should either be registered in
@@ -328,7 +328,7 @@ contains any Header Parameter names defined by
 this specification or [@!I-D.ietf-jose-json-proof-algorithms] for use with JWP
 or if any other constraints on its use are violated.
 When used, this Header Parameter MUST be integrity protected;
-therefore, it MUST occur only within the JWP Protected Header.
+therefore, it MUST occur only within the Protected Header.
 Use of this Header Parameter is OPTIONAL.
 This Header Parameter MUST be understood and processed by implementations.
 
