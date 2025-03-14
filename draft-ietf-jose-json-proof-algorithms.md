@@ -855,6 +855,11 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   [[ To be removed from the final specification ]]
 
+ -latest
+
+  * Clean up terminology references, e.g. JWP Protected Header is now Protected Header
+  * Change Header Parameter to Parameter throughout document
+
  -07
 
   * Changing primary editor

@@ -199,12 +199,12 @@ To use a claim from the JWT registry, the claim name is prefixed with a colon ("
 
 JWT registry claims SHOULD NOT be used as parameters in a CBOR serialized message.
 
-### Use of the CBOR Web Token Claims Registry
+### Use of the CBOR Web Token Claims Registry {#UseCWTRegistry}
 
 To use a claim from the CWT registry, the claim identifier is tagged with claim-ref-cda to form the Parameter label. This serves to differentiate from labels in the JWP Parameter registry. Claims from the CWT registry SHOULD NOT be used when an appropriate JWP Parameter is available.
 
-``` CDDL
-claim-ref = #CPA-CLAIM-REF (int)
+``` cddl
+cwt-claim-ref = #6.<CPA202> (uint)
 ```
 
 ## Registered Parameter Labels {#RegisteredHeaderParameterLabels}
@@ -565,7 +565,7 @@ This example JSON serialization shows the presentation form with both the issuer
 <{{./fixtures/build/bbs-holder.json.jwp.wrapped}}>
 Figure: JSON Serialization of Presentation
 
-## CBOR Serialization
+## CBOR Serialization {#CBORSerialization}
 
 The CBOR serialization provides a compact binary representation of a JWP.
 The serialization consists of two arrays, representing issued and presented forms.
@@ -585,15 +585,15 @@ Two tags are defined for representing issued and presented JWPs.
 Applications MAY use their own tags to tag other specific types of JWPs.
 
 ``` cddl
-CBOR_JWP_Issued = [
-       IssuerHeader : serialized_map,
+cbor-jwp-issued = [
+       issuer-header : serialized_map,
        payloads : [payload] / nil,
        proofs : [bstr]
    ]
 
-CBOR_JWP_Presented = [
-      PresenterHeader : serialized_map,
-      IssuerHeaders : serialized_map,
+cbor-jwp-presented = [
+      presenter-header : serialized_map,
+      issuer-header : serialized_map,
       payloads : [payload] / nil,
       proofs : [bstr]
    ]
@@ -602,9 +602,9 @@ empty_or_serialized_map = bstr .cbor header_map
 
 payload = bstr / nil
 
-Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
+tagged-jwp-issued = #6.<CPA55802> (cbor-jwp-issued)
 
-Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
+tagged-jwp-presented = #6.<CPA55803> (cbor-jwp-presented)
 
 ```
 Figure 1: CDDL [RFC8610] for CBOR Serializations.
@@ -665,6 +665,13 @@ Notes to be expanded:
 
 
 # IANA Considerations
+
+// RFC Editor: This document uses the CPA (code point allocation)
+ convention described in [I-D.bormann-cbor-draft-numbers].  For each
+ usage of the term "CPA", please remove the prefix "CPA" from the
+ indicated value and replace the residue with the value assigned by
+ IANA; perform an analogous substitution for all other occurrences of
+ the prefix "CPA" in the document.  Finally, please remove this note.
 
 The following registration procedure is used for all the
 registries established by this specification.
@@ -966,6 +973,16 @@ using the JWP Compact Serialization.
 * Contact: Michael B. Jones, michael_b_jones@hotmail.com
 * Author/Change controller: IETF
 
+## CBOR Tag Registration {#CBORTagReg}
+
+IANA is requested to add the following tag to the "CBOR Tags" [IANA.cbor-tags] registry.
+
+CBOR Tag | Data Item          | Semantics | Reference
+---------|--------------------|-----------|----------
+CPA202   | uint               | Referencing CWT Claim Registration [IANA.CWT.Claims] | (#UseCWTRegistry)
+CPA55802 | JWP issued form    | Distinguishing mark for JWP issued form data | (#CBORSerialization)
+CPA55803 | JWP presented form | Distinguishing mark for JWP presented form data | (#CBORSerialization)
+
 {backmatter}
 
 <reference anchor="VC-DATA-MODEL-2.0" target="https://www.w3.org/TR/vc-data-model-2.0">
@@ -1067,11 +1084,14 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
+
  -latest
 
   * Refactoring Header Parameters into Parameters, which encompases
     both the JOSE/COSE concept of header parameters and the JWT/CWT
     concept of claims
+  * Change usage of "JWP Protected Header" and "JWP Proof" to "Protected Header" and "Proof"
+  * Use draft-bormann-cbor-draft-numbers for externally defined codepoints (e.g. tags)
 
  -07
 
