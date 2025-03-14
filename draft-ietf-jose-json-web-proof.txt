@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 12 September 2025                        Self-Issued Consulting
+Expires: 15 September 2025                        Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                           11 March 2025
+                                                           14 March 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2025.
+   This Internet-Draft will expire on 15 September 2025.
 
 Copyright Notice
 
@@ -222,7 +222,7 @@ Table of Contents
 3.  Background
 
    A _JSON Web Proof (JWP)_ is very similar to a JWS [RFC7515] or COSE
-   Signed Message [RFC8152], with the addition that it can contain
+   Signed Message [RFC9052], with the addition that it can contain
    multiple individual secured payloads instead of a single one.  JWP-
    supporting algorithms are then able to separate and act on the
    individual payloads contained within.
@@ -392,7 +392,8 @@ Table of Contents
 
    For COSE Protected Headers, typ MAY also instead be an integer value
    which corresponds to the IANA "CoAP Content-Formats" registry
-   [IANA.CoAP.Formats], which describes the corresponding media type.
+   [IANA.CoAP.Formats], which describes the corresponding media type, as
+   described in [RFC9596].
 
    Per [RFC2045], all media type values, subtype values, and parameter
    names are case insensitive.  However, parameter values are case
@@ -772,14 +773,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfn
-   nz8n7R9oILdTopdo-3IvLoj4jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtE
-   jv5O9AfbiyArdziylmrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRm
-   gsx6xK9iNGcc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-
-   tJRVVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTOtsyz
-   UCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYRmAzUKI5dBIb
-   zeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpOQhrfL73Hp8N4NBF623
-   NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pwL0yUOkRdJTZNegzeFToStNP2lCTu9Y1cj_oWoO
+   isZj4f-iwAu78oXgwHugAHqWsBPzBNJ03yrB4AN7cdtC5b1Zd13kB4F1570JEkx6FIv-N
+   jSK74wVAq435M2Nm7p7rnIo47Y7uf21ILVAaWK75S6GlTSJ5R4L_MW2cBosO6WaoPDp5M
+   oLnkSR7DlmlFvlXJzr5yiQd3X45mlBrL23SdBNG344JVOgIWhURyadkmhdhxQYo2HcfU-
+   tOdAkIOKxL0biyxN-Uk_2Ftcqbv7r9TgAbvkFPTPN6RjzlcGtDq54tQTBmhxoJZRz1jJg
+   bxm_KLe6GqyvwWu86wP3U6sk0jWl9JZueseYPdC97MGBxKgr8SpZNphXxWtQ06pY9Jh6a
+   b6jC0t4DIcbXudJDASTQwwuIfX_i4BDEfUiPFBG4lgkk0iZ00Slh0tCCn5A22ydGNRVQE
+   EQuBp1PbkVY4S6zMx6Ui3b3eJ_sglymcJ0fXM
 
    |  Figure: Compact Serialization of Presentation
 
@@ -830,14 +831,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "jupcSFQDOFsku_q7GhGNHhTkNwMHOfdkl5MHbDfnnz8n7R9oILdTopdo-3IvLoj4
-          jDYlfCjs7_TJwnWY4ZEsRzxzu7suRXS71YdwgbdVn0GtEjv5O9AfbiyArdziyl
-          mrhhlmleL6rZ0erw1NOnPHTZUNogRWNXwDkVgJ16MCooho2trnRmgsx6xK9iNG
-          cc4OOI03VUbRUF_AJr7bnJ15HQ6c7PdLmmTMvNgfl27lWYBuBypvLH1bif-tJR
-          VVAe8ZSPmwmKXsHRtoH4ta3nli5jSGzPmVX1sVQUaDQu8iqe1AxwFUag5NcvTO
-          tsyzUCHzY5ImRehpst3hbl-yrYOEzhQGHRM0DmA0AEq4i9dcs3QOJzWnKX-jYR
-          mAzUKI5dBIbzeaXUrXEsOFk7bFKpZp6iU8idsimA01X_zF9qrbmIxjePeMuOpO
-          QhrfL73Hp8N4NBF623NO_IJAoINde9EfsGNZZ__JuL4KLCHy1ygh-7I"
+       "pwL0yUOkRdJTZNegzeFToStNP2lCTu9Y1cj_oWoOisZj4f-iwAu78oXgwHugAHqW
+          sBPzBNJ03yrB4AN7cdtC5b1Zd13kB4F1570JEkx6FIv-NjSK74wVAq435M2Nm7
+          p7rnIo47Y7uf21ILVAaWK75S6GlTSJ5R4L_MW2cBosO6WaoPDp5MoLnkSR7Dlm
+          lFvlXJzr5yiQd3X45mlBrL23SdBNG344JVOgIWhURyadkmhdhxQYo2HcfU-tOd
+          AkIOKxL0biyxN-Uk_2Ftcqbv7r9TgAbvkFPTPN6RjzlcGtDq54tQTBmhxoJZRz
+          1jJgbxm_KLe6GqyvwWu86wP3U6sk0jWl9JZueseYPdC97MGBxKgr8SpZNphXxW
+          tQ06pY9Jh6ab6jC0t4DIcbXudJDASTQwwuIfX_i4BDEfUiPFBG4lgkk0iZ00Sl
+          h0tCCn5A22ydGNRVQEEQuBp1PbkVY4S6zMx6Ui3b3eJ_sglymcJ0fXM"
      ]
    }
 
@@ -1293,6 +1294,11 @@ Table of Contents
               DOI 10.17487/RFC9052, August 2022,
               <https://www.rfc-editor.org/info/rfc9052>.
 
+   [RFC9596]  Jones, M.B. and O. Steele, "CBOR Object Signing and
+              Encryption (COSE) "typ" (type) Header Parameter",
+              RFC 9596, DOI 10.17487/RFC9596, June 2024,
+              <https://www.rfc-editor.org/info/rfc9596>.
+
 11.2.  Informative References
 
    [ECMAScript]
@@ -1344,10 +1350,6 @@ Table of Contents
               DOI 10.17487/RFC7518, May 2015,
               <https://www.rfc-editor.org/info/rfc7518>.
 
-   [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              RFC 8152, DOI 10.17487/RFC8152, July 2017,
-              <https://www.rfc-editor.org/info/rfc8152>.
-
    [RFC8725]  Sheffer, Y., Hardt, D., and M. Jones, "JSON Web Token Best
               Current Practices", BCP 225, RFC 8725,
               DOI 10.17487/RFC8725, February 2020,
@@ -1372,6 +1374,7 @@ Appendix B.  Document History
 
    -08
 
+   *  Added reference to [RFC9596] for COSE "typ" header parameter.
    *  Made some additional references normative.
 
    -07
