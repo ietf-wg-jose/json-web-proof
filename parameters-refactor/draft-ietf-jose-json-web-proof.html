@@ -1463,6 +1463,7 @@ These new patterns are largely focused on two areas: supporting selective disclo
   The property where multiple presentations may be correlated to a single issued JWP, either through consistency in the cryptographic integrity or due to particulars of JWP usage by an application. Such issued JWPs may be referred to as single-use, as multiple uses may leak unintended knowledge.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 <p id="section-2.1-4">unlinkability:
   The property of issuance and presentation algorithms and of application usage, where one presentation can only be correlated with other presentations based on holder-disclosed information.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.1-5">This series of documents uses the term "application" to refer to specifications which profile usage of JWP, while the term "implementation" refers to code used to implement JWP logic targetting one or more application.<a href="#section-2.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="abbreviations">
@@ -1526,6 +1527,7 @@ JWP-supporting algorithms are then able to separate and act on the individual pa
 <p id="section-4.1-4">Parameters are differentiated from one another by label. When serialized via JSON, the label is expected to be a string value. When serialized via CBOR, the label is expected to be either an integer (int) or string (tstr) value.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1-5">Implementations are required to understand the specific Parameters defined by this specification that are designated as "MUST be understood"
 and process them in the manner defined in this specification. All other Parameters defined by this specification that are not so designated MUST be ignored when not understood.  Unless listed as a critical Parameter, per <a href="#critDef" class="auto internal xref">Section 5.2.4</a>, all Parameters not defined by this specification MUST be ignored when not understood.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
+<p id="section-4.1-6">Parameters provide for a common semantic meaning across applications. However, applications are responsible for defining which parameters are appropriate for desired security and privacy properties. Implementations MUST NOT assume the presence of a parameter indicates certain processing steps are to be performed, unless specified by the application.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="jwp-header">
@@ -1997,14 +1999,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jtg-4MM9wRxLpDoYxF2SLLLZ3M_OlhncNG0rH0gb
-ndS9soXaQfRMziLft5kRWwv5jy7X0cE81wfUN4-ygN8emK8SOgMvFXCuFMRWPQrRvOiy8
-1-xtQIimMeslPK0Qz6HjnUpziKU2o_1J4S5CCztU18MeUqyg-7eimOmjibpk6hUYvxLKH
-xZM4fIryI-dmZSEAiVsMpjORGCaoOqpYLVnS99sDvhoqR-DJ19aoYsxbIE0iKttHPkQCO
-Zjz7qjaMgnn3aCAwmtj1P9Pb4zUQu32uy2Fz1VlE8fQvrhqSddHROHMObG5ZEFSNC2fjM
-NGBBacIiYl_yntLX90mM9NBp1Qkm72mLEtSYdKOiS4gK6pUwX3bBwf_H61uVh5se8Z2Y8
-yxitMUKAFO4AuneaT0xF0dwx58gLM0BRvnVBCWu1Bw7loXjrZvUXoYhGYV64UoqRJslN-
-XSDPeu6CDfbmsjTg_dLdhICTgwmXyVT670Jyg
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TX
+Ce9YFQk2FHygJHy6If1w88a2uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMp
+NVUmx5UxkqeJo1bsehntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WS
+sFOFw7uP3evNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK2
+05-OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RDeuTg
+nlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUFXx06xeQDx1p
+uwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCSFmUr8Zcb4jYgFxaRpp
+yKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE
 
 </pre><a href="#section-7.1-9" class="pilcrow">¶</a>
 </div>
@@ -2041,14 +2043,14 @@ XSDPeu6CDfbmsjTg_dLdhICTgwmXyVT670Jyg
     null
   ],
   "proof": [
-    "jtg-4MM9wRxLpDoYxF2SLLLZ3M_OlhncNG0rH0gbndS9soXaQfRMziLft5kRWwv5
-       jy7X0cE81wfUN4-ygN8emK8SOgMvFXCuFMRWPQrRvOiy81-xtQIimMeslPK0Qz
-       6HjnUpziKU2o_1J4S5CCztU18MeUqyg-7eimOmjibpk6hUYvxLKHxZM4fIryI-
-       dmZSEAiVsMpjORGCaoOqpYLVnS99sDvhoqR-DJ19aoYsxbIE0iKttHPkQCOZjz
-       7qjaMgnn3aCAwmtj1P9Pb4zUQu32uy2Fz1VlE8fQvrhqSddHROHMObG5ZEFSNC
-       2fjMNGBBacIiYl_yntLX90mM9NBp1Qkm72mLEtSYdKOiS4gK6pUwX3bBwf_H61
-       uVh5se8Z2Y8yxitMUKAFO4AuneaT0xF0dwx58gLM0BRvnVBCWu1Bw7loXjrZvU
-       XoYhGYV64UoqRJslN-XSDPeu6CDfbmsjTg_dLdhICTgwmXyVT670Jyg"
+    "ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TXCe9YFQk2FHygJHy6If1w88a2
+       uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMpNVUmx5UxkqeJo1bse
+       hntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WSsFOFw7uP3e
+       vNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK205-
+       OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RD
+       euTgnlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUF
+       Xx06xeQDx1puwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCS
+       FmUr8Zcb4jYgFxaRppyKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE"
   ]
 }
 
@@ -2910,6 +2912,10 @@ concept of claims<a href="#appendix-B-3.1" class="pilcrow">¶</a>
         <li class="compact" id="appendix-B-3.4">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-B-3.5">Made some additional references normative.<a href="#appendix-B-3.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.6">Clarify appropriate parameters are defined by applications.<a href="#appendix-B-3.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.7">Add "application" and "implementation" to terminology.<a href="#appendix-B-3.7" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-07<a href="#appendix-B-4" class="pilcrow">¶</a></p>

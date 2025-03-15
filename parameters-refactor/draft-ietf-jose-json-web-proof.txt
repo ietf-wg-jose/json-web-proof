@@ -220,6 +220,11 @@ Table of Contents
    correlated with other presentations based on holder-disclosed
    information.
 
+   This series of documents uses the term "application" to refer to
+   specifications which profile usage of JWP, while the term
+   "implementation" refers to code used to implement JWP logic
+   targetting one or more application.
+
 2.2.  Abbreviations
 
    *  ZKP: Zero-Knowledge Proof
@@ -319,6 +324,13 @@ Table of Contents
    Unless listed as a critical Parameter, per Section 5.2.4, all
    Parameters not defined by this specification MUST be ignored when not
    understood.
+
+   Parameters provide for a common semantic meaning across applications.
+   However, applications are responsible for defining which parameters
+   are appropriate for desired security and privacy properties.
+   Implementations MUST NOT assume the presence of a parameter indicates
+   certain processing steps are to be performed, unless specified by the
+   application.
 
 4.2.  JWP Header
 
@@ -861,14 +873,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jtg-4MM9wRxLpDoYxF2SLLLZ3M_OlhncNG0rH0gb
-   ndS9soXaQfRMziLft5kRWwv5jy7X0cE81wfUN4-ygN8emK8SOgMvFXCuFMRWPQrRvOiy8
-   1-xtQIimMeslPK0Qz6HjnUpziKU2o_1J4S5CCztU18MeUqyg-7eimOmjibpk6hUYvxLKH
-   xZM4fIryI-dmZSEAiVsMpjORGCaoOqpYLVnS99sDvhoqR-DJ19aoYsxbIE0iKttHPkQCO
-   Zjz7qjaMgnn3aCAwmtj1P9Pb4zUQu32uy2Fz1VlE8fQvrhqSddHROHMObG5ZEFSNC2fjM
-   NGBBacIiYl_yntLX90mM9NBp1Qkm72mLEtSYdKOiS4gK6pUwX3bBwf_H61uVh5se8Z2Y8
-   yxitMUKAFO4AuneaT0xF0dwx58gLM0BRvnVBCWu1Bw7loXjrZvUXoYhGYV64UoqRJslN-
-   XSDPeu6CDfbmsjTg_dLdhICTgwmXyVT670Jyg
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TX
+   Ce9YFQk2FHygJHy6If1w88a2uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMp
+   NVUmx5UxkqeJo1bsehntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WS
+   sFOFw7uP3evNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK2
+   05-OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RDeuTg
+   nlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUFXx06xeQDx1p
+   uwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCSFmUr8Zcb4jYgFxaRpp
+   yKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE
 
    |  Figure: Compact Serialization of Presentation
 
@@ -919,14 +931,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "jtg-4MM9wRxLpDoYxF2SLLLZ3M_OlhncNG0rH0gbndS9soXaQfRMziLft5kRWwv5
-          jy7X0cE81wfUN4-ygN8emK8SOgMvFXCuFMRWPQrRvOiy81-xtQIimMeslPK0Qz
-          6HjnUpziKU2o_1J4S5CCztU18MeUqyg-7eimOmjibpk6hUYvxLKHxZM4fIryI-
-          dmZSEAiVsMpjORGCaoOqpYLVnS99sDvhoqR-DJ19aoYsxbIE0iKttHPkQCOZjz
-          7qjaMgnn3aCAwmtj1P9Pb4zUQu32uy2Fz1VlE8fQvrhqSddHROHMObG5ZEFSNC
-          2fjMNGBBacIiYl_yntLX90mM9NBp1Qkm72mLEtSYdKOiS4gK6pUwX3bBwf_H61
-          uVh5se8Z2Y8yxitMUKAFO4AuneaT0xF0dwx58gLM0BRvnVBCWu1Bw7loXjrZvU
-          XoYhGYV64UoqRJslN-XSDPeu6CDfbmsjTg_dLdhICTgwmXyVT670Jyg"
+       "ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TXCe9YFQk2FHygJHy6If1w88a2
+          uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMpNVUmx5UxkqeJo1bse
+          hntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WSsFOFw7uP3e
+          vNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK205-
+          OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RD
+          euTgnlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUF
+          Xx06xeQDx1puwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCS
+          FmUr8Zcb4jYgFxaRppyKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE"
      ]
    }
 
@@ -1503,6 +1515,8 @@ Appendix B.  Document History
       codepoints (e.g. tags)
    *  Added reference to [RFC9596] for COSE "typ" header parameter.
    *  Made some additional references normative.
+   *  Clarify appropriate parameters are defined by applications.
+   *  Add "application" and "implementation" to terminology.
 
    -07
 
