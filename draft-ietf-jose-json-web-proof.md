@@ -83,7 +83,7 @@ All of these follow the same pattern of taking multiple claims (a.k.a., "attribu
 # Conventions and Definitions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-"MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@RFC2119] [@RFC8174] when, and only when, they appear in all capitals, as shown here.
+"MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174] when, and only when, they appear in all capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier" are used as defined by the VC Data Model [@VC-DATA-MODEL-2.0].  The term "presentation" is also used as defined by this source, but the term "credential" is avoided in this specification to minimize confusion with other definitions.
 
@@ -109,7 +109,7 @@ unlinkability:
 
 # Background
 
-A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515] or COSE Signed Message [@RFC8152], with the addition that it can contain multiple individual secured payloads instead of a single one.
+A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515] or COSE Signed Message [@RFC9052], with the addition that it can contain multiple individual secured payloads instead of a single one.
 JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
 The intent of JSON Web Proof is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities. This general message structure and common infratructure can then be further refined and extended to meet specific application requirements.
@@ -278,7 +278,8 @@ Use of this Header Parameter is OPTIONAL.
 
 For COSE Protected Headers, `typ` MAY also instead be an integer value
 which corresponds to the IANA "CoAP Content-Formats" registry
-[@IANA.CoAP.Formats], which describes the corresponding media type.
+[@IANA.CoAP.Formats], which describes the corresponding media type,
+as described in [@!RFC9596].
 
 Per [@RFC2045], all media type values,
 subtype values, and parameter names are case insensitive.
@@ -1092,6 +1093,8 @@ for his valuable contributions to this specification.
     concept of claims
   * Change usage of "JWP Protected Header" and "JWP Proof" to "Protected Header" and "Proof"
   * Use draft-bormann-cbor-draft-numbers for externally defined codepoints (e.g. tags)
+  * Added reference to [@!RFC9596] for COSE "typ" header parameter.
+  * Made some additional references normative.
 
  -07
 
