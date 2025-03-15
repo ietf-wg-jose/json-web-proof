@@ -4,7 +4,7 @@ abbrev = "json-web-proof"
 ipr = "trust200902"
 workgroup="jose"
 docname = "draft-ietf-jose-json-web-proof"
-keyword = ["jose", "zkp", "jwp", "jws"]
+keyword = ["json", "jose", "zkp", "jwp", "jws", "cbor", "cose"]
 consensus = true
 tocdepth = 4
 
@@ -108,6 +108,7 @@ This series of documents uses the term "application" to refer to specifications 
 * JWP: JSON Web Proof (this specification)
 * JPA: JSON Proof Algorithms [@!I-D.ietf-jose-json-proof-algorithms]
 * JPT: JSON Proof Token [@!I-D.ietf-jose-json-proof-token]
+* CPT: CBOR Proof Token [@!I-D.ietf-jose-json-proof-token]
 
 # Background
 
@@ -247,7 +248,7 @@ Use of this Header Parameter is REQUIRED.
 
 ### "kid" (Key ID) Header Parameter {#kidDef}
 
-The `kid` (key ID) Header Parameter is a hint indicating which key
+The `kid` (Key ID) Header Parameter is a hint indicating which key
 was used to secure the JWP. This parameter allows originators to
 explicitly signal a change of key to recipients.
 
@@ -421,7 +422,7 @@ string value.
 When used as a CBOR Protected Header, the value is a binary string.
 
 This definition is intentionally parallel to the `nonce` claim
-registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).
+registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).
 
 Use of this Header Parameter is OPTIONAL.
 
@@ -1045,9 +1046,9 @@ CPA55803 | JWP presented form | Distinguishing mark for JWP presented form data 
   </front>
 </reference>
 
-<reference anchor="IANA.JWT.Claims" target="https://www.iana.org/assignments/jwt">
+<reference anchor="IANA.JWT" target="https://www.iana.org/assignments/jwt">
   <front>
-    <title>JSON Web Token Claims</title>
+    <title>JSON Web Token</title>
     <author>
       <organization>IANA</organization>
     </author>
@@ -1067,7 +1068,7 @@ CPA55803 | JWP presented form | Distinguishing mark for JWP presented form data 
 
 <reference anchor="IANA.CoAP.Formats" target="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">
   <front>
-    <title>CoAP Content Formats</title>
+    <title>CoAP Content-Formats</title>
     <author>
       <organization>IANA</organization>
     </author>
