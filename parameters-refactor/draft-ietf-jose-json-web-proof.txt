@@ -231,6 +231,7 @@ Table of Contents
    *  JWP: JSON Web Proof (this specification)
    *  JPA: JSON Proof Algorithms [I-D.ietf-jose-json-proof-algorithms]
    *  JPT: JSON Proof Token [I-D.ietf-jose-json-proof-token]
+   *  CPT: CBOR Proof Token [I-D.ietf-jose-json-proof-token]
 
 3.  Background
 
@@ -473,7 +474,7 @@ Table of Contents
 
 5.2.2.  "kid" (Key ID) Header Parameter
 
-   The kid (key ID) Header Parameter is a hint indicating which key was
+   The kid (Key ID) Header Parameter is a hint indicating which key was
    used to secure the JWP.  This parameter allows originators to
    explicitly signal a change of key to recipients.
 
@@ -648,8 +649,7 @@ Table of Contents
    When used as a CBOR Protected Header, the value is a binary string.
 
    This definition is intentionally parallel to the nonce claim
-   registered in the IANA "JSON Web Token Claims" registry
-   (#IANA.JWT.Claims).
+   registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).
 
    Use of this Header Parameter is OPTIONAL.
 
@@ -873,14 +873,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TX
-   Ce9YFQk2FHygJHy6If1w88a2uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMp
-   NVUmx5UxkqeJo1bsehntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WS
-   sFOFw7uP3evNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK2
-   05-OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RDeuTg
-   nlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUFXx06xeQDx1p
-   uwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCSFmUr8Zcb4jYgFxaRpp
-   yKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pbToHFc3cQGIRjg-R6eGGGZahVT8vmGv7zupt7Jz
+   Qd518KY94ws879ootymZ0oBWl64AbVLCqlgs2Mbwn8UEUhxJA0cZcSbzlGhxhluN1FfDh
+   ROXj1e_Xegvu1r5BPDMmfD8oDeknsEiDlT7detRGeEJd69E-idmYl02Uy0MdriT1dmN9e
+   EvFi1m4wefXPL3EcMqjjbx8yl-K7r-B0eG-UStrnJG5GfqN0y4xxRL-6AeYvSu_ej7B8C
+   Xe5CWdvp5zIkPjiKZak-hMnBbdpwPDR7fN_dmpWeLxPro-o4kxAnZHFOSkGvxw-3D-jf8
+   2pS2b-wA273C8nk_Rl1D4AvyLo_XX0yjJmhW1oactXjxWGtE8uCouxgyGH4gVJUAybzCU
+   GOifCpV_Aks4R4QZphuwlV4XpkOrDMTOno1l6q8GeBWqXAVxmlsqJCJKMtFM6ehb3zAvM
+   d4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0
 
    |  Figure: Compact Serialization of Presentation
 
@@ -931,14 +931,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TXCe9YFQk2FHygJHy6If1w88a2
-          uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMpNVUmx5UxkqeJo1bse
-          hntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WSsFOFw7uP3e
-          vNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK205-
-          OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RD
-          euTgnlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUF
-          Xx06xeQDx1puwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCS
-          FmUr8Zcb4jYgFxaRppyKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE"
+       "pbToHFc3cQGIRjg-R6eGGGZahVT8vmGv7zupt7JzQd518KY94ws879ootymZ0oBW
+          l64AbVLCqlgs2Mbwn8UEUhxJA0cZcSbzlGhxhluN1FfDhROXj1e_Xegvu1r5BP
+          DMmfD8oDeknsEiDlT7detRGeEJd69E-idmYl02Uy0MdriT1dmN9eEvFi1m4wef
+          XPL3EcMqjjbx8yl-K7r-B0eG-UStrnJG5GfqN0y4xxRL-6AeYvSu_ej7B8CXe5
+          CWdvp5zIkPjiKZak-hMnBbdpwPDR7fN_dmpWeLxPro-o4kxAnZHFOSkGvxw-3D
+          -jf82pS2b-wA273C8nk_Rl1D4AvyLo_XX0yjJmhW1oactXjxWGtE8uCouxgyGH
+          4gVJUAybzCUGOifCpV_Aks4R4QZphuwlV4XpkOrDMTOno1l6q8GeBWqXAVxmls
+          qJCJKMtFM6ehb3zAvMd4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0"
      ]
    }
 
@@ -1442,7 +1442,7 @@ Table of Contents
               irtf-cfrg-bbs-signatures/>.
 
    [IANA.CoAP.Formats]
-              IANA, "CoAP Content Formats",
+              IANA, "CoAP Content-Formats",
               <https://www.iana.org/assignments/core-parameters/core-
               parameters.xhtml#content-formats>.
 

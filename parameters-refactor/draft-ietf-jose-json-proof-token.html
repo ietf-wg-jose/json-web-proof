@@ -4,19 +4,32 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>JSON Proof Token</title>
+<title>JSON Proof Token and CBOR Proof Token</title>
 <meta content="Michael B. Jones" name="author">
 <meta content="David Waite" name="author">
 <meta content="Jeremie Miller" name="author">
 <meta content="
-       JSON Proof Token (JPT) is a compact, URL-safe, privacy-preserving representation of claims to be transferred between three parties.  The claims in a JPT are encoded as base64url-encoded JSON objects that are used as the payloads of a JSON Web Proof (JWP) structure, enabling them to be digitally signed and selectively disclosed.  JPTs also support reusability and unlinkability when using Zero-Knowledge Proofs (ZKPs). 
+       JSON Proof Token (JPT) is a compact, URL-safe, privacy-preserving representation
+of claims to be transferred between three parties.
+The claims in a JPT are encoded as base64url-encoded JSON objects
+that are used as the payloads of a JSON Web Proof (JWP) structure,
+enabling them to be digitally signed and selectively disclosed.
+JPTs also support reusability and unlinkability when using Zero-Knowledge Proofs (ZKPs). 
+       A CBOR-based representation of JPTs is also defined, called a CBOR Proof Token (CPT).
+It has the same properties of JPTs,
+but uses the JSON Web Proof (JWP) CBOR Serialization,
+rather than the JSON-based JWP Compact Serialization. 
     " name="description">
 <meta content="xml2rfc 3.28.0" name="generator">
+<meta content="json" name="keyword">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
 <meta content="jwp" name="keyword">
 <meta content="jws" name="keyword">
 <meta content="jpt" name="keyword">
+<meta content="cbor" name="keyword">
+<meta content="cose" name="keyword">
+<meta content="cpt" name="keyword">
 <meta content="draft-ietf-jose-json-proof-token-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.28.0
@@ -1090,10 +1103,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">JSON Proof Token</h1>
+<h1 id="title">JSON Proof Token and CBOR Proof Token</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">JSON Proof Token (JPT) is a compact, URL-safe, privacy-preserving representation of claims to be transferred between three parties.  The claims in a JPT are encoded as base64url-encoded JSON objects that are used as the payloads of a JSON Web Proof (JWP) structure, enabling them to be digitally signed and selectively disclosed.  JPTs also support reusability and unlinkability when using Zero-Knowledge Proofs (ZKPs).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">JSON Proof Token (JPT) is a compact, URL-safe, privacy-preserving representation
+of claims to be transferred between three parties.
+The claims in a JPT are encoded as base64url-encoded JSON objects
+that are used as the payloads of a JSON Web Proof (JWP) structure,
+enabling them to be digitally signed and selectively disclosed.
+JPTs also support reusability and unlinkability when using Zero-Knowledge Proofs (ZKPs).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">A CBOR-based representation of JPTs is also defined, called a CBOR Proof Token (CPT).
+It has the same properties of JPTs,
+but uses the JSON Web Proof (JWP) CBOR Serialization,
+rather than the JSON-based JWP Compact Serialization.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1217,6 +1239,41 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
                 </ul>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-json-web-key-parameters-reg" class="internal xref">JSON Web Key Parameters Registry</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2.2.1">
+                    <p id="section-toc.1-1.11.2.2.2.1.1"><a href="#section-11.2.1" class="auto internal xref">11.2.1</a>.  <a href="#name-registry-contents-2" class="internal xref">Registry Contents</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.3">
+                <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="auto internal xref">11.3</a>.  <a href="#name-cose-key-common-parameters-" class="internal xref">COSE Key Common Parameters Registry</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.3.2.1">
+                    <p id="section-toc.1-1.11.2.3.2.1.1"><a href="#section-11.3.1" class="auto internal xref">11.3.1</a>.  <a href="#name-registry-contents-3" class="internal xref">Registry Contents</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.4">
+                <p id="section-toc.1-1.11.2.4.1"><a href="#section-11.4" class="auto internal xref">11.4</a>.  <a href="#name-media-types-registry" class="internal xref">Media Types Registry</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.4.2.1">
+                    <p id="section-toc.1-1.11.2.4.2.1.1"><a href="#section-11.4.1" class="auto internal xref">11.4.1</a>.  <a href="#name-application-jpt" class="internal xref">application/jpt</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.4.2.2">
+                    <p id="section-toc.1-1.11.2.4.2.2.1"><a href="#section-11.4.2" class="auto internal xref">11.4.2</a>.  <a href="#name-application-cpt" class="internal xref">application/cpt</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.5">
+                <p id="section-toc.1-1.11.2.5.1"><a href="#section-11.5" class="auto internal xref">11.5</a>.  <a href="#name-coap-content-formats-regist" class="internal xref">CoAP Content-Formats Registry</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.5.2.1">
+                    <p id="section-toc.1-1.11.2.5.2.1.1"><a href="#section-11.5.1" class="auto internal xref">11.5.1</a>.  <a href="#name-cpt-coap-content-format" class="internal xref">"CPT" CoAP Content-Format</a></p>
+</li>
+                </ul>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
@@ -1248,10 +1305,20 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">JSON Proof Token (JPT) is a compact claims representation format intended to be used in the same ways as a JSON Web Token (JWT), but with additional support for selective disclosure and unlinkability.  JPTs encode claim values to be transmitted as payloads of a JSON Web Proof (JWP) <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span>.  JPTs are always represented using the JWP Compact Serialization.  The corresponding claim names are not transmitted in the payloads and are stored in a separate structure that can be externalized and shared across multiple JPTs.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<blockquote id="section-1-2">
-        <p id="section-1-2.1">Editor's Note: This draft is still early and incomplete. There will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcomed at <a href="https://github.com/ietf-wg-jose/json-web-proof">https://github.com/ietf-wg-jose/json-web-proof</a>.<a href="#section-1-2.1" class="pilcrow">¶</a></p>
-</blockquote>
+<p id="section-1-1">JSON Proof Token (JPT) is a compact claims representation format
+intended to be used in the same ways as a JSON Web Token (JWT) <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>,
+but with additional support for selective disclosure and unlinkability.
+JPTs encode claim values to be transmitted as
+payloads of a JSON Web Proof (JWP) <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span>.
+JPTs are always represented using the JWP Compact Serialization.
+The corresponding claim names are not transmitted in the payloads
+and are stored in a separate structure that can be externalized and shared across multiple JPTs.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Likewise, CBOR Proof Token (CPT) is a similar compact claims representation format
+intended to be used in the same ways as a CBOR Web Token (CWT) <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>,
+but with the same support for selective disclosure and unlinkability.
+CPTs are represented using the JWP CBOR Serialization.
+The corresponding claim names are not transmitted in the payloads
+and are stored in a separate structure that can be externalized and shared across multiple CPTs.<a href="#section-1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1268,7 +1335,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-background">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-background" class="section-name selfRef">Background</a>
       </h2>
-<p id="section-3-1">JWP defines a container binding together a protected header, one or more payloads, and a cryptographic proof.  It does not define how claims are organized into payloads and what formats they are in.  JPTs are intended to be as close to a JWT as possible, while also supporting the selective disclosure and unlinkability of JWPs.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">JWP defines a container binding together a protected header, one or more payloads, and a cryptographic proof.  It does not define how claims are organized into payloads and what formats they are in.
+JPTs are intended to be as close to a JWT as possible,
+while also supporting the selective disclosure and unlinkability of JWPs.
+Likewise, CPTs are intended to be as close to a CWT as possible,
+while also supporting the selective disclosure and unlinkability of JWPs.<a href="#section-3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="design-considerations">
@@ -1276,15 +1347,27 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-design-considerations">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-design-considerations" class="section-name selfRef">Design Considerations</a>
       </h2>
-<p id="section-4-1">The rationale behind the design for JSON Proof Tokens is important when considering how it is structured.  These sections detail the underlying reasoning informing the JPT design.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">The rationale behind the design for JSON Proof Tokens and CBOR Proof Tokens
+is important when considering how they are structured.
+These sections detail the underlying reasoning informing their design.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <div id="unlinkability">
 <section id="section-4.1">
         <h3 id="name-unlinkability">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-unlinkability" class="section-name selfRef">Unlinkability</a>
         </h3>
-<p id="section-4.1-1">Supporting unlinkability is perhaps the most challenging design constraint for JPTs.  Even the smallest oversight can introduce a subtle vector for relying parties to collude and correlate one or more subjects across their usage.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">The principal tools to prevent this are data minimization and uniformity.  The data included in a JPT SHOULD be minimized to remove potential correlation points. The data SHOULD contain only values that are able to be selectively disclosed with consent or transformed by the proof algorithm when presented.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1-3">Any other data that is repeated across multiple JPTs is externalized so that it is uniform across every issuance.  This includes preventing the usage of optional headers, dynamic mapping of claims to payloads, changes to how many payloads are included, and the ordering of the payloads.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">Supporting unlinkability is perhaps the most challenging design constraint for JPTs and CPTs.
+Even the smallest oversight can introduce a subtle vector for relying parties to collude
+and correlate one or more subjects across their usage.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">The principal tools to prevent this are data minimization and uniformity.
+The data included SHOULD be minimized to remove potential correlation points.
+The data SHOULD contain only values that are able to be selectively disclosed
+with consent or transformed by the proof algorithm when presented.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">Any other data that is repeated across multiple JPTs or CPTs is externalized
+so that it is uniform across every issuance.
+This includes preventing the usage of optional headers,
+dynamic mapping of claims to payloads,
+changes to how many payloads are included,
+and the ordering of the payloads.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="selective-disclosure">
@@ -1292,7 +1375,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-selective-disclosure">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-selective-disclosure" class="section-name selfRef">Selective Disclosure</a>
         </h3>
-<p id="section-4.2-1">While JWPs provide the underling structure for easily supporting selective disclosure, JPTs must go a step further to ensure that holders can effectively provide choice and consent on exactly what is being disclosed.  Software using JWPs MUST know the mappings from payloads to claims. All disclosed payloads MUST be mapped to claims and made accessible to the application.  Holders SHOULD understand the semantics of all potentially disclosed claims to the extent needed to decide whether to disclose them. JPTs SHOULD NOT contain claims that are intended only for a specific verifier.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">While JWPs provide the underling structure for easily supporting selective disclosure,
+JPTs and CPTs must go a step further to ensure that holders can effectively provide
+choice and consent on exactly what is being disclosed.
+Software using JWPs or CPTs MUST know the mappings from payloads to claims.
+All disclosed payloads MUST be mapped to claims
+and made accessible to the application.
+Holders SHOULD understand the semantics of all potentially disclosed claims
+to the extent needed to decide whether to disclose them.
+JPTs and CPTs SHOULD NOT contain claims that are intended only for a specific verifier.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="familiarity">
@@ -1300,9 +1391,21 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-familiarity">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-familiarity" class="section-name selfRef">Familiarity</a>
         </h3>
-<p id="section-4.3-1">JPTs are intended to be as close to a JWT as possible in order to provide the simplest transition for any JWT-based system to add support for JPTs.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.3-2">Although there are some stark differences in the lifecycle of a JPT, from the application's perspective, the interface to a JPT can be made fairly similar: a JSON object containing a mix of required and optional claims with well-understood values.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.3-3">The most significant divergence required by JPTs is that of supporting values that may be disclosed or may instead only be a proof about the value.  Applications are required to interact with the JPT on a payload-by-payload basis instead of just verifying a JWT and then being able to interact with the JSON body directly.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">JPTs are intended to be as close to a JWT as possible in order to provide
+the simplest transition for any JWT-based system to add support for JPTs.
+The same is true for CPTs and CWTs.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">Although there are some stark differences in the lifecycle of a JPT,
+from the application's perspective,
+the interface to a JPT can be made fairly similar:
+a JSON object containing a mix of required and optional claims
+with well-understood values.
+Likewise, A CPT is a CBOR object containing a mix of required and optional claims
+with well-understood values.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">The most significant divergence required by JPTs and CPTs is that of supporting
+values that may be disclosed or may instead only be a proof about the value.
+Applications are required to interact with the JPT or CPT
+on a payload-by-payload basis instead of just verifying a JWT or CWT
+and then being able to interact with the JSON or CBOR body directly.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="proofs">
@@ -1310,7 +1413,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-proofs">
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-proofs" class="section-name selfRef">Proofs</a>
         </h3>
-<p id="section-4.4-1">To generate a variety of efficient ZKPs of knowledge, range, membership, or other predicates, it is essential that each individual payload is only a single claim value.  This greatly simplifies the task of linking a derived proof of a given claim to the specific payload that was also signed by the issuer.  While JPTs support claims that have complex object or array compound values, they also allow for simple claim values such as JSON strings, numbers, and booleans that can be used directly in generating predicate proofs.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">To generate a variety of efficient ZKPs of knowledge, range, membership, or other predicates,
+it is essential that each individual payload is only a single claim value.
+This greatly simplifies the task of linking a derived proof of a given claim
+to the specific payload that was also signed by the issuer.
+While JPTs and CPTs support claims that have complex object or array compound values,
+they also allow for simple claim values such as strings, numbers, and booleans
+that can be used directly in generating predicate proofs.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1320,7 +1429,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-claim-names">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-claim-names" class="section-name selfRef">Claim Names</a>
       </h2>
-<p id="section-5-1">It is RECOMMENDED that the claim names used with JPTs come from those in the IANA JSON Web Token Claims Registry <span>[<a href="#IANA.JWT.Claims" class="cite xref">IANA.JWT.Claims</a>]</span> established by <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>, when those fit the application's needs.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">It is RECOMMENDED that the claim names used with JPTs come from those in
+the IANA JSON Web Token Claims Registry <span>[<a href="#IANA.JWT" class="cite xref">IANA.JWT</a>]</span>
+established by <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>, when those fit the application's needs.
+Likewise, it is RECOMMENDED that the claim names used with CPTs come from those in
+the IANA CBOR Web Token Claims Registry <span>[<a href="#IANA.CWT" class="cite xref">IANA.CWT</a>]</span>
+established by <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>, when those fit the application's needs.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="claimsDef">
@@ -1328,13 +1442,23 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-claims-header-parameter">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-claims-header-parameter" class="section-name selfRef">Claims Header Parameter</a>
       </h2>
-<p id="section-6-1">A JSON Proof Token assigns each playload a claim name. Payloads MUST each have a negotiated and understood claim name within the application context. The simplest solution to establish payload claim names is as an ordered array that aligns with the included payloads.  This claims array can be conveniently included in the Claims header parameter.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">A JSON Proof Token or CBOR Proof Token assigns each playload a claim name.
+Payloads MUST each have a negotiated and understood claim name
+within the application context.
+The simplest solution to establish payload claim names
+is as an ordered array that aligns with the included payloads.
+This claims array can be conveniently included in the Claims header parameter.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">The <code>claims</code> Header Parameter is an array listing the Claim Names
 corresponding to the JWP payloads, in the same order as the payloads.
-Each array value is a Claim Name, as defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.
+Each array value is a Claim Name, as defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span> or <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.
 Use of this Header Parameter is OPTIONAL.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">All payloads are claim values and MUST be the base64url encoding of the UTF-8 representation of a JSON value.
+<p id="section-6-3">All JPT payloads that are claim values
+MUST be the base64url encoding of the UTF-8 representation of a JSON value.
 That said, predicate proofs derived from payload values are not represented as claims;
+they are contained in the presentation proof using algorithm-specific representations.
+All CPT payloads that are claim values
+MUST be a CBOR value.
+Likewise, CPT predicate proofs derived from payload values are not represented as claims;
 they are contained in the presentation proof using algorithm-specific representations.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">The following is an example JWP Issuer Protected Header that includes a claims property:<a href="#section-6-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-6-5">
@@ -1354,7 +1478,10 @@ they are contained in the presentation proof using algorithm-specific representa
 
 </pre><a href="#section-6-5" class="pilcrow">¶</a>
 </div>
-<p id="section-6-6">In this example, the "iat" and "exp" would be JSON-formatted numbers, "family_name", "given_name" and "email" would be JSON strings (in quotes), "address" would be a JSON object and "age_over_21" would be expected to be either <code>true</code> or <code>false</code>.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-6">In this example, the "iat" and "exp" would be JSON-formatted numbers,
+"family_name", "given_name" and "email" would be JSON strings (in quotes),
+"address" would be a JSON object,
+and "age_over_21" would be either <code>true</code> or <code>false</code>.<a href="#section-6-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="cidDef">
@@ -1362,13 +1489,30 @@ they are contained in the presentation proof using algorithm-specific representa
       <h2 id="name-claims-id-cid-jwp-header-pa">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-claims-id-cid-jwp-header-pa" class="section-name selfRef">Claims ID ("cid") JWP Header Parameter</a>
       </h2>
-<p id="section-7-1">A Claims ID ("cid") value can be used as an identifier for a set of claim names without explicitly listing them.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">A Claims ID ("cid") value can be used as an identifier for a set of claim names
+without explicitly listing them.
+Its use is similar to the Key ID ("kid") header parameter.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">The structure of the <code>cid</code> value is unspecified.
-Its value MUST be a case-sensitive string.
+For JPTs, its value MUST be a case-sensitive string.
+For CPTs, its value MUST be a binary string.
 Use of this JWP Header Parameter is OPTIONAL.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">The <code>cid</code> can be used similarly to a <code>kid</code> in order to ensure that is it possible to externally resolve and then verify that the correct list of claim names is being used when processing the payloads containing the claim values.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">If there is an associated JWK containing the signing key information, the <code>claims</code> key is also registered there as a convenient location for the claim names.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">When the claims array is transferred as a property in the Issuer Protected Header, any variations of that array between JWP will be visible to the verifier, and can leak information about the subject or provide an additional vector for linkability.  Given the privacy design considerations around linkability, it is RECOMMENDED that the claims are defined external to an individual JPT and either referenced or known by the application context.<a href="#section-7-5" class="pilcrow">¶</a></p>
+<p id="section-7-3">The <code>cid</code> can be used similarly to a <code>kid</code> in order to ensure that
+is it possible to externally resolve and then verify that
+the correct list of claim names is being used
+when processing the payloads containing the claim values.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">If there is an associated JWK containing the signing key information,
+the <code>claims</code> key is also registered there
+as a convenient location for the claim names.
+Likewise, if there is an associated COSE_Key containing the signing key information,
+the <code>claims</code> key is also registered there
+as a convenient location for the claim names.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5">When the claims array is transferred as a property in the Issuer Protected Header,
+any variations of that array between JWP will be visible to the verifier,
+and can leak information about the subject
+or provide an additional vector for linkability.
+Given the privacy design considerations around linkability,
+it is RECOMMENDED that the claims are defined external to an individual JPT or CPT
+and either referenced or known by the application context.<a href="#section-7-5" class="pilcrow">¶</a></p>
 <p id="section-7-6">The following is an example JWP Protected Header that includes a <code>cid</code>:<a href="#section-7-6" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-7-7">
 <pre>{
@@ -1386,8 +1530,9 @@ Use of this JWP Header Parameter is OPTIONAL.<a href="#section-7-2" class="pilcr
       <h2 id="name-presented-claims-and-proofs">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-presented-claims-and-proofs" class="section-name selfRef">Presented Claims and Proofs</a>
       </h2>
-<p id="section-8-1">Each claim in the issued form of the JPT results in one of three things in the presented form of the JPT:
-1. A disclosed JSON value.
+<p id="section-8-1">Each claim in the issued form of the JPT or CPT results in one of three things
+in the presented form of the JPT or CPT:
+1. A disclosed JSON or CBOR value.
 1. An indicator that the value was not disclosed.
 1. An algorithm-specific proof method.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div id="disclosed">
@@ -1395,7 +1540,9 @@ Use of this JWP Header Parameter is OPTIONAL.<a href="#section-7-2" class="pilcr
         <h3 id="name-disclosed">
 <a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-disclosed" class="section-name selfRef">Disclosed</a>
         </h3>
-<p id="section-8.1-1">A disclosed payload is represented as a UTF-encoded octet string representing a valid JSON value.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-1">A disclosed payload of a JPT is represented as a UTF8-encoded octet string
+representing a valid JSON value.
+A disclosed payload of a CPT is represented as a CBOR value.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="undisclosed">
@@ -1417,7 +1564,7 @@ These are generated in an algorithm-specific manner from information in the JWP'
 <p id="section-8.3-2">A proof method may be custom based on the capabilities of the algorithm.<a href="#section-8.3-2" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-8.3-3.1">
-            <p id="section-8.3-3.1.1">TBD: Describe common proof method types available?<a href="#section-8.3-3.1.1" class="pilcrow">¶</a></p>
+            <p id="section-8.3-3.1.1">TBD: Describe common proof method types available:<a href="#section-8.3-3.1.1" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-8.3-3.1.2.1">range<a href="#section-8.3-3.1.2.1" class="pilcrow">¶</a>
 </li>
@@ -1444,7 +1591,7 @@ These are generated in an algorithm-specific manner from information in the JWP'
 <p id="section-9-1">See the examples in Appendix A.1 of <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.ietf-jose-json-proof-algorithms</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="security-considerations">
+<div id="security">
 <section id="section-10">
       <h2 id="name-security-considerations">
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
@@ -1519,6 +1666,205 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
 </div>
 </section>
 </div>
+<div id="JWKParamReg">
+<section id="section-11.2">
+        <h3 id="name-json-web-key-parameters-reg">
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-json-web-key-parameters-reg" class="section-name selfRef">JSON Web Key Parameters Registry</a>
+        </h3>
+<p id="section-11.2-1">This section registers the following JWK parameter in the
+IANA "JSON Web Key Parameters" registry <span>[<a href="#IANA.JOSE" class="cite xref">IANA.JOSE</a>]</span>
+established by <span>[<a href="#RFC7517" class="cite xref">RFC7517</a>]</span>.<a href="#section-11.2-1" class="pilcrow">¶</a></p>
+<div id="JWKParamContents">
+<section id="section-11.2.1">
+          <h4 id="name-registry-contents-2">
+<a href="#section-11.2.1" class="section-number selfRef">11.2.1. </a><a href="#name-registry-contents-2" class="section-name selfRef">Registry Contents</a>
+          </h4>
+<ul class="compact">
+<li class="compact" id="section-11.2.1-1.1">Parameter Name: claims<a href="#section-11.2.1-1.1" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.2.1-1.2">Parameter Description: Array of claim names<a href="#section-11.2.1-1.2" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.2.1-1.3">Used with "kty" Value(s): *<a href="#section-11.2.1-1.3" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.2.1-1.4">Parameter Information Class: Public<a href="#section-11.2.1-1.4" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.2.1-1.5">Change Controller: IETF<a href="#section-11.2.1-1.5" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.2.1-1.6">Specification Document(s): <a href="#cidDef" class="auto internal xref">Section 7</a> of this specification<a href="#section-11.2.1-1.6" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="COSEKeyParamReg">
+<section id="section-11.3">
+        <h3 id="name-cose-key-common-parameters-">
+<a href="#section-11.3" class="section-number selfRef">11.3. </a><a href="#name-cose-key-common-parameters-" class="section-name selfRef">COSE Key Common Parameters Registry</a>
+        </h3>
+<p id="section-11.3-1">This section registers the following COSE_Key parameter in the
+IANA "COSE Key Common Parameters" registry <span>[<a href="#IANA.COSE" class="cite xref">IANA.COSE</a>]</span>
+established by <span>[<a href="#RFC8152" class="cite xref">RFC8152</a>]</span>.<a href="#section-11.3-1" class="pilcrow">¶</a></p>
+<div id="COSEKeyParamContents">
+<section id="section-11.3.1">
+          <h4 id="name-registry-contents-3">
+<a href="#section-11.3.1" class="section-number selfRef">11.3.1. </a><a href="#name-registry-contents-3" class="section-name selfRef">Registry Contents</a>
+          </h4>
+<ul class="compact">
+<li class="compact" id="section-11.3.1-1.1">Name: claims<a href="#section-11.3.1-1.1" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.3.1-1.2">Label: TBD (requested assignment 6)<a href="#section-11.3.1-1.2" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.3.1-1.3">CBOR Type: array<a href="#section-11.3.1-1.3" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.3.1-1.4">Value Registry: CBOR Web Token Claims<a href="#section-11.3.1-1.4" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.3.1-1.5">Description: Array of claim names<a href="#section-11.3.1-1.5" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.3.1-1.6">Reference: <a href="#cidDef" class="auto internal xref">Section 7</a> of this specification<a href="#section-11.3.1-1.6" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="media-types-registry">
+<section id="section-11.4">
+        <h3 id="name-media-types-registry">
+<a href="#section-11.4" class="section-number selfRef">11.4. </a><a href="#name-media-types-registry" class="section-name selfRef">Media Types Registry</a>
+        </h3>
+<p id="section-11.4-1">This section registers the following media type <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span>
+in the IANA "Media Types" registry &lt;xref target="IANA.MediaTypes"/&gt;
+in the manner described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-11.4-1" class="pilcrow">¶</a></p>
+<div id="jpt_media_type">
+<section id="section-11.4.1">
+          <h4 id="name-application-jpt">
+<a href="#section-11.4.1" class="section-number selfRef">11.4.1. </a><a href="#name-application-jpt" class="section-name selfRef">application/jpt</a>
+          </h4>
+<p id="section-11.4.1-1">The media type for a JSON Proof Token (JPT) is <code>application/jpt</code>.<a href="#section-11.4.1-1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-11.4.1-2.1">Type name: application<a href="#section-11.4.1-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.2">Subtype name: jpt<a href="#section-11.4.1-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.3">Required parameters: n/a<a href="#section-11.4.1-2.3" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.4">Optional parameters: n/a<a href="#section-11.4.1-2.4" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.5">Encoding considerations: 8bit; JPT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.<a href="#section-11.4.1-2.5" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.6">Security considerations: See <a href="#security" class="auto internal xref">Section 10</a> of this specification<a href="#section-11.4.1-2.6" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.7">Interoperability considerations: n/a<a href="#section-11.4.1-2.7" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.8">Published specification: This specification<a href="#section-11.4.1-2.8" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.9">Applications that use this media type: Applications releasing claims with zero-knowledge proofs<a href="#section-11.4.1-2.9" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.10">
+              <p id="section-11.4.1-2.10.1">Additional information:<a href="#section-11.4.1-2.10.1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-11.4.1-2.10.2.1">Magic number(s): n/a<a href="#section-11.4.1-2.10.2.1" class="pilcrow">¶</a>
+</li>
+                <li class="compact" id="section-11.4.1-2.10.2.2">File extension(s): n/a<a href="#section-11.4.1-2.10.2.2" class="pilcrow">¶</a>
+</li>
+                <li class="compact" id="section-11.4.1-2.10.2.3">Macintosh file type code(s): n/a<a href="#section-11.4.1-2.10.2.3" class="pilcrow">¶</a>
+</li>
+              </ul>
+</li>
+            <li class="compact" id="section-11.4.1-2.11">Person &amp; email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-11.4.1-2.11" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.12">Intended usage: COMMON<a href="#section-11.4.1-2.12" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.13">Restrictions on usage: none<a href="#section-11.4.1-2.13" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.14">Author: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-11.4.1-2.14" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.15">Change controller: IETF<a href="#section-11.4.1-2.15" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.1-2.16">Provisional registration: No<a href="#section-11.4.1-2.16" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+<div id="cpt_media_type">
+<section id="section-11.4.2">
+          <h4 id="name-application-cpt">
+<a href="#section-11.4.2" class="section-number selfRef">11.4.2. </a><a href="#name-application-cpt" class="section-name selfRef">application/cpt</a>
+          </h4>
+<p id="section-11.4.2-1">The media type for a CBOR Proof Token (CPT) is <code>application/cpt</code>.<a href="#section-11.4.2-1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-11.4.2-2.1">Type name: application<a href="#section-11.4.2-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.2">Subtype name: cpt<a href="#section-11.4.2-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.3">Required parameters: n/a<a href="#section-11.4.2-2.3" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.4">Optional parameters: n/a<a href="#section-11.4.2-2.4" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.5">Encoding considerations: 8bit; CPT values are encoded as CBOR<a href="#section-11.4.2-2.5" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.6">Security considerations: See <a href="#security" class="auto internal xref">Section 10</a> of this specification<a href="#section-11.4.2-2.6" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.7">Interoperability considerations: n/a<a href="#section-11.4.2-2.7" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.8">Published specification: This specification<a href="#section-11.4.2-2.8" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.9">Applications that use this media type: Applications releasing claims with zero-knowledge proofs<a href="#section-11.4.2-2.9" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.10">
+              <p id="section-11.4.2-2.10.1">Additional information:<a href="#section-11.4.2-2.10.1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-11.4.2-2.10.2.1">Magic number(s): n/a<a href="#section-11.4.2-2.10.2.1" class="pilcrow">¶</a>
+</li>
+                <li class="compact" id="section-11.4.2-2.10.2.2">File extension(s): n/a<a href="#section-11.4.2-2.10.2.2" class="pilcrow">¶</a>
+</li>
+                <li class="compact" id="section-11.4.2-2.10.2.3">Macintosh file type code(s): n/a<a href="#section-11.4.2-2.10.2.3" class="pilcrow">¶</a>
+</li>
+              </ul>
+</li>
+            <li class="compact" id="section-11.4.2-2.11">Person &amp; email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-11.4.2-2.11" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.12">Intended usage: COMMON<a href="#section-11.4.2-2.12" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.13">Restrictions on usage: none<a href="#section-11.4.2-2.13" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.14">Author: Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-11.4.2-2.14" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.15">Change controller: IETF<a href="#section-11.4.2-2.15" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.4.2-2.16">Provisional registration: No<a href="#section-11.4.2-2.16" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="coap-content-formats-registry">
+<section id="section-11.5">
+        <h3 id="name-coap-content-formats-regist">
+<a href="#section-11.5" class="section-number selfRef">11.5. </a><a href="#name-coap-content-formats-regist" class="section-name selfRef">CoAP Content-Formats Registry</a>
+        </h3>
+<p id="section-11.5-1">This section registers the following CoAP Content-Formats value
+in the <span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span> registry.<a href="#section-11.5-1" class="pilcrow">¶</a></p>
+<div id="cpt-coap-content-format">
+<section id="section-11.5.1">
+          <h4 id="name-cpt-coap-content-format">
+<a href="#section-11.5.1" class="section-number selfRef">11.5.1. </a><a href="#name-cpt-coap-content-format" class="section-name selfRef">"CPT" CoAP Content-Format</a>
+          </h4>
+<p id="section-11.5.1-1">The CoAP Content-Format for a CBOR Proof Token (CPT) is as follows.<a href="#section-11.5.1-1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-11.5.1-2.1">Content Type: application/cpt<a href="#section-11.5.1-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.5.1-2.2">ID: TBD (requested assignment 20)<a href="#section-11.5.1-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="compact" id="section-11.5.1-2.3">Reference: <a href="#cpt_media_type" class="auto internal xref">Section 11.4.2</a> of this specification<a href="#section-11.5.1-2.3" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+</section>
+</div>
 </section>
 </div>
 <section id="section-12">
@@ -1543,8 +1889,12 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8392">[RFC8392]</dt>
+      <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Wahlstroem, E.</span>, <span class="refAuthor">Erdtman, S.</span>, and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"CBOR Web Token (CWT)"</span>, <span class="seriesInfo">RFC 8392</span>, <span class="seriesInfo">DOI 10.17487/RFC8392</span>, <time datetime="2018-05" class="refDate">May 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8392">https://www.rfc-editor.org/info/rfc8392</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1557,9 +1907,41 @@ established by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">
         <dd>
 <span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Algorithms"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-algorithms-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms-07">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="IANA.JWT.Claims">[IANA.JWT.Claims]</dt>
+<dt id="IANA.COSE">[IANA.COSE]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Object Signing and Encryption"</span>, <span>&lt;<a href="https://www.iana.org/assignments/cose">https://www.iana.org/assignments/cose</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.CWT">[IANA.CWT]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Web Token"</span>, <span>&lt;<a href="https://www.iana.org/assignments/cwt">https://www.iana.org/assignments/cwt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.CoAP.Formats">[IANA.CoAP.Formats]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CoAP Content-Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.JOSE">[IANA.JOSE]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"JSON Object Signing and Encryption"</span>, <span>&lt;<a href="https://www.iana.org/assignments/jose">https://www.iana.org/assignments/jose</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.JWT">[IANA.JWT]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"JSON Web Token"</span>, <span>&lt;<a href="https://www.iana.org/assignments/jwt">https://www.iana.org/assignments/jwt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2046">[RFC2046]</dt>
+        <dd>
+<span class="refAuthor">Freed, N.</span> and <span class="refAuthor">N. Borenstein</span>, <span class="refTitle">"Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types"</span>, <span class="seriesInfo">RFC 2046</span>, <span class="seriesInfo">DOI 10.17487/RFC2046</span>, <time datetime="1996-11" class="refDate">November 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2046">https://www.rfc-editor.org/info/rfc2046</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6838">[RFC6838]</dt>
+        <dd>
+<span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6838">https://www.rfc-editor.org/info/rfc6838</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7517">[RFC7517]</dt>
+        <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Key (JWK)"</span>, <span class="seriesInfo">RFC 7517</span>, <span class="seriesInfo">DOI 10.17487/RFC7517</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7517">https://www.rfc-editor.org/info/rfc7517</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8152">[RFC8152]</dt>
       <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"JSON Web Token Claims"</span>, <span>&lt;<a href="https://www.iana.org/assignments/jwt">https://www.iana.org/assignments/jwt</a>&gt;</span>. </dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 8152</span>, <span class="seriesInfo">DOI 10.17487/RFC8152</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8152">https://www.rfc-editor.org/info/rfc8152</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1583,7 +1965,11 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <p id="appendix-B-1">[[ To be removed from the final specification ]]<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">-08<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-3.1">Made some additional references normative.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-3.1">Defined CBOR Proof Token (CPT).<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.2">Registered application/jpt and application/cpt media types and CPT CoAP Content-Format.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.3">Made some additional references normative.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-07<a href="#appendix-B-4" class="pilcrow">¶</a></p>

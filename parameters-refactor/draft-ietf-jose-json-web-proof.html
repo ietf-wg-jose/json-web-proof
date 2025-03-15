@@ -18,10 +18,13 @@ Unlike JWS, which integrity-protects only a single payload, JWP can integrity-pr
 It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay. 
     " name="description">
 <meta content="xml2rfc 3.28.0" name="generator">
+<meta content="json" name="keyword">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
 <meta content="jwp" name="keyword">
 <meta content="jws" name="keyword">
+<meta content="cbor" name="keyword">
+<meta content="cose" name="keyword">
 <meta content="draft-ietf-jose-json-web-proof-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.28.0
@@ -1480,6 +1483,8 @@ These new patterns are largely focused on two areas: supporting selective disclo
 </li>
           <li class="compact" id="section-2.2-1.4">JPT: JSON Proof Token <span>[<a href="#I-D.ietf-jose-json-proof-token" class="cite xref">I-D.ietf-jose-json-proof-token</a>]</span><a href="#section-2.2-1.4" class="pilcrow">¶</a>
 </li>
+          <li class="compact" id="section-2.2-1.5">CPT: CBOR Proof Token <span>[<a href="#I-D.ietf-jose-json-proof-token" class="cite xref">I-D.ietf-jose-json-proof-token</a>]</span><a href="#section-2.2-1.5" class="pilcrow">¶</a>
+</li>
         </ul>
 </section>
 </div>
@@ -1662,7 +1667,7 @@ by <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.i
           <h4 id="name-kid-key-id-header-parameter">
 <a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-kid-key-id-header-parameter" class="section-name selfRef">"kid" (Key ID) Header Parameter</a>
           </h4>
-<p id="section-5.2.2-1">The <code>kid</code> (key ID) Header Parameter is a hint indicating which key
+<p id="section-5.2.2-1">The <code>kid</code> (Key ID) Header Parameter is a hint indicating which key
 was used to secure the JWP. This parameter allows originators to
 explicitly signal a change of key to recipients.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-2">The structure of the <code>kid</code> value is unspecified.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
@@ -1837,7 +1842,7 @@ it was requested.<a href="#section-5.2.9-1" class="pilcrow">¶</a></p>
 string value.<a href="#section-5.2.9-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.9-3">When used as a CBOR Protected Header, the value is a binary string.<a href="#section-5.2.9-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.9-4">This definition is intentionally parallel to the <code>nonce</code> claim
-registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).<a href="#section-5.2.9-4" class="pilcrow">¶</a></p>
+registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).<a href="#section-5.2.9-4" class="pilcrow">¶</a></p>
 <p id="section-5.2.9-5">Use of this Header Parameter is OPTIONAL.<a href="#section-5.2.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1999,14 +2004,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TX
-Ce9YFQk2FHygJHy6If1w88a2uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMp
-NVUmx5UxkqeJo1bsehntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WS
-sFOFw7uP3evNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK2
-05-OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RDeuTg
-nlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUFXx06xeQDx1p
-uwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCSFmUr8Zcb4jYgFxaRpp
-yKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pbToHFc3cQGIRjg-R6eGGGZahVT8vmGv7zupt7Jz
+Qd518KY94ws879ootymZ0oBWl64AbVLCqlgs2Mbwn8UEUhxJA0cZcSbzlGhxhluN1FfDh
+ROXj1e_Xegvu1r5BPDMmfD8oDeknsEiDlT7detRGeEJd69E-idmYl02Uy0MdriT1dmN9e
+EvFi1m4wefXPL3EcMqjjbx8yl-K7r-B0eG-UStrnJG5GfqN0y4xxRL-6AeYvSu_ej7B8C
+Xe5CWdvp5zIkPjiKZak-hMnBbdpwPDR7fN_dmpWeLxPro-o4kxAnZHFOSkGvxw-3D-jf8
+2pS2b-wA273C8nk_Rl1D4AvyLo_XX0yjJmhW1oactXjxWGtE8uCouxgyGH4gVJUAybzCU
+GOifCpV_Aks4R4QZphuwlV4XpkOrDMTOno1l6q8GeBWqXAVxmlsqJCJKMtFM6ehb3zAvM
+d4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0
 
 </pre><a href="#section-7.1-9" class="pilcrow">¶</a>
 </div>
@@ -2043,14 +2048,14 @@ yKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE
     null
   ],
   "proof": [
-    "ixKXEuO1RSmD7qIRp-lqZCRN9U7-IJo_G_xmJ1TXCe9YFQk2FHygJHy6If1w88a2
-       uKLWdTJUyZuqT4SToO9ZqGA4ci2u28T0E_YzJizxaIZMpNVUmx5UxkqeJo1bse
-       hntvoMhWH1C-a_t-8jjjL90UMNNWqtmTlyrpfj3IyS_rOQKlc6WSsFOFw7uP3e
-       vNudAsWSqCa-SODy-RaYesPMZ2duK5843tg-hkatcd9lfUUv92EVysBwOK205-
-       OvvwdSVIT1JJQa4BXgKuKWIfI7HSRkCpp7_90Sdepdyvo67zX9fS1VtcVOv5RD
-       euTgnlR-PqbsYqUCPls9DLUnDGaax5OafN_ukASBghBYFQ1Twg4e2qPh4TXCUF
-       Xx06xeQDx1puwbuk8B9bJC4fyCGkDWBlBd5MnwAK1SPA-JklmjS9cFQpri9fCS
-       FmUr8Zcb4jYgFxaRppyKTj2b8Id7LUs0Hb0hDgpl_glhi8SsWTu1GNE"
+    "pbToHFc3cQGIRjg-R6eGGGZahVT8vmGv7zupt7JzQd518KY94ws879ootymZ0oBW
+       l64AbVLCqlgs2Mbwn8UEUhxJA0cZcSbzlGhxhluN1FfDhROXj1e_Xegvu1r5BP
+       DMmfD8oDeknsEiDlT7detRGeEJd69E-idmYl02Uy0MdriT1dmN9eEvFi1m4wef
+       XPL3EcMqjjbx8yl-K7r-B0eG-UStrnJG5GfqN0y4xxRL-6AeYvSu_ej7B8CXe5
+       CWdvp5zIkPjiKZak-hMnBbdpwPDR7fN_dmpWeLxPro-o4kxAnZHFOSkGvxw-3D
+       -jf82pS2b-wA273C8nk_Rl1D4AvyLo_XX0yjJmhW1oactXjxWGtE8uCouxgyGH
+       4gVJUAybzCUGOifCpV_Aks4R4QZphuwlV4XpkOrDMTOno1l6q8GeBWqXAVxmls
+       qJCJKMtFM6ehb3zAvMd4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0"
   ]
 }
 
@@ -2837,7 +2842,7 @@ using the JWP Compact Serialization.<a href="#section-11.3.1-1" class="pilcrow">
 <dd class="break"></dd>
 <dt id="IANA.CoAP.Formats">[IANA.CoAP.Formats]</dt>
         <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"CoAP Content Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CoAP Content-Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.MediaTypes">[IANA.MediaTypes]</dt>
         <dd>
