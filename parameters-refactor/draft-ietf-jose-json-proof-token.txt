@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 15 September 2025                                     J. Miller
+Expires: 16 September 2025                                     J. Miller
                                                            Ping Identity
-                                                           14 March 2025
+                                                           15 March 2025
 
 
                             JSON Proof Token
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 September 2025.
+   This Internet-Draft will expire on 16 September 2025.
 
 Copyright Notice
 
@@ -349,9 +349,18 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
               json-web-proof-07>.
 
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
    [RFC7519]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
               (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
               <https://www.rfc-editor.org/info/rfc7519>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
 12.2.  Informative References
 
@@ -366,15 +375,6 @@ Table of Contents
               IANA, "JSON Web Token Claims",
               <https://www.iana.org/assignments/jwt>.
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
-
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
 Appendix A.  Acknowledgements
 
    This work was incubated in the DIF Applied Cryptography Working Group
@@ -386,6 +386,10 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -08
+
+   *  Made some additional references normative.
 
    -07
 

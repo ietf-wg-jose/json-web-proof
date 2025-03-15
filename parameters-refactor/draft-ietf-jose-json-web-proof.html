@@ -1059,7 +1059,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 15 September 2025</td>
+<td class="center">Expires 16 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-14" class="published">14 March 2025</time>
+<time datetime="2025-03-15" class="published">15 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-15">15 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-16">16 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1489,7 +1489,7 @@ These new patterns are largely focused on two areas: supporting selective disclo
       <h2 id="name-background">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-background" class="section-name selfRef">Background</a>
       </h2>
-<p id="section-3-1">A <em>JSON Web Proof (JWP)</em> is very similar to a JWS <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span> or COSE Signed Message <span>[<a href="#RFC8152" class="cite xref">RFC8152</a>]</span>, with the addition that it can contain multiple individual secured payloads instead of a single one.
+<p id="section-3-1">A <em>JSON Web Proof (JWP)</em> is very similar to a JWS <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span> or COSE Signed Message <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>, with the addition that it can contain multiple individual secured payloads instead of a single one.
 JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The intent of JSON Web Proof is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities. This general message structure and common infratructure can then be further refined and extended to meet specific application requirements.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">To fully support the newer privacy primitives, JWP utilizes the three roles of issuer, holder, and verifier, as defined by the VC Data Model <span>[<a href="#VC-DATA-MODEL-2.0" class="cite xref">VC-DATA-MODEL-2.0</a>]</span>.  There are also two forms of a JWP: the issued form created by an issuer for a holder, and the presented form created by a holder for a verifier.<a href="#section-3-3" class="pilcrow">¶</a></p>
@@ -1692,7 +1692,8 @@ any processing of this parameter is performed by the JWP application.
 Use of this Header Parameter is OPTIONAL.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.3-2">For COSE Protected Headers, <code>typ</code> MAY also instead be an integer value
 which corresponds to the IANA "CoAP Content-Formats" registry
-<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>, which describes the corresponding media type.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>, which describes the corresponding media type,
+as described in <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span>.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.3-3">Per <span>[<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values,
 subtype values, and parameter names are case insensitive.
 However, parameter values are case sensitive unless
@@ -1996,14 +1997,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.rl0z3WwXnugmFYu8ndJG76jB1YOmbWJc0kpoh_A1
-mt2pA-eQuGC3VKSX1F1wdaanraCPimeJNMCp4AoyFHYWYqgKD9H6KtAXomwo4jx4FrzBS
-CZMn2lUrOeoKnHJVv54o2IFxkNPECnADETsWSsmiMtTx4Xh0W4HOz_zHBc98qyDKnVLh1
-qUb6dMl8mTL0HBZ9ZkvuVRIoz_qClRkJzsbjIPFtUVrihm8Hgww0CTeyZaCbXFfyOuYp-
-W7E6IrMrgGnv_JfTO0Ma0IqWUai6YyiphZVuuc0v11gvXIaK3mDoQPoPfHyg4HYELYmeI
-eB46ZyiKup9bDQd3BgAsl-JJ8tc7jb4XixjgWQRsjy6fXHhrRmqjPHqf9EPI3mZqZw0Mq
-qGfgc9Hhk9cnDPaoyRfBzS9ykmSWE2OSZT_ehng7Kv1Ha6QyzuS4iU9NpOMqOsQctUYnr
-1rXI4nJEX7-pHIpTiLoHvBEXVIfLUGIm4mGYM
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jtg-4MM9wRxLpDoYxF2SLLLZ3M_OlhncNG0rH0gb
+ndS9soXaQfRMziLft5kRWwv5jy7X0cE81wfUN4-ygN8emK8SOgMvFXCuFMRWPQrRvOiy8
+1-xtQIimMeslPK0Qz6HjnUpziKU2o_1J4S5CCztU18MeUqyg-7eimOmjibpk6hUYvxLKH
+xZM4fIryI-dmZSEAiVsMpjORGCaoOqpYLVnS99sDvhoqR-DJ19aoYsxbIE0iKttHPkQCO
+Zjz7qjaMgnn3aCAwmtj1P9Pb4zUQu32uy2Fz1VlE8fQvrhqSddHROHMObG5ZEFSNC2fjM
+NGBBacIiYl_yntLX90mM9NBp1Qkm72mLEtSYdKOiS4gK6pUwX3bBwf_H61uVh5se8Z2Y8
+yxitMUKAFO4AuneaT0xF0dwx58gLM0BRvnVBCWu1Bw7loXjrZvUXoYhGYV64UoqRJslN-
+XSDPeu6CDfbmsjTg_dLdhICTgwmXyVT670Jyg
 
 </pre><a href="#section-7.1-9" class="pilcrow">¶</a>
 </div>
@@ -2040,14 +2041,14 @@ qGfgc9Hhk9cnDPaoyRfBzS9ykmSWE2OSZT_ehng7Kv1Ha6QyzuS4iU9NpOMqOsQctUYnr
     null
   ],
   "proof": [
-    "rl0z3WwXnugmFYu8ndJG76jB1YOmbWJc0kpoh_A1mt2pA-eQuGC3VKSX1F1wdaan
-       raCPimeJNMCp4AoyFHYWYqgKD9H6KtAXomwo4jx4FrzBSCZMn2lUrOeoKnHJVv
-       54o2IFxkNPECnADETsWSsmiMtTx4Xh0W4HOz_zHBc98qyDKnVLh1qUb6dMl8mT
-       L0HBZ9ZkvuVRIoz_qClRkJzsbjIPFtUVrihm8Hgww0CTeyZaCbXFfyOuYp-W7E
-       6IrMrgGnv_JfTO0Ma0IqWUai6YyiphZVuuc0v11gvXIaK3mDoQPoPfHyg4HYEL
-       YmeIeB46ZyiKup9bDQd3BgAsl-JJ8tc7jb4XixjgWQRsjy6fXHhrRmqjPHqf9E
-       PI3mZqZw0MqqGfgc9Hhk9cnDPaoyRfBzS9ykmSWE2OSZT_ehng7Kv1Ha6QyzuS
-       4iU9NpOMqOsQctUYnr1rXI4nJEX7-pHIpTiLoHvBEXVIfLUGIm4mGYM"
+    "jtg-4MM9wRxLpDoYxF2SLLLZ3M_OlhncNG0rH0gbndS9soXaQfRMziLft5kRWwv5
+       jy7X0cE81wfUN4-ygN8emK8SOgMvFXCuFMRWPQrRvOiy81-xtQIimMeslPK0Qz
+       6HjnUpziKU2o_1J4S5CCztU18MeUqyg-7eimOmjibpk6hUYvxLKHxZM4fIryI-
+       dmZSEAiVsMpjORGCaoOqpYLVnS99sDvhoqR-DJ19aoYsxbIE0iKttHPkQCOZjz
+       7qjaMgnn3aCAwmtj1P9Pb4zUQu32uy2Fz1VlE8fQvrhqSddHROHMObG5ZEFSNC
+       2fjMNGBBacIiYl_yntLX90mM9NBp1Qkm72mLEtSYdKOiS4gK6pUwX3bBwf_H61
+       uVh5se8Z2Y8yxitMUKAFO4AuneaT0xF0dwx58gLM0BRvnVBCWu1Bw7loXjrZvU
+       XoYhGYV64UoqRJslN-XSDPeu6CDfbmsjTg_dLdhICTgwmXyVT670Jyg"
   ]
 }
 
@@ -2793,6 +2794,10 @@ using the JWP Compact Serialization.<a href="#section-11.3.1-1" class="pilcrow">
         <dd>
 <span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Token"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-token-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-07">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7516">[RFC7516]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span> and <span class="refAuthor">J. Hildebrand</span>, <span class="refTitle">"JSON Web Encryption (JWE)"</span>, <span class="seriesInfo">RFC 7516</span>, <span class="seriesInfo">DOI 10.17487/RFC7516</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7516">https://www.rfc-editor.org/info/rfc7516</a>&gt;</span>. </dd>
@@ -2801,9 +2806,17 @@ using the JWP Compact Serialization.<a href="#section-11.3.1-1" class="pilcrow">
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9052">[RFC9052]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9052">https://www.rfc-editor.org/info/rfc9052</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9596">[RFC9596]</dt>
+      <dd>
+<span class="refAuthor">Jones, M.B.</span> and <span class="refAuthor">O. Steele</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE) "typ" (type) Header Parameter"</span>, <span class="seriesInfo">RFC 9596</span>, <span class="seriesInfo">DOI 10.17487/RFC9596</span>, <time datetime="2024-06" class="refDate">June 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9596">https://www.rfc-editor.org/info/rfc9596</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2836,10 +2849,6 @@ using the JWP Compact Serialization.<a href="#section-11.3.1-1" class="pilcrow">
         <dd>
 <span class="refAuthor">Freed, N.</span> and <span class="refAuthor">N. Borenstein</span>, <span class="refTitle">"Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types"</span>, <span class="seriesInfo">RFC 2046</span>, <span class="seriesInfo">DOI 10.17487/RFC2046</span>, <time datetime="1996-11" class="refDate">November 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2046">https://www.rfc-editor.org/info/rfc2046</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC2119">[RFC2119]</dt>
-        <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC5226">[RFC5226]</dt>
         <dd>
 <span class="refAuthor">Narten, T.</span> and <span class="refAuthor">H. Alvestrand</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">RFC 5226</span>, <span class="seriesInfo">DOI 10.17487/RFC5226</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5226">https://www.rfc-editor.org/info/rfc5226</a>&gt;</span>. </dd>
@@ -2855,14 +2864,6 @@ using the JWP Compact Serialization.<a href="#section-11.3.1-1" class="pilcrow">
 <dt id="RFC7518">[RFC7518]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Algorithms (JWA)"</span>, <span class="seriesInfo">RFC 7518</span>, <span class="seriesInfo">DOI 10.17487/RFC7518</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7518">https://www.rfc-editor.org/info/rfc7518</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8152">[RFC8152]</dt>
-        <dd>
-<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 8152</span>, <span class="seriesInfo">DOI 10.17487/RFC8152</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8152">https://www.rfc-editor.org/info/rfc8152</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8174">[RFC8174]</dt>
-        <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8392">[RFC8392]</dt>
         <dd>
@@ -2905,6 +2906,10 @@ concept of claims<a href="#appendix-B-3.1" class="pilcrow">¶</a>
         <li class="compact" id="appendix-B-3.2">Change usage of "JWP Protected Header" and "JWP Proof" to "Protected Header" and "Proof"<a href="#appendix-B-3.2" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-B-3.3">Use draft-bormann-cbor-draft-numbers for externally defined codepoints (e.g. tags)<a href="#appendix-B-3.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.4">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.5">Made some additional references normative.<a href="#appendix-B-3.5" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-07<a href="#appendix-B-4" class="pilcrow">¶</a></p>
