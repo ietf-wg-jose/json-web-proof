@@ -100,6 +100,8 @@ linkability:
 unlinkability:
   The property of issuance and presentation algorithms and of application usage, where one presentation can only be correlated with other presentations based on holder-disclosed information.
 
+This series of documents uses the term "application" to refer to specifications which profile usage of JWP, while the term "implementation" refers to code used to implement JWP logic targetting one or more application.
+
 ## Abbreviations
 
 * ZKP: Zero-Knowledge Proof
@@ -146,6 +148,7 @@ Parameters are differentiated from one another by label. When serialized via JSO
 Implementations are required to understand the specific Parameters defined by this specification that are designated as "MUST be understood"
 and process them in the manner defined in this specification. All other Parameters defined by this specification that are not so designated MUST be ignored when not understood.  Unless listed as a critical Parameter, per (#critDef), all Parameters not defined by this specification MUST be ignored when not understood.
 
+Parameters provide for a common semantic meaning across applications. However, applications are responsible for defining which parameters are appropriate for desired security and privacy properties. Implementations MUST NOT assume the presence of a parameter indicates certain processing steps are to be performed, unless specified by the application.
 
 ## JWP Header
 
@@ -162,7 +165,6 @@ The issued and presented JWP headers are from the issuer and holder, respectivel
 A JWP contains zero or more payloads, which are octet strings with an assigned ordering at issuance. Unlike JWP Headers where each parameter is mandatory to disclose, payloads support individual selective disclosure. A payload containing potentially sensitive or identifying information can be omitted at the discretion of the holder, a payload representing authorization within a system could be ommitted to limit system privilege.
 
 Payloads MAY contain Parameters, or an application might describe their own formats and layouts of payloads.
-
 
 ## Proof
 
@@ -1095,6 +1097,8 @@ for his valuable contributions to this specification.
   * Use draft-bormann-cbor-draft-numbers for externally defined codepoints (e.g. tags)
   * Added reference to [@!RFC9596] for COSE "typ" header parameter.
   * Made some additional references normative.
+  * Clarify appropriate parameters are defined by applications.
+  * Add "application" and "implementation" to terminology.
 
  -07
 
