@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 15 September 2025                        Self-Issued Consulting
+Expires: 16 September 2025                        Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                           14 March 2025
+                                                           15 March 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 September 2025.
+   This Internet-Draft will expire on 16 September 2025.
 
 Copyright Notice
 
@@ -218,6 +218,7 @@ Table of Contents
    *  JWP: JSON Web Proof (this specification)
    *  JPA: JSON Proof Algorithms [I-D.ietf-jose-json-proof-algorithms]
    *  JPT: JSON Proof Token [I-D.ietf-jose-json-proof-token]
+   *  CPT: CBOR Proof Token [I-D.ietf-jose-json-proof-token]
 
 3.  Background
 
@@ -361,7 +362,7 @@ Table of Contents
 
 4.2.2.  "kid" (Key ID) Header Parameter
 
-   The kid (key ID) Header Parameter is a hint indicating which key was
+   The kid (Key ID) Header Parameter is a hint indicating which key was
    used to secure the JWP.  This parameter allows originators to
    explicitly signal a change of key to recipients.
 
@@ -536,8 +537,7 @@ Table of Contents
    When used as a CBOR Protected Header, the value is a binary string.
 
    This definition is intentionally parallel to the nonce claim
-   registered in the IANA "JSON Web Token Claims" registry
-   (#IANA.JWT.Claims).
+   registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).
 
    Use of this Header Parameter is OPTIONAL.
 
@@ -773,14 +773,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pwL0yUOkRdJTZNegzeFToStNP2lCTu9Y1cj_oWoO
-   isZj4f-iwAu78oXgwHugAHqWsBPzBNJ03yrB4AN7cdtC5b1Zd13kB4F1570JEkx6FIv-N
-   jSK74wVAq435M2Nm7p7rnIo47Y7uf21ILVAaWK75S6GlTSJ5R4L_MW2cBosO6WaoPDp5M
-   oLnkSR7DlmlFvlXJzr5yiQd3X45mlBrL23SdBNG344JVOgIWhURyadkmhdhxQYo2HcfU-
-   tOdAkIOKxL0biyxN-Uk_2Ftcqbv7r9TgAbvkFPTPN6RjzlcGtDq54tQTBmhxoJZRz1jJg
-   bxm_KLe6GqyvwWu86wP3U6sk0jWl9JZueseYPdC97MGBxKgr8SpZNphXxWtQ06pY9Jh6a
-   b6jC0t4DIcbXudJDASTQwwuIfX_i4BDEfUiPFBG4lgkk0iZ00Slh0tCCn5A22ydGNRVQE
-   EQuBp1PbkVY4S6zMx6Ui3b3eJ_sglymcJ0fXM
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.iCaKJ-RlWjpacOZDZ13DwUHO3sJXAQsz9g5zSAwq
+   Gp5shGUcZFhNTNKUYLC7fAKEjMJNYKYxj-4NCNvg_pWlUwsKEiIVvaOk2nISPr3yypfKy
+   rmqNzoOiITGNIqwAI7_hjOjYlXFMHifeEVKDnDHpt7PnTxM2iyaQr9eS7kiqx0Ja6oa3O
+   Hvs78aq3NOl5fOWhnIYCtRQtxZnaKVRsn9wQOKCiqKi8nPZKeuhTL5zLVvljtyRYKDhU7
+   YseYPD7ZCR3Y8dFPF7WZjm9Kx2H92IgwRCrtz-SVjbvL9qoFqFpSDbnw2etZwrp7t3RcJ
+   QUW7YCClfoQo-qxjEGUoBAbUQLeo7TKa99JATlaI30vzHQNlYzbVlRKF7ImGTrbtFQu6u
+   ieqK09OmjyUh4ks5WlgpRDiny1NiOdfMDOR34o9gGtSP3USwihEtEJx0Nky2ONAUGi9Bv
+   8CWqq1o-GcP0jy5ysG_N-8pb9NjSvuSl58oIQ
 
    |  Figure: Compact Serialization of Presentation
 
@@ -831,14 +831,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "pwL0yUOkRdJTZNegzeFToStNP2lCTu9Y1cj_oWoOisZj4f-iwAu78oXgwHugAHqW
-          sBPzBNJ03yrB4AN7cdtC5b1Zd13kB4F1570JEkx6FIv-NjSK74wVAq435M2Nm7
-          p7rnIo47Y7uf21ILVAaWK75S6GlTSJ5R4L_MW2cBosO6WaoPDp5MoLnkSR7Dlm
-          lFvlXJzr5yiQd3X45mlBrL23SdBNG344JVOgIWhURyadkmhdhxQYo2HcfU-tOd
-          AkIOKxL0biyxN-Uk_2Ftcqbv7r9TgAbvkFPTPN6RjzlcGtDq54tQTBmhxoJZRz
-          1jJgbxm_KLe6GqyvwWu86wP3U6sk0jWl9JZueseYPdC97MGBxKgr8SpZNphXxW
-          tQ06pY9Jh6ab6jC0t4DIcbXudJDASTQwwuIfX_i4BDEfUiPFBG4lgkk0iZ00Sl
-          h0tCCn5A22ydGNRVQEEQuBp1PbkVY4S6zMx6Ui3b3eJ_sglymcJ0fXM"
+       "iCaKJ-RlWjpacOZDZ13DwUHO3sJXAQsz9g5zSAwqGp5shGUcZFhNTNKUYLC7fAKE
+          jMJNYKYxj-4NCNvg_pWlUwsKEiIVvaOk2nISPr3yypfKyrmqNzoOiITGNIqwAI
+          7_hjOjYlXFMHifeEVKDnDHpt7PnTxM2iyaQr9eS7kiqx0Ja6oa3OHvs78aq3NO
+          l5fOWhnIYCtRQtxZnaKVRsn9wQOKCiqKi8nPZKeuhTL5zLVvljtyRYKDhU7Yse
+          YPD7ZCR3Y8dFPF7WZjm9Kx2H92IgwRCrtz-SVjbvL9qoFqFpSDbnw2etZwrp7t
+          3RcJQUW7YCClfoQo-qxjEGUoBAbUQLeo7TKa99JATlaI30vzHQNlYzbVlRKF7I
+          mGTrbtFQu6uieqK09OmjyUh4ks5WlgpRDiny1NiOdfMDOR34o9gGtSP3USwihE
+          tEJx0Nky2ONAUGi9Bv8CWqq1o-GcP0jy5ysG_N-8pb9NjSvuSl58oIQ"
      ]
    }
 
@@ -1314,7 +1314,7 @@ Table of Contents
               irtf-cfrg-bbs-signatures/>.
 
    [IANA.CoAP.Formats]
-              IANA, "CoAP Content Formats",
+              IANA, "CoAP Content-Formats",
               <https://www.iana.org/assignments/core-parameters/core-
               parameters.xhtml#content-formats>.
 

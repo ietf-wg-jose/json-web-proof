@@ -18,10 +18,13 @@ Unlike JWS, which integrity-protects only a single payload, JWP can integrity-pr
 It also specifies a new presentation form that supports selective disclosure of individual payloads, enables additional proof computation, and adds a protected header to prevent replay. 
     " name="description">
 <meta content="xml2rfc 3.28.0" name="generator">
+<meta content="json" name="keyword">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
 <meta content="jwp" name="keyword">
 <meta content="jws" name="keyword">
+<meta content="cbor" name="keyword">
+<meta content="cose" name="keyword">
 <meta content="draft-ietf-jose-json-web-proof-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.28.0
@@ -1059,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 15 September 2025</td>
+<td class="center">Expires 16 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-14" class="published">14 March 2025</time>
+<time datetime="2025-03-15" class="published">15 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-15">15 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-16">16 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1128,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1451,6 +1454,8 @@ These new patterns are largely focused on two areas: supporting selective disclo
 </li>
           <li class="compact" id="section-2.2-1.4">JPT: JSON Proof Token <span>[<a href="#I-D.ietf-jose-json-proof-token" class="cite xref">I-D.ietf-jose-json-proof-token</a>]</span><a href="#section-2.2-1.4" class="pilcrow">¶</a>
 </li>
+          <li class="compact" id="section-2.2-1.5">CPT: CBOR Proof Token <span>[<a href="#I-D.ietf-jose-json-proof-token" class="cite xref">I-D.ietf-jose-json-proof-token</a>]</span><a href="#section-2.2-1.5" class="pilcrow">¶</a>
+</li>
         </ul>
 </section>
 </div>
@@ -1578,7 +1583,7 @@ by <span>[<a href="#I-D.ietf-jose-json-proof-algorithms" class="cite xref">I-D.i
           <h4 id="name-kid-key-id-header-parameter">
 <a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-kid-key-id-header-parameter" class="section-name selfRef">"kid" (Key ID) Header Parameter</a>
           </h4>
-<p id="section-4.2.2-1">The <code>kid</code> (key ID) Header Parameter is a hint indicating which key
+<p id="section-4.2.2-1">The <code>kid</code> (Key ID) Header Parameter is a hint indicating which key
 was used to secure the JWP. This parameter allows originators to
 explicitly signal a change of key to recipients.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.2-2">The structure of the <code>kid</code> value is unspecified.<a href="#section-4.2.2-2" class="pilcrow">¶</a></p>
@@ -1753,7 +1758,7 @@ it was requested.<a href="#section-4.2.9-1" class="pilcrow">¶</a></p>
 string value.<a href="#section-4.2.9-2" class="pilcrow">¶</a></p>
 <p id="section-4.2.9-3">When used as a CBOR Protected Header, the value is a binary string.<a href="#section-4.2.9-3" class="pilcrow">¶</a></p>
 <p id="section-4.2.9-4">This definition is intentionally parallel to the <code>nonce</code> claim
-registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT.Claims).<a href="#section-4.2.9-4" class="pilcrow">¶</a></p>
+registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).<a href="#section-4.2.9-4" class="pilcrow">¶</a></p>
 <p id="section-4.2.9-5">Use of this Header Parameter is OPTIONAL.<a href="#section-4.2.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1917,14 +1922,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pwL0yUOkRdJTZNegzeFToStNP2lCTu9Y1cj_oWoO
-isZj4f-iwAu78oXgwHugAHqWsBPzBNJ03yrB4AN7cdtC5b1Zd13kB4F1570JEkx6FIv-N
-jSK74wVAq435M2Nm7p7rnIo47Y7uf21ILVAaWK75S6GlTSJ5R4L_MW2cBosO6WaoPDp5M
-oLnkSR7DlmlFvlXJzr5yiQd3X45mlBrL23SdBNG344JVOgIWhURyadkmhdhxQYo2HcfU-
-tOdAkIOKxL0biyxN-Uk_2Ftcqbv7r9TgAbvkFPTPN6RjzlcGtDq54tQTBmhxoJZRz1jJg
-bxm_KLe6GqyvwWu86wP3U6sk0jWl9JZueseYPdC97MGBxKgr8SpZNphXxWtQ06pY9Jh6a
-b6jC0t4DIcbXudJDASTQwwuIfX_i4BDEfUiPFBG4lgkk0iZ00Slh0tCCn5A22ydGNRVQE
-EQuBp1PbkVY4S6zMx6Ui3b3eJ_sglymcJ0fXM
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.iCaKJ-RlWjpacOZDZ13DwUHO3sJXAQsz9g5zSAwq
+Gp5shGUcZFhNTNKUYLC7fAKEjMJNYKYxj-4NCNvg_pWlUwsKEiIVvaOk2nISPr3yypfKy
+rmqNzoOiITGNIqwAI7_hjOjYlXFMHifeEVKDnDHpt7PnTxM2iyaQr9eS7kiqx0Ja6oa3O
+Hvs78aq3NOl5fOWhnIYCtRQtxZnaKVRsn9wQOKCiqKi8nPZKeuhTL5zLVvljtyRYKDhU7
+YseYPD7ZCR3Y8dFPF7WZjm9Kx2H92IgwRCrtz-SVjbvL9qoFqFpSDbnw2etZwrp7t3RcJ
+QUW7YCClfoQo-qxjEGUoBAbUQLeo7TKa99JATlaI30vzHQNlYzbVlRKF7ImGTrbtFQu6u
+ieqK09OmjyUh4ks5WlgpRDiny1NiOdfMDOR34o9gGtSP3USwihEtEJx0Nky2ONAUGi9Bv
+8CWqq1o-GcP0jy5ysG_N-8pb9NjSvuSl58oIQ
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -1961,14 +1966,14 @@ EQuBp1PbkVY4S6zMx6Ui3b3eJ_sglymcJ0fXM
     null
   ],
   "proof": [
-    "pwL0yUOkRdJTZNegzeFToStNP2lCTu9Y1cj_oWoOisZj4f-iwAu78oXgwHugAHqW
-       sBPzBNJ03yrB4AN7cdtC5b1Zd13kB4F1570JEkx6FIv-NjSK74wVAq435M2Nm7
-       p7rnIo47Y7uf21ILVAaWK75S6GlTSJ5R4L_MW2cBosO6WaoPDp5MoLnkSR7Dlm
-       lFvlXJzr5yiQd3X45mlBrL23SdBNG344JVOgIWhURyadkmhdhxQYo2HcfU-tOd
-       AkIOKxL0biyxN-Uk_2Ftcqbv7r9TgAbvkFPTPN6RjzlcGtDq54tQTBmhxoJZRz
-       1jJgbxm_KLe6GqyvwWu86wP3U6sk0jWl9JZueseYPdC97MGBxKgr8SpZNphXxW
-       tQ06pY9Jh6ab6jC0t4DIcbXudJDASTQwwuIfX_i4BDEfUiPFBG4lgkk0iZ00Sl
-       h0tCCn5A22ydGNRVQEEQuBp1PbkVY4S6zMx6Ui3b3eJ_sglymcJ0fXM"
+    "iCaKJ-RlWjpacOZDZ13DwUHO3sJXAQsz9g5zSAwqGp5shGUcZFhNTNKUYLC7fAKE
+       jMJNYKYxj-4NCNvg_pWlUwsKEiIVvaOk2nISPr3yypfKyrmqNzoOiITGNIqwAI
+       7_hjOjYlXFMHifeEVKDnDHpt7PnTxM2iyaQr9eS7kiqx0Ja6oa3OHvs78aq3NO
+       l5fOWhnIYCtRQtxZnaKVRsn9wQOKCiqKi8nPZKeuhTL5zLVvljtyRYKDhU7Yse
+       YPD7ZCR3Y8dFPF7WZjm9Kx2H92IgwRCrtz-SVjbvL9qoFqFpSDbnw2etZwrp7t
+       3RcJQUW7YCClfoQo-qxjEGUoBAbUQLeo7TKa99JATlaI30vzHQNlYzbVlRKF7I
+       mGTrbtFQu6uieqK09OmjyUh4ks5WlgpRDiny1NiOdfMDOR34o9gGtSP3USwihE
+       tEJx0Nky2ONAUGi9Bv8CWqq1o-GcP0jy5ysG_N-8pb9NjSvuSl58oIQ"
   ]
 }
 
@@ -2704,7 +2709,7 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dd class="break"></dd>
 <dt id="IANA.CoAP.Formats">[IANA.CoAP.Formats]</dt>
         <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"CoAP Content Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CoAP Content-Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.MediaTypes">[IANA.MediaTypes]</dt>
         <dd>
