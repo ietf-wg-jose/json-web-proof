@@ -1,0 +1,17 @@
+[  / payloads    /
+   / iat         / 171452160,
+   / exp         / 171719999,
+   / family_name / "Doe",
+   / given_name  / "Jay",
+   / email       / "jaydoe@example.org",
+   / address     / 
+    "{" +
+      "\"formatted\":\"1234 Main St.\nAnytown, CA 12345\nUSA\"," +
+      "\"street_address\":\"1234 Main St.\"," +
+      "\"locality\":\"Anytown\"," +
+      "\"region\":\"CA\"," +
+      "\"postal_code\":12345," +
+      "\"country\":\"USA\"" +
+    "}" ,
+   / age_over_21 / true
+]
