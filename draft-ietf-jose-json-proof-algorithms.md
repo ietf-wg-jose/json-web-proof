@@ -855,9 +855,10 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   [[ To be removed from the final specification ]]
 
- -08
+ -latest
 
   * Made some additional references normative.
+  * Corrected SU-ES256 issuer protected header including private keys
 
  -07
 

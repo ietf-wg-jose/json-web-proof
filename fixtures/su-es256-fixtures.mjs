@@ -34,8 +34,12 @@ const ephemeralPrivateKey = crypto.createPrivateKey({
 // storage as we build up
 const sigs = [];
 
-issuerProtectedHeaderJSON.proof_key = ephemeralPrivateKeyJSON;
-issuerProtectedHeaderJSON.presentation_key = holderPrivateKeyJSON;
+issuerProtectedHeaderJSON.proof_key = structuredClone(ephemeralPrivateKeyJSON);
+delete issuerProtectedHeaderJSON.proof_key.d;
+
+issuerProtectedHeaderJSON.presentation_key = structuredClone(holderPrivateKeyJSON);
+delete issuerProtectedHeaderJSON.presentation_key.d;
+
 await fs.writeFile("build/su-es256-issuer-protected-header.json", JSON.stringify(issuerProtectedHeaderJSON, null, 2), {encoding: "UTF-8"});
 await fs.writeFile("build/su-es256-issuer-protected-header.json.wrapped", lineWrap(JSON.stringify(issuerProtectedHeaderJSON, null, 2)), {encoding: "UTF-8"});
 
