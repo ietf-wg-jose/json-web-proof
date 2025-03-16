@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-13T00:52:57.652638+00:00",
+  "timestamp": "2025-03-16T00:56:47.699867+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2714,6 +2714,22 @@
           "updatedAt": "2024-12-10T22:00:03Z"
         }
       ]
+    },
+    {
+      "number": 155,
+      "id": "I_kwDOFsQObc6uBv57",
+      "title": "Register media type suffixes",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/155",
+      "state": "OPEN",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We should register the +jpt and +cpt media type suffixes so that JWPs can be explicitly typed like JWTs and CWTs are.",
+      "createdAt": "2025-03-14T09:23:11Z",
+      "updatedAt": "2025-03-14T09:23:11Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -9999,15 +10015,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Aiming to unify header parameters and claims, and to define a mechanism to reference the existing claims registries for JWT/CWT.\r\n\r\nImmediate tasks:\r\n\r\n- [ ] Determine if [draft-bormann-cbor-draft-numbers](https://datatracker.ietf.org/doc/draft-bormann-cbor-draft-numbers/) is planned to be a recommendation by the CBOR WG, and how to properly use it for tags\r\n- [ ] Convert Header Parameter -> Parameter in JPA, and verify there aren't other impacts\r\n- [ ] Coordinate JPT changes with @selfissued \r\n- [ ] Parameter validity must be defined by the application - parameters exist to have common semantics for processing",
+      "body": "Aiming to unify header parameters and claims, and to define a mechanism to reference the existing claims registries for JWT/CWT.\r\n\r\nImmediate tasks:\r\n\r\n- [x] Determine if [draft-bormann-cbor-draft-numbers](https://datatracker.ietf.org/doc/draft-bormann-cbor-draft-numbers/) is planned to be a recommendation by the CBOR WG, and how to properly use it for tags\r\n- [x] Convert Header Parameter -> Parameter in JPA, and verify there aren't other impacts\r\n- [ ] Coordinate JPT changes with @selfissued \r\n- [x] Parameter validity must be defined by the application - parameters exist to have common semantics for processing",
       "createdAt": "2025-03-11T20:57:45Z",
-      "updatedAt": "2025-03-11T21:22:01Z",
+      "updatedAt": "2025-03-15T07:55:20Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
-      "baseRefOid": "8335cc680cafc1eac638402fe34092cbc75ca81a",
+      "baseRefOid": "44cc4363d104fc1772e259ffe0ac12b14dcf1acc",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "parameters-refactor",
-      "headRefOid": "d86b041e72827f1e400839adc076eb39c3618469",
+      "headRefOid": "3afe3bcd27af7fc835573cdcd0b326d20d14f1f7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -10019,35 +10035,135 @@
           "body": "Closes #149",
           "createdAt": "2025-03-11T21:02:13Z",
           "updatedAt": "2025-03-11T21:02:13Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I'm not convinced that we want to try to unify the three namespaces in a general way. It would make JWP and JPT more different than JWS and JWT and CWT than it needs to be. Developer confusion would result.\r\n> \r\n> We should only innovate relative to our predecessor documents when it adds clear value.\r\n> \r\n> At most, I think we should define a facility for using claims-in-headers when needed like was done for JWT and in https://www.rfc-editor.org/rfc/rfc9597.html.\r\n\r\nJWT does not have an effective claims-in-headers, as the registries are not coordinated. An example being that  ACME independently defined \"nonce\" as a header parameter five years after OpenID Connect Core defined it as a claim - and did so in an incompatible manner (case-sensitive string in the claim, base64url-encoded octet string in a header parameter with mandatory enforcement of format).\r\n\r\nThe issue is that we currently need claims in headers, as well as headers in claims - and we want to recycle existing registries as well as define our own. That is going to cause complexity.\r\n\r\nThe headers in claims need is for adaptable presentation. I could have a JWP using something like the libzk approach where I'm using traditional cryptography for a one-time-use presentation, and need to disclose issuer and signing key information. Or, I could use a zero knowledge proof where I effectively say \"verifier, this message is from one of the signing keys you indicate you trust\".\r\n\r\nThe claims in headers has some use for issuers for mandatory-to-disclose information, but it is mostly an issue for presentation. Presentation is an application-specific activity, and the only place to put application extensions is in the presentation header. We could have a single presenter payload, but I suspect (other than self-asserted claims by the holder) this would mostly be the set of claims which caused CWT claims-in-headers to be created - they are information used as part of application-defined verification of the presentation.\r\n\r\nCWT claims-in-headers is an effective tagging of those claims - by wrapping them into a header parameter map. The JWT claim prefix and CWT claim tag are the equivalent approach I could come up with for using them as a \"name\" for a payload, since these need to be distinct and ordered.\r\n\r\nWe also cannot assume payloads are parameters or claims at all -  that is a profiling that JPT/CPT makes. They could be an array of N-Quads for all we know.\r\n\r\nI have been thinking about this for a while, and so far have only come up with two approaches to try to meet all of the requirements:\r\n\r\n1. This approach:\r\n\r\n    a. create a single concept of a parameter\r\n    b. namespace the different registries so parameters may use them.\r\n    c. Define naming of parameters as a core concept, with applications (and JPT/CPT) establishing appropriate assumptions\r\n    d. Provide security and privacy guidance on where best to place parameters.\r\n\r\n2. Set up walls to prevent overlap, so a name only ever could reference at most a single registry at a time:\r\n\r\n    a. Define a `claims-in-headers` protected header that can contain JWT claims or CWT claims depending on serialization. \r\n    b. Eliminate all JWP header parameter registrations outside a core set (say `alg`, `typ`, `crit`,`claims-in-headers`, `claims` and `cid` - there may be some renaming needed). Parameters like `iss` would revert to the claim definition, parameters like `kid` would be redefined as a claim and registered in JWT/CWT registries.\r\n    c. Redefine `proof_key` and `presentation_key` as claims in JWT and CWT, and have algorithms use the payload header or known information to resolve them. \r\n    d. JWP payload naming again is a core concept, this time referencing JWT/CWT registries depending on serialization. Applications as well as JPT/CPT would define behavior for interpreting payload names not in registry\r\n    e. Provide guidance on where information should be placed (security/privacy), including multiple registrations.",
+          "createdAt": "2025-03-14T22:37:52Z",
+          "updatedAt": "2025-03-14T22:39:25Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> JWT does not have an effective claims-in-headers, as the registries are not coordinated. An example being that ACME independently defined \"nonce\" as a header parameter five years after OpenID Connect Core defined it as a claim - and did so in an incompatible manner (case-sensitive string in the claim, base64url-encoded octet string in a header parameter with mandatory enforcement of format).\r\n\r\nWe could solve that by updating the instructions to the designated experts for the JWT Claims and JOSE Header Parameters registries to say that registrations must not be accepted for names in the other one unless the definitions are the same.  Previously we'd counted on people's good behavior to do that coordination.  You're right that it's probably time to make the coordination explicit.  We can do that in our drafts, once they're RFCs.",
+          "createdAt": "2025-03-15T07:38:43Z",
+          "updatedAt": "2025-03-15T07:38:43Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> 2. Set up walls to prevent overlap, so a name only ever could reference at most a single registry at a time:\r\n\r\nThat's what JWT and CWT have done thus far.  If it's in the header, it comes from one, known registry.  If it's in the payload, in comes from a different, known registry.\r\n\r\nThe good news is that we already have the JWT Claims and CWT Claims to reuse for the latter case in JPT/CPT.  And we are free to define our own header parameters for the first case, which we're already doing.\r\n\r\nYes, we have to work out what to do it you want to use a parameter defined for one place in the other.  My default answer would be to register it in a way that's consistent with its definition in the other registry and then use it.  For JSON, the good news is that the names can be the same in almost all cases.  For CBOR, not so much.",
+          "createdAt": "2025-03-15T07:55:19Z",
+          "updatedAt": "2025-03-15T07:55:19Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6gB6A3",
+          "commit": {
+            "abbreviatedOid": "a9b1b24"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I'm not convinced that we want to try to unify the three namespaces in a general way.  It would make JWP and JPT more different than JWS and JWT and CWT than it needs to be.  Developer confusion would result.\r\n\r\nWe should only innovate relative to our predecessor documents when it adds clear value.\r\n\r\nAt most, I think we should define a facility for using claims-in-headers when needed like was done for JWT and in https://www.rfc-editor.org/rfc/rfc9597.html.",
+          "createdAt": "2025-03-14T09:06:24Z",
+          "updatedAt": "2025-03-14T09:11:06Z",
+          "comments": [
+            {
+              "originalPosition": 126,
+              "body": "I've thought about this since the colon prefix was first proposed a few days ago and I can't live with changing the claim names to add a prefix.  It will cause developer confusion and coding mistakes forever.",
+              "createdAt": "2025-03-14T09:06:25Z",
+              "updatedAt": "2025-03-14T09:11:06Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 153,
       "id": "PR_kwDOFsQObc6ORgLB",
       "title": "Add reference to RFC 9596 for COSE typ header parameter",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/153",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-03-12T04:24:14Z",
-      "updatedAt": "2025-03-12T04:24:14Z",
+      "updatedAt": "2025-03-14T06:39:40Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "5fa751cd7ebe8e0bffd042215b2f4f778b34faff",
       "headRepository": "selfissued/json-web-proofs",
       "headRefName": "mbj-cose-typ",
       "headRefOid": "d8337173c045b7fe2234e3937a1cdcb525859f2a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-14T06:39:40Z",
+      "mergedAt": "2025-03-14T06:39:40Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "1b4196d67f83e72520eabd3480e6705d329591d6"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6gAcSC",
+          "commit": {
+            "abbreviatedOid": "d833717"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-03-14T06:39:34Z",
+          "updatedAt": "2025-03-14T06:39:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 154,
+      "id": "PR_kwDOFsQObc6Oo_A8",
+      "title": "Define CBOR Proof Token",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/154",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Define the CBOR format for proof tokens.",
+      "createdAt": "2025-03-14T08:49:23Z",
+      "updatedAt": "2025-03-15T07:43:55Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "1b4196d67f83e72520eabd3480e6705d329591d6",
+      "headRepository": "selfissued/json-web-proofs",
+      "headRefName": "mbj-cpt",
+      "headRefOid": "3d68bbd4c0df7c4ed7dfcc0812a1babd0c55c422",
+      "closedAt": "2025-03-15T07:43:55Z",
+      "mergedAt": "2025-03-15T07:43:55Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "44cc4363d104fc1772e259ffe0ac12b14dcf1acc"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6gL52l",
+          "commit": {
+            "abbreviatedOid": "3d68bbd"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-03-15T07:43:50Z",
+          "updatedAt": "2025-03-15T07:43:50Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
