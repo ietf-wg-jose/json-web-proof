@@ -745,8 +745,9 @@ Table of Contents
    All binary data is BASE64URL encoded, including the octets of the
    UTF-8 encoded headers and the individual payloads and proof values.
 
-   Payloads and proofs are each concatenated into a single text form by
-   concatenating the BASE64URL encoded values using the ~ character.
+   Payloads and proof values are each concatenated into a single text
+   form by concatenating the BASE64URL encoded values using the ~
+   character.
 
    Individual payloads are allowed to be omitted; if a payload is
    omitted, it is represented as a zero-length text value, potentially
@@ -773,14 +774,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.lfh7I7Iza1bKW_1HSvcm8-7NpBAtpbzU_H-0C3dg
-   63B70jvhr02foDJtY5tRAYhFuFbknUnbA0Moth2dCZ_Nepfv98j3fyOb0Xa0RFiwpIRWE
-   HpmNk_JL_G4SMVvtpI_tO-pGo6h5dK3JwPM1ugycEaPdTzC6Zyz1lB7bQAOL5fgbtf4mD
-   G5_CM_m2gcvFSkH5J03L4OonxlhHX_sG9XP3GrfZtBZyzLVugo_gQyHuVOovNMzvOwJdJ
-   ZbCDCHhwrobtuv68w1DBTeBdASoaY4iboO2nbySNfYfjiywKc4EhHIcYr3ju5itvAA5mw
-   m0MXB-ZnWEm1LaFebO68nD-_3W93KV9QHmggYNjuskXNg4Juzvyn0mSCdfyNp3hpjgqG3
-   8GgrfYG-gKTVzNjCyvr8Gd-2-3X1AZQEcWUJfuVBPzJ2cbHLsEXs-MjoChvsPciJGxkQ5
-   1eXpHBHsSJxUAA4t2urwgK29lGQllEEB90hjU
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.krepBOKgl8CNS7aY42B6WmJcZ6Bl2NUGPdOf3xM0
+   K-qnThmhatq6O0ekLzGV9QWusLzTgxh62RgjIl3w5waZNLeQezbwvT-xWjI6pKU1VEv-v
+   7drhIoNmMhkZJoVQ3OVs9SDSpF59bTmiJwUBhBDSbPCEIt4RfSoLoy_fsHfwTTkbRpwTF
+   PU1gjxZeLCcmZnHzlZxXsOQ87-zlrvhkbP4y4CKLU0hSNa2M7GO6uCMVFHf1A5qgLb0TD
+   eMvmjra0OOLiqTtReANUWwJP1y8qYwGd1lBFE5phs814Lx0MIyXe4mOzwMhzVKqWwQQnP
+   hOmtZXnETmkO4VAFfr5FKDn0PE5goi4WifAILKln1-JRx-Vo06UghbyUvgGf2nZuG6PIj
+   H0UYDPKSCUrHSZ_W8WWGhyWBaN-0E6ipDvB-YtaWoj8vbGyWufLrMbCwSc2Ee_zHJWq3R
+   PznBIYfSCT6QVDcfWz8ozilLy06R-l5M1GGIk
 
    |  Figure: Compact Serialization of Presentation
 
@@ -808,7 +809,7 @@ Table of Contents
    BASE64URL.  This key MUST be included unless the application is using
    detached payloads.
 
-   The proofs key has an array value, representing the array of octet
+   The proof key has an array value, representing the array of octet
    strings produced by the chosen algorithm.  These octets are BASE64URL
    encoded into a JSON array.
 
@@ -831,14 +832,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "lfh7I7Iza1bKW_1HSvcm8-7NpBAtpbzU_H-0C3dg63B70jvhr02foDJtY5tRAYhF
-          uFbknUnbA0Moth2dCZ_Nepfv98j3fyOb0Xa0RFiwpIRWEHpmNk_JL_G4SMVvtp
-          I_tO-pGo6h5dK3JwPM1ugycEaPdTzC6Zyz1lB7bQAOL5fgbtf4mDG5_CM_m2gc
-          vFSkH5J03L4OonxlhHX_sG9XP3GrfZtBZyzLVugo_gQyHuVOovNMzvOwJdJZbC
-          DCHhwrobtuv68w1DBTeBdASoaY4iboO2nbySNfYfjiywKc4EhHIcYr3ju5itvA
-          A5mwm0MXB-ZnWEm1LaFebO68nD-_3W93KV9QHmggYNjuskXNg4Juzvyn0mSCdf
-          yNp3hpjgqG38GgrfYG-gKTVzNjCyvr8Gd-2-3X1AZQEcWUJfuVBPzJ2cbHLsEX
-          s-MjoChvsPciJGxkQ51eXpHBHsSJxUAA4t2urwgK29lGQllEEB90hjU"
+       "krepBOKgl8CNS7aY42B6WmJcZ6Bl2NUGPdOf3xM0K-qnThmhatq6O0ekLzGV9QWu
+          sLzTgxh62RgjIl3w5waZNLeQezbwvT-xWjI6pKU1VEv-v7drhIoNmMhkZJoVQ3
+          OVs9SDSpF59bTmiJwUBhBDSbPCEIt4RfSoLoy_fsHfwTTkbRpwTFPU1gjxZeLC
+          cmZnHzlZxXsOQ87-zlrvhkbP4y4CKLU0hSNa2M7GO6uCMVFHf1A5qgLb0TDeMv
+          mjra0OOLiqTtReANUWwJP1y8qYwGd1lBFE5phs814Lx0MIyXe4mOzwMhzVKqWw
+          QQnPhOmtZXnETmkO4VAFfr5FKDn0PE5goi4WifAILKln1-JRx-Vo06UghbyUvg
+          Gf2nZuG6PIjH0UYDPKSCUrHSZ_W8WWGhyWBaN-0E6ipDvB-YtaWoj8vbGyWufL
+          rMbCwSc2Ee_zHJWq3RPznBIYfSCT6QVDcfWz8ozilLy06R-l5M1GGIk"
      ]
    }
 
@@ -869,14 +870,14 @@ Table of Contents
    CBOR_JWP_Issued = [
           IssuerHeader : serialized_map,
           payloads : [payload] / nil,
-          proofs : [bstr]
+          proof : [bstr]
       ]
 
    CBOR_JWP_Presented = [
          PresenterHeader : serialized_map,
          IssuerHeaders : serialized_map,
          payloads : [payload] / nil,
-         proofs : [bstr]
+         proof : [bstr]
       ]
 
    empty_or_serialized_map = bstr .cbor header_map
@@ -1374,6 +1375,7 @@ Appendix B.  Document History
 
    -08
 
+   *  Corrected instances of identifier proofs to proof.
    *  Added reference to [RFC9596] for COSE "typ" header parameter.
    *  Made some additional references normative.
 
