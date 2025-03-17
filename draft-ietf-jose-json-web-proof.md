@@ -537,7 +537,7 @@ The Protected Header MUST be JSON-formatted for Compact Serialization. This incl
 
 All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.
 
-Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the `~` character.
+Payloads and proof values are each concatenated into a single text form by concatenating the BASE64URL encoded values using the `~` character.
 
 Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive `~` characters in the concatenated form.
 
@@ -562,7 +562,7 @@ The `presentation` key has a string value holding the BASE64URL-encoded presenta
 
 The `payloads` key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value `null`. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.
 
-The `proofs` key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.
+The `proof` key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.
 
 This example JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.
 
@@ -592,14 +592,14 @@ Applications MAY use their own tags to tag other specific types of JWPs.
 cbor-jwp-issued = [
        issuer-header : serialized_map,
        payloads : [payload] / nil,
-       proofs : [bstr]
+       proof : [bstr]
    ]
 
 cbor-jwp-presented = [
       presenter-header : serialized_map,
       issuer-header : serialized_map,
       payloads : [payload] / nil,
-      proofs : [bstr]
+      proof : [bstr]
    ]
 
 empty_or_serialized_map = bstr .cbor header_map
@@ -1096,10 +1096,14 @@ for his valuable contributions to this specification.
     concept of claims
   * Change usage of "JWP Protected Header" and "JWP Proof" to "Protected Header" and "Proof"
   * Use draft-bormann-cbor-draft-numbers for externally defined codepoints (e.g. tags)
-  * Added reference to [@!RFC9596] for COSE "typ" header parameter.
-  * Made some additional references normative.
   * Clarify appropriate parameters are defined by applications.
   * Add "application" and "implementation" to terminology.
+
+ -08
+
+  * Corrected instances of identifier `proofs` to `proof`.
+  * Added reference to [@!RFC9596] for COSE "typ" header parameter.
+  * Made some additional references normative.
 
  -07
 

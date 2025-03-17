@@ -860,7 +860,11 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   * Clean up terminology references, e.g. JWP Protected Header is now Protected Header
   * Change Header Parameter to Parameter throughout document
+
+ -08
+
   * Made some additional references normative.
+  * Corrected SU-ES256 issuer protected header including private keys
 
  -07
 
