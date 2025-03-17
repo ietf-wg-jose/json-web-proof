@@ -1062,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 16 September 2025</td>
+<td class="center">Expires 18 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-15" class="published">15 March 2025</time>
+<time datetime="2025-03-17" class="published">17 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-16">16 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-18">18 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1995,7 +1995,7 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <p id="section-7.1-1">The compact serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 <p id="section-7.1-2">The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 <p id="section-7.1-3">All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
-<p id="section-7.1-4">Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-4">Payloads and proof values are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
 <p id="section-7.1-5">Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
 <p id="section-7.1-6">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
 <p id="section-7.1-7">The issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-7.1-7" class="pilcrow">¶</a></p>
@@ -2004,14 +2004,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pbToHFc3cQGIRjg-R6eGGGZahVT8vmGv7zupt7Jz
-Qd518KY94ws879ootymZ0oBWl64AbVLCqlgs2Mbwn8UEUhxJA0cZcSbzlGhxhluN1FfDh
-ROXj1e_Xegvu1r5BPDMmfD8oDeknsEiDlT7detRGeEJd69E-idmYl02Uy0MdriT1dmN9e
-EvFi1m4wefXPL3EcMqjjbx8yl-K7r-B0eG-UStrnJG5GfqN0y4xxRL-6AeYvSu_ej7B8C
-Xe5CWdvp5zIkPjiKZak-hMnBbdpwPDR7fN_dmpWeLxPro-o4kxAnZHFOSkGvxw-3D-jf8
-2pS2b-wA273C8nk_Rl1D4AvyLo_XX0yjJmhW1oactXjxWGtE8uCouxgyGH4gVJUAybzCU
-GOifCpV_Aks4R4QZphuwlV4XpkOrDMTOno1l6q8GeBWqXAVxmlsqJCJKMtFM6ehb3zAvM
-d4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.tsu_e0wdnfhriyMddpekDanMU75YhbAmgXpXtCEU
+Dm94k-IbuoA6Ud1LQilb5hTLgm3LWBRF1fDp_fBqWwUANXYxA70OuLGLu1Df9VuPHZlyY
+-kkdqg_Qaf3dkIYbGwBsl4Ra5pCSJRuztuciE6U6hGCOJcYRLpM7Wvy6W-W5lsm46bSxK
+u-LqTTuvYWOFBdM2UI20gGeZwrZX_7n7oH83kDYKBGZFMhArEE2-5N-FZeS6jtVYPulny
+_38JTVoEZTU3qzW-i0q95AQeqHqxgDFsg908ZQNbPv9JuIVBR7riVGgfsapfMnJw4pU3t
+xeJAQ8JLCbg9bO4SF2iyRdWEn51heuRsx_oqiXHWKsulk88vySPXP1a1B5CuksW79F86h
+s_aE5mq4RY93I0YZWrxrEXmIW06Td1j2Y-ymx1SpAPsyvrZ1hs0lLRimIKeeGK4SZI-0g
+IdQ7TK7C8LYnrH9n_dlMr0neSfFULM-QYt8ts
 
 </pre><a href="#section-7.1-9" class="pilcrow">¶</a>
 </div>
@@ -2030,7 +2030,7 @@ d4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0
 <p id="section-7.2-3">The <code>issuer</code> key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
 <p id="section-7.2-4">The <code>presentation</code> key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
 <p id="section-7.2-5">The <code>payloads</code> key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value <code>null</code>. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.<a href="#section-7.2-5" class="pilcrow">¶</a></p>
-<p id="section-7.2-6">The <code>proofs</code> key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
+<p id="section-7.2-6">The <code>proof</code> key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
 <p id="section-7.2-7">This example JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.<a href="#section-7.2-7" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="section-7.2-8">
 <pre>{
@@ -2048,14 +2048,14 @@ d4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0
     null
   ],
   "proof": [
-    "pbToHFc3cQGIRjg-R6eGGGZahVT8vmGv7zupt7JzQd518KY94ws879ootymZ0oBW
-       l64AbVLCqlgs2Mbwn8UEUhxJA0cZcSbzlGhxhluN1FfDhROXj1e_Xegvu1r5BP
-       DMmfD8oDeknsEiDlT7detRGeEJd69E-idmYl02Uy0MdriT1dmN9eEvFi1m4wef
-       XPL3EcMqjjbx8yl-K7r-B0eG-UStrnJG5GfqN0y4xxRL-6AeYvSu_ej7B8CXe5
-       CWdvp5zIkPjiKZak-hMnBbdpwPDR7fN_dmpWeLxPro-o4kxAnZHFOSkGvxw-3D
-       -jf82pS2b-wA273C8nk_Rl1D4AvyLo_XX0yjJmhW1oactXjxWGtE8uCouxgyGH
-       4gVJUAybzCUGOifCpV_Aks4R4QZphuwlV4XpkOrDMTOno1l6q8GeBWqXAVxmls
-       qJCJKMtFM6ehb3zAvMd4loZIEKCFx4zG18BIJIJQEeUq5C1oC6atqL0"
+    "tsu_e0wdnfhriyMddpekDanMU75YhbAmgXpXtCEUDm94k-IbuoA6Ud1LQilb5hTL
+       gm3LWBRF1fDp_fBqWwUANXYxA70OuLGLu1Df9VuPHZlyY-kkdqg_Qaf3dkIYbG
+       wBsl4Ra5pCSJRuztuciE6U6hGCOJcYRLpM7Wvy6W-W5lsm46bSxKu-LqTTuvYW
+       OFBdM2UI20gGeZwrZX_7n7oH83kDYKBGZFMhArEE2-5N-FZeS6jtVYPulny_38
+       JTVoEZTU3qzW-i0q95AQeqHqxgDFsg908ZQNbPv9JuIVBR7riVGgfsapfMnJw4
+       pU3txeJAQ8JLCbg9bO4SF2iyRdWEn51heuRsx_oqiXHWKsulk88vySPXP1a1B5
+       CuksW79F86hs_aE5mq4RY93I0YZWrxrEXmIW06Td1j2Y-ymx1SpAPsyvrZ1hs0
+       lLRimIKeeGK4SZI-0gIdQ7TK7C8LYnrH9n_dlMr0neSfFULM-QYt8ts"
   ]
 }
 
@@ -2087,14 +2087,14 @@ Applications MAY use their own tags to tag other specific types of JWPs.<a href=
 <pre>cbor-jwp-issued = [
        issuer-header : serialized_map,
        payloads : [payload] / nil,
-       proofs : [bstr]
+       proof : [bstr]
    ]
 
 cbor-jwp-presented = [
       presenter-header : serialized_map,
       issuer-header : serialized_map,
       payloads : [payload] / nil,
-      proofs : [bstr]
+      proof : [bstr]
    ]
 
 empty_or_serialized_map = bstr .cbor header_map
@@ -2914,113 +2914,118 @@ concept of claims<a href="#appendix-B-3.1" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-B-3.3">Use draft-bormann-cbor-draft-numbers for externally defined codepoints (e.g. tags)<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.4">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-3.4">Clarify appropriate parameters are defined by applications.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.5">Made some additional references normative.<a href="#appendix-B-3.5" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-3.6">Clarify appropriate parameters are defined by applications.<a href="#appendix-B-3.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-3.7">Add "application" and "implementation" to terminology.<a href="#appendix-B-3.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-3.5">Add "application" and "implementation" to terminology.<a href="#appendix-B-3.5" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-4">-07<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">-08<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-5.1">Changing primary editor<a href="#appendix-B-5.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-5.1">Corrected instances of identifier <code>proofs</code> to <code>proof</code>.<a href="#appendix-B-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.2">Broad changes to define a CBOR serialization, which leverage
-new CBOR Protected Headers<a href="#appendix-B-5.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.2">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-5.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.3">Deemphasis of JSON in some parts of the document to represent
-CBOR alternatives<a href="#appendix-B-5.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-5.3">Made some additional references normative.<a href="#appendix-B-5.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.4">Rewrite Header Parameter parsing requirements for JSON to
+      </ul>
+<p id="appendix-B-6">-07<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-7.1">Changing primary editor<a href="#appendix-B-7.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-7.2">Broad changes to define a CBOR serialization, which leverage
+new CBOR Protected Headers<a href="#appendix-B-7.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-7.3">Deemphasis of JSON in some parts of the document to represent
+CBOR alternatives<a href="#appendix-B-7.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-7.4">Rewrite Header Parameter parsing requirements for JSON to
 emphasize preference to fail on duplicate headers (to match
 CBOR behavior). Last-encountered remains as an option to match
-ECMA definition.<a href="#appendix-B-5.4" class="pilcrow">¶</a>
+ECMA definition.<a href="#appendix-B-7.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.5">Add option to use CoAP Formats for <code>typ</code> in CBOR mode to match
-COSE, as a compact indirection over full media types.<a href="#appendix-B-5.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.5">Add option to use CoAP Formats for <code>typ</code> in CBOR mode to match
+COSE, as a compact indirection over full media types.<a href="#appendix-B-7.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.6">Modify IANA registry template to account for CBOR Labels in
-header parameters<a href="#appendix-B-5.6" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.6">Modify IANA registry template to account for CBOR Labels in
+header parameters<a href="#appendix-B-7.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.7">Add application/jwp+cbor media type<a href="#appendix-B-5.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.7">Add application/jwp+cbor media type<a href="#appendix-B-7.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.8">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-B-5.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.8">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-B-7.8" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.9">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
+        <li class="compact" id="appendix-B-7.9">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
 <code>presentation_key</code> to better represent that the key may be JSON
-or CBOR-formatted.<a href="#appendix-B-5.9" class="pilcrow">¶</a>
+or CBOR-formatted.<a href="#appendix-B-7.9" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.10">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
+        <li class="compact" id="appendix-B-7.10">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
 where they are defined. Consolidated usage, purpose and
-requirements from algorith musage under these definitions.<a href="#appendix-B-5.10" class="pilcrow">¶</a>
+requirements from algorith musage under these definitions.<a href="#appendix-B-7.10" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.11">Clarified that <code>proof_key</code> and <code>presentation_key</code> are required
+        <li class="compact" id="appendix-B-7.11">Clarified that <code>proof_key</code> and <code>presentation_key</code> are required
 by particular algorithms and are not more generally required for
-issued and presented JWPs.<a href="#appendix-B-5.11" class="pilcrow">¶</a>
+issued and presented JWPs.<a href="#appendix-B-7.11" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-5.12">Move <code>claims</code> to JPT to live beside <code>cid</code>, and renumber CBOR
-labels so that they may be adjacent<a href="#appendix-B-5.12" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-B-6">-06<a href="#appendix-B-6" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-B-7.1">Update reference to new repository home.<a href="#appendix-B-7.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-7.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-7.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-7.3">Added additional clarification around the compact and JSON serializations<a href="#appendix-B-7.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-7.4">Added text around fully detached payloads<a href="#appendix-B-7.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-7.12">Move <code>claims</code> to JPT to live beside <code>cid</code>, and renumber CBOR
+labels so that they may be adjacent<a href="#appendix-B-7.12" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-8">-05<a href="#appendix-B-8" class="pilcrow">¶</a></p>
+<p id="appendix-B-8">-06<a href="#appendix-B-8" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-9.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-9.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-9.1">Update reference to new repository home.<a href="#appendix-B-9.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.2">Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.<a href="#appendix-B-9.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-9.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-9.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-9.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-9.3">Added additional clarification around the compact and JSON serializations<a href="#appendix-B-9.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-9.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-9.4">Added text around fully detached payloads<a href="#appendix-B-9.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-10">-04<a href="#appendix-B-10" class="pilcrow">¶</a></p>
+<p id="appendix-B-10">-05<a href="#appendix-B-10" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-11.1">Refactoring figures and examples to be built from a common set across all three documents.<a href="#appendix-B-11.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-11.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-11.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.2">Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.<a href="#appendix-B-11.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-11.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-11.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-12">-03<a href="#appendix-B-12" class="pilcrow">¶</a></p>
+<p id="appendix-B-12">-04<a href="#appendix-B-12" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-13.1">Improvements resulting from a full proofreading.<a href="#appendix-B-13.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-13.2">Populated IANA Considerations section.<a href="#appendix-B-13.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-13.3">Specified JWP Header Parameters.<a href="#appendix-B-13.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-13.4">Specified representation of zero-length disclosed payloads for the compact serialization.<a href="#appendix-B-13.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-13.5">Specified that algorithms may supply multiple octet strings for the proof, which are separated by <code>~</code> characters in the compact serialization.<a href="#appendix-B-13.5" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-13.6">Updated to use BBS draft -05.<a href="#appendix-B-13.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-13.7">Added Terminology Section.<a href="#appendix-B-13.7" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-13.1">Refactoring figures and examples to be built from a common set across all three documents.<a href="#appendix-B-13.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-14">-02<a href="#appendix-B-14" class="pilcrow">¶</a></p>
+<p id="appendix-B-14">-03<a href="#appendix-B-14" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-15.1">Update reference to current BBS algorithm<a href="#appendix-B-15.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-15.1">Improvements resulting from a full proofreading.<a href="#appendix-B-15.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-15.2">Populated IANA Considerations section.<a href="#appendix-B-15.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-15.3">Specified JWP Header Parameters.<a href="#appendix-B-15.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-15.4">Specified representation of zero-length disclosed payloads for the compact serialization.<a href="#appendix-B-15.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-15.5">Specified that algorithms may supply multiple octet strings for the proof, which are separated by <code>~</code> characters in the compact serialization.<a href="#appendix-B-15.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-15.6">Updated to use BBS draft -05.<a href="#appendix-B-15.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-15.7">Added Terminology Section.<a href="#appendix-B-15.7" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-16">-01<a href="#appendix-B-16" class="pilcrow">¶</a></p>
+<p id="appendix-B-16">-02<a href="#appendix-B-16" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-17.1">Correct cross-references within group.<a href="#appendix-B-17.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-17.1">Update reference to current BBS algorithm<a href="#appendix-B-17.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-18">-00<a href="#appendix-B-18" class="pilcrow">¶</a></p>
+<p id="appendix-B-18">-01<a href="#appendix-B-18" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-19.1">Created initial working group draft based on draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-19.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-19.1">Correct cross-references within group.<a href="#appendix-B-19.1" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="appendix-B-20">-00<a href="#appendix-B-20" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-21.1">Created initial working group draft based on draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-21.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
