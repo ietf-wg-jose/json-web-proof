@@ -10,18 +10,18 @@
     171,    / "given_name"  (draft-maldant-spice-oidc-cwt-01 TBD2) / 
     179,    / "email"       (draft-maldant-spice-oidc-cwt-01 TBD10) /
     187,    / "address"     (draft-maldant-spice-oidc-cwt-01 TBD18) /
-    "https://schema.example.org/age_over_21"
+    "age_over_21"
   ],
   8: {      / proof key /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'514213758b9818378ff7b4e4934f2a7d16c6ba1a11dcb7a640246b5b3952f83a', / x / 
-    -3: h'209c55993c4221578dc829a4eac1fc09e3bbcd1ac9d64e874043d25ca63a1f77'  / y / 
+    / proof-x / 
+    / proof-y / 
   },
   9: {      / presentation key /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'cbdc2723bcd862b91c5e97798fd3b7aa24433319a13dd35f6cfcc7b4b20bfc7d', / x / 
-    -3: h'0360095e2018ae54867f038d81f7d759a3674d7c7e3172123c5462c173291248'  / y / 
+    / ephemeral-x / 
+    / ephemeral-y / 
   }
 }
