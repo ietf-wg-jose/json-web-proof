@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-16T00:56:47.699867+00:00",
+  "timestamp": "2025-03-18T00:52:51.366159+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -10017,13 +10017,13 @@
       "labels": [],
       "body": "Aiming to unify header parameters and claims, and to define a mechanism to reference the existing claims registries for JWT/CWT.\r\n\r\nImmediate tasks:\r\n\r\n- [x] Determine if [draft-bormann-cbor-draft-numbers](https://datatracker.ietf.org/doc/draft-bormann-cbor-draft-numbers/) is planned to be a recommendation by the CBOR WG, and how to properly use it for tags\r\n- [x] Convert Header Parameter -> Parameter in JPA, and verify there aren't other impacts\r\n- [ ] Coordinate JPT changes with @selfissued \r\n- [x] Parameter validity must be defined by the application - parameters exist to have common semantics for processing",
       "createdAt": "2025-03-11T20:57:45Z",
-      "updatedAt": "2025-03-15T07:55:20Z",
+      "updatedAt": "2025-03-17T12:13:51Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
-      "baseRefOid": "44cc4363d104fc1772e259ffe0ac12b14dcf1acc",
+      "baseRefOid": "b5047b3e1ba6134bf8f183c5c1b1ea2b54592236",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "parameters-refactor",
-      "headRefOid": "3afe3bcd27af7fc835573cdcd0b326d20d14f1f7",
+      "headRefOid": "2f3aa33af7b90bb164eb09f3806211cdcf0f40e5",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -10161,6 +10161,90 @@
           "body": "LGTM",
           "createdAt": "2025-03-15T07:43:50Z",
           "updatedAt": "2025-03-15T07:43:50Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 156,
+      "id": "PR_kwDOFsQObc6Ozyxc",
+      "title": "SU-ES256 issuer protected header no longer includes private keys",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/156",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Correction to generation code for example",
+      "createdAt": "2025-03-16T07:02:13Z",
+      "updatedAt": "2025-03-16T07:50:32Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "44cc4363d104fc1772e259ffe0ac12b14dcf1acc",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "fix-example-public-keys",
+      "headRefOid": "c108b4c5e2eb8fd1b44b55b01f5be918d2dbc689",
+      "closedAt": "2025-03-16T07:50:32Z",
+      "mergedAt": "2025-03-16T07:50:31Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "92cccc81066fe63041cec725aad97dc653f7d7fe"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6gP8iF",
+          "commit": {
+            "abbreviatedOid": "c108b4c"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-16T07:04:19Z",
+          "updatedAt": "2025-03-16T07:04:19Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 157,
+      "id": "PR_kwDOFsQObc6O0Eyl",
+      "title": "Correct uses of identifier \"proofs\" to \"proof\"",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/157",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-16T09:45:36Z",
+      "updatedAt": "2025-03-16T09:48:05Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "92cccc81066fe63041cec725aad97dc653f7d7fe",
+      "headRepository": "selfissued/json-web-proofs",
+      "headRefName": "mbj-identifier-proof",
+      "headRefOid": "70fcc7d6e5804400c0984f484959de8970a65a48",
+      "closedAt": "2025-03-16T09:48:05Z",
+      "mergedAt": "2025-03-16T09:48:05Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "b5047b3e1ba6134bf8f183c5c1b1ea2b54592236"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6gQL2p",
+          "commit": {
+            "abbreviatedOid": "70fcc7d"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-16T09:48:00Z",
+          "updatedAt": "2025-03-16T09:48:00Z",
           "comments": []
         }
       ]
