@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jose": "^5",
+    "jose": "^6",
     "jsonpath": "^1.1.1",
     "@mattrglobal/pairing-crypto": "file:mattrglobal-pairing-crypto-df72bf1b.tgz"
   }
