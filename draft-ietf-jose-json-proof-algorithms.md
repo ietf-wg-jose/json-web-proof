@@ -643,7 +643,7 @@ Algorithm Analysis Documents(s):
 
 The following examples use algorithms defined in JSON Proof Algorithms and also contain the keys used, so that implementations can validate these samples.
 
-## Example Single-Use JWP
+## Example JSON-Serialized Single-Use JWP
 
 This example uses the Single-Use Algorithm as defined in JSON Proof Algorithms to create a JSON Proof Token.  It demonstrates how to apply selective disclosure using an array of traditional JWS-based signatures.  Unlinkability is only achieved by using each JWP one time, as multiple uses are inherently linkable via the traditional ECDSA signature embedded in the proof.
 
@@ -712,6 +712,26 @@ And also in compact serialization:
 
 <{{./fixtures/build/su-es256-presentation.compact.jwp.wrapped}}>
 Figure: Final Presentation in Compact Serialization
+
+## Example CBOR-Serialized Single-Use JPT
+
+This example is meant to mirror the prior JSON serialization, using
+[RFC8392] (CWT) and claims from [@I-D.maldant-spice-oidc-cwt#02],
+illustrated using [@I-D.ietf-cbor-edn-literals] (EDN).
+
+To simplify this example, the same public and private keys from the
+Single-Use JPT are reused for this example.
+
+<{{./fixtures/build/cpt-issuer-protected-header.edn}}>
+Figure: Issuer Protected Header (CBOR)
+
+<{{./fixtures/template/cpt-issuer-payloads.edn}}>
+Figure: Payloads.
+
+When signed and serialized, the JPT is represented by the following
+CBOR (in hex):
+
+<{{./fixtures/build/cpt-issued-form.cbor.hex}}>
 
 ## Example BBS JWP
 

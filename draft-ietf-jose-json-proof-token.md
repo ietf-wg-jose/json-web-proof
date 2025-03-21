@@ -251,7 +251,7 @@ A disclosed payload of a CPT is represented as a CBOR value.
 ## Undisclosed
 
 The placeholder indicating that a payload was not disclosed is represented as
-described in Section 6 (Serializations) of [@!I-D.ietf-jose-json-web-proof].
+described in [@!I-D.ietf-jose-json-web-proof, section 6] (Serializations).
 
 ## Proof Methods
 
@@ -267,9 +267,9 @@ A proof method may be custom based on the capabilities of the algorithm.
   * knowledge
   * linking
 
-# Example JPTs
+# Example JPT and CPT
 
-See the examples in Appendix A.1 of [@I-D.ietf-jose-json-proof-algorithms].
+See the examples in [@I-D.ietf-jose-json-proof-algorithms, section A.1].
 
 # Security Considerations {#security}
 
