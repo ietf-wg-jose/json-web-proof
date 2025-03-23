@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-20T00:52:28.870546+00:00",
+  "timestamp": "2025-03-23T00:57:05.098058+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -10248,6 +10248,60 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 158,
+      "id": "PR_kwDOFsQObc6Pj3Hq",
+      "title": "CBOR fixtures",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/158",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Initial code to generate a CPT example using single use ES256, and corresponding text for the algorithms appendix.",
+      "createdAt": "2025-03-21T04:55:03Z",
+      "updatedAt": "2025-03-21T05:16:26Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "b5047b3e1ba6134bf8f183c5c1b1ea2b54592236",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "cbor-fixtures",
+      "headRefOid": "b0b1269bbb6ed8cafccba1c4b8997271ae5b2965",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 159,
+      "id": "PR_kwDOFsQObc6PrU8d",
+      "title": "Update to JOSE v6",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/159",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Update internal infrastructure to use latest node `jose` library",
+      "createdAt": "2025-03-21T20:59:29Z",
+      "updatedAt": "2025-03-21T20:59:40Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "b5047b3e1ba6134bf8f183c5c1b1ea2b54592236",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "npm-package-update",
+      "headRefOid": "4af6bc77fb70b8f63788d126e2598ea9cc4b19f9",
+      "closedAt": "2025-03-21T20:59:36Z",
+      "mergedAt": "2025-03-21T20:59:36Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "09c0b21a8faf28a83b9f70de59ac1149e5d8d821"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
