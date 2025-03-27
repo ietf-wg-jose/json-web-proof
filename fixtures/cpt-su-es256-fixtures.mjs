@@ -31,20 +31,27 @@ registerEncoder(Buffer, b => [
   ]);
 
 function cborFromString(cborEdnStr, filename) {
-    return cbor.decode(
-        cborEdn.parseEDN(cborEdnStr,
-            { grammarSource: filename,
-                validateUTF8: true
-            }),
-        {
-            rejectBigInts: true,
-            rejectDuplicateKeys: true,
-            rejectFloats: true,
-            rejectLargeNegatives: true,
-            rejectSimple: true,
-            rejectStreaming: true,
-            rejectUndefined: true            
+    return cbor.decode(cborBinaryFromString(cborEdnStr, filename),
+    {
+        rejectBigInts: true,
+        rejectDuplicateKeys: true,
+        rejectFloats: true,
+        rejectLargeNegatives: true,
+        rejectSimple: true,
+        rejectStreaming: true,
+        rejectUndefined: true            
+    });
+}
+
+function cborBinaryFromString(cborEdnStr, filename) {
+    return cborEdn.parseEDN(cborEdnStr,
+        { grammarSource: filename,
+            validateUTF8: true
         });
+}
+
+async function cborBinaryFromFile(filename) {
+    return cborBinaryFromString(await fs.readFile(filename, {encoding: "utf-8"}), filename);
 }
 
 async function cborFromFile(filename) {
@@ -91,7 +98,7 @@ var issuerProtectedHeaderText =
         replace("/ ephemeral-y /", "-3: h'" + base64urlToHex(ephemeralPrivateKeyJSON.y).match(/.{1,56}/g).join("' +\n        h'") + "'  / y /");
 await fs.writeFile("./build/cpt-issuer-protected-header.edn", issuerProtectedHeaderText, {encoding: "utf-8"});
 
-const issuerProtectedHeader = await cborFromFile("./build/cpt-issuer-protected-header.edn");
+const issuerProtectedHeaderOctets = await cborBinaryFromFile("./build/cpt-issuer-protected-header.edn");
 const issuerPayloads = await cborFromFile("./template/cpt-issuer-payloads.edn");
 
 // // update issuerProtectedHeader with fresh CWKs
@@ -107,7 +114,6 @@ const payloadOctets = issuerPayloads.map((item) => cbor.encode(item));
 const sigs = [];
 
 // encode/sign the issuer protected header w/ the stable key
-const issuerProtectedHeaderOctets = cbor.encode(issuerProtectedHeader);
 sigs.push(await signPayloadSHA256(issuerProtectedHeaderOctets, issuerPrivateKey));
 
 // sign each payload with the ephemeral key
@@ -116,75 +122,46 @@ for (let payload of payloadOctets) {
     sigs.push(signature);
 };
 
-let cborSerialization = cbor.encode([
+let issuedFormCborSerialization = cbor.encode([
     issuerProtectedHeaderOctets,
     issuerPayloads,
     sigs
 ]);
 
 // merge final signature
-await fs.writeFile("./build/cpt-issuer-proof.cbor", cborSerialization);
+await fs.writeFile("./build/cpt-issuer-form.cbor", issuedFormCborSerialization);
 
 // hex encode and create a 64 character width block
-let hex = uint8ArrayToHex(cborSerialization);
+let hex = uint8ArrayToHex(issuedFormCborSerialization);
 let wrapped = [...hex.matchAll(/.{1,64}/g)].flatMap((m) => m).join("\n");
 
 await fs.writeFile("./build/cpt-issued-form.cbor.hex", wrapped, {encoding: "UTF-8"});
-// // Compact Serialization
-// let compactSerialization = [
-//     encode(issuerProtectedHeader),
-//     payloads.map(compactPayloadEncode).join("~"),
-//     sigs.map(encode).join("~")
-// ].join(".");
 
-// await fs.writeFile("build/su-es256-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
-// await fs.writeFile("build/su-es256-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
+// modify the EDN for the holder protected header to include the generated nonce
+var holderProtectedHeaderText = 
+    (await fs.readFile("./template/cpt-holder-protected-header.edn", {encoding: "utf-8"})).
+        replace("/ nonce /", "7: h'" + uint8ArrayToHex(presentationNonce) + "', / nonce /");
+await fs.writeFile("./build/cpt-presentation-protected-header.edn", holderProtectedHeaderText, {encoding: "utf-8"});
 
-// // JSON Serialization
-// let jsonSerialization = {
-//     issuer: encode(issuerProtectedHeader),
-//     payloads: payloads.map(jsonPayloadEncode),
-//     proof: sigs.map(encode)
-// };
+// load in 
+var holderProtectedHeaderOctets = await cborBinaryFromFile("./build/cpt-holder-protected-header.edn");
+let signature = await signPayloadSHA256(holderProtectedHeaderOctets, holderPrivateKey);
+await fs.writeFile("build/cpt-presentation-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
 
-// let jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);
-// await fs.writeFile("build/su-es256-issuer.json.jwp", jsonSerializationStr);
-// await fs.writeFile("build/su-es256-issuer.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));
+sigs.splice(1, 0, signature);
+sigs.splice(7, 2); // remove last two 
+issuerPayloads[7] = null;
+issuerPayloads[8] = null;
 
-// holderProtectedHeaderJSON.nonce = presentationNonceStr;
-// let holderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHeaderJSON), "UTF-8");
-// await fs.writeFile("build/su-es256-presentation-protected-header.json", JSON.stringify(holderProtectedHeaderJSON, null, 2), {encoding: "UTF-8"});
-// await fs.writeFile("build/su-es256-presentation-protected-header.json.wrapped", lineWrap(JSON.stringify(holderProtectedHeaderJSON, null, 2)), {encoding: "UTF-8"});
+let presentedFormCborSerialization = cbor.encode([
+    holderProtectedHeaderOctets,
+    issuerProtectedHeaderOctets,
+    issuerPayloads,
+    sigs
+]);
 
-// await fs.writeFile("build/su-es256-holder-protected-header.b64.wrapped", lineWrap(encode(holderProtectedHeader)), "UTF-8");
-
-// let signature = await signPayloadSHA256(holderProtectedHeader, holderPrivateKey);
-// await fs.writeFile("build/su-es256-holder-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
-
-// sigs.splice(1, 0, signature);
-// sigs.splice(7, 2); // remove last two 
-// payloads[7] = null;
-// payloads[8 ] = null;
-// await fs.writeFile("build/su-es256-presentation-proof.json.wrapped", lineWrap(JSON.stringify(sigs.map(encode), 0, 2)), {encoding: "UTF-8"});
-
-// // Compact Serialization
-// compactSerialization = [
-//     encode(holderProtectedHeader),
-//     encode(issuerProtectedHeader),
-//     payloads.map(compactPayloadEncode).join("~"),
-//     sigs.map(encode).join("~")
-// ].join(".");
-// await fs.writeFile("build/su-es256-presentation.compact.jwp", compactSerialization, {encoding: "UTF-8"});
-// await fs.writeFile("build/su-es256-presentation.compact.jwp.wrapped", lineWrap(compactSerialization));
-
-// // JSON Serialization
-// jsonSerialization = {
-//     presentation: encode(holderProtectedHeader),
-//     issuer: encode(issuerProtectedHeader),
-//     payloads: payloads.map(jsonPayloadEncode),
-//     proof: sigs.map(encode)
-// };
-
-// jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);
-// await fs.writeFile("build/su-es256-presentation.json.jwp", jsonSerializationStr);
-// await fs.writeFile("build/su-es256-presentation.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));
+await fs.writeFile("./build/cpt-presented-form.cbor", presentedFormCborSerialization);
+// hex encode and create a 64 character width block
+hex = uint8ArrayToHex(presentedFormCborSerialization);
+wrapped = [...hex.matchAll(/.{1,64}/g)].flatMap((m) => m).join("\n");
+await fs.writeFile("./build/cpt-presented-form.cbor.hex", wrapped, {encoding: "UTF-8"});

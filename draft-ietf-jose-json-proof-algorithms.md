@@ -712,7 +712,7 @@ And also in compact serialization:
 <{{./fixtures/build/su-es256-presentation.compact.jwp.wrapped}}>
 Figure: Presentation (SU-ES256, Compact Serialization)
 
-## Example CBOR-Serialized Single-Use JPT
+## Example CBOR-Serialized Single-Use CPT
 
 This example is meant to mirror the prior JSON serialization, using
 [RFC8392] (CWT) and claims from [@I-D.maldant-spice-oidc-cwt#02],
@@ -727,10 +727,23 @@ Figure: Issuer Protected Header (SU-ES256, CBOR)
 <{{./fixtures/template/cpt-issuer-payloads.edn}}>
 Figure: Issuer Payloads (as CBOR array)
 
-When signed and serialized, the JPT is represented by the following
+When signed and serialized, the CPT is represented by the following
 CBOR (in hex):
 
 <{{./fixtures/build/cpt-issued-form.cbor.hex}}>
+Fixtures: Issued Form (SU-ES256, CBOR)
+
+With the holder presenting using the same parameters and selective disclosure as in the previous
+appendix:
+
+<{{./fixtures/build/cpt-presentation-protected-header.edn}}>
+Figure: Holder Protected Header (SU-ES256, CBOR)
+
+When the appropriate proof is generated and the message is serialized,
+the CPT is represented by the following CBOR (in hex):
+
+<{{./fixtures/build/cpt-presented-form.cbor.hex}}>
+Figure: Presented Form (SU-ES256, CBOR)
 
 ## Example BBS JWP
 

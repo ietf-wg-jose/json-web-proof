@@ -1,0 +1,5 @@
+{          / protected header /
+  1: 1,    / alg: "SU-ES256" /
+  6: "https://recipient.example.com", / aud /
+  / nonce /
+}
