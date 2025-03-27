@@ -1062,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 22 September 2025</td>
+<td class="center">Expires 28 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-21" class="published">21 March 2025</time>
+<time datetime="2025-03-27" class="published">27 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-22">22 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-28">28 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1913,7 +1913,7 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <p id="section-6.1-1">The compact serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1-2">The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.1-3">All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1-4">Payloads and proofs are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.1-4">Payloads and proof values are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
 <p id="section-6.1-5">Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
 <p id="section-6.1-6">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
 <p id="section-6.1-7">The issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
@@ -1922,14 +1922,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jIRBIqiQ5fLMllpOR3fJeYR7tbDsf9RMS6KRJUxQ
-V-blRIFOOD7bz9tPJ-ddIHV2t9mibwoOfMXTlhwT7aB_YkTNxgpKj6A7FW45eYG1heve7
-2hlCUbst0UXuEyZ8SDgtCSsR9M6L1D5Pe_YPj1sEd3ss0gYM4kiwoJua9a1Cy7yCBmpw-
-dJHgQqVbJbjrk7SDLkhHBm6m2wVmCkwluuxSmhZo8oCRo-crc3r2kDa6xrExr6dVOEYHU
-lTQ98JZ8ctd4PV5kiWYKICbLvjcLy3iF7kCnX8O59kjnjkD612tOkPWgUVjMnc2lUDF05
-QpWsIJzhVc5KgIWCxtHygIWsm-Y6Il1f1gfaqzgqy1vSO9hj34GRJS2ocPOzqDclOdhNh
-ti8VSgDO49gXXpC-VoDIFGA_vByNP3S4pjZh76pgg9ntZkr6T9bTAmE1jK5JtcrXCZpla
-Zs-uPv-C7blE2DmFLbq7A-UZLaKN5ATn6NSxA
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.oJeSIYlcWuh49HdIvPL_yME9Tonzal9FQ6-VNNj7
+Cmx8vVuyw0fHHiHG-ep06XZhoF5KFwR6s-QNDhT_cmcWDkPh8JbyupDf_huywBHzQXhBk
+X_4sDZ0C38Ps43U_Hm6rwX3R4wSyGfaZPmJ5fvKst7or4jtyQK68OCa8oKRnWSYYL4Mn-
+Eu5zDRdYmi2EgnS-ojaaRPyIuiXFvyKNWq488aKQI2YqZ-TUx1bdKpZFk7tLE80md33k3
+KmGBkdxHEDvs9zG92TzgFsuIAsQOuOUb3FMknj9aqB05JNnPh5SzyXO_nc0PNkjxGp2wk
+nIFmY66j0RcKErthRFkVwNmEFBnND6ynJKZa5TiWoLT4Uvcl2JFfJfBc8K2hzk27RYXxG
+OQRH6I0ieDLaXbJahcJKjK1NN-NGicPeqAoJ6WxUo-bvFE321ut7XjgPQPlYJ1DSfW-L0
+8T9wpo0n6R6h-qqoS2sfan2sq_DZ5MprW0pUk
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -1948,7 +1948,7 @@ Zs-uPv-C7blE2DmFLbq7A-UZLaKN5ATn6NSxA
 <p id="section-6.2-3">The <code>issuer</code> key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <p id="section-6.2-4">The <code>presentation</code> key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <p id="section-6.2-5">The <code>payloads</code> key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value <code>null</code>. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.2-6">The <code>proofs</code> key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">The <code>proof</code> key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <p id="section-6.2-7">This example JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="section-6.2-8">
 <pre>{
@@ -1966,14 +1966,14 @@ Zs-uPv-C7blE2DmFLbq7A-UZLaKN5ATn6NSxA
     null
   ],
   "proof": [
-    "jIRBIqiQ5fLMllpOR3fJeYR7tbDsf9RMS6KRJUxQV-blRIFOOD7bz9tPJ-ddIHV2
-       t9mibwoOfMXTlhwT7aB_YkTNxgpKj6A7FW45eYG1heve72hlCUbst0UXuEyZ8S
-       DgtCSsR9M6L1D5Pe_YPj1sEd3ss0gYM4kiwoJua9a1Cy7yCBmpw-dJHgQqVbJb
-       jrk7SDLkhHBm6m2wVmCkwluuxSmhZo8oCRo-crc3r2kDa6xrExr6dVOEYHUlTQ
-       98JZ8ctd4PV5kiWYKICbLvjcLy3iF7kCnX8O59kjnjkD612tOkPWgUVjMnc2lU
-       DF05QpWsIJzhVc5KgIWCxtHygIWsm-Y6Il1f1gfaqzgqy1vSO9hj34GRJS2ocP
-       OzqDclOdhNhti8VSgDO49gXXpC-VoDIFGA_vByNP3S4pjZh76pgg9ntZkr6T9b
-       TAmE1jK5JtcrXCZplaZs-uPv-C7blE2DmFLbq7A-UZLaKN5ATn6NSxA"
+    "oJeSIYlcWuh49HdIvPL_yME9Tonzal9FQ6-VNNj7Cmx8vVuyw0fHHiHG-ep06XZh
+       oF5KFwR6s-QNDhT_cmcWDkPh8JbyupDf_huywBHzQXhBkX_4sDZ0C38Ps43U_H
+       m6rwX3R4wSyGfaZPmJ5fvKst7or4jtyQK68OCa8oKRnWSYYL4Mn-Eu5zDRdYmi
+       2EgnS-ojaaRPyIuiXFvyKNWq488aKQI2YqZ-TUx1bdKpZFk7tLE80md33k3KmG
+       BkdxHEDvs9zG92TzgFsuIAsQOuOUb3FMknj9aqB05JNnPh5SzyXO_nc0PNkjxG
+       p2wknIFmY66j0RcKErthRFkVwNmEFBnND6ynJKZa5TiWoLT4Uvcl2JFfJfBc8K
+       2hzk27RYXxGOQRH6I0ieDLaXbJahcJKjK1NN-NGicPeqAoJ6WxUo-bvFE321ut
+       7XjgPQPlYJ1DSfW-L08T9wpo0n6R6h-qqoS2sfan2sq_DZ5MprW0pUk"
   ]
 }
 
@@ -2005,14 +2005,14 @@ Applications MAY use their own tags to tag other specific types of JWPs.<a href=
 <pre>CBOR_JWP_Issued = [
        IssuerHeader : serialized_map,
        payloads : [payload] / nil,
-       proofs : [bstr]
+       proof : [bstr]
    ]
 
 CBOR_JWP_Presented = [
       PresenterHeader : serialized_map,
       IssuerHeaders : serialized_map,
       payloads : [payload] / nil,
-      proofs : [bstr]
+      proof : [bstr]
    ]
 
 empty_or_serialized_map = bstr .cbor header_map
@@ -2662,11 +2662,11 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dl class="references">
 <dt id="I-D.ietf-jose-json-proof-algorithms">[I-D.ietf-jose-json-proof-algorithms]</dt>
         <dd>
-<span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Algorithms"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-algorithms-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms-07">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Algorithms"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-algorithms-08</span>, <time datetime="2025-03-17" class="refDate">17 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms-08">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-jose-json-proof-token">[I-D.ietf-jose-json-proof-token]</dt>
         <dd>
-<span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Token"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-token-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-07">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Token and CBOR Proof Token"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-token-08</span>, <time datetime="2025-03-17" class="refDate">17 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-08">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -2705,7 +2705,7 @@ using the JWP Compact Serialization.<a href="#section-10.3.1-1" class="pilcrow">
 <dd class="break"></dd>
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
         <dd>
-<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-08</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/api/v1/doc/document/draft-irtf-cfrg-bbs-signatures/">https://datatracker.ietf.org/api/v1/doc/document/draft-irtf-cfrg-bbs-signatures/</a>&gt;</span>. </dd>
+<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-08</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.CoAP.Formats">[IANA.CoAP.Formats]</dt>
         <dd>
@@ -2769,9 +2769,11 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <p id="appendix-B-1">[[ To be removed from the final specification ]]<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">-08<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-3.1">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-3.1">Corrected instances of identifier <code>proofs</code> to <code>proof</code>.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-3.2">Made some additional references normative.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-3.2">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.3">Made some additional references normative.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-07<a href="#appendix-B-4" class="pilcrow">¶</a></p>

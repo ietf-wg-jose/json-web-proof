@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 22 September 2025                        Self-Issued Consulting
+Expires: 28 September 2025                        Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                           21 March 2025
+                                                           27 March 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 September 2025.
+   This Internet-Draft will expire on 28 September 2025.
 
 Copyright Notice
 
@@ -745,8 +745,9 @@ Table of Contents
    All binary data is BASE64URL encoded, including the octets of the
    UTF-8 encoded headers and the individual payloads and proof values.
 
-   Payloads and proofs are each concatenated into a single text form by
-   concatenating the BASE64URL encoded values using the ~ character.
+   Payloads and proof values are each concatenated into a single text
+   form by concatenating the BASE64URL encoded values using the ~
+   character.
 
    Individual payloads are allowed to be omitted; if a payload is
    omitted, it is represented as a zero-length text value, potentially
@@ -773,14 +774,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jIRBIqiQ5fLMllpOR3fJeYR7tbDsf9RMS6KRJUxQ
-   V-blRIFOOD7bz9tPJ-ddIHV2t9mibwoOfMXTlhwT7aB_YkTNxgpKj6A7FW45eYG1heve7
-   2hlCUbst0UXuEyZ8SDgtCSsR9M6L1D5Pe_YPj1sEd3ss0gYM4kiwoJua9a1Cy7yCBmpw-
-   dJHgQqVbJbjrk7SDLkhHBm6m2wVmCkwluuxSmhZo8oCRo-crc3r2kDa6xrExr6dVOEYHU
-   lTQ98JZ8ctd4PV5kiWYKICbLvjcLy3iF7kCnX8O59kjnjkD612tOkPWgUVjMnc2lUDF05
-   QpWsIJzhVc5KgIWCxtHygIWsm-Y6Il1f1gfaqzgqy1vSO9hj34GRJS2ocPOzqDclOdhNh
-   ti8VSgDO49gXXpC-VoDIFGA_vByNP3S4pjZh76pgg9ntZkr6T9bTAmE1jK5JtcrXCZpla
-   Zs-uPv-C7blE2DmFLbq7A-UZLaKN5ATn6NSxA
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.oJeSIYlcWuh49HdIvPL_yME9Tonzal9FQ6-VNNj7
+   Cmx8vVuyw0fHHiHG-ep06XZhoF5KFwR6s-QNDhT_cmcWDkPh8JbyupDf_huywBHzQXhBk
+   X_4sDZ0C38Ps43U_Hm6rwX3R4wSyGfaZPmJ5fvKst7or4jtyQK68OCa8oKRnWSYYL4Mn-
+   Eu5zDRdYmi2EgnS-ojaaRPyIuiXFvyKNWq488aKQI2YqZ-TUx1bdKpZFk7tLE80md33k3
+   KmGBkdxHEDvs9zG92TzgFsuIAsQOuOUb3FMknj9aqB05JNnPh5SzyXO_nc0PNkjxGp2wk
+   nIFmY66j0RcKErthRFkVwNmEFBnND6ynJKZa5TiWoLT4Uvcl2JFfJfBc8K2hzk27RYXxG
+   OQRH6I0ieDLaXbJahcJKjK1NN-NGicPeqAoJ6WxUo-bvFE321ut7XjgPQPlYJ1DSfW-L0
+   8T9wpo0n6R6h-qqoS2sfan2sq_DZ5MprW0pUk
 
    |  Figure: Compact Serialization of Presentation
 
@@ -808,7 +809,7 @@ Table of Contents
    BASE64URL.  This key MUST be included unless the application is using
    detached payloads.
 
-   The proofs key has an array value, representing the array of octet
+   The proof key has an array value, representing the array of octet
    strings produced by the chosen algorithm.  These octets are BASE64URL
    encoded into a JSON array.
 
@@ -831,14 +832,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "jIRBIqiQ5fLMllpOR3fJeYR7tbDsf9RMS6KRJUxQV-blRIFOOD7bz9tPJ-ddIHV2
-          t9mibwoOfMXTlhwT7aB_YkTNxgpKj6A7FW45eYG1heve72hlCUbst0UXuEyZ8S
-          DgtCSsR9M6L1D5Pe_YPj1sEd3ss0gYM4kiwoJua9a1Cy7yCBmpw-dJHgQqVbJb
-          jrk7SDLkhHBm6m2wVmCkwluuxSmhZo8oCRo-crc3r2kDa6xrExr6dVOEYHUlTQ
-          98JZ8ctd4PV5kiWYKICbLvjcLy3iF7kCnX8O59kjnjkD612tOkPWgUVjMnc2lU
-          DF05QpWsIJzhVc5KgIWCxtHygIWsm-Y6Il1f1gfaqzgqy1vSO9hj34GRJS2ocP
-          OzqDclOdhNhti8VSgDO49gXXpC-VoDIFGA_vByNP3S4pjZh76pgg9ntZkr6T9b
-          TAmE1jK5JtcrXCZplaZs-uPv-C7blE2DmFLbq7A-UZLaKN5ATn6NSxA"
+       "oJeSIYlcWuh49HdIvPL_yME9Tonzal9FQ6-VNNj7Cmx8vVuyw0fHHiHG-ep06XZh
+          oF5KFwR6s-QNDhT_cmcWDkPh8JbyupDf_huywBHzQXhBkX_4sDZ0C38Ps43U_H
+          m6rwX3R4wSyGfaZPmJ5fvKst7or4jtyQK68OCa8oKRnWSYYL4Mn-Eu5zDRdYmi
+          2EgnS-ojaaRPyIuiXFvyKNWq488aKQI2YqZ-TUx1bdKpZFk7tLE80md33k3KmG
+          BkdxHEDvs9zG92TzgFsuIAsQOuOUb3FMknj9aqB05JNnPh5SzyXO_nc0PNkjxG
+          p2wknIFmY66j0RcKErthRFkVwNmEFBnND6ynJKZa5TiWoLT4Uvcl2JFfJfBc8K
+          2hzk27RYXxGOQRH6I0ieDLaXbJahcJKjK1NN-NGicPeqAoJ6WxUo-bvFE321ut
+          7XjgPQPlYJ1DSfW-L08T9wpo0n6R6h-qqoS2sfan2sq_DZ5MprW0pUk"
      ]
    }
 
@@ -869,14 +870,14 @@ Table of Contents
    CBOR_JWP_Issued = [
           IssuerHeader : serialized_map,
           payloads : [payload] / nil,
-          proofs : [bstr]
+          proof : [bstr]
       ]
 
    CBOR_JWP_Presented = [
          PresenterHeader : serialized_map,
          IssuerHeaders : serialized_map,
          payloads : [payload] / nil,
-         proofs : [bstr]
+         proof : [bstr]
       ]
 
    empty_or_serialized_map = bstr .cbor header_map
@@ -1261,16 +1262,16 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms]
               Jones, M. B., Waite, D., and J. Miller, "JSON Proof
               Algorithms", Work in Progress, Internet-Draft, draft-ietf-
-              jose-json-proof-algorithms-07, 21 October 2024,
+              jose-json-proof-algorithms-08, 17 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-algorithms-07>.
+              json-proof-algorithms-08>.
 
    [I-D.ietf-jose-json-proof-token]
-              Jones, M. B., Waite, D., and J. Miller, "JSON Proof
-              Token", Work in Progress, Internet-Draft, draft-ietf-jose-
-              json-proof-token-07, 21 October 2024,
+              Jones, M. B., Waite, D., and J. Miller, "JSON Proof Token
+              and CBOR Proof Token", Work in Progress, Internet-Draft,
+              draft-ietf-jose-json-proof-token-08, 17 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-token-07>.
+              json-proof-token-08>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1310,8 +1311,8 @@ Table of Contents
               Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
               BBS Signature Scheme", Work in Progress, Internet-Draft,
               draft-irtf-cfrg-bbs-signatures-08, 3 March 2025,
-              <https://datatracker.ietf.org/api/v1/doc/document/draft-
-              irtf-cfrg-bbs-signatures/>.
+              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
+              bbs-signatures-08>.
 
    [IANA.CoAP.Formats]
               IANA, "CoAP Content-Formats",
@@ -1374,6 +1375,7 @@ Appendix B.  Document History
 
    -08
 
+   *  Corrected instances of identifier proofs to proof.
    *  Added reference to [RFC9596] for COSE "typ" header parameter.
    *  Made some additional references normative.
 
