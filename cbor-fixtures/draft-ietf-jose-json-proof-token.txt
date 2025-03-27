@@ -314,8 +314,7 @@ Table of Contents
 8.2.  Undisclosed
 
    The placeholder indicating that a payload was not disclosed is
-   represented as described in Section 6 of
-   [I-D.ietf-jose-json-web-proof] (Serializations).
+   represented as described in Section 6 (Serializations).
 
 8.3.  Proof Methods
 
