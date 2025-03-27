@@ -886,6 +886,10 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
  -latest
 
+  * Added CBOR (CPT) example to the appendix using SU-ES256
+
+ -08
+
   * Made some additional references normative.
   * Corrected SU-ES256 issuer protected header including private keys
 
