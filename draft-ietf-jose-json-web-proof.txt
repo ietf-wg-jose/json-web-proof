@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 22 September 2025                        Self-Issued Consulting
+Expires: 28 September 2025                        Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                           21 March 2025
+                                                           27 March 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 September 2025.
+   This Internet-Draft will expire on 28 September 2025.
 
 Copyright Notice
 
@@ -774,14 +774,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qvEBeAOgzHyI8ULv03Ui0q7GbJMxG5lPSZyW5QAu
-   FW74Iuc27kpPz9KrfwsfkLNVib_ATz-DprxI5ZlO0DXeidHmOtrWtfAT_6rK9xKk2b9BA
-   mgZDJje0Ir5rSkrNwsBohrYQ7ap65eAFXKrXe_LkTft8Xq8BlbWbLvyp-OUkT0yG0qtL_
-   Iilp6quq3pGu1HSo98lAXsbfHix7fu4Iewfdsr9e3lB0_dLwQwcZj-xcwtABygYFJKEdT
-   eA1lo5PXegVctX4GWhjkWNMFEgX-A_THlXk_8o4u82B41kSStCg_mhBa4oF_Sz4R7dpKS
-   xzmtLBgJf3EjcJtgfS4p36b70Aco3zgc-ng1hSTE7lZoyX5LJ4BG1I4JtfjJhwNY_YKfU
-   GfccmJqtXFsGYVQBh7rhGZe6JZ-Rx8vqXFT6MZ8fo5sKUXmO8J1sjKneZIwH9ITMYTHtF
-   CgZOugbZLNPQtkN59ZOHcJHksWBf9lyqA667o
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qT9njgL5RbEno3SdkiFurX3fho74xejG4DKJEKL1
+   kk4lwZ-PNXWV_NWTZaO7jb9ct9mKgb1BdnthLAzhf5i31s32AvMBrqSuiURgBhbliNHf_
+   -gn032Ayf0Tb2OU3I5akPrgJvLsbZIZZ3W_Mgx2KUPzBIathjlzGLfOhWNMazPMIn6PdV
+   AdRZxdwNc7yce1KO_0IqwGqxQ_vHF_-8M56VtLrcAqQkbmfwBTErkAsrltwMPLdCTnn57
+   bPIMaFRJuhijTsGCy6MDFZkziXQ9_tj0qVRfPD1_kHgE-r-TVeDRacHV7Ok09UKyuXzbj
+   90UaVUHF72nJ6xd43icct_qRbMORGqQsOAC0zTwm_AzFohgJLQU7LRYvOiE9TOJloXSm-
+   GitOignc8gZAr_jxwOZLnPcV76MSZpnMC8X6Nr7cw_4VD-nr5zVceGr23U2vsdtOt_CEJ
+   USPBvsWMhroSY1UJliXAAeoPXPcP5rWCrPLfU
 
    |  Figure: Compact Serialization of Presentation
 
@@ -832,14 +832,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "qvEBeAOgzHyI8ULv03Ui0q7GbJMxG5lPSZyW5QAuFW74Iuc27kpPz9KrfwsfkLNV
-          ib_ATz-DprxI5ZlO0DXeidHmOtrWtfAT_6rK9xKk2b9BAmgZDJje0Ir5rSkrNw
-          sBohrYQ7ap65eAFXKrXe_LkTft8Xq8BlbWbLvyp-OUkT0yG0qtL_Iilp6quq3p
-          Gu1HSo98lAXsbfHix7fu4Iewfdsr9e3lB0_dLwQwcZj-xcwtABygYFJKEdTeA1
-          lo5PXegVctX4GWhjkWNMFEgX-A_THlXk_8o4u82B41kSStCg_mhBa4oF_Sz4R7
-          dpKSxzmtLBgJf3EjcJtgfS4p36b70Aco3zgc-ng1hSTE7lZoyX5LJ4BG1I4Jtf
-          jJhwNY_YKfUGfccmJqtXFsGYVQBh7rhGZe6JZ-Rx8vqXFT6MZ8fo5sKUXmO8J1
-          sjKneZIwH9ITMYTHtFCgZOugbZLNPQtkN59ZOHcJHksWBf9lyqA667o"
+       "qT9njgL5RbEno3SdkiFurX3fho74xejG4DKJEKL1kk4lwZ-PNXWV_NWTZaO7jb9c
+          t9mKgb1BdnthLAzhf5i31s32AvMBrqSuiURgBhbliNHf_-gn032Ayf0Tb2OU3I
+          5akPrgJvLsbZIZZ3W_Mgx2KUPzBIathjlzGLfOhWNMazPMIn6PdVAdRZxdwNc7
+          yce1KO_0IqwGqxQ_vHF_-8M56VtLrcAqQkbmfwBTErkAsrltwMPLdCTnn57bPI
+          MaFRJuhijTsGCy6MDFZkziXQ9_tj0qVRfPD1_kHgE-r-TVeDRacHV7Ok09UKyu
+          Xzbj90UaVUHF72nJ6xd43icct_qRbMORGqQsOAC0zTwm_AzFohgJLQU7LRYvOi
+          E9TOJloXSm-GitOignc8gZAr_jxwOZLnPcV76MSZpnMC8X6Nr7cw_4VD-nr5zV
+          ceGr23U2vsdtOt_CEJUSPBvsWMhroSY1UJliXAAeoPXPcP5rWCrPLfU"
      ]
    }
 
@@ -1262,16 +1262,16 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms]
               Jones, M. B., Waite, D., and J. Miller, "JSON Proof
               Algorithms", Work in Progress, Internet-Draft, draft-ietf-
-              jose-json-proof-algorithms-07, 21 October 2024,
+              jose-json-proof-algorithms-08, 17 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-algorithms-07>.
+              json-proof-algorithms-08>.
 
    [I-D.ietf-jose-json-proof-token]
-              Jones, M. B., Waite, D., and J. Miller, "JSON Proof
-              Token", Work in Progress, Internet-Draft, draft-ietf-jose-
-              json-proof-token-07, 21 October 2024,
+              Jones, M. B., Waite, D., and J. Miller, "JSON Proof Token
+              and CBOR Proof Token", Work in Progress, Internet-Draft,
+              draft-ietf-jose-json-proof-token-08, 17 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-token-07>.
+              json-proof-token-08>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1311,8 +1311,8 @@ Table of Contents
               Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
               BBS Signature Scheme", Work in Progress, Internet-Draft,
               draft-irtf-cfrg-bbs-signatures-08, 3 March 2025,
-              <https://datatracker.ietf.org/api/v1/doc/document/draft-
-              irtf-cfrg-bbs-signatures/>.
+              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
+              bbs-signatures-08>.
 
    [IANA.CoAP.Formats]
               IANA, "CoAP Content-Formats",
