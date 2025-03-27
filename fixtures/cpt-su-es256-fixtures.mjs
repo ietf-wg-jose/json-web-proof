@@ -129,7 +129,7 @@ let issuedFormCborSerialization = cbor.encode([
 ]);
 
 // merge final signature
-await fs.writeFile("./build/cpt-issuer-form.cbor", issuedFormCborSerialization);
+await fs.writeFile("./build/cpt-issued-form.cbor", issuedFormCborSerialization);
 
 // hex encode and create a 64 character width block
 let hex = uint8ArrayToHex(issuedFormCborSerialization);
@@ -144,7 +144,7 @@ var holderProtectedHeaderText =
 await fs.writeFile("./build/cpt-presentation-protected-header.edn", holderProtectedHeaderText, {encoding: "utf-8"});
 
 // load in 
-var holderProtectedHeaderOctets = await cborBinaryFromFile("./build/cpt-holder-protected-header.edn");
+var holderProtectedHeaderOctets = await cborBinaryFromFile("./build/cpt-presentation-protected-header.edn");
 let signature = await signPayloadSHA256(holderProtectedHeaderOctets, holderPrivateKey);
 await fs.writeFile("build/cpt-presentation-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
 
