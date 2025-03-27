@@ -718,8 +718,8 @@ This example is meant to mirror the prior JSON serialization, using
 [RFC8392] (CWT) and claims from [@I-D.maldant-spice-oidc-cwt#02],
 illustrated using [@I-D.ietf-cbor-edn-literals] (EDN).
 
-To simplify this example, the same public and private keys from the
-Single-Use JPT are reused for this example.
+To simplify this example, the same information is represented as the JPT
+example above, including the same public and private keys.
 
 <{{./fixtures/build/cpt-issuer-protected-header.edn}}>
 Figure: Issuer Protected Header (SU-ES256, CBOR)
@@ -733,14 +733,15 @@ CBOR (in hex):
 <{{./fixtures/build/cpt-issued-form.cbor.hex}}>
 Fixtures: Issued Form (SU-ES256, CBOR)
 
-With the holder presenting using the same parameters and selective disclosure as in the previous
-appendix:
+The presented form, similarly to the issued form above, is made with
+the holder conveying the same parameters and the same set of selectively
+disclosed payloads as the JPT above:
 
 <{{./fixtures/build/cpt-presentation-protected-header.edn}}>
 Figure: Holder Protected Header (SU-ES256, CBOR)
 
-When the appropriate proof is generated and the message is serialized,
-the CPT is represented by the following CBOR (in hex):
+When the appropriate proof is generated, the CPT is serialized into the
+following CBOR (in hex):
 
 <{{./fixtures/build/cpt-presented-form.cbor.hex}}>
 Figure: Presented Form (SU-ES256, CBOR)
