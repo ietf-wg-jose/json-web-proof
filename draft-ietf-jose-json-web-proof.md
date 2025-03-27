@@ -276,8 +276,6 @@ be shortened to `example;part="1/2"`.
 
 The `typ` value `jwp` can be used by applications
 to indicate that this object is a JWP using the JWP Compact Serialization.
-The `typ` value `jwp+json` can be used by applications
-to indicate that this object is a JWP using the JWP JSON Serialization.
 Other type values can also be used by applications.
 
 It is RECOMMENDED that the `typ` Header Parameter be used for explicit typing,
@@ -503,9 +501,9 @@ The algorithm is responsible for representing selective disclosure of payloads i
 
 Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The headers and proof are also individually base64url encoded.
 
-Like JWS, JWP supports both a Compact Serialization and a JSON Serialization. These serializations both represent the same JSON-based Protected Header, payloads and proof, and are thus interchangeable without breaking the proof value.
+JWP supports a Compact Serialization inspired by JWS. This serialization represents one or more JSON-based Protected Headers, multiple payloads, and a single proof.
 
-A CBOR-based serialization is also defined, which uses the CBOR for describing Header Parameters. While this supports the same data model and algorithms, the difference in header representations does not allow interchangeability with the Compact Serialization and JSON Serializations.
+A CBOR-based serialization is also defined, which uses the CBOR for describing Header Parameters. While this supports the same data model and algorithms, the difference in header representations does not allow interchangeability with Compact Serialization.
 
 ## Compact Serialization {#CompactSerialization}
 
@@ -527,25 +525,6 @@ The presented form is created by concatenating the base64url-encoded presenter p
 
 <{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}>
 Figure: Compact Serialization of Presentation
-
-## JSON Serialization {#JSONSerialization}
-
-The JSON Serialization is in the form of a JSON object, with property names representing the various components.
-
-The Protected Headers MUST be JSON-formatted for JSON Serialization. This includes both headers sets in presented form.
-
-The `issuer` key has a string value holding the BASE64URL-encoded issuer protected header. This key MUST be included.
-
-The `presentation` key has a string value holding the BASE64URL-encoded presentation protected header. It MUST be included for presented form, and MUST be omitted for issued form.
-
-The `payloads` key has an array value, representing the ordered sequence of payloads. If a payload has been omitted, it is represented by the JSON value `null`. A payload is otherwise reprented by the BASE64URL-encoded form of the payload octets. A zero-length payload does not have special encoding rules as needed by compact encoding, and is represented by the zero-length string output by BASE64URL. This key MUST be included unless the application is using detached payloads.
-
-The `proof` key has an array value, representing the array of octet strings produced by the chosen algorithm. These octets are BASE64URL encoded into a JSON array.
-
-This example JSON serialization shows the presentation form with both the issuer and presentation headers, and with the first and third payloads hidden.
-
-<{{./fixtures/build/bbs-holder.json.jwp.wrapped}}>
-Figure: JSON Serialization of Presentation
 
 ## CBOR Serialization
 
@@ -618,8 +597,6 @@ JWE Header Parameter `cty` (content type) values SHOULD be used:
 
 * `jwp` is used to indicate that the content of the JWE is a JWP
 using the JWP Compact Serialization.
-* `jwp+json` is used to indicate that the content of the JWE is the
-UTF-8 encoding of a JWP using the JWP JSON Serialization.
 * `jwp+cbor` is used to indicate that the plaintext of the COSE
 message is a JWP in CBOR Serialization.
 
@@ -643,8 +620,11 @@ Notes to be expanded:
 * Requirements for supporting algorithms, see JPA
 * Application interface for verification
 * Data minimization of the protected header
-* To prevent accidentally introducing linkability, when an issuer uses the same key with the same grouping of payload types, they SHOULD also use the same issuer protected header.  Each of these headers SHOULD have the same base64url-serialized value to avoid any non-deterministic JSON serialization.
-
+* To prevent accidentally introducing linkability, when an issuer uses
+  the same key with the same grouping of payload types, they SHOULD
+  also use the same issuer protected header. This header SHOULD be
+  represented by the same octets, avoiding distinguishing a JWP
+  due to non-deterministic serialization.
 
 # IANA Considerations
 
@@ -838,10 +818,6 @@ in the IANA "Media Types" registry [@IANA.MediaTypes]
 in the manner described in [@RFC6838],
 which can be used to indicate that the content is
 a JWP using the JWP Compact Serialization.
-This section also registers the `application/jwp+json`
-media type in the IANA "Media Types" registry,
-which can be used to indicate that the content is
-a JWP using the JWP JSON Serialization.
 
 #### The application/jwp Media Type
 * Type name: application
@@ -849,29 +825,6 @@ a JWP using the JWP JSON Serialization.
 * Required parameters: n/a
 * Optional parameters: n/a
 * Encoding considerations: 8bit; application/jwp values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters
-* Security considerations: See (#SecurityConsiderations) of this specification
-* Interoperability considerations: n/a
-* Published specification: this specification
-* Applications that use this media type: TBD
-* Fragment identifier considerations: n/a
-* Additional information:
-  - Magic number(s): n/a
-  - File extension(s): n/a
-  - Macintosh file type code(s): n/a
-* Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
-* Intended usage: COMMON
-* Restrictions on usage: none
-* Author: Michael B. Jones, michael_b_jones@hotmail.com
-* Change Controller: IETF
-* Provisional registration? No
-
-#### The application/jwp+json Media Type
-
-* Type name: application
-* Subtype name: jwp+json
-* Required parameters: n/a
-* Optional parameters: n/a
-* Encoding considerations: 8bit; application/jwp+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
 * Security considerations: See (#SecurityConsiderations) of this specification
 * Interoperability considerations: n/a
 * Published specification: this specification
@@ -1039,6 +992,9 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
+ -latest
+
+  * Remove JSON serialization
 
  -08
 
