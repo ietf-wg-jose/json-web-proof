@@ -1,0 +1,27 @@
+
+{          / protected header /
+  1: 1,     / alg: "SU-ES256" /
+  3: 20,    / typ: "JPT" (20CPA) /
+  5: "https://issuer.example",  / iss: "https://issuer.example" /
+  6: [      / claims /
+    6,      / "iat" /
+    4,      / "exp" / 
+    170,    / "family_name" (I-D.maldant-spice-oidc-cwt TBD1) /
+    171,    / "given_name"  (I-D.maldant-spice-oidc-cwt TBD2) / 
+    179,    / "email"       (I-D.maldant-spice-oidc-cwt TBD10) /
+    187,    / "address"     (I-D.maldant-spice-oidc-cwt TBD18) /
+    "age_over_21"
+  ],
+  8: {      / proof key /
+    1: 2,   / kty : "EC2" /
+    -1: 1,  / crv: "P-256" /
+    / proof-x / 
+    / proof-y / 
+  },
+  9: {      / presentation key /
+    1: 2,   / kty: "EC2" /
+    -1: 1,  / crv: "P-256" /
+    / ephemeral-x / 
+    / ephemeral-y / 
+  }
+}
