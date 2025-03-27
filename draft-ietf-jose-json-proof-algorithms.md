@@ -245,7 +245,7 @@ The operation also takes a vector of indexes into `messages`, describing which p
 
 The output of this operation is the presentation proof, as a single octet string.
 
-Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of `null` in JSON serialization and a zero-length string in compact serialization.
+Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of `null` in CBOR serialization and a zero-length string in compact serialization.
 
 ### Presentation Verification
 
@@ -679,15 +679,10 @@ The final proof value from the Issuer is an array with the octets of the header 
 <{{./fixtures/template/jpt-issuer-payloads.json}}
 Figure: Issuer payloads (JSON, as array)
 
-The resulting JSON serialized JPT using the above examples is:
-
-<{{./fixtures/build/su-es256-issuer.json.jwp.wrapped}}
-Figure: Issued JWP (SU-ES256, JSON Serialization)
-
 The compact serialization of the same JPT is:
 
 <{{./fixtures/build/su-es256-issuer.compact.jwp.wrapped}}
-Figure: Issued JWP (SU-ES256, Compact Serialization)
+Figure: Issued JWP (SU-ES256, JSON, Compact Serialization)
 
 To present this JPT, we first use the following presentation header with a nonce (provided by the Verifier):
 
@@ -695,26 +690,23 @@ To present this JPT, we first use the following presentation header with a nonce
 Figure: Presentation Header (SU-ES256, JSON)
 
 <{{./fixtures/build/su-es256-holder-protected-header.b64.wrapped}}
-Figure: Presentation Header (SU-ES256, JSON, encoded)
+Figure: Presentation Header (SU-ES256, JSON, BASE64URL-Encoded)
 
 When signed with the holder's presentation key, the resulting signature are:
 
 <{{./fixtures/build/su-es256-holder-pop.b64.wrapped}}>
-Figure: Holder Proof-of-Possession (SU-ES256 for JSON serializations)
+Figure: Holder Proof-of-Possession (SU-ES256, JSON)
 
-Then by applying selective disclosure of only the given name and age claims (family name and email hidden), we get the following presented JPT:
-
-<{{./fixtures/build/su-es256-presentation.json.jwp.wrapped}}>
-Figure: Presentation (SU-ES256, JSON Serialization)
-
-And also in compact serialization:
+Then by applying selective disclosure of only the given name and age
+claims (family name and email hidden), we get the following presented
+JPT in compact serialization:
 
 <{{./fixtures/build/su-es256-presentation.compact.jwp.wrapped}}>
-Figure: Presentation (SU-ES256, Compact Serialization)
+Figure: Presentation (SU-ES256, JSON, Compact Serialization)
 
 ## Example CBOR-Serialized Single-Use CPT
 
-This example is meant to mirror the prior JSON serialization, using
+This example is meant to mirror the prior compact serialization, using
 [RFC8392] (CWT) and claims from [@I-D.maldant-spice-oidc-cwt#02],
 illustrated using [@I-D.ietf-cbor-edn-literals] (EDN).
 
@@ -762,26 +754,20 @@ For the following protected header and array of payloads:
 <{{./fixtures/template/jpt-issuer-protected-header.json}}
 Figure: Example issuer protected header
 
-These components are signed using the private issuer key previously given, which is then representable in the following serializations:
-
-<{{./fixtures/build/bbs-issuer.json.jwp.wrapped}}
-Figure: Issued JWP (JSON serialization)
+These components are signed using the private issuer key previously given, which is then representable in the following serialization:
 
 <{{./fixtures/build/bbs-issuer.compact.jwp.wrapped}}
-Figure: Issued JWP (compact serialization)
+Figure: Issued JWP (BBS, JSON, Compact Serialization)
 
 For a presentation with the following presentation header:
 
 <{{./fixtures/template/bbs-holder-presentation-header.json}}
 Figure: Holder Presentation Header
 
-The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:
-
-<{{./fixtures/build/bbs-holder.json.jwp.wrapped}}
-Figure: Presentation JWP (JSON serialization)
+The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serialization:
 
 <{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}
-Figure: Presentation JWP (compact serialization)
+Figure: Presentation JWP (BBS, JSON, Compact serialization)
 
 ## Example MAC JWP
 
@@ -813,34 +799,29 @@ Figure: Example issuer payloads (as members of a JSON array)
 The first MAC is generated using the key `issuer_header` and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:
 
 <{{./fixtures/build/mac-h256-issuer-protected-header-mac.txt}}
-Figure: Issuer MAC of protected header (base64url-encoded)
+Figure: Issuer MAC of protected header (BASE64URL-Encoded)
 
 The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload (as `payload_{n}` in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:
 
 <{{./fixtures/build/mac-h256-issuer-derived-payload-keys.json}}
-Figure: Derived payload keys (base64url-encoded)
+Figure: Derived payload keys (BASE64URL-Encoded)
 
 A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values:
 
 <{{./fixtures/build/mac-h256-payload-macs.json}}
-Figure: Payload MAC values (base64url-encoded)
+Figure: Payload MAC values (BASE64URL-Encoded)
 
 The issuer protected header MAC and the payload MAC octet strings are concatenated into a single value known as the combined MAC representation. This representation is signed with the issuer's private key.
 
 The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.
 
 <{{./fixtures/build/mac-h256-issued-proof.json.wrapped}}
-Figure: Issued Proof (base64url-encoded)
+Figure: Issued Proof (BASE64URL-Encoded)
 
-The final issued JWP in JSON serialization is:
-
-<{{./fixtures/build/mac-h256-issuer.json.jwp.wrapped}}
-Figure: Issued JWP (in JSON serialization)
-
-The same JWP in compact serialization:
+The final issued JWP in compact serialization is:
 
 <{{./fixtures/build/mac-h256-issuer.compact.jwp.wrapped}}
-Figure: Issued JWP (in compact serialization)
+Figure: Issued JWP (MAC-H256, JSON, Compact Serialization)
 
 Next, we show the presentation of the JWP with selective disclosure.
 
@@ -858,17 +839,12 @@ For the disclosed payloads, the holder will provide the corresponding derived ke
 The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:
 
 <{{./fixtures/build/mac-h256-presentation-proof.json.wrapped}}
-Figure: Presentation proof (base64url-encoded)
+Figure: Presentation proof (BASE64URL-Encoded)
 
-The final presented JWP in JSON serialization is:
-
-<{{./fixtures/build/mac-h256-presentation.json.jwp.wrapped}}
-Figure: Presented JWP (in JSON serialization)
-
-The same JWP in compact serialization:
+The final presented JWP in compact serialization is:
 
 <{{./fixtures/build/mac-h256-presentation.compact.jwp.wrapped}}
-Figure: Presented JWP (in compact serialization)
+Figure: Presented JWP (MAC-H256, JSON, Compact Serialization)
 
 # Acknowledgements
 
@@ -886,6 +862,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
  -latest
 
+  * Remove JSON serialization
   * Added CBOR (CPT) example to the appendix using SU-ES256
 
  -08
