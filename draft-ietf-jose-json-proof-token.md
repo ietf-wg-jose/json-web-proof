@@ -251,7 +251,7 @@ A disclosed payload of a CPT is represented as a CBOR value.
 ## Undisclosed
 
 The placeholder indicating that a payload was not disclosed is represented as
-described in [@!I-D.ietf-jose-json-web-proof, section 6] (Serializations).
+described in [@!I-D.ietf-jose-json-web-proof, Section 6] (Serializations).
 
 ## Proof Methods
 
