@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-27T00:53:30.485444+00:00",
+  "timestamp": "2025-03-30T00:58:15.066489+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -10254,26 +10254,62 @@
       "id": "PR_kwDOFsQObc6Pj3Hq",
       "title": "CBOR fixtures",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/158",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Initial code to generate a CPT example using single use ES256, and corresponding text for the algorithms appendix.",
       "createdAt": "2025-03-21T04:55:03Z",
-      "updatedAt": "2025-03-21T05:16:26Z",
+      "updatedAt": "2025-03-27T07:34:14Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
-      "baseRefOid": "b5047b3e1ba6134bf8f183c5c1b1ea2b54592236",
+      "baseRefOid": "09c0b21a8faf28a83b9f70de59ac1149e5d8d821",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "cbor-fixtures",
-      "headRefOid": "b0b1269bbb6ed8cafccba1c4b8997271ae5b2965",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "b57ea790870251e90e504626829143cda4c38a28",
+      "closedAt": "2025-03-27T07:34:14Z",
+      "mergedAt": "2025-03-27T07:34:14Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "8b3ab57f4a6d86012357d4fc264507fe0d185bee"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6iGR39",
+          "commit": {
+            "abbreviatedOid": "4c1ab22"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-27T04:22:55Z",
+          "updatedAt": "2025-03-27T04:22:55Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\ndescribed in [@!I-D.ietf-jose-json-web-proof, Section 6] (Serializations).\r\n```",
+              "createdAt": "2025-03-27T04:22:55Z",
+              "updatedAt": "2025-03-27T04:22:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6iGSml",
+          "commit": {
+            "abbreviatedOid": "4c1ab22"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Approved with a 1-character suggestion.",
+          "createdAt": "2025-03-27T04:24:03Z",
+          "updatedAt": "2025-03-27T04:24:03Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 159,
@@ -10302,6 +10338,53 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 160,
+      "id": "PR_kwDOFsQObc6Qcrtf",
+      "title": "Removing json serialization",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/160",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Per discussion at IETF 122, this change removes JSON serialization\r\n\r\n- [x] first pass at text changes\r\n- [ ] remove templates and fixtures to generate JSON serialized examples\r\n- [ ] proofread changed sections in documents\r\n- [ ] verify document change history",
+      "createdAt": "2025-03-27T18:28:43Z",
+      "updatedAt": "2025-03-27T18:31:35Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "dacc4232cbad80120bcf1674c204e3f15574682b",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "remove-json-serialization",
+      "headRefOid": "9387dd6b42ee244ff6d76141fc03fdcdbba6e216",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6iTqvK",
+          "commit": {
+            "abbreviatedOid": "9387dd6"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-27T18:31:35Z",
+          "updatedAt": "2025-03-27T18:31:35Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\nFigure: Presentation Header (SU-ES256, JSON, Base64url-Encoded)\r\n```",
+              "createdAt": "2025-03-27T18:31:35Z",
+              "updatedAt": "2025-03-27T19:07:03Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
