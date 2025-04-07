@@ -816,7 +816,7 @@ The issuer protected header MAC and the payload MAC octet strings are concatenat
 The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.
 
 <{{./fixtures/build/mac-h256-issued-proof.json.wrapped}}
-Figure: Issued Proof (BASE64URL-Encoded)
+Figure: Issued Proof (Base64url-Encoded)
 
 The final issued JWP in compact serialization is:
 
