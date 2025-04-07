@@ -690,7 +690,7 @@ To present this JPT, we first use the following presentation header with a nonce
 Figure: Presentation Header (SU-ES256, JSON)
 
 <{{./fixtures/build/su-es256-holder-protected-header.b64.wrapped}}
-Figure: Presentation Header (SU-ES256, JSON, BASE64URL-Encoded)
+Figure: Presentation Header (SU-ES256, JSON, Base64url-Encoded)
 
 When signed with the holder's presentation key, the resulting signature are:
 
