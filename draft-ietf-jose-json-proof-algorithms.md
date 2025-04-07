@@ -809,7 +809,7 @@ Figure: Derived payload keys (Base64url-Encoded)
 A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values:
 
 <{{./fixtures/build/mac-h256-payload-macs.json}}
-Figure: Payload MAC values (BASE64URL-Encoded)
+Figure: Payload MAC values (Base64url-Encoded)
 
 The issuer protected header MAC and the payload MAC octet strings are concatenated into a single value known as the combined MAC representation. This representation is signed with the issuer's private key.
 
