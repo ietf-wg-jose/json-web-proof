@@ -617,27 +617,8 @@ Algorithm Analysis Documents(s):
 
 {backmatter}
 
-<reference anchor="VC-DATA-MODEL-2.0" target="https://www.w3.org/TR/vc-data-model-2.0">
-  <front>
-    <title>Verifiable Credentials Data Model 2.0</title>
-    <author fullname="Manu Sporny">
-      <organization>Digital Bazaar</organization>
-    </author>
-    <author fullname="Ted Thibodeau Jr">
-      <organization>OpenLink Software</organization>
-    </author>
-    <author fullname="Ivan Herman">
-      <organization>W3C</organization>
-    </author>
-    <author fullname="Michael B. Jones">
-      <organization>Invited Expert</organization>
-    </author>
-    <author fullname="Gabe Cohen">
-      <organization>Block</organization>
-    </author>
-   <date day="27" month="December" year="2023"/>
-  </front>
-</reference>
+{{common-biblio.md}}
+{{series-draft-biblio.md}}
 
 # Example JWPs
 

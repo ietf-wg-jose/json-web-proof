@@ -402,65 +402,8 @@ The CoAP Content-Format for a CBOR Proof Token (CPT) is as follows.
 
 {backmatter}
 
-<reference anchor="IANA.JOSE" target="https://www.iana.org/assignments/jose">
-  <front>
-    <title>JSON Object Signing and Encryption</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
-<reference anchor="IANA.COSE" target="https://www.iana.org/assignments/cose">
-  <front>
-    <title>CBOR Object Signing and Encryption</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
-<reference anchor="IANA.JWT" target="https://www.iana.org/assignments/jwt">
-  <front>
-    <title>JSON Web Token</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
-<reference anchor="IANA.CWT" target="https://www.iana.org/assignments/cwt">
-  <front>
-    <title>CBOR Web Token</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
-<reference anchor="IANA.MediaTypes" target="https://www.iana.org/assignments/media-types">
-  <front>
-    <title>Media Types</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
-<reference anchor="IANA.CoAP.Formats" target="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">
-  <front>
-    <title>CoAP Content-Formats</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
+{{common-biblio.md}}
+{{series-draft-biblio.md}}
 
 # Acknowledgements
 
