@@ -37,17 +37,6 @@ const compactSerialization = [
 await fs.writeFile("build/bbs-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
 await fs.writeFile("build/bbs-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
 
-// JSON Serialization
-const jsonSerialziation = {
-    issuer: encode(protectedHeader),
-    payloads: payloads.map(jsonPayloadEncode),
-    proof: [ encode(signature) ]
-};
-
-let jsonSerializationStr = JSON.stringify(jsonSerialziation, null, 2);
-await fs.writeFile("build/bbs-issuer.json.jwp", jsonSerializationStr);
-await fs.writeFile("build/bbs-issuer.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));
-
 // Generate proof, selectively disclosing only name and age
 var proof = await pairing.bbs.bls12381_sha256.deriveProof({
     publicKey: keyPair.publicKey.compressed,
@@ -81,15 +70,3 @@ const compactHolderSerialization = [
 ].join(".");
 await fs.writeFile("build/bbs-holder.compact.jwp", compactHolderSerialization, {encoding: "UTF-8"});
 await fs.writeFile("build/bbs-holder.compact.jwp.wrapped", lineWrap(compactHolderSerialization, 0));
-
-// JSON Serialization
-const jsonHolderSerialization = {
-    presentation: encode(presentationHeader),
-    issuer: encode(protectedHeader),
-    payloads: payloads.map(jsonPayloadEncode),
-    proof: [ encode(proof) ]
-};
-
-var jsonHolderSerializationStr = JSON.stringify(jsonHolderSerialization, null, 2);
-await fs.writeFile("build/bbs-holder.json.jwp", jsonHolderSerializationStr, {encoding: "UTF-8"});
-await fs.writeFile("build/bbs-holder.json.jwp.wrapped", lineWrap(jsonHolderSerializationStr, 8), {encoding: "UTF-8"});

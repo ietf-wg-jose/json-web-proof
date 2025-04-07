@@ -68,17 +68,6 @@ let compactSerialization = [
 await fs.writeFile("build/su-es256-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
 await fs.writeFile("build/su-es256-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
 
-// JSON Serialization
-let jsonSerialization = {
-    issuer: encode(issuerProtectedHeader),
-    payloads: payloads.map(jsonPayloadEncode),
-    proof: sigs.map(encode)
-};
-
-let jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);
-await fs.writeFile("build/su-es256-issuer.json.jwp", jsonSerializationStr);
-await fs.writeFile("build/su-es256-issuer.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));
-
 holderProtectedHeaderJSON.nonce = presentationNonceStr;
 let holderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHeaderJSON), "UTF-8");
 await fs.writeFile("build/su-es256-presentation-protected-header.json", JSON.stringify(holderProtectedHeaderJSON, null, 2), {encoding: "UTF-8"});
@@ -104,15 +93,3 @@ compactSerialization = [
 ].join(".");
 await fs.writeFile("build/su-es256-presentation.compact.jwp", compactSerialization, {encoding: "UTF-8"});
 await fs.writeFile("build/su-es256-presentation.compact.jwp.wrapped", lineWrap(compactSerialization));
-
-// JSON Serialization
-jsonSerialization = {
-    presentation: encode(holderProtectedHeader),
-    issuer: encode(issuerProtectedHeader),
-    payloads: payloads.map(jsonPayloadEncode),
-    proof: sigs.map(encode)
-};
-
-jsonSerializationStr = JSON.stringify(jsonSerialization, null, 2);
-await fs.writeFile("build/su-es256-presentation.json.jwp", jsonSerializationStr);
-await fs.writeFile("build/su-es256-presentation.json.jwp.wrapped", lineWrap(jsonSerializationStr, 8));
