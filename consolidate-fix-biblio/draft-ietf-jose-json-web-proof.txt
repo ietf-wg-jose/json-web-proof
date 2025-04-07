@@ -537,7 +537,7 @@ Table of Contents
    When used as a CBOR Protected Header, the value is a binary string.
 
    This definition is intentionally parallel to the nonce claim
-   registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).
+   registered in the IANA "JSON Web Token Claims" registry [IANA.JWT].
 
    Use of this Header Parameter is OPTIONAL.
 
@@ -774,14 +774,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.rsUkkTTnzVGl8Oz_SmdVVYO0wAUku7FXJE-caMYd
-   UTxF7Bjpa2pLUbZ1UT-n8ws3gTxCUOQr3HoL0xw47mblF2rK8zKOifjiUCIWGp4vxPx7i
-   tAEx0b5qJ1Ie14rEsTWpgN6F1vmD69kuOTLiecNrFr1vokNKEP15UA4bRd5maDQdTqOa8
-   A7D1O-g0I2DsroN0aM1TbZLn2fISoPcMWbQOlAvcmiROtoIU5UTcHHucMjcoHg2rY-VM-
-   XNnUeusoXpJBDm-07eVvvCbuOnXkCfExm3BsyQohI0I8ggwcDsasKdEgzDH1mOS8SC5q3
-   N2uaVVF6ANvnNzF2RgWZlsxq6UKoQuxOyKXtc2qbkj6ePWcmiLB9sUbqBbW2ekydPLgG_
-   M0HcNgbr9JMh-m2BGbIk23nOUpmB7cKtKoGXDaU3aFG0XybopPZnAZnrTQcCJ_Hc06eNI
-   xcu5RnO35ymjAQiv5pqYpwMH52IISZRorfLJY
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.ikUWl2I6z5piTOSE71BorBCOTi-KKbuoa-cinn6N
+   ZYYBba70RAMxgnDYoK8a49DZglARWFfn19kEoBdQkfLpq3ZaDQCyFoKGA0Py7uAmvkypf
+   m5VSW4sJVMThqTi6fa-j28AcC33tGfp8onz6QIRH_7__ssbpWZ5Tc1ZiZRjq-ELrupj3P
+   q7iDwHOrSEuWGpToRiMdeY4GzL_wbiqBflFHF6IKwYtE8uPcVw-VYPDKVVQ8zTFWq8_c4
+   Nz6tYAbQcljWXgihWa3lSZ6To9gflzRhYycXhSzaEfpA6nCjHHB27s0hEiGTvN9bsUC1u
+   No2ubdNtjOjZo6RkqylbXzGOZShbTod_LRoLJG-hgt-BLGRrei4xP_CX1yQ2sWlNT-77-
+   9MgpeD867vUMbGmzVQE0l3SlivLbOOzZAzP_1Ov0JS2WsArqOpXBZ_r0CZH6c7pWoq5b5
+   2iPLKq3gXMHBqRvWFWLdjlaFawe_LV_397cJ4
 
    |  Figure: Compact Serialization of Presentation
 
@@ -832,14 +832,14 @@ Table of Contents
        null
      ],
      "proof": [
-       "rsUkkTTnzVGl8Oz_SmdVVYO0wAUku7FXJE-caMYdUTxF7Bjpa2pLUbZ1UT-n8ws3
-          gTxCUOQr3HoL0xw47mblF2rK8zKOifjiUCIWGp4vxPx7itAEx0b5qJ1Ie14rEs
-          TWpgN6F1vmD69kuOTLiecNrFr1vokNKEP15UA4bRd5maDQdTqOa8A7D1O-g0I2
-          DsroN0aM1TbZLn2fISoPcMWbQOlAvcmiROtoIU5UTcHHucMjcoHg2rY-VM-XNn
-          UeusoXpJBDm-07eVvvCbuOnXkCfExm3BsyQohI0I8ggwcDsasKdEgzDH1mOS8S
-          C5q3N2uaVVF6ANvnNzF2RgWZlsxq6UKoQuxOyKXtc2qbkj6ePWcmiLB9sUbqBb
-          W2ekydPLgG_M0HcNgbr9JMh-m2BGbIk23nOUpmB7cKtKoGXDaU3aFG0XybopPZ
-          nAZnrTQcCJ_Hc06eNIxcu5RnO35ymjAQiv5pqYpwMH52IISZRorfLJY"
+       "ikUWl2I6z5piTOSE71BorBCOTi-KKbuoa-cinn6NZYYBba70RAMxgnDYoK8a49DZ
+          glARWFfn19kEoBdQkfLpq3ZaDQCyFoKGA0Py7uAmvkypfm5VSW4sJVMThqTi6f
+          a-j28AcC33tGfp8onz6QIRH_7__ssbpWZ5Tc1ZiZRjq-ELrupj3Pq7iDwHOrSE
+          uWGpToRiMdeY4GzL_wbiqBflFHF6IKwYtE8uPcVw-VYPDKVVQ8zTFWq8_c4Nz6
+          tYAbQcljWXgihWa3lSZ6To9gflzRhYycXhSzaEfpA6nCjHHB27s0hEiGTvN9bs
+          UC1uNo2ubdNtjOjZo6RkqylbXzGOZShbTod_LRoLJG-hgt-BLGRrei4xP_CX1y
+          Q2sWlNT-77-9MgpeD867vUMbGmzVQE0l3SlivLbOOzZAzP_1Ov0JS2WsArqOpX
+          BZ_r0CZH6c7pWoq5b52iPLKq3gXMHBqRvWFWLdjlaFawe_LV_397cJ4"
      ]
    }
 
@@ -1319,6 +1319,9 @@ Table of Contents
               <https://www.iana.org/assignments/core-parameters/core-
               parameters.xhtml#content-formats>.
 
+   [IANA.JWT] IANA, "JSON Web Token",
+              <https://www.iana.org/assignments/jwt>.
+
    [IANA.MediaTypes]
               IANA, "Media Types",
               <https://www.iana.org/assignments/media-types>.
@@ -1372,6 +1375,10 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -latest
+
+   *  Correct informative reference to the IANA JWT registry.
 
    -08
 
