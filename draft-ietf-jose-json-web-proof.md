@@ -499,15 +499,13 @@ The algorithm is responsible for representing selective disclosure of payloads i
 
 # Serializations
 
-Each disclosed payload MUST be base64url encoded when preparing it to be serialized.  The headers and proof are also individually base64url encoded.
+JWP defines two serializations: Compact Serialization and CBOR Serialization. Both serializations represent one or more Protected Headers, multiple Payloads, and a single Proof value.
 
-JWP supports a Compact Serialization inspired by JWS. This serialization represents one or more JSON-based Protected Headers, multiple payloads, and a single proof.
-
-A CBOR-based serialization is also defined, which uses the CBOR for describing Header Parameters. While this supports the same data model and algorithms, the difference in header representations does not allow interchangeability with Compact Serialization.
+JWP Compact Serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. JWP CBOR Serialization provides a compact CBOR-based encoding for more constrained environments.
 
 ## Compact Serialization {#CompactSerialization}
 
-The compact serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. In addition to the alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and "~" characters as separators.
+JWP Compact Serialiation provides a JSON-based encoding of a JWP, expressed in URL-safe characters. In addition to the alphabet of unpadded BASE64URL-safe encoding, Compact Serialization uses the "." and "~" characters as separators. This serialization is inspired by JWS.
 
 The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.
 
@@ -528,6 +526,8 @@ Figure: Compact Serialization of Presentation
 
 ## CBOR Serialization
 
+A CBOR-based serialization is also defined, which uses the CBOR for describing Header Parameters and does not use base64url encoding to ensure safety in text-based protocols. While this supports the same data model and algorithms, the difference in header representations does not allow interchangeability with Compact Serialization.
+
 The CBOR serialization provides a compact binary representation of a JWP.
 The serialization consists of two arrays, representing issued and presented forms.
 
@@ -540,7 +540,7 @@ presented form consists of a four-element array.
 If an individual payload has been omitted, it is represented by the
 CBOR value `nil`. Payloads MUST be included unless the application
 is using detached payloads, which is represented by setting the
-`payloads` value as `nil`.¶
+`payloads` value as `nil`.
 
 Two tags are defined for representing issued and presented JWPs.
 Applications MAY use their own tags to tag other specific types of JWPs.
