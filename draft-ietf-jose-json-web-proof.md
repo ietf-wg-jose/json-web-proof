@@ -396,7 +396,7 @@ string value.
 When used as a CBOR Protected Header, the value is a binary string.
 
 This definition is intentionally parallel to the `nonce` claim
-registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).
+registered in the IANA "JSON Web Token Claims" registry [@IANA.JWT].
 
 Use of this Header Parameter is OPTIONAL.
 
@@ -964,6 +964,10 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
+
+ -latest
+
+  * Correct informative reference to the IANA JWT registry.
 
  -08
 
