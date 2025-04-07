@@ -804,7 +804,7 @@ Figure: Issuer MAC of protected header (Base64url-Encoded)
 The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload (as `payload_{n}` in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:
 
 <{{./fixtures/build/mac-h256-issuer-derived-payload-keys.json}}
-Figure: Derived payload keys (BASE64URL-Encoded)
+Figure: Derived payload keys (Base64url-Encoded)
 
 A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values:
 
