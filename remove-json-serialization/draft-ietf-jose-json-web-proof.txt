@@ -713,25 +713,22 @@ Table of Contents
 
 6.  Serializations
 
-   Each disclosed payload MUST be base64url encoded when preparing it to
-   be serialized.  The headers and proof are also individually base64url
-   encoded.
+   JWP defines two serializations: Compact Serialization and CBOR
+   Serialization.  Both serializations represent one or more Protected
+   Headers, multiple Payloads, and a single Proof value.
 
-   JWP supports a Compact Serialization inspired by JWS.  This
-   serialization represents one or more JSON-based Protected Headers,
-   multiple payloads, and a single proof.
-
-   A CBOR-based serialization is also defined, which uses the CBOR for
-   describing Header Parameters.  While this supports the same data
-   model and algorithms, the difference in header representations does
-   not allow interchangeability with Compact Serialization.
+   JWP Compact Serialiation provides a JSON-based, space-efficient
+   encoding of a JWP in URL-safe characters.  JWP CBOR Serialization
+   provides a compact CBOR-based encoding for more constrained
+   environments.
 
 6.1.  Compact Serialization
 
-   The compact serialiation provides a JSON-based, space-efficient
-   encoding of a JWP in URL-safe characters.  In addition to the
-   alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and
-   "~" characters as separators.
+   JWP Compact Serialiation provides a JSON-based encoding of a JWP,
+   expressed in URL-safe characters.  In addition to the alphabet of
+   unpadded BASE64URL-safe encoding, Compact Serialization uses the "."
+   and "~" characters as separators.  This serialization is inspired by
+   JWS.
 
    The Protected Header MUST be JSON-formatted for Compact
    Serialization.  This includes both headers sets in presented form.
@@ -768,18 +765,24 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.koJrkd3YcvqWaqsUhny62uJ2cqGdNHmWP0b7K6aJ
-   MD10VZ6esCTUf0im9MEEXFFxkW2cl62dtHoNuAJsQ26NXiqTtpP9iwa-FVAllXlT6I9mi
-   RHO7vIMPxEiTgwh15BpszgpXkMYdjpqv-toty8ZWIrUqOr7VzLYn3eyOM9h5UOZ-I0wAj
-   2fMAytkFG2R_tWI0yuHf2aagTphrPB7sHNQFzLsvFNUYaGSwx3sz_PkDckF4e5kjAEkqZ
-   0AgZijIYLGoVLWVB10gVA1o9_O77SegFQSooddHHh8u_QZAx01GVeg6rTmpjEFEliNsci
-   2rrXSrwSOVCmeRpPjbm5Ttvc_W07EP-W_h9vv5HRxZg0mHQAbfg4YcPQHOoONLQQ0UY79
-   q2tx_HJjZB100vw90hn8S57G1ZTyqnDH-_nTUAjar2aTZFhjNQrQaUInJqocJksOjrvqk
-   PaMX-858LCDXVA4P9rYiblcNvVrY-bqClF3V8
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.tB_cfRAlFzfi3XlgH-GjeXpYMr66uQ75bZi1vS47
+   9ZiSnMhyaPGcC-h2xcdS9pZRpXAuTEtK2t6sDnLdc1EOXYIL4c-A4XD-NUk0wFCRzw53C
+   R3_5aO9aUnO69GwJQaRqfxpOsJwl-EWlP0gCCeZOV822i2_7MNHigvPLLSqFR-zU6N1H-
+   e0EElgMh9NNEYbWSpB9Ur3R8ZVdLeWRXp1ChtzorKcyVfHxKLUce3CNwRutwhsjtipTmF
+   gCK0so3vKzMQlKJis3qe5wgNt4n3bzjXsyBHLohglr9JSzjDOYTwAR5hXCLpvnV3oobhQ
+   IX7RP4bN1DdLpJh42Wb-r8dQuNHQcztoauE0kznpvoJUPtNbuOuhQ5V7DNTkncPv6l0WI
+   Syn7HBnAPorl-X6Oi86kBDHXJolb61P5gGiL01t-uy34Yi0rlw1h9fV5i7I6hw4KPrmLU
+   PTkvLySEZb6l_VdDW-R-FVz6m9tPj6STxza2s
 
    |  Figure: Compact Serialization of Presentation
 
 6.2.  CBOR Serialization
+
+   A CBOR-based serialization is also defined, which uses the CBOR for
+   describing Header Parameters and does not use base64url encoding to
+   ensure safety in text-based protocols.  While this supports the same
+   data model and algorithms, the difference in header representations
+   does not allow interchangeability with Compact Serialization.
 
    The CBOR serialization provides a compact binary representation of a
    JWP.  The serialization consists of two arrays, representing issued
@@ -795,7 +798,7 @@ Table of Contents
    If an individual payload has been omitted, it is represented by the
    CBOR value nil.  Payloads MUST be included unless the application is
    using detached payloads, which is represented by setting the payloads
-   value as nil.¶
+   value as nil.
 
    Two tags are defined for representing issued and presented JWPs.
    Applications MAY use their own tags to tag other specific types of
