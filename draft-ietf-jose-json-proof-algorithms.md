@@ -799,7 +799,7 @@ Figure: Example issuer payloads (as members of a JSON array)
 The first MAC is generated using the key `issuer_header` and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:
 
 <{{./fixtures/build/mac-h256-issuer-protected-header-mac.txt}}
-Figure: Issuer MAC of protected header (BASE64URL-Encoded)
+Figure: Issuer MAC of protected header (Base64url-Encoded)
 
 The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload (as `payload_{n}` in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:
 
