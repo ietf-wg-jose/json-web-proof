@@ -839,7 +839,7 @@ For the disclosed payloads, the holder will provide the corresponding derived ke
 The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:
 
 <{{./fixtures/build/mac-h256-presentation-proof.json.wrapped}}
-Figure: Presentation proof (BASE64URL-Encoded)
+Figure: Presentation proof (Base64url-Encoded)
 
 The final presented JWP in compact serialization is:
 
