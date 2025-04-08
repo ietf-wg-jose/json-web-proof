@@ -478,9 +478,8 @@ Table of Contents
    [I-D.ietf-jose-json-web-proof]
               Waite, D., Jones, M. B., and J. Miller, "JSON Web Proof",
               Work in Progress, Internet-Draft, draft-ietf-jose-json-
-              web-proof-08, 17 March 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-web-proof-08>.
+              web-proof-latest, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-jose-json-web-proof>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -504,9 +503,9 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms]
               Jones, M. B., Waite, D., and J. Miller, "JSON Proof
               Algorithms", Work in Progress, Internet-Draft, draft-ietf-
-              jose-json-proof-algorithms-08, 17 March 2025,
+              jose-json-proof-algorithms-latest,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-algorithms-08>.
+              json-proof-algorithms>.
 
    [IANA.COSE]
               IANA, "CBOR Object Signing and Encryption",

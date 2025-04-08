@@ -533,7 +533,7 @@ Table of Contents
    When used as a CBOR Protected Header, the value is a binary string.
 
    This definition is intentionally parallel to the nonce claim
-   registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).
+   registered in the IANA "JSON Web Token Claims" registry [IANA.JWT].
 
    Use of this Header Parameter is OPTIONAL.
 
@@ -765,14 +765,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gHq5XDiHmM7yF_TxXeKaQkpuXFzqQntaCWp0vzA3
-   gdDtTA_R0ja17D0MIn6-6-IXlqQLjxBv7HDD4B-ZptYq1lFSvTT73UVdsjMtj9kh8akRL
-   SaIpCQa9PGQXWYDk9jyl3FmRgF0UdFjxreOuoOIs5FWqZQYBTLxemH3gL-gSy77Q3GDVV
-   xFie_aRuL0MkYwLDcCnG532BFgA7p-tFe9xsLFWlwzuPsLj6JqLk5VNIM8FqtkB8z2IB6
-   oGlwYQIzu3at0RdWE8syXOCaaPg-8OUf60y9niHMtj7craRMH3WeSMh0-fFsJVLAAdRVN
-   z865ENRiQv07-UDofkn7LBXLruDi6QPjv7aw2ryLdInFERkahJw26sKOPuKiqMzoYEGiP
-   fgrzXKX0go9D0luTEbQnRuLCOyyRMNPuKBnDGS08xidiife_LzL4FHvbCfUBkSKQHjPDl
-   NRsFZmJ04JlwLnNNfJnFGWYcgB0QKQy6LxmOs
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.q-ZcyZKADPahvkCyUas4B6c-Pgej2SJ8TrYO4Aln
+   MJrcc3xIhZepkwn1D7EI7utUsKXf3TG0uwd5cB3oucJ1sWrv-lRxF594W2olltKv27B7h
+   qUIh_F24b0pBsTqTADmmXPRQrxwg6Y6ZzzllCeE-19QKetYSbRHfH0FEsImXuwWnMvRVn
+   RJh2gMZ20CYH93AJQAAA-55Sou8rY7McNbG197cyRvNNn22gyeWb3w6PQvrhjVqIGLhRB
+   4un2hpsL8qkAIPLKaVeUfzFVhTCBHQkhl5KtmS-7nc0ZDiHWDnFCnG7NyMcjRcd1d_BYC
+   _SrLII-rYwLA2gj8axkxw_3bpSlxTQWfuHftNloheeeaIwBFrkPwp0XF-HgGnNM4C_YUd
+   J8xWn7Hf5wj5RhU94Ng51TuJtoyp8UuLEA5Z3MEvvrepZ87FSXada-0yfaLp31-Sc7fZ0
+   eXa82WlBFHOCaPx2tvtrARIPtuOI1hIFwodYI
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1168,16 +1168,16 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms]
               Jones, M. B., Waite, D., and J. Miller, "JSON Proof
               Algorithms", Work in Progress, Internet-Draft, draft-ietf-
-              jose-json-proof-algorithms-08, 17 March 2025,
+              jose-json-proof-algorithms-latest,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-algorithms-08>.
+              json-proof-algorithms>.
 
    [I-D.ietf-jose-json-proof-token]
               Jones, M. B., Waite, D., and J. Miller, "JSON Proof Token
               and CBOR Proof Token", Work in Progress, Internet-Draft,
-              draft-ietf-jose-json-proof-token-08, 17 March 2025,
+              draft-ietf-jose-json-proof-token-latest,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-token-08>.
+              json-proof-token>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1225,9 +1225,12 @@ Table of Contents
               <https://www.iana.org/assignments/core-parameters/core-
               parameters.xhtml#content-formats>.
 
+   [IANA.JWT] IANA, "JSON Web Token",
+              <https://www.iana.org/assignments/jwt>.
+
    [IANA.MediaTypes]
               IANA, "Media Types",
-              <http://www.iana.org/assignments/media-types>.
+              <https://www.iana.org/assignments/media-types>.
 
    [RFC2045]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
               Extensions (MIME) Part One: Format of Internet Message
@@ -1280,6 +1283,10 @@ Appendix B.  Document History
    [[ To be removed from the final specification ]] -latest
 
    *  Remove JSON serialization
+
+   -latest
+
+   *  Correct informative reference to the IANA JWT registry.
 
    -08
 
