@@ -394,7 +394,7 @@ string value.
 When used as a CBOR Protected Header, the value is a binary string.
 
 This definition is intentionally parallel to the `nonce` claim
-registered in the IANA "JSON Web Token Claims" registry (#IANA.JWT).
+registered in the IANA "JSON Web Token Claims" registry [@IANA.JWT].
 
 Use of this Header Parameter is OPTIONAL.
 
@@ -903,83 +903,8 @@ using the JWP Compact Serialization.
 
 {backmatter}
 
-<reference anchor="VC-DATA-MODEL-2.0" target="https://www.w3.org/TR/vc-data-model-2.0">
-  <front>
-    <title>Verifiable Credentials Data Model 2.0</title>
-    <author fullname="Manu Sporny">
-      <organization>Digital Bazaar</organization>
-    </author>
-    <author fullname="Ted Thibodeau Jr">
-      <organization>OpenLink Software</organization>
-    </author>
-    <author fullname="Ivan Herman">
-      <organization>W3C</organization>
-    </author>
-    <author fullname="Michael B. Jones">
-      <organization>Invited Expert</organization>
-    </author>
-    <author fullname="Gabe Cohen">
-      <organization>Block</organization>
-    </author>
-   <date day="27" month="December" year="2023"/>
-  </front>
-</reference>
-
-<reference anchor="ECMAScript" target="http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf">
-  <front>
-    <title>ECMAScript Language Specification, 5.1 Edition</title>
-    <author>
-      <organization>Ecma International</organization>
-    </author>
-    <date month="June" year="2011"/>
-  </front>
-  <seriesInfo name="ECMA" value="262"/>
-  <format target="http://www.ecma-international.org/ecma-262/5.1/" type="HTML" />
-  <format target="http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf" type="PDF" />
-</reference>
-
-<reference anchor="IANA.MediaTypes" target="http://www.iana.org/assignments/media-types">
-  <front>
-    <title>Media Types</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-  <format target="http://www.iana.org/assignments/media-types"
-	  type="HTML" />
-</reference>
-
-<reference anchor="IANA.StructuredSuffix" target="https://www.iana.org/assignments/media-type-structured-suffix/">
-  <front>
-    <title>Structured Syntax Suffix</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
-<reference anchor="IANA.JWT" target="https://www.iana.org/assignments/jwt">
-  <front>
-    <title>JSON Web Token</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
-<reference anchor="IANA.CoAP.Formats" target="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">
-  <front>
-    <title>CoAP Content-Formats</title>
-    <author>
-      <organization>IANA</organization>
-    </author>
-    <date/>
-  </front>
-</reference>
-
+{{common-biblio.md}}
+{{series-draft-biblio.md}}
 
 # Acknowledgements
 
@@ -995,6 +920,10 @@ for his valuable contributions to this specification.
  -latest
 
   * Remove JSON serialization
+
+ -latest
+
+  * Correct informative reference to the IANA JWT registry.
 
  -08
 
