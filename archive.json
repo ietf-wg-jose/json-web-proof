@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T01:00:57.479207+00:00",
+  "timestamp": "2025-04-08T00:53:56.854967+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2728,6 +2728,22 @@
       "body": "We should register the +jpt and +cpt media type suffixes so that JWPs can be explicitly typed like JWTs and CWTs are.",
       "createdAt": "2025-03-14T09:23:11Z",
       "updatedAt": "2025-03-14T09:23:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 162,
+      "id": "I_kwDOFsQObc6xhS48",
+      "title": "Rename Compact Serialization to JSON Serialization",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/162",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Now that we no longer have three serializations, we have the opportunity to change Compact Serialization to be called JSON Serialization.\n\nThis aligns better with the CBOR-based headers and CBOR-based structures being called \"CBOR Serialization\".\n\nHowever, there is more to compact serialization than just JSON (multiple base64url-encoded octet parts), and the naming may confuse those who came from JWS/JWE where \"JSON Serialization\" implies the structure is a JSON Object.",
+      "createdAt": "2025-04-08T00:36:46Z",
+      "updatedAt": "2025-04-08T00:36:46Z",
       "closedAt": null,
       "comments": []
     }
@@ -10344,24 +10360,26 @@
       "id": "PR_kwDOFsQObc6Qcrtf",
       "title": "Removing json serialization",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/160",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Per discussion at IETF 122, this change removes JSON serialization\r\n\r\n- [x] first pass at text changes\r\n- [ ] remove templates and fixtures to generate JSON serialized examples\r\n- [ ] proofread changed sections in documents\r\n- [ ] verify document change history",
+      "body": "Per discussion at IETF 122, this change removes JSON serialization\r\n\r\n- [x] first pass at text changes\r\n- [x] remove templates and fixtures to generate JSON serialized examples\r\n- [x] proofread changed sections in documents\r\n- [x] verify document change history",
       "createdAt": "2025-03-27T18:28:43Z",
-      "updatedAt": "2025-03-27T18:31:35Z",
+      "updatedAt": "2025-04-08T00:33:24Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "dacc4232cbad80120bcf1674c204e3f15574682b",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "remove-json-serialization",
-      "headRefOid": "9387dd6b42ee244ff6d76141fc03fdcdbba6e216",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "9aea67f8ed5fe579e551ede708618c8ed16e303b",
+      "closedAt": "2025-04-08T00:33:24Z",
+      "mergedAt": "2025-04-08T00:33:24Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "7172b40e944cfae71ad64dd13a2a5dd0e3b30b62"
+      },
       "comments": [],
       "reviews": [
         {
@@ -10383,6 +10401,187 @@
               "updatedAt": "2025-03-27T19:07:03Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6jza83",
+          "commit": {
+            "abbreviatedOid": "3d56fa8"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-07T21:36:15Z",
+          "updatedAt": "2025-04-07T21:38:06Z",
+          "comments": [
+            {
+              "originalPosition": 96,
+              "body": "```suggestion\r\nFigure: Issuer MAC of protected header (Base64url-Encoded)\r\n```",
+              "createdAt": "2025-04-07T21:36:16Z",
+              "updatedAt": "2025-04-07T21:38:06Z"
+            },
+            {
+              "originalPosition": 102,
+              "body": "```suggestion\r\nFigure: Derived payload keys (Base64url-Encoded)\r\n```",
+              "createdAt": "2025-04-07T21:36:51Z",
+              "updatedAt": "2025-04-07T21:38:06Z"
+            },
+            {
+              "originalPosition": 108,
+              "body": "```suggestion\r\nFigure: Payload MAC values (Base64url-Encoded)\r\n```",
+              "createdAt": "2025-04-07T21:37:06Z",
+              "updatedAt": "2025-04-07T21:38:06Z"
+            },
+            {
+              "originalPosition": 121,
+              "body": "```suggestion\r\nFigure: Issued Proof (Base64url-Encoded)\r\n```",
+              "createdAt": "2025-04-07T21:37:22Z",
+              "updatedAt": "2025-04-07T21:38:06Z"
+            },
+            {
+              "originalPosition": 142,
+              "body": "```suggestion\r\nFigure: Presentation proof (Base64url-Encoded)\r\n```",
+              "createdAt": "2025-04-07T21:37:48Z",
+              "updatedAt": "2025-04-07T21:38:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6jz26K",
+          "commit": {
+            "abbreviatedOid": "9aea67f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-07T22:52:15Z",
+          "updatedAt": "2025-04-07T22:52:15Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "Do we want to use the language \"JSON Compact Serialization\" anymore or just call it the \"JSON Serialization\"?",
+              "createdAt": "2025-04-07T22:52:15Z",
+              "updatedAt": "2025-04-07T22:52:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6jz3Qp",
+          "commit": {
+            "abbreviatedOid": "9aea67f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-07T22:53:34Z",
+          "updatedAt": "2025-04-07T22:53:35Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "Likewise.  Maybe change \"compact serialization\" to \"JSON Serialization\".",
+              "createdAt": "2025-04-07T22:53:34Z",
+              "updatedAt": "2025-04-07T22:53:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc6jz8wl",
+          "commit": {
+            "abbreviatedOid": "9aea67f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "We can decide whether to change terminology from \"Compact Serialization\" to simply \"JSON Serialization\" later.",
+          "createdAt": "2025-04-07T23:17:05Z",
+          "updatedAt": "2025-04-07T23:17:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "id": "PR_kwDOFsQObc6Rs6lc",
+      "title": "Consolidate references",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/161",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Correct two issues with references:\r\n\r\n1. References to non-IETF documents are now consolidated into a single `common-biblio.md` included in all files.\r\n2. References within this document series are overridden to point to the non-versioned \"latest\" document, to prevent draft releases from referencing the prior document version.",
+      "createdAt": "2025-04-07T22:37:02Z",
+      "updatedAt": "2025-04-08T00:37:06Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "dacc4232cbad80120bcf1674c204e3f15574682b",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "consolidate-fix-biblio",
+      "headRefOid": "1a39b711af8e615da3ad48be2ef198530ef8fcb8",
+      "closedAt": "2025-04-08T00:37:06Z",
+      "mergedAt": "2025-04-08T00:37:06Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "438d83a2da635d4dacd0e37b1d017477e801859a"
+      },
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I didn't document this as a change to the draft documents as it feels more of a 'hygiene' change that doesn't affect document contents.",
+          "createdAt": "2025-04-07T22:38:57Z",
+          "updatedAt": "2025-04-07T22:38:57Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The problem with this is that not all the specs use all the references, and so including the consolidated references file will generate unused reference errors.\r\n\r\nIf you still want to do this, each reference needs to be in its own, separate file.",
+          "createdAt": "2025-04-07T22:47:52Z",
+          "updatedAt": "2025-04-07T22:47:52Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The mmark build phase is filtering out <reference> values based on what is actually given a normative/informative reference - so it appears to be doing the right thing. I checked the XML files as well as the html files and both do not have spurious references.\r\n\r\nSee for instance https://ietf-wg-jose.github.io/json-web-proof/consolidate-fix-biblio/draft-ietf-jose-json-web-proof.html#name-normative-references , which does not have JWT/CWT IANA registries referenced even though they are in the common file.\r\n",
+          "createdAt": "2025-04-07T22:56:42Z",
+          "updatedAt": "2025-04-07T22:56:42Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "actually it looks like there is a broken reference syntax in that file, and it is supposed to have IANA.JWT. Fixing\u2026",
+          "createdAt": "2025-04-07T22:59:04Z",
+          "updatedAt": "2025-04-07T22:59:04Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6jzyt4",
+          "commit": {
+            "abbreviatedOid": "f06011d"
+          },
+          "author": "copilot-pull-request-reviewer",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "\n\nCopilot reviewed 5 out of 5 changed files in this pull request and generated no comments.\n\n\n\n",
+          "createdAt": "2025-04-07T22:37:45Z",
+          "updatedAt": "2025-04-07T22:37:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOFsQObc6jz83g",
+          "commit": {
+            "abbreviatedOid": "1a39b71"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-07T23:17:31Z",
+          "updatedAt": "2025-04-07T23:17:31Z",
+          "comments": []
         }
       ]
     }
