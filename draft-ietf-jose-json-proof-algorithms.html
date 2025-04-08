@@ -11,7 +11,7 @@
 <meta content="
        The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof, JSON Web Key (JWK), and COSE specifications. It defines IANA registries for these identifiers. 
     " name="description">
-<meta content="xml2rfc 3.28.0" name="generator">
+<meta content="xml2rfc 3.28.1" name="generator">
 <meta content="json" name="keyword">
 <meta content="jose" name="keyword">
 <meta content="zkp" name="keyword">
@@ -22,14 +22,14 @@
 <meta content="cose" name="keyword">
 <meta content="draft-ietf-jose-json-proof-algorithms-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.28.0
+  xml2rfc 3.28.1
     Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.0
-    platformdirs 4.3.6
+    platformdirs 4.3.7
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.3
@@ -1053,11 +1053,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">json-proof-algorithms</td>
-<td class="right">March 2025</td>
+<td class="right">April 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 28 September 2025</td>
+<td class="center">Expires 10 October 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1070,12 +1070,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-proof-algorithms-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-27" class="published">27 March 2025</time>
+<time datetime="2025-04-08" class="published">8 April 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-28">28 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-10-10">10 October 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1117,7 +1117,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 October 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1636,7 +1636,7 @@ Use of the <code>nonce</code> header parameter is RECOMMENDED for this purpose.<
 <p id="section-6.2.5-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer protected header as <code>header</code>, the issuance proof as <code>signature</code>, the issuance payloads as <code>messages</code>, and the holder's presentation protected header as <code>ph</code>.<a href="#section-6.2.5-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.5-3">The operation also takes a vector of indexes into <code>messages</code>, describing which payloads the holder wishes to disclose. All payloads are required for proof generation, but only these indicated payloads will be required to be disclosed for later proof verification.<a href="#section-6.2.5-3" class="pilcrow">¶</a></p>
 <p id="section-6.2.5-4">The output of this operation is the presentation proof, as a single octet string.<a href="#section-6.2.5-4" class="pilcrow">¶</a></p>
-<p id="section-6.2.5-5">Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of <code>null</code> in JSON serialization and a zero-length string in compact serialization.<a href="#section-6.2.5-5" class="pilcrow">¶</a></p>
+<p id="section-6.2.5-5">Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of <code>null</code> in CBOR serialization and a zero-length string in compact serialization.<a href="#section-6.2.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-verification">
@@ -2309,9 +2309,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "p3A52ad9EVbbUHEuN0e40egy-eaPRjTILWCRIVXT-r4",
-  "y": "yby8nERJdbAHmkf_Q2OW9OOIzgNO89NWDWfgoRSbijQ",
-  "d": "4Niq1xwwGeCnV7RYD4_JZaxgFaMdGFBEcRGAdcWlGpk"
+  "x": "fOvAQVUuvtgi5_RkaUUp3TOyAoMYndaPEvpoPu8RXSA",
+  "y": "HMCi5FQ4YlTXIvM3Eupw2KOgBzvSngEMXCBRflmk78o",
+  "d": "h_slrybQOIuQuU2bgHyS_LiPKchKJte2U1n9-94a8Ks"
 }
 
 </pre>
@@ -2325,9 +2325,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "7MQzPIIGQKSGC_RcDl2HEF5EIyvN0sDwkZlYkTpVjyk",
-  "y": "wcqBVE_m_ArWZ68spFWQpmLoabK5zjXKEf7HNrkGCAY",
-  "d": "3OYCVjO3B0L2yhasbL0_tT5mG0wLbsTPNfhp7RJXO88"
+  "x": "DfrwqboQB1RAH86geFJASoykcW4ZFFMQ-IpJu0_Pkwg",
+  "y": "BuE9c3jzKb0lR3sH1y_YsCFB0KNbDuG2-Yzel6DGz98",
+  "d": "URgPJkgbIlkSrepLyIG5ze6ABIzcV2D-BqKR_9lWcKs"
 }
 
 </pre>
@@ -2341,9 +2341,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "av8XNbK3ZNLHnuAOKLZn-9wFpp8G4fp4_hXeLaY1TcI",
-  "y": "YxJGlsxqAnFNmUHagVlP8HjYmnTzCS7cp99REg-h4i4",
-  "d": "5OIipLpS8cf6zKU_a1c8vNVfVMXX9XyMuhRgW9NOQ50"
+  "x": "nNvOIE2qI6Lhy6B2EFxMauLbDvnKebyfikvANDq3PMA",
+  "y": "uAbgwrk6E8ctU58Q_2r_nB_1YakslpwU_5njL1eRWFs",
+  "d": "jwsBkPkbMo27muvSwhgfgZxebw-s-Q9IQ8pDFULmngM"
 }
 
 </pre>
@@ -2370,14 +2370,14 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
   "proof_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "7MQzPIIGQKSGC_RcDl2HEF5EIyvN0sDwkZlYkTpVjyk",
-    "y": "wcqBVE_m_ArWZ68spFWQpmLoabK5zjXKEf7HNrkGCAY"
+    "x": "DfrwqboQB1RAH86geFJASoykcW4ZFFMQ-IpJu0_Pkwg",
+    "y": "BuE9c3jzKb0lR3sH1y_YsCFB0KNbDuG2-Yzel6DGz98"
   },
   "presentation_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "av8XNbK3ZNLHnuAOKLZn-9wFpp8G4fp4_hXeLaY1TcI",
-    "y": "YxJGlsxqAnFNmUHagVlP8HjYmnTzCS7cp99REg-h4i4"
+    "x": "nNvOIE2qI6Lhy6B2EFxMauLbDvnKebyfikvANDq3PMA",
+    "y": "uAbgwrk6E8ctU58Q_2r_nB_1YakslpwU_5njL1eRWFs"
   }
 }
 
@@ -2391,12 +2391,12 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiN01RelBJSUdRS1NHQ19SY0RsMkhF
-RjVFSXl2TjBzRHdrWmxZa1RwVmp5ayIsInkiOiJ3Y3FCVkVfbV9BcldaNjhzcEZXUXBtT
-G9hYks1empYS0VmN0hOcmtHQ0FZIn0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
-MiLCJjcnYiOiJQLTI1NiIsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZ
-wNF9oWGVMYVkxVGNJIiwieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdj
-cDk5UkVnLWg0aTQifX0
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiRGZyd3Fib1FCMVJBSDg2Z2VGSkFT
+b3lrY1c0WkZGTVEtSXBKdTBfUGt3ZyIsInkiOiJCdUU5YzNqektiMGxSM3NIMXlfWXNDR
+kIwS05iRHVHMi1ZemVsNkRHejk4In0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
+MiLCJjcnYiOiJQLTI1NiIsIngiOiJuTnZPSUUycUk2TGh5NkIyRUZ4TWF1TGJEdm5LZWJ
+5ZmlrdkFORHEzUE1BIiwieSI6InVBYmd3cms2RThjdFU1OFFfMnJfbkJfMVlha3NscHdV
+XzVuakwxZVJXRnMifX0
 
 </pre>
 </div>
@@ -2429,208 +2429,106 @@ cDk5UkVnLWg0aTQifX0
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-issuer-payloads-json-as-arr" class="selfRef">Issuer payloads (JSON, as array)</a>
           </figcaption></figure>
-<p id="appendix-A.1-15">The resulting JSON serialized JPT using the above examples is:<a href="#appendix-A.1-15" class="pilcrow">¶</a></p>
-<span id="name-issued-jwp-su-es256-json-se"></span><figure id="figure-7">
+<p id="appendix-A.1-15">The compact serialization of the same JPT is:<a href="#appendix-A.1-15" class="pilcrow">¶</a></p>
+<span id="name-issued-jwp-su-es256-json-co"></span><figure id="figure-7">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-16.1">
-<pre>{
-  "issuer": "eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
-       Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
-       x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
-       ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoiN01RelBJSUdRS1NHQ19SY0RsMkhFRjVFSXl2TjBzRHdrWmxZa1RwVmp5
-       ayIsInkiOiJ3Y3FCVkVfbV9BcldaNjhzcEZXUXBtTG9hYks1empYS0VmN0hOcm
-       tHQ0FZIn0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQ
-       LTI1NiIsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZwNF9oWG
-       VMYVkxVGNJIiwieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdj
-       cDk5UkVnLWg0aTQifX0",
-  "payloads": [
-    "MTcxNDUyMTYwMA",
-    "MTcxNzE5OTk5OQ",
-    "IkRvZSI",
-    "IkpheSI",
-    "ImpheWRvZUBleGFtcGxlLm9yZyI",
-    "eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxu
-       VVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdH
-       kiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUs
-       ImNvdW50cnkiOiJVU0EifQ",
-    "dHJ1ZQ"
-  ],
-  "proof": [
-    "NlmzMfcNnbQrpCGUupeQs2XB_ViEJMIAeRihMqucNgah6MmgCrB32QaDJqYu6-WK
-       ucOhhsN1JobSCa6Y4iTHkQ",
-    "_NOBzJ82QNMjfF3RtIHqusTJGPjXCrNLL1qcGJquyEKSUZlwA38KyMtzBCo1EvLq
-       CXAQ3u7BPc1tVanwuwB0ig",
-    "DOi3ZUki2smpk-WqZf67kLNNM1Io_eOENsrNlzFatB-xc6gtyrRYvPDe77WPvVd2
-       OsXz5AJKHx4eiO6cDYOpwg",
-    "v3fqRTV2hofqWnk0vNEoKmvheRnnHAq5q_G4U3PHfgTJ4cjxBIWZvL6XWuWnM5iR
-       erEsG4sEoFoMp6rsOwMrUQ",
-    "_Yahl08kQZcCDxS7AoJpxsv9UuY2DaBORzpaGSRyEema1rMUcZOtN7StT34AOW2h
-       JBHoYSo4KkfB21oUpUeHfQ",
-    "DNini2kKbbx_-6L0dNC5gfngsVBLs40cV5KRMFapIFHjlx9lpnCXaF5xjkvRFuvh
-       _nPVroI452ZjGvZa87cMDw",
-    "sGDOvoHsICk_vBdzjsvEeJeB9xFB4aU8yuEiEAotKCadCrP1eJ9351kpklpztuJ6
-       zvbzNVFnURlk6kaiGy_ROA",
-    "AChmz0m1HST4P2AC1TXrxNiMobRIFgwCS_Iww7xIQgPuvj8g6HGIQ5DNP7apfTPf
-       dXadX1Ju1R4ull9F2zYeeQ"
-  ]
-}
+<pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
+mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
+9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiRGZyd3Fib1FCMVJBSDg2Z2VGSkFT
+b3lrY1c0WkZGTVEtSXBKdTBfUGt3ZyIsInkiOiJCdUU5YzNqektiMGxSM3NIMXlfWXNDR
+kIwS05iRHVHMi1ZemVsNkRHejk4In0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
+MiLCJjcnYiOiJQLTI1NiIsIngiOiJuTnZPSUUycUk2TGh5NkIyRUZ4TWF1TGJEdm5LZWJ
+5ZmlrdkFORHEzUE1BIiwieSI6InVBYmd3cms2RThjdFU1OFFfMnJfbkJfMVlha3NscHdV
+XzVuakwxZVJXRnMifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imp
+heWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0
+b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuI
+iwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MT
+IzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.m4C-XX1kP75CR28JiK4NvqUgUi3F-9-Zz
+1s4r3xvDfojYNg_uOoBlXBdwvx7XMc-z7-S4QBvrxhb29qi-yEj_A~nwRe_-Fu12qoye8
+UwH2Zz8zL9Fz574WtPjtJlkHQKhj_ka8Ce6u11WvxRdIRAdzCrMic0UJjS1kzuPXrqarw
+tw~tHOx5xfsUp7vDoZaiujXIFEQgXwXwUKyrzA94LGp3C7sOJyqt6kYf0nlQXE6k1Dqak
+ym4U0Vgb9LuwPBAH88qA~75PzM6lZeWMZyquHr8dzPwK9jDxHyBc5eJsQCum_FhOV8bHK
+QxdulPB8mHTCfVqR34K6gWh9o-XZirdWKrH-zA~-FaQdOJRjArJIDbPt7T_W6kpR9kZrR
+pzEtAVAFQl5GT7cYTLDc3ZEwNb7fLWAAyuUL0sj5S9Mhd-XU8VP-Q2yA~o-681m2ONT9F
+YXF933JpGLFbcxE_DjMRHasYLqinY4PaQRTlcJoP15m0Nz8ecEAddAVtMZ6H-RxJMlWPf
+ZTDqA~re6pslqFb9DXq7v6zHWzzg09-3MaMtWAv0BfucPMDcQa9j9_NM4QgeZ8WgmbJe2
+7AmH_iZ60gQroolPJWaLdDQ~0oHaqiYUNIka5iRAvI771Ym5PH0Ndv28i5vaXsyy0T164
+7pwTpml6VrzA9jlQ-MPoOWehDhp5C-0QdDQdwv1IQ
 
 </pre>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-issued-jwp-su-es256-json-se" class="selfRef">Issued JWP (SU-ES256, JSON Serialization)</a>
+<a href="#name-issued-jwp-su-es256-json-co" class="selfRef">Issued JWP (SU-ES256, JSON, Compact Serialization)</a>
           </figcaption></figure>
-<p id="appendix-A.1-17">The compact serialization of the same JPT is:<a href="#appendix-A.1-17" class="pilcrow">¶</a></p>
-<span id="name-issued-jwp-su-es256-compact"></span><figure id="figure-8">
+<p id="appendix-A.1-17">To present this JPT, we first use the following presentation header with a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶</a></p>
+<span id="name-presentation-header-su-es25"></span><figure id="figure-8">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-18.1">
-<pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
-mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
-9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiN01RelBJSUdRS1NHQ19SY0RsMkhF
-RjVFSXl2TjBzRHdrWmxZa1RwVmp5ayIsInkiOiJ3Y3FCVkVfbV9BcldaNjhzcEZXUXBtT
-G9hYks1empYS0VmN0hOcmtHQ0FZIn0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
-MiLCJjcnYiOiJQLTI1NiIsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZ
-wNF9oWGVMYVkxVGNJIiwieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdj
-cDk5UkVnLWg0aTQifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imp
-heWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0
-b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuI
-iwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MT
-IzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.NlmzMfcNnbQrpCGUupeQs2XB_ViEJMIAe
-RihMqucNgah6MmgCrB32QaDJqYu6-WKucOhhsN1JobSCa6Y4iTHkQ~_NOBzJ82QNMjfF3
-RtIHqusTJGPjXCrNLL1qcGJquyEKSUZlwA38KyMtzBCo1EvLqCXAQ3u7BPc1tVanwuwB0
-ig~DOi3ZUki2smpk-WqZf67kLNNM1Io_eOENsrNlzFatB-xc6gtyrRYvPDe77WPvVd2Os
-Xz5AJKHx4eiO6cDYOpwg~v3fqRTV2hofqWnk0vNEoKmvheRnnHAq5q_G4U3PHfgTJ4cjx
-BIWZvL6XWuWnM5iRerEsG4sEoFoMp6rsOwMrUQ~_Yahl08kQZcCDxS7AoJpxsv9UuY2Da
-BORzpaGSRyEema1rMUcZOtN7StT34AOW2hJBHoYSo4KkfB21oUpUeHfQ~DNini2kKbbx_
--6L0dNC5gfngsVBLs40cV5KRMFapIFHjlx9lpnCXaF5xjkvRFuvh_nPVroI452ZjGvZa8
-7cMDw~sGDOvoHsICk_vBdzjsvEeJeB9xFB4aU8yuEiEAotKCadCrP1eJ9351kpklpztuJ
-6zvbzNVFnURlk6kaiGy_ROA~AChmz0m1HST4P2AC1TXrxNiMobRIFgwCS_Iww7xIQgPuv
-j8g6HGIQ5DNP7apfTPfdXadX1Ju1R4ull9F2zYeeQ
+<pre>{
+  "alg": "SU-ES256",
+  "aud": "https://recipient.example.com",
+  "nonce": "2r7XP9Qcgea77RcZtpYXQtApPU1IEOMuGJL7SXwj6iA"
+}
 
 </pre>
 </div>
 <figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
-<a href="#name-issued-jwp-su-es256-compact" class="selfRef">Issued JWP (SU-ES256, Compact Serialization)</a>
+<a href="#name-presentation-header-su-es25" class="selfRef">Presentation Header (SU-ES256, JSON)</a>
           </figcaption></figure>
-<p id="appendix-A.1-19">To present this JPT, we first use the following presentation header with a nonce (provided by the Verifier):<a href="#appendix-A.1-19" class="pilcrow">¶</a></p>
-<span id="name-presentation-header-su-es25"></span><figure id="figure-9">
-          <div class="lang-wrapped sourcecode" id="appendix-A.1-20.1">
-<pre>{
-  "alg": "SU-ES256",
-  "aud": "https://recipient.example.com",
-  "nonce": "VfC2aGlmD_ZH2poXChJIJdpJtS6AyqJLniUXjSeLyo8"
-}
+<span id="name-presentation-header-su-es256"></span><figure id="figure-9">
+          <div class="lang-wrapped sourcecode" id="appendix-A.1-19.1">
+<pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
+29tIiwibm9uY2UiOiIycjdYUDlRY2dlYTc3UmNadHBZWFF0QXBQVTFJRU9NdUdKTDdTWH
+dqNmlBIn0
 
 </pre>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
-<a href="#name-presentation-header-su-es25" class="selfRef">Presentation Header (SU-ES256, JSON)</a>
+<a href="#name-presentation-header-su-es256" class="selfRef">Presentation Header (SU-ES256, JSON, Base64url-Encoded)</a>
           </figcaption></figure>
-<span id="name-presentation-header-su-es256"></span><figure id="figure-10">
-          <div class="lang-wrapped sourcecode" id="appendix-A.1-21.1">
-<pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJWZkMyYUdsbURfWkgycG9YQ2hKSUpkcEp0UzZBeXFKTG5pVVhqU2
-VMeW84In0
+<p id="appendix-A.1-20">When signed with the holder's presentation key, the resulting signature are:<a href="#appendix-A.1-20" class="pilcrow">¶</a></p>
+<div class="lang-wrapped sourcecode" id="appendix-A.1-21">
+<pre>a5DUbcDqhOWIOMSyDXK55wAsfeRH_odGb781nBarpLiR7c9uILiNVOJ0b8aFSCrQROU3l
+hJ2DCUJ3v8X4Kyshg
 
-</pre>
+</pre><a href="#appendix-A.1-21" class="pilcrow">¶</a>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
-<a href="#name-presentation-header-su-es256" class="selfRef">Presentation Header (SU-ES256, JSON, encoded)</a>
-          </figcaption></figure>
-<p id="appendix-A.1-22">When signed with the holder's presentation key, the resulting signature are:<a href="#appendix-A.1-22" class="pilcrow">¶</a></p>
-<div class="lang-wrapped sourcecode" id="appendix-A.1-23">
-<pre>ge5gfC1xnC6LoXLCvH04L0ahjHbfm120ufXYbA9mXCkpubwpBuMy3fiNxT02QigRCcX66
-gC_HKXJ6xJK6YypKw
-
-</pre><a href="#appendix-A.1-23" class="pilcrow">¶</a>
-</div>
-<blockquote id="appendix-A.1-24">
-          <p id="appendix-A.1-24.1">Figure: Holder Proof-of-Possession (SU-ES256 for JSON serializations)<a href="#appendix-A.1-24.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.1-22">
+          <p id="appendix-A.1-22.1">Figure: Holder Proof-of-Possession (SU-ES256, JSON)<a href="#appendix-A.1-22.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.1-25">Then by applying selective disclosure of only the given name and age claims (family name and email hidden), we get the following presented JPT:<a href="#appendix-A.1-25" class="pilcrow">¶</a></p>
-<div class="lang-wrapped sourcecode" id="appendix-A.1-26">
-<pre>{
-  "presentation": "eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-       BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJWZkMyYUdsbURfWkgycG9YQ2hK
-       SUpkcEp0UzZBeXFKTG5pVVhqU2VMeW84In0",
-  "issuer": "eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
-       Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaW
-       x5X25hbWUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292
-       ZXJfMjEiXSwicHJvb2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLC
-       J4IjoiN01RelBJSUdRS1NHQ19SY0RsMkhFRjVFSXl2TjBzRHdrWmxZa1RwVmp5
-       ayIsInkiOiJ3Y3FCVkVfbV9BcldaNjhzcEZXUXBtTG9hYks1empYS0VmN0hOcm
-       tHQ0FZIn0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQ
-       LTI1NiIsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZwNF9oWG
-       VMYVkxVGNJIiwieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdj
-       cDk5UkVnLWg0aTQifX0",
-  "payloads": [
-    "MTcxNDUyMTYwMA",
-    "MTcxNzE5OTk5OQ",
-    "IkRvZSI",
-    "IkpheSI",
-    "ImpheWRvZUBleGFtcGxlLm9yZyI",
-    "eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxu
-       VVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdH
-       kiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUs
-       ImNvdW50cnkiOiJVU0EifQ",
-    "dHJ1ZQ",
-    null,
-    null
-  ],
-  "proof": [
-    "NlmzMfcNnbQrpCGUupeQs2XB_ViEJMIAeRihMqucNgah6MmgCrB32QaDJqYu6-WK
-       ucOhhsN1JobSCa6Y4iTHkQ",
-    "ge5gfC1xnC6LoXLCvH04L0ahjHbfm120ufXYbA9mXCkpubwpBuMy3fiNxT02QigR
-       CcX66gC_HKXJ6xJK6YypKw",
-    "_NOBzJ82QNMjfF3RtIHqusTJGPjXCrNLL1qcGJquyEKSUZlwA38KyMtzBCo1EvLq
-       CXAQ3u7BPc1tVanwuwB0ig",
-    "DOi3ZUki2smpk-WqZf67kLNNM1Io_eOENsrNlzFatB-xc6gtyrRYvPDe77WPvVd2
-       OsXz5AJKHx4eiO6cDYOpwg",
-    "v3fqRTV2hofqWnk0vNEoKmvheRnnHAq5q_G4U3PHfgTJ4cjxBIWZvL6XWuWnM5iR
-       erEsG4sEoFoMp6rsOwMrUQ",
-    "_Yahl08kQZcCDxS7AoJpxsv9UuY2DaBORzpaGSRyEema1rMUcZOtN7StT34AOW2h
-       JBHoYSo4KkfB21oUpUeHfQ",
-    "DNini2kKbbx_-6L0dNC5gfngsVBLs40cV5KRMFapIFHjlx9lpnCXaF5xjkvRFuvh
-       _nPVroI452ZjGvZa87cMDw"
-  ]
-}
-
-</pre><a href="#appendix-A.1-26" class="pilcrow">¶</a>
-</div>
-<blockquote id="appendix-A.1-27">
-          <p id="appendix-A.1-27.1">Figure: Presentation (SU-ES256, JSON Serialization)<a href="#appendix-A.1-27.1" class="pilcrow">¶</a></p>
-</blockquote>
-<p id="appendix-A.1-28">And also in compact serialization:<a href="#appendix-A.1-28" class="pilcrow">¶</a></p>
-<div class="lang-wrapped sourcecode" id="appendix-A.1-29">
+<p id="appendix-A.1-23">Then by applying selective disclosure of only the given name and age
+claims (family name and email hidden), we get the following presented
+JPT in compact serialization:<a href="#appendix-A.1-23" class="pilcrow">¶</a></p>
+<div class="lang-wrapped sourcecode" id="appendix-A.1-24">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJWZkMyYUdsbURfWkgycG9YQ2hKSUpkcEp0UzZBeXFKTG5pVVhqU2
-VMeW84In0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiIycjdYUDlRY2dlYTc3UmNadHBZWFF0QXBQVTFJRU9NdUdKTDdTWH
+dqNmlBIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb
-2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiN01RelBJSUdRS1NHQ1
-9SY0RsMkhFRjVFSXl2TjBzRHdrWmxZa1RwVmp5ayIsInkiOiJ3Y3FCVkVfbV9BcldaNjh
-zcEZXUXBtTG9hYks1empYS0VmN0hOcmtHQ0FZIn0sInByZXNlbnRhdGlvbl9rZXkiOnsi
-a3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d
-0ZwcDhHNGZwNF9oWGVMYVkxVGNJIiwieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW
-1uVHpDUzdjcDk5UkVnLWg0aTQifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~I
+2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiRGZyd3Fib1FCMVJBSD
+g2Z2VGSkFTb3lrY1c0WkZGTVEtSXBKdTBfUGt3ZyIsInkiOiJCdUU5YzNqektiMGxSM3N
+IMXlfWXNDRkIwS05iRHVHMi1ZemVsNkRHejk4In0sInByZXNlbnRhdGlvbl9rZXkiOnsi
+a3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJuTnZPSUUycUk2TGh5NkIyRUZ4TWF1T
+GJEdm5LZWJ5ZmlrdkFORHEzUE1BIiwieSI6InVBYmd3cms2RThjdFU1OFFfMnJfbkJfMV
+lha3NscHdVXzVuakwxZVJXRnMifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~I
 kpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3
 QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1
 haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxf
-Y29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.NlmzMfcNnbQrpCGUupeQs
-2XB_ViEJMIAeRihMqucNgah6MmgCrB32QaDJqYu6-WKucOhhsN1JobSCa6Y4iTHkQ~ge5
-gfC1xnC6LoXLCvH04L0ahjHbfm120ufXYbA9mXCkpubwpBuMy3fiNxT02QigRCcX66gC_
-HKXJ6xJK6YypKw~_NOBzJ82QNMjfF3RtIHqusTJGPjXCrNLL1qcGJquyEKSUZlwA38KyM
-tzBCo1EvLqCXAQ3u7BPc1tVanwuwB0ig~DOi3ZUki2smpk-WqZf67kLNNM1Io_eOENsrN
-lzFatB-xc6gtyrRYvPDe77WPvVd2OsXz5AJKHx4eiO6cDYOpwg~v3fqRTV2hofqWnk0vN
-EoKmvheRnnHAq5q_G4U3PHfgTJ4cjxBIWZvL6XWuWnM5iRerEsG4sEoFoMp6rsOwMrUQ~
-_Yahl08kQZcCDxS7AoJpxsv9UuY2DaBORzpaGSRyEema1rMUcZOtN7StT34AOW2hJBHoY
-So4KkfB21oUpUeHfQ~DNini2kKbbx_-6L0dNC5gfngsVBLs40cV5KRMFapIFHjlx9lpnC
-XaF5xjkvRFuvh_nPVroI452ZjGvZa87cMDw
+Y29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.m4C-XX1kP75CR28JiK4Nv
+qUgUi3F-9-Zz1s4r3xvDfojYNg_uOoBlXBdwvx7XMc-z7-S4QBvrxhb29qi-yEj_A~a5D
+UbcDqhOWIOMSyDXK55wAsfeRH_odGb781nBarpLiR7c9uILiNVOJ0b8aFSCrQROU3lhJ2
+DCUJ3v8X4Kyshg~nwRe_-Fu12qoye8UwH2Zz8zL9Fz574WtPjtJlkHQKhj_ka8Ce6u11W
+vxRdIRAdzCrMic0UJjS1kzuPXrqarwtw~tHOx5xfsUp7vDoZaiujXIFEQgXwXwUKyrzA9
+4LGp3C7sOJyqt6kYf0nlQXE6k1Dqakym4U0Vgb9LuwPBAH88qA~75PzM6lZeWMZyquHr8
+dzPwK9jDxHyBc5eJsQCum_FhOV8bHKQxdulPB8mHTCfVqR34K6gWh9o-XZirdWKrH-zA~
+-FaQdOJRjArJIDbPt7T_W6kpR9kZrRpzEtAVAFQl5GT7cYTLDc3ZEwNb7fLWAAyuUL0sj
+5S9Mhd-XU8VP-Q2yA~o-681m2ONT9FYXF933JpGLFbcxE_DjMRHasYLqinY4PaQRTlcJo
+P15m0Nz8ecEAddAVtMZ6H-RxJMlWPfZTDqA
 
-</pre><a href="#appendix-A.1-29" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.1-24" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.1-30">
-          <p id="appendix-A.1-30.1">Figure: Presentation (SU-ES256, Compact Serialization)<a href="#appendix-A.1-30.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.1-25">
+          <p id="appendix-A.1-25.1">Figure: Presentation (SU-ES256, JSON, Compact Serialization)<a href="#appendix-A.1-25.1" class="pilcrow">¶</a></p>
 </blockquote>
 </section>
 </div>
@@ -2639,7 +2537,7 @@ XaF5xjkvRFuvh_nPVroI452ZjGvZa87cMDw
         <h3 id="name-example-cbor-serialized-sin">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-example-cbor-serialized-sin" class="section-name selfRef">Example CBOR-Serialized Single-Use CPT</a>
         </h3>
-<p id="appendix-A.2-1">This example is meant to mirror the prior JSON serialization, using
+<p id="appendix-A.2-1">This example is meant to mirror the prior compact serialization, using
 <a href="CWT">RFC8392</a> and claims from <span>[<a href="#I-D.maldant-spice-oidc-cwt" class="cite xref">I-D.maldant-spice-oidc-cwt</a>]</span>,
 illustrated using <span>[<a href="#I-D.ietf-cbor-edn-literals" class="cite xref">I-D.ietf-cbor-edn-literals</a>]</span> (EDN).<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-2">To simplify this example, the same information is represented as the JPT
@@ -2662,18 +2560,18 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   8: {      / proof key /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'6aff1735b2b764d2c79ee00e28b667fbdc05a69f06e1fa78fe15de2d' +
-        h'a6354dc2', / x /
-    -3: h'63124696cc6a02714d9941da81594ff078d89a74f3092edca7df5112' +
-        h'0fa1e22e'  / y /
+    -2: h'9cdbce204daa23a2e1cba076105c4c6ae2db0ef9ca79bc9f8a4bc034' +
+        h'3ab73cc0', / x /
+    -3: h'b806e0c2b93a13c72d539f10ff6aff9c1ff561a92c969c14ff99e32f' +
+        h'5791585b'  / y /
   },
   9: {      / presentation key /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'ecc4333c820640a4860bf45c0e5d87105e44232bcdd2c0f091995891' +
-        h'3a558f29', / x /
-    -3: h'c1ca81544fe6fc0ad667af2ca45590a662e869b2b9ce35ca11fec736' +
-        h'b9060806'  / y /
+    -2: h'0dfaf0a9ba100754401fcea07852404a8ca4716e19145310f88a49bb' +
+        h'4fcf9308', / x /
+    -3: h'06e13d7378f329bd25477b07d72fd8b02141d0a35b0ee1b6f98cde97' +
+        h'a0c6cfdf'  / y /
   }
 }
 
@@ -2710,31 +2608,31 @@ CBOR (in hex):<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-8">
 <pre>8358cda601010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-206aff1735b2b764d2c79ee00e28b667fbdc05a69f06e1fa78fe15de2da6354d
-c222582063124696cc6a02714d9941da81594ff078d89a74f3092edca7df5112
-0fa1e22e09a401022001215820ecc4333c820640a4860bf45c0e5d87105e4423
-2bcdd2c0f0919958913a558f29225820c1ca81544fe6fc0ad667af2ca45590a6
-62e869b2b9ce35ca11fec736b9060806871a0a3827001a0a3c3d3f63446f6563
+209cdbce204daa23a2e1cba076105c4c6ae2db0ef9ca79bc9f8a4bc0343ab73c
+c0225820b806e0c2b93a13c72d539f10ff6aff9c1ff561a92c969c14ff99e32f
+5791585b09a4010220012158200dfaf0a9ba100754401fcea07852404a8ca471
+6e19145310f88a49bb4fcf930822582006e13d7378f329bd25477b07d72fd8b0
+2141d0a35b0ee1b6f98cde97a0c6cfdf871a0a3827001a0a3c3d3f63446f6563
 4a6179726a6179646f65406578616d706c652e6f7267a601782331323334204d
 61696e2053742e0a416e79746f776e2c2043412031323334350a555341026d31
 323334204d61696e2053742e0367416e79746f776e0462434105653930323130
-0663555341f5885840c24f367c9cea5001a6d1754e1652a8179060bd2bafe4a0
-b736bf8ffb31a37925aaac7e942098718817a2b2d1f2055d151c558cd62fe382
-85731961a2d397d3b758405c7a5ee88aa7163aec2d5acec0a1649d98001c252d
-c352857e956584b468c9c0f1aecfb661b274679cfc65f3fe854712e3be887afb
-195034407f8cee9d373df55840a8ebb89fac53496e039f346f9f306ccc098b98
-dcb5c38613a00a07cd0a197c0ef2e5a9ea6e42b68997d6fb44a2d05fa9611caf
-a6b554b14ee287d48bf27f48125840a0d011257698f74a1b0679990357db5c0b
-3c6702566270b029bdbb7a72a335dfe22651c3f2549034a1896295f784175728
-86ee45699e8060ba5650987ab302e15840ad843b9298c7094c3e8f05eddb58c7
-40dd0a6f6387cb0af924132c07c56363c70c51943547811ee2f598bef5b39c02
-10836ac955fe4ada1ffdc5dcc5aac6c179584008f39aad62e85198d206a9b3a3
-f6edac07f4c043ba161e1ed4306e28e740bb8f1f780203751b6546088a796a93
-21bf2643eeba6385df5c96edc2bcaa4ace0f2458405d8cc3384465cb9d42419a
-eb05a44acc13e16ff4c20d8e63c35b6956bc2928daa3a94dc8fc86395af0a43f
-097ae074e7391fe1fb0e5061b99b470f1c7031098a5840d294a97f60c5441e9a
-09739286f325322c2a9e256a212f43d591726464578146cff52d67048b773dfa
-374c956ab3d705bd331a351e006e6b65d4d93e3e987535
+0663555341f5885840fa9e8923928bcc4b9b085806a60d494285f7618624a76a
+ae084f7d622697a2744ed3cf0e2a28cac44e89f7d305669689f9682abb34c5a6
+794e1331ce8e1f02b358406fea54741f95733d848bba5fe30e049c344e554b89
+66d1b5df762f858438f0816aa7573ed8843005201f26b2173d3d183a3e8cfa6b
+14d2a16d4bac14ee9a9cb25840e5f3a480ce2edc33eec4ee851e1e354f611e4a
+5b4fee0efa1ad899e293ffce5e988ea0518a2c583904b122c49a994342fc7c45
+479b5c9582ba19ca53c49d6dd95840becabc34746faf677b7d7d8586fbce636c
+54324d2a006c22d638f897bab1096e6818692e61b0bdd9a467b49d9e6cf1bf63
+c1ccbca61f91ac45847a906138b866584099ab1eae9c252175a2ee7c5b362025
+8a7cac89fe60be0f235a0608edba26ae31e13e838cbd217d59399e557018c43d
+69dc14f28e2a65dd1eccafb4df68de34cb5840a3e3b0ed346f428ecdaabfcb8c
+1c5619f2b34d9bfa48141b76313198fc825d1063daef345adf43b9e2b59d9feb
+76dac2c3bbe8480f309cec9d165ae351fa189458405506fb61a0fd62ba122183
+89814c80406538c0a03c58b9e10342e8a654e248bee95f4326d233ff5e0dd3d0
+559131d0e43428373ed6bb0a33865199fb221e049f584037ef7621b799788b7b
+e01426969788d64e97584beb283e43e9bd07743ee1c6684041d4b30bd675a5bd
+057c01a53c8f6117822fdc3211780fa1c4c5b24efb1120
 
 </pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
@@ -2748,7 +2646,7 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 <pre>{          / protected header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
-  7: h'55f0b66869660ff647da9a170a124825da49b52e80caa24b9e25178d278bca8f', / nonce /
+  7: h'dabed73fd41c81e6bbed1719b6961742d0293d4d4810e32e1892fb497c23ea20', / nonce /
 }
 
 </pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
@@ -2760,32 +2658,32 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-14">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-6c652e636f6d07582055f0b66869660ff647da9a170a124825da49b52e80caa2
-4b9e25178d278bca8f58cda601010314057668747470733a2f2f697373756572
+6c652e636f6d075820dabed73fd41c81e6bbed1719b6961742d0293d4d4810e3
+2e1892fb497c23ea2058cda601010314057668747470733a2f2f697373756572
 2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-08a4010220012158206aff1735b2b764d2c79ee00e28b667fbdc05a69f06e1fa
-78fe15de2da6354dc222582063124696cc6a02714d9941da81594ff078d89a74
-f3092edca7df51120fa1e22e09a401022001215820ecc4333c820640a4860bf4
-5c0e5d87105e44232bcdd2c0f0919958913a558f29225820c1ca81544fe6fc0a
-d667af2ca45590a662e869b2b9ce35ca11fec736b9060806891a0a3827001a0a
+08a4010220012158209cdbce204daa23a2e1cba076105c4c6ae2db0ef9ca79bc
+9f8a4bc0343ab73cc0225820b806e0c2b93a13c72d539f10ff6aff9c1ff561a9
+2c969c14ff99e32f5791585b09a4010220012158200dfaf0a9ba100754401fce
+a07852404a8ca4716e19145310f88a49bb4fcf930822582006e13d7378f329bd
+25477b07d72fd8b02141d0a35b0ee1b6f98cde97a0c6cfdf891a0a3827001a0a
 3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267a601
 782331323334204d61696e2053742e0a416e79746f776e2c2043412031323334
 350a555341026d31323334204d61696e2053742e0367416e79746f776e046243
-41056539303231300663555341f5f6f6875840c24f367c9cea5001a6d1754e16
-52a8179060bd2bafe4a0b736bf8ffb31a37925aaac7e942098718817a2b2d1f2
-055d151c558cd62fe38285731961a2d397d3b758409e2af2c89dd7c2e57f1273
-092e6baa1c1d9fd92b7dd02c814127d8f56b774f86a85fe3ca6536900530bdfe
-09554594679adcc98f179e98b2802e6957adc3cdc858405c7a5ee88aa7163aec
-2d5acec0a1649d98001c252dc352857e956584b468c9c0f1aecfb661b274679c
-fc65f3fe854712e3be887afb195034407f8cee9d373df55840a8ebb89fac5349
-6e039f346f9f306ccc098b98dcb5c38613a00a07cd0a197c0ef2e5a9ea6e42b6
-8997d6fb44a2d05fa9611cafa6b554b14ee287d48bf27f48125840a0d0112576
-98f74a1b0679990357db5c0b3c6702566270b029bdbb7a72a335dfe22651c3f2
-549034a1896295f78417572886ee45699e8060ba5650987ab302e15840ad843b
-9298c7094c3e8f05eddb58c740dd0a6f6387cb0af924132c07c56363c70c5194
-3547811ee2f598bef5b39c0210836ac955fe4ada1ffdc5dcc5aac6c179584008
-f39aad62e85198d206a9b3a3f6edac07f4c043ba161e1ed4306e28e740bb8f1f
-780203751b6546088a796a9321bf2643eeba6385df5c96edc2bcaa4ace0f24
+41056539303231300663555341f5f6f6875840fa9e8923928bcc4b9b085806a6
+0d494285f7618624a76aae084f7d622697a2744ed3cf0e2a28cac44e89f7d305
+669689f9682abb34c5a6794e1331ce8e1f02b358406252c1746b69d28a8456cf
+dd1ab13f1acc1760a834d8af10d739ae3deeca55248c51a3535d6d9c29f2529e
+9089836209ec0440a769fa8ad6aa3765cf55e0d72358406fea54741f95733d84
+8bba5fe30e049c344e554b8966d1b5df762f858438f0816aa7573ed884300520
+1f26b2173d3d183a3e8cfa6b14d2a16d4bac14ee9a9cb25840e5f3a480ce2edc
+33eec4ee851e1e354f611e4a5b4fee0efa1ad899e293ffce5e988ea0518a2c58
+3904b122c49a994342fc7c45479b5c9582ba19ca53c49d6dd95840becabc3474
+6faf677b7d7d8586fbce636c54324d2a006c22d638f897bab1096e6818692e61
+b0bdd9a467b49d9e6cf1bf63c1ccbca61f91ac45847a906138b866584099ab1e
+ae9c252175a2ee7c5b3620258a7cac89fe60be0f235a0608edba26ae31e13e83
+8cbd217d59399e557018c43d69dc14f28e2a65dd1eccafb4df68de34cb5840a3
+e3b0ed346f428ecdaabfcb8c1c5619f2b34d9bfa48141b76313198fc825d1063
+daef345adf43b9e2b59d9feb76dac2c3bbe8480f309cec9d165ae351fa1894
 
 </pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
 </div>
@@ -2801,30 +2699,30 @@ f39aad62e85198d206a9b3a3f6edac07f4c043ba161e1ed4306e28e740bb8f1f
         </h3>
 <p id="appendix-A.3-1">The following example uses the <code>BBS</code> algorithm.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-2">This is the Issuer's stable private key in the JWK format:<a href="#appendix-A.3-2" class="pilcrow">¶</a></p>
-<span id="name-bbs-private-key-in-jwk-form"></span><figure id="figure-11">
+<span id="name-bbs-private-key-in-jwk-form"></span><figure id="figure-10">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-3.1">
 <pre>{
   "kty": "EC2",
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "DSSEUhaJo7XhI90fuaa58K1zjQRLUuephKZMSvQMTcQzut45Eg-0VoDFfkAFq
-       X92AMtu4G1th6imswzEh3cZl96JJu8f1OXTX4w_FrvzkcvejegfYuYc4DMLKVy
-       7WV0o",
-  "y": "BE1WG6PLG--xzbyX0LcDtdiNmvfRkLlrQk6UQf3p7C6FEMjoyD8kT3QcIeZEv
-       IMVGbQXUqAfeVmxlMoP5vJLOOMajf_dAwKCXczpkSpTAYdln9_9ZklS9y6jnEB
-       KnpMp",
-  "d": "RuqYOl6VsAjLS4MDXu_r5xvkMnH2syyVk4DQqViECSo"
+  "x": "Cp8VS-Z3EusVFid9z0m6x_8z16ijbDFu2shEvot_yoCP3UNL-bwuR5VZyq2AC
+       hAEBkpmJAi7KcL4h1QbQQxsbX3RSVxGTmAEQzmiLKbrww3f3_sWcJilwc-MM1x
+       IrySP",
+  "y": "AIR7qEPbxKN6aF6xlnO50GpwuV9LXF3mrA2SyoIzw1-vj3w0iaNyGa4zyFdss
+       A_OGTzCTey5d54xy2jT8LXbd_9xK-8w-qCygz0Te51fM39WLd9CRBIPZfmFskR
+       jzoaS",
+  "d": "MeEf9CORj_ZiH-DyfolMJvbdNMpewHVpaxYd1p_YpKQ"
 }
 
 </pre>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-bbs-private-key-in-jwk-form" class="selfRef">BBS private key in JWK format</a>
           </figcaption></figure>
 <p id="appendix-A.3-4">There is no additional holder key necessary for presentation proofs.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
 <p id="appendix-A.3-5">For the following protected header and array of payloads:<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
-<span id="name-example-issuer-protected-he"></span><figure id="figure-12">
+<span id="name-example-issuer-protected-he"></span><figure id="figure-11">
           <div class="lang-json sourcecode" id="appendix-A.3-6.1">
 <pre>{
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
@@ -2833,57 +2731,29 @@ f39aad62e85198d206a9b3a3f6edac07f4c043ba161e1ed4306e28e740bb8f1f
 
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-example-issuer-protected-he" class="selfRef">Example issuer protected header</a>
           </figcaption></figure>
-<p id="appendix-A.3-7">These components are signed using the private issuer key previously given, which is then representable in the following serializations:<a href="#appendix-A.3-7" class="pilcrow">¶</a></p>
-<span id="name-issued-jwp-json-serializati"></span><figure id="figure-13">
+<p id="appendix-A.3-7">These components are signed using the private issuer key previously given, which is then representable in the following serialization:<a href="#appendix-A.3-7" class="pilcrow">¶</a></p>
+<span id="name-issued-jwp-bbs-json-compact"></span><figure id="figure-12">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-8.1">
-<pre>{
-  "issuer": "eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRu
-       RXhSMERValU4IiwiYWxnIjoiQkJTIn0",
-  "payloads": [
-    "MTcxNDUyMTYwMA",
-    "MTcxNzE5OTk5OQ",
-    "IkRvZSI",
-    "IkpheSI",
-    "ImpheWRvZUBleGFtcGxlLm9yZyI",
-    "eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxu
-       VVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdH
-       kiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUs
-       ImNvdW50cnkiOiJVU0EifQ",
-    "dHJ1ZQ"
-  ],
-  "proof": [
-    "piN9Kozt1SbXl17uqNi183sjehprORSA_FWM-cDYEII06sN0RJ9WOgJXRrCd45ZG
-       aexzjYYm9YX9HVW9nqMpidPaHbYMjY5KO9pOlc_1xYE"
-  ]
-}
-
-</pre>
-</div>
-<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
-<a href="#name-issued-jwp-json-serializati" class="selfRef">Issued JWP (JSON serialization)</a>
-          </figcaption></figure>
-<span id="name-issued-jwp-compact-serializ"></span><figure id="figure-14">
-          <div class="lang-wrapped sourcecode" id="appendix-A.3-9.1">
 <pre>eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4I
 iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.piN9Kozt1SbXl17uqNi183sjehprORSA_F
-WM-cDYEII06sN0RJ9WOgJXRrCd45ZGaexzjYYm9YX9HVW9nqMpidPaHbYMjY5KO9pOlc_
-1xYE
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.obk_YjzN_GgokfLB_bj-hSO8YfJEiemwvn
+TBE52KkzfzAlvK0RgFAg-FF5NAY4gFRhf-yTv0w827hRUW1yBG_LbE-Z3DRZuyzh_OX5Q
+3WkY
 
 </pre>
 </div>
-<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
-<a href="#name-issued-jwp-compact-serializ" class="selfRef">Issued JWP (compact serialization)</a>
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<a href="#name-issued-jwp-bbs-json-compact" class="selfRef">Issued JWP (BBS, JSON, Compact Serialization)</a>
           </figcaption></figure>
-<p id="appendix-A.3-10">For a presentation with the following presentation header:<a href="#appendix-A.3-10" class="pilcrow">¶</a></p>
-<span id="name-holder-presentation-header"></span><figure id="figure-15">
-          <div class="lang-json sourcecode" id="appendix-A.3-11.1">
+<p id="appendix-A.3-9">For a presentation with the following presentation header:<a href="#appendix-A.3-9" class="pilcrow">¶</a></p>
+<span id="name-holder-presentation-header"></span><figure id="figure-13">
+          <div class="lang-json sourcecode" id="appendix-A.3-10.1">
 <pre>{
     "alg": "BBS",
     "aud": "https://recipient.example.com",
@@ -2892,61 +2762,28 @@ WM-cDYEII06sN0RJ9WOgJXRrCd45ZGaexzjYYm9YX9HVW9nqMpidPaHbYMjY5KO9pOlc_
 
 </pre>
 </div>
-<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-holder-presentation-header" class="selfRef">Holder Presentation Header</a>
           </figcaption></figure>
-<p id="appendix-A.3-12">The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serializations:<a href="#appendix-A.3-12" class="pilcrow">¶</a></p>
-<span id="name-presentation-jwp-json-seria"></span><figure id="figure-16">
-          <div class="lang-wrapped sourcecode" id="appendix-A.3-13.1">
-<pre>{
-  "presentation": "eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC
-       5leGFtcGxlLmNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ",
-  "issuer": "eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRu
-       RXhSMERValU4IiwiYWxnIjoiQkJTIn0",
-  "payloads": [
-    "MTcxNDUyMTYwMA",
-    "MTcxNzE5OTk5OQ",
-    "IkRvZSI",
-    "IkpheSI",
-    null,
-    null,
-    null
-  ],
-  "proof": [
-    "qrDsam8ckK4ipsLnBf3HICpWQzErdb21r4ue9d9OzQ8tahzkaP1iHX0useP5a3uK
-       jIicgBrZyEyooIaUnBpu_8LTLmtCIl7jM_I1nRRYsr2pdZ5Z-XZBkIplyXRTzK
-       xakEWZ511qU64pBkjzKMPCjzzkL1Jei9M0ZxUNYp_7OZqnlsyfqx5dxwMT8FcH
-       Osr7ARftzDRJrDneiqS46c3cJ7qhtbgyl-BsO0xqq-0IEr1HcxkQzGmIqaFqcK
-       8IlL_sihcuxXtU8yCwtjkYaJs8NSXDvduPJBz0Yc9qzN8OCPc8RxX7IQ6blhUm
-       sjeb8KetBhwNOGWfNPeaX4-LqQmfAsSUawNCWfOS3WKrS8cnJURjgxFuCJ8YBh
-       Dfw83j6BNGcWnzz1h4PfuBNaW071DCQUGxlN0sp64uV3xkpuTyCORIRybCGp_m
-       kIvH7riEYrJPNCWWzEjXEd5oViBj_gmCeBsPy4-YScRWGmKxUOMgPz4"
-  ]
-}
-
-</pre>
-</div>
-<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
-<a href="#name-presentation-jwp-json-seria" class="selfRef">Presentation JWP (JSON serialization)</a>
-          </figcaption></figure>
-<span id="name-presentation-jwp-compact-se"></span><figure id="figure-17">
-          <div class="lang-wrapped sourcecode" id="appendix-A.3-14.1">
+<p id="appendix-A.3-11">The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serialization:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
+<span id="name-presentation-jwp-bbs-json-c"></span><figure id="figure-14">
+          <div class="lang-wrapped sourcecode" id="appendix-A.3-12.1">
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qrDsam8ckK4ipsLnBf3HICpWQzErdb21r4ue9d9O
-zQ8tahzkaP1iHX0useP5a3uKjIicgBrZyEyooIaUnBpu_8LTLmtCIl7jM_I1nRRYsr2pd
-Z5Z-XZBkIplyXRTzKxakEWZ511qU64pBkjzKMPCjzzkL1Jei9M0ZxUNYp_7OZqnlsyfqx
-5dxwMT8FcHOsr7ARftzDRJrDneiqS46c3cJ7qhtbgyl-BsO0xqq-0IEr1HcxkQzGmIqaF
-qcK8IlL_sihcuxXtU8yCwtjkYaJs8NSXDvduPJBz0Yc9qzN8OCPc8RxX7IQ6blhUmsjeb
-8KetBhwNOGWfNPeaX4-LqQmfAsSUawNCWfOS3WKrS8cnJURjgxFuCJ8YBhDfw83j6BNGc
-Wnzz1h4PfuBNaW071DCQUGxlN0sp64uV3xkpuTyCORIRybCGp_mkIvH7riEYrJPNCWWzE
-jXEd5oViBj_gmCeBsPy4-YScRWGmKxUOMgPz4
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gHq5XDiHmM7yF_TxXeKaQkpuXFzqQntaCWp0vzA3
+gdDtTA_R0ja17D0MIn6-6-IXlqQLjxBv7HDD4B-ZptYq1lFSvTT73UVdsjMtj9kh8akRL
+SaIpCQa9PGQXWYDk9jyl3FmRgF0UdFjxreOuoOIs5FWqZQYBTLxemH3gL-gSy77Q3GDVV
+xFie_aRuL0MkYwLDcCnG532BFgA7p-tFe9xsLFWlwzuPsLj6JqLk5VNIM8FqtkB8z2IB6
+oGlwYQIzu3at0RdWE8syXOCaaPg-8OUf60y9niHMtj7craRMH3WeSMh0-fFsJVLAAdRVN
+z865ENRiQv07-UDofkn7LBXLruDi6QPjv7aw2ryLdInFERkahJw26sKOPuKiqMzoYEGiP
+fgrzXKX0go9D0luTEbQnRuLCOyyRMNPuKBnDGS08xidiife_LzL4FHvbCfUBkSKQHjPDl
+NRsFZmJ04JlwLnNNfJnFGWYcgB0QKQy6LxmOs
 
 </pre>
 </div>
-<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
-<a href="#name-presentation-jwp-compact-se" class="selfRef">Presentation JWP (compact serialization)</a>
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
+<a href="#name-presentation-jwp-bbs-json-c" class="selfRef">Presentation JWP (BBS, JSON, Compact serialization)</a>
           </figcaption></figure>
 </section>
 </div>
@@ -2957,49 +2794,49 @@ jXEd5oViBj_gmCeBsPy4-YScRWGmKxUOMgPz4
         </h3>
 <p id="appendix-A.4-1">The following example uses the <code>MAC-H256</code> algorithm.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.4-2">This is the Issuer's stable private key in the JWK format:<a href="#appendix-A.4-2" class="pilcrow">¶</a></p>
-<span id="name-issuer-private-key"></span><figure id="figure-18">
+<span id="name-issuer-private-key"></span><figure id="figure-15">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-3.1">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "p3A52ad9EVbbUHEuN0e40egy-eaPRjTILWCRIVXT-r4",
-  "y": "yby8nERJdbAHmkf_Q2OW9OOIzgNO89NWDWfgoRSbijQ",
-  "d": "4Niq1xwwGeCnV7RYD4_JZaxgFaMdGFBEcRGAdcWlGpk"
+  "x": "fOvAQVUuvtgi5_RkaUUp3TOyAoMYndaPEvpoPu8RXSA",
+  "y": "HMCi5FQ4YlTXIvM3Eupw2KOgBzvSngEMXCBRflmk78o",
+  "d": "h_slrybQOIuQuU2bgHyS_LiPKchKJte2U1n9-94a8Ks"
 }
 
 </pre>
 </div>
-<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
+<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
 <a href="#name-issuer-private-key" class="selfRef">Issuer private key</a>
           </figcaption></figure>
 <p id="appendix-A.4-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
-<span id="name-shared-secret"></span><figure id="figure-19">
+<span id="name-shared-secret"></span><figure id="figure-16">
           <div class="lang-json sourcecode" id="appendix-A.4-5.1">
-<pre>"mPx6ZL-zG55cniV7C5sTwM1_reEGJRdimxpsaDIKMlk"
+<pre>"DDK5GgY8nZwkb9wVRXkPG3QKa_kdGKNvM6mOOIkzViA"
 
 </pre>
 </div>
-<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
+<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
 <a href="#name-shared-secret" class="selfRef">Shared Secret</a>
           </figcaption></figure>
 <p id="appendix-A.4-6">This is the Holder's presentation private key in the JWK format:<a href="#appendix-A.4-6" class="pilcrow">¶</a></p>
-<span id="name-holder-private-key"></span><figure id="figure-20">
+<span id="name-holder-private-key"></span><figure id="figure-17">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-7.1">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "av8XNbK3ZNLHnuAOKLZn-9wFpp8G4fp4_hXeLaY1TcI",
-  "y": "YxJGlsxqAnFNmUHagVlP8HjYmnTzCS7cp99REg-h4i4",
-  "d": "5OIipLpS8cf6zKU_a1c8vNVfVMXX9XyMuhRgW9NOQ50"
+  "x": "nNvOIE2qI6Lhy6B2EFxMauLbDvnKebyfikvANDq3PMA",
+  "y": "uAbgwrk6E8ctU58Q_2r_nB_1YakslpwU_5njL1eRWFs",
+  "d": "jwsBkPkbMo27muvSwhgfgZxebw-s-Q9IQ8pDFULmngM"
 }
 
 </pre>
 </div>
-<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
+<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
 <a href="#name-holder-private-key" class="selfRef">Holder private key</a>
           </figcaption></figure>
 <p id="appendix-A.4-8">For the following protected header and array of payloads:<a href="#appendix-A.4-8" class="pilcrow">¶</a></p>
-<span id="name-example-issuer-protected-hea"></span><figure id="figure-21">
+<span id="name-example-issuer-protected-hea"></span><figure id="figure-18">
           <div class="lang-json sourcecode" id="appendix-A.4-9.1">
 <pre>{
   "alg": "MAC-H256",
@@ -3018,17 +2855,17 @@ jXEd5oViBj_gmCeBsPy4-YScRWGmKxUOMgPz4
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "av8XNbK3ZNLHnuAOKLZn-9wFpp8G4fp4_hXeLaY1TcI",
-    "y": "YxJGlsxqAnFNmUHagVlP8HjYmnTzCS7cp99REg-h4i4"
+    "x": "nNvOIE2qI6Lhy6B2EFxMauLbDvnKebyfikvANDq3PMA",
+    "y": "uAbgwrk6E8ctU58Q_2r_nB_1YakslpwU_5njL1eRWFs"
   }
 }
 
 </pre>
 </div>
-<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
 <a href="#name-example-issuer-protected-hea" class="selfRef">Example issuer protected header</a>
           </figcaption></figure>
-<span id="name-example-issuer-payloads-as-"></span><figure id="figure-22">
+<span id="name-example-issuer-payloads-as-"></span><figure id="figure-19">
           <div class="lang-json sourcecode" id="appendix-A.4-10.1">
 <pre>[
     1714521600,
@@ -3049,233 +2886,155 @@ jXEd5oViBj_gmCeBsPy4-YScRWGmKxUOMgPz4
 
 </pre>
 </div>
-<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
 <a href="#name-example-issuer-payloads-as-" class="selfRef">Example issuer payloads (as members of a JSON array)</a>
           </figcaption></figure>
 <p id="appendix-A.4-11">The first MAC is generated using the key <code>issuer_header</code> and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
-<span id="name-issuer-mac-of-protected-hea"></span><figure id="figure-23">
+<span id="name-issuer-mac-of-protected-hea"></span><figure id="figure-20">
           <div class="lang-txt sourcecode" id="appendix-A.4-12.1">
-<pre>QOS1SMPybBrIHUxqd1688DxRfK83KZzTbHEJW5VXdCQ
+<pre>nXwvAn7mGiIkVmi6jy0DKWJvrIYxCgKOssN1FTdZbso
+
+</pre>
+</div>
+<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
+<a href="#name-issuer-mac-of-protected-hea" class="selfRef">Issuer MAC of protected header (Base64url-Encoded)</a>
+          </figcaption></figure>
+<p id="appendix-A.4-13">The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload (as <code>payload_{n}</code> in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
+<span id="name-derived-payload-keys-base64"></span><figure id="figure-21">
+          <div class="lang-json sourcecode" id="appendix-A.4-14.1">
+<pre>[
+  "8vOthkajk-Wte7xpof4_uzfBL_4Z9g5r5TsOnQgf0Xk",
+  "Iv0-tRnmfLBAshHiDcxIAJgWb-8nv9SY2dLOyhwQn-g",
+  "M_BSmGt1POY0JdUUM6qcEWPvAkY_YVsDN32WOIjnUiQ",
+  "m3LdUMF7nvNTMTrDzUAOa5HP90r_uhsIeyC5A9Y91_g",
+  "uTuOJ8YUhjmQ0AGm47p_6UTHceozh1cu7aDsKL0tFbY",
+  "Bcnbrxo6FhTqAv8May7JVcFJlIqkb1Krdw0evaOH3kU",
+  "RI1QKdMm1FjQnJYSqwkeyziHcP8Yy_y9gBzne57uwZo"
+]
+
+</pre>
+</div>
+<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<a href="#name-derived-payload-keys-base64" class="selfRef">Derived payload keys (Base64url-Encoded)</a>
+          </figcaption></figure>
+<p id="appendix-A.4-15">A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values:<a href="#appendix-A.4-15" class="pilcrow">¶</a></p>
+<span id="name-payload-mac-values-base64ur"></span><figure id="figure-22">
+          <div class="lang-json sourcecode" id="appendix-A.4-16.1">
+<pre>[
+  "DOTNBfVR-wsRJ-6y8ObaER0uOf06yljt2Nwm4cHfOUg",
+  "30VvKF4iTT1gFlvn0Rxk8BtWEo8pNiDsprjp4H3Hmqg",
+  "kQj5NfbFQPKx0vMcTbzhTrBUoS_viYGe1WIuM1a7cOQ",
+  "4rQCgTr0fjsdtjpb_QiOV2t_zeGW1Gj-RM1Hv7SOVzw",
+  "tKxMYK-ixeQp4Ih13Fijxf4oOB7EtnWPvj4nOBCu0D4",
+  "643CBBqQe58w7pDSLJTwqeAH46nuOv4GdRj1i6L9e5Q",
+  "Hd3FAgG9jtGLF--rwT3pyFr2F1lrQe-pvfsa0snhgbI"
+]
+
+</pre>
+</div>
+<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<a href="#name-payload-mac-values-base64ur" class="selfRef">Payload MAC values (Base64url-Encoded)</a>
+          </figcaption></figure>
+<p id="appendix-A.4-17">The issuer protected header MAC and the payload MAC octet strings are concatenated into a single value known as the combined MAC representation. This representation is signed with the issuer's private key.<a href="#appendix-A.4-17" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-18">The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.<a href="#appendix-A.4-18" class="pilcrow">¶</a></p>
+<span id="name-issued-proof-base64url-enco"></span><figure id="figure-23">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-19.1">
+<pre>[
+  "EvqiZYgvtxbpDoGQ9fOyIwSX_KAfZUClazi-XkxgaPXRmN_NKO4bQkR03riuFjyuIU
+pTnUHWAR0zJWY5Q1kNwQ",
+  "Q_qrJSDvz2WCiOVlFLZKTtgEnezEhJ-6KaD_ayT8W6A"
+]
 
 </pre>
 </div>
 <figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
-<a href="#name-issuer-mac-of-protected-hea" class="selfRef">Issuer MAC of protected header (base64url-encoded)</a>
+<a href="#name-issued-proof-base64url-enco" class="selfRef">Issued Proof (Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.4-13">The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload (as <code>payload_{n}</code> in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
-<span id="name-derived-payload-keys-base64"></span><figure id="figure-24">
-          <div class="lang-json sourcecode" id="appendix-A.4-14.1">
-<pre>[
-  "hax8p6R94tnyMfWPj_kavcrWKTfcA5SEB6wbcdnzkwI",
-  "Br9T-s291GMaRs8m9MeGkqkewRjcKfr9w8oSznv5rKY",
-  "iyqwGNcYryTxwVWgQrrHRFtpdyyuswlEvlxmbhkr1aU",
-  "hk52y0fcOQRlO8dCtU56JYRdWlqd667DmjtOQm0sa4U",
-  "zeARlErlE8CwDfAP2Ajh0e35EdCrJNfOpbevEcv2GhE",
-  "eY7B_9GE1Qu2K1x_IXWhtzxw7X2YuH2nEMnPu8g4K8I",
-  "jqAX9ntbWAdnELyRlrTtCSrPVbdfMoofxQYRH7EvrT8"
-]
+<p id="appendix-A.4-20">The final issued JWP in compact serialization is:<a href="#appendix-A.4-20" class="pilcrow">¶</a></p>
+<span id="name-issued-jwp-mac-h256-json-co"></span><figure id="figure-24">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-21.1">
+<pre>eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
+mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
+9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc2VudGF0aW9
+uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJu
+TnZPSUUycUk2TGh5NkIyRUZ4TWF1TGJEdm5LZWJ5ZmlrdkFORHEzUE1BIiwieSI6InVBY
+md3cms2RThjdFU1OFFfMnJfbkJfMVlha3NscHdVXzVuakwxZVJXRnMifX0.MTcxNDUyMT
+YwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb
+3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3
+RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiw
+icmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~d
+HJ1ZQ.EvqiZYgvtxbpDoGQ9fOyIwSX_KAfZUClazi-XkxgaPXRmN_NKO4bQkR03riuFjy
+uIUpTnUHWAR0zJWY5Q1kNwQ~Q_qrJSDvz2WCiOVlFLZKTtgEnezEhJ-6KaD_ayT8W6A
 
 </pre>
 </div>
 <figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
-<a href="#name-derived-payload-keys-base64" class="selfRef">Derived payload keys (base64url-encoded)</a>
+<a href="#name-issued-jwp-mac-h256-json-co" class="selfRef">Issued JWP (MAC-H256, JSON, Compact Serialization)</a>
           </figcaption></figure>
-<p id="appendix-A.4-15">A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values:<a href="#appendix-A.4-15" class="pilcrow">¶</a></p>
-<span id="name-payload-mac-values-base64ur"></span><figure id="figure-25">
-          <div class="lang-json sourcecode" id="appendix-A.4-16.1">
-<pre>[
-  "x7jcwdDlivRb3J1Lx78DmZwvZOVAqkwj8pNEgget14A",
-  "2Dz8m6GV0j37_KeyYr37cB4z7cptFwx7XBoTthnISLY",
-  "XD_HHiza3ff-nPC9mMlL0rJkGTAMPSCt33dB6L_5Wcw",
-  "4LvQDZKqAUwx4gGI8Jid7hQHlwBLCZPW2YmZYVxuWjE",
-  "cgrhzJVa2Pohtyn_HRORwmj7ba7AGzY_OZHIWzrafUE",
-  "cRGEvVFg7llYDXKN0hpP7e4WcYh8C5S6HOFcY0KYg_o",
-  "D-cIKH74WgCKfQ3rXlgYJcWaPWM8retIeB1ygDbku4A"
-]
+<p id="appendix-A.4-22">Next, we show the presentation of the JWP with selective disclosure.<a href="#appendix-A.4-22" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-23">For presentation with the following presentation protected header:<a href="#appendix-A.4-23" class="pilcrow">¶</a></p>
+<span id="name-presentation-protected-header"></span><figure id="figure-25">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-24.1">
+<pre>{
+  "alg": "MAC-H256",
+  "aud": "https://recipient.example.com",
+  "nonce": "2r7XP9Qcgea77RcZtpYXQtApPU1IEOMuGJL7SXwj6iA"
+}
 
 </pre>
 </div>
 <figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
-<a href="#name-payload-mac-values-base64ur" class="selfRef">Payload MAC values (base64url-encoded)</a>
+<a href="#name-presentation-protected-header" class="selfRef">Presentation Protected Header</a>
           </figcaption></figure>
-<p id="appendix-A.4-17">The issuer protected header MAC and the payload MAC octet strings are concatenated into a single value known as the combined MAC representation. This representation is signed with the issuer's private key.<a href="#appendix-A.4-17" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-18">The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.<a href="#appendix-A.4-18" class="pilcrow">¶</a></p>
-<span id="name-issued-proof-base64url-enco"></span><figure id="figure-26">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-19.1">
+<p id="appendix-A.4-25">The holder will take the issuer proof (including shared secret) and derive the same individual payload MAC values (above).<a href="#appendix-A.4-25" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-26">In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to <code>email</code>, <code>address</code>, and <code>age_over_21</code>)<a href="#appendix-A.4-26" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-27">For the disclosed payloads, the holder will provide the corresponding derived key. For the non-disclosed payloads, the holder will provide the corresponding MAC value.<a href="#appendix-A.4-27" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-28">The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:<a href="#appendix-A.4-28" class="pilcrow">¶</a></p>
+<span id="name-presentation-proof-base64ur"></span><figure id="figure-26">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-29.1">
 <pre>[
-  "vPWVXO0gyxC8ndMobBxu7Au7t_U0azkXUATjMIChs9fN1RYOXBuvrD3Or_jb3lXNjf
-f-mFXGtL0IQ7wQX26DDA",
-  "OM9iDuzJLu9MuvWemlCe2nYkuZHS76D5npU5A3JuM0o"
+  "LEyxkycLPUxNGFqPDB5O-e6IOg7Yhke37-2mEjfVEDcZiaNDvAcNQZtLu43_IPvoER
+bXCzADeCFycwoDXSFQaA",
+  "EvqiZYgvtxbpDoGQ9fOyIwSX_KAfZUClazi-XkxgaPXRmN_NKO4bQkR03riuFjyuIU
+pTnUHWAR0zJWY5Q1kNwQ",
+  "8vOthkajk-Wte7xpof4_uzfBL_4Z9g5r5TsOnQgf0Xk",
+  "Iv0-tRnmfLBAshHiDcxIAJgWb-8nv9SY2dLOyhwQn-g",
+  "M_BSmGt1POY0JdUUM6qcEWPvAkY_YVsDN32WOIjnUiQ",
+  "m3LdUMF7nvNTMTrDzUAOa5HP90r_uhsIeyC5A9Y91_g",
+  "tKxMYK-ixeQp4Ih13Fijxf4oOB7EtnWPvj4nOBCu0D4",
+  "643CBBqQe58w7pDSLJTwqeAH46nuOv4GdRj1i6L9e5Q",
+  "Hd3FAgG9jtGLF--rwT3pyFr2F1lrQe-pvfsa0snhgbI"
 ]
 
 </pre>
 </div>
 <figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
-<a href="#name-issued-proof-base64url-enco" class="selfRef">Issued Proof (base64url-encoded)</a>
+<a href="#name-presentation-proof-base64ur" class="selfRef">Presentation proof (Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.4-20">The final issued JWP in JSON serialization is:<a href="#appendix-A.4-20" class="pilcrow">¶</a></p>
-<span id="name-issued-jwp-in-json-serializ"></span><figure id="figure-27">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-21.1">
-<pre>{
-  "issuer": "eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
-Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
-WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
-Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZwNF9oWGVMYVkxVGNJ
-IiwieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdjcDk5UkVnLWg0aTQif
-X0",
-  "payloads": [
-    "MTcxNDUyMTYwMA",
-    "MTcxNzE5OTk5OQ",
-    "IkRvZSI",
-    "IkpheSI",
-    "ImpheWRvZUBleGFtcGxlLm9yZyI",
-    "eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxu
-VVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBb
-nl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOi
-JVU0EifQ",
-    "dHJ1ZQ"
-  ],
-  "proof": [
-    "vPWVXO0gyxC8ndMobBxu7Au7t_U0azkXUATjMIChs9fN1RYOXBuvrD3Or_jb3lXN
-jff-mFXGtL0IQ7wQX26DDA",
-    "OM9iDuzJLu9MuvWemlCe2nYkuZHS76D5npU5A3JuM0o"
-  ]
-}
+<p id="appendix-A.4-30">The final presented JWP in compact serialization is:<a href="#appendix-A.4-30" class="pilcrow">¶</a></p>
+<span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-27">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-31.1">
+<pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
+29tIiwibm9uY2UiOiIycjdYUDlRY2dlYTc3UmNadHBZWFF0QXBQVTFJRU9NdUdKTDdTWH
+dqNmlBIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
+LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc
+2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbi
+IsIngiOiJuTnZPSUUycUk2TGh5NkIyRUZ4TWF1TGJEdm5LZWJ5ZmlrdkFORHEzUE1BIiw
+ieSI6InVBYmd3cms2RThjdFU1OFFfMnJfbkJfMVlha3NscHdVXzVuakwxZVJXRnMifX0.
+MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.LEyxkycLPUxNGFqPDB5O
+-e6IOg7Yhke37-2mEjfVEDcZiaNDvAcNQZtLu43_IPvoERbXCzADeCFycwoDXSFQaA~Ev
+qiZYgvtxbpDoGQ9fOyIwSX_KAfZUClazi-XkxgaPXRmN_NKO4bQkR03riuFjyuIUpTnUH
+WAR0zJWY5Q1kNwQ~8vOthkajk-Wte7xpof4_uzfBL_4Z9g5r5TsOnQgf0Xk~Iv0-tRnmf
+LBAshHiDcxIAJgWb-8nv9SY2dLOyhwQn-g~M_BSmGt1POY0JdUUM6qcEWPvAkY_YVsDN3
+2WOIjnUiQ~m3LdUMF7nvNTMTrDzUAOa5HP90r_uhsIeyC5A9Y91_g~tKxMYK-ixeQp4Ih
+13Fijxf4oOB7EtnWPvj4nOBCu0D4~643CBBqQe58w7pDSLJTwqeAH46nuOv4GdRj1i6L9
+e5Q~Hd3FAgG9jtGLF--rwT3pyFr2F1lrQe-pvfsa0snhgbI
 
 </pre>
 </div>
 <figcaption><a href="#figure-27" class="selfRef">Figure 27</a>:
-<a href="#name-issued-jwp-in-json-serializ" class="selfRef">Issued JWP (in JSON serialization)</a>
-          </figcaption></figure>
-<p id="appendix-A.4-22">The same JWP in compact serialization:<a href="#appendix-A.4-22" class="pilcrow">¶</a></p>
-<span id="name-issued-jwp-in-compact-seria"></span><figure id="figure-28">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-23.1">
-<pre>eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
-mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
-9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc2VudGF0aW9
-uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJh
-djhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZwNF9oWGVMYVkxVGNJIiwieSI6Ill4S
-kdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdjcDk5UkVnLWg0aTQifX0.MTcxNDUyMT
-YwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb
-3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3
-RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiw
-icmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~d
-HJ1ZQ.vPWVXO0gyxC8ndMobBxu7Au7t_U0azkXUATjMIChs9fN1RYOXBuvrD3Or_jb3lX
-Njff-mFXGtL0IQ7wQX26DDA~OM9iDuzJLu9MuvWemlCe2nYkuZHS76D5npU5A3JuM0o
-
-</pre>
-</div>
-<figcaption><a href="#figure-28" class="selfRef">Figure 28</a>:
-<a href="#name-issued-jwp-in-compact-seria" class="selfRef">Issued JWP (in compact serialization)</a>
-          </figcaption></figure>
-<p id="appendix-A.4-24">Next, we show the presentation of the JWP with selective disclosure.<a href="#appendix-A.4-24" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-25">For presentation with the following presentation protected header:<a href="#appendix-A.4-25" class="pilcrow">¶</a></p>
-<span id="name-presentation-protected-header"></span><figure id="figure-29">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-26.1">
-<pre>{
-  "alg": "MAC-H256",
-  "aud": "https://recipient.example.com",
-  "nonce": "VfC2aGlmD_ZH2poXChJIJdpJtS6AyqJLniUXjSeLyo8"
-}
-
-</pre>
-</div>
-<figcaption><a href="#figure-29" class="selfRef">Figure 29</a>:
-<a href="#name-presentation-protected-header" class="selfRef">Presentation Protected Header</a>
-          </figcaption></figure>
-<p id="appendix-A.4-27">The holder will take the issuer proof (including shared secret) and derive the same individual payload MAC values (above).<a href="#appendix-A.4-27" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-28">In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to <code>email</code>, <code>address</code>, and <code>age_over_21</code>)<a href="#appendix-A.4-28" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-29">For the disclosed payloads, the holder will provide the corresponding derived key. For the non-disclosed payloads, the holder will provide the corresponding MAC value.<a href="#appendix-A.4-29" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-30">The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:<a href="#appendix-A.4-30" class="pilcrow">¶</a></p>
-<span id="name-presentation-proof-base64ur"></span><figure id="figure-30">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-31.1">
-<pre>[
-  "ooJCoRCwb_yTPocXqLZ3-xA837U17ZZgVt9M_GCHbre_A5kdyRzen54pouo98im-AG
-n8y2wpRioAQmglFXB4Jw",
-  "vPWVXO0gyxC8ndMobBxu7Au7t_U0azkXUATjMIChs9fN1RYOXBuvrD3Or_jb3lXNjf
-f-mFXGtL0IQ7wQX26DDA",
-  "hax8p6R94tnyMfWPj_kavcrWKTfcA5SEB6wbcdnzkwI",
-  "Br9T-s291GMaRs8m9MeGkqkewRjcKfr9w8oSznv5rKY",
-  "iyqwGNcYryTxwVWgQrrHRFtpdyyuswlEvlxmbhkr1aU",
-  "hk52y0fcOQRlO8dCtU56JYRdWlqd667DmjtOQm0sa4U",
-  "cgrhzJVa2Pohtyn_HRORwmj7ba7AGzY_OZHIWzrafUE",
-  "cRGEvVFg7llYDXKN0hpP7e4WcYh8C5S6HOFcY0KYg_o",
-  "D-cIKH74WgCKfQ3rXlgYJcWaPWM8retIeB1ygDbku4A"
-]
-
-</pre>
-</div>
-<figcaption><a href="#figure-30" class="selfRef">Figure 30</a>:
-<a href="#name-presentation-proof-base64ur" class="selfRef">Presentation proof (base64url-encoded)</a>
-          </figcaption></figure>
-<p id="appendix-A.4-32">The final presented JWP in JSON serialization is:<a href="#appendix-A.4-32" class="pilcrow">¶</a></p>
-<span id="name-presented-jwp-in-json-seria"></span><figure id="figure-31">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-33.1">
-<pre>{
-  "presentation": "eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaX
-BpZW50LmV4YW1wbGUuY29tIiwibm9uY2UiOiJWZkMyYUdsbURfWkgycG9YQ2hKSUpkcEp
-0UzZBeXFKTG5pVVhqU2VMeW84In0",
-  "issuer": "eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBz
-Oi8vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hb
-WUiLCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicH
-Jlc2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2l
-nbiIsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZwNF9oWGVMYVkxVGNJ
-IiwieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdjcDk5UkVnLWg0aTQif
-X0",
-  "payloads": [
-    "MTcxNDUyMTYwMA",
-    "MTcxNzE5OTk5OQ",
-    "IkRvZSI",
-    "IkpheSI",
-    null,
-    null,
-    null
-  ],
-  "proof": [
-    "ooJCoRCwb_yTPocXqLZ3-xA837U17ZZgVt9M_GCHbre_A5kdyRzen54pouo98im-
-AGn8y2wpRioAQmglFXB4Jw",
-    "vPWVXO0gyxC8ndMobBxu7Au7t_U0azkXUATjMIChs9fN1RYOXBuvrD3Or_jb3lXN
-jff-mFXGtL0IQ7wQX26DDA",
-    "hax8p6R94tnyMfWPj_kavcrWKTfcA5SEB6wbcdnzkwI",
-    "Br9T-s291GMaRs8m9MeGkqkewRjcKfr9w8oSznv5rKY",
-    "iyqwGNcYryTxwVWgQrrHRFtpdyyuswlEvlxmbhkr1aU",
-    "hk52y0fcOQRlO8dCtU56JYRdWlqd667DmjtOQm0sa4U",
-    "cgrhzJVa2Pohtyn_HRORwmj7ba7AGzY_OZHIWzrafUE",
-    "cRGEvVFg7llYDXKN0hpP7e4WcYh8C5S6HOFcY0KYg_o",
-    "D-cIKH74WgCKfQ3rXlgYJcWaPWM8retIeB1ygDbku4A"
-  ]
-}
-
-</pre>
-</div>
-<figcaption><a href="#figure-31" class="selfRef">Figure 31</a>:
-<a href="#name-presented-jwp-in-json-seria" class="selfRef">Presented JWP (in JSON serialization)</a>
-          </figcaption></figure>
-<p id="appendix-A.4-34">The same JWP in compact serialization:<a href="#appendix-A.4-34" class="pilcrow">¶</a></p>
-<span id="name-presented-jwp-in-compact-se"></span><figure id="figure-32">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-35.1">
-<pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJWZkMyYUdsbURfWkgycG9YQ2hKSUpkcEp0UzZBeXFKTG5pVVhqU2
-VMeW84In0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
-vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
-LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc
-2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbi
-IsIngiOiJhdjhYTmJLM1pOTEhudUFPS0xabi05d0ZwcDhHNGZwNF9oWGVMYVkxVGNJIiw
-ieSI6Ill4Skdsc3hxQW5GTm1VSGFnVmxQOEhqWW1uVHpDUzdjcDk5UkVnLWg0aTQifX0.
-MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.ooJCoRCwb_yTPocXqLZ3
--xA837U17ZZgVt9M_GCHbre_A5kdyRzen54pouo98im-AGn8y2wpRioAQmglFXB4Jw~vP
-WVXO0gyxC8ndMobBxu7Au7t_U0azkXUATjMIChs9fN1RYOXBuvrD3Or_jb3lXNjff-mFX
-GtL0IQ7wQX26DDA~hax8p6R94tnyMfWPj_kavcrWKTfcA5SEB6wbcdnzkwI~Br9T-s291
-GMaRs8m9MeGkqkewRjcKfr9w8oSznv5rKY~iyqwGNcYryTxwVWgQrrHRFtpdyyuswlEvl
-xmbhkr1aU~hk52y0fcOQRlO8dCtU56JYRdWlqd667DmjtOQm0sa4U~cgrhzJVa2Pohtyn
-_HRORwmj7ba7AGzY_OZHIWzrafUE~cRGEvVFg7llYDXKN0hpP7e4WcYh8C5S6HOFcY0KY
-g_o~D-cIKH74WgCKfQ3rXlgYJcWaPWM8retIeB1ygDbku4A
-
-</pre>
-</div>
-<figcaption><a href="#figure-32" class="selfRef">Figure 32</a>:
-<a href="#name-presented-jwp-in-compact-se" class="selfRef">Presented JWP (in compact serialization)</a>
+<a href="#name-presented-jwp-mac-h256-json" class="selfRef">Presented JWP (MAC-H256, JSON, Compact Serialization)</a>
           </figcaption></figure>
 </section>
 </div>
@@ -3301,7 +3060,9 @@ for his valuable contributions to this specification.<a href="#appendix-B-2" cla
 <p id="appendix-C-1">[[ To be removed from the final specification ]]<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">-latest<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-3.1">Added CBOR (CPT) example to the appendix using SU-ES256<a href="#appendix-C-3.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-3.1">Remove JSON serialization<a href="#appendix-C-3.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-3.2">Added CBOR (CPT) example to the appendix using SU-ES256<a href="#appendix-C-3.2" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-C-4">-08<a href="#appendix-C-4" class="pilcrow">¶</a></p>
