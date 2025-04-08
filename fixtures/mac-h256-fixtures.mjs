@@ -83,14 +83,6 @@ const issuedProof = [macsSignature, holderSharedSecret]
 
 await fs.writeFile("build/mac-h256-issued-proof.json.wrapped", lineWrap(JSON.stringify(issuedProof.map(encode), 0, 2)));
 
-// create issued JSON serialization
-const finalIssuedJSON = {
-    issuer: encode(finalIssuerProtectedHeader),
-    payloads: payloads.map(jsonPayloadEncode),
-    proof: issuedProof.map(encode)
-}
-const issuerJSONOutput = JSON.stringify(finalIssuedJSON, 0, 2);
-
 // create issued compact serialization
 const serialized = [];
 serialized.push(encode(finalIssuerProtectedHeader));
@@ -98,7 +90,6 @@ serialized.push(payloads.map(compactPayloadEncode).join('~'));
 serialized.push(issuedProof.map(encode).join("~"));
 const issuerCompactOutput = serialized.join('.');
 
-await fs.writeFile("build/mac-h256-issuer.json.jwp.wrapped", lineWrap(issuerJSONOutput));
 await fs.writeFile("build/mac-h256-issuer.compact.jwp.wrapped", lineWrap(issuerCompactOutput));
 
 /// Create JWP Presentation
@@ -131,20 +122,8 @@ for (let i = 0 ; i < payloads.length; i++ ) {
     }
 }
 
-// await fs.writeFile("build/mac-h256-presentation-disclosures.json.wrapped",
-//     lineWrap(JSON.stringify(pres_final.slice(2).map(encode), 0, 2)));
-
 await fs.writeFile("build/mac-h256-presentation-proof.json.wrapped",
     lineWrap(JSON.stringify(pres_final.map(encode), 0, 2)));
-
-// create issued JSON serialization
-const finalPresentedJSON = {
-    presentation: encode(finalHolderProtectedHeader),
-    issuer: encode(finalIssuerProtectedHeader),
-    payloads: payloads.map(jsonPayloadEncode),
-    proof: pres_final.map(encode)
-}
-const presentedJSONOutput = JSON.stringify(finalPresentedJSON, 0, 2);
 
 // create issued compact serialization
 const serialized2 = [];
@@ -154,7 +133,5 @@ serialized2.push(payloads.map(compactPayloadEncode).join('~'));
 serialized2.push(pres_final.map(encode).join('~'));
 const presentedCompactOutput = serialized2.join('.');
 
-await fs.writeFile("build/mac-h256-presentation.json.jwp.wrapped",
-    lineWrap(presentedJSONOutput));
 await fs.writeFile("build/mac-h256-presentation.compact.jwp.wrapped",
     lineWrap(presentedCompactOutput));
