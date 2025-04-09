@@ -917,12 +917,10 @@ for his valuable contributions to this specification.
 # Document History
 
   [[ To be removed from the final specification ]]
- -latest
+
+ -09
 
   * Remove JSON serialization
-
- -latest
-
   * Correct informative reference to the IANA JWT registry.
 
  -08

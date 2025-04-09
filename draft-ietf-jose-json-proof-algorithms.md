@@ -841,7 +841,7 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 
   [[ To be removed from the final specification ]]
 
- -latest
+ -09
 
   * Remove JSON serialization
   * Added CBOR (CPT) example to the appendix using SU-ES256
