@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-08T00:53:56.854967+00:00",
+  "timestamp": "2025-04-20T00:59:19.468167+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2186,7 +2186,7 @@
       "labels": [],
       "body": "I would like to contribute to the official JS implementation of your spec, and to make it super easy for anyone to integrate JWP in their apps. I could take care of developing a clean architecture for the lib, implementing the spec, writing tests, publishing the lib, writing examples for different use-cases / platforms (browser, mobile, server). I've been working with VCs/DIDs/DWNs for the past year and have experience in building isomorphic JS libs.\r\nIs this something you have on your roadmap?",
       "createdAt": "2023-12-03T10:46:12Z",
-      "updatedAt": "2024-02-17T00:25:07Z",
+      "updatedAt": "2025-04-18T21:22:29Z",
       "closedAt": null,
       "comments": [
         {
@@ -2202,6 +2202,13 @@
           "body": "@pax-k We would love more implementations!\r\n\r\nSince our goal is to describe interoperability in specifications rather than to say that a particular implementation is authoritatively \"correct\", we don't really encourage one implementation over others. That said, we do use Node to generate examples and the like today, and could certainly use something a bit better than our barebones scripts to do things like generate examples and even maintain test vectors.",
           "createdAt": "2024-02-17T00:25:06Z",
           "updatedAt": "2024-02-17T00:25:06Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@pax-k What's a link to your implementation?",
+          "createdAt": "2025-04-18T21:22:29Z",
+          "updatedAt": "2025-04-18T21:22:29Z"
         }
       ]
     },
@@ -2746,6 +2753,30 @@
       "updatedAt": "2025-04-08T00:36:46Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 163,
+      "id": "I_kwDOFsQObc6zHHzx",
+      "title": "Built a JWP Debugger \u2014 Looking for Feedback!",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/163",
+      "state": "OPEN",
+      "author": "dorakemon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Hey David and JWP team!\u200b\n\nIt was great meeting you at IIW last week. \nI've been working on a JWP debugger tool since I came back to Japan \ud83c\uddef\ud83c\uddf5 \n\nhttps://dorakemon.github.io/jwp-debugger/\n\nCurrently, it's about 70% complete and supports only BBS for now. I would love to deploy it to jwp.tool eventually.\n\nWould love to get your thoughts and any feedback you have! \ud83d\ude01\n\nHere are the repositories which I created:\n\nDebugger UI: \n  https://github.com/dorakemon/jwp-debugger\nWasm for JWP logics: \n   https://github.com/dorakemon/json-proof-token-js\n\nHope you like it.",
+      "createdAt": "2025-04-18T13:41:27Z",
+      "updatedAt": "2025-04-18T21:28:09Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "That's cool!  I'm curious what other implementations you know about.  We're thinking of making a page listing them.",
+          "createdAt": "2025-04-18T21:28:08Z",
+          "updatedAt": "2025-04-18T21:28:08Z"
+        }
+      ]
     }
   ],
   "pulls": [
