@@ -1,8 +1,6 @@
 # JSON Web Proof
 
-Specification work for JSON Web Proof
-
-The JSON Web Proof effort aims to establish a new JSON based container as a new entry in the JOSE family of container formats.
+JSON Web Proof establishes a JSON based container as a new entry in the JOSE family of container formats.
 
 While similar to JSON Web Signature[^JWS], JSON Web Proof aim to support newer algorithms and cryptographic techniques. These techniques establish the role of a *prover*, which has limited capabilities to derive new forms of from a signed message which can still be cryptographically verified.
 
@@ -13,7 +11,7 @@ Examples of capabilities an algorithm may support include:
 3. Disclose an answer to a predicate without disclosing the values used for evaluation
 4. Proof of possession
 
-## Specifications in Progress
+## Specifications
 
 ### JSON Web Proof
 
@@ -44,6 +42,10 @@ An application of JWP for representing claims about an entity, analogous to  JWT
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token)
 * [Compare Editor's Copy to Working Group Draft](https://ietf-wg-jose.github.io/json-web-proof/#go.draft-ietf-jose-json-proof-token.diff)
 
+## Implementations
+
+See the list of [publicly-available implementations of JWP](https://github.com/ietf-wg-jose/json-web-proof/blob/main/IMPLEMENTATIONS.md).
+
 ## Contributing
 
 See the
@@ -51,7 +53,6 @@ See the
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
-
 
 ### Command Line Usage
 
