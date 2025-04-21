@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 10 October 2025                          Self-Issued Consulting
+Expires: 23 October 2025                          Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                            8 April 2025
+                                                           21 April 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 October 2025.
+   This Internet-Draft will expire on 23 October 2025.
 
 Copyright Notice
 
@@ -765,14 +765,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.q-ZcyZKADPahvkCyUas4B6c-Pgej2SJ8TrYO4Aln
-   MJrcc3xIhZepkwn1D7EI7utUsKXf3TG0uwd5cB3oucJ1sWrv-lRxF594W2olltKv27B7h
-   qUIh_F24b0pBsTqTADmmXPRQrxwg6Y6ZzzllCeE-19QKetYSbRHfH0FEsImXuwWnMvRVn
-   RJh2gMZ20CYH93AJQAAA-55Sou8rY7McNbG197cyRvNNn22gyeWb3w6PQvrhjVqIGLhRB
-   4un2hpsL8qkAIPLKaVeUfzFVhTCBHQkhl5KtmS-7nc0ZDiHWDnFCnG7NyMcjRcd1d_BYC
-   _SrLII-rYwLA2gj8axkxw_3bpSlxTQWfuHftNloheeeaIwBFrkPwp0XF-HgGnNM4C_YUd
-   J8xWn7Hf5wj5RhU94Ng51TuJtoyp8UuLEA5Z3MEvvrepZ87FSXada-0yfaLp31-Sc7fZ0
-   eXa82WlBFHOCaPx2tvtrARIPtuOI1hIFwodYI
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.hbWhBqFNQgM2BGJU4MER3K-XlIShl67RvWzyHdzL
+   _U7jIHoKCDiSjv_o9cJH9QBfgbj9Kprnf5odRICeb_ju6Y5tlkoIeaiWpF2YBC9YpAtY6
+   F4ZprRouWVbE3Dqfz5igpABMdvCsBXvrSn1JqQLARJQ57OZHSsCW2-EM6fXOS_avv8bFH
+   a4wzNM3LdWtXH1QmtBeJCLPxaoFsdKqgCE1r217jeuC1tYVwYXC7JO1TNvLkeMZPydhNa
+   _pRwEgxpuPB4wOKqtxjSYW707wwVVDFbdwwZJoyXFDi_6ej7WUa8ZeUlZFlOnKxlxU1S0
+   -Nv8GDWemAAGIcUeTaKPI6WjS2mtbFX9CpbgyxqXRjlt83VMF4au6Akl__0ow8BByNAGX
+   0fbXUbnCGnfZDbGiOx5q1KJG__SDQS5hUYZkVBzL3rPTd8xeWwCfPbAmheS-XaoXneJ2Q
+   Es1Criabf47KYlE8cGkoZ1IMm9ul2oHsQJ6TY
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1280,12 +1280,11 @@ Appendix A.  Acknowledgements
 
 Appendix B.  Document History
 
-   [[ To be removed from the final specification ]] -latest
+   [[ To be removed from the final specification ]]
+
+   -09
 
    *  Remove JSON serialization
-
-   -latest
-
    *  Correct informative reference to the IANA JWT registry.
 
    -08
