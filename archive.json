@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-20T00:59:19.468167+00:00",
+  "timestamp": "2025-04-22T00:55:29.641578+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2186,7 +2186,7 @@
       "labels": [],
       "body": "I would like to contribute to the official JS implementation of your spec, and to make it super easy for anyone to integrate JWP in their apps. I could take care of developing a clean architecture for the lib, implementing the spec, writing tests, publishing the lib, writing examples for different use-cases / platforms (browser, mobile, server). I've been working with VCs/DIDs/DWNs for the past year and have experience in building isomorphic JS libs.\r\nIs this something you have on your roadmap?",
       "createdAt": "2023-12-03T10:46:12Z",
-      "updatedAt": "2025-04-18T21:22:29Z",
+      "updatedAt": "2025-04-21T15:58:25Z",
       "closedAt": null,
       "comments": [
         {
@@ -2209,6 +2209,13 @@
           "body": "@pax-k What's a link to your implementation?",
           "createdAt": "2025-04-18T21:22:29Z",
           "updatedAt": "2025-04-18T21:22:29Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We'd like to add it to https://github.com/ietf-wg-jose/json-web-proof/blob/main/IMPLEMENTATIONS.md",
+          "createdAt": "2025-04-21T15:58:24Z",
+          "updatedAt": "2025-04-21T15:58:24Z"
         }
       ]
     },
@@ -2766,7 +2773,7 @@
       "labels": [],
       "body": "Hey David and JWP team!\u200b\n\nIt was great meeting you at IIW last week. \nI've been working on a JWP debugger tool since I came back to Japan \ud83c\uddef\ud83c\uddf5 \n\nhttps://dorakemon.github.io/jwp-debugger/\n\nCurrently, it's about 70% complete and supports only BBS for now. I would love to deploy it to jwp.tool eventually.\n\nWould love to get your thoughts and any feedback you have! \ud83d\ude01\n\nHere are the repositories which I created:\n\nDebugger UI: \n  https://github.com/dorakemon/jwp-debugger\nWasm for JWP logics: \n   https://github.com/dorakemon/json-proof-token-js\n\nHope you like it.",
       "createdAt": "2025-04-18T13:41:27Z",
-      "updatedAt": "2025-04-18T21:28:09Z",
+      "updatedAt": "2025-04-21T16:00:08Z",
       "closedAt": null,
       "comments": [
         {
@@ -2775,6 +2782,20 @@
           "body": "That's cool!  I'm curious what other implementations you know about.  We're thinking of making a page listing them.",
           "createdAt": "2025-04-18T21:28:08Z",
           "updatedAt": "2025-04-18T21:28:08Z"
+        },
+        {
+          "author": "dorakemon",
+          "authorAssociation": "NONE",
+          "body": "Thanks for your interest!\n\nI only know about the [json-proof-token from Cybersecurity-LINKS](https://github.com/Cybersecurity-LINKS/json-proof-token) and the examples in the `fixtures` directory in this repository.\n\nFor my web app, I've created a WASM wrapper of the json-proof-token above.\nhttps://github.com/dorakemon/json-proof-token-js\n\nThe current implementations have limited support (no single use capability yet). I'm considering contributing to the Rust implementation to expand the supported features.",
+          "createdAt": "2025-04-20T05:55:54Z",
+          "updatedAt": "2025-04-20T05:56:26Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is now listed at https://github.com/ietf-wg-jose/json-web-proof/blob/main/IMPLEMENTATIONS.md.\n\nMaybe you can also send e-mail to jose@ietf.org telling people about your testbed.",
+          "createdAt": "2025-04-21T16:00:07Z",
+          "updatedAt": "2025-04-21T16:00:07Z"
         }
       ]
     }
