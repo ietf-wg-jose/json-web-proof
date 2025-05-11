@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-22T00:55:29.641578+00:00",
+  "timestamp": "2025-05-11T01:00:58.574318+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2773,7 +2773,7 @@
       "labels": [],
       "body": "Hey David and JWP team!\u200b\n\nIt was great meeting you at IIW last week. \nI've been working on a JWP debugger tool since I came back to Japan \ud83c\uddef\ud83c\uddf5 \n\nhttps://dorakemon.github.io/jwp-debugger/\n\nCurrently, it's about 70% complete and supports only BBS for now. I would love to deploy it to jwp.tool eventually.\n\nWould love to get your thoughts and any feedback you have! \ud83d\ude01\n\nHere are the repositories which I created:\n\nDebugger UI: \n  https://github.com/dorakemon/jwp-debugger\nWasm for JWP logics: \n   https://github.com/dorakemon/json-proof-token-js\n\nHope you like it.",
       "createdAt": "2025-04-18T13:41:27Z",
-      "updatedAt": "2025-04-21T16:00:08Z",
+      "updatedAt": "2025-05-09T20:11:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -2796,6 +2796,13 @@
           "body": "This is now listed at https://github.com/ietf-wg-jose/json-web-proof/blob/main/IMPLEMENTATIONS.md.\n\nMaybe you can also send e-mail to jose@ietf.org telling people about your testbed.",
           "createdAt": "2025-04-21T16:00:07Z",
           "updatedAt": "2025-04-21T16:00:07Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Heya @dorakemon - I realized my comment never showed up here. This looks amazing!\n\nHave you considered a license for the work, such as the Apache license that the LINKS cybersecurity group work is under?",
+          "createdAt": "2025-05-09T20:11:10Z",
+          "updatedAt": "2025-05-09T20:11:10Z"
         }
       ]
     }
