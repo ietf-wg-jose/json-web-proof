@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-11T01:00:58.574318+00:00",
+  "timestamp": "2025-06-12T00:58:38.392040+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -648,15 +648,15 @@
       "id": "I_kwDOFsQObc49TK7V",
       "title": "Add a Proof Type for Merkle Proof Selective Disclosure to JPA",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/15",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "I took a stab at a \u201cJWP\u201d encoding of merkle disclosure proofs in a token format\u2026.\r\n\r\nhttps://or13.github.io/jwp-mdt/#name-root-proof\r\n\r\nThe main thing I noticed was some awkwardness regarding nesting JWS inside the protected header.\r\n\r\nit feels like JWP \u201cProtected Header\u201d should reserve a member \u201csignature\u201d and its value should not contain concatenated \u201cheader\u201d or \u201cpayload\u201d attributes\u2026\r\n\r\n```\r\n \"protected\": {\r\n\r\n    \"kid\": \"did:example:123#key-0\"\r\n\r\n    \"root\": \"SflKxwRJSM...\",\r\n    \"alg\": \"MDP+ES256+JP\", // merkle disclosure with json pointer\r\n    \"zip\": \"DEF\"\r\n\r\n    \"signature\": \"SflKxwRJSM\", // over the entire protected header, like a detached jws, but only the signature part.\r\n  },\r\n\r\n```\r\n\r\nOtherwise if we reserved a member \u201cjws\u201d we would have an encoded JWS header, nested insider an encoded JWP header, each with potentially different alg  zip kid, etc\u2026\r\n\r\n```\r\n \"protected\": {\r\n\r\n    \"kid\": \"did:example:123#key-0\"\r\n\r\n    \"root\": \"SflKxwRJSM...\",\r\n    \"alg\": \"MDP+ES256+JP\", // merkle disclosure with json pointer\r\n    \"zip\": \"DEF\"\r\n\r\n    \"jws\": \"{alg, kid, zip}..SflKxwRJSM\", // over the entire protected header, but confusing imo...\r\n  },\r\n\r\n```\r\n\r\nFor merkle proofs a signature over the root must be disclosed, so we need a \"signature\" in the \"protected header\".\r\n\r\n",
       "createdAt": "2021-10-17T20:58:06Z",
-      "updatedAt": "2022-02-08T19:37:00Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-11T20:40:32Z",
+      "closedAt": "2025-06-11T20:40:32Z",
       "comments": [
         {
           "author": "OR13",
@@ -727,6 +727,13 @@
           "body": "```js\r\nconst base64url = require(\"base64url\");\r\nconst { expandProofs } = require(\"./merkle\");\r\nconst expandedDerivedJwp = {\r\n  protected: { kid: \"did:example:123#key-0\", alg: \"MDP+EdDSA\", zip: \"DEF\" },\r\n  payloads: [\"Yg\"],\r\n  proof:\r\n    \"eyJyb290IjoiYzllYjU1YWU4OTk0M2Q0MDRmY2U2MzI3MTM4MTAxYzgwYjIyYzcxYmIzYTY2NmFkZTBiYWY5YTRiZmIzN2JjNiIsIm5vbmNlIjoidXJuOnV1aWQ6ZTJjYWRlMDQtMjg5Ny00YTUwLTk4NDItY2QyZGQ5ZGVhZTEwIiwicHJvb2ZzIjoiZUp4RnpMc09nakFVQU5CLzZhb0pscllYNm9aUjFDZytZMkkwRHREYkdud1ZMU2pFK08rNnVaM3A3TjhFYzZjdTFtbWMyWnZTcEV1a0ZpcWpQZ011NFNjWmNDcU5DVU9sZzVScFJnVmtraG5BanRJK3BnWWs4c3lFRW8yZlVrNHBrdmIvWER5c05iOHppcXRxWUFhT0ZjZFJXWTFhSlhoRlBvNjkvaTZQZW5YaTFJWjUzTkVwaXJNWDZYd0lEWnllWWlYV0lVTEJoc244Y3FkdXN0dld5eXA3TllsTW5XWHEyb25KNS9BRk45Zzl3Zz09Iiwic2lnbmF0dXJlIjoiQlVVWHZ5VE9LS0hiSHBYUTMydlc5bFJzRVB2WEZsVkF5a3l2YTFIV0pLVUdMTExyV3NwMDN4aVdNWVdOclhweUJRYUhyZHdkWk5CcEp6a0dXSlowQ1EifQ\",\r\n};\r\n\r\nconst tags = {\r\n  root: \"00\",\r\n  nonce: \"01\",\r\n  signature: \"02\",\r\n  proofs: \"03\",\r\n};\r\n\r\nconst alternateProofEncoding = (jwp) => {\r\n  const decodedProof = JSON.parse(base64url.decode(jwp.proof));\r\n  const root = Buffer.from(decodedProof.root, \"hex\");\r\n  const nonce = Buffer.from(decodedProof.nonce);\r\n  const signature = Buffer.from(decodedProof.signature, \"base64\");\r\n  const proofs = Buffer.from(decodedProof.proofs, \"base64\");\r\n  const buff = Buffer.concat([\r\n    Buffer.concat([\r\n      Buffer.from(tags.root, \"hex\"),\r\n      Buffer.from(root.length.toString(16), \"hex\"),\r\n      root,\r\n    ]),\r\n    Buffer.concat([\r\n      Buffer.from(tags.nonce, \"hex\"),\r\n      Buffer.from(nonce.length.toString(16), \"hex\"),\r\n      nonce,\r\n    ]),\r\n    Buffer.concat([\r\n      Buffer.from(tags.signature, \"hex\"),\r\n      Buffer.from(signature.length.toString(16), \"hex\"),\r\n      signature,\r\n    ]),\r\n    Buffer.concat([\r\n      Buffer.from(tags.proofs, \"hex\"),\r\n      Buffer.from(proofs.length.toString(16), \"hex\"),\r\n      proofs,\r\n    ]),\r\n  ]);\r\n  return {\r\n    ...jwp,\r\n    proof: base64url.encode(buff),\r\n  };\r\n};\r\n\r\nit(\"encode as TLV\", () => {\r\n  console.log(expandedDerivedJwp.proof.length); // 646\r\n  const jwp2 = alternateProofEncoding(expandedDerivedJwp);\r\n  console.log(jwp2.proof.length); // 436\r\n});\r\n```",
           "createdAt": "2021-12-18T16:31:20Z",
           "updatedAt": "2021-12-18T16:31:20Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Unless there's a standard for this that we can normatively reference, I propose that we close this for now and reconsider the possibility when there is.",
+          "createdAt": "2025-06-11T20:31:38Z",
+          "updatedAt": "2025-06-11T20:31:38Z"
         }
       ]
     },
@@ -1129,7 +1136,7 @@
       ],
       "body": "As we already know, the existing set of Json Web Algorithms (JWA) only really support proof of authenticity (I.e., that a message was signed by a certain key, and that it was not modified). I propose extending some of the existing JWAs, enabling them to support more extensive proof types such as selective-disclosure, compound proofs, and predicate proofs. \r\n\r\n \r\n\r\nI believe this could be achieved with the following approach. \r\n\r\n \r\n\r\nGenerating a digital signature. \r\n\r\n1. Create a vector Pedersen commitment on the messages (m1...mi). \r\n    * COMMITMENT = g<sub>1</sub><sup>m1</sup> * g<sub>2</sub><sup>m2</sup> * g<sub>i</sub><sup>mi</sup> * g<sub>n</sub><sup>nonce</sup> . \r\n2. Sign the commitment using an existing digital signature algorithm (e.g., [ECDSA](https://datatracker.ietf.org/doc/html/rfc7518#section-3.4)). \r\n    * SIGNING_INPUT = HASH (COMMITMENT) \r\n    * SIGNATURE = GENERATE_SIGNATURE (SIGNING_INPUT) \r\n\r\nGenerating a proof. \r\n\r\n1. Generate the required message proofs (MESSAGE_PROOFS), e.g., [selective-disclosure/proof-of-knowledge](https://github.com/hyperledger/ursa/blob/main/libzmix/bbs/src/pok_vc.rs) \r\n2. PROOF = (COMMITMENT, MESSAGE_PROOFS, SIGNATURE) \r\n\r\n \r\n\r\nVerifying a proof. \r\n\r\n1. VERIFICATION_INPUT = HASH (COMMITMENT) \r\n2. VERIFY_SIGNATURE (VERIFICATION_INPUT, SIGNATURE) \r\n3. VERIFY_MESSAGE_PROOFS (MESSAGE_PROOFS, COMMITMENT) \r\n\r\n \r\n\r\nThe homomorphic encryption property of a Pedersen Commitment would enable a prover to create a larger set of proof types on hidden messages. In fact, this is how the Ursa [BBS+](https://github.com/hyperledger/ursa/blob/d83240bea7e9c3fa48bb3bec208255e24c72423d/libzmix/bbs/src/lib.rs#L202) and [PS signatures](https://github.com/hyperledger/ursa/tree/main/libzmix/src/signatures/ps) implementations support it. \r\n\r\n \r\n\r\n### Some Pros and Cons of this approach \r\n\r\nPros: \r\n\r\n* A small component to implement on top of existing digital signature libraries \r\n* Allows for  multiple messages to be signed instead of one\r\n* Could enable predicate proofs\r\n* Could enable compound proofs, even between unlinkable proof algorithms such as BBS+ (needs some investigating) \r\n\r\nCons: \r\n* Proofs are still linkable \r\n\r\n### Jpa Identifier \r\n\r\nA JPA identifier for ES256 plus the described approach could be `ES256+C`, where `C` stands for commitment. \r\n\r\n \r\n### Pedersen Commitment Building Block\r\n\r\nAnother aspect to take into consideration is that the Pedersen Commitment is a building block for many of the ZKP proof algorithms. With this into consideration, I am wondering if we should create a section in the JPA draft spec to document the different proof algorithms that could be applied to Pedersen Commitments. JPAs can then refer to those algorithms.  \r\n\r\n \r\n\r\nUseful Links \r\n\r\n* https://asecuritysite.com/encryption/ped \r\n* [Vector Pedersen Commitment Proof of Knowledge URSA RFC (this is how selective disclosure is done for BBS+ and PS Signatures)](https://github.com/hyperledger/ursa-rfcs/tree/main/text/pok-vpc)\r\n\r\n \r\n\r\nNoah ",
       "createdAt": "2021-11-17T16:35:37Z",
-      "updatedAt": "2024-08-07T02:20:52Z",
+      "updatedAt": "2025-06-11T20:33:47Z",
       "closedAt": null,
       "comments": [
         {
@@ -1201,6 +1208,13 @@
           "body": "This is related to #104.  Volunteers to specify how to use these algorithms would be appreciated, as having more algorithms will help ensure the generality of the JWP approach.\r\n\r\nThat said, unless the new algorithms are clearly standards-bound, we should put them in a separate Additional Algorithms specification rather than JPA, so that JPA can finish when BBS Signatures does.",
           "createdAt": "2024-08-07T02:20:51Z",
           "updatedAt": "2024-08-07T02:20:51Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Proposing to close this on the basis above.  When new standards-track ZKPs emerge, we can always do work using them.",
+          "createdAt": "2025-06-11T20:33:47Z",
+          "updatedAt": "2025-06-11T20:33:47Z"
         }
       ]
     },
@@ -1331,7 +1345,7 @@
       "id": "I_kwDOFsQObc5Bd26J",
       "title": "VC Data Model Example",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/36",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "quartzjer",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1342,8 +1356,8 @@
       ],
       "body": "Placeholder to track adding a full example of a JPT using the VC Data Model into the draft.",
       "createdAt": "2022-01-10T20:37:39Z",
-      "updatedAt": "2024-02-27T23:31:01Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-11T20:35:06Z",
+      "closedAt": "2025-06-11T20:35:05Z",
       "comments": [
         {
           "author": "Sakurann",
@@ -1365,6 +1379,13 @@
           "body": "For draft 5: add comparable example based on current SD-JWT work, e.g. https://drafts.oauth.net/oauth-selective-disclosure-jwt/draft-ietf-oauth-selective-disclosure-jwt.html#name-example-4a-sd-jwt-based-ver",
           "createdAt": "2024-02-16T22:57:31Z",
           "updatedAt": "2024-02-16T22:57:31Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing for lack of apparent interest",
+          "createdAt": "2025-06-11T20:35:05Z",
+          "updatedAt": "2025-06-11T20:35:05Z"
         }
       ]
     },
@@ -1521,7 +1542,7 @@
       "id": "I_kwDOFsQObc5IC-Oe",
       "title": "Add COSE/CBOR examples of Single Use",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/49",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "quartzjer",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1530,8 +1551,8 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-04-19T18:56:39Z",
-      "updatedAt": "2024-02-16T23:04:27Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-11T20:36:03Z",
+      "closedAt": "2025-06-11T20:36:03Z",
       "comments": [
         {
           "author": "dwaite",
@@ -1539,6 +1560,13 @@
           "body": "Adding to the COSE/CBOR work planned for draft 6",
           "createdAt": "2024-02-16T23:04:25Z",
           "updatedAt": "2024-02-16T23:04:25Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed by #158 ",
+          "createdAt": "2025-06-11T20:36:03Z",
+          "updatedAt": "2025-06-11T20:36:03Z"
         }
       ]
     },
@@ -2037,7 +2065,7 @@
       ],
       "body": "From @OR13, https://mailarchive.ietf.org/arch/msg/jose/GkL3I9hEoKjaIDCgno_rYqQsSP0/ :\r\n\r\n> An example with a mixed algorithm for issue and holder would be nice here,\r\nor a comment about it being forbidden... for example issuer signing with\r\nES256 and holder presenting with EdDSA.",
       "createdAt": "2023-07-13T06:15:20Z",
-      "updatedAt": "2024-03-02T19:30:55Z",
+      "updatedAt": "2025-06-11T20:49:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -2067,6 +2095,13 @@
           "body": "I do not think this is the same as #57 / #59 . We just need to make this clear for algorithms in general",
           "createdAt": "2024-02-27T23:50:46Z",
           "updatedAt": "2024-02-27T23:50:46Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We talked about this on the 11-Jun-25 editors' call.  One way to handle this would be to define a `presentation_alg` header parameter.  Another way would be to put the `alg` in the `presentation_alg`.\n\nOf course, for some ZKP algorithms such as BBS, you don't get to choose a separate presentation algorithm.",
+          "createdAt": "2025-06-11T20:49:01Z",
+          "updatedAt": "2025-06-11T20:49:01Z"
         }
       ]
     },
@@ -2186,7 +2221,7 @@
       "labels": [],
       "body": "I would like to contribute to the official JS implementation of your spec, and to make it super easy for anyone to integrate JWP in their apps. I could take care of developing a clean architecture for the lib, implementing the spec, writing tests, publishing the lib, writing examples for different use-cases / platforms (browser, mobile, server). I've been working with VCs/DIDs/DWNs for the past year and have experience in building isomorphic JS libs.\r\nIs this something you have on your roadmap?",
       "createdAt": "2023-12-03T10:46:12Z",
-      "updatedAt": "2025-04-21T15:58:25Z",
+      "updatedAt": "2025-06-11T20:52:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -2216,6 +2251,13 @@
           "body": "We'd like to add it to https://github.com/ietf-wg-jose/json-web-proof/blob/main/IMPLEMENTATIONS.md",
           "createdAt": "2025-04-21T15:58:24Z",
           "updatedAt": "2025-04-21T15:58:24Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@pax-k Can you provide us with a link to your implementation?  Thanks.",
+          "createdAt": "2025-06-11T20:52:15Z",
+          "updatedAt": "2025-06-11T20:52:15Z"
         }
       ]
     },
@@ -2235,7 +2277,7 @@
       ],
       "body": "In review, we interpreted this old comment as the presentation proof needs to sign over the entire derived message (issuer header and presented payloads) rather than just the header. this changes the SU and MAC based algorithms.",
       "createdAt": "2024-01-09T22:14:50Z",
-      "updatedAt": "2024-02-27T23:34:27Z",
+      "updatedAt": "2025-06-11T20:54:53Z",
       "closedAt": null,
       "comments": [
         {
@@ -2244,6 +2286,13 @@
           "body": "I will evaluate as part of my work on resolving #59 ",
           "createdAt": "2024-02-20T22:24:46Z",
           "updatedAt": "2024-02-20T22:24:46Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is dependent upon #78 ",
+          "createdAt": "2025-06-11T20:54:53Z",
+          "updatedAt": "2025-06-11T20:54:53Z"
         }
       ]
     },
@@ -2301,7 +2350,7 @@
       "id": "I_kwDOFsQObc57k6jT",
       "title": "Refactor JPT to share examples in JWP",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/97",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2312,9 +2361,17 @@
       ],
       "body": "JWP has an appendix showing an example JPT; propose to refactor both specs to include the same (potentially generated) example.",
       "createdAt": "2024-01-09T22:28:38Z",
-      "updatedAt": "2024-02-27T23:56:13Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-06-11T21:03:05Z",
+      "closedAt": "2025-06-11T21:03:05Z",
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This has been done",
+          "createdAt": "2025-06-11T21:03:05Z",
+          "updatedAt": "2025-06-11T21:03:05Z"
+        }
+      ]
     },
     {
       "number": 98,
@@ -2341,7 +2398,7 @@
       "id": "I_kwDOFsQObc57k8Ii",
       "title": "briefly discuss issued and presented forms in JPT",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/99",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2352,8 +2409,8 @@
       ],
       "body": "",
       "createdAt": "2024-01-09T22:34:53Z",
-      "updatedAt": "2024-03-02T19:30:56Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-11T21:04:07Z",
+      "closedAt": "2025-06-11T21:04:06Z",
       "comments": [
         {
           "author": "dwaite",
@@ -2361,6 +2418,13 @@
           "body": "needs to use consistent language with the other drafts",
           "createdAt": "2024-02-27T23:19:02Z",
           "updatedAt": "2024-02-27T23:19:02Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed by #135 ",
+          "createdAt": "2025-06-11T21:04:06Z",
+          "updatedAt": "2025-06-11T21:04:06Z"
         }
       ]
     },
@@ -2369,15 +2433,15 @@
       "id": "I_kwDOFsQObc57k-oO",
       "title": "Evaluate need for JSON serialization",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/100",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-09T22:45:03Z",
-      "updatedAt": "2024-08-07T00:33:06Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-11T21:05:17Z",
+      "closedAt": "2025-06-11T21:05:17Z",
       "comments": [
         {
           "author": "selfissued",
@@ -2399,6 +2463,13 @@
           "body": "> If coming back over an API as a response it is helpful to get the JSON serialization compared to compact\r\n\r\nHelpful how?  I'll make two guesses as to what you may be referring to:\r\n\r\n1. You don't have to extract the fields from the periods separating because you can instead extract them as JSON member values.\r\n2. You can put extra stuff that's not actually part of the JWP in the top-level JSON structure by adding JSON members not understood or processed by the JWP itself.\r\n\r\nI'm a little bit sympathetic to (1).  In my view, (2) is a layering violation - mixing protocol features into a data structure that's intended to be used as a protocol element.\r\n\r\nOr is there a (3) that I didn't think of?\r\n\r\nOur motivation is to have a single JSON serialization, like JWT does, to increase interoperability.",
           "createdAt": "2024-08-07T00:33:05Z",
           "updatedAt": "2024-08-07T00:33:05Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "JSON serialization was removed in draft 9",
+          "createdAt": "2025-06-11T21:05:17Z",
+          "updatedAt": "2025-06-11T21:05:17Z"
         }
       ]
     },
@@ -2504,16 +2575,24 @@
       "id": "I_kwDOFsQObc57lC5X",
       "title": "What additional ZKP algorithms should we add",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/104",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-09T23:02:20Z",
-      "updatedAt": "2024-01-09T23:02:20Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-06-11T21:06:03Z",
+      "closedAt": "2025-06-11T21:06:03Z",
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing, pending other ZKP algorithm standards emerging",
+          "createdAt": "2025-06-11T21:06:03Z",
+          "updatedAt": "2025-06-11T21:06:03Z"
+        }
+      ]
     },
     {
       "number": 108,
@@ -2710,15 +2789,15 @@
       "id": "I_kwDOFsQObc6eI1cy",
       "title": "`kid` restrictions for JSON headers and new `kyu`",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/150",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The definition of `kid` is binary in CBOR and string in JSON, with no mapping between the two defined.\r\n\r\nI propose JWP `kid` is restricted to be a binary value represented in BASE64URI encoding. This will limit the ability give keys friendly names or names which correspond to some other system, e.g. GUIDs.\r\n\r\nI also propose a new header parameter, `kyu`, for key URL, to represent keys which are not identified by identifying labels but by location. An example of `kid` in JWS being used this way would be DIDs.",
       "createdAt": "2024-11-12T19:23:28Z",
-      "updatedAt": "2024-12-10T22:00:04Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-11T21:12:32Z",
+      "closedAt": "2025-06-11T21:12:32Z",
       "comments": [
         {
           "author": "selfissued",
@@ -2726,6 +2805,13 @@
           "body": "I don't see a practical reason to be able to map Key ID values between JWPs and CWPs.  They will be different ecosystems.\r\n\r\nIn one case, I suggest that we recommend the use of JWK Thumbprint values as \"kid\" values.  In the other, I suggest that we recommend the use of COSE_Key Thumbprint values as \"kid\" values.",
           "createdAt": "2024-12-10T22:00:03Z",
           "updatedAt": "2024-12-10T22:00:03Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The JSON and CBOR JWP representations are distinct.  It's not just key IDs.  JWKs and COSE_Keys are different.  JSON header parameter map keys are strings, and they're integers in CBOR.  The JWT Claims and CWT Claims are different, etc.",
+          "createdAt": "2025-06-11T21:12:32Z",
+          "updatedAt": "2025-06-11T21:12:32Z"
         }
       ]
     },
@@ -2737,11 +2823,13 @@
       "state": "OPEN",
       "author": "selfissued",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "selfissued"
+      ],
       "labels": [],
       "body": "We should register the +jpt and +cpt media type suffixes so that JWPs can be explicitly typed like JWTs and CWTs are.",
       "createdAt": "2025-03-14T09:23:11Z",
-      "updatedAt": "2025-03-14T09:23:11Z",
+      "updatedAt": "2025-06-11T21:13:00Z",
       "closedAt": null,
       "comments": []
     },
@@ -2753,13 +2841,23 @@
       "state": "OPEN",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "selfissued"
+      ],
       "labels": [],
       "body": "Now that we no longer have three serializations, we have the opportunity to change Compact Serialization to be called JSON Serialization.\n\nThis aligns better with the CBOR-based headers and CBOR-based structures being called \"CBOR Serialization\".\n\nHowever, there is more to compact serialization than just JSON (multiple base64url-encoded octet parts), and the naming may confuse those who came from JWS/JWE where \"JSON Serialization\" implies the structure is a JSON Object.",
       "createdAt": "2025-04-08T00:36:46Z",
-      "updatedAt": "2025-04-08T00:36:46Z",
+      "updatedAt": "2025-06-11T21:15:21Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I will take a stab at writing explanatory text about the naming.",
+          "createdAt": "2025-06-11T21:15:19Z",
+          "updatedAt": "2025-06-11T21:15:19Z"
+        }
+      ]
     },
     {
       "number": 163,
