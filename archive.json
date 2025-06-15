@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-12T00:58:38.392040+00:00",
+  "timestamp": "2025-06-15T01:05:24.559100+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2065,7 +2065,7 @@
       ],
       "body": "From @OR13, https://mailarchive.ietf.org/arch/msg/jose/GkL3I9hEoKjaIDCgno_rYqQsSP0/ :\r\n\r\n> An example with a mixed algorithm for issue and holder would be nice here,\r\nor a comment about it being forbidden... for example issuer signing with\r\nES256 and holder presenting with EdDSA.",
       "createdAt": "2023-07-13T06:15:20Z",
-      "updatedAt": "2025-06-11T20:49:01Z",
+      "updatedAt": "2025-06-12T22:52:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -2102,6 +2102,13 @@
           "body": "We talked about this on the 11-Jun-25 editors' call.  One way to handle this would be to define a `presentation_alg` header parameter.  Another way would be to put the `alg` in the `presentation_alg`.\n\nOf course, for some ZKP algorithms such as BBS, you don't get to choose a separate presentation algorithm.",
           "createdAt": "2025-06-11T20:49:01Z",
           "updatedAt": "2025-06-11T20:49:01Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "My mental model, which is currently just focused on the JWS tree of decisions, with COSE at the end.\n\n1. From an abstract standpoint, the issuer protected header can a class of values which are holder conditions, expectations that the issuer has on what a correct presentation looks like, to drive holder functionality and to be conveyed/verified by the verifier.\n2. We have holder presentation key and holder presentation algorithm as two kinds of conditions.\n3. For flexibility, a holder presentation algorithm can use JWS algorithms.\n4. Then we have a few decisions. First, the representation:\n   1) We can represent the output of the `derive` mechanism of the algorithm that converts the issued form into a redacted version as the payload, and base64url encode it to make a legal JWS\n   2) We can represent it not as a JWS \"on the wire\", but as a message that requires preprocessing to convert into a valid JWS. We would use the unencoded payload extension and manipulate issuer parts in the wire message into a detached payload to then represent the derived form as octets\n   3) We can use the same algorithms but otherwise do not try to deal in JWS messages.\n \nI suspect 4.1. is out, since we do not want the size or processing hit of base64url encoding the message. Option 4.2. can work and gives implementors flexibility, but it does mean we are limited in the ways that the presentation can actually be protected. \n\nOption 4.3. is my preference, with a new presentation header parameter representing the JWS algorithm being used.\n\nThe ramification of Option 4.2. is that the JWS algorithm is being used *in the context of* the issuer's JWP algorithm. Effectively, both the issuer and holder algorithm serve to fully specify the presentation proof. \n\nI don't think this is inappropriate, in that you must know e.g. the Ed25519 algorithm being used by the holder and the SU-ES256 algorithm being used by the issuer in order to cryptographically verify the presentation anyway. It is just worth keeping in mind that unlike a JWE-protected JWP presentation, there won't be a clearly enforced layering.\n\nFor COSE, I think most of this continues to hold. Options 4.1. and 4.2. are near-identical, and continue to be slightly limiting compared to 4.3. n terms of the flexibility for a JWP algorithm to optimize use of the JWS algorithm used in presentation.",
+          "createdAt": "2025-06-12T22:49:35Z",
+          "updatedAt": "2025-06-12T22:52:01Z"
         }
       ]
     },
