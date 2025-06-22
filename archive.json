@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-15T01:05:24.559100+00:00",
+  "timestamp": "2025-06-22T01:05:03.572448+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -1127,7 +1127,7 @@
       "id": "I_kwDOFsQObc4-9nBc",
       "title": "Extending Existing Json Web Algorithms to Support Some ZKPs ",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/28",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boumba100",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -1136,8 +1136,8 @@
       ],
       "body": "As we already know, the existing set of Json Web Algorithms (JWA) only really support proof of authenticity (I.e., that a message was signed by a certain key, and that it was not modified). I propose extending some of the existing JWAs, enabling them to support more extensive proof types such as selective-disclosure, compound proofs, and predicate proofs. \r\n\r\n \r\n\r\nI believe this could be achieved with the following approach. \r\n\r\n \r\n\r\nGenerating a digital signature. \r\n\r\n1. Create a vector Pedersen commitment on the messages (m1...mi). \r\n    * COMMITMENT = g<sub>1</sub><sup>m1</sup> * g<sub>2</sub><sup>m2</sup> * g<sub>i</sub><sup>mi</sup> * g<sub>n</sub><sup>nonce</sup> . \r\n2. Sign the commitment using an existing digital signature algorithm (e.g., [ECDSA](https://datatracker.ietf.org/doc/html/rfc7518#section-3.4)). \r\n    * SIGNING_INPUT = HASH (COMMITMENT) \r\n    * SIGNATURE = GENERATE_SIGNATURE (SIGNING_INPUT) \r\n\r\nGenerating a proof. \r\n\r\n1. Generate the required message proofs (MESSAGE_PROOFS), e.g., [selective-disclosure/proof-of-knowledge](https://github.com/hyperledger/ursa/blob/main/libzmix/bbs/src/pok_vc.rs) \r\n2. PROOF = (COMMITMENT, MESSAGE_PROOFS, SIGNATURE) \r\n\r\n \r\n\r\nVerifying a proof. \r\n\r\n1. VERIFICATION_INPUT = HASH (COMMITMENT) \r\n2. VERIFY_SIGNATURE (VERIFICATION_INPUT, SIGNATURE) \r\n3. VERIFY_MESSAGE_PROOFS (MESSAGE_PROOFS, COMMITMENT) \r\n\r\n \r\n\r\nThe homomorphic encryption property of a Pedersen Commitment would enable a prover to create a larger set of proof types on hidden messages. In fact, this is how the Ursa [BBS+](https://github.com/hyperledger/ursa/blob/d83240bea7e9c3fa48bb3bec208255e24c72423d/libzmix/bbs/src/lib.rs#L202) and [PS signatures](https://github.com/hyperledger/ursa/tree/main/libzmix/src/signatures/ps) implementations support it. \r\n\r\n \r\n\r\n### Some Pros and Cons of this approach \r\n\r\nPros: \r\n\r\n* A small component to implement on top of existing digital signature libraries \r\n* Allows for  multiple messages to be signed instead of one\r\n* Could enable predicate proofs\r\n* Could enable compound proofs, even between unlinkable proof algorithms such as BBS+ (needs some investigating) \r\n\r\nCons: \r\n* Proofs are still linkable \r\n\r\n### Jpa Identifier \r\n\r\nA JPA identifier for ES256 plus the described approach could be `ES256+C`, where `C` stands for commitment. \r\n\r\n \r\n### Pedersen Commitment Building Block\r\n\r\nAnother aspect to take into consideration is that the Pedersen Commitment is a building block for many of the ZKP proof algorithms. With this into consideration, I am wondering if we should create a section in the JPA draft spec to document the different proof algorithms that could be applied to Pedersen Commitments. JPAs can then refer to those algorithms.  \r\n\r\n \r\n\r\nUseful Links \r\n\r\n* https://asecuritysite.com/encryption/ped \r\n* [Vector Pedersen Commitment Proof of Knowledge URSA RFC (this is how selective disclosure is done for BBS+ and PS Signatures)](https://github.com/hyperledger/ursa-rfcs/tree/main/text/pok-vpc)\r\n\r\n \r\n\r\nNoah ",
       "createdAt": "2021-11-17T16:35:37Z",
-      "updatedAt": "2025-06-11T20:33:47Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-19T22:41:51Z",
+      "closedAt": "2025-06-19T22:41:50Z",
       "comments": [
         {
           "author": "quartzjer",
@@ -1215,6 +1215,13 @@
           "body": "Proposing to close this on the basis above.  When new standards-track ZKPs emerge, we can always do work using them.",
           "createdAt": "2025-06-11T20:33:47Z",
           "updatedAt": "2025-06-11T20:33:47Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing, since the proposal to close was over a week ago without any responses.",
+          "createdAt": "2025-06-19T22:41:50Z",
+          "updatedAt": "2025-06-19T22:41:50Z"
         }
       ]
     },
