@@ -12,7 +12,7 @@
 </reference>
 <reference anchor="VC-DATA-MODEL-2.0" target="https://www.w3.org/TR/vc-data-model-2.0">
   <front>
-    <title>Verifiable Credentials Data Model 2.0</title>
+    <title>Verifiable Credentials Data Model v2.0</title>
     <author fullname="Manu Sporny">
       <organization>Digital Bazaar</organization>
     </author>
@@ -22,13 +22,13 @@
     <author fullname="Ivan Herman">
       <organization>W3C</organization>
     </author>
-    <author fullname="Michael B. Jones">
-      <organization>Invited Expert</organization>
-    </author>
     <author fullname="Gabe Cohen">
       <organization>Block</organization>
     </author>
-    <date day="27" month="December" year="2023"/>
+    <author fullname="Michael B. Jones">
+      <organization>Invited Expert</organization>
+    </author>
+    <date day="15" month="May" year="2025"/>
   </front>
 </reference>
 <reference anchor="IANA.CoAP.Formats" target="https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#content-formats">

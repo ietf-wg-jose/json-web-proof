@@ -597,7 +597,7 @@ JWE Header Parameter `cty` (content type) values SHOULD be used:
 
 * `jwp` is used to indicate that the content of the JWE is a JWP
 using the JWP Compact Serialization.
-* `jwp+cbor` is used to indicate that the plaintext of the COSE
+* `application/cwp` is used to indicate that the plaintext of the COSE
 message is a JWP in CBOR Serialization.
 
 The `cty` (content type) Header Parameter MUST be present
@@ -808,7 +808,7 @@ This section registers the Header Parameters defined in
 * Change Controller: IETF
 * Specification Document(s): (#presentation_keyDef) of this specification
 
-## Media Type Registration {#MediaReg}
+## Media Type Registry {#MediaReg}
 
 ### Registry Contents {#MediaContents}
 
@@ -820,6 +820,7 @@ which can be used to indicate that the content is
 a JWP using the JWP Compact Serialization.
 
 #### The application/jwp Media Type
+
 * Type name: application
 * Subtype name: jwp
 * Required parameters: n/a
@@ -841,13 +842,13 @@ a JWP using the JWP Compact Serialization.
 * Change Controller: IETF
 * Provisional registration? No
 
-#### The application/jwp+cbor Media Type
+#### The application/cwp Media Type
 
 * Type name: application
-* Subtype name: jwp+cbor
+* Subtype name: cwp
 * Required parameters: n/a
 * Optional parameters: n/a
-* Encoding considerations: 8bit; application/jwp+cbor values are represented as a CBOR data item.
+* Encoding considerations: 8bit; application/cwp values are represented as a CBOR data item.
 * Security considerations: See (#SecurityConsiderations) of this specification
 * Interoperability considerations: n/a
 * Published specification: this specification
@@ -864,16 +865,13 @@ a JWP using the JWP Compact Serialization.
 * Change Controller: IETF
 * Provisional registration? No
 
-## Structured Syntax Suffix Registration {#SuffixReg}
+## Structured Syntax Suffix Registry {#SuffixReg}
 
 ### Registry Contents {#SuffixContents}
 
-This section registers the `+jwp`
-structured syntax suffix [@RFC6838]
-in the IANA "Structured Syntax Suffix" registry (#IANA.StructuredSuffix)
-in the manner described in [@RFC6838],
-which can be used to indicate that the media type is encoded as a JWP
-using the JWP Compact Serialization.
+This section registers the following entries
+in the IANA "Structured Syntax Suffix" registry [IANA.StructuredSuffix]
+in the manner described in [@RFC6838].
 
 #### The +jwp Structured Syntax Suffix
 
@@ -882,21 +880,19 @@ using the JWP Compact Serialization.
 * References: (#CompactSerialization) of this specification
 * Encoding considerations: binary; JWP values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') and tilde ('~') characters
 * Interoperability considerations: n/a
-* Fragment identifier considerations: The syntax and semantics of fragment identifiers specified for +jwp SHOULD be as specified for "application/jwp".  (At publication of this document, there is no fragment identification syntax defined for "application/jwp".)
+* Fragment identifier considerations: n/a
+* Security considerations: See (#SecurityConsiderations) of this specification
+* Contact: Michael B. Jones, michael_b_jones@hotmail.com
+* Author/Change controller: IETF
 
-  The syntax and semantics for fragment identifiers for a specific
-  "xxx/yyy+jwp" SHOULD be processed as follows:
+#### The +cwp Structured Syntax Suffix
 
-  For cases defined in +jwp, where the fragment identifier resolves
-  per the +jwp rules, then process as specified in +jwp.
-
-  For cases defined in +jwp, where the fragment identifier does not
-  resolve per the +jwp rules, then process as specified in
-  "xxx/yyy+jwp".
-
-  For cases not defined in +jwp, then process as specified in
-  "xxx/yyy+jwp".
-
+* Name: CBOR Web Proof (CWP)
+* +suffix: +cwp
+* References: (#CompactSerialization) of this specification
+* Encoding considerations: 8bit; CWP values are represented as a CBOR data item.
+* Interoperability considerations: n/a
+* Fragment identifier considerations: n/a
 * Security considerations: See (#SecurityConsiderations) of this specification
 * Contact: Michael B. Jones, michael_b_jones@hotmail.com
 * Author/Change controller: IETF
@@ -916,12 +912,17 @@ for his valuable contributions to this specification.
 
 # Document History
 
-  [[ To be removed from the final specification ]]
+[[ To be removed from the final specification ]]
+
+ -10
+
+  * Replaced `application/jwp+cbor` with `application/cwp`.
+  * Registered `+cwp` structured syntax suffix and simplified +jwp suffix.
 
  -09
 
-  * Remove JSON serialization
-  * Correct informative reference to the IANA JWT registry.
+  * Removed JSON serialization.
+  * Corrected informative reference to the IANA JWT registry.
 
  -08
 
