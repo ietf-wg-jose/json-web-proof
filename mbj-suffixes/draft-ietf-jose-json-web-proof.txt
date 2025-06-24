@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 9 October 2025                           Self-Issued Consulting
+Expires: 26 December 2025                         Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                            7 April 2025
+                                                            24 June 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 October 2025.
+   This Internet-Draft will expire on 26 December 2025.
 
 Copyright Notice
 
@@ -97,8 +97,7 @@ Table of Contents
        5.2.3.  Presentation Proof
    6.  Serializations
      6.1.  Compact Serialization
-     6.2.  JSON Serialization
-     6.3.  CBOR Serialization
+     6.2.  CBOR Serialization
    7.  Encrypted JSON Web Proofs
    8.  Detached Payloads
    9.  Security Considerations
@@ -115,14 +114,14 @@ Table of Contents
          10.1.2.7.  Nonce Header Parameter
          10.1.2.8.  Proof Key Header Parameter
          10.1.2.9.  Presentation Key Header Parameter
-     10.2.  Media Type Registration
+     10.2.  Media Type Registry
        10.2.1.  Registry Contents
          10.2.1.1.  The application/jwp Media Type
-         10.2.1.2.  The application/jwp+json Media Type
-         10.2.1.3.  The application/jwp+cbor Media Type
-     10.3.  Structured Syntax Suffix Registration
+         10.2.1.2.  The application/cwp Media Type
+     10.3.  Structured Syntax Suffix Registry
        10.3.1.  Registry Contents
          10.3.1.1.  The +jwp Structured Syntax Suffix
+         10.3.1.2.  The +cwp Structured Syntax Suffix
    11. References
      11.1.  Normative References
      11.2.  Informative References
@@ -410,10 +409,8 @@ Table of Contents
    example;part="1/2" cannot be shortened to example;part="1/2".
 
    The typ value jwp can be used by applications to indicate that this
-   object is a JWP using the JWP Compact Serialization.  The typ value
-   jwp+json can be used by applications to indicate that this object is
-   a JWP using the JWP JSON Serialization.  Other type values can also
-   be used by applications.
+   object is a JWP using the JWP Compact Serialization.  Other type
+   values can also be used by applications.
 
    It is RECOMMENDED that the typ Header Parameter be used for explicit
    typing, in parallel to the recommendations in Section 3.11 of
@@ -717,27 +714,22 @@ Table of Contents
 
 6.  Serializations
 
-   Each disclosed payload MUST be base64url encoded when preparing it to
-   be serialized.  The headers and proof are also individually base64url
-   encoded.
+   JWP defines two serializations: Compact Serialization and CBOR
+   Serialization.  Both serializations represent one or more Protected
+   Headers, multiple Payloads, and a single Proof value.
 
-   Like JWS, JWP supports both a Compact Serialization and a JSON
-   Serialization.  These serializations both represent the same JSON-
-   based Protected Header, payloads and proof, and are thus
-   interchangeable without breaking the proof value.
-
-   A CBOR-based serialization is also defined, which uses the CBOR for
-   describing Header Parameters.  While this supports the same data
-   model and algorithms, the difference in header representations does
-   not allow interchangeability with the Compact Serialization and JSON
-   Serializations.
+   JWP Compact Serialiation provides a JSON-based, space-efficient
+   encoding of a JWP in URL-safe characters.  JWP CBOR Serialization
+   provides a compact CBOR-based encoding for more constrained
+   environments.
 
 6.1.  Compact Serialization
 
-   The compact serialiation provides a JSON-based, space-efficient
-   encoding of a JWP in URL-safe characters.  In addition to the
-   alphabet of unpadded BASE64 URL-safe encoding, it uses the "." and
-   "~" characters as separators.
+   JWP Compact Serialiation provides a JSON-based encoding of a JWP,
+   expressed in URL-safe characters.  In addition to the alphabet of
+   unpadded BASE64URL-safe encoding, Compact Serialization uses the "."
+   and "~" characters as separators.  This serialization is inspired by
+   JWS.
 
    The Protected Header MUST be JSON-formatted for Compact
    Serialization.  This includes both headers sets in presented form.
@@ -774,78 +766,24 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.ikUWl2I6z5piTOSE71BorBCOTi-KKbuoa-cinn6N
-   ZYYBba70RAMxgnDYoK8a49DZglARWFfn19kEoBdQkfLpq3ZaDQCyFoKGA0Py7uAmvkypf
-   m5VSW4sJVMThqTi6fa-j28AcC33tGfp8onz6QIRH_7__ssbpWZ5Tc1ZiZRjq-ELrupj3P
-   q7iDwHOrSEuWGpToRiMdeY4GzL_wbiqBflFHF6IKwYtE8uPcVw-VYPDKVVQ8zTFWq8_c4
-   Nz6tYAbQcljWXgihWa3lSZ6To9gflzRhYycXhSzaEfpA6nCjHHB27s0hEiGTvN9bsUC1u
-   No2ubdNtjOjZo6RkqylbXzGOZShbTod_LRoLJG-hgt-BLGRrei4xP_CX1yQ2sWlNT-77-
-   9MgpeD867vUMbGmzVQE0l3SlivLbOOzZAzP_1Ov0JS2WsArqOpXBZ_r0CZH6c7pWoq5b5
-   2iPLKq3gXMHBqRvWFWLdjlaFawe_LV_397cJ4
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jR6PxUS_11_7F66QmFSuzQijwMSL4Gk2DDtj5xMs
+   j6XA-cAqEr0SEMJJmrBBPco9mGUcuN3fz4QDKxMbim9i4oNqyHtFZy9GHVN0y3Idwa82S
+   mHf8g_72gImYabs97i6lxDkUnPpWy0NHbBqxfo4SN3QCQqu1r1ig2sEr5CYWeQ11qkAvK
+   JJd0kZAI-MZLMLSD_PntHeTdjg7vm8Ct4QVEMoGonIO8K3NtfvzLAnPcZEJrtXhBx7iOi
+   wxTKQQTPD1JvQGtYwq9DDn8_EpLdSQDZx48cReJL6wgZ6K09scClMa_x11nRJz3VUJRuw
+   vu97BbVS2GaMYHPe2frPNKvjUa58p7Z2DaqAUD3JsKh63qA_VKD3bCvwqBbNLYLph3KMU
+   V_eqK31GEPff2x3v3gzECEH_U7tc2tT59Xf0oQFLu6Kf4OawYgAq_970LDnR76wDy0RvE
+   djAeW2I-h8yUy1z-H5Fhde6vI4Efzank4NpHs
 
    |  Figure: Compact Serialization of Presentation
 
-6.2.  JSON Serialization
+6.2.  CBOR Serialization
 
-   The JSON Serialization is in the form of a JSON object, with property
-   names representing the various components.
-
-   The Protected Headers MUST be JSON-formatted for JSON Serialization.
-   This includes both headers sets in presented form.
-
-   The issuer key has a string value holding the BASE64URL-encoded
-   issuer protected header.  This key MUST be included.
-
-   The presentation key has a string value holding the BASE64URL-encoded
-   presentation protected header.  It MUST be included for presented
-   form, and MUST be omitted for issued form.
-
-   The payloads key has an array value, representing the ordered
-   sequence of payloads.  If a payload has been omitted, it is
-   represented by the JSON value null.  A payload is otherwise reprented
-   by the BASE64URL-encoded form of the payload octets.  A zero-length
-   payload does not have special encoding rules as needed by compact
-   encoding, and is represented by the zero-length string output by
-   BASE64URL.  This key MUST be included unless the application is using
-   detached payloads.
-
-   The proof key has an array value, representing the array of octet
-   strings produced by the chosen algorithm.  These octets are BASE64URL
-   encoded into a JSON array.
-
-   This example JSON serialization shows the presentation form with both
-   the issuer and presentation headers, and with the first and third
-   payloads hidden.
-
-   {
-     "presentation": "eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC
-          5leGFtcGxlLmNvbSIsIm5vbmNlIjoid3JtQlJrS3RYalEifQ",
-     "issuer": "eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRu
-          RXhSMERValU4IiwiYWxnIjoiQkJTIn0",
-     "payloads": [
-       "MTcxNDUyMTYwMA",
-       "MTcxNzE5OTk5OQ",
-       "IkRvZSI",
-       "IkpheSI",
-       null,
-       null,
-       null
-     ],
-     "proof": [
-       "ikUWl2I6z5piTOSE71BorBCOTi-KKbuoa-cinn6NZYYBba70RAMxgnDYoK8a49DZ
-          glARWFfn19kEoBdQkfLpq3ZaDQCyFoKGA0Py7uAmvkypfm5VSW4sJVMThqTi6f
-          a-j28AcC33tGfp8onz6QIRH_7__ssbpWZ5Tc1ZiZRjq-ELrupj3Pq7iDwHOrSE
-          uWGpToRiMdeY4GzL_wbiqBflFHF6IKwYtE8uPcVw-VYPDKVVQ8zTFWq8_c4Nz6
-          tYAbQcljWXgihWa3lSZ6To9gflzRhYycXhSzaEfpA6nCjHHB27s0hEiGTvN9bs
-          UC1uNo2ubdNtjOjZo6RkqylbXzGOZShbTod_LRoLJG-hgt-BLGRrei4xP_CX1y
-          Q2sWlNT-77-9MgpeD867vUMbGmzVQE0l3SlivLbOOzZAzP_1Ov0JS2WsArqOpX
-          BZ_r0CZH6c7pWoq5b52iPLKq3gXMHBqRvWFWLdjlaFawe_LV_397cJ4"
-     ]
-   }
-
-   |  Figure: JSON Serialization of Presentation
-
-6.3.  CBOR Serialization
+   A CBOR-based serialization is also defined, which uses the CBOR for
+   describing Header Parameters and does not use base64url encoding to
+   ensure safety in text-based protocols.  While this supports the same
+   data model and algorithms, the difference in header representations
+   does not allow interchangeability with Compact Serialization.
 
    The CBOR serialization provides a compact binary representation of a
    JWP.  The serialization consists of two arrays, representing issued
@@ -861,7 +799,7 @@ Table of Contents
    If an individual payload has been omitted, it is represented by the
    CBOR value nil.  Payloads MUST be included unless the application is
    using detached payloads, which is represented by setting the payloads
-   value as nil.¶
+   value as nil.
 
    Two tags are defined for representing issued and presented JWPs.
    Applications MAY use their own tags to tag other specific types of
@@ -915,9 +853,7 @@ Table of Contents
 
    *  jwp is used to indicate that the content of the JWE is a JWP using
       the JWP Compact Serialization.
-   *  jwp+json is used to indicate that the content of the JWE is the
-      UTF-8 encoding of a JWP using the JWP JSON Serialization.
-   *  jwp+cbor is used to indicate that the plaintext of the COSE
+   *  application/cwp is used to indicate that the plaintext of the COSE
       message is a JWP in CBOR Serialization.
 
    The cty (content type) Header Parameter MUST be present unless the
@@ -948,9 +884,9 @@ Table of Contents
    *  Data minimization of the protected header
    *  To prevent accidentally introducing linkability, when an issuer
       uses the same key with the same grouping of payload types, they
-      SHOULD also use the same issuer protected header.  Each of these
-      headers SHOULD have the same base64url-serialized value to avoid
-      any non-deterministic JSON serialization.
+      SHOULD also use the same issuer protected header.  This header
+      SHOULD be represented by the same octets, avoiding distinguishing
+      a JWP due to non-deterministic serialization.
 
 10.  IANA Considerations
 
@@ -1125,17 +1061,14 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.6 of this specification
 
-10.2.  Media Type Registration
+10.2.  Media Type Registry
 
 10.2.1.  Registry Contents
 
    This section registers the application/jwp media type [RFC2046] in
    the IANA "Media Types" registry [IANA.MediaTypes] in the manner
    described in [RFC6838], which can be used to indicate that the
-   content is a JWP using the JWP Compact Serialization.  This section
-   also registers the application/jwp+json media type in the IANA "Media
-   Types" registry, which can be used to indicate that the content is a
-   JWP using the JWP JSON Serialization.
+   content is a JWP using the JWP Compact Serialization.
 
 10.2.1.1.  The application/jwp Media Type
 
@@ -1163,39 +1096,13 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-10.2.1.2.  The application/jwp+json Media Type
+10.2.1.2.  The application/cwp Media Type
 
    *  Type name: application
-   *  Subtype name: jwp+json
+   *  Subtype name: cwp
    *  Required parameters: n/a
    *  Optional parameters: n/a
-   *  Encoding considerations: 8bit; application/jwp+json values are
-      represented as a JSON Object; UTF-8 encoding SHOULD be employed
-      for the JSON object.
-   *  Security considerations: See Section 9 of this specification
-   *  Interoperability considerations: n/a
-   *  Published specification: this specification
-   *  Applications that use this media type: TBD
-   *  Fragment identifier considerations: n/a
-   *  Additional information:
-      -  Magic number(s): n/a
-      -  File extension(s): n/a
-      -  Macintosh file type code(s): n/a
-   *  Person & email address to contact for further information: Michael
-      B.  Jones, michael_b_jones@hotmail.com
-   *  Intended usage: COMMON
-   *  Restrictions on usage: none
-   *  Author: Michael B.  Jones, michael_b_jones@hotmail.com
-   *  Change Controller: IETF
-   *  Provisional registration?  No
-
-10.2.1.3.  The application/jwp+cbor Media Type
-
-   *  Type name: application
-   *  Subtype name: jwp+cbor
-   *  Required parameters: n/a
-   *  Optional parameters: n/a
-   *  Encoding considerations: 8bit; application/jwp+cbor values are
+   *  Encoding considerations: 8bit; application/cwp values are
       represented as a CBOR data item.
    *  Security considerations: See Section 9 of this specification
    *  Interoperability considerations: n/a
@@ -1214,15 +1121,13 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-10.3.  Structured Syntax Suffix Registration
+10.3.  Structured Syntax Suffix Registry
 
 10.3.1.  Registry Contents
 
-   This section registers the +jwp structured syntax suffix [RFC6838] in
-   the IANA "Structured Syntax Suffix" registry (#IANA.StructuredSuffix)
-   in the manner described in [RFC6838], which can be used to indicate
-   that the media type is encoded as a JWP using the JWP Compact
-   Serialization.
+   This section registers the following entries in the IANA "Structured
+   Syntax Suffix" registry [IANA.StructuredSuffix] in the manner
+   described in [RFC6838].
 
 10.3.1.1.  The +jwp Structured Syntax Suffix
 
@@ -1233,24 +1138,20 @@ Table of Contents
       series of base64url-encoded values (some of which may be the empty
       string) separated by period ('.') and tilde ('~') characters
    *  Interoperability considerations: n/a
-   *  Fragment identifier considerations: The syntax and semantics of
-      fragment identifiers specified for +jwp SHOULD be as specified for
-      "application/jwp".  (At publication of this document, there is no
-      fragment identification syntax defined for "application/jwp".)
+   *  Fragment identifier considerations: n/a
+   *  Security considerations: See Section 9 of this specification
+   *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Author/Change controller: IETF
 
-   The syntax and semantics for fragment identifiers for a specific
-   "xxx/yyy+jwp" SHOULD be processed as follows:
+10.3.1.2.  The +cwp Structured Syntax Suffix
 
-   For cases defined in +jwp, where the fragment identifier resolves per
-   the +jwp rules, then process as specified in +jwp.
-
-   For cases defined in +jwp, where the fragment identifier does not
-   resolve per the +jwp rules, then process as specified in "xxx/
-   yyy+jwp".
-
-   For cases not defined in +jwp, then process as specified in "xxx/
-   yyy+jwp".
-
+   *  Name: CBOR Web Proof (CWP)
+   *  +suffix: +cwp
+   *  References: Section 6.1 of this specification
+   *  Encoding considerations: 8bit; CWP values are represented as a
+      CBOR data item.
+   *  Interoperability considerations: n/a
+   *  Fragment identifier considerations: n/a
    *  Security considerations: See Section 9 of this specification
    *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
    *  Author/Change controller: IETF
@@ -1360,9 +1261,9 @@ Table of Contents
               <https://www.rfc-editor.org/info/rfc8725>.
 
    [VC-DATA-MODEL-2.0]
-              Sporny, M., Jr, T. T., Herman, I., Jones, M. B., and G.
-              Cohen, "Verifiable Credentials Data Model 2.0", 27
-              December 2023, <https://www.w3.org/TR/vc-data-model-2.0>.
+              Sporny, M., Jr, T. T., Herman, I., Cohen, G., and M. B.
+              Jones, "Verifiable Credentials Data Model v2.0", 15 May
+              2025, <https://www.w3.org/TR/vc-data-model-2.0>.
 
 Appendix A.  Acknowledgements
 
@@ -1376,9 +1277,16 @@ Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
 
-   -latest
+   -10
 
-   *  Correct informative reference to the IANA JWT registry.
+   *  Replaced application/jwp+cbor with application/cwp.
+   *  Registered +cwp structured syntax suffix and simplified +jwp
+      suffix.
+
+   -09
+
+   *  Removed JSON serialization.
+   *  Corrected informative reference to the IANA JWT registry.
 
    -08
 

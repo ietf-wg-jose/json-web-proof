@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 28 September 2025                                     J. Miller
+Expires: 26 December 2025                                      J. Miller
                                                            Ping Identity
-                                                           27 March 2025
+                                                            24 June 2025
 
 
                  JSON Proof Token and CBOR Proof Token
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 September 2025.
+   This Internet-Draft will expire on 26 December 2025.
 
 Copyright Notice
 
@@ -90,8 +90,11 @@ Table of Contents
      11.4.  Media Types Registry
        11.4.1.  application/jpt
        11.4.2.  application/cpt
-     11.5.  CoAP Content-Formats Registry
-       11.5.1.  "CPT" CoAP Content-Format
+     11.5.  Structured Syntax Suffix Registry
+       11.5.1.  +jpt
+       11.5.2.  +cpt
+     11.6.  CoAP Content-Formats Registry
+       11.6.1.  "CPT" CoAP Content-Format
    12. References
      12.1.  Normative References
      12.2.  Informative References
@@ -458,12 +461,44 @@ Table of Contents
    *  Change controller: IETF
    *  Provisional registration: No
 
-11.5.  CoAP Content-Formats Registry
+11.5.  Structured Syntax Suffix Registry
+
+   This section registraters the following entries in the IANA
+   "Structured Syntax Suffix" registry [IANA.StructuredSuffix] in the
+   manner described in [RFC6838].
+
+11.5.1.  +jpt
+
+   *  Name: JSON Proof Token (JPT)
+   *  +suffix: +jpt
+   *  References: This specification
+   *  Encoding considerations: 8bit; JPT values are encoded as a series
+      of base64url-encoded values (some of which may be the empty
+      string) separated by period ('.') characters.
+   *  Interoperability considerations: n/a
+   *  Fragment identifier considerations: n/a
+   *  Security considerations: See Section 10 of this specification
+   *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Author/Change controller: IETF
+
+11.5.2.  +cpt
+
+   *  Name: CBOR Proof Token (CPT)
+   *  +suffix: +cpt
+   *  References: This specification
+   *  Encoding considerations: 8bit; CPT values are encoded as CBOR
+   *  Interoperability considerations: n/a
+   *  Fragment identifier considerations: n/a
+   *  Security considerations: See Section 10 of this specification
+   *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Author/Change controller: IETF
+
+11.6.  CoAP Content-Formats Registry
 
    This section registers the following CoAP Content-Formats value in
    the [IANA.CoAP.Formats] registry.
 
-11.5.1.  "CPT" CoAP Content-Format
+11.6.1.  "CPT" CoAP Content-Format
 
    The CoAP Content-Format for a CBOR Proof Token (CPT) is as follows.
 
@@ -478,9 +513,8 @@ Table of Contents
    [I-D.ietf-jose-json-web-proof]
               Waite, D., Jones, M. B., and J. Miller, "JSON Web Proof",
               Work in Progress, Internet-Draft, draft-ietf-jose-json-
-              web-proof-08, 17 March 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-web-proof-08>.
+              web-proof-latest, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-jose-json-web-proof>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -504,9 +538,9 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms]
               Jones, M. B., Waite, D., and J. Miller, "JSON Proof
               Algorithms", Work in Progress, Internet-Draft, draft-ietf-
-              jose-json-proof-algorithms-08, 17 March 2025,
+              jose-json-proof-algorithms-latest,
               <https://datatracker.ietf.org/doc/html/draft-ietf-jose-
-              json-proof-algorithms-08>.
+              json-proof-algorithms>.
 
    [IANA.COSE]
               IANA, "CBOR Object Signing and Encryption",
@@ -556,6 +590,14 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -10
+
+   *  Registered +jpt and +cpt structured syntax suffixes.
+
+   -09
+
+   *  No changes
 
    -08
 
