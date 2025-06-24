@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 23 October 2025                          Self-Issued Consulting
+Expires: 26 December 2025                         Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                           21 April 2025
+                                                            24 June 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 October 2025.
+   This Internet-Draft will expire on 26 December 2025.
 
 Copyright Notice
 
@@ -114,13 +114,14 @@ Table of Contents
          10.1.2.7.  Nonce Header Parameter
          10.1.2.8.  Proof Key Header Parameter
          10.1.2.9.  Presentation Key Header Parameter
-     10.2.  Media Type Registration
+     10.2.  Media Type Registry
        10.2.1.  Registry Contents
          10.2.1.1.  The application/jwp Media Type
-         10.2.1.2.  The application/jwp+cbor Media Type
-     10.3.  Structured Syntax Suffix Registration
+         10.2.1.2.  The application/cwp Media Type
+     10.3.  Structured Syntax Suffix Registry
        10.3.1.  Registry Contents
          10.3.1.1.  The +jwp Structured Syntax Suffix
+         10.3.1.2.  The +cwp Structured Syntax Suffix
    11. References
      11.1.  Normative References
      11.2.  Informative References
@@ -765,14 +766,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.hbWhBqFNQgM2BGJU4MER3K-XlIShl67RvWzyHdzL
-   _U7jIHoKCDiSjv_o9cJH9QBfgbj9Kprnf5odRICeb_ju6Y5tlkoIeaiWpF2YBC9YpAtY6
-   F4ZprRouWVbE3Dqfz5igpABMdvCsBXvrSn1JqQLARJQ57OZHSsCW2-EM6fXOS_avv8bFH
-   a4wzNM3LdWtXH1QmtBeJCLPxaoFsdKqgCE1r217jeuC1tYVwYXC7JO1TNvLkeMZPydhNa
-   _pRwEgxpuPB4wOKqtxjSYW707wwVVDFbdwwZJoyXFDi_6ej7WUa8ZeUlZFlOnKxlxU1S0
-   -Nv8GDWemAAGIcUeTaKPI6WjS2mtbFX9CpbgyxqXRjlt83VMF4au6Akl__0ow8BByNAGX
-   0fbXUbnCGnfZDbGiOx5q1KJG__SDQS5hUYZkVBzL3rPTd8xeWwCfPbAmheS-XaoXneJ2Q
-   Es1Criabf47KYlE8cGkoZ1IMm9ul2oHsQJ6TY
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pzRSJTzxEiOVhzsFcVOmsLCWGgkRy67adIAi6wTM
+   L3o_cBZA8_Lq176X_q-67hjbl3GIWEFNdsWdOdP1wcjGqdk7keE7R5vOy-xAC7l0U5zGh
+   cglR362fvBbTBnSkNhNoHFzAOOduRZWK40m09YWRjlwBuaCEnqpryogUgUALH5Zo5kcgj
+   A4sny7VSPf8EWHBcOdLQJL5XbjTMqYj0odenfzpptSQvY1txQawyK0fLxr20uquG3KiI-
+   EbMiW3JfQ7RAsYhbgnN76qOxp9TQs52s-NMjvTFY7gLRQq8ATOCpJqq4Cp_zciw4ryshK
+   zkZNcI9Lpv_3MJk55rWpcyF1WacD-jqjHFBXONEg7aaIWUUWwdoD9ILGoXsOEHdfdq75U
+   W5ey6U7hzGWefcdHncrQFRzcHQiqfnQYK3c-2XlPi1PH4OFdRaECX3jf8j-5nATL4nLJE
+   fG5n_NLyxliUjC-I_iXNpZ7ISifw2H4hE-r30
 
    |  Figure: Compact Serialization of Presentation
 
@@ -852,7 +853,7 @@ Table of Contents
 
    *  jwp is used to indicate that the content of the JWE is a JWP using
       the JWP Compact Serialization.
-   *  jwp+cbor is used to indicate that the plaintext of the COSE
+   *  application/cwp is used to indicate that the plaintext of the COSE
       message is a JWP in CBOR Serialization.
 
    The cty (content type) Header Parameter MUST be present unless the
@@ -1060,7 +1061,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.6 of this specification
 
-10.2.  Media Type Registration
+10.2.  Media Type Registry
 
 10.2.1.  Registry Contents
 
@@ -1095,13 +1096,13 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-10.2.1.2.  The application/jwp+cbor Media Type
+10.2.1.2.  The application/cwp Media Type
 
    *  Type name: application
-   *  Subtype name: jwp+cbor
+   *  Subtype name: cwp
    *  Required parameters: n/a
    *  Optional parameters: n/a
-   *  Encoding considerations: 8bit; application/jwp+cbor values are
+   *  Encoding considerations: 8bit; application/cwp values are
       represented as a CBOR data item.
    *  Security considerations: See Section 9 of this specification
    *  Interoperability considerations: n/a
@@ -1120,15 +1121,13 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-10.3.  Structured Syntax Suffix Registration
+10.3.  Structured Syntax Suffix Registry
 
 10.3.1.  Registry Contents
 
-   This section registers the +jwp structured syntax suffix [RFC6838] in
-   the IANA "Structured Syntax Suffix" registry (#IANA.StructuredSuffix)
-   in the manner described in [RFC6838], which can be used to indicate
-   that the media type is encoded as a JWP using the JWP Compact
-   Serialization.
+   This section registers the following entries in the IANA "Structured
+   Syntax Suffix" registry [IANA.StructuredSuffix] in the manner
+   described in [RFC6838].
 
 10.3.1.1.  The +jwp Structured Syntax Suffix
 
@@ -1139,24 +1138,20 @@ Table of Contents
       series of base64url-encoded values (some of which may be the empty
       string) separated by period ('.') and tilde ('~') characters
    *  Interoperability considerations: n/a
-   *  Fragment identifier considerations: The syntax and semantics of
-      fragment identifiers specified for +jwp SHOULD be as specified for
-      "application/jwp".  (At publication of this document, there is no
-      fragment identification syntax defined for "application/jwp".)
+   *  Fragment identifier considerations: n/a
+   *  Security considerations: See Section 9 of this specification
+   *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
+   *  Author/Change controller: IETF
 
-   The syntax and semantics for fragment identifiers for a specific
-   "xxx/yyy+jwp" SHOULD be processed as follows:
+10.3.1.2.  The +cwp Structured Syntax Suffix
 
-   For cases defined in +jwp, where the fragment identifier resolves per
-   the +jwp rules, then process as specified in +jwp.
-
-   For cases defined in +jwp, where the fragment identifier does not
-   resolve per the +jwp rules, then process as specified in "xxx/
-   yyy+jwp".
-
-   For cases not defined in +jwp, then process as specified in "xxx/
-   yyy+jwp".
-
+   *  Name: CBOR Web Proof (CWP)
+   *  +suffix: +cwp
+   *  References: Section 6.1 of this specification
+   *  Encoding considerations: 8bit; CWP values are represented as a
+      CBOR data item.
+   *  Interoperability considerations: n/a
+   *  Fragment identifier considerations: n/a
    *  Security considerations: See Section 9 of this specification
    *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
    *  Author/Change controller: IETF
@@ -1266,9 +1261,9 @@ Table of Contents
               <https://www.rfc-editor.org/info/rfc8725>.
 
    [VC-DATA-MODEL-2.0]
-              Sporny, M., Jr, T. T., Herman, I., Jones, M. B., and G.
-              Cohen, "Verifiable Credentials Data Model 2.0", 27
-              December 2023, <https://www.w3.org/TR/vc-data-model-2.0>.
+              Sporny, M., Jr, T. T., Herman, I., Cohen, G., and M. B.
+              Jones, "Verifiable Credentials Data Model v2.0", 15 May
+              2025, <https://www.w3.org/TR/vc-data-model-2.0>.
 
 Appendix A.  Acknowledgements
 
@@ -1282,10 +1277,16 @@ Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
 
+   -10
+
+   *  Replaced application/jwp+cbor with application/cwp.
+   *  Registered +cwp structured syntax suffix and simplified +jwp
+      suffix.
+
    -09
 
-   *  Remove JSON serialization
-   *  Correct informative reference to the IANA JWT registry.
+   *  Removed JSON serialization.
+   *  Corrected informative reference to the IANA JWT registry.
 
    -08
 
