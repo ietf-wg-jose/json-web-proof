@@ -387,6 +387,36 @@ The media type for a CBOR Proof Token (CPT) is `application/cpt`.
 * Change controller: IETF
 * Provisional registration: No
 
+##  Structured Syntax Suffix Registry
+
+This section registraters the following entries
+in the IANA "Structured Syntax Suffix" registry [IANA.StructuredSuffix]
+in the manner described in [@RFC6838].
+
+### +jpt
+
+* Name: JSON Proof Token (JPT)
+* +suffix: +jpt
+* References: This specification
+* Encoding considerations: 8bit; JPT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.
+* Interoperability considerations: n/a
+* Fragment identifier considerations: n/a
+* Security considerations: See (#security) of this specification
+* Contact: Michael B. Jones, michael_b_jones@hotmail.com
+* Author/Change controller: IETF
+
+### +cpt
+
+* Name: CBOR Proof Token (CPT)
+* +suffix: +cpt
+* References: This specification
+* Encoding considerations: 8bit; CPT values are encoded as CBOR
+* Interoperability considerations: n/a
+* Fragment identifier considerations: n/a
+* Security considerations: See (#security) of this specification
+* Contact: Michael B. Jones, michael_b_jones@hotmail.com
+* Author/Change controller: IETF
+
 ## CoAP Content-Formats Registry
 
 This section registers the following CoAP Content-Formats value
@@ -415,7 +445,12 @@ for his valuable contributions to this specification.
 
 # Document History
 
-  [[ To be removed from the final specification ]]
+[[ To be removed from the final specification ]]
+
+ -10
+
+  * Registered `+jpt` and `+cpt` structured syntax suffixes.
+
  -09
 
   * No changes
