@@ -276,7 +276,8 @@ be shortened to `example;part="1/2"`.
 
 The `typ` value `jwp` can be used by applications
 to indicate that this object is a JWP using the JWP Compact Serialization.
-Other type values can also be used by applications.
+Other type values can also be used by applications,
+including those using the `+jwp` media type structured syntax suffix.
 
 It is RECOMMENDED that the `typ` Header Parameter be used for explicit typing,
 in parallel to the recommendations in Section 3.11 of [@RFC8725].
@@ -499,9 +500,15 @@ The algorithm is responsible for representing selective disclosure of payloads i
 
 # Serializations
 
-JWP defines two serializations: Compact Serialization and CBOR Serialization. Both serializations represent one or more Protected Headers, multiple Payloads, and a single Proof value.
+JWP defines two serializations: a JSON-based Compact Serialization and a CBOR Serialization.
+Both serializations represent one or more Protected Headers, multiple Payloads, and a single Proof value.
 
-JWP Compact Serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. JWP CBOR Serialization provides a compact CBOR-based encoding for more constrained environments.
+The JWP Compact Serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters.
+Its design closely parallels the JWS Compact Serialization [@RFC7515].
+No representation parallel to the JWS JSON serialization is defined.
+
+ JWP CBOR Serialization provides a compact CBOR-based encoding suitable for constrained environments.
+Its design closely parallels COSE_Sign1 [@RFC9338].
 
 ## Compact Serialization {#CompactSerialization}
 
@@ -918,6 +925,7 @@ for his valuable contributions to this specification.
 
   * Replaced `application/jwp+cbor` with `application/cwp`.
   * Registered `+cwp` structured syntax suffix and simplified +jwp suffix.
+  * Expanded descriptions of and rationale for the serializations.
 
  -09
 
