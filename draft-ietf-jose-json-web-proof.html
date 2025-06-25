@@ -1062,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 26 December 2025</td>
+<td class="center">Expires 27 December 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-24" class="published">24 June 2025</time>
+<time datetime="2025-06-25" class="published">25 June 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-26">26 December 2025</time></dd>
+<dd class="expires"><time datetime="2025-12-27">27 December 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1630,7 +1630,8 @@ whereas the media type <code>application/example;part="1/2"</code> cannot
 be shortened to <code>example;part="1/2"</code>.<a href="#section-4.2.3-4" class="pilcrow">¶</a></p>
 <p id="section-4.2.3-5">The <code>typ</code> value <code>jwp</code> can be used by applications
 to indicate that this object is a JWP using the JWP Compact Serialization.
-Other type values can also be used by applications.<a href="#section-4.2.3-5" class="pilcrow">¶</a></p>
+Other type values can also be used by applications,
+including those using the <code>+jwp</code> media type structured syntax suffix.<a href="#section-4.2.3-5" class="pilcrow">¶</a></p>
 <p id="section-4.2.3-6">It is RECOMMENDED that the <code>typ</code> Header Parameter be used for explicit typing,
 in parallel to the recommendations in Section 3.11 of <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-4.2.3-6" class="pilcrow">¶</a></p>
 </section>
@@ -1897,8 +1898,13 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
       <h2 id="name-serializations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-serializations" class="section-name selfRef">Serializations</a>
       </h2>
-<p id="section-6-1">JWP defines two serializations: Compact Serialization and CBOR Serialization. Both serializations represent one or more Protected Headers, multiple Payloads, and a single Proof value.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">JWP Compact Serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters. JWP CBOR Serialization provides a compact CBOR-based encoding for more constrained environments.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-1">JWP defines two serializations: a JSON-based Compact Serialization and a CBOR Serialization.
+Both serializations represent one or more Protected Headers, multiple Payloads, and a single Proof value.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The JWP Compact Serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters.
+Its design closely parallels the JWS Compact Serialization <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.
+No representation parallel to the JWS JSON serialization is defined.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">JWP CBOR Serialization provides a compact CBOR-based encoding suitable for constrained environments.
+Its design closely parallels COSE_Sign1 <span>[<a href="#RFC9338" class="cite xref">RFC9338</a>]</span>.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <div id="CompactSerialization">
 <section id="section-6.1">
         <h3 id="name-compact-serialization">
@@ -1916,14 +1922,14 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pzRSJTzxEiOVhzsFcVOmsLCWGgkRy67adIAi6wTM
-L3o_cBZA8_Lq176X_q-67hjbl3GIWEFNdsWdOdP1wcjGqdk7keE7R5vOy-xAC7l0U5zGh
-cglR362fvBbTBnSkNhNoHFzAOOduRZWK40m09YWRjlwBuaCEnqpryogUgUALH5Zo5kcgj
-A4sny7VSPf8EWHBcOdLQJL5XbjTMqYj0odenfzpptSQvY1txQawyK0fLxr20uquG3KiI-
-EbMiW3JfQ7RAsYhbgnN76qOxp9TQs52s-NMjvTFY7gLRQq8ATOCpJqq4Cp_zciw4ryshK
-zkZNcI9Lpv_3MJk55rWpcyF1WacD-jqjHFBXONEg7aaIWUUWwdoD9ILGoXsOEHdfdq75U
-W5ey6U7hzGWefcdHncrQFRzcHQiqfnQYK3c-2XlPi1PH4OFdRaECX3jf8j-5nATL4nLJE
-fG5n_NLyxliUjC-I_iXNpZ7ISifw2H4hE-r30
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gF3FqG6-3kbq0JaUp1E7zn2z1OivJMuoUFUF6QE0
+HjX_owZpboqXm5Y8iFIF53yctGzj8W7Au3ciIu8pGDrYk9ebxKgKFddObv56q1wp24lfQ
+OnmK7tfCl6ZD0XcmFxTogbpvsM_s9cI236IFCwBLtE7g9FN6Ih0WmzInB0e2nxsYlpIsW
+lgOq9KRWiXjnLpBw0xef9IsCy8DOaD0MPPUeAfBIP_qi4aJ2e4bmMj-dYMBM_cyh-YI3e
+ASfwqEv9nJ5ntzmmHi3Im8ORqbjYMJgkk6xZLFhtKGpSL-f7zMOF4zxbJpKgxTg6o6fkl
+lV4_RNGKL75nIHSPB5iuJhs0O52hTkdojkIgxHnsTXtTke9IC_IR5u8eO9QiI5SQxE3y1
+3Sl4O3Hrqp65tIM-Kl-kSNVrJ7DbVokn0lB7m69wtVtSzCZGWRZt2oQP4J_NRcycN5p1Q
+ZDh1InHRLKBu-4PPZDkZ3fh0dot937tZRNFu4
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -2653,6 +2659,10 @@ in the manner described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</
         <dd>
 <span class="refAuthor">Sheffer, Y.</span>, <span class="refAuthor">Hardt, D.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"JSON Web Token Best Current Practices"</span>, <span class="seriesInfo">BCP 225</span>, <span class="seriesInfo">RFC 8725</span>, <span class="seriesInfo">DOI 10.17487/RFC8725</span>, <time datetime="2020-02" class="refDate">February 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8725">https://www.rfc-editor.org/info/rfc8725</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9338">[RFC9338]</dt>
+        <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Countersignatures"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9338</span>, <span class="seriesInfo">DOI 10.17487/RFC9338</span>, <time datetime="2022-12" class="refDate">December 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9338">https://www.rfc-editor.org/info/rfc9338</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="VC-DATA-MODEL-2.0">[VC-DATA-MODEL-2.0]</dt>
       <dd>
 <span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Jr, T. T.</span>, <span class="refAuthor">Herman, I.</span>, <span class="refAuthor">Cohen, G.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Verifiable Credentials Data Model v2.0"</span>, <time datetime="2025-05-15" class="refDate">15 May 2025</time>, <span>&lt;<a href="https://www.w3.org/TR/vc-data-model-2.0">https://www.w3.org/TR/vc-data-model-2.0</a>&gt;</span>. </dd>
@@ -2682,6 +2692,8 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <li class="compact" id="appendix-B-3.1">Replaced <code>application/jwp+cbor</code> with <code>application/cwp</code>.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-B-3.2">Registered <code>+cwp</code> structured syntax suffix and simplified +jwp suffix.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.3">Expanded descriptions of and rationale for the serializations.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-09<a href="#appendix-B-4" class="pilcrow">¶</a></p>

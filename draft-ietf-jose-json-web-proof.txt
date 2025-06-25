@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 26 December 2025                         Self-Issued Consulting
+Expires: 27 December 2025                         Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                            24 June 2025
+                                                            25 June 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 December 2025.
+   This Internet-Draft will expire on 27 December 2025.
 
 Copyright Notice
 
@@ -410,7 +410,8 @@ Table of Contents
 
    The typ value jwp can be used by applications to indicate that this
    object is a JWP using the JWP Compact Serialization.  Other type
-   values can also be used by applications.
+   values can also be used by applications, including those using the
+   +jwp media type structured syntax suffix.
 
    It is RECOMMENDED that the typ Header Parameter be used for explicit
    typing, in parallel to the recommendations in Section 3.11 of
@@ -714,14 +715,18 @@ Table of Contents
 
 6.  Serializations
 
-   JWP defines two serializations: Compact Serialization and CBOR
-   Serialization.  Both serializations represent one or more Protected
-   Headers, multiple Payloads, and a single Proof value.
+   JWP defines two serializations: a JSON-based Compact Serialization
+   and a CBOR Serialization.  Both serializations represent one or more
+   Protected Headers, multiple Payloads, and a single Proof value.
 
-   JWP Compact Serialiation provides a JSON-based, space-efficient
-   encoding of a JWP in URL-safe characters.  JWP CBOR Serialization
-   provides a compact CBOR-based encoding for more constrained
-   environments.
+   The JWP Compact Serialiation provides a JSON-based, space-efficient
+   encoding of a JWP in URL-safe characters.  Its design closely
+   parallels the JWS Compact Serialization [RFC7515].  No representation
+   parallel to the JWS JSON serialization is defined.
+
+   JWP CBOR Serialization provides a compact CBOR-based encoding
+   suitable for constrained environments.  Its design closely parallels
+   COSE_Sign1 [RFC9338].
 
 6.1.  Compact Serialization
 
@@ -766,14 +771,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.pzRSJTzxEiOVhzsFcVOmsLCWGgkRy67adIAi6wTM
-   L3o_cBZA8_Lq176X_q-67hjbl3GIWEFNdsWdOdP1wcjGqdk7keE7R5vOy-xAC7l0U5zGh
-   cglR362fvBbTBnSkNhNoHFzAOOduRZWK40m09YWRjlwBuaCEnqpryogUgUALH5Zo5kcgj
-   A4sny7VSPf8EWHBcOdLQJL5XbjTMqYj0odenfzpptSQvY1txQawyK0fLxr20uquG3KiI-
-   EbMiW3JfQ7RAsYhbgnN76qOxp9TQs52s-NMjvTFY7gLRQq8ATOCpJqq4Cp_zciw4ryshK
-   zkZNcI9Lpv_3MJk55rWpcyF1WacD-jqjHFBXONEg7aaIWUUWwdoD9ILGoXsOEHdfdq75U
-   W5ey6U7hzGWefcdHncrQFRzcHQiqfnQYK3c-2XlPi1PH4OFdRaECX3jf8j-5nATL4nLJE
-   fG5n_NLyxliUjC-I_iXNpZ7ISifw2H4hE-r30
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gF3FqG6-3kbq0JaUp1E7zn2z1OivJMuoUFUF6QE0
+   HjX_owZpboqXm5Y8iFIF53yctGzj8W7Au3ciIu8pGDrYk9ebxKgKFddObv56q1wp24lfQ
+   OnmK7tfCl6ZD0XcmFxTogbpvsM_s9cI236IFCwBLtE7g9FN6Ih0WmzInB0e2nxsYlpIsW
+   lgOq9KRWiXjnLpBw0xef9IsCy8DOaD0MPPUeAfBIP_qi4aJ2e4bmMj-dYMBM_cyh-YI3e
+   ASfwqEv9nJ5ntzmmHi3Im8ORqbjYMJgkk6xZLFhtKGpSL-f7zMOF4zxbJpKgxTg6o6fkl
+   lV4_RNGKL75nIHSPB5iuJhs0O52hTkdojkIgxHnsTXtTke9IC_IR5u8eO9QiI5SQxE3y1
+   3Sl4O3Hrqp65tIM-Kl-kSNVrJ7DbVokn0lB7m69wtVtSzCZGWRZt2oQP4J_NRcycN5p1Q
+   ZDh1InHRLKBu-4PPZDkZ3fh0dot937tZRNFu4
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1260,6 +1265,11 @@ Table of Contents
               DOI 10.17487/RFC8725, February 2020,
               <https://www.rfc-editor.org/info/rfc8725>.
 
+   [RFC9338]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Countersignatures", STD 96, RFC 9338,
+              DOI 10.17487/RFC9338, December 2022,
+              <https://www.rfc-editor.org/info/rfc9338>.
+
    [VC-DATA-MODEL-2.0]
               Sporny, M., Jr, T. T., Herman, I., Cohen, G., and M. B.
               Jones, "Verifiable Credentials Data Model v2.0", 15 May
@@ -1282,6 +1292,7 @@ Appendix B.  Document History
    *  Replaced application/jwp+cbor with application/cwp.
    *  Registered +cwp structured syntax suffix and simplified +jwp
       suffix.
+   *  Expanded descriptions of and rationale for the serializations.
 
    -09
 
