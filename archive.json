@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-22T01:05:03.572448+00:00",
+  "timestamp": "2025-06-26T00:59:29.267637+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2834,7 +2834,7 @@
       "id": "I_kwDOFsQObc6uBv57",
       "title": "Register media type suffixes",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/155",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "selfissued",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2843,8 +2843,8 @@
       "labels": [],
       "body": "We should register the +jpt and +cpt media type suffixes so that JWPs can be explicitly typed like JWTs and CWTs are.",
       "createdAt": "2025-03-14T09:23:11Z",
-      "updatedAt": "2025-06-11T21:13:00Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-24T22:31:15Z",
+      "closedAt": "2025-06-24T22:31:15Z",
       "comments": []
     },
     {
@@ -2852,7 +2852,7 @@
       "id": "I_kwDOFsQObc6xhS48",
       "title": "Rename Compact Serialization to JSON Serialization",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/162",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2861,8 +2861,8 @@
       "labels": [],
       "body": "Now that we no longer have three serializations, we have the opportunity to change Compact Serialization to be called JSON Serialization.\n\nThis aligns better with the CBOR-based headers and CBOR-based structures being called \"CBOR Serialization\".\n\nHowever, there is more to compact serialization than just JSON (multiple base64url-encoded octet parts), and the naming may confuse those who came from JWS/JWE where \"JSON Serialization\" implies the structure is a JSON Object.",
       "createdAt": "2025-04-08T00:36:46Z",
-      "updatedAt": "2025-06-11T21:15:21Z",
-      "closedAt": null,
+      "updatedAt": "2025-06-25T19:58:35Z",
+      "closedAt": "2025-06-25T19:58:35Z",
       "comments": [
         {
           "author": "selfissued",
@@ -2917,6 +2917,22 @@
           "updatedAt": "2025-05-09T20:11:10Z"
         }
       ]
+    },
+    {
+      "number": 164,
+      "id": "I_kwDOFsQObc69Ivh8",
+      "title": "Track BBS spec tooling change",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/164",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "It appears decentralized-identity/bbs-signature#332 is making changes to test generation code; adding a tracking issue to verify this doesn't impact our own samples.",
+      "createdAt": "2025-06-24T20:19:19Z",
+      "updatedAt": "2025-06-24T20:19:19Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -10752,6 +10768,90 @@
           "body": "",
           "createdAt": "2025-04-07T23:17:31Z",
           "updatedAt": "2025-04-07T23:17:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 165,
+      "id": "PR_kwDOFsQObc6b8f14",
+      "title": "Register full set of structured suffixes",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/165",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #155",
+      "createdAt": "2025-06-24T22:16:20Z",
+      "updatedAt": "2025-06-24T22:31:14Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "9abad3a7c10e8ec997c5d55c9169b802ba2abe85",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "mbj-suffixes",
+      "headRefOid": "75e13c1ef6b5e12856583eae67bd45e9e003289e",
+      "closedAt": "2025-06-24T22:31:14Z",
+      "mergedAt": "2025-06-24T22:31:14Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "694237d9b1e9252ed23e80ab23df3ef028c7c99d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6wKq5Q",
+          "commit": {
+            "abbreviatedOid": "75e13c1"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-06-24T22:31:04Z",
+          "updatedAt": "2025-06-24T22:31:04Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 166,
+      "id": "PR_kwDOFsQObc6b97RS",
+      "title": "Expand descriptions of and rationale for the serializations",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/166",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #162 ",
+      "createdAt": "2025-06-25T02:48:29Z",
+      "updatedAt": "2025-06-25T19:58:34Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "694237d9b1e9252ed23e80ab23df3ef028c7c99d",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "mbj-serializations",
+      "headRefOid": "7547334927dde0aca4e2f6ab91b464cd6788baf0",
+      "closedAt": "2025-06-25T19:58:34Z",
+      "mergedAt": "2025-06-25T19:58:34Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "b78ea65b21fd021113ce63c03f0a6f8aca474f43"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6wZgi6",
+          "commit": {
+            "abbreviatedOid": "7547334"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-06-25T19:58:28Z",
+          "updatedAt": "2025-06-25T19:58:28Z",
           "comments": []
         }
       ]
