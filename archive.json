@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-26T00:59:29.267637+00:00",
+  "timestamp": "2025-07-01T01:06:50.009990+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2931,6 +2931,38 @@
       "body": "It appears decentralized-identity/bbs-signature#332 is making changes to test generation code; adding a tracking issue to verify this doesn't impact our own samples.",
       "createdAt": "2025-06-24T20:19:19Z",
       "updatedAt": "2025-06-24T20:19:19Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 167,
+      "id": "I_kwDOFsQObc6-Fs_8",
+      "title": "Indistinguishable presentation of no payloads and one undisclosed payload",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/167",
+      "state": "OPEN",
+      "author": "emlun",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Hi! I noticed a possible issue in the [compact serialization](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-compact-serialization): that it's impossible to distinguish a presentation disclosing zero of zero payloads from a presentation disclosing zero of one payload. As an illustrating example:\n\n- Consider the issued JWP `eyJhbGciOiIifQ._._`. This JWP has a single, empty payload and an empty issuer proof.\n  - If we present this JWP with the payload disclosed, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ._._`.\n  - If we present this JWP without disclosing the payload, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ.._`. Since the JWP was issued with one payload, we should represent this payloads array in application logic as `[null]`, since one undisclosed payload is distinct from no payloads (`[]`).\n\n- Now consider the issued JWP `eyJhbGciOiIifQ.._`. This JWP has no payloads and an empty issuer proof.\n  - If we present this JWP, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ.._`. Note that the payloads segment is the same (empty) as in the presentation above with one non-disclosed payload. Thus without additional information we cannot tell whether this represents the payloads `[null]` or `[]`.\n\nWith 2 or more issued payloads there is no ambiguity, since the serialization will always contain at least one `~` character. I guess that's another way to phrase the issue: with N issued payloads the serialization contains N-1 `~` characters, except both N=1 and N=0 result in 0 `~` characters in the serialization. This also indicates a simple possible fix: insert a `~` character after each payload, not just separating them - though this would perhaps go against conventions elsewhere in JOSE.\n\nThis doesn't seem to be an obstacle to verifying BBS proofs, as the [BBS proof serialization](https://www.ietf.org/archive/id/draft-irtf-cfrg-bbs-signatures-08.html#name-octets-to-proof) can distinguish between a proof with a message commitment (meaning there is an undisclosed payload) and one without (meaning all payloads (including zero) were disclosed), but could this conceivably be relevant for other proof algorithms? It's also a bit disappointing that my `assemblePresentedJwp` and `parsePresentedJwp` functions aren't truly each other's inverse due to this edge case. :slightly_smiling_face:\n\nOne could argue that we perhaps shouldn't worry about JWPs with zero issued payloads, since that seems unlikely to be useful in practice. Anyway, what does the WG think?",
+      "createdAt": "2025-06-30T16:42:07Z",
+      "updatedAt": "2025-06-30T16:42:07Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 168,
+      "id": "I_kwDOFsQObc6-F2pM",
+      "title": "Should presentation headers duplicate issuer headers?",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/168",
+      "state": "OPEN",
+      "author": "emlun",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "In particular, the [definition of the \"alg\" header](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-alg-algorithm-header-parame) states that \"Use of this Header Parameter is REQUIRED\", and this is not qualified to apply only to the issuer header. I don't see any clear guidance on whether \"alg\" should be duplicated in both the issuer header and the [presentation header](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-presentation-protected-head).\n\n- There is the text \"While there are not any required values in the presentation header\" which seems to indicate that \"alg\" is not required, but it's not clear if that overrides the \"alg\" definition or not.\n- The [IANA registration of \"alg\"](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-algorithm-header-parameter) declares \"Header Parameter Usage Location(s): Issued, Presented\", so it's clearly at least _allowed_ in the presentation header.\n\nIn general,\n1. should implementations emit presentation headers that duplicate issuer header values?\n2. how should applications process JWPs with presentation headers that duplicate issuer header values?",
+      "createdAt": "2025-06-30T16:53:29Z",
+      "updatedAt": "2025-06-30T16:53:29Z",
       "closedAt": null,
       "comments": []
     }
