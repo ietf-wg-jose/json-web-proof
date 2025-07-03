@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-01T01:06:50.009990+00:00",
+  "timestamp": "2025-07-03T00:59:44.973243+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2946,9 +2946,45 @@
       "labels": [],
       "body": "Hi! I noticed a possible issue in the [compact serialization](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-compact-serialization): that it's impossible to distinguish a presentation disclosing zero of zero payloads from a presentation disclosing zero of one payload. As an illustrating example:\n\n- Consider the issued JWP `eyJhbGciOiIifQ._._`. This JWP has a single, empty payload and an empty issuer proof.\n  - If we present this JWP with the payload disclosed, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ._._`.\n  - If we present this JWP without disclosing the payload, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ.._`. Since the JWP was issued with one payload, we should represent this payloads array in application logic as `[null]`, since one undisclosed payload is distinct from no payloads (`[]`).\n\n- Now consider the issued JWP `eyJhbGciOiIifQ.._`. This JWP has no payloads and an empty issuer proof.\n  - If we present this JWP, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ.._`. Note that the payloads segment is the same (empty) as in the presentation above with one non-disclosed payload. Thus without additional information we cannot tell whether this represents the payloads `[null]` or `[]`.\n\nWith 2 or more issued payloads there is no ambiguity, since the serialization will always contain at least one `~` character. I guess that's another way to phrase the issue: with N issued payloads the serialization contains N-1 `~` characters, except both N=1 and N=0 result in 0 `~` characters in the serialization. This also indicates a simple possible fix: insert a `~` character after each payload, not just separating them - though this would perhaps go against conventions elsewhere in JOSE.\n\nThis doesn't seem to be an obstacle to verifying BBS proofs, as the [BBS proof serialization](https://www.ietf.org/archive/id/draft-irtf-cfrg-bbs-signatures-08.html#name-octets-to-proof) can distinguish between a proof with a message commitment (meaning there is an undisclosed payload) and one without (meaning all payloads (including zero) were disclosed), but could this conceivably be relevant for other proof algorithms? It's also a bit disappointing that my `assemblePresentedJwp` and `parsePresentedJwp` functions aren't truly each other's inverse due to this edge case. :slightly_smiling_face:\n\nOne could argue that we perhaps shouldn't worry about JWPs with zero issued payloads, since that seems unlikely to be useful in practice. Anyway, what does the WG think?",
       "createdAt": "2025-06-30T16:42:07Z",
-      "updatedAt": "2025-06-30T16:42:07Z",
+      "updatedAt": "2025-07-01T17:49:17Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This came up while defining zero length payloads as a part of making sure there was feature equivalence with CBOR, which is when we defined the underscore (`_`) for zero-length payloads.\n\nWe eventually decided unless we got feedback from implementers (specifically aren't application use cases and proof algorithms) that we'd define a JWP as having one or more payloads. So I don't think this ambiguity exists currently - a CBOR serialization with zero payloads should be considered invalid. #169 is tracking making sure the CDDL is consistent with the spec text.\n\nIf we allowed zero payloads, the compact representation would more likely use a single hyphen (`-`) special case, since this is another invalid b64url sequence. But since this would be visually confusing to the single underscore (`_`) used for zero length payloads, there was a reluctance to add this without sufficient justification.\n\nWe could have more information conveyed in a BBS proof such as blinded values for confirmation and seed information for pseudonyms. Those won't be represented in the payloads, but be negotiated (out of band or via the protected headers) and represented within the proof section - also one of the reasons the proof was changed to also be multi-value. So there is a possibility that for some applications, all the pertinent information would be in the proof, with no payloads disclosed at all. The question is whether this is worth defining, or if these applications might just use a single zero-length payload instead for compatibility.",
+          "createdAt": "2025-07-01T02:18:38Z",
+          "updatedAt": "2025-07-01T02:18:38Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The generalist in me thinks we'll be better off allowing zero or more payloads - particularly in the disclosed form.\n\nI appreciate Emil catching this.  I hadn't caught it before.",
+          "createdAt": "2025-07-01T02:32:10Z",
+          "updatedAt": "2025-07-01T02:32:10Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Do you think a hyphen would be appropriate?  The reason underscore was selected was that single character strings can't be  base64url decoded, and a single character match is relatively simple to perform.\n\nI did think briefly at the time that any (1 mod 4) sequence is an illegal base64 sequence, so even \"empty\" should fail per the RFC - but theory falls apart once you get to all the hand-rolled implementations out there.",
+          "createdAt": "2025-07-01T04:08:09Z",
+          "updatedAt": "2025-07-01T04:08:09Z"
+        },
+        {
+          "author": "emlun",
+          "authorAssociation": "NONE",
+          "body": "I think it's probably fine to require that issued JWPs must always contain at least one payload, because a JWP with no payloads is equivalent (at least for BBS) with a conventional (e.g. ECDSA) signature over the issuer header. I can't imagine any practical use cases for issuing zero payloads that aren't already covered by conventional JWTs.\n\nI agree that presentation JWPs definitely should allow zero disclosed payloads - but if there's an implicit understanding that the issued JWP always has at least one payload, then that eliminates the ambiguity for presentation JWPs too since the \"zero of zero\" case is invalid. Thus the presentation JWP `eyJhbGciOiIifQ.eyJhbGciOiIifQ.._` uniquely encodes a presentation with one non-disclosed payload.\n\n---\n\n...ah, and I see now that this is already specified in [\u00a73. Background](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-background):\n\n>A JWP is initially created by the issuer using the `issue` interaction. A successful result is an issued JWP that has a single issuer-protected header, one or more payloads [...]\n\noh, and also in [\u00a75. JWP Forms](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-jwp-forms):\n\n>All JWP forms have one or more payloads; [...]\n\nHow did I miss that...\n\nAnyway, the above does clash with @selfissued's comment by requiring one or more payloads also in presentation JWPs. For presentation JWPs there are concrete use cases of disclosing zero payloads. For example: one ongoing discussion in EUDI is around wallet revocation, and one proposed alternative to revocation lists or the like is to instead issue short-lived credentials as a proof of non-revocation - this way the verifier knows that the wallet was non-revoked at the time it was issued, and it doesn't need to know more than that a valid issuer signature exists over a recent-enough nonce or issued timestamp, so a presentation with zero disclosed attributes can meet that requirement. (I've no idea whether this will be the approach taken in the end, but it is a concrete use case.)",
+          "createdAt": "2025-07-01T11:12:44Z",
+          "updatedAt": "2025-07-01T11:12:44Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Separately from the two options here - it sounds like (for clarity) we need to use common terminology like \u201cpayload slots\u201d to indicate a position which may or may not have disclosed payload data. ",
+          "createdAt": "2025-07-01T17:49:16Z",
+          "updatedAt": "2025-07-01T17:49:16Z"
+        }
+      ]
     },
     {
       "number": 168,
@@ -2962,7 +2998,62 @@
       "labels": [],
       "body": "In particular, the [definition of the \"alg\" header](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-alg-algorithm-header-parame) states that \"Use of this Header Parameter is REQUIRED\", and this is not qualified to apply only to the issuer header. I don't see any clear guidance on whether \"alg\" should be duplicated in both the issuer header and the [presentation header](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-presentation-protected-head).\n\n- There is the text \"While there are not any required values in the presentation header\" which seems to indicate that \"alg\" is not required, but it's not clear if that overrides the \"alg\" definition or not.\n- The [IANA registration of \"alg\"](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-algorithm-header-parameter) declares \"Header Parameter Usage Location(s): Issued, Presented\", so it's clearly at least _allowed_ in the presentation header.\n\nIn general,\n1. should implementations emit presentation headers that duplicate issuer header values?\n2. how should applications process JWPs with presentation headers that duplicate issuer header values?",
       "createdAt": "2025-06-30T16:53:29Z",
-      "updatedAt": "2025-06-30T16:53:29Z",
+      "updatedAt": "2025-07-01T02:46:12Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Having differing algorithms for issuance and presentation is certainly meant to be allowed. I'm currently working on a change for #78 and #94 to allow the holder protected header for single use and mac algorithms to use JWA digital signature/MAC algorithms (such as `\"Ed25519\"`). It is still in flux, but I'm hoping that it can be conveyed as an `alg` parameter on the holder's protected header, and that it doesn't become combinatorial with the issuer algorithm.\n\nThe reason for having `bbs` be a single value for both issuance and presentation is to simplify the registry (and authors having to come up with multiple unique names).\n\nConceptually, an issued JWP is a document holding information, while a presentation is an application-specific message (possibly from many different applications that can act on the information in an issued JWP) providing a subset of that information, along with a way to confirm that the presentation is coming from the holder. The two headers come from different parties as well. \n\nSo the guidance should be to treat them as distinct, and also to not duplicate header parameters. If for no other reason than - if an application defines that a header parameter should be duplicated, this is just creating work during validation to make sure the two header parameter values are equivalent.\n\nIn terms of the definition of `alg` saying that the parameter is REQUIRED - this may be worth revisiting. The `alg` parameter is required by JOSE but optional in COSE, and making it required was meant more for JOSE consistency. There was also an idea that unique algorithm names from IANA might be a way for a processor to determine whether a message was a JWS or JWP. However, this was not the approach that SD-JWT took.\n\nI think now processors will just have to either have knowledge of what was expected, to indicate as an external application parameter, to look at the `typ` in the protected header to know what application is at play (or to try to determine via the structured suffix of +jwp/ +cwp), or use tags on the CBOR serialization. There's plenty of ways to do it, just not really a prescriptive path for all applications.",
+          "createdAt": "2025-07-01T02:46:11Z",
+          "updatedAt": "2025-07-01T02:46:11Z"
+        }
+      ]
+    },
+    {
+      "number": 169,
+      "id": "I_kwDOFsQObc6-KjGq",
+      "title": "Change CDDL to indicate one or more payloads",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/169",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From #167, it looks like the CDDL does not indicate that there must be at least one payload; the next draft should make sure the CDDL matches the corresponding text.",
+      "createdAt": "2025-07-01T02:17:51Z",
+      "updatedAt": "2025-07-01T11:29:14Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "emlun",
+          "authorAssociation": "NONE",
+          "body": "I hadn't actually looked at the CDDL, but yes, the [current CDDL](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-cbor-serialization) does not match the intent:\n\n```\nCBOR_JWP_Issued = [\n       IssuerHeader : serialized_map,\n       payloads : [payload] / nil,\n       proof : [bstr]\n   ]\n\nCBOR_JWP_Presented = [\n      PresenterHeader : serialized_map,\n      IssuerHeaders : serialized_map,\n      payloads : [payload] / nil,\n      proof : [bstr]\n   ]\n```\n\nIn fact, this encodes that `payloads` and `proof` must both be [_exactly_ one element long](https://www.rfc-editor.org/rfc/rfc8610.html#section-3.2):\n\n>[RFC 8610]\n>**3.2.  Occurrence**\n>An optional _occurrence_ indicator can be given in front of a group entry. [...]\n>\n>If no occurrence indicator is specified, the group entry is to occur exactly once (as if 1*1 were specified). [...]\n\nThe intended \"one or more\" needs a `+` occurrence indicator:\n\n```\nCBOR_JWP_Issued = [\n       IssuerHeader : serialized_map,\n       payloads : [+ payload] / nil,\n       proof : [+ bstr]\n   ]\n\nCBOR_JWP_Presented = [\n      PresenterHeader : serialized_map,\n      IssuerHeaders : serialized_map,\n      payloads : [+ payload] / nil,\n      proof : [+ bstr]\n   ]\n```\n\nand to [allow zero or more values in the presentation](https://github.com/ietf-wg-jose/json-web-proof/issues/167#issuecomment-3021518114), that would be `*` instead:\n```\nCBOR_JWP_Presented = [\n      PresenterHeader : serialized_map,\n      IssuerHeaders : serialized_map,\n      payloads : [* payload] / nil,\n      proof : [* bstr]\n   ]\n```",
+          "createdAt": "2025-07-01T11:20:20Z",
+          "updatedAt": "2025-07-01T11:20:20Z"
+        },
+        {
+          "author": "emlun",
+          "authorAssociation": "NONE",
+          "body": "Here are a few more potential issues I noticed:\n\n- The `empty_or_serialized_map` type seems not referenced.\n- The `header_map` type map seems undefined, or there's no clear reference to where it is defined (it's not in the [CDDL standard prelude](https://www.rfc-editor.org/rfc/rfc8610.html#appendix-D)).\n- Using the `payload` type in `CBOR_JWP_Issued` seems wrong since this allows `null` payloads, which presumably shouldn't appear in issued JWPs (only when not disclosed in presentation JWPs)?\n- I assume the `#6.xxx` and `#6.yyy` tags are to be defined? If so, it may be worth noting in a comment.",
+          "createdAt": "2025-07-01T11:29:14Z",
+          "updatedAt": "2025-07-01T11:29:14Z"
+        }
+      ]
+    },
+    {
+      "number": 170,
+      "id": "I_kwDOFsQObc6-j2R9",
+      "title": "Verify current BBS version before next publication",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/170",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "It looks like there will be a draft 9 published soon for IETF 123; see if we can reference it if possible.",
+      "createdAt": "2025-07-02T20:12:48Z",
+      "updatedAt": "2025-07-02T20:12:48Z",
       "closedAt": null,
       "comments": []
     }
