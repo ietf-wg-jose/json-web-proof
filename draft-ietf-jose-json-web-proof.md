@@ -492,17 +492,13 @@ For example, rather than releasing a data of birth, the algorithm may include pr
 
 A non-exaustive list of such proof methods along with examples includes:
 
-Ranges
-: Age acceptable currently, Geolocation near a specified location
+* Ranges: Age acceptable currently, Geolocation near a specified location
 
-Membership / Non-membership
-: Contains a particular role, Credential is not considered revoked.
+* (Non-)Membership: Contains a particular role, Credential is not considered revoked.
 
-Knowledge
-: Holder has proof of possession of a secret key or secret value
+* Proof of Knowledge: Holder has proof of possession of a secret key or secret value
 
-Derived Values
-: A verifier-specific pseuonymous value based on the credential
+* Derived Values: (Verifier-specific) stable pseuonymous values
 
 ### Presentation Proof
 
