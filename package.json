@@ -12,10 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jose": "^6",
-    "jsonpath": "^1.1.1",
     "@mattrglobal/pairing-crypto": "file:mattrglobal-pairing-crypto-df72bf1b.tgz",
-    "cbor2": "^1.12.0",
-    "cbor-edn": "^0.2.2"
+    "cbor-edn": "^0.2.2",
+    "cbor2": "^2.0.1",
+    "jose": "^6",
+    "jsonpath": "^1.1.1"
   }
 }
