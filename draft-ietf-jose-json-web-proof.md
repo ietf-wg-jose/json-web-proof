@@ -113,7 +113,7 @@ unlinkability:
 A _JSON Web Proof (JWP)_ is very similar to a JWS [@RFC7515] or COSE Signed Message [@RFC9052], with the addition that it can contain multiple individual secured payloads instead of a single one.
 JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.
 
-The intent of JSON Web Proof is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.
+The intent of JSON Web Proof is to establish a common container format for multiple ordered payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.
 
 To fully support the newer privacy primitives, JWP utilizes the three roles of issuer, holder, and verifier, as defined by the VC Data Model [@VC-DATA-MODEL-2.0].  There are also two forms of a JWP: the issued form created by an issuer for a holder, and the presented form created by a holder for a verifier.
 
@@ -430,7 +430,7 @@ should be used with caution.
 
 A JWP is always in one of two forms: the issued form or the presented form.  A structural difference between the two forms is the number of protected headers.  An issued JWP has only one issuer protected header, while a presented JWP will have both the issuer protected header and an additional presentation protected header.  Each protected header is a JSON object that is serialized as a UTF-8 encoded octet string.
 
-All JWP forms have one or more payloads; each payload is an octet string.  The payloads are arranged in an array for which the ordering is preserved in all serializations.
+All JWP forms support multiple payloads, which are individual octet strings. The issued form will contain one or more ordered payload slots, each of which contain one piece of payload data. A presentation based on that issued JWP contains the same number of slots in the same order, but may choose to omit payload information on a slot-by-slot basis.
 
 The JWP proof value is one or more octet strings that are only meant to be generated from and processed by the underlying JPA.  Internally, the proof value may contain one or more cryptographic statements that are used to check the integrity protection of the header(s) and all payloads.  Each of these statements may be a ZKP or a traditional cryptographic signature.  The algorithm is responsible for how these statements are serialized into a single proof value.
 
@@ -442,8 +442,7 @@ The issued form can only be confirmed by a holder as being correctly formed and 
 
 ### Issuer Protected Header
 
-The issuer protected header applies to all of the payloads equally.  It is recommended that any payload-specific information not be included in this header and instead be handled outside of the cryptographic envelope.  This is to minimize any correlatable signals in the metadata, to reduce a verifier's ability to group different presentations based on small header variations from the same issuer.
-The protected header is always disclosed, whereas payloads can be selectively disclosed.
+The Issuer Protected Header is always presented as-is to verifiers. Differences in protected headers from two Issued JWP could unintentionally serve to differentiate these messages to verifiers, allowing grouping or correlation of credentials based on these variations. It is RECOMMENDED that the Issuer Protected Header have the same representation (identical octet string sequence) for Issued JWP which are otherwise meant to not be distinguishable.
 
 Every issuer protected header MUST have an `alg` value that identifies a valid JSON Proof Algorithm (JPA).
 
@@ -453,19 +452,19 @@ For example:
 
 ### Issuer Payloads
 
-Payloads are represented and processed as individual octet strings and arranged in an ordered array when there are multiple payloads.  All application context of the placement and encoding of each payload value is out of scope of this specification and SHOULD be well defined and documented by the application or other specifications.
+Payloads are represented and processed as individual octet strings and arranged in an ordered array of payload slots.  All application context of the placement and encoding of each payload value is out of scope of this specification and SHOULD be well defined and documented by the application or other specifications.
 
 JPAs MAY provide software interfaces that perform the encoding of individual payloads which accept native inputs such as numbers, sets, or elliptic curve points.  This enables the algorithm to support advanced features such as blinded values and predicate proofs.  These interfaces would generate the octet string encoded payload value as well as include protection of that payload in the combined proof value.
 
 ### Issuer Proof
 
-The issuer proof is one or more binary octet strings that are opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
+The issuer proof is one or more octet strings that are opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
 
 The issuer proof is used by the holder to perform validation, checking that the issuer header and all payloads are properly encoded and protected by the given proof.
 
 ## Presented Form {#presented-form}
 
-When an issued JWP is presented, it undergoes a transformation that adds a presentation protected header. It may also have one or more payloads hidden, disclosing only a subset of the original issued payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.
+When an issued JWP is presented, it undergoes a transformation that adds a presentation protected header. While the payload slots are identical to the Issued JWP, the Presented JWP may have one or more payloads omitted, disclosing only a subset of the original issued payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.
 
 When supported by the underling JPA, a single issued JWP can be used to safely generate multiple presented JWPs without becoming correlatable.
 
@@ -481,16 +480,17 @@ While there are not any required values in the presentation header, it MUST cont
 
 ### Presentation Payloads
 
-Any one or more payloads may be non-disclosed in a presented JWP.  When a payload is not disclosed, the position of other payloads does not change; the resulting array will simply be sparse and only contain the disclosed payloads.
+The presentation has one or more payload slots, each of which either contains the issued payload or represents that the payload is being omitted. The position of other payloads does not change when one is omitted; the resulting array will simply be sparse and only contain the disclosed payloads.
 
 The disclosed payloads will always be in the same array positions to preserve any index-based references by the application between the issued and presented forms of the JWP.  How the sparse array is represented is specific to the serialization used.
 
-Algorithms MAY support including a proof about a payload in the presentation.  Applications then treat that proven payload the same as any other non-disclosed payload and do not include it in the presented array of payloads.
-Rather, proofs about payloads, such as "age >= 21", are included in the presentation proof.
+In addition to disclosing the contents of a payload, some algorithms MAY support disclosing other information not represented as a payload.
+
+For example, rather than releasing a data of birth, the algorithm may include proof information indicating that the subject is over a certain age at the time of the presentation. Such information is not disclosed as a payload, and instead would be included in the presentation proof.
 
 ### Presentation Proof
 
-The presentation proof is one or more binary octet strings that are opaque to applications. Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
+The presentation proof is one or more octet strings that are opaque to applications. Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.
 
 The proof of a presented JWP will always be different than the issued proof.  At a minimum, it MUST be updated to include protection of the added presentation header.
 
@@ -501,7 +501,7 @@ The algorithm is responsible for representing selective disclosure of payloads i
 # Serializations
 
 JWP defines two serializations: a JSON-based Compact Serialization and a CBOR Serialization.
-Both serializations represent one or more Protected Headers, multiple Payloads, and a single Proof value.
+Both serializations represent one or more Protected Headers, multiple Payload slots, and a single Proof (which may be composed of multiple octet strings).
 
 The JWP Compact Serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters.
 Its design closely parallels the JWS Compact Serialization [@RFC7515].
@@ -516,11 +516,11 @@ JWP Compact Serialiation provides a JSON-based encoding of a JWP, expressed in U
 
 The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.
 
-All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.
+All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payload slot data and the proof values.
 
-Payloads and proof values are each concatenated into a single text form by concatenating the BASE64URL encoded values using the `~` character.
+Payload slots and proof values are each concatenated into a single text form by concatenating the BASE64URL encoded values using the `~` character.
 
-Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive `~` characters in the concatenated form.
+Individual payload slots are allowed to have their payload data be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive `~` characters in the concatenated form.
 
 If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single `_` character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.
 
@@ -554,21 +554,31 @@ Applications MAY use their own tags to tag other specific types of JWPs.
 
 ``` cddl
 CBOR_JWP_Issued = [
-       IssuerHeader : serialized_map,
-       payloads : [payload] / nil,
-       proof : [bstr]
+       IssuerHeader : empty_or_serialized_map,
+       PayloadSlots : [+ payload] / nil,
+       Proof : [+ bstr]
    ]
 
 CBOR_JWP_Presented = [
-      PresenterHeader : serialized_map,
-      IssuerHeaders : serialized_map,
-      payloads : [payload] / nil,
-      proof : [bstr]
+      PresenterHeader : empty_or_serialized_map,
+      IssuerHeaders : empty_or_serialized_map,
+      PayloadSlots : [+ disclosable_payload] / nil,
+      Proof : [+ bstr]
    ]
 
 empty_or_serialized_map = bstr .cbor header_map
 
-payload = bstr / nil
+header_map = {
+    * label => values
+}
+
+label = int / tstr
+
+values = any
+
+payload = bstr
+
+disclosable_payload = payload / nil
 
 Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
 
@@ -616,9 +626,9 @@ in which case the `cty` value MAY be omitted.
 
 In some contexts, it is useful to make statements about payloads which are not themselves contained within the JWP, similar to "Detached Content" in JWS [@RFC7515].
 
-For this purpose, the compact, JSON and CBOR serializations allow for all payloads to be omitted from a serialized form. While this is a legal serialization, it is not on its own able to be verified.
+For this purpose, the compact, JSON and CBOR serializations allow for all payload slots to be omitted from a serialized form. While this is a legal serialization, it is not on its own able to be verified.
 
-The recipient is expected to perform some sequence of steps defined by the application to recreate the array of payloads, including order and optionality. This effectively recreates the fully specified serialization of the JWP.
+The recipient is expected to perform some sequence of steps defined by the application to recreate the array of payload slots, including order and optionality. This effectively recreates the fully specified serialization of the JWP.
 
 # Security Considerations {#SecurityConsiderations}
 
@@ -926,6 +936,28 @@ for his valuable contributions to this specification.
   * Replaced `application/jwp+cbor` with `application/cwp`.
   * Registered `+cwp` structured syntax suffix and simplified +jwp suffix.
   * Expanded descriptions of and rationale for the serializations.
+  * Payload nomenclature was clarified by adding the concept of payload
+    slots. The issued form and presented form have a certain number of
+    ordered payload slots, and a presentation may choose to omit
+    information from a slot.
+  * Recommendation for Isuser Protected Header is to make the header
+    static aross issued JWP if possible, to prevent unintentional
+    correlation by verifiers
+  * Cleaned up the text around algorithmic support for additional proofs
+    of knowledge outside of payload disclosure (e.g. range proofs)
+  * Clarify that a proof is made up of multiple octet strings
+  * (CDDL) The protected header definitions now reference
+    `empty_or_serialized_map` properly
+  * (CDDL) `payloads` is now `PayloadSlots`, and represents you need at
+    least one slot
+  * (CDDL) The issuer `PayloadSlots` contains `payload`, which is not
+    omittable
+  * (CDDL) The presented form likewise references `disclosable_payload`,
+    which is nillable to represent omission
+  * (CDDL) `Proof` is capitalized to match, and properly represents you
+    need at least one `bstr`
+  * (CDDL) `header_map`, `label` and `value` definitions imported from
+    RFC 9052
 
  -09
 
