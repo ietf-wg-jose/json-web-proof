@@ -484,9 +484,25 @@ The presentation has one or more payload slots, each of which either contains th
 
 The disclosed payloads will always be in the same array positions to preserve any index-based references by the application between the issued and presented forms of the JWP.  How the sparse array is represented is specific to the serialization used.
 
-In addition to disclosing the contents of a payload, some algorithms MAY support disclosing other information not represented as a payload.
+### Algorithm Specific Proof Methods
+
+In addition to disclosing the contents of a payload, some algorithms MAY support disclosing other information not representable as a payload.
 
 For example, rather than releasing a data of birth, the algorithm may include proof information indicating that the subject is over a certain age at the time of the presentation. Such information is not disclosed as a payload, and instead would be included in the presentation proof.
+
+A non-exaustive list of such proof methods along with examples includes:
+
+Ranges
+: Age acceptable currently, Geolocation near a specified location
+
+Membership / Non-membership
+: Contains a particular role, Credential is not considered revoked.
+
+Knowledge
+: Holder has proof of possession of a secret key or secret value
+
+Derived Values
+: A verifier-specific pseuonymous value based on the credential
 
 ### Presentation Proof
 
@@ -958,6 +974,7 @@ for his valuable contributions to this specification.
     need at least one `bstr`
   * (CDDL) `header_map`, `label` and `value` definitions imported from
     RFC 9052
+  * Receive examples of additional types of algorithm-specific proofs from JPT
 
  -09
 
