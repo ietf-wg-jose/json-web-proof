@@ -707,14 +707,16 @@ Table of Contents
    A non-exaustive list of such proof methods along with examples
    includes:
 
-   Ranges  Age acceptable currently, Geolocation near a specified
+   *  Ranges: Age acceptable currently, Geolocation near a specified
       location
-   Membership / Non-membership  Contains a particular role, Credential
-      is not considered revoked.
-   Knowledge  Holder has proof of possession of a secret key or secret
-      value
-   Derived Values  A verifier-specific pseuonymous value based on the
-      credential
+
+   *  (Non-)Membership: Contains a particular role, Credential is not
+      considered revoked.
+
+   *  Proof of Knowledge: Holder has proof of possession of a secret key
+      or secret value
+
+   *  Derived Values: (Verifier-specific) stable pseuonymous values
 
 5.2.4.  Presentation Proof
 
@@ -796,14 +798,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jJ-jt2Sfe81MxWjLsMRQdCwVe2VkrrK-oMR_IHi_
-   WS3Xn-l0JhKyMhdFwMHMp-VHlW4jLNV_lby7H2pKiMvqj7zDvY8uda9-kts7rOIqwlptN
-   s2IUhdE6fHBKLB53ccUo47UEg33wq3iq9RMqJdtAee3Pazb8P9BMfRDyx8KmIcXk0aNUR
-   _XKpB7chAH9IwXNiG4XJg7E9ANzxXJwQW6Y5x0yc92axnSRhUHYjzHQWBSY16Jx-0Fbb8
-   JvEts8IKx-3_lWPGrKEod3pi96NA_XFh0I0c5PsfyLPAENwJrA_KG4Cu1Ty_dj1JXb7_X
-   tMyCO0Wgaw0aljsiTZUrTPhXbXvf5Fe8VX-DKexfpAOyMqEPlV_eWWTsg9reCNvPXUYwe
-   JcY9HjeA6WQwPOBiVBkGlUkOYFmTodpCNy7Q6Gy8oMbdkVS4xf9IIpLDV0nB6CzXo6YQF
-   wmjSUhFCT6cQAvnvEhUMB6xkKp32P03FSYvyc
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.iFMejRS8YaK6VYY58rR8KzZbm8BoqFXoIxMlYiC3
+   dwSJfTzJ0BIAo2WmlVWiviT2l5FuadXztDdj7LTCcSJ4GGVuuvl0E6Tes_YqLn7f3mgsb
+   fJQxlgr7KgqOBMBajBWlbVE8JwZUpxGhgnhz7Wo4Iy913joRNWZN1CYmWcbAfI8jR6-jy
+   VrBSMXbcszeXuabnZ7i2Hlv4lRPdZ4KDdbm3s8b3b7Pgazp4VwB9V4mJFx_XnmXnzHKfF
+   NEnC9aUpbz9ZYTNKIoxQeoaLEjOzHIBieeqh1j0IcCqp3o2K-3HfMMcJxgI0Gl6A3NHET
+   sacSXSEohbhibtfy-mS_yKpRAWibSi2oPe8DnDr_cW7XFUEbeMy0i8LvIKpHmFPcwDveY
+   3NV7H0KmrTXMAo5eyEo4zCJ_qmXuIDJe3K3Rd4xUdiNmq0neMnE4gE4_usl18XdAJ7wvy
+   89vc8iKSkDGQmtA_Lx59QEnJRrQ63_9xHOPAU
 
    |  Figure: Compact Serialization of Presentation
 

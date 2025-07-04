@@ -1886,24 +1886,20 @@ should be used with caution.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.3-1">In addition to disclosing the contents of a payload, some algorithms MAY support disclosing other information not representable as a payload.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.3-2">For example, rather than releasing a data of birth, the algorithm may include proof information indicating that the subject is over a certain age at the time of the presentation. Such information is not disclosed as a payload, and instead would be included in the presentation proof.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.3-3">A non-exaustive list of such proof methods along with examples includes:<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlCompact dlParallel" id="section-5.2.3-4">
-            <dt id="section-5.2.3-4.1">Ranges</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.3-4.2">Age acceptable currently, Geolocation near a specified location<a href="#section-5.2.3-4.2" class="pilcrow">¶</a>
-</dd>
-            <dd class="break"></dd>
-<dt id="section-5.2.3-4.3">Membership / Non-membership</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.3-4.4">Contains a particular role, Credential is not considered revoked.<a href="#section-5.2.3-4.4" class="pilcrow">¶</a>
-</dd>
-            <dd class="break"></dd>
-<dt id="section-5.2.3-4.5">Knowledge</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.3-4.6">Holder has proof of possession of a secret key or secret value<a href="#section-5.2.3-4.6" class="pilcrow">¶</a>
-</dd>
-            <dd class="break"></dd>
-<dt id="section-5.2.3-4.7">Derived Values</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.3-4.8">A verifier-specific pseuonymous value based on the credential<a href="#section-5.2.3-4.8" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-</dl>
+<ul class="normal">
+<li class="normal" id="section-5.2.3-4.1">
+              <p id="section-5.2.3-4.1.1">Ranges: Age acceptable currently, Geolocation near a specified location<a href="#section-5.2.3-4.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-4.2">
+              <p id="section-5.2.3-4.2.1">(Non-)Membership: Contains a particular role, Credential is not considered revoked.<a href="#section-5.2.3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-4.3">
+              <p id="section-5.2.3-4.3.1">Proof of Knowledge: Holder has proof of possession of a secret key or secret value<a href="#section-5.2.3-4.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-4.4">
+              <p id="section-5.2.3-4.4.1">Derived Values: (Verifier-specific) stable pseuonymous values<a href="#section-5.2.3-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </section>
 </div>
 <div id="presentation-proof">
@@ -1950,14 +1946,14 @@ Its design closely parallels COSE_Sign1 <span>[<a href="#RFC9338" class="cite xr
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jJ-jt2Sfe81MxWjLsMRQdCwVe2VkrrK-oMR_IHi_
-WS3Xn-l0JhKyMhdFwMHMp-VHlW4jLNV_lby7H2pKiMvqj7zDvY8uda9-kts7rOIqwlptN
-s2IUhdE6fHBKLB53ccUo47UEg33wq3iq9RMqJdtAee3Pazb8P9BMfRDyx8KmIcXk0aNUR
-_XKpB7chAH9IwXNiG4XJg7E9ANzxXJwQW6Y5x0yc92axnSRhUHYjzHQWBSY16Jx-0Fbb8
-JvEts8IKx-3_lWPGrKEod3pi96NA_XFh0I0c5PsfyLPAENwJrA_KG4Cu1Ty_dj1JXb7_X
-tMyCO0Wgaw0aljsiTZUrTPhXbXvf5Fe8VX-DKexfpAOyMqEPlV_eWWTsg9reCNvPXUYwe
-JcY9HjeA6WQwPOBiVBkGlUkOYFmTodpCNy7Q6Gy8oMbdkVS4xf9IIpLDV0nB6CzXo6YQF
-wmjSUhFCT6cQAvnvEhUMB6xkKp32P03FSYvyc
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.iFMejRS8YaK6VYY58rR8KzZbm8BoqFXoIxMlYiC3
+dwSJfTzJ0BIAo2WmlVWiviT2l5FuadXztDdj7LTCcSJ4GGVuuvl0E6Tes_YqLn7f3mgsb
+fJQxlgr7KgqOBMBajBWlbVE8JwZUpxGhgnhz7Wo4Iy913joRNWZN1CYmWcbAfI8jR6-jy
+VrBSMXbcszeXuabnZ7i2Hlv4lRPdZ4KDdbm3s8b3b7Pgazp4VwB9V4mJFx_XnmXnzHKfF
+NEnC9aUpbz9ZYTNKIoxQeoaLEjOzHIBieeqh1j0IcCqp3o2K-3HfMMcJxgI0Gl6A3NHET
+sacSXSEohbhibtfy-mS_yKpRAWibSi2oPe8DnDr_cW7XFUEbeMy0i8LvIKpHmFPcwDveY
+3NV7H0KmrTXMAo5eyEo4zCJ_qmXuIDJe3K3Rd4xUdiNmq0neMnE4gE4_usl18XdAJ7wvy
+89vc8iKSkDGQmtA_Lx59QEnJRrQ63_9xHOPAU
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
