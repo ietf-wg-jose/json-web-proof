@@ -94,7 +94,8 @@ Table of Contents
      5.2.  Presented Form
        5.2.1.  Presentation Protected Header
        5.2.2.  Presentation Payloads
-       5.2.3.  Presentation Proof
+       5.2.3.  Algorithm Specific Proof Methods
+       5.2.4.  Presentation Proof
    6.  Serializations
      6.1.  Compact Serialization
      6.2.  CBOR Serialization
@@ -691,8 +692,10 @@ Table of Contents
    issued and presented forms of the JWP.  How the sparse array is
    represented is specific to the serialization used.
 
+5.2.3.  Algorithm Specific Proof Methods
+
    In addition to disclosing the contents of a payload, some algorithms
-   MAY support disclosing other information not represented as a
+   MAY support disclosing other information not representable as a
    payload.
 
    For example, rather than releasing a data of birth, the algorithm may
@@ -701,7 +704,19 @@ Table of Contents
    disclosed as a payload, and instead would be included in the
    presentation proof.
 
-5.2.3.  Presentation Proof
+   A non-exaustive list of such proof methods along with examples
+   includes:
+
+   Ranges  Age acceptable currently, Geolocation near a specified
+      location
+   Membership / Non-membership  Contains a particular role, Credential
+      is not considered revoked.
+   Knowledge  Holder has proof of possession of a secret key or secret
+      value
+   Derived Values  A verifier-specific pseuonymous value based on the
+      credential
+
+5.2.4.  Presentation Proof
 
    The presentation proof is one or more octet strings that are opaque
    to applications.  Individual proof-supporting algorithms are
@@ -781,14 +796,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.rTSw7nVqLbiMajQMh8NrKVLWbAoOCdEqfbbSjFDd
-   Tm7CyCGF-EDAsMqJzgPNglJToZglwrwx7BLCa56CbfNjYKCIm1nm2Y-toe7uTn3Kwu1tb
-   ESLNTi_h_3EyOaQXVP9rzHWCOVJ0n3-mhG8T5w9FoycYpvBBd8DZcS9pSQGWailJImpcc
-   3i8MQsuu4OpuLXF8eU1TOtolPL32Y83sWRcApLJmSkzIujz9WadVb5d744gQRQ7FiNlPJ
-   KTo3af1BQcxWtHJiYoGmh9px3gfB4TFIXGYXzu20nlbFCa04G6L4XceT6PAKEFZljfNZ3
-   YwWsUPENLWEPLbQnB5r6YvHXay9LhlgSULf-pHJzntXl2qhAqoIm8_LiFHjjqTI4SX2KM
-   afgSY1wLe2HwwJRbZl0XSLKayYhm3Fx_gjDgOOHm1zaI4Pgq_Z5pzwaqlItL_LbC6i6Ck
-   Po8_3HXFYdV5RvMmqRjWpVQEyqOKj2rMIneOg
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jJ-jt2Sfe81MxWjLsMRQdCwVe2VkrrK-oMR_IHi_
+   WS3Xn-l0JhKyMhdFwMHMp-VHlW4jLNV_lby7H2pKiMvqj7zDvY8uda9-kts7rOIqwlptN
+   s2IUhdE6fHBKLB53ccUo47UEg33wq3iq9RMqJdtAee3Pazb8P9BMfRDyx8KmIcXk0aNUR
+   _XKpB7chAH9IwXNiG4XJg7E9ANzxXJwQW6Y5x0yc92axnSRhUHYjzHQWBSY16Jx-0Fbb8
+   JvEts8IKx-3_lWPGrKEod3pi96NA_XFh0I0c5PsfyLPAENwJrA_KG4Cu1Ty_dj1JXb7_X
+   tMyCO0Wgaw0aljsiTZUrTPhXbXvf5Fe8VX-DKexfpAOyMqEPlV_eWWTsg9reCNvPXUYwe
+   JcY9HjeA6WQwPOBiVBkGlUkOYFmTodpCNy7Q6Gy8oMbdkVS4xf9IIpLDV0nB6CzXo6YQF
+   wmjSUhFCT6cQAvnvEhUMB6xkKp32P03FSYvyc
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1336,6 +1351,8 @@ Appendix B.  Document History
       need at least one bstr
    *  (CDDL) header_map, label and value definitions imported from RFC
       9052
+   *  Receive examples of additional types of algorithm-specific proofs
+      from JPT
 
    -09
 

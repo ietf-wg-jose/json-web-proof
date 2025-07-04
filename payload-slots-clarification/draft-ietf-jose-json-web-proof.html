@@ -1247,7 +1247,10 @@ It also specifies a new presentation form that supports selective disclosure of 
                     <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-presentation-payloads" class="internal xref">Presentation Payloads</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
-                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-presentation-proof" class="internal xref">Presentation Proof</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-algorithm-specific-proof-me" class="internal xref">Algorithm Specific Proof Methods</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.4">
+                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-presentation-proof" class="internal xref">Presentation Proof</a></p>
 </li>
                 </ul>
 </li>
@@ -1873,19 +1876,45 @@ should be used with caution.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
           </h4>
 <p id="section-5.2.2-1">The presentation has one or more payload slots, each of which either contains the issued payload or represents that the payload is being omitted. The position of other payloads does not change when one is omitted; the resulting array will simply be sparse and only contain the disclosed payloads.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-2">The disclosed payloads will always be in the same array positions to preserve any index-based references by the application between the issued and presented forms of the JWP.  How the sparse array is represented is specific to the serialization used.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-3">In addition to disclosing the contents of a payload, some algorithms MAY support disclosing other information not represented as a payload.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-4">For example, rather than releasing a data of birth, the algorithm may include proof information indicating that the subject is over a certain age at the time of the presentation. Such information is not disclosed as a payload, and instead would be included in the presentation proof.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="algorithm-specific-proof-methods">
+<section id="section-5.2.3">
+          <h4 id="name-algorithm-specific-proof-me">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-algorithm-specific-proof-me" class="section-name selfRef">Algorithm Specific Proof Methods</a>
+          </h4>
+<p id="section-5.2.3-1">In addition to disclosing the contents of a payload, some algorithms MAY support disclosing other information not representable as a payload.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">For example, rather than releasing a data of birth, the algorithm may include proof information indicating that the subject is over a certain age at the time of the presentation. Such information is not disclosed as a payload, and instead would be included in the presentation proof.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-3">A non-exaustive list of such proof methods along with examples includes:<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-5.2.3-4">
+            <dt id="section-5.2.3-4.1">Ranges</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.3-4.2">Age acceptable currently, Geolocation near a specified location<a href="#section-5.2.3-4.2" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.3-4.3">Membership / Non-membership</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.3-4.4">Contains a particular role, Credential is not considered revoked.<a href="#section-5.2.3-4.4" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.3-4.5">Knowledge</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.3-4.6">Holder has proof of possession of a secret key or secret value<a href="#section-5.2.3-4.6" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.3-4.7">Derived Values</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.3-4.8">A verifier-specific pseuonymous value based on the credential<a href="#section-5.2.3-4.8" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+</dl>
 </section>
 </div>
 <div id="presentation-proof">
-<section id="section-5.2.3">
+<section id="section-5.2.4">
           <h4 id="name-presentation-proof">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-presentation-proof" class="section-name selfRef">Presentation Proof</a>
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-presentation-proof" class="section-name selfRef">Presentation Proof</a>
           </h4>
-<p id="section-5.2.3-1">The presentation proof is one or more octet strings that are opaque to applications. Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">The proof of a presented JWP will always be different than the issued proof.  At a minimum, it MUST be updated to include protection of the added presentation header.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-3">Algorithms SHOULD generate an un-correlatable presentation proof in order to support multiple presentations from a single issued JWP.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-4">The algorithm is responsible for representing selective disclosure of payloads in a presented proof. If multiple octet strings are insufficient for representing a proof as defined by an algorithm, the algorithm is responsible for defining how such information is represented within one or more octet strings.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-1">The presentation proof is one or more octet strings that are opaque to applications. Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-2">The proof of a presented JWP will always be different than the issued proof.  At a minimum, it MUST be updated to include protection of the added presentation header.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-3">Algorithms SHOULD generate an un-correlatable presentation proof in order to support multiple presentations from a single issued JWP.<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-4">The algorithm is responsible for representing selective disclosure of payloads in a presented proof. If multiple octet strings are insufficient for representing a proof as defined by an algorithm, the algorithm is responsible for defining how such information is represented within one or more octet strings.<a href="#section-5.2.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1921,14 +1950,14 @@ Its design closely parallels COSE_Sign1 <span>[<a href="#RFC9338" class="cite xr
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.rTSw7nVqLbiMajQMh8NrKVLWbAoOCdEqfbbSjFDd
-Tm7CyCGF-EDAsMqJzgPNglJToZglwrwx7BLCa56CbfNjYKCIm1nm2Y-toe7uTn3Kwu1tb
-ESLNTi_h_3EyOaQXVP9rzHWCOVJ0n3-mhG8T5w9FoycYpvBBd8DZcS9pSQGWailJImpcc
-3i8MQsuu4OpuLXF8eU1TOtolPL32Y83sWRcApLJmSkzIujz9WadVb5d744gQRQ7FiNlPJ
-KTo3af1BQcxWtHJiYoGmh9px3gfB4TFIXGYXzu20nlbFCa04G6L4XceT6PAKEFZljfNZ3
-YwWsUPENLWEPLbQnB5r6YvHXay9LhlgSULf-pHJzntXl2qhAqoIm8_LiFHjjqTI4SX2KM
-afgSY1wLe2HwwJRbZl0XSLKayYhm3Fx_gjDgOOHm1zaI4Pgq_Z5pzwaqlItL_LbC6i6Ck
-Po8_3HXFYdV5RvMmqRjWpVQEyqOKj2rMIneOg
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.jJ-jt2Sfe81MxWjLsMRQdCwVe2VkrrK-oMR_IHi_
+WS3Xn-l0JhKyMhdFwMHMp-VHlW4jLNV_lby7H2pKiMvqj7zDvY8uda9-kts7rOIqwlptN
+s2IUhdE6fHBKLB53ccUo47UEg33wq3iq9RMqJdtAee3Pazb8P9BMfRDyx8KmIcXk0aNUR
+_XKpB7chAH9IwXNiG4XJg7E9ANzxXJwQW6Y5x0yc92axnSRhUHYjzHQWBSY16Jx-0Fbb8
+JvEts8IKx-3_lWPGrKEod3pi96NA_XFh0I0c5PsfyLPAENwJrA_KG4Cu1Ty_dj1JXb7_X
+tMyCO0Wgaw0aljsiTZUrTPhXbXvf5Fe8VX-DKexfpAOyMqEPlV_eWWTsg9reCNvPXUYwe
+JcY9HjeA6WQwPOBiVBkGlUkOYFmTodpCNy7Q6Gy8oMbdkVS4xf9IIpLDV0nB6CzXo6YQF
+wmjSUhFCT6cQAvnvEhUMB6xkKp32P03FSYvyc
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -2735,6 +2764,8 @@ need at least one <code>bstr</code><a href="#appendix-B-3.12" class="pilcrow">¶
 </li>
         <li class="compact" id="appendix-B-3.13">(CDDL) <code>header_map</code>, <code>label</code> and <code>value</code> definitions imported from
 RFC 9052<a href="#appendix-B-3.13" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.14">Receive examples of additional types of algorithm-specific proofs from JPT<a href="#appendix-B-3.14" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-09<a href="#appendix-B-4" class="pilcrow">¶</a></p>
