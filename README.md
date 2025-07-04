@@ -1,4 +1,5 @@
 # JSON Web Proof
+<!-- regenerate: off (set to off if you edit this file) -->
 
 JSON Web Proof establishes a JSON based container as a new entry in the JOSE family of container formats.
 
