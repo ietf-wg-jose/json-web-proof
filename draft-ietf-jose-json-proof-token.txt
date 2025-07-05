@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 5 January 2026                                        J. Miller
+Expires: 6 January 2026                                        J. Miller
                                                            Ping Identity
-                                                             4 July 2025
+                                                             5 July 2025
 
 
                  JSON Proof Token and CBOR Proof Token
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 January 2026.
+   This Internet-Draft will expire on 6 January 2026.
 
 Copyright Notice
 
@@ -75,7 +75,6 @@ Table of Contents
    8.  Presented Claims and Proofs
      8.1.  Disclosed
      8.2.  Undisclosed
-     8.3.  Proof Methods
    9.  Example JPT and CPT
    10. Security Considerations
    11. IANA Considerations
@@ -133,8 +132,8 @@ Table of Contents
 3.  Background
 
    JWP defines a container binding together a protected header, one or
-   more payloads, and a cryptographic proof.  It does not define how
-   claims are organized into payloads and what formats they are in.
+   more payload slots, and a cryptographic proof.  It does not define
+   how claims are organized into payloads and what formats they are in.
    JPTs are intended to be as close to a JWT as possible, while also
    supporting the selective disclosure and unlinkability of JWPs.
    Likewise, CPTs are intended to be as close to a CWT as possible,
@@ -225,22 +224,24 @@ Table of Contents
    name.  Payloads MUST each have a negotiated and understood claim name
    within the application context.  The simplest solution to establish
    payload claim names is as an ordered array that aligns with the
-   included payloads.  This claims array can be conveniently included in
-   the Claims header parameter.
+   ordering of payload slots.  This claims array can be conveniently
+   included in the Claims header parameter.
 
    The claims Header Parameter is an array listing the Claim Names
-   corresponding to the JWP payloads, in the same order as the payloads.
-   Each array value is a Claim Name, as defined in [RFC7519] or
-   [RFC8392].  Use of this Header Parameter is OPTIONAL.
+   corresponding to the JWP payload slots, in the same order as the
+   payload slots.  Each array value is a Claim Name, as defined in
+   [RFC7519] or [RFC8392].  Use of this Header Parameter is OPTIONAL.
 
    All JPT payloads that are claim values MUST be the base64url encoding
    of the UTF-8 representation of a JSON value.  That said, predicate
    proofs derived from payload values are not represented as claims;
    they are contained in the presentation proof using algorithm-specific
-   representations.  All CPT payloads that are claim values MUST be a
-   CBOR value.  Likewise, CPT predicate proofs derived from payload
-   values are not represented as claims; they are contained in the
-   presentation proof using algorithm-specific representations.
+   representations.
+
+   All CPT payloads that are claim values MUST be a CBOR value.
+   Likewise, CPT predicate proofs derived from payload values are not
+   represented as claims; they are contained in the presentation proof
+   using algorithm-specific representations.
 
    The following is an example JWP Issuer Protected Header that includes
    a claims property:
@@ -318,22 +319,6 @@ Table of Contents
 
    The placeholder indicating that a payload was not disclosed is
    represented as described in Section 6 (Serializations).
-
-8.3.  Proof Methods
-
-   Proof methods can be returned instead of a disclosed payload.  These
-   are generated in an algorithm-specific manner from information in the
-   JWP's proof value.
-
-   A proof method may be custom based on the capabilities of the
-   algorithm.
-
-   *  TBD: Describe common proof method types available:
-      -  range
-      -  membership
-      -  time
-      -  knowledge
-      -  linking
 
 9.  Example JPT and CPT
 
@@ -594,6 +579,9 @@ Appendix B.  Document History
    -10
 
    *  Registered +jpt and +cpt structured syntax suffixes.
+   *  Clarify mapping of the claims array to payload data using "payload
+      slot" nomenclature
+   *  Move proof methods text to JWP.
 
    -09
 

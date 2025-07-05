@@ -1067,7 +1067,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 5 January 2026</td>
+<td class="center">Expires 6 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1080,12 +1080,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-proof-token-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-04" class="published">4 July 2025</time>
+<time datetime="2025-07-05" class="published">5 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-05">5 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-06">6 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1136,7 +1136,7 @@ rather than the JSON-based JWP Compact Serialization.<a href="#section-abstract-
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1208,9 +1208,6 @@ rather than the JSON-based JWP Compact Serialization.<a href="#section-abstract-
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-undisclosed" class="internal xref">Undisclosed</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-proof-methods" class="internal xref">Proof Methods</a></p>
 </li>
             </ul>
 </li>
@@ -1346,7 +1343,7 @@ and are stored in a separate structure that can be externalized and shared acros
       <h2 id="name-background">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-background" class="section-name selfRef">Background</a>
       </h2>
-<p id="section-3-1">JWP defines a container binding together a protected header, one or more payloads, and a cryptographic proof.  It does not define how claims are organized into payloads and what formats they are in.
+<p id="section-3-1">JWP defines a container binding together a protected header, one or more payload slots, and a cryptographic proof.  It does not define how claims are organized into payloads and what formats they are in.
 JPTs are intended to be as close to a JWT as possible,
 while also supporting the selective disclosure and unlinkability of JWPs.
 Likewise, CPTs are intended to be as close to a CWT as possible,
@@ -1457,22 +1454,23 @@ established by <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>, 
 Payloads MUST each have a negotiated and understood claim name
 within the application context.
 The simplest solution to establish payload claim names
-is as an ordered array that aligns with the included payloads.
+is as an ordered array that aligns with the ordering of payload slots.
 This claims array can be conveniently included in the Claims header parameter.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">The <code>claims</code> Header Parameter is an array listing the Claim Names
-corresponding to the JWP payloads, in the same order as the payloads.
+corresponding to the JWP payload slots, in the same order as the
+payload slots.
 Each array value is a Claim Name, as defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span> or <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.
 Use of this Header Parameter is OPTIONAL.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">All JPT payloads that are claim values
 MUST be the base64url encoding of the UTF-8 representation of a JSON value.
 That said, predicate proofs derived from payload values are not represented as claims;
-they are contained in the presentation proof using algorithm-specific representations.
-All CPT payloads that are claim values
+they are contained in the presentation proof using algorithm-specific representations.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">All CPT payloads that are claim values
 MUST be a CBOR value.
 Likewise, CPT predicate proofs derived from payload values are not represented as claims;
-they are contained in the presentation proof using algorithm-specific representations.<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">The following is an example JWP Issuer Protected Header that includes a claims property:<a href="#section-6-4" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-6-5">
+they are contained in the presentation proof using algorithm-specific representations.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">The following is an example JWP Issuer Protected Header that includes a claims property:<a href="#section-6-5" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-6-6">
 <pre>{
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
   "alg": "BBS",
@@ -1487,12 +1485,12 @@ they are contained in the presentation proof using algorithm-specific representa
   ]
 }
 
-</pre><a href="#section-6-5" class="pilcrow">¶</a>
+</pre><a href="#section-6-6" class="pilcrow">¶</a>
 </div>
-<p id="section-6-6">In this example, the "iat" and "exp" would be JSON-formatted numbers,
+<p id="section-6-7">In this example, the "iat" and "exp" would be JSON-formatted numbers,
 "family_name", "given_name" and "email" would be JSON strings (in quotes),
 "address" would be a JSON object,
-and "age_over_21" would be either <code>true</code> or <code>false</code>.<a href="#section-6-6" class="pilcrow">¶</a></p>
+and "age_over_21" would be either <code>true</code> or <code>false</code>.<a href="#section-6-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="cidDef">
@@ -1563,33 +1561,6 @@ A disclosed payload of a CPT is represented as a CBOR value.<a href="#section-8.
         </h3>
 <p id="section-8.2-1">The placeholder indicating that a payload was not disclosed is represented as
 described in <a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof-latest#appendix-Section%206" class="relref">Section 6</a> (Serializations).<a href="#section-8.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="proof-methods">
-<section id="section-8.3">
-        <h3 id="name-proof-methods">
-<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-proof-methods" class="section-name selfRef">Proof Methods</a>
-        </h3>
-<p id="section-8.3-1">Proof methods can be returned instead of a disclosed payload.
-These are generated in an algorithm-specific manner from information in the JWP's proof value.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
-<p id="section-8.3-2">A proof method may be custom based on the capabilities of the algorithm.<a href="#section-8.3-2" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="section-8.3-3.1">
-            <p id="section-8.3-3.1.1">TBD: Describe common proof method types available:<a href="#section-8.3-3.1.1" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="section-8.3-3.1.2.1">range<a href="#section-8.3-3.1.2.1" class="pilcrow">¶</a>
-</li>
-              <li class="compact" id="section-8.3-3.1.2.2">membership<a href="#section-8.3-3.1.2.2" class="pilcrow">¶</a>
-</li>
-              <li class="compact" id="section-8.3-3.1.2.3">time<a href="#section-8.3-3.1.2.3" class="pilcrow">¶</a>
-</li>
-              <li class="compact" id="section-8.3-3.1.2.4">knowledge<a href="#section-8.3-3.1.2.4" class="pilcrow">¶</a>
-</li>
-              <li class="compact" id="section-8.3-3.1.2.5">linking<a href="#section-8.3-3.1.2.5" class="pilcrow">¶</a>
-</li>
-            </ul>
-</li>
-        </ul>
 </section>
 </div>
 </section>
@@ -2041,6 +2012,11 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <p id="appendix-B-2">-10<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="appendix-B-3.1">Registered <code>+jpt</code> and <code>+cpt</code> structured syntax suffixes.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.2">Clarify mapping of the <code>claims</code> array to payload data using
+"payload slot" nomenclature<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.3">Move proof methods text to JWP.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-09<a href="#appendix-B-4" class="pilcrow">¶</a></p>

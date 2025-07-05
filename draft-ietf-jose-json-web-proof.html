@@ -1062,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 5 January 2026</td>
+<td class="center">Expires 6 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-04" class="published">4 July 2025</time>
+<time datetime="2025-07-05" class="published">5 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-05">5 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-06">6 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ It also specifies a new presentation form that supports selective disclosure of 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1247,7 +1247,10 @@ It also specifies a new presentation form that supports selective disclosure of 
                     <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-presentation-payloads" class="internal xref">Presentation Payloads</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
-                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-presentation-proof" class="internal xref">Presentation Proof</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-algorithm-specific-proof-me" class="internal xref">Algorithm Specific Proof Methods</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.4">
+                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-presentation-proof" class="internal xref">Presentation Proof</a></p>
 </li>
                 </ul>
 </li>
@@ -1465,7 +1468,7 @@ These new patterns are largely focused on two areas: supporting selective disclo
       </h2>
 <p id="section-3-1">A <em>JSON Web Proof (JWP)</em> is very similar to a JWS <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span> or COSE Signed Message <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>, with the addition that it can contain multiple individual secured payloads instead of a single one.
 JWP-supporting algorithms are then able to separate and act on the individual payloads contained within.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The intent of JSON Web Proof is to establish a common container format for multiple payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-2">The intent of JSON Web Proof is to establish a common container format for multiple ordered payloads that can be integrity-verified against a cryptographic proof value also in the container.  It does not create or specify any cryptographic protocols, multi-party protocols, or detail any algorithm-specific capabilities.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">To fully support the newer privacy primitives, JWP utilizes the three roles of issuer, holder, and verifier, as defined by the VC Data Model <span>[<a href="#VC-DATA-MODEL-2.0" class="cite xref">VC-DATA-MODEL-2.0</a>]</span>.  There are also two forms of a JWP: the issued form created by an issuer for a holder, and the presented form created by a holder for a verifier.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">The four principal interactions used by JWP are <code>issue</code>, <code>confirm</code>, <code>present</code>, and <code>verify</code>.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">A JWP is initially created by the issuer using the <code>issue</code> interaction.  A successful result is an issued JWP that has a single issuer-protected header, one or more payloads, and an initial proof value that contains the issuing algorithm output.  The holder, upon receiving an issued JWP, then uses the <code>confirm</code> interaction to check the integrity protection of the header and all payloads using the proof value.<a href="#section-3-5" class="pilcrow">¶</a></p>
@@ -1802,7 +1805,7 @@ should be used with caution.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-jwp-forms" class="section-name selfRef">JWP Forms</a>
       </h2>
 <p id="section-5-1">A JWP is always in one of two forms: the issued form or the presented form.  A structural difference between the two forms is the number of protected headers.  An issued JWP has only one issuer protected header, while a presented JWP will have both the issuer protected header and an additional presentation protected header.  Each protected header is a JSON object that is serialized as a UTF-8 encoded octet string.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">All JWP forms have one or more payloads; each payload is an octet string.  The payloads are arranged in an array for which the ordering is preserved in all serializations.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-2">All JWP forms support multiple payloads, which are individual octet strings. The issued form will contain one or more ordered payload slots, each of which contain one piece of payload data. A presentation based on that issued JWP contains the same number of slots in the same order, but may choose to omit payload information on a slot-by-slot basis.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">The JWP proof value is one or more octet strings that are only meant to be generated from and processed by the underlying JPA.  Internally, the proof value may contain one or more cryptographic statements that are used to check the integrity protection of the header(s) and all payloads.  Each of these statements may be a ZKP or a traditional cryptographic signature.  The algorithm is responsible for how these statements are serialized into a single proof value.<a href="#section-5-3" class="pilcrow">¶</a></p>
 <div id="issued-form">
 <section id="section-5.1">
@@ -1816,8 +1819,7 @@ should be used with caution.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
           <h4 id="name-issuer-protected-header">
 <a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-issuer-protected-header" class="section-name selfRef">Issuer Protected Header</a>
           </h4>
-<p id="section-5.1.1-1">The issuer protected header applies to all of the payloads equally.  It is recommended that any payload-specific information not be included in this header and instead be handled outside of the cryptographic envelope.  This is to minimize any correlatable signals in the metadata, to reduce a verifier's ability to group different presentations based on small header variations from the same issuer.
-The protected header is always disclosed, whereas payloads can be selectively disclosed.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-1">The Issuer Protected Header is always presented as-is to verifiers. Differences in protected headers from two Issued JWP could unintentionally serve to differentiate these messages to verifiers, allowing grouping or correlation of credentials based on these variations. It is RECOMMENDED that the Issuer Protected Header have the same representation (identical octet string sequence) for Issued JWP which are otherwise meant to not be distinguishable.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-2">Every issuer protected header MUST have an <code>alg</code> value that identifies a valid JSON Proof Algorithm (JPA).<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-3">For example:<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-5.1.1-4">
@@ -1834,7 +1836,7 @@ The protected header is always disclosed, whereas payloads can be selectively di
           <h4 id="name-issuer-payloads">
 <a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-issuer-payloads" class="section-name selfRef">Issuer Payloads</a>
           </h4>
-<p id="section-5.1.2-1">Payloads are represented and processed as individual octet strings and arranged in an ordered array when there are multiple payloads.  All application context of the placement and encoding of each payload value is out of scope of this specification and SHOULD be well defined and documented by the application or other specifications.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-1">Payloads are represented and processed as individual octet strings and arranged in an ordered array of payload slots.  All application context of the placement and encoding of each payload value is out of scope of this specification and SHOULD be well defined and documented by the application or other specifications.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.2-2">JPAs MAY provide software interfaces that perform the encoding of individual payloads which accept native inputs such as numbers, sets, or elliptic curve points.  This enables the algorithm to support advanced features such as blinded values and predicate proofs.  These interfaces would generate the octet string encoded payload value as well as include protection of that payload in the combined proof value.<a href="#section-5.1.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1843,7 +1845,7 @@ The protected header is always disclosed, whereas payloads can be selectively di
           <h4 id="name-issuer-proof">
 <a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-issuer-proof" class="section-name selfRef">Issuer Proof</a>
           </h4>
-<p id="section-5.1.3-1">The issuer proof is one or more binary octet strings that are opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-1">The issuer proof is one or more octet strings that are opaque to applications.  Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.3-2">The issuer proof is used by the holder to perform validation, checking that the issuer header and all payloads are properly encoded and protected by the given proof.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1854,7 +1856,7 @@ The protected header is always disclosed, whereas payloads can be selectively di
         <h3 id="name-presented-form">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-presented-form" class="section-name selfRef">Presented Form</a>
         </h3>
-<p id="section-5.2-1">When an issued JWP is presented, it undergoes a transformation that adds a presentation protected header. It may also have one or more payloads hidden, disclosing only a subset of the original issued payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">When an issued JWP is presented, it undergoes a transformation that adds a presentation protected header. While the payload slots are identical to the Issued JWP, the Presented JWP may have one or more payloads omitted, disclosing only a subset of the original issued payloads.  The proof value will always be updated to add integrity protection of the presentation header along with the necessary cryptographic statements to verify the presented JWP.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">When supported by the underling JPA, a single issued JWP can be used to safely generate multiple presented JWPs without becoming correlatable.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 <p id="section-5.2-3">A JWP may also be single use, where an issued JWP can only be used once to generate a presented form. In this case, any additional presentations would be inherently correlatable.  These are still useful for applications needing only selective disclosure or where new unique issued JWPs can be retrieved easily.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <div id="presentation-protected-header">
@@ -1872,21 +1874,43 @@ The protected header is always disclosed, whereas payloads can be selectively di
           <h4 id="name-presentation-payloads">
 <a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-presentation-payloads" class="section-name selfRef">Presentation Payloads</a>
           </h4>
-<p id="section-5.2.2-1">Any one or more payloads may be non-disclosed in a presented JWP.  When a payload is not disclosed, the position of other payloads does not change; the resulting array will simply be sparse and only contain the disclosed payloads.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-1">The presentation has one or more payload slots, each of which either contains the issued payload or represents that the payload is being omitted. The position of other payloads does not change when one is omitted; the resulting array will simply be sparse and only contain the disclosed payloads.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-2">The disclosed payloads will always be in the same array positions to preserve any index-based references by the application between the issued and presented forms of the JWP.  How the sparse array is represented is specific to the serialization used.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-3">Algorithms MAY support including a proof about a payload in the presentation.  Applications then treat that proven payload the same as any other non-disclosed payload and do not include it in the presented array of payloads.
-Rather, proofs about payloads, such as "age &gt;= 21", are included in the presentation proof.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="algorithm-specific-proof-methods">
+<section id="section-5.2.3">
+          <h4 id="name-algorithm-specific-proof-me">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-algorithm-specific-proof-me" class="section-name selfRef">Algorithm Specific Proof Methods</a>
+          </h4>
+<p id="section-5.2.3-1">In addition to disclosing the contents of a payload, some algorithms MAY support disclosing other information not representable as a payload.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">For example, rather than releasing a data of birth, the algorithm may include proof information indicating that the subject is over a certain age at the time of the presentation. Such information is not disclosed as a payload, and instead would be included in the presentation proof.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-3">A non-exaustive list of such proof methods along with examples includes:<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.3-4.1">
+              <p id="section-5.2.3-4.1.1">Ranges: Age acceptable currently, Geolocation near a specified location<a href="#section-5.2.3-4.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-4.2">
+              <p id="section-5.2.3-4.2.1">(Non-)Membership: Contains a particular role, Credential is not considered revoked.<a href="#section-5.2.3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-4.3">
+              <p id="section-5.2.3-4.3.1">Proof of Knowledge: Holder has proof of possession of a secret key or secret value<a href="#section-5.2.3-4.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-4.4">
+              <p id="section-5.2.3-4.4.1">Derived Values: (Verifier-specific) stable pseuonymous values<a href="#section-5.2.3-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </section>
 </div>
 <div id="presentation-proof">
-<section id="section-5.2.3">
+<section id="section-5.2.4">
           <h4 id="name-presentation-proof">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-presentation-proof" class="section-name selfRef">Presentation Proof</a>
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-presentation-proof" class="section-name selfRef">Presentation Proof</a>
           </h4>
-<p id="section-5.2.3-1">The presentation proof is one or more binary octet strings that are opaque to applications. Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">The proof of a presented JWP will always be different than the issued proof.  At a minimum, it MUST be updated to include protection of the added presentation header.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-3">Algorithms SHOULD generate an un-correlatable presentation proof in order to support multiple presentations from a single issued JWP.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-4">The algorithm is responsible for representing selective disclosure of payloads in a presented proof. If multiple octet strings are insufficient for representing a proof as defined by an algorithm, the algorithm is responsible for defining how such information is represented within one or more octet strings.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-1">The presentation proof is one or more octet strings that are opaque to applications. Individual proof-supporting algorithms are responsible for the contents and security of the proof value, along with any required internal structures.<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-2">The proof of a presented JWP will always be different than the issued proof.  At a minimum, it MUST be updated to include protection of the added presentation header.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-3">Algorithms SHOULD generate an un-correlatable presentation proof in order to support multiple presentations from a single issued JWP.<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-4">The algorithm is responsible for representing selective disclosure of payloads in a presented proof. If multiple octet strings are insufficient for representing a proof as defined by an algorithm, the algorithm is responsible for defining how such information is represented within one or more octet strings.<a href="#section-5.2.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1899,7 +1923,7 @@ Rather, proofs about payloads, such as "age &gt;= 21", are included in the prese
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-serializations" class="section-name selfRef">Serializations</a>
       </h2>
 <p id="section-6-1">JWP defines two serializations: a JSON-based Compact Serialization and a CBOR Serialization.
-Both serializations represent one or more Protected Headers, multiple Payloads, and a single Proof value.<a href="#section-6-1" class="pilcrow">¶</a></p>
+Both serializations represent one or more Protected Headers, multiple Payload slots, and a single Proof (which may be composed of multiple octet strings).<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">The JWP Compact Serialiation provides a JSON-based, space-efficient encoding of a JWP in URL-safe characters.
 Its design closely parallels the JWS Compact Serialization <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.
 No representation parallel to the JWS JSON serialization is defined.<a href="#section-6-2" class="pilcrow">¶</a></p>
@@ -1912,9 +1936,9 @@ Its design closely parallels COSE_Sign1 <span>[<a href="#RFC9338" class="cite xr
         </h3>
 <p id="section-6.1-1">JWP Compact Serialiation provides a JSON-based encoding of a JWP, expressed in URL-safe characters. In addition to the alphabet of unpadded BASE64URL-safe encoding, Compact Serialization uses the "." and "~" characters as separators. This serialization is inspired by JWS.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1-2">The Protected Header MUST be JSON-formatted for Compact Serialization. This includes both headers sets in presented form.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3">All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payloads and proof values.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1-4">Payloads and proof values are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
-<p id="section-6.1-5">Individual payloads are allowed to be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">All binary data is BASE64URL encoded, including the octets of the UTF-8 encoded headers and the individual payload slot data and the proof values.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.1-4">Payload slots and proof values are each concatenated into a single text form by concatenating the BASE64URL encoded values using the <code>~</code> character.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.1-5">Individual payload slots are allowed to have their payload data be omitted; if a payload is omitted, it is represented as a zero-length text value, potentially resulting in leading, trailing, or consecutive <code>~</code> characters in the concatenated form.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
 <p id="section-6.1-6">If a payload or proof value was a zero-length octet string, it does not get output as its zero-length BASE64URL-encoded form but as a single <code>_</code> character. This character does not represent a valid BASE64URL-encoded octet string, allowing it to be distinguished from normally encoded data.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
 <p id="section-6.1-7">The issued form is created by concatenating the base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
 <p id="section-6.1-8">The presented form is created by concatenating the base64url-encoded presenter protected header, base64url-encoded issuer protected header, concatenated payloads, and concatenated proof separated each by a <code>.</code> character. The concatenated payloads MAY be omitted if the application is using detached payloads.<a href="#section-6.1-8" class="pilcrow">¶</a></p>
@@ -1922,14 +1946,14 @@ Its design closely parallels COSE_Sign1 <span>[<a href="#RFC9338" class="cite xr
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.kCB48Nnhe9v9eEdaTGP_XpGL_zPrGIH09dJRf4WV
-toGU5T_urRxnebuuIlh1aW8ZgjsTYQ4kYJJRvfaO6kah3fQQCc1nne3z1VDbMmJfG_Iq8
-O_2uw-OJUZQp6pEUToOtEv-iF1kQZnScojSzIxC6IxrmL1Om6eIs6z5k9RcKmwtQwlAK9
-mX_dqov3ZTkdyPNoP_v6mys4BWyezm1gcRapmO6C3EKmEikHMTahDm50skFibI9FOBTnK
-7uGENWE99UNbNMrrb1MeJrgTEClt6QWtg828c2ZIHX6floy-gXf7jvEilj2cF11IEifuX
-UFK8c42iPYeHtwrFwa0vyYpz6d1EnuH8Ox_WSBxs30qKKcVNd13t0MlnMxMvltnZ2Vrll
-C76AejRP28pR-Y8YLF0PEeTHuAbzafF3WM7rI-rg5HE0hQlBGXGEBZLwmrlfc5RUWgfdM
-c6v-sDKJU5iXPdVsIhHRwngWqLM5bJeDfQ52o
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.uf98WYvsur-oWbVph_7Ikjvo8Drsr07iOW6qIS5X
+NNCiRS7IJoWI2cjUyGWZdpSuiCAFpBjC96gW4SoF6YQV6hQYhUkDhBZMGzu199ODT8Q_o
+tCM5l0uZr0tM-LE1YRNqahNYh0E9gPXMNAKvZqV-2UtMpcOjodfm0bzEANWmklEgYiAWS
+TJ-85-l0EkYw-qLZWU9I8hfHRP3h2SzSoRTUp0fnakiOzjxNvy6gfLr7cYjrjIYhIDESb
+mvO_uQ-w37DCx9rATqklTz2IPj9R2zyu4E6a6TR5NbP_XoYRFSvlJLnAfxKG_AuvdRvkN
+JVB9VICyhBBCZlhQK-ZniOmZWY4PWbn5SjVckb9KZSc-P2Mc4gtj79P40pRg1gVyXDbuy
+tspQPZm5gpHqW0OIRCjNCQ50VWFIY6GpvmXLEhVxbIvc-zTbJIYek4z_UyZV9ohCExTlo
+z8iB7yVbRZz3CXWrphD_H7wTFd74uezwOsvC8
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -1958,21 +1982,31 @@ is using detached payloads, which is represented by setting the
 Applications MAY use their own tags to tag other specific types of JWPs.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <div class="lang-cddl sourcecode" id="section-6.2-7">
 <pre>CBOR_JWP_Issued = [
-       IssuerHeader : serialized_map,
-       payloads : [payload] / nil,
-       proof : [bstr]
+       IssuerHeader : empty_or_serialized_map,
+       PayloadSlots : [+ payload] / nil,
+       Proof : [+ bstr]
    ]
 
 CBOR_JWP_Presented = [
-      PresenterHeader : serialized_map,
-      IssuerHeaders : serialized_map,
-      payloads : [payload] / nil,
-      proof : [bstr]
+      PresenterHeader : empty_or_serialized_map,
+      IssuerHeaders : empty_or_serialized_map,
+      PayloadSlots : [+ disclosable_payload] / nil,
+      Proof : [+ bstr]
    ]
 
 empty_or_serialized_map = bstr .cbor header_map
 
-payload = bstr / nil
+header_map = {
+    * label =&gt; values
+}
+
+label = int / tstr
+
+values = any
+
+payload = bstr
+
+disclosable_payload = payload / nil
 
 Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
 
@@ -2033,8 +2067,8 @@ in which case the <code>cty</code> value MAY be omitted.<a href="#section-7-5" c
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-detached-payloads" class="section-name selfRef">Detached Payloads</a>
       </h2>
 <p id="section-8-1">In some contexts, it is useful to make statements about payloads which are not themselves contained within the JWP, similar to "Detached Content" in JWS <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
-<p id="section-8-2">For this purpose, the compact, JSON and CBOR serializations allow for all payloads to be omitted from a serialized form. While this is a legal serialization, it is not on its own able to be verified.<a href="#section-8-2" class="pilcrow">¶</a></p>
-<p id="section-8-3">The recipient is expected to perform some sequence of steps defined by the application to recreate the array of payloads, including order and optionality. This effectively recreates the fully specified serialization of the JWP.<a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-2">For this purpose, the compact, JSON and CBOR serializations allow for all payload slots to be omitted from a serialized form. While this is a legal serialization, it is not on its own able to be verified.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">The recipient is expected to perform some sequence of steps defined by the application to recreate the array of payload slots, including order and optionality. This effectively recreates the fully specified serialization of the JWP.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="SecurityConsiderations">
@@ -2694,6 +2728,40 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
         <li class="compact" id="appendix-B-3.2">Registered <code>+cwp</code> structured syntax suffix and simplified +jwp suffix.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-B-3.3">Expanded descriptions of and rationale for the serializations.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.4">Payload nomenclature was clarified by adding the concept of payload
+slots. The issued form and presented form have a certain number of
+ordered payload slots, and a presentation may choose to omit
+information from a slot.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.5">Recommendation for Isuser Protected Header is to make the header
+static aross issued JWP if possible, to prevent unintentional
+correlation by verifiers<a href="#appendix-B-3.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.6">Cleaned up the text around algorithmic support for additional proofs
+of knowledge outside of payload disclosure (e.g. range proofs)<a href="#appendix-B-3.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.7">Clarify that a proof is made up of multiple octet strings<a href="#appendix-B-3.7" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.8">(CDDL) The protected header definitions now reference
+<code>empty_or_serialized_map</code> properly<a href="#appendix-B-3.8" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.9">(CDDL) <code>payloads</code> is now <code>PayloadSlots</code>, and represents you need at
+least one slot<a href="#appendix-B-3.9" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.10">(CDDL) The issuer <code>PayloadSlots</code> contains <code>payload</code>, which is not
+omittable<a href="#appendix-B-3.10" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.11">(CDDL) The presented form likewise references <code>disclosable_payload</code>,
+which is nillable to represent omission<a href="#appendix-B-3.11" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.12">(CDDL) <code>Proof</code> is capitalized to match, and properly represents you
+need at least one <code>bstr</code><a href="#appendix-B-3.12" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.13">(CDDL) <code>header_map</code>, <code>label</code> and <code>value</code> definitions imported from
+RFC 9052<a href="#appendix-B-3.13" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.14">Receive examples of additional types of algorithm-specific proofs from JPT<a href="#appendix-B-3.14" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-09<a href="#appendix-B-4" class="pilcrow">¶</a></p>
