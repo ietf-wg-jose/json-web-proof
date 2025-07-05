@@ -85,7 +85,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 # Background
 
-JWP defines a container binding together a protected header, one or more payloads, and a cryptographic proof.  It does not define how claims are organized into payloads and what formats they are in.
+JWP defines a container binding together a protected header, one or more payload slots, and a cryptographic proof.  It does not define how claims are organized into payloads and what formats they are in.
 JPTs are intended to be as close to a JWT as possible,
 while also supporting the selective disclosure and unlinkability of JWPs.
 Likewise, CPTs are intended to be as close to a CWT as possible,
@@ -173,11 +173,12 @@ A JSON Proof Token or CBOR Proof Token assigns each playload a claim name.
 Payloads MUST each have a negotiated and understood claim name
 within the application context.
 The simplest solution to establish payload claim names
-is as an ordered array that aligns with the included payloads.
+is as an ordered array that aligns with the ordering of payload slots.
 This claims array can be conveniently included in the Claims header parameter.
 
 The `claims` Header Parameter is an array listing the Claim Names
-corresponding to the JWP payloads, in the same order as the payloads.
+corresponding to the JWP payload slots, in the same order as the
+payload slots.
 Each array value is a Claim Name, as defined in [@!RFC7519] or [@!RFC8392].
 Use of this Header Parameter is OPTIONAL.
 
@@ -185,6 +186,7 @@ All JPT payloads that are claim values
 MUST be the base64url encoding of the UTF-8 representation of a JSON value.
 That said, predicate proofs derived from payload values are not represented as claims;
 they are contained in the presentation proof using algorithm-specific representations.
+
 All CPT payloads that are claim values
 MUST be a CBOR value.
 Likewise, CPT predicate proofs derived from payload values are not represented as claims;
@@ -252,20 +254,6 @@ A disclosed payload of a CPT is represented as a CBOR value.
 
 The placeholder indicating that a payload was not disclosed is represented as
 described in [@!I-D.ietf-jose-json-web-proof, Section 6] (Serializations).
-
-## Proof Methods
-
-Proof methods can be returned instead of a disclosed payload.
-These are generated in an algorithm-specific manner from information in the JWP's proof value.
-
-A proof method may be custom based on the capabilities of the algorithm.
-
-* TBD: Describe common proof method types available:
-  * range
-  * membership
-  * time
-  * knowledge
-  * linking
 
 # Example JPT and CPT
 
@@ -450,6 +438,9 @@ for his valuable contributions to this specification.
  -10
 
   * Registered `+jpt` and `+cpt` structured syntax suffixes.
+  * Clarify mapping of the `claims` array to payload data using
+    "payload slot" nomenclature
+  * Move proof methods text to JWP.
 
  -09
 

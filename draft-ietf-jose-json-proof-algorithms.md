@@ -782,7 +782,7 @@ The first MAC is generated using the key `issuer_header` and a value of the issu
 <{{./fixtures/build/mac-h256-issuer-protected-header-mac.txt}}
 Figure: Issuer MAC of protected header (Base64url-Encoded)
 
-The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload (as `payload_{n}` in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:
+The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload slot (as `payload_{n}` in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:
 
 <{{./fixtures/build/mac-h256-issuer-derived-payload-keys.json}}
 Figure: Derived payload keys (Base64url-Encoded)
@@ -815,7 +815,10 @@ The holder will take the issuer proof (including shared secret) and derive the s
 
 In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to `email`, `address`, and `age_over_21`)
 
-For the disclosed payloads, the holder will provide the corresponding derived key. For the non-disclosed payloads, the holder will provide the corresponding MAC value.
+For each payload slot, the holder will provide one of two values as part of the
+proof value. For a disclosed payload, the holder will provide the corresponding
+derived key. For a non-disclosed payload, the holder will provide the
+corresponding MAC value.
 
 The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:
 
@@ -840,6 +843,10 @@ The BBS examples were generated using the library at https://github.com/mattrglo
 # Document History
 
   [[ To be removed from the final specification ]]
+ -10
+
+  * Clarify MAC issuance and presentation using new "payload slot"
+    nomenclature.
 
  -09
 
