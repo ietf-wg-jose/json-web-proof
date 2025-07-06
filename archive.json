@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-03T00:59:44.973243+00:00",
+  "timestamp": "2025-07-06T01:05:30.969800+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2939,15 +2939,15 @@
       "id": "I_kwDOFsQObc6-Fs_8",
       "title": "Indistinguishable presentation of no payloads and one undisclosed payload",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/167",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emlun",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Hi! I noticed a possible issue in the [compact serialization](https://www.ietf.org/archive/id/draft-ietf-jose-json-web-proof-09.html#name-compact-serialization): that it's impossible to distinguish a presentation disclosing zero of zero payloads from a presentation disclosing zero of one payload. As an illustrating example:\n\n- Consider the issued JWP `eyJhbGciOiIifQ._._`. This JWP has a single, empty payload and an empty issuer proof.\n  - If we present this JWP with the payload disclosed, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ._._`.\n  - If we present this JWP without disclosing the payload, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ.._`. Since the JWP was issued with one payload, we should represent this payloads array in application logic as `[null]`, since one undisclosed payload is distinct from no payloads (`[]`).\n\n- Now consider the issued JWP `eyJhbGciOiIifQ.._`. This JWP has no payloads and an empty issuer proof.\n  - If we present this JWP, the presentation JWP could be `eyJhbGciOiIifQ.eyJhbGciOiIifQ.._`. Note that the payloads segment is the same (empty) as in the presentation above with one non-disclosed payload. Thus without additional information we cannot tell whether this represents the payloads `[null]` or `[]`.\n\nWith 2 or more issued payloads there is no ambiguity, since the serialization will always contain at least one `~` character. I guess that's another way to phrase the issue: with N issued payloads the serialization contains N-1 `~` characters, except both N=1 and N=0 result in 0 `~` characters in the serialization. This also indicates a simple possible fix: insert a `~` character after each payload, not just separating them - though this would perhaps go against conventions elsewhere in JOSE.\n\nThis doesn't seem to be an obstacle to verifying BBS proofs, as the [BBS proof serialization](https://www.ietf.org/archive/id/draft-irtf-cfrg-bbs-signatures-08.html#name-octets-to-proof) can distinguish between a proof with a message commitment (meaning there is an undisclosed payload) and one without (meaning all payloads (including zero) were disclosed), but could this conceivably be relevant for other proof algorithms? It's also a bit disappointing that my `assemblePresentedJwp` and `parsePresentedJwp` functions aren't truly each other's inverse due to this edge case. :slightly_smiling_face:\n\nOne could argue that we perhaps shouldn't worry about JWPs with zero issued payloads, since that seems unlikely to be useful in practice. Anyway, what does the WG think?",
       "createdAt": "2025-06-30T16:42:07Z",
-      "updatedAt": "2025-07-01T17:49:17Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-05T19:56:49Z",
+      "closedAt": "2025-07-05T19:56:49Z",
       "comments": [
         {
           "author": "dwaite",
@@ -3015,15 +3015,15 @@
       "id": "I_kwDOFsQObc6-KjGq",
       "title": "Change CDDL to indicate one or more payloads",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/169",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "From #167, it looks like the CDDL does not indicate that there must be at least one payload; the next draft should make sure the CDDL matches the corresponding text.",
       "createdAt": "2025-07-01T02:17:51Z",
-      "updatedAt": "2025-07-01T11:29:14Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-05T19:56:49Z",
+      "closedAt": "2025-07-05T19:56:49Z",
       "comments": [
         {
           "author": "emlun",
@@ -3056,6 +3056,37 @@
       "updatedAt": "2025-07-02T20:12:48Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 172,
+      "id": "I_kwDOFsQObc6-9sqD",
+      "title": "Add Generic_Headers?",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/172",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "COSE defines the core protected headers as part of the data structure itself, via a type called [`Generic_Headers`](https://www.rfc-editor.org/rfc/rfc9052.html#section-3.1-6). We should consider if we want to do this as well.\n",
+      "createdAt": "2025-07-04T23:14:49Z",
+      "updatedAt": "2025-07-05T23:05:18Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This would be a non-breaking change to our CDDL, correct?",
+          "createdAt": "2025-07-05T18:37:46Z",
+          "updatedAt": "2025-07-05T18:37:46Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If someone was using the spec CDDL for validation, this would make the CDDL stricter.",
+          "createdAt": "2025-07-05T23:05:18Z",
+          "updatedAt": "2025-07-05T23:05:18Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -10975,6 +11006,58 @@
           "body": "LGTM",
           "createdAt": "2025-06-25T19:58:28Z",
           "updatedAt": "2025-06-25T19:58:28Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 171,
+      "id": "PR_kwDOFsQObc6dgH17",
+      "title": "Payload slot definition and CDDL cleanup",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/171",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite"
+      ],
+      "labels": [],
+      "body": "Cleanups clarifying that messages have one or more payload slots. This includes also a few\r\nclarifications that came about while doing this editorial pass.\r\n\r\nFixes #167, Fixes #169\r\n\r\n  * Replaced `application/jwp+cbor` with `application/cwp`.\r\n  * Registered `+cwp` structured syntax suffix and simplified +jwp suffix.\r\n  * Expanded descriptions of and rationale for the serializations.\r\n  * Payload nomenclature was clarified by adding the concept of payload slots. The issued form and presented form have a certain number of ordered payload slots, and a presentation may choose to omit information from a slot.\r\n  * Recommendation for Isuser Protected Header is to make the header static aross issued JWP if possible, to prevent unintentional correlation by verifiers\r\n  * Cleaned up the text around algorithmic support for additional proofs of knowledge outside of payload disclosure (e.g. range proofs)\r\n  * Clarify that a proof is made up of multiple octet strings\r\n  * (CDDL) The protected header definitions now reference `empty_or_serialized_map` properly\r\n  * (CDDL) `payloads` is now `PayloadSlots`, and represents you need at least one slot\r\n  * (CDDL) The issuer `PayloadSlots` contains `payload`, which is not omittable\r\n  * (CDDL) The presented form likewise references `disclosable_payload`, which is nillable to represent omission\r\n  * (CDDL) `Proof` is capitalized to match, and properly represents you need at least one `bstr`\r\n  * (CDDL) `header_map`, `label` and `value` definitions imported from RFC 9052",
+      "createdAt": "2025-07-04T23:11:08Z",
+      "updatedAt": "2025-07-05T19:56:48Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "79fa9ce05692399109ab2903d6bbf54543372d76",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "payload-slots-clarification",
+      "headRefOid": "d95be52db17c8fd3d267a00570c2f22462b5e69d",
+      "closedAt": "2025-07-05T19:56:48Z",
+      "mergedAt": "2025-07-05T19:56:48Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "2a1e891b286ffacb663268d05da2ebb69b3a420e"
+      },
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Doing a pass through algorithms and tokens documents now on \"payload slots\".\r\n\r\n",
+          "createdAt": "2025-07-04T23:12:50Z",
+          "updatedAt": "2025-07-04T23:12:50Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6yPpzi",
+          "commit": {
+            "abbreviatedOid": "d95be52"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-07-05T18:33:42Z",
+          "updatedAt": "2025-07-05T18:33:42Z",
           "comments": []
         }
       ]
