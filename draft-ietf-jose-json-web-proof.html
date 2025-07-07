@@ -1214,10 +1214,10 @@ computation, and adds a protected header to prevent replay.<a href="#section-abs
                     <p id="section-toc.1-1.4.2.2.2.4.1"><a href="#section-4.2.4" class="auto internal xref">4.2.4</a>.  <a href="#name-crit-critical-header-parame" class="internal xref">"crit" (Critical) Header Parameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.5">
-                    <p id="section-toc.1-1.4.2.2.2.5.1"><a href="#section-4.2.5" class="auto internal xref">4.2.5</a>.  <a href="#name-proof_key-proof-key-header-" class="internal xref">"proof_key" (Proof Key) Header Parameter</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.5.1"><a href="#section-4.2.5" class="auto internal xref">4.2.5</a>.  <a href="#name-iek-issuer-ephemeral-key-he" class="internal xref">"iek" (Issuer Ephemeral Key) Header Parameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.6">
-                    <p id="section-toc.1-1.4.2.2.2.6.1"><a href="#section-4.2.6" class="auto internal xref">4.2.6</a>.  <a href="#name-presentation_key-presentati" class="internal xref">"presentation_key" (Presentation Key) Header Parameter</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.6.1"><a href="#section-4.2.6" class="auto internal xref">4.2.6</a>.  <a href="#name-hpk-holder-presentation-key" class="internal xref">"hpk" (Holder Presentation Key) Header Parameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.7">
                     <p id="section-toc.1-1.4.2.2.2.7.1"><a href="#section-4.2.7" class="auto internal xref">4.2.7</a>.  <a href="#name-hpa-holder-presentation-alg" class="internal xref">"hpa" (Holder Presentation Algorithm) Header Parameter</a></p>
@@ -1331,10 +1331,10 @@ computation, and adds a protected header to prevent replay.<a href="#section-abs
                         <p id="section-toc.1-1.10.2.1.2.2.2.7.1"><a href="#section-10.1.2.7" class="auto internal xref">10.1.2.7</a>.  <a href="#name-nonce-header-parameter" class="internal xref">Nonce Header Parameter</a></p>
 </li>
                       <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2.2.8">
-                        <p id="section-toc.1-1.10.2.1.2.2.2.8.1"><a href="#section-10.1.2.8" class="auto internal xref">10.1.2.8</a>.  <a href="#name-proof-key-header-parameter" class="internal xref">Proof Key Header Parameter</a></p>
+                        <p id="section-toc.1-1.10.2.1.2.2.2.8.1"><a href="#section-10.1.2.8" class="auto internal xref">10.1.2.8</a>.  <a href="#name-issuer-ephemeral-key-header" class="internal xref">Issuer Ephemeral Key Header Parameter</a></p>
 </li>
                       <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2.2.9">
-                        <p id="section-toc.1-1.10.2.1.2.2.2.9.1"><a href="#section-10.1.2.9" class="auto internal xref">10.1.2.9</a>.  <a href="#name-presentation-key-header-par" class="internal xref">Presentation Key Header Parameter</a></p>
+                        <p id="section-toc.1-1.10.2.1.2.2.2.9.1"><a href="#section-10.1.2.9" class="auto internal xref">10.1.2.9</a>.  <a href="#name-holder-presentation-key-hea" class="internal xref">Holder Presentation Key Header Parameter</a></p>
 </li>
                       <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2.2.10">
                         <p id="section-toc.1-1.10.2.1.2.2.2.10.1"><a href="#section-10.1.2.10" class="auto internal xref">10.1.2.10</a>. <a href="#name-holder-presentation-algorit" class="internal xref">Holder Presentation Algorithm Header Parameter</a></p>
@@ -1762,14 +1762,14 @@ Parameter is OPTIONAL.  This Header Parameter MUST be understood and
 processed by implementations.<a href="#section-4.2.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="proof_keyDef">
+<div id="issuer_ephemeral_keyDef">
 <section id="section-4.2.5">
-          <h4 id="name-proof_key-proof-key-header-">
-<a href="#section-4.2.5" class="section-number selfRef">4.2.5. </a><a href="#name-proof_key-proof-key-header-" class="section-name selfRef">"proof_key" (Proof Key) Header Parameter</a>
+          <h4 id="name-iek-issuer-ephemeral-key-he">
+<a href="#section-4.2.5" class="section-number selfRef">4.2.5. </a><a href="#name-iek-issuer-ephemeral-key-he" class="section-name selfRef">"iek" (Issuer Ephemeral Key) Header Parameter</a>
           </h4>
-<p id="section-4.2.5-1">The <code>proof_key</code> (Proof Key) represents the public key used by the issuer
-for proof of possession within certain algorithms. This is an ephemeral
-key that MUST be unique for each issued JWP.<a href="#section-4.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.5-1">The <code>iek</code> (Issuer Ephemeral Key) represents the public key used by the
+issuer for indirect signatures within certain algorithms. This is an
+ephemeral key that MUST be unique for each issued JWP.<a href="#section-4.2.5-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.5-2">This header parameter is references a JSON Web Key (JWK) public key
 value when represented as a JSON Protected Header, and a COSE Key Object
 when represented as a CBOR Protected Header.<a href="#section-4.2.5-2" class="pilcrow">¶</a></p>
@@ -1781,12 +1781,12 @@ ignored.<a href="#section-4.2.5-3" class="pilcrow">¶</a></p>
 implementations.<a href="#section-4.2.5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="presentation_keyDef">
+<div id="holder_presentation_keyDef">
 <section id="section-4.2.6">
-          <h4 id="name-presentation_key-presentati">
-<a href="#section-4.2.6" class="section-number selfRef">4.2.6. </a><a href="#name-presentation_key-presentati" class="section-name selfRef">"presentation_key" (Presentation Key) Header Parameter</a>
+          <h4 id="name-hpk-holder-presentation-key">
+<a href="#section-4.2.6" class="section-number selfRef">4.2.6. </a><a href="#name-hpk-holder-presentation-key" class="section-name selfRef">"hpk" (Holder Presentation Key) Header Parameter</a>
           </h4>
-<p id="section-4.2.6-1">The <code>presentation_key</code> (Presentation Key) represents the public key with
+<p id="section-4.2.6-1">The <code>hpk</code> (Holder Presentation Key) represents the public key with
 certain algorithms, and is used by the holder for proof of possession
 and integrity protection of the presented protected header.<a href="#section-4.2.6-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.6-2">The issuer MUST validate that the holder has possession of this key
@@ -1800,8 +1800,8 @@ minimum parameters necessary to represent the key; other parameters
 included can be checked for consistency and honored, or they can be
 ignored.<a href="#section-4.2.6-4" class="pilcrow">¶</a></p>
 <p id="section-4.2.6-5">If holder unlinkability is required, this value MUST not be repeated in
-multiple issued JWPs; a different presentation key MUST be included in
-each issuance.<a href="#section-4.2.6-5" class="pilcrow">¶</a></p>
+multiple issued JWPs; a different holder presentation key MUST be
+included in each issuance.<a href="#section-4.2.6-5" class="pilcrow">¶</a></p>
 <p id="section-4.2.6-6">This Header Parameter MUST be understood and processed by
 implementations when present.<a href="#section-4.2.6-6" class="pilcrow">¶</a></p>
 </section>
@@ -1813,7 +1813,7 @@ implementations when present.<a href="#section-4.2.6-6" class="pilcrow">¶</a></
           </h4>
 <p id="section-4.2.7-1">The <code>hpa</code> (Holder Presentation Algorithm) Header Parameter represents
 the algorithm to be used by the holder for presenting a JWP when using an
-asymmetric algorithm and Presentation Key.<a href="#section-4.2.7-1" class="pilcrow">¶</a></p>
+asymmetric algorithm and a Holder Presentation Key.<a href="#section-4.2.7-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.7-2">This Header Parameter SHOULD be included when appropriate for the JWP
 algorithm unless a single appropriate algorithm is negotiated through
 other means.<a href="#section-4.2.7-2" class="pilcrow">¶</a></p>
@@ -2165,14 +2165,14 @@ is using detached payloads.<a href="#section-6.1-8" class="pilcrow">¶</a></p>
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.kqbkCKoQYCF_ZHrVhTB6JUneALywrK6zvQZ8D5TQ
-SyKFFdGH6c2c-KFWDVlOt9QQpqUp8y0ttFdj_GGJSet67ZwXoSyjpuJu-_hoHCT0yGP2g
-Ztnz-VxBQ3Gw0edSlGml0EQGYgdn73YaRDAUHAKnNbeR1qTG5kVsalprRnAIvfEPoQ0yn
-xmz_nf6mRLcZWLE4HtN4bbBW-MPp_PrcU1nGSLTOxrt67uXDm8D-SUv9gsZ92Z5Wa7YDB
-xDIYhl8lFKuLIsBFbO53Bm6_7bjjwe1YqbEFwVdkOO_dsAczhCQLwOxRU0HHQmepHE_Gr
-PPTxTrtMSO-m3eiUCJCZOxGK-dYvsf8VM6e6QtDRuZ3W5VYlznRjNyDvhH0rxreFkGyLt
-JUD6jf6uUn44p_FH3ViDwnStyslmYWbMWcnTRHXvd6EbmCWnN_ZHWPTBFgE12wYVasoKY
-4qtpDHyIEr4A1GBO_eWE9frAR7OCNlFwxUTrI
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.i7ynBM1tP3Beq-dd3LfnYo4KZ_kycgeNsm9VouB8
+Jvbg5GAqz2AJ82LnZ5dSeq5Sr12FRZej-D5_Yh9QVe57fNwiJd6KF28o11uyphhhUSMUF
+Uzy0v7xGKeIQfv0r1VclLQLneptayvtzQwvbR-V6T4XzOxnhTDbCZf8HVo2JxqB3_W5DG
+Dhr5rwj3h3xuQACyg6PZ-upB3bDijwcL63ZdUpKZH4KIayTHophl9FMwUqP8DTUt6Q_u6
+v3cIlDS03wIAjiZw0IMHkicXk2euvxDmh5IdVxWlhw57vsMlNvgiti1MNuFXH2NHQllLK
+wv7MOObjP5FWNvVia3fCKT_YWBO8vqozu_MHngRXOrTysicfB1xdzcxhMHVb_gH-knAgy
+ZCGBBIwwBJEZ9qwVsjImQBEDrUBtrHk8vV7rL9P78CXDUZJGHSZdOWNdXPjV1LUPGhwvA
+f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
 
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
@@ -2578,15 +2578,15 @@ but is not required.<a href="#section-10.1.1-1.12" class="pilcrow">¶</a>
             </ul>
 </section>
 </div>
-<div id="proof-key-header-parameter">
+<div id="issuer-ephemeral-key-header-parameter">
 <section id="section-10.1.2.8">
-            <h5 id="name-proof-key-header-parameter">
-<a href="#section-10.1.2.8" class="section-number selfRef">10.1.2.8. </a><a href="#name-proof-key-header-parameter" class="section-name selfRef">Proof Key Header Parameter</a>
+            <h5 id="name-issuer-ephemeral-key-header">
+<a href="#section-10.1.2.8" class="section-number selfRef">10.1.2.8. </a><a href="#name-issuer-ephemeral-key-header" class="section-name selfRef">Issuer Ephemeral Key Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.8-1.1">Header Parameter Name: Proof Key<a href="#section-10.1.2.8-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.8-1.1">Header Parameter Name: Issuer Ephemeral Key<a href="#section-10.1.2.8-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.8-1.2">Header Parameter JSON Label: <code>proof_key</code><a href="#section-10.1.2.8-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.8-1.2">Header Parameter JSON Label: <code>iek</code><a href="#section-10.1.2.8-1.2" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-10.1.2.8-1.3">Header Parameter CBOR Label: 8<a href="#section-10.1.2.8-1.3" class="pilcrow">¶</a>
 </li>
@@ -2594,20 +2594,20 @@ but is not required.<a href="#section-10.1.1-1.12" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-10.1.2.8-1.5">Change Controller: IETF<a href="#section-10.1.2.8-1.5" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.8-1.6">Specification Document(s): <a href="#proof_keyDef" class="auto internal xref">Section 4.2.5</a> of this specification<a href="#section-10.1.2.8-1.6" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.8-1.6">Specification Document(s): <a href="#issuer_ephemeral_keyDef" class="auto internal xref">Section 4.2.5</a> of this specification<a href="#section-10.1.2.8-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
 </section>
 </div>
-<div id="presentation-key-header-parameter">
+<div id="holder-presentation-key-header-parameter">
 <section id="section-10.1.2.9">
-            <h5 id="name-presentation-key-header-par">
-<a href="#section-10.1.2.9" class="section-number selfRef">10.1.2.9. </a><a href="#name-presentation-key-header-par" class="section-name selfRef">Presentation Key Header Parameter</a>
+            <h5 id="name-holder-presentation-key-hea">
+<a href="#section-10.1.2.9" class="section-number selfRef">10.1.2.9. </a><a href="#name-holder-presentation-key-hea" class="section-name selfRef">Holder Presentation Key Header Parameter</a>
             </h5>
 <ul class="compact">
-<li class="compact" id="section-10.1.2.9-1.1">Header Parameter Name: Presentation Key<a href="#section-10.1.2.9-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-10.1.2.9-1.1">Header Parameter Name: Holder Presentation Key<a href="#section-10.1.2.9-1.1" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.9-1.2">Header Parameter JSON Label: <code>presentation_key</code><a href="#section-10.1.2.9-1.2" class="pilcrow">¶</a>
+              <li class="compact" id="section-10.1.2.9-1.2">Header Parameter JSON Label: <code>hpk</code><a href="#section-10.1.2.9-1.2" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-10.1.2.9-1.3">Header Parameter CBOR Label: 9<a href="#section-10.1.2.9-1.3" class="pilcrow">¶</a>
 </li>
@@ -2615,7 +2615,7 @@ but is not required.<a href="#section-10.1.1-1.12" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-10.1.2.9-1.5">Change Controller: IETF<a href="#section-10.1.2.9-1.5" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-10.1.2.9-1.6">Specification Document(s): <a href="#presentation_keyDef" class="auto internal xref">Section 4.2.6</a> of this
+              <li class="compact" id="section-10.1.2.9-1.6">Specification Document(s): <a href="#holder_presentation_keyDef" class="auto internal xref">Section 4.2.6</a> of this
 specification<a href="#section-10.1.2.9-1.6" class="pilcrow">¶</a>
 </li>
             </ul>
@@ -3025,6 +3025,9 @@ JPT<a href="#appendix-B-3.14" class="pilcrow">¶</a>
         <li class="compact" id="appendix-B-3.15">Added Holder Presentation Algorithm (<code>hpa</code>) parameter to support the
 holder presenting using a different key type and algorithm than the
 issuer in SU and MAC family algorithms<a href="#appendix-B-3.15" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.16">Change "proof_key" to "iek" and "presentation_key" to "hpk", both to
+shorten their JSON labels and to clarify owner/purpose.<a href="#appendix-B-3.16" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-09<a href="#appendix-B-4" class="pilcrow">¶</a></p>

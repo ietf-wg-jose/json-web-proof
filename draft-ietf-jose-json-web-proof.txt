@@ -79,8 +79,8 @@ Table of Contents
        4.2.2.  "kid" (Key ID) Header Parameter
        4.2.3.  "typ" (Type) Header Parameter
        4.2.4.  "crit" (Critical) Header Parameter
-       4.2.5.  "proof_key" (Proof Key) Header Parameter
-       4.2.6.  "presentation_key" (Presentation Key) Header Parameter
+       4.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
+       4.2.6.  "hpk" (Holder Presentation Key) Header Parameter
        4.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
        4.2.8.  "iss" (Issuer) Header Parameter
        4.2.9.  "aud" (Audience) Header Parameter
@@ -114,8 +114,8 @@ Table of Contents
          10.1.2.5.  Issuer Header Parameter
          10.1.2.6.  Audience Header Parameter
          10.1.2.7.  Nonce Header Parameter
-         10.1.2.8.  Proof Key Header Parameter
-         10.1.2.9.  Presentation Key Header Parameter
+         10.1.2.8.  Issuer Ephemeral Key Header Parameter
+         10.1.2.9.  Holder Presentation Key Header Parameter
          10.1.2.10. Holder Presentation Algorithm Header Parameter
      10.2.  Media Type Registry
        10.2.1.  Registry Contents
@@ -444,10 +444,10 @@ Table of Contents
    OPTIONAL.  This Header Parameter MUST be understood and processed by
    implementations.
 
-4.2.5.  "proof_key" (Proof Key) Header Parameter
+4.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
 
-   The proof_key (Proof Key) represents the public key used by the
-   issuer for proof of possession within certain algorithms.  This is an
+   The iek (Issuer Ephemeral Key) represents the public key used by the
+   issuer for indirect signatures within certain algorithms.  This is an
    ephemeral key that MUST be unique for each issued JWP.
 
    This header parameter is references a JSON Web Key (JWK) public key
@@ -462,12 +462,11 @@ Table of Contents
    When present, this Header Parameter MUST be understood and processed
    by implementations.
 
-4.2.6.  "presentation_key" (Presentation Key) Header Parameter
+4.2.6.  "hpk" (Holder Presentation Key) Header Parameter
 
-   The presentation_key (Presentation Key) represents the public key
-   with certain algorithms, and is used by the holder for proof of
-   possession and integrity protection of the presented protected
-   header.
+   The hpk (Holder Presentation Key) represents the public key with
+   certain algorithms, and is used by the holder for proof of possession
+   and integrity protection of the presented protected header.
 
    The issuer MUST validate that the holder has possession of this key
    through a trusted mechanism, such as requiring the signature of a
@@ -483,7 +482,7 @@ Table of Contents
    they can be ignored.
 
    If holder unlinkability is required, this value MUST not be repeated
-   in multiple issued JWPs; a different presentation key MUST be
+   in multiple issued JWPs; a different holder presentation key MUST be
    included in each issuance.
 
    This Header Parameter MUST be understood and processed by
@@ -493,7 +492,7 @@ Table of Contents
 
    The hpa (Holder Presentation Algorithm) Header Parameter represents
    the algorithm to be used by the holder for presenting a JWP when
-   using an asymmetric algorithm and Presentation Key.
+   using an asymmetric algorithm and a Holder Presentation Key.
 
    This Header Parameter SHOULD be included when appropriate for the JWP
    algorithm unless a single appropriate algorithm is negotiated through
@@ -815,14 +814,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.kqbkCKoQYCF_ZHrVhTB6JUneALywrK6zvQZ8D5TQ
-   SyKFFdGH6c2c-KFWDVlOt9QQpqUp8y0ttFdj_GGJSet67ZwXoSyjpuJu-_hoHCT0yGP2g
-   Ztnz-VxBQ3Gw0edSlGml0EQGYgdn73YaRDAUHAKnNbeR1qTG5kVsalprRnAIvfEPoQ0yn
-   xmz_nf6mRLcZWLE4HtN4bbBW-MPp_PrcU1nGSLTOxrt67uXDm8D-SUv9gsZ92Z5Wa7YDB
-   xDIYhl8lFKuLIsBFbO53Bm6_7bjjwe1YqbEFwVdkOO_dsAczhCQLwOxRU0HHQmepHE_Gr
-   PPTxTrtMSO-m3eiUCJCZOxGK-dYvsf8VM6e6QtDRuZ3W5VYlznRjNyDvhH0rxreFkGyLt
-   JUD6jf6uUn44p_FH3ViDwnStyslmYWbMWcnTRHXvd6EbmCWnN_ZHWPTBFgE12wYVasoKY
-   4qtpDHyIEr4A1GBO_eWE9frAR7OCNlFwxUTrI
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.i7ynBM1tP3Beq-dd3LfnYo4KZ_kycgeNsm9VouB8
+   Jvbg5GAqz2AJ82LnZ5dSeq5Sr12FRZej-D5_Yh9QVe57fNwiJd6KF28o11uyphhhUSMUF
+   Uzy0v7xGKeIQfv0r1VclLQLneptayvtzQwvbR-V6T4XzOxnhTDbCZf8HVo2JxqB3_W5DG
+   Dhr5rwj3h3xuQACyg6PZ-upB3bDijwcL63ZdUpKZH4KIayTHophl9FMwUqP8DTUt6Q_u6
+   v3cIlDS03wIAjiZw0IMHkicXk2euvxDmh5IdVxWlhw57vsMlNvgiti1MNuFXH2NHQllLK
+   wv7MOObjP5FWNvVia3fCKT_YWBO8vqozu_MHngRXOrTysicfB1xdzcxhMHVb_gH-knAgy
+   ZCGBBIwwBJEZ9qwVsjImQBEDrUBtrHk8vV7rL9P78CXDUZJGHSZdOWNdXPjV1LUPGhwvA
+   f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1102,19 +1101,19 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.10 of this specification
 
-10.1.2.8.  Proof Key Header Parameter
+10.1.2.8.  Issuer Ephemeral Key Header Parameter
 
-   *  Header Parameter Name: Proof Key
-   *  Header Parameter JSON Label: proof_key
+   *  Header Parameter Name: Issuer Ephemeral Key
+   *  Header Parameter JSON Label: iek
    *  Header Parameter CBOR Label: 8
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.5 of this specification
 
-10.1.2.9.  Presentation Key Header Parameter
+10.1.2.9.  Holder Presentation Key Header Parameter
 
-   *  Header Parameter Name: Presentation Key
-   *  Header Parameter JSON Label: presentation_key
+   *  Header Parameter Name: Holder Presentation Key
+   *  Header Parameter JSON Label: hpk
    *  Header Parameter CBOR Label: 9
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
@@ -1384,6 +1383,8 @@ Appendix B.  Document History
    *  Added Holder Presentation Algorithm (hpa) parameter to support the
       holder presenting using a different key type and algorithm than
       the issuer in SU and MAC family algorithms
+   *  Change "proof_key" to "iek" and "presentation_key" to "hpk", both
+      to shorten their JSON labels and to clarify owner/purpose.
 
    -09
 
