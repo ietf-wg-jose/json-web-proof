@@ -218,7 +218,7 @@ JWP.  The fully-specified algorithm the holder must use for
 presentations is also included.  This algorithm MAY be different from
 the algorithm used by the issuer.
 
-The chosen algorithms MUST be an asymmetric signing algorithms, so that
+The chosen algorithms MUST be asymmetric signing algorithms, so that
 each signature can be verified without sharing any private values
 between the parties.
 
@@ -235,7 +235,7 @@ of this specification, but can be accomplished by the holder using this
 key to generate a JWS that signs a value the issuer can verify as
 unique.
 
-The issuer MUST deterine an appropriate holder presentation algorithm
+The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the presentation key.  If the holder and verifier
 cannot be assumed to know this algorithm is the appropriate choice for a
 given presentation key, this value MUST be conveyed in the `hpa` issuer
@@ -261,7 +261,7 @@ The Holder's Presentation Key MUST be included via the Presentation Key
 header parameter.
 
 The Holder's Presentation Algorithm MUST be included via the Holder
-Presentation Algorithm header parameter, unless there is another way for
+Presentation Algorithm header parameter unless there is another way for
 the holder and verifier to unambiguously determine the appropriate
 algorithm to use.
 
@@ -338,7 +338,7 @@ disclosed, then the proof at this stage will consist of three values:
 
 The presentation internal representation would be calculated with these
 three proof components, while the final presentation would have an
-additional 4th component containing the signature using the holder's
+additional fourth component containing the signature using the holder's
 private key.
 
 Since the individual signatures in the proof value are unique and remain
@@ -350,7 +350,7 @@ remain unlinkable across multiple presentations.
 
 Verification is performed using the following steps.
 
-1. Check the number of proof components is appropriate for the number of
+1. Check that the number of proof components is appropriate for the number of
    disclosed payloads.  There MUST be two more proof components than
    disclosed payloads.
 2. Verify the first proof component is a valid signature over issuer
@@ -404,7 +404,7 @@ octet string in the following order:
 6. The number of payload slots in the issued message
 7. For each payload representation:
 
-    - If the payload is being ommitted, the value `0xF6`
+    - If the payload is being omitted, the value `0xF6`
     - Otherwise:
 
       1. `0x5B`
@@ -449,8 +449,8 @@ presentation proofs.
 Issuance is performed using the `Sign` operation from
 [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.1].  This operation
 utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with
-desired protected header and payloads as the octets `header` and the
-octets array `messages`.
+desired protected header octets as `header`, and the array of payload
+octet string as `messages`.
 
 The octets resulting from this operation form a single octet string in
 the issuance proof array, to be used along with the protected header and
@@ -508,7 +508,7 @@ omitted.
 ## Message Authentication Code
 
 The Message Authentication Code (MAC) JPA uses a MAC to both generate
-emphemeral secrets and to authenticate payloads, along with an
+ephemeral secrets and to authenticate payloads, along with an
 asymmetric signature to provide integrity to the issued JWP.
 
 The holder can manipulate which payloads are disclosed from the issued
@@ -516,7 +516,7 @@ JWP, and uses the holder Presentation Key to create a presentation.  The
 signature created from the Holder Presentation Key MAY use a different
 algorithm than the Issuer used to sign the issued form.
 
-Like the the Single Use algorithm family, it also does not support
+Like the Single Use algorithm family, it also does not support
 unlinkability if the same JWP is presented multiple times and requires
 an individually issued JWP for each presentation in order to fully
 protect privacy.  When compared to the JWS approach, using a MAC
@@ -528,7 +528,7 @@ standardized MAC method instead of a mix of MAC/hash methods or a custom
 hash-based construct.  It is able to use any published cryptographic MAC
 method such as HMAC [@?RFC2104] or
 [KMAC](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf).
-It uses traditional public-key based signatures to verify the
+It uses traditional public key-based signatures to verify the
 authenticity of the issuer and holder.
 
 ### Holder Setup
@@ -539,18 +539,18 @@ presentation public key provided by the holder.
 The holder's presentation key MUST be included in the issuer's protected
 header using the Presentation Key header parameter.
 
-The issuer MUST deterine an appropriate holder presentation algorithm
+The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the presentation key.  If the holder and verifier cannot
 be assumed to know this algorithm is the appropriate choice for a given
 presentation key, this value MUST be conveyed in the Holder Protected
-algoirhtm header parameter.
+algorithm header parameter.
 
 ### Issuer Setup
 
 To use the MAC algorithm, the issuer must have a stable public key pair
 to perform signing.  To start the issuance process, a single 32-byte
 random Shared Secret must first be generated.  This value will be shared
-privately to the holder as part of the issuer's JWP proof value.
+privately with the holder as part of the issuer's JWP proof value.
 
 The Shared Secret is used by both the issuer and holder as the MAC
 method's key to generate a new set of unique ephemeral keys.  These keys
@@ -570,13 +570,13 @@ generate the Combined MAC Representation.  The instructions for
 generating this octet string will also generate well-formed CBOR,
 although this data is not meant to be shared outside the implementing
 algorithm.  Instead, it focuses on simplicity of generation by the
-issuer, holder and verifier implementations.  Although CBOR has multiple
+issuer, holder, and verifier implementations.  Although CBOR has multiple
 representations of the same underlying information, this same octet
 string MUST be generated by an implementation.
 
 When a length or count is added by steps in this section, it is added as
-its 8 byte, network-ordered representation.  For example, the length of
-a 1,234 byte payload would have a length representation of
+its 8-byte, network-ordered representation.  For example, the length of
+a 1,234-byte payload would have a length representation of
 `0x00 00 00 00 00 00 04 D2`.
 
 The holder will a unique key per payload value using a MAC, with the
@@ -618,7 +618,7 @@ The Holder's Presentation Key MUST be included via the Presentation Key
 header parameter.
 
 The Holder's Presentation Algorithm MUST be included via the Holder
-Presentation Algorithm header parameter, unless there is another way for
+Presentation Algorithm header parameter unless there is another way for
 the holder and verifier to unambiguously determine the appropriate
 algorithm to use.
 
@@ -685,7 +685,7 @@ Verification is performed using the following steps.
    disclosed payloads.
 2. Using the fully-specified MAC algorithm in use, use the issuer
    protected header, disclosed payloads, and the proof components
-   corresopnding to the payloads to regenerate the Combined MAC
+   corresponding to the payloads to regenerate the Combined MAC
    Representation.
 3. Verify the first proof component is a valid signature over the issuer
    protected header octets, using the issuer's stable key.
@@ -813,7 +813,7 @@ Algorithm JSON Label:
   an exception.
 
 Algorithm CBOR Label:
-: The integer label requested (e.g. `1`).  CBOR Labels may not match
+: The integer label requested (e.g., `1`).  CBOR Labels may not match
   other registered labels unless the Designated Experts state that there
   is a compelling reason to allow an exception.
 
@@ -1068,7 +1068,7 @@ Figure: Presentation Header (SU-ES256, JSON)
 <{{./fixtures/build/su-es256-holder-protected-header.b64.wrapped}}
 Figure: Presentation Header (SU-ES256, JSON, Base64url-Encoded)
 
-We applying selective disclosure of only the given name and age claims
+We apply selective disclosure of only the given name and age claims
 (family name and email hidden), and remove the proof components
 corresponding to these entries.
 
@@ -1176,7 +1176,7 @@ Figure: Example issuer protected header
 Figure: Example issuer payloads (as members of a JSON array)
 
 The issuer generates an array of derived keys, one per payload slot.
-This is done using the shared secret as teh key and a binary value based
+This is done using the shared secret as the key and a binary value based
 on the payload slot index (from zero) as input to the HMAC operation.
 
 This results in the following set of derived keys:
@@ -1260,13 +1260,13 @@ The BBS examples were generated using the library at
 - Define a new binary "Presentation Internal Representation" so that the
   holder signature protects the entire presentation
 - Leverage the new "Holder Presentation Algorithm" to allow the holder
-  algorithm to be independant from the signature algorithm used by the
+  algorithm to be independent from the signature algorithm used by the
   issuer
 - Redefine computation of the "Combined MAC Representation" to more
   closely match the new Presentation Internal Representation.
 - Change the MAC algorithm to directly sign the binary Combined MAC
   Representation rather than convert it to a JWS.
-- Do not unneccessarily hash the issuer protected header inside the
+- Do not unnecessarily hash the issuer protected header inside the
   Combined MAC Representation, so that it can provide some manner of
   domain separation.
 - Clarify how verifiers are to generate the Combined MAC Representation
@@ -1296,8 +1296,8 @@ The BBS examples were generated using the library at
   `presentation_key` to better represent that the key may be JSON or
   CBOR-formatted.
 - Moved the registry for `proof_key` and `presentation_key` to JWP where
-  they are defined.  Consolidated usage, purpose and requirements from
-  algorith musage under these definitions.
+  they are defined.  Consolidated usage, purpose, and requirements from
+  algorithm usage under these definitions.
 - Combined `BBS-PROOF` into `BBS`
 
 -06
