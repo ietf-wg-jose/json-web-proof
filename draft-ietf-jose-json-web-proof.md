@@ -379,11 +379,11 @@ occur only within the JWP Protected Header.  Use of this Header
 Parameter is OPTIONAL.  This Header Parameter MUST be understood and
 processed by implementations.
 
-### "proof_key" (Proof Key) Header Parameter {#proof_keyDef}
+### "iek" (Issuer Ephemeral Key) Header Parameter {#issuer_ephemeral_keyDef}
 
-The `proof_key` (Proof Key) represents the public key used by the issuer
-for proof of possession within certain algorithms. This is an ephemeral
-key that MUST be unique for each issued JWP.
+The `iek` (Issuer Ephemeral Key) represents the public key used by the
+issuer for indirect signatures within certain algorithms. This is an
+ephemeral key that MUST be unique for each issued JWP.
 
 This header parameter is references a JSON Web Key (JWK) public key
 value when represented as a JSON Protected Header, and a COSE Key Object
@@ -397,9 +397,9 @@ ignored.
 When present, this Header Parameter MUST be understood and processed by
 implementations.
 
-### "presentation_key" (Presentation Key) Header Parameter {#presentation_keyDef}
+### "hpk" (Holder Presentation Key) Header Parameter {#holder_presentation_keyDef}
 
-The `presentation_key` (Presentation Key) represents the public key with
+The `hpk` (Holder Presentation Key) represents the public key with
 certain algorithms, and is used by the holder for proof of possession
 and integrity protection of the presented protected header.
 
@@ -417,8 +417,8 @@ included can be checked for consistency and honored, or they can be
 ignored.
 
 If holder unlinkability is required, this value MUST not be repeated in
-multiple issued JWPs; a different presentation key MUST be included in
-each issuance.
+multiple issued JWPs; a different holder presentation key MUST be
+included in each issuance.
 
 This Header Parameter MUST be understood and processed by
 implementations when present.
@@ -427,7 +427,7 @@ implementations when present.
 
 The `hpa` (Holder Presentation Algorithm) Header Parameter represents
 the algorithm to be used by the holder for presenting a JWP when using a
-asymmetric algorithm and Presentation Key.
+asymmetric algorithm and a Holder Presentation Key.
 
 This Header Parameter SHOULD be included when appropriate for the JWP
 algorithm, unless a single appropriate algorithm is negotiated through
@@ -1020,23 +1020,23 @@ This section registers the Header Parameters defined in
 * Change Controller: IETF
 * Specification Document(s): (#nonceDef) of this specification
 
-#### Proof Key Header Parameter
+#### Issuer Ephemeral Key Header Parameter
 
-* Header Parameter Name: Proof Key
-* Header Parameter JSON Label: `proof_key`
+* Header Parameter Name: Issuer Ephemeral Key
+* Header Parameter JSON Label: `iek`
 * Header Parameter CBOR Label: 8
 * Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
-* Specification Document(s): (#proof_keyDef) of this specification
+* Specification Document(s): (#issuer_ephemeral_keyDef) of this specification
 
-#### Presentation Key Header Parameter
+#### Holder Presentation Key Header Parameter
 
-* Header Parameter Name: Presentation Key
-* Header Parameter JSON Label: `presentation_key`
+* Header Parameter Name: Holder Presentation Key
+* Header Parameter JSON Label: `hpk`
 * Header Parameter CBOR Label: 9
 * Header Parameter Usage Location(s): Issued
 * Change Controller: IETF
-* Specification Document(s): (#presentation_keyDef) of this
+* Specification Document(s): (#holder_presentation_keyDef) of this
   specification
 
 #### Holder Presentation Algorithm Header Parameter
@@ -1198,6 +1198,8 @@ for their valuable contributions to this specification.
 * Added Holder Presentation Algorithm (`hpa`) parameter to support the
   holder presenting using a different key type and algorithm than the
   issuer in SU and MAC family algorithms
+* Change "proof_key" to "iek" and "presentation_key" to "hpk", both to
+  shorten their JSON labels and to clarify owner/purpose.
 
  -09
 
