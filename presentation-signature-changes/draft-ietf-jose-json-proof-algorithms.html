@@ -1057,7 +1057,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 7 January 2026</td>
+<td class="center">Expires 8 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1070,12 +1070,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-proof-algorithms-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-06" class="published">6 July 2025</time>
+<time datetime="2025-07-07" class="published">7 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-07">7 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1117,7 +1117,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1628,17 +1628,17 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
 <p id="section-6.2-4">The binary representation is created by appending data into a single octet string in the following order:<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.2-5">
 <li id="section-6.2-5.1">
-            <code>0x84 5A</code><a href="#section-6.2-5.1" class="pilcrow">¶</a>
+            <code>0x84 5B</code><a href="#section-6.2-5.1" class="pilcrow">¶</a>
 </li>
           <li id="section-6.2-5.2">The length and octets of the presentation protected header<a href="#section-6.2-5.2" class="pilcrow">¶</a>
 </li>
           <li id="section-6.2-5.3">
-            <code>0x5A</code><a href="#section-6.2-5.3" class="pilcrow">¶</a>
+            <code>0x5B</code><a href="#section-6.2-5.3" class="pilcrow">¶</a>
 </li>
           <li id="section-6.2-5.4">The length and octets of the issuer protected header<a href="#section-6.2-5.4" class="pilcrow">¶</a>
 </li>
           <li id="section-6.2-5.5">
-            <code>0x9A</code><a href="#section-6.2-5.5" class="pilcrow">¶</a>
+            <code>0x9B</code><a href="#section-6.2-5.5" class="pilcrow">¶</a>
 </li>
           <li id="section-6.2-5.6">The number of payload slots in the issued message<a href="#section-6.2-5.6" class="pilcrow">¶</a>
 </li>
@@ -1651,7 +1651,7 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
                 <p id="section-6.2-5.7.2.2.1">Otherwise:<a href="#section-6.2-5.7.2.2.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.2-5.7.2.2.2">
 <li id="section-6.2-5.7.2.2.2.1">
-                    <code>0x5A</code><a href="#section-6.2-5.7.2.2.2.1" class="pilcrow">¶</a>
+                    <code>0x5B</code><a href="#section-6.2-5.7.2.2.2.1" class="pilcrow">¶</a>
 </li>
                   <li id="section-6.2-5.7.2.2.2.2">The length and octets of the payload<a href="#section-6.2-5.7.2.2.2.2" class="pilcrow">¶</a>
 </li>
@@ -1660,7 +1660,7 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
             </ul>
 </li>
           <li id="section-6.2-5.8">
-            <p id="section-6.2-5.8.1"><code>0x9A</code><a href="#section-6.2-5.8.1" class="pilcrow">¶</a></p>
+            <p id="section-6.2-5.8.1"><code>0x9B</code><a href="#section-6.2-5.8.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.2-5.9">
             <p id="section-6.2-5.9.1">The number of proof components as specified by the algorithm<a href="#section-6.2-5.9.1" class="pilcrow">¶</a></p>
@@ -1669,7 +1669,7 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
             <p id="section-6.2-5.10.1">For each proof component, append:<a href="#section-6.2-5.10.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.2-5.10.2">
 <li id="section-6.2-5.10.2.1">
-                <code>0x5A</code><a href="#section-6.2-5.10.2.1" class="pilcrow">¶</a>
+                <code>0x5B</code><a href="#section-6.2-5.10.2.1" class="pilcrow">¶</a>
 </li>
               <li id="section-6.2-5.10.2.2">The length and octets of the proof component<a href="#section-6.2-5.10.2.2" class="pilcrow">¶</a>
 </li>
@@ -1783,7 +1783,7 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
 <p id="section-6.4.3-4">The holder will a unique key per payload value using a MAC, with the Shared Secret as the key and a generated binary value. This binary value is constructed by appending data into a single octet string:<a href="#section-6.4.3-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.4.3-5">
 <li id="section-6.4.3-5.1">
-              <code>0x82 67 70 61 79 6C 6F 61 64 48 1A</code><a href="#section-6.4.3-5.1" class="pilcrow">¶</a>
+              <code>0x82 67 70 61 79 6C 6F 61 64 48 1B</code><a href="#section-6.4.3-5.1" class="pilcrow">¶</a>
 </li>
             <li id="section-6.4.3-5.2">The zero indexed count of the payload slot<a href="#section-6.4.3-5.2" class="pilcrow">¶</a>
 </li>
@@ -1799,12 +1799,12 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
 <p id="section-6.4.3-9">The binary representation is created by appending data into a single octet string in the following order:<a href="#section-6.4.3-9" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.4.3-10">
 <li id="section-6.4.3-10.1">
-              <code>0x82 5A</code><a href="#section-6.4.3-10.1" class="pilcrow">¶</a>
+              <code>0x82 5B</code><a href="#section-6.4.3-10.1" class="pilcrow">¶</a>
 </li>
             <li id="section-6.4.3-10.2">The length and octets of the issuer protected header<a href="#section-6.4.3-10.2" class="pilcrow">¶</a>
 </li>
             <li id="section-6.4.3-10.3">
-              <code>0x9A</code><a href="#section-6.4.3-10.3" class="pilcrow">¶</a>
+              <code>0x9B</code><a href="#section-6.4.3-10.3" class="pilcrow">¶</a>
 </li>
             <li id="section-6.4.3-10.4">The number of payload slots in the issued JWP<a href="#section-6.4.3-10.4" class="pilcrow">¶</a>
 </li>
@@ -1812,7 +1812,7 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
               <p id="section-6.4.3-10.5.1">For each payload representation:<a href="#section-6.4.3-10.5.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.4.3-10.5.2">
 <li id="section-6.4.3-10.5.2.1">
-                  <code>0x5A</code><a href="#section-6.4.3-10.5.2.1" class="pilcrow">¶</a>
+                  <code>0x5B</code><a href="#section-6.4.3-10.5.2.1" class="pilcrow">¶</a>
 </li>
                 <li id="section-6.4.3-10.5.2.2">The length and value of the per payload MAC<a href="#section-6.4.3-10.5.2.2" class="pilcrow">¶</a>
 </li>
@@ -2452,9 +2452,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "SYnFf5rvTjTXqn17cpaJ6-WtBQrdp27h8PXskTBKtXY",
-  "y": "aXb61CiSXsQb012hun68cUczn4TVHbnqrvdFLoUCCCk",
-  "d": "m47JVI153rBlUii22gy_0Xn8JWidGhQZzJEiR_hhEgg"
+  "x": "1FVdvG2OTY2hEiBN7PQToeRpzmvk37ZFS94bmHX6BS4",
+  "y": "VJRX1h-02nHR-twrDbv59xzK0Xu7DODi8AHyimBntYw",
+  "d": "KYzwH6djFdIOhb-hIRZebTNHfM8CG9MFvabl1qOY_L8"
 }
 
 </pre>
@@ -2468,9 +2468,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "NKRNYBUMP5Vi-Q_XDi3-5C8zHAMcu_pPmr8GSdkUUlg",
-  "y": "thb-w8mhaS2_fjvSp6FoHPePN9sFJWHGAxRh_lUWo0w",
-  "d": "ZGsOG1dd-C3-gq0pKTuwXWC2i68qD0ZiN8jaQfusVU4"
+  "x": "LfF2EP9zZp_IZH4Fzdg19COgtCnPodEDwLWZjm92Qv8",
+  "y": "DWlMNUg3oBkESMT3h1wOjL312iMAFjJkeylWtPzvjqg",
+  "d": "hYrmDudBo8NqKpJBzO1GynblSuIxQsO_F8TWk1DbcDg"
 }
 
 </pre>
@@ -2484,9 +2484,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "HC9UE7VySnU4KtlDGooOAuNsOEl5Jn12U_chGuaRcvs",
-  "y": "qD9GleC38PPrQlJB4P7QHI7B7e3LjzcmmyW_RV5LVRc",
-  "d": "kppFYxR3QmhzPU6SO3mYiVFRiAX1rffnLf6gNyMPbrE"
+  "x": "-RmviLE1D9YQLsT9Lk1Fmunnxcutfx2i-vKhkfaYYXc",
+  "y": "cSkIpYz8RUD0SJKQXIAGX0qAmHi4DO0z65kK48IjPOI",
+  "d": "n7cFMW1ggcGrxDv21npcAsDReLlXOx6-2zh0R3eFSAo"
 }
 
 </pre>
@@ -2513,14 +2513,14 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
   "proof_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "NKRNYBUMP5Vi-Q_XDi3-5C8zHAMcu_pPmr8GSdkUUlg",
-    "y": "thb-w8mhaS2_fjvSp6FoHPePN9sFJWHGAxRh_lUWo0w"
+    "x": "LfF2EP9zZp_IZH4Fzdg19COgtCnPodEDwLWZjm92Qv8",
+    "y": "DWlMNUg3oBkESMT3h1wOjL312iMAFjJkeylWtPzvjqg"
   },
   "presentation_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "HC9UE7VySnU4KtlDGooOAuNsOEl5Jn12U_chGuaRcvs",
-    "y": "qD9GleC38PPrQlJB4P7QHI7B7e3LjzcmmyW_RV5LVRc"
+    "x": "-RmviLE1D9YQLsT9Lk1Fmunnxcutfx2i-vKhkfaYYXc",
+    "y": "cSkIpYz8RUD0SJKQXIAGX0qAmHi4DO0z65kK48IjPOI"
   }
 }
 
@@ -2534,12 +2534,12 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiTktSTllCVU1QNVZpLVFfWERpMy01
-Qzh6SEFNY3VfcFBtcjhHU2RrVVVsZyIsInkiOiJ0aGItdzhtaGFTMl9manZTcDZGb0hQZ
-VBOOXNGSldIR0F4UmhfbFVXbzB3In0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
-MiLCJjcnYiOiJQLTI1NiIsIngiOiJIQzlVRTdWeVNuVTRLdGxER29vT0F1TnNPRWw1Sm4
-xMlVfY2hHdWFSY3ZzIiwieSI6InFEOUdsZUMzOFBQclFsSkI0UDdRSEk3QjdlM0xqemNt
-bXlXX1JWNUxWUmMifX0
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiTGZGMkVQOXpacF9JWkg0RnpkZzE5
+Q09ndENuUG9kRUR3TFdaam05MlF2OCIsInkiOiJEV2xNTlVnM29Ca0VTTVQzaDF3T2pMM
+zEyaU1BRmpKa2V5bFd0UHp2anFnIn0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
+MiLCJjcnYiOiJQLTI1NiIsIngiOiItUm12aUxFMUQ5WVFMc1Q5TGsxRm11bm54Y3V0Zng
+yaS12S2hrZmFZWVhjIiwieSI6ImNTa0lwWXo4UlVEMFNKS1FYSUFHWDBxQW1IaTRETzB6
+NjVrSzQ4SWpQT0kifX0
 
 </pre>
 </div>
@@ -2578,26 +2578,26 @@ bXlXX1JWNUxWUmMifX0
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb2Zfa2V5Ijp
-7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiTktSTllCVU1QNVZpLVFfWERpMy01
-Qzh6SEFNY3VfcFBtcjhHU2RrVVVsZyIsInkiOiJ0aGItdzhtaGFTMl9manZTcDZGb0hQZ
-VBOOXNGSldIR0F4UmhfbFVXbzB3In0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
-MiLCJjcnYiOiJQLTI1NiIsIngiOiJIQzlVRTdWeVNuVTRLdGxER29vT0F1TnNPRWw1Sm4
-xMlVfY2hHdWFSY3ZzIiwieSI6InFEOUdsZUMzOFBQclFsSkI0UDdRSEk3QjdlM0xqemNt
-bXlXX1JWNUxWUmMifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imp
+7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiTGZGMkVQOXpacF9JWkg0RnpkZzE5
+Q09ndENuUG9kRUR3TFdaam05MlF2OCIsInkiOiJEV2xNTlVnM29Ca0VTTVQzaDF3T2pMM
+zEyaU1BRmpKa2V5bFd0UHp2anFnIn0sInByZXNlbnRhdGlvbl9rZXkiOnsia3R5IjoiRU
+MiLCJjcnYiOiJQLTI1NiIsIngiOiItUm12aUxFMUQ5WVFMc1Q5TGsxRm11bm54Y3V0Zng
+yaS12S2hrZmFZWVhjIiwieSI6ImNTa0lwWXo4UlVEMFNKS1FYSUFHWDBxQW1IaTRETzB6
+NjVrSzQ4SWpQT0kifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imp
 heWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0
 b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuI
 iwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MT
-IzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.kVq10Cvsta8kNQphGQtmmDbdATtADBT2d
-hvkWKydge0TxdaF32rffEP_fkFYr5IFza5CUXUN0A9RBHeP1vg5vQ~pwy1wFWM3VDihxd
-PTrWFWPiGIXFeKaSu-xmJMixZ2pHGlj2pKIxTq97Ad9-SZDc8kc9S_OU8fCchIMcOY_0y
-Ow~IdA4jo-Tm5Fo7j_0PNQdmn6FQxH5BbvmTtvJTCWmxYnf4xM2UII8N2Um_WWLGjJm_r
-C665HmvJuPmNFif_JywA~h7igZFgMiLCBqkISeKXO-K57WhznZuaNFpmnOPtYcIsa8twl
-ZsRNC5sx_HuMe72UgfVUiEryzW89cmUCokb8TQ~IQneMikxkNZ_VoHDZzpZOE4RKhI_0E
-AGQ1QhmrJnPd66iQXO1HSBADKT9xEkU8OTqd_PL23khNT-EkGQ72-Tpw~sHItG7FuxuT2
-cqlMmW30H-3jMMFE8sHpwQCniOZqvxT-XLBJ8aCRXW70FRpkLhdzyZ9OQM97L1kgalrL3
-r7-Kw~hkqbgsHjea3ncNf-Uj6c2OYhksv-PV25dx9ppt7dXaXNwGPyVcsEPDIEjh1fiAi
-3RP2__orQzEe07RwCbmxG8Q~98ji_ikFRBddXlc_LCH9DP6P6q3fW2oMDSAzat0jprKbz
-K50AgHulP4eBcHoUMFUhn6GPBPscmTa--aX5mgYzg
+IzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.ftZgnM4RWM2ZaLyXpJQ2gEXkbxY8pJej3
+dLMc3ZHoON5nmLr3i-wMbruzGjDWybmre4nJ_sE7JVQ3KKEFk7lBQ~TGoUkNZ2qShgVGG
+XsbwalQyqIzYpve9e9wgJAU6dY4mEcta0hhbdaS03Y4SZ7Mw0gxcouKgCi32mAyisaGHD
+7Q~joxEzCPw_KqUBZVRzoc52-24uuokxYMk9IJqTEriiePe1VQEtgL5OacRb8z7V_k_kG
+tNiSYlBuTLMlcuzTreWQ~OMMQrJsDpL3fI5rBlKEo1OhjL1Zybmp_Vz6iPmwplAKxrR24
+-x_A4OkKQj39Z-Cv8MaluMC7kbehAKV_5cO1qw~C2ecCtAyF5mZQXetEJtIH8yqouN9XI
+qmMuIyYDXY-Dh1tljiw8JR6tuxWTyAquXGMQijmyfNl-rMZE8Ahv0k4w~2F13QYrm758v
+_P1OKc5US_bg-6vD8wOWw5zp5OLO_M_htaDwrQc4b5YJfot27GIqQzshxaZHixBTZhlLT
+Vsy-w~i1WDAKoglr1_amf0-kDyTVuFcUeG20sTDuBFMmRMG52jz6hdK1PU3XUILFqYIun
+N5hmh58JHcZGsUWw3fN-tJg~Echtfd7PySJ9MzdaZru0cLwWY4jMJZyRRBE4UU1tPDCcH
+Y4QBuCI_bxRgNVnkogpNZ2Ppy1SRfNCCovVjDG9vQ
 
 </pre>
 </div>
@@ -2610,7 +2610,7 @@ K50AgHulP4eBcHoUMFUhn6GPBPscmTa--aX5mgYzg
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "kSeWr0PiPkAQ1qzhSx3KVMnZbC7UD1lIItBUQS88zvg"
+  "nonce": "Dej8CzCQQ89PvkEn0DOBBaHJ4CnoJVNZydj_cWYFYtA"
 }
 
 </pre>
@@ -2621,8 +2621,8 @@ K50AgHulP4eBcHoUMFUhn6GPBPscmTa--aX5mgYzg
 <span id="name-presentation-header-su-es256"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-19.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJrU2VXcjBQaVBrQVExcXpoU3gzS1ZNblpiQzdVRDFsSUl0QlVRUz
-g4enZnIn0
+29tIiwibm9uY2UiOiJEZWo4Q3pDUVE4OVB2a0VuMERPQkJhSEo0Q25vSlZOWnlkal9jV1
+lGWXRBIn0
 
 </pre>
 </div>
@@ -2631,8 +2631,8 @@ g4enZnIn0
           </figcaption></figure>
 <p id="appendix-A.1-20">When signed with the holder's presentation key, the resulting signature are:<a href="#appendix-A.1-20" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-21">
-<pre>SSbKbyzKEfnq6eqW-fR6QsHQrS6HOAu2is7_-SBUcaxLDoIFvn0Cu4HauUm09ymBdX5xI
-HU08gq2_EFhcYKAPw
+<pre>HLGfkVAkX-lnsEHnsol9Agl9c2C9EMFEAHXnksWGCs1Q7Lg08i2ORrv1SkPugcLhd_4is
+5wHDs5F5Ktm48MzpA
 
 </pre><a href="#appendix-A.1-21" class="pilcrow">¶</a>
 </div>
@@ -2644,29 +2644,29 @@ claims (family name and email hidden), we get the following presented
 JPT in compact serialization:<a href="#appendix-A.1-23" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-24">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJrU2VXcjBQaVBrQVExcXpoU3gzS1ZNblpiQzdVRDFsSUl0QlVRUz
-g4enZnIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJEZWo4Q3pDUVE4OVB2a0VuMERPQkJhSEo0Q25vSlZOWnlkal9jV1
+lGWXRBIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJvb
-2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiTktSTllCVU1QNVZpLV
-FfWERpMy01Qzh6SEFNY3VfcFBtcjhHU2RrVVVsZyIsInkiOiJ0aGItdzhtaGFTMl9manZ
-TcDZGb0hQZVBOOXNGSldIR0F4UmhfbFVXbzB3In0sInByZXNlbnRhdGlvbl9rZXkiOnsi
-a3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJIQzlVRTdWeVNuVTRLdGxER29vT0F1T
-nNPRWw1Sm4xMlVfY2hHdWFSY3ZzIiwieSI6InFEOUdsZUMzOFBQclFsSkI0UDdRSEk3Qj
-dlM0xqemNtbXlXX1JWNUxWUmMifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~I
+2Zfa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiTGZGMkVQOXpacF9JWk
+g0RnpkZzE5Q09ndENuUG9kRUR3TFdaam05MlF2OCIsInkiOiJEV2xNTlVnM29Ca0VTTVQ
+zaDF3T2pMMzEyaU1BRmpKa2V5bFd0UHp2anFnIn0sInByZXNlbnRhdGlvbl9rZXkiOnsi
+a3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiItUm12aUxFMUQ5WVFMc1Q5TGsxRm11b
+m54Y3V0ZngyaS12S2hrZmFZWVhjIiwieSI6ImNTa0lwWXo4UlVEMFNKS1FYSUFHWDBxQW
+1IaTRETzB6NjVrSzQ4SWpQT0kifX0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~I
 kpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3
 QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1
 haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxf
-Y29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.kVq10Cvsta8kNQphGQtmm
-DbdATtADBT2dhvkWKydge0TxdaF32rffEP_fkFYr5IFza5CUXUN0A9RBHeP1vg5vQ~SSb
-KbyzKEfnq6eqW-fR6QsHQrS6HOAu2is7_-SBUcaxLDoIFvn0Cu4HauUm09ymBdX5xIHU0
-8gq2_EFhcYKAPw~pwy1wFWM3VDihxdPTrWFWPiGIXFeKaSu-xmJMixZ2pHGlj2pKIxTq9
-7Ad9-SZDc8kc9S_OU8fCchIMcOY_0yOw~IdA4jo-Tm5Fo7j_0PNQdmn6FQxH5BbvmTtvJ
-TCWmxYnf4xM2UII8N2Um_WWLGjJm_rC665HmvJuPmNFif_JywA~h7igZFgMiLCBqkISeK
-XO-K57WhznZuaNFpmnOPtYcIsa8twlZsRNC5sx_HuMe72UgfVUiEryzW89cmUCokb8TQ~
-IQneMikxkNZ_VoHDZzpZOE4RKhI_0EAGQ1QhmrJnPd66iQXO1HSBADKT9xEkU8OTqd_PL
-23khNT-EkGQ72-Tpw~sHItG7FuxuT2cqlMmW30H-3jMMFE8sHpwQCniOZqvxT-XLBJ8aC
-RXW70FRpkLhdzyZ9OQM97L1kgalrL3r7-Kw
+Y29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.ftZgnM4RWM2ZaLyXpJQ2g
+EXkbxY8pJej3dLMc3ZHoON5nmLr3i-wMbruzGjDWybmre4nJ_sE7JVQ3KKEFk7lBQ~HLG
+fkVAkX-lnsEHnsol9Agl9c2C9EMFEAHXnksWGCs1Q7Lg08i2ORrv1SkPugcLhd_4is5wH
+Ds5F5Ktm48MzpA~TGoUkNZ2qShgVGGXsbwalQyqIzYpve9e9wgJAU6dY4mEcta0hhbdaS
+03Y4SZ7Mw0gxcouKgCi32mAyisaGHD7Q~joxEzCPw_KqUBZVRzoc52-24uuokxYMk9IJq
+TEriiePe1VQEtgL5OacRb8z7V_k_kGtNiSYlBuTLMlcuzTreWQ~OMMQrJsDpL3fI5rBlK
+Eo1OhjL1Zybmp_Vz6iPmwplAKxrR24-x_A4OkKQj39Z-Cv8MaluMC7kbehAKV_5cO1qw~
+C2ecCtAyF5mZQXetEJtIH8yqouN9XIqmMuIyYDXY-Dh1tljiw8JR6tuxWTyAquXGMQijm
+yfNl-rMZE8Ahv0k4w~2F13QYrm758v_P1OKc5US_bg-6vD8wOWw5zp5OLO_M_htaDwrQc
+4b5YJfot27GIqQzshxaZHixBTZhlLTVsy-w
 
 </pre><a href="#appendix-A.1-24" class="pilcrow">¶</a>
 </div>
@@ -2703,18 +2703,18 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   8: {      / proof key /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'1c2f5413b5724a75382ad9431a8a0e02e36c384979267d7653f7211a' +
-        h'e69172fb', / x /
-    -3: h'a83f4695e0b7f0f3eb425241e0fed01c8ec1ededcb8f37269b25bf45' +
-        h'5e4b5517'  / y /
+    -2: h'f919af88b1350fd6102ec4fd2e4d459ae9e7c5cbad7f1da2faf2a191' +
+        h'f6986177', / x /
+    -3: h'712908a58cfc4540f44892905c80065f4a809878b80ced33eb990ae3' +
+        h'c2233ce2'  / y /
   },
   9: {      / presentation key /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'34a44d60150c3f9562f90fd70e2dfee42f331c031cbbfa4f9abf0649' +
-        h'd9145258', / x /
-    -3: h'b616fec3c9a1692dbf7e3bd2a7a1681cf78f37db052561c6031461fe' +
-        h'5516a34c'  / y /
+    -2: h'2df17610ff73669fc8647e05cdd835f423a0b429cfa1d103c0b5998e' +
+        h'6f7642ff', / x /
+    -3: h'0d694c354837a0190448c4f7875c0e8cbdf5da23001632647b2956b4' +
+        h'fcef8ea8'  / y /
   }
 }
 
@@ -2751,31 +2751,31 @@ CBOR (in hex):<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-8">
 <pre>8358cda601010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-201c2f5413b5724a75382ad9431a8a0e02e36c384979267d7653f7211ae69172
-fb225820a83f4695e0b7f0f3eb425241e0fed01c8ec1ededcb8f37269b25bf45
-5e4b551709a40102200121582034a44d60150c3f9562f90fd70e2dfee42f331c
-031cbbfa4f9abf0649d9145258225820b616fec3c9a1692dbf7e3bd2a7a1681c
-f78f37db052561c6031461fe5516a34c871a0a3827001a0a3c3d3f63446f6563
+20f919af88b1350fd6102ec4fd2e4d459ae9e7c5cbad7f1da2faf2a191f69861
+77225820712908a58cfc4540f44892905c80065f4a809878b80ced33eb990ae3
+c2233ce209a4010220012158202df17610ff73669fc8647e05cdd835f423a0b4
+29cfa1d103c0b5998e6f7642ff2258200d694c354837a0190448c4f7875c0e8c
+bdf5da23001632647b2956b4fcef8ea8871a0a3827001a0a3c3d3f63446f6563
 4a6179726a6179646f65406578616d706c652e6f7267a601782331323334204d
 61696e2053742e0a416e79746f776e2c2043412031323334350a555341026d31
 323334204d61696e2053742e0367416e79746f776e0462434105653930323130
-0663555341f58858408e97670c62a2464ff356c390948b1a9a3af5f45a608985
-e581f27ce8f1006400e1212794bee842372b5039d0372c53e5255ac20d07072a
-a6724a1b59ec8153fd5840fe37baa50799566a29de6238b07a1742891c6e0c8b
-983ee8fcfdef561fed46e264e48f3b6c5689c2564281574608dec3203932672b
-a2aff543abc2c767122172584063d723dd7c69f3ef693c595f1e231c633732bd
-e65b4e0bd9448249ef26b7e0ae48c6c2538676eb23c676880268914f961b3b19
-f5f219f8ac05bb9379f37fa41858406d857b23dcbcf6e8ad56c21269e15a9f7d
-9e9a045269a3d620f7cb1493cc5affa109ca3ae53a4fb5f2200fe7b4b573c639
-abcd707306c5345574cee49927730b5840c3f787a1afc9c52122c6f45ad55dd2
-4ddabdfe404690de202467a5b9e14e7882b41622e125a30c546b7d3eb4bb723a
-ff4b044bde385681731b53664e591bd1f55840270ba312d36a53787656562e37
-c52bdff6313e3db7f6ca1ce18309646dc0844631e9655104387861be1b32c53b
-0bbc6704117173ca32a70d88ac853651fd51d05840701911298cdac96ba2569b
-b76f22fd8ddc2fa45cf0b277d069679bd0f3a7850318d9442a747ccaf0fdfe76
-299bae4b8e30117278130a2a1547de7d4158cbea9b5840a8a804c2407509d4db
-960f65cf57d30834a5cd96a95bdb5ee11bf6246051b4557de50b0f8d59d5f11e
-df63e34d1873c95cecff88b8a0198e3339a2a622b1e5fe
+0663555341f58858408b5acddc92cffccacfcbed9dc5cf646b687d7360d67770
+2c6d1180a57ce1493cf45d6cc0e83bbe45168864c608cb73d7ce3662041f847a
+1139079bb8740ef3855840fb6fcbac7a7164b60d96d2631a1b8886ab4359d4ca
+616ff521b7ee68f84671da890504a5970dac7ab162b6e70928a917bd8f173260
+0b970c3d2f0baf2f144015584091e5ffbf03b23d3c4fa0d94fc467f20dbe6804
+593bf720ae68373e3f5b7089920d39e54b77ea02dcaf12d53bc13eda53506ab9
+7ac770cfe77c1c0885f036a62d5840b21a21763463e000f6d1c4d5d0cbbb4b2a
+c0a6e9d05a98363623f73e12b46520fac904820480bfcdcaa9bfb0e1fe472b20
+8fd9bb369a8c6eb8e338ab4cf468ae5840096bd550a3f7d45405ae3d96c47f4c
+91ebb5722b28c803fa3a3dbdbdbb15fd5304ec2d898ab4c15aada8c483a25583
+745c1a93e6be9fd111a4b86c016be3220958408d684f0e64f6d0e6ac8f73bae7
+507af6823fdf998f86b39ec4324226e18627d08e4a575ddb196e93dc850e5b01
+2601f38f12627de6eb5927e0d7e27349f139845840ba293439153f35d18a09f1
+1ab785ae50e95599534ca603690fa435fb01b00bdaa15be7b4f12c72c5675bd5
+e2ed8490a675af049bd66c24a16771a8e3965719a9584011ef08ec94c6b32300
+1af28ad2f21017b492cbfb1ebcce5abd2b0fa5a993484c957d18e7ce0daeb959
+c68c38d1a4889a30400211629cf18671a7b746dff995a5
 
 </pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
@@ -2789,7 +2789,7 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 <pre>{          / protected header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
-  7: h'912796af43e23e4010d6ace14b1dca54c9d96c2ed40f594822d054412f3ccef8', / nonce /
+  7: h'0de8fc0b309043cf4fbe4127d0338105a1c9e029e8255359c9d8ff71660562d0', / nonce /
 }
 
 </pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
@@ -2801,32 +2801,32 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-14">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-6c652e636f6d075820912796af43e23e4010d6ace14b1dca54c9d96c2ed40f59
-4822d054412f3ccef858cda601010314057668747470733a2f2f697373756572
+6c652e636f6d0758200de8fc0b309043cf4fbe4127d0338105a1c9e029e82553
+59c9d8ff71660562d058cda601010314057668747470733a2f2f697373756572
 2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-08a4010220012158201c2f5413b5724a75382ad9431a8a0e02e36c384979267d
-7653f7211ae69172fb225820a83f4695e0b7f0f3eb425241e0fed01c8ec1eded
-cb8f37269b25bf455e4b551709a40102200121582034a44d60150c3f9562f90f
-d70e2dfee42f331c031cbbfa4f9abf0649d9145258225820b616fec3c9a1692d
-bf7e3bd2a7a1681cf78f37db052561c6031461fe5516a34c891a0a3827001a0a
+08a401022001215820f919af88b1350fd6102ec4fd2e4d459ae9e7c5cbad7f1d
+a2faf2a191f6986177225820712908a58cfc4540f44892905c80065f4a809878
+b80ced33eb990ae3c2233ce209a4010220012158202df17610ff73669fc8647e
+05cdd835f423a0b429cfa1d103c0b5998e6f7642ff2258200d694c354837a019
+0448c4f7875c0e8cbdf5da23001632647b2956b4fcef8ea8891a0a3827001a0a
 3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267a601
 782331323334204d61696e2053742e0a416e79746f776e2c2043412031323334
 350a555341026d31323334204d61696e2053742e0367416e79746f776e046243
-41056539303231300663555341f5f6f68758408e97670c62a2464ff356c39094
-8b1a9a3af5f45a608985e581f27ce8f1006400e1212794bee842372b5039d037
-2c53e5255ac20d07072aa6724a1b59ec8153fd584045851b8dda59dc844e8141
-21b06b6165e857d595d02a7caaa022f83308ca6a59b9fe784601f1f4aa91b27f
-2fca3a5711c8bfb1229a2a1d062d82ea0b25447a645840fe37baa50799566a29
-de6238b07a1742891c6e0c8b983ee8fcfdef561fed46e264e48f3b6c5689c256
-4281574608dec3203932672ba2aff543abc2c767122172584063d723dd7c69f3
-ef693c595f1e231c633732bde65b4e0bd9448249ef26b7e0ae48c6c2538676eb
-23c676880268914f961b3b19f5f219f8ac05bb9379f37fa41858406d857b23dc
-bcf6e8ad56c21269e15a9f7d9e9a045269a3d620f7cb1493cc5affa109ca3ae5
-3a4fb5f2200fe7b4b573c639abcd707306c5345574cee49927730b5840c3f787
-a1afc9c52122c6f45ad55dd24ddabdfe404690de202467a5b9e14e7882b41622
-e125a30c546b7d3eb4bb723aff4b044bde385681731b53664e591bd1f5584027
-0ba312d36a53787656562e37c52bdff6313e3db7f6ca1ce18309646dc0844631
-e9655104387861be1b32c53b0bbc6704117173ca32a70d88ac853651fd51d0
+41056539303231300663555341f5f6f68758408b5acddc92cffccacfcbed9dc5
+cf646b687d7360d677702c6d1180a57ce1493cf45d6cc0e83bbe45168864c608
+cb73d7ce3662041f847a1139079bb8740ef38558408efdecdc837c450c5388f6
+24c10bbaffd55a2271d710a303122b0b7e87360f9faf8ca788b540cfae0dc68c
+420cbbba7375bce39fb7a568c3c98343665a9586b35840fb6fcbac7a7164b60d
+96d2631a1b8886ab4359d4ca616ff521b7ee68f84671da890504a5970dac7ab1
+62b6e70928a917bd8f1732600b970c3d2f0baf2f144015584091e5ffbf03b23d
+3c4fa0d94fc467f20dbe6804593bf720ae68373e3f5b7089920d39e54b77ea02
+dcaf12d53bc13eda53506ab97ac770cfe77c1c0885f036a62d5840b21a217634
+63e000f6d1c4d5d0cbbb4b2ac0a6e9d05a98363623f73e12b46520fac9048204
+80bfcdcaa9bfb0e1fe472b208fd9bb369a8c6eb8e338ab4cf468ae5840096bd5
+50a3f7d45405ae3d96c47f4c91ebb5722b28c803fa3a3dbdbdbb15fd5304ec2d
+898ab4c15aada8c483a25583745c1a93e6be9fd111a4b86c016be3220958408d
+684f0e64f6d0e6ac8f73bae7507af6823fdf998f86b39ec4324226e18627d08e
+4a575ddb196e93dc850e5b012601f38f12627de6eb5927e0d7e27349f13984
 
 </pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
 </div>
@@ -2849,13 +2849,13 @@ e9655104387861be1b32c53b0bbc6704117173ca32a70d88ac853651fd51d0
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "ATfH-vblwRHAtSPG1c0Jd0FJDFIlHQ_1D5jdFkuD8dlKYHFR7NiDJSMvoQ7K1
-       oWSDyz6Hf9hNIiwT5k4SnKTEsaBH0jxwazxbRdfzsNEMkmC_C8ODAuwOOMopsX
-       TLg6v",
-  "y": "CSLMNkZhV3J-6OsjjUHJj6MD_ZatPoHJm5MZnfaoXJ9I7YMAVqhhTKHmek46n
-       2nKBXEcud9pw3eSAsx23VbGfQqj4bdJGO7qkdttjZrStzr9w0gl567JachZcmN
-       z0QZf",
-  "d": "FnDF7YdPbR_fXRbEnVVvh1t5XDZaT-EwhCJTgfrjLm0"
+  "x": "DhIXMGiM5OjndzU99GnMMtcBYxPlg00a_MuZogWUaAwzTFIcXJa8k5oBCyTCQ
+       yQ8BIDQBJlKK3CZZWU3CMwLlojkiOgkYNLbaXodjmLWC9vg4rTZaGbfm3Wgmlv
+       5FIsO",
+  "y": "DqtbN83WVMdMEOBdAP7Libq9pyj2GlOWVAUTPNy8aA-wPzMlMwMcsxiHY0jtZ
+       M-HCen6JyYPl1xPhsv5DhqAHjmwACvEqTd4X6ClbemirrYtb7RzuL4DOc4De7U
+       c2U3z",
+  "d": "WwbU0K_esNSBQYKDQbdKdjenJNHBQTT0ybsmgQvEgf0"
 }
 
 </pre>
@@ -2885,9 +2885,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.gBOmIUUbRtc1XxjfG4CPyqrqOAPFuvtg7m
-zpkERDhajSLsrjrNR9jrXxxa2k4uJeOloPx4yhemLPZOhisT0DOfCVtn1w-EftqEsq3iM
-i3oY
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.icmPhCx_N0jsEOreTeKTwAjy1JhSEscu2c
+9kZlPIC2wxC6SNFGRbYPuXWCDCfYcBV5BDhWoHaYZz7MGrFOt3kYmvGLfZnYBt_tTQISx
+WZz8
 
 </pre>
 </div>
@@ -2914,14 +2914,14 @@ i3oY
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gY7Hb3ZdbmkWjzI_DCqOJqq3vyvqvVi8T0HwBUgz
-6IyQxldRKon2AMnF2HG1oklsty7PhR_yRaLMTD8N-_oaRpUGZxIddEFyr33mVT4YxreAu
-tvUeuKMIj4JiBMhXTYPgo3uYGeAC62fkv7aarq7Ku5OOvNhYTaFEqxoUibpt2RzECW6WI
-8W452fY01XtlrlAhOlup5Amyzd3wPiViffRqY2aaWGN8O8dXz_Tb7d4rsWUv04EQg1ZVc
-dj45nkiuqeubjDYEXeJCt4OIh1sgtlgAiHi9UOr_9xvDPYmVZIrnWeUjzcmXFDUoz15R7
-MnUZCN6-xyvMuLl2oy4ZQiWU2JWhSWFjot9Z8NOSwx4y6aQ7pe_gRlqZnkUIwc-OiDj0U
-HER7nZBgt7tv9ufe3vWpid_fSWJHXLu3-obxtb7F5aj1jrVPbDWqDKQHUv5_SI8EW6jDN
-SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.oS2XBN818_akNL9-bSoGZWpv3dPC-ZBKHnaaGFMF
+HTakj5CYfnMCspZv_owav0RilVbHhtkdm30MFH5mWMwFjI3YtKV3BCQlXZoPizREHpPP9
+ITukuJP3jq4ngq-t6GBjYG77avq9YUuOhaV-X8RSnV-PEbioeX6u71e-7I-4AbgskTBfc
+_12ebXsltf1-NuUr7vF1Cf9XaBW2rrJSyk5Y2rlGnYmQS_Dni__jTg69Upd7I6wSAYNY0
+rnhQxbCRyaMSgApfBAKO5tvj9kz2POGqkPCZO5seXoTyCn5I9Fkrhv1rSS31v7obFMtov
+nM30DBVDku3wvS7HZtys5zXXujKCHMc9oGyXIqNjf7hgac4nwa8s-nZXmZ8Bm85H-ECdA
+m1EVY7T9JWqbV4aaN6p0lNMC_U5NNtu4ozFo042lxtz279di-475aS5CwsALJOYPXKwLY
+qTgJvZtXlzULR5Ge4PLVn4SmeK6my7Le_lKYg
 
 </pre>
 </div>
@@ -2942,9 +2942,9 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "SYnFf5rvTjTXqn17cpaJ6-WtBQrdp27h8PXskTBKtXY",
-  "y": "aXb61CiSXsQb012hun68cUczn4TVHbnqrvdFLoUCCCk",
-  "d": "m47JVI153rBlUii22gy_0Xn8JWidGhQZzJEiR_hhEgg"
+  "x": "1FVdvG2OTY2hEiBN7PQToeRpzmvk37ZFS94bmHX6BS4",
+  "y": "VJRX1h-02nHR-twrDbv59xzK0Xu7DODi8AHyimBntYw",
+  "d": "KYzwH6djFdIOhb-hIRZebTNHfM8CG9MFvabl1qOY_L8"
 }
 
 </pre>
@@ -2955,7 +2955,7 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
 <p id="appendix-A.4-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-16">
           <div class="lang-json sourcecode" id="appendix-A.4-5.1">
-<pre>"OgZgwK_kxGo0gdbAlhvFZms-3Rq0ZALX5ZWM8BAfSbM"
+<pre>"ECkt9KbqsgrRfaEGrxCsEAD-gr9AJbDJhowT4-LNzgo"
 
 </pre>
 </div>
@@ -2968,9 +2968,9 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "HC9UE7VySnU4KtlDGooOAuNsOEl5Jn12U_chGuaRcvs",
-  "y": "qD9GleC38PPrQlJB4P7QHI7B7e3LjzcmmyW_RV5LVRc",
-  "d": "kppFYxR3QmhzPU6SO3mYiVFRiAX1rffnLf6gNyMPbrE"
+  "x": "-RmviLE1D9YQLsT9Lk1Fmunnxcutfx2i-vKhkfaYYXc",
+  "y": "cSkIpYz8RUD0SJKQXIAGX0qAmHi4DO0z65kK48IjPOI",
+  "d": "n7cFMW1ggcGrxDv21npcAsDReLlXOx6-2zh0R3eFSAo"
 }
 
 </pre>
@@ -2998,8 +2998,8 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "HC9UE7VySnU4KtlDGooOAuNsOEl5Jn12U_chGuaRcvs",
-    "y": "qD9GleC38PPrQlJB4P7QHI7B7e3LjzcmmyW_RV5LVRc"
+    "x": "-RmviLE1D9YQLsT9Lk1Fmunnxcutfx2i-vKhkfaYYXc",
+    "y": "cSkIpYz8RUD0SJKQXIAGX0qAmHi4DO0z65kK48IjPOI"
   }
 }
 
@@ -3035,7 +3035,7 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
 <p id="appendix-A.4-11">The first MAC is generated using the key <code>issuer_header</code> and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
 <span id="name-issuer-mac-of-protected-hea"></span><figure id="figure-20">
           <div class="lang-txt sourcecode" id="appendix-A.4-12.1">
-<pre>ikSw8DcG-9dCxvm8PwFx9Uo4X-oZ9D-s-A9Eg4oehwg
+<pre>iO21FpiwMhU4p8NazURvaFP-6dQvwjHxN8eKTkCuQaE
 
 </pre>
 </div>
@@ -3046,13 +3046,13 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-21">
           <div class="lang-json sourcecode" id="appendix-A.4-14.1">
 <pre>[
-  "AB13nMuexHac3v2NKHupx3VwvfLgUXZowgs9_IWLf14",
-  "v7ZCz03fkViwX7bXyD3NqyhRMoYN9z4nBEyNSe8NWNY",
-  "qKP8XRx6JYGk52MmW7FrRZhk7IasYVbBCInVzo5kGSQ",
-  "yOj7zYmeKsqpMkksXB6c0nu0ZKbbDBufoU-qI_NPZGo",
-  "TJSwYr1Z9O9ChU3jguttHh6sSfmAjaxmo2ulyikKIFc",
-  "XkLGqBiFtrWPOfigCCVM7GbncuL5niKCwqHuRocGeDM",
-  "x-OgPnEuNLYqQnan2HE-rA4LVQjSqiVkEN0UW45U8jM"
+  "U0b9cf9SnCSLIEZrkZEOitLq_AsO5hhXEb77v3MgTpk",
+  "qJX7Ro3-vK5oLDjvfFx1EK_REcvuFOk5LN0gu_gYOZU",
+  "xSWCBFcw6M8S4nALHKUP-0u_pVPxAmiqH5g9KPA7dAg",
+  "7lkrrEDxGma6KbWsRfqsIVko4OKmjn3j7qnwPzBP2U0",
+  "HLxJrGR2gujl6XBj54jU78rqY079d4AE7LhrNmVLEzg",
+  "UIoWC8014tvRQ8gMm6f0S1u_pzFTDz2t162UqigTpec",
+  "Lf1nQYSvwSUCeyRx64NeFxUKkbdIS9t3RsiCytfu8Bs"
 ]
 
 </pre>
@@ -3064,13 +3064,13 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-22">
           <div class="lang-json sourcecode" id="appendix-A.4-16.1">
 <pre>[
-  "X6kTLYAK8O3vZJnVhpX4hPt4MPKnuYPnrRK9y7UguGw",
-  "ZanqXa1gtJIyPHaA-ny2Vko1us_62RXgl576Yp7vE_M",
-  "o1VNfWrpnPL9mCqd_zbhZE1MbhgYbOENsgA1dkoJJ2o",
-  "08qfzsDbgRxiLzgGFrAkl4X6jxVGw00XfwN4JAklPw0",
-  "ORZxLqjHpKQJmWU4EFy01HeKO6TkCIv2cnR5vPzSTE8",
-  "Qbpi-Ny9pGD6xFbAif2IIoWlih_EY3prMr0PKIFjH_0",
-  "dfgPg2PrVtV4PlSUWelDfL7VZqWmr-BYPBYoWfFgxGM"
+  "apqaEiHvuHCYPK71p94xN9nz-IaZAdOqHXOjKb6n1rk",
+  "XKXEDaaVAJ_e0jwWrcb4QfG9sxBqAl6-MEj75yCDSUQ",
+  "Z854Ipsg80dZFk5-GIRoOSaUjeMGY-8ZDH5erwHr1ts",
+  "Pq7OIJgrOo6YRVyXEKNzcVv4y78z-g9y6iAue26Syqg",
+  "TKt0f29q798rbW6RMlgsn7_y5umsffx-c5eNe15kng8",
+  "ci5sJcqpIH9gqpA4RnR-_BZh7jllLb9kfORyU7H7us0",
+  "oFI1xjgZjgBnX-LUNAjTWwoo8ImWXvWKMNXlREs5SA0"
 ]
 
 </pre>
@@ -3083,9 +3083,9 @@ SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-23">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-19.1">
 <pre>[
-  "OEV33ktW1J6hlOxsRi_asH6gGsqN53Lv9vWD3fdcDzEuUqcBcsV58NPEWXyBpCnNv7
-nhMgKG87oeYMD-tFdRzg",
-  "MUMWlFo4lA4LFP53xVprhWtllzKLCSHMOqNASNu2WjU"
+  "ZS9NZ56QwHfMl8zULcutU5IVKrsi-_l9QzI6eIZG5y3hIXB60UISqJUQeN-H8O7KhA
+DfIbrv_l2ZBWYve91Axg",
+  "7EL51IjNfuwka6BPufeb0XcvVMWByBFcqEt0_XEYGUE"
 ]
 
 </pre>
@@ -3099,15 +3099,15 @@ nhMgKG87oeYMD-tFdRzg",
 <pre>eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUiLCJnaXZlbl
 9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc2VudGF0aW9
-uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiJI
-QzlVRTdWeVNuVTRLdGxER29vT0F1TnNPRWw1Sm4xMlVfY2hHdWFSY3ZzIiwieSI6InFEO
-UdsZUMzOFBQclFsSkI0UDdRSEk3QjdlM0xqemNtbXlXX1JWNUxWUmMifX0.MTcxNDUyMT
+uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbiIsIngiOiIt
+Um12aUxFMUQ5WVFMc1Q5TGsxRm11bm54Y3V0ZngyaS12S2hrZmFZWVhjIiwieSI6ImNTa
+0lwWXo4UlVEMFNKS1FYSUFHWDBxQW1IaTRETzB6NjVrSzQ4SWpQT0kifX0.MTcxNDUyMT
 YwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb
 3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3
 RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiw
 icmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~d
-HJ1ZQ.OEV33ktW1J6hlOxsRi_asH6gGsqN53Lv9vWD3fdcDzEuUqcBcsV58NPEWXyBpCn
-Nv7nhMgKG87oeYMD-tFdRzg~MUMWlFo4lA4LFP53xVprhWtllzKLCSHMOqNASNu2WjU
+HJ1ZQ.ZS9NZ56QwHfMl8zULcutU5IVKrsi-_l9QzI6eIZG5y3hIXB60UISqJUQeN-H8O7
+KhADfIbrv_l2ZBWYve91Axg~7EL51IjNfuwka6BPufeb0XcvVMWByBFcqEt0_XEYGUE
 
 </pre>
 </div>
@@ -3121,7 +3121,7 @@ Nv7nhMgKG87oeYMD-tFdRzg~MUMWlFo4lA4LFP53xVprhWtllzKLCSHMOqNASNu2WjU
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "kSeWr0PiPkAQ1qzhSx3KVMnZbC7UD1lIItBUQS88zvg"
+  "nonce": "Dej8CzCQQ89PvkEn0DOBBaHJ4CnoJVNZydj_cWYFYtA"
 }
 
 </pre>
@@ -3139,17 +3139,17 @@ corresponding MAC value.<a href="#appendix-A.4-27" class="pilcrow">¶</a></p>
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-29.1">
 <pre>[
-  "yOMR1Pq07WSlPlq7qT465wwHNm_dD05YHV3kwCEZp6o4lwSeqS42OKdHOr8LFZj3N5
-T2HZvmeNa-kozFXj5tow",
-  "OEV33ktW1J6hlOxsRi_asH6gGsqN53Lv9vWD3fdcDzEuUqcBcsV58NPEWXyBpCnNv7
-nhMgKG87oeYMD-tFdRzg",
-  "AB13nMuexHac3v2NKHupx3VwvfLgUXZowgs9_IWLf14",
-  "v7ZCz03fkViwX7bXyD3NqyhRMoYN9z4nBEyNSe8NWNY",
-  "qKP8XRx6JYGk52MmW7FrRZhk7IasYVbBCInVzo5kGSQ",
-  "yOj7zYmeKsqpMkksXB6c0nu0ZKbbDBufoU-qI_NPZGo",
-  "ORZxLqjHpKQJmWU4EFy01HeKO6TkCIv2cnR5vPzSTE8",
-  "Qbpi-Ny9pGD6xFbAif2IIoWlih_EY3prMr0PKIFjH_0",
-  "dfgPg2PrVtV4PlSUWelDfL7VZqWmr-BYPBYoWfFgxGM"
+  "MI_DcPlixwDeo-8R22jx8jMgszvTX6_HMOudaJSK5PSA3_mFRFwlX2qbrqwzsIfAK8
+F7S8ZFS4V1_jcipKtKVA",
+  "ZS9NZ56QwHfMl8zULcutU5IVKrsi-_l9QzI6eIZG5y3hIXB60UISqJUQeN-H8O7KhA
+DfIbrv_l2ZBWYve91Axg",
+  "U0b9cf9SnCSLIEZrkZEOitLq_AsO5hhXEb77v3MgTpk",
+  "qJX7Ro3-vK5oLDjvfFx1EK_REcvuFOk5LN0gu_gYOZU",
+  "xSWCBFcw6M8S4nALHKUP-0u_pVPxAmiqH5g9KPA7dAg",
+  "7lkrrEDxGma6KbWsRfqsIVko4OKmjn3j7qnwPzBP2U0",
+  "TKt0f29q798rbW6RMlgsn7_y5umsffx-c5eNe15kng8",
+  "ci5sJcqpIH9gqpA4RnR-_BZh7jllLb9kfORyU7H7us0",
+  "oFI1xjgZjgBnX-LUNAjTWwoo8ImWXvWKMNXlREs5SA0"
 ]
 
 </pre>
@@ -3161,21 +3161,21 @@ nhMgKG87oeYMD-tFdRzg",
 <span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-27">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-31.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJrU2VXcjBQaVBrQVExcXpoU3gzS1ZNblpiQzdVRDFsSUl0QlVRUz
-g4enZnIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJEZWo4Q3pDUVE4OVB2a0VuMERPQkJhSEo0Q25vSlZOWnlkal9jV1
+lGWXRBIn0.eyJhbGciOiJNQUMtSDI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJjbGFpbXMiOlsiaWF0IiwiZXhwIiwiZmFtaWx5X25hbWUi
 LCJnaXZlbl9uYW1lIiwiZW1haWwiLCJhZGRyZXNzIiwiYWdlX292ZXJfMjEiXSwicHJlc
 2VudGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwidXNlIjoic2lnbi
-IsIngiOiJIQzlVRTdWeVNuVTRLdGxER29vT0F1TnNPRWw1Sm4xMlVfY2hHdWFSY3ZzIiw
-ieSI6InFEOUdsZUMzOFBQclFsSkI0UDdRSEk3QjdlM0xqemNtbXlXX1JWNUxWUmMifX0.
-MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.yOMR1Pq07WSlPlq7qT46
-5wwHNm_dD05YHV3kwCEZp6o4lwSeqS42OKdHOr8LFZj3N5T2HZvmeNa-kozFXj5tow~OE
-V33ktW1J6hlOxsRi_asH6gGsqN53Lv9vWD3fdcDzEuUqcBcsV58NPEWXyBpCnNv7nhMgK
-G87oeYMD-tFdRzg~AB13nMuexHac3v2NKHupx3VwvfLgUXZowgs9_IWLf14~v7ZCz03fk
-ViwX7bXyD3NqyhRMoYN9z4nBEyNSe8NWNY~qKP8XRx6JYGk52MmW7FrRZhk7IasYVbBCI
-nVzo5kGSQ~yOj7zYmeKsqpMkksXB6c0nu0ZKbbDBufoU-qI_NPZGo~ORZxLqjHpKQJmWU
-4EFy01HeKO6TkCIv2cnR5vPzSTE8~Qbpi-Ny9pGD6xFbAif2IIoWlih_EY3prMr0PKIFj
-H_0~dfgPg2PrVtV4PlSUWelDfL7VZqWmr-BYPBYoWfFgxGM
+IsIngiOiItUm12aUxFMUQ5WVFMc1Q5TGsxRm11bm54Y3V0ZngyaS12S2hrZmFZWVhjIiw
+ieSI6ImNTa0lwWXo4UlVEMFNKS1FYSUFHWDBxQW1IaTRETzB6NjVrSzQ4SWpQT0kifX0.
+MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.MI_DcPlixwDeo-8R22jx
+8jMgszvTX6_HMOudaJSK5PSA3_mFRFwlX2qbrqwzsIfAK8F7S8ZFS4V1_jcipKtKVA~ZS
+9NZ56QwHfMl8zULcutU5IVKrsi-_l9QzI6eIZG5y3hIXB60UISqJUQeN-H8O7KhADfIbr
+v_l2ZBWYve91Axg~U0b9cf9SnCSLIEZrkZEOitLq_AsO5hhXEb77v3MgTpk~qJX7Ro3-v
+K5oLDjvfFx1EK_REcvuFOk5LN0gu_gYOZU~xSWCBFcw6M8S4nALHKUP-0u_pVPxAmiqH5
+g9KPA7dAg~7lkrrEDxGma6KbWsRfqsIVko4OKmjn3j7qnwPzBP2U0~TKt0f29q798rbW6
+RMlgsn7_y5umsffx-c5eNe15kng8~ci5sJcqpIH9gqpA4RnR-_BZh7jllLb9kfORyU7H7
+us0~oFI1xjgZjgBnX-LUNAjTWwoo8ImWXvWKMNXlREs5SA0
 
 </pre>
 </div>

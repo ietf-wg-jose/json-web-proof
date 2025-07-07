@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 7 January 2026                           Self-Issued Consulting
+Expires: 8 January 2026                           Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                             6 July 2025
+                                                             7 July 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2026.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -116,7 +116,7 @@ Table of Contents
          10.1.2.7.  Nonce Header Parameter
          10.1.2.8.  Proof Key Header Parameter
          10.1.2.9.  Presentation Key Header Parameter
-       10.1.3.  Holder Presentation Algorithm Header Parameter
+         10.1.2.10. Holder Presentation Algorithm Header Parameter
      10.2.  Media Type Registry
        10.2.1.  Registry Contents
          10.2.1.1.  The application/jwp Media Type
@@ -817,14 +817,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.gY7Hb3ZdbmkWjzI_DCqOJqq3vyvqvVi8T0HwBUgz
-   6IyQxldRKon2AMnF2HG1oklsty7PhR_yRaLMTD8N-_oaRpUGZxIddEFyr33mVT4YxreAu
-   tvUeuKMIj4JiBMhXTYPgo3uYGeAC62fkv7aarq7Ku5OOvNhYTaFEqxoUibpt2RzECW6WI
-   8W452fY01XtlrlAhOlup5Amyzd3wPiViffRqY2aaWGN8O8dXz_Tb7d4rsWUv04EQg1ZVc
-   dj45nkiuqeubjDYEXeJCt4OIh1sgtlgAiHi9UOr_9xvDPYmVZIrnWeUjzcmXFDUoz15R7
-   MnUZCN6-xyvMuLl2oy4ZQiWU2JWhSWFjot9Z8NOSwx4y6aQ7pe_gRlqZnkUIwc-OiDj0U
-   HER7nZBgt7tv9ufe3vWpid_fSWJHXLu3-obxtb7F5aj1jrVPbDWqDKQHUv5_SI8EW6jDN
-   SWCZB0o6O7w3BQrGxEXOGyCoU-6wm7AK-mvm4
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.oS2XBN818_akNL9-bSoGZWpv3dPC-ZBKHnaaGFMF
+   HTakj5CYfnMCspZv_owav0RilVbHhtkdm30MFH5mWMwFjI3YtKV3BCQlXZoPizREHpPP9
+   ITukuJP3jq4ngq-t6GBjYG77avq9YUuOhaV-X8RSnV-PEbioeX6u71e-7I-4AbgskTBfc
+   _12ebXsltf1-NuUr7vF1Cf9XaBW2rrJSyk5Y2rlGnYmQS_Dni__jTg69Upd7I6wSAYNY0
+   rnhQxbCRyaMSgApfBAKO5tvj9kz2POGqkPCZO5seXoTyCn5I9Fkrhv1rSS31v7obFMtov
+   nM30DBVDku3wvS7HZtys5zXXujKCHMc9oGyXIqNjf7hgac4nwa8s-nZXmZ8Bm85H-ECdA
+   m1EVY7T9JWqbV4aaN6p0lNMC_U5NNtu4ozFo042lxtz279di-475aS5CwsALJOYPXKwLY
+   qTgJvZtXlzULR5Ge4PLVn4SmeK6my7Le_lKYg
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1122,7 +1122,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.6 of this specification
 
-10.1.3.  Holder Presentation Algorithm Header Parameter
+10.1.2.10.  Holder Presentation Algorithm Header Parameter
 
    *  Header Parameter Name: Holder Presentation Algorithm
    *  Header Parameter JSON Label: hpa
