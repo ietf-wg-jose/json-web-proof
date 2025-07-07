@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 6 January 2026                           Self-Issued Consulting
+Expires: 8 January 2026                           Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                             5 July 2025
+                                                             7 July 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2026.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -81,9 +81,10 @@ Table of Contents
        4.2.4.  "crit" (Critical) Header Parameter
        4.2.5.  "proof_key" (Proof Key) Header Parameter
        4.2.6.  "presentation_key" (Presentation Key) Header Parameter
-       4.2.7.  "iss" (Issuer) Header Parameter
-       4.2.8.  "aud" (Audience) Header Parameter
-       4.2.9.  "nonce" (Nonce) Header Parameter
+       4.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
+       4.2.8.  "iss" (Issuer) Header Parameter
+       4.2.9.  "aud" (Audience) Header Parameter
+       4.2.10. "nonce" (Nonce) Header Parameter
      4.3.  Public Header Parameter Names
      4.4.  Private Header Parameter Names
    5.  JWP Forms
@@ -115,6 +116,7 @@ Table of Contents
          10.1.2.7.  Nonce Header Parameter
          10.1.2.8.  Proof Key Header Parameter
          10.1.2.9.  Presentation Key Header Parameter
+         10.1.2.10. Holder Presentation Algorithm Header Parameter
      10.2.  Media Type Registry
        10.2.1.  Registry Contents
          10.2.1.1.  The application/jwp Media Type
@@ -489,7 +491,24 @@ Table of Contents
    This Header Parameter MUST be understood and processed by
    implementations when present.
 
-4.2.7.  "iss" (Issuer) Header Parameter
+4.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
+
+   The hpa (Holder Presentation Algorithm) Header Parameter represents
+   the algorithm to be used by the holder for presenting a JWP when
+   using a asymmetric algorithm and Presentation Key.
+
+   This Header Parameter SHOULD be included when appropriate for the JWP
+   algorithm, unless a single appropriate algorithm is negotiated
+   through other means.
+
+   This Header Prameter references the name of a JSON Web Algorithm
+   (JWA) when represented as a JSON Protected Header, and an integer or
+   text value when represented as a CBOR Protected Header.
+
+   This Header Parameter MUST be understood and processed by
+   implementations when present.
+
+4.2.8.  "iss" (Issuer) Header Parameter
 
    The iss (issuer) Header Parameter identifies the principal that
    issued the JWP.  The processing of this claim is generally
@@ -501,7 +520,7 @@ Table of Contents
 
    Use of this Header Parameter is OPTIONAL.
 
-4.2.8.  "aud" (Audience) Header Parameter
+4.2.9.  "aud" (Audience) Header Parameter
 
    The aud (audience) Header Parameter identifies the recipients that
    the JWP is intended for.  Each principal intended to process the JWP
@@ -522,7 +541,7 @@ Table of Contents
 
    Use of this Header Parameter is OPTIONAL.
 
-4.2.9.  "nonce" (Nonce) Header Parameter
+4.2.10.  "nonce" (Nonce) Header Parameter
 
    The nonce (nonce) Header Parameter is used to associate protocol
    state with a presented JWP.  Usage is protocol-specific, but examples
@@ -798,14 +817,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.uf98WYvsur-oWbVph_7Ikjvo8Drsr07iOW6qIS5X
-   NNCiRS7IJoWI2cjUyGWZdpSuiCAFpBjC96gW4SoF6YQV6hQYhUkDhBZMGzu199ODT8Q_o
-   tCM5l0uZr0tM-LE1YRNqahNYh0E9gPXMNAKvZqV-2UtMpcOjodfm0bzEANWmklEgYiAWS
-   TJ-85-l0EkYw-qLZWU9I8hfHRP3h2SzSoRTUp0fnakiOzjxNvy6gfLr7cYjrjIYhIDESb
-   mvO_uQ-w37DCx9rATqklTz2IPj9R2zyu4E6a6TR5NbP_XoYRFSvlJLnAfxKG_AuvdRvkN
-   JVB9VICyhBBCZlhQK-ZniOmZWY4PWbn5SjVckb9KZSc-P2Mc4gtj79P40pRg1gVyXDbuy
-   tspQPZm5gpHqW0OIRCjNCQ50VWFIY6GpvmXLEhVxbIvc-zTbJIYek4z_UyZV9ohCExTlo
-   z8iB7yVbRZz3CXWrphD_H7wTFd74uezwOsvC8
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.p-U7nYvuem-RNi8_CkzaHWiYKS905-qEhEEWG98r
+   5USmQNTzL85mIhfnu8yxgsSVg3DD7nCn_7WsaNdmn1PtOVBkE3DaJ_VDozUV8u0NkagzH
+   D-X4MlRy_IvAkAU1UuAiB6kIhUMMSCY9rT9oBGZSXOQHINUrsWgx8pf5dB5e4bu0nSU3Q
+   Eb0h7w3czZoH1lAh29a1JLQSHI_Bx8d0WLKIxAI3m_NmUU38lNqcTxIgdCWQk_hzFBd_-
+   Rcepd6mSFwSGVZbiMv5dZaZP0KQu14BFp9Km8rOA6puziC4Xk3i5JYRZpDybTlBiU2JXS
+   LQxiJjhmr1v5xkvbRXuoDTZkR3l2Fj_zhrWSUUJxTlNqdyNLZNb0XQnKzAsIvHapxyIZQ
+   pHouMS9gNn9i5f2BdEEfmsgxeoVh-5DjobCksKbMST6949Zf-nLQC2808mZ_iChYialju
+   HmVjee3z8yxlHG1HQUzeTr8wdEXHkSOKmaAw0
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1065,7 +1084,7 @@ Table of Contents
    *  Header Parameter CBOR Label: 5
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.7 of this specification
+   *  Specification Document(s): Section 4.2.8 of this specification
 
 10.1.2.6.  Audience Header Parameter
 
@@ -1074,7 +1093,7 @@ Table of Contents
    *  Header Parameter CBOR Label: 6
    *  Header Parameter Usage Location(s): Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.8 of this specification
+   *  Specification Document(s): Section 4.2.9 of this specification
 
 10.1.2.7.  Nonce Header Parameter
 
@@ -1083,7 +1102,7 @@ Table of Contents
    *  Header Parameter CBOR Label: 7
    *  Header Parameter Usage Location(s): Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.9 of this specification
+   *  Specification Document(s): Section 4.2.10 of this specification
 
 10.1.2.8.  Proof Key Header Parameter
 
@@ -1102,6 +1121,15 @@ Table of Contents
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.6 of this specification
+
+10.1.2.10.  Holder Presentation Algorithm Header Parameter
+
+   *  Header Parameter Name: Holder Presentation Algorithm
+   *  Header Parameter JSON Label: hpa
+   *  Header Parameter CBOR Label: 10
+   *  Header Parameter Usage Location(s): Issued
+   *  Change Controller: IETF
+   *  Specification Document(s): Section 4.2.7 of this specification
 
 10.2.  Media Type Registry
 
@@ -1355,6 +1383,9 @@ Appendix B.  Document History
       9052
    *  Receive examples of additional types of algorithm-specific proofs
       from JPT
+   *  Added Holder Presentation Algorithm (hpa) parameter to support the
+      holder presenting using a different key type and algorithm than
+      the issuer in SU and MAC family algorithms
 
    -09
 
