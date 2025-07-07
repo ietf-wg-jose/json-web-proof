@@ -1159,8 +1159,8 @@ This work was incubated in the DIF [Applied Cryptography Working
 Group](https://identity.foundation/working-groups/crypto.html).
 
 We would like to thank
-Brent Zundel
-for his valuable contributions to this specification.
+Brent Zundel and Emil Lundberg
+for their valuable contributions to this specification.
 
 # Document History
 
