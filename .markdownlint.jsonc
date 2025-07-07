@@ -1,0 +1,13 @@
+{
+    "MD013": { // line lengths
+        "line_length": 76,
+        "code_block_line_length": 73
+    },
+    "MD024": {
+        "siblings_only": true
+    },
+    "MD034": false, // bare urls, hitting email address in preamble
+    "MD041": {
+        "allow_preamble": true
+    }
+}

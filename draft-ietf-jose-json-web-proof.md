@@ -612,6 +612,7 @@ Tagged_CBOR_JWP_Issued = #6.xxx (CBOR_JWP_Issued)
 Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
 
 ```
+
 Figure 1: CDDL [RFC8610] for CBOR Serializations.
 
 # Encrypted JSON Web Proofs
@@ -885,9 +886,9 @@ a JWP using the JWP Compact Serialization.
 * Applications that use this media type: TBD
 * Fragment identifier considerations: n/a
 * Additional information:
-  - Magic number(s): n/a
-  - File extension(s): n/a
-  - Macintosh file type code(s): n/a
+  * Magic number(s): n/a
+  * File extension(s): n/a
+  * Macintosh file type code(s): n/a
 * Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
 * Intended usage: COMMON
 * Restrictions on usage: none
@@ -908,9 +909,9 @@ a JWP using the JWP Compact Serialization.
 * Applications that use this media type: TBD
 * Fragment identifier considerations: n/a
 * Additional information:
-  - Magic number(s): n/a
-  - File extension(s): n/a
-  - Macintosh file type code(s): n/a
+  * Magic number(s): n/a
+  * File extension(s): n/a
+  * Macintosh file type code(s): n/a
 * Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
 * Intended usage: COMMON
 * Restrictions on usage: none
@@ -969,112 +970,112 @@ for his valuable contributions to this specification.
 
  -10
 
-  * Replaced `application/jwp+cbor` with `application/cwp`.
-  * Registered `+cwp` structured syntax suffix and simplified +jwp suffix.
-  * Expanded descriptions of and rationale for the serializations.
-  * Payload nomenclature was clarified by adding the concept of payload
+* Replaced `application/jwp+cbor` with `application/cwp`.
+* Registered `+cwp` structured syntax suffix and simplified +jwp suffix.
+* Expanded descriptions of and rationale for the serializations.
+* Payload nomenclature was clarified by adding the concept of payload
     slots. The issued form and presented form have a certain number of
     ordered payload slots, and a presentation may choose to omit
     information from a slot.
-  * Recommendation for Isuser Protected Header is to make the header
+* Recommendation for Isuser Protected Header is to make the header
     static aross issued JWP if possible, to prevent unintentional
     correlation by verifiers
-  * Cleaned up the text around algorithmic support for additional proofs
+* Cleaned up the text around algorithmic support for additional proofs
     of knowledge outside of payload disclosure (e.g. range proofs)
-  * Clarify that a proof is made up of multiple octet strings
-  * (CDDL) The protected header definitions now reference
+* Clarify that a proof is made up of multiple octet strings
+* (CDDL) The protected header definitions now reference
     `empty_or_serialized_map` properly
-  * (CDDL) `payloads` is now `PayloadSlots`, and represents you need at
+* (CDDL) `payloads` is now `PayloadSlots`, and represents you need at
     least one slot
-  * (CDDL) The issuer `PayloadSlots` contains `payload`, which is not
+* (CDDL) The issuer `PayloadSlots` contains `payload`, which is not
     omittable
-  * (CDDL) The presented form likewise references `disclosable_payload`,
+* (CDDL) The presented form likewise references `disclosable_payload`,
     which is nillable to represent omission
-  * (CDDL) `Proof` is capitalized to match, and properly represents you
+* (CDDL) `Proof` is capitalized to match, and properly represents you
     need at least one `bstr`
-  * (CDDL) `header_map`, `label` and `value` definitions imported from
+* (CDDL) `header_map`, `label` and `value` definitions imported from
     RFC 9052
-  * Receive examples of additional types of algorithm-specific proofs from JPT
-  * Added Holder Presentation Algorithm (`hpa`) parameter to support
+* Receive examples of additional types of algorithm-specific proofs from JPT
+* Added Holder Presentation Algorithm (`hpa`) parameter to support
     the holder presenting using a different key type and algorithm than
     the issuer in SU and MAC family algorithms
 
  -09
 
-  * Removed JSON serialization.
-  * Corrected informative reference to the IANA JWT registry.
+* Removed JSON serialization.
+* Corrected informative reference to the IANA JWT registry.
 
  -08
 
-  * Corrected instances of identifier `proofs` to `proof`.
-  * Added reference to [@!RFC9596] for COSE "typ" header parameter.
-  * Made some additional references normative.
+* Corrected instances of identifier `proofs` to `proof`.
+* Added reference to [@!RFC9596] for COSE "typ" header parameter.
+* Made some additional references normative.
 
  -07
 
-  * Changing primary editor
-  * Broad changes to define a CBOR serialization, which leverage
+* Changing primary editor
+* Broad changes to define a CBOR serialization, which leverage
     new CBOR Protected Headers
-  * Deemphasis of JSON in some parts of the document to represent
+* Deemphasis of JSON in some parts of the document to represent
     CBOR alternatives
-  * Rewrite Header Parameter parsing requirements for JSON to
+* Rewrite Header Parameter parsing requirements for JSON to
     emphasize preference to fail on duplicate headers (to match
     CBOR behavior). Last-encountered remains as an option to match
     ECMA definition.
-  * Add option to use CoAP Formats for `typ` in CBOR mode to match
+* Add option to use CoAP Formats for `typ` in CBOR mode to match
     COSE, as a compact indirection over full media types.
-  * Modify IANA registry template to account for CBOR Labels in
+* Modify IANA registry template to account for CBOR Labels in
     header parameters
-  * Add application/jwp+cbor media type
-  * Modify example generation to use `proof_key` and `presentation_key` names
-  * Change `proof_jwk` to `proof_key` and `presentation_jwk` to
+* Add application/jwp+cbor media type
+* Modify example generation to use `proof_key` and `presentation_key` names
+* Change `proof_jwk` to `proof_key` and `presentation_jwk` to
     `presentation_key` to better represent that the key may be JSON
     or CBOR-formatted.
-  * Moved the registry for `proof_key` and `presentation_key` to JWP
+* Moved the registry for `proof_key` and `presentation_key` to JWP
     where they are defined. Consolidated usage, purpose and
     requirements from algorith musage under these definitions.
-  * Clarified that `proof_key` and `presentation_key` are required
+* Clarified that `proof_key` and `presentation_key` are required
     by particular algorithms and are not more generally required for
     issued and presented JWPs.
-  * Move `claims` to JPT to live beside `cid`, and renumber CBOR
+* Move `claims` to JPT to live beside `cid`, and renumber CBOR
     labels so that they may be adjacent
 
  -06
 
-  * Update reference to new repository home.
-  * Fixed #83: Added encrypted JWPs.
-  * Added additional clarification around the compact and JSON serializations
-  * Added text around fully detached payloads
+* Update reference to new repository home.
+* Fixed #83: Added encrypted JWPs.
+* Added additional clarification around the compact and JSON serializations
+* Added text around fully detached payloads
 
  -05
 
-  * Clarify the use of multiple octet strings in presentation proofs.
-  * Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.
-  * Move single-use example appendix from JWP to JPA.
-  * Registered `+jwp` structured syntax suffix.
+* Clarify the use of multiple octet strings in presentation proofs.
+* Update BBS algorithm example in JSON serialization to show the proof as an array with a single octet string.
+* Move single-use example appendix from JWP to JPA.
+* Registered `+jwp` structured syntax suffix.
 
  -04
 
-  * Refactoring figures and examples to be built from a common set across all three documents.
+* Refactoring figures and examples to be built from a common set across all three documents.
 
   -03
 
-  * Improvements resulting from a full proofreading.
-  * Populated IANA Considerations section.
-  * Specified JWP Header Parameters.
-  * Specified representation of zero-length disclosed payloads for the compact serialization.
-  * Specified that algorithms may supply multiple octet strings for the proof, which are separated by `~` characters in the compact serialization.
-  * Updated to use BBS draft -05.
-  * Added Terminology Section.
+* Improvements resulting from a full proofreading.
+* Populated IANA Considerations section.
+* Specified JWP Header Parameters.
+* Specified representation of zero-length disclosed payloads for the compact serialization.
+* Specified that algorithms may supply multiple octet strings for the proof, which are separated by `~` characters in the compact serialization.
+* Updated to use BBS draft -05.
+* Added Terminology Section.
 
   -02
 
-  * Update reference to current BBS algorithm
+* Update reference to current BBS algorithm
 
   -01
 
-  * Correct cross-references within group.
+* Correct cross-references within group.
 
   -00
 
-  * Created initial working group draft based on draft-jmiller-jose-json-web-proof-01
+* Created initial working group draft based on draft-jmiller-jose-json-web-proof-01

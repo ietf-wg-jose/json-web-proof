@@ -166,7 +166,6 @@ Likewise, it is RECOMMENDED that the claim names used with CPTs come from those 
 the IANA CBOR Web Token Claims Registry [@IANA.CWT]
 established by [@!RFC8392], when those fit the application's needs.
 
-
 # Claims Header Parameter {#claimsDef}
 
 A JSON Proof Token or CBOR Proof Token assigns each playload a claim name.
@@ -240,6 +239,7 @@ The following is an example JWP Protected Header that includes a `cid`:
 
 Each claim in the issued form of the JPT or CPT results in one of three things
 in the presented form of the JPT or CPT:
+
 1. A disclosed JSON or CBOR value.
 1. An indicator that the value was not disclosed.
 1. An algorithm-specific proof method.
@@ -341,9 +341,9 @@ The media type for a JSON Proof Token (JPT) is `application/jpt`.
 * Published specification: This specification
 * Applications that use this media type: Applications releasing claims with zero-knowledge proofs
 * Additional information:
-  - Magic number(s): n/a
-  - File extension(s): n/a
-  - Macintosh file type code(s): n/a
+  * Magic number(s): n/a
+  * File extension(s): n/a
+  * Macintosh file type code(s): n/a
 * Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
 * Intended usage: COMMON
 * Restrictions on usage: none
@@ -365,9 +365,9 @@ The media type for a CBOR Proof Token (CPT) is `application/cpt`.
 * Published specification: This specification
 * Applications that use this media type: Applications releasing claims with zero-knowledge proofs
 * Additional information:
-  - Magic number(s): n/a
-  - File extension(s): n/a
-  - Macintosh file type code(s): n/a
+  * Magic number(s): n/a
+  * File extension(s): n/a
+  * Macintosh file type code(s): n/a
 * Person & email address to contact for further information: Michael B. Jones, michael_b_jones@hotmail.com
 * Intended usage: COMMON
 * Restrictions on usage: none
@@ -375,7 +375,7 @@ The media type for a CBOR Proof Token (CPT) is `application/cpt`.
 * Change controller: IETF
 * Provisional registration: No
 
-##  Structured Syntax Suffix Registry
+## Structured Syntax Suffix Registry
 
 This section registraters the following entries
 in the IANA "Structured Syntax Suffix" registry [IANA.StructuredSuffix]
@@ -437,53 +437,53 @@ for his valuable contributions to this specification.
 
  -10
 
-  * Registered `+jpt` and `+cpt` structured syntax suffixes.
-  * Clarify mapping of the `claims` array to payload data using
+* Registered `+jpt` and `+cpt` structured syntax suffixes.
+* Clarify mapping of the `claims` array to payload data using
     "payload slot" nomenclature
-  * Move proof methods text to JWP.
+* Move proof methods text to JWP.
 
  -09
 
-  * No changes
+* No changes
 
  -08
 
-  * Defined CBOR Proof Token (CPT).
-  * Registered application/jpt and application/cpt media types and CPT CoAP Content-Format.
-  * Made some additional references normative.
+* Defined CBOR Proof Token (CPT).
+* Registered application/jpt and application/cpt media types and CPT CoAP Content-Format.
+* Made some additional references normative.
 
  -07
 
-  * Changing primary editor
-  * Move `claims` definition from JWP, to live beside `cid`
-  * Update `cid` registry entry to assign CBOR label
+* Changing primary editor
+* Move `claims` definition from JWP, to live beside `cid`
+* Update `cid` registry entry to assign CBOR label
 
  -06
 
-  * Update reference to new repository home
-  * Fixed #99: Discussed issued and presented forms of JPTs.
+* Update reference to new repository home
+* Fixed #99: Discussed issued and presented forms of JPTs.
 
  -05
 
-  * Define and register Claims ID JWP Header Parameter.
+* Define and register Claims ID JWP Header Parameter.
 
   -04
 
-  * Refactoring figures and examples to be built from a common set across all three documents
+* Refactoring figures and examples to be built from a common set across all three documents
 
   -03
 
-  * Improvements resulting from a full proofreading.
-  * Added examples of JSON object and JSON boolean claims.
+* Improvements resulting from a full proofreading.
+* Added examples of JSON object and JSON boolean claims.
 
   -02
 
-  * Update example to use the current BBS algorithm
+* Update example to use the current BBS algorithm
 
   -01
 
-  * Correct cross-references within group.
+* Correct cross-references within group.
 
   -00
 
-  * Created initial working group draft based on draft-jmiller-jose-json-proof-token-01
+* Created initial working group draft based on draft-jmiller-jose-json-proof-token-01
