@@ -16,7 +16,7 @@ used as the payloads of a JSON Web Proof (JWP) structure, enabling them
 to be digitally signed and selectively disclosed.  JPTs also support
 reusability and unlinkability when using Zero-Knowledge Proofs (ZKPs). 
        A CBOR-based representation of JPTs is also defined, called a CBOR Proof
-Token (CPT).  It has the same properties of JPTs, but uses the JSON Web
+Token (CPT).  It has the same properties as JPTs, but uses the JSON Web
 Proof (JWP) CBOR Serialization, rather than the JSON-based JWP Compact
 Serialization. 
     " name="description">
@@ -1113,7 +1113,7 @@ used as the payloads of a JSON Web Proof (JWP) structure, enabling them
 to be digitally signed and selectively disclosed.  JPTs also support
 reusability and unlinkability when using Zero-Knowledge Proofs (ZKPs).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">A CBOR-based representation of JPTs is also defined, called a CBOR Proof
-Token (CPT).  It has the same properties of JPTs, but uses the JSON Web
+Token (CPT).  It has the same properties as JPTs, but uses the JSON Web
 Proof (JWP) CBOR Serialization, rather than the JSON-based JWP Compact
 Serialization.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
@@ -1458,7 +1458,7 @@ IANA CBOR Web Token Claims Registry <span>[<a href="#IANA.CWT" class="cite xref"
       <h2 id="name-claims-header-parameter">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-claims-header-parameter" class="section-name selfRef">Claims Header Parameter</a>
       </h2>
-<p id="section-6-1">A JSON Proof Token or CBOR Proof Token assigns each playload a claim
+<p id="section-6-1">A JSON Proof Token or CBOR Proof Token assigns each payload a claim
 name.  Payloads MUST each have a negotiated and understood claim name
 within the application context.  The simplest solution to establish
 payload claim names is as an ordered array that aligns with the ordering
@@ -1513,7 +1513,7 @@ Key ID ("kid") header parameter.<a href="#section-7-1" class="pilcrow">¶</a></p
 <p id="section-7-2">The structure of the <code>cid</code> value is unspecified.  For JPTs, its value
 MUST be a case-sensitive string.  For CPTs, its value MUST be a binary
 string.  Use of this JWP Header Parameter is OPTIONAL.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">The <code>cid</code> can be used similarly to a <code>kid</code> in order to ensure that is it
+<p id="section-7-3">The <code>cid</code> can be used similarly to a <code>kid</code> in order to ensure that it is
 possible to externally resolve and then verify that the correct list of
 claim names is being used when processing the payloads containing the
 claim values.<a href="#section-7-3" class="pilcrow">¶</a></p>
@@ -1527,7 +1527,7 @@ Protected Header, any variations of that array between JWP will be
 visible to the verifier, and can leak information about the subject or
 provide an additional vector for linkability.  Given the privacy design
 considerations around linkability, it is RECOMMENDED that the claims are
-defined external to an individual JPT or CPT and either referenced or
+defined externally to an individual JPT or CPT and either referenced or
 known by the application context.<a href="#section-7-5" class="pilcrow">¶</a></p>
 <p id="section-7-6">The following is an example JWP Protected Header that includes a <code>cid</code>:<a href="#section-7-6" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-7-7">
@@ -1728,7 +1728,7 @@ Key Parameters" registry <span>[<a href="#IANA.JOSE" class="cite xref">IANA.JOSE
 <a href="#section-11.4" class="section-number selfRef">11.4. </a><a href="#name-media-types-registry" class="section-name selfRef">Media Types Registry</a>
         </h3>
 <p id="section-11.4-1">This section registers the following media type <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span> in the IANA
-"Media Types" registry &lt;xref target="IANA.MediaTypes"/&gt; in the manner
+"Media Types" registry <span>[<a href="#IANA.MediaTypes" class="cite xref">IANA.MediaTypes</a>]</span> in the manner
 described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-11.4-1" class="pilcrow">¶</a></p>
 <div id="jpt_media_type">
 <section id="section-11.4.1">
@@ -1845,7 +1845,7 @@ Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-11.4.2-2.11" clas
         <h3 id="name-structured-syntax-suffix-re">
 <a href="#section-11.5" class="section-number selfRef">11.5. </a><a href="#name-structured-syntax-suffix-re" class="section-name selfRef">Structured Syntax Suffix Registry</a>
         </h3>
-<p id="section-11.5-1">This section registraters the following entries in the IANA "Structured
+<p id="section-11.5-1">This section registers the following entries in the IANA "Structured
 Syntax Suffix" registry [IANA.StructuredSuffix] in the manner described
 in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-11.5-1" class="pilcrow">¶</a></p>
 <div id="jpt">
@@ -1992,6 +1992,10 @@ separated by period ('.') characters.<a href="#section-11.5.1-1.4" class="pilcro
 <dt id="IANA.JWT">[IANA.JWT]</dt>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"JSON Web Token"</span>, <span>&lt;<a href="https://www.iana.org/assignments/jwt">https://www.iana.org/assignments/jwt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.MediaTypes">[IANA.MediaTypes]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Media Types"</span>, <span>&lt;<a href="https://www.iana.org/assignments/media-types">https://www.iana.org/assignments/media-types</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2046">[RFC2046]</dt>
         <dd>
