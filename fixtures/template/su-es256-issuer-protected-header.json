@@ -2,6 +2,7 @@
     "alg": "SU-ES256",
     "typ": "JPT",
     "iss": "https://issuer.example",
+    "hpa": "ES256",
     "claims": [
         "iat",
         "exp",

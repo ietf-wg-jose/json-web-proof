@@ -1,5 +1,5 @@
 import { base64url } from 'jose';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256 } from './utils.mjs';
+import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256, createPresentationInternalRepresentation } from './utils.mjs';
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 import * as cbor from "cbor2";
@@ -145,13 +145,17 @@ await fs.writeFile("./build/cpt-presentation-protected-header.edn", holderProtec
 
 // load in 
 var holderProtectedHeaderOctets = await cborBinaryFromFile("./build/cpt-presentation-protected-header.edn");
-let signature = await signPayloadSHA256(holderProtectedHeaderOctets, holderPrivateKey);
-await fs.writeFile("build/cpt-presentation-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
 
-sigs.splice(1, 0, signature);
-sigs.splice(7, 2); // remove last two 
 issuerPayloads[7] = null;
 issuerPayloads[8] = null;
+
+let internalRepresentation = createPresentationInternalRepresentation(issuerProtectedHeaderOctets, holderProtectedHeaderOctets, issuerPayloads, sigs );
+
+let signature = await signPayloadSHA256(internalRepresentation, holderPrivateKey);
+await fs.writeFile("build/cpt-presentation-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
+
+sigs.splice(6, 2); // remove last two 
+sigs.push(signature);
 
 let presentedFormCborSerialization = cbor.encode([
     holderProtectedHeaderOctets,

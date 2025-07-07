@@ -1,5 +1,6 @@
 {
     "alg": "MAC-H256",
+    "hpa": "ES256",
     "typ": "JPT",
     "iss": "https://issuer.example",
     "claims": [

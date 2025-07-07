@@ -23,5 +23,6 @@
     -1: 1,  / crv: "P-256" /
     / ephemeral-x / 
     / ephemeral-y / 
-  }
+  },
+  10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
 }

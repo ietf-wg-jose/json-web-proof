@@ -1,5 +1,5 @@
 import { base64url } from 'jose';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256 } from './utils.mjs';
+import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256, createPresentationInternalRepresentation } from './utils.mjs';
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 
@@ -75,13 +75,17 @@ await fs.writeFile("build/su-es256-presentation-protected-header.json.wrapped", 
 
 await fs.writeFile("build/su-es256-holder-protected-header.b64.wrapped", lineWrap(encode(holderProtectedHeader)), "UTF-8");
 
-let signature = await signPayloadSHA256(holderProtectedHeader, holderPrivateKey);
+payloads[7] = null;
+payloads[8] = null;
+
+let internalRepresentation = createPresentationInternalRepresentation(issuerProtectedHeader, holderProtectedHeader, payloads, sigs );
+
+let signature = await signPayloadSHA256(internalRepresentation, holderPrivateKey);
 await fs.writeFile("build/su-es256-holder-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
 
-sigs.splice(1, 0, signature);
-sigs.splice(7, 2); // remove last two 
-payloads[7] = null;
-payloads[8 ] = null;
+sigs.splice(6, 2); // remove last two
+sigs.push(signature);
+
 await fs.writeFile("build/su-es256-presentation-proof.json.wrapped", lineWrap(JSON.stringify(sigs.map(encode), 0, 2)), {encoding: "UTF-8"});
 
 // Compact Serialization

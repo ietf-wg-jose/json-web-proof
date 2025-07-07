@@ -350,6 +350,21 @@ be included in each issuance.
 
 This Header Parameter MUST be understood and processed by implementations when present.
 
+### "hpa" (Holder Presentation Algorithm) Header Parameter {#holder_presentation_algorithm_keyDef}
+
+The `hpa` (Holder Presentation Algorithm) Header Parameter represents the
+algorithm to be used by the holder for presenting a JWP when using a
+asymmetric algorithm and Presentation Key.
+
+This Header Parameter SHOULD be included when appropriate for the JWP algorithm,
+unless a single appropriate algorithm is negotiated through other means.
+
+This Header Prameter references the name of a JSON Web Algorithm (JWA) when
+represented as a JSON Protected Header, and an integer or text value when
+represented as a CBOR Protected Header.
+
+This Header Parameter MUST be understood and processed by implementations when present.
+
 ### "iss" (Issuer) Header Parameter {#issDef}
 
 The `iss` (issuer) Header Parameter identifies the principal that issued the JWP.
@@ -837,6 +852,15 @@ This section registers the Header Parameters defined in
 * Change Controller: IETF
 * Specification Document(s): (#presentation_keyDef) of this specification
 
+#### Holder Presentation Algorithm Header Parameter
+
+* Header Parameter Name: Holder Presentation Algorithm
+* Header Parameter JSON Label: `hpa`
+* Header Parameter CBOR Label: 10
+* Header Parameter Usage Location(s): Issued
+* Change Controller: IETF
+* Specification Document(s): (#holder_presentation_algorithm_keyDef) of this specification
+
 ## Media Type Registry {#MediaReg}
 
 ### Registry Contents {#MediaContents}
@@ -971,6 +995,9 @@ for his valuable contributions to this specification.
   * (CDDL) `header_map`, `label` and `value` definitions imported from
     RFC 9052
   * Receive examples of additional types of algorithm-specific proofs from JPT
+  * Added Holder Presentation Algorithm (`hpa`) parameter to support
+    the holder presenting using a different key type and algorithm than
+    the issuer in SU and MAC family algorithms
 
  -09
 

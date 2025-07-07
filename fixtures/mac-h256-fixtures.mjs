@@ -1,6 +1,9 @@
 import { base64url } from 'jose';
 import { GeneralSign } from 'jose';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256 } from './utils.mjs';
+import { lineWrap, compactPayloadEncode, jsonPayloadEncode,
+    signPayloadSHA256, payloadSecrets, payloadMACs, 
+    createPresentationInternalRepresentation, combinedMACRepresentation
+} from './utils.mjs';
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 
@@ -13,6 +16,7 @@ import presentationNonceStr from "./build/presentation-nonce.json" with {type: "
 import issuerProtectedHeaderJSON from "./template/mac-h256-issuer-protected-header.json" with {type: "json"};
 import holderProtectedHeaderJSON from "./template/mac-h256-holder-protected-header.json" with {type: "json"};
 import holderSharedSecretStr from "./build/mac-h256-holder-shared-secret.json" with {type: "json"};
+import { create } from 'domain';
 
 const { encode, decode } = base64url;
 
@@ -42,41 +46,18 @@ const finalIssuerProtectedHeader = JSON.stringify(issuerProtectedHeaderJSON);
 
 await fs.writeFile("build/mac-h256-issuer-protected-header.json", lineWrap(JSON.stringify(issuerProtectedHeaderJSON, 0, 2)));
 
-let issuerHeaderMac = crypto.createHmac('sha256', 'issuer_header').update(finalIssuerProtectedHeader).digest();
-
-await fs.writeFile("build/mac-h256-issuer-protected-header-mac.txt", lineWrap(encode(issuerHeaderMac)));
-
 // process the issued payloads
 
-let payloadKeys = []; // Buffer[]
-let payloadMacs = [] // Buffer[]
-
-for(let i=0; i<payloadsJSON.length; i++)
-{
-    // generate a unique payload key per numbered slot, based on knowledge of the 
-    let payloadKey = crypto.createHmac('sha256', issuerNonce).update("payload_").update(String(i)).digest();
-    payloadKeys.push(payloadKey);
-
-    let payload = payloads[i];
-
-    // create a mac based on the synthesized payload key and the encoded payload
-    let mac = crypto.createHmac('sha256', payloadKey).update(payload).digest()
-    payloadMacs.push(mac);
-}
+const payloadKeys = payloadSecrets('sha256', issuerNonce, payloads.length);
+const payloadMacs = payloadMACs("sha256", payloadKeys, payloads);
 
 await fs.writeFile("build/mac-h256-issuer-derived-payload-keys.json", JSON.stringify(payloadKeys.map(encode), 0, 2));
 await fs.writeFile("build/mac-h256-payload-macs.json", JSON.stringify(payloadMacs.map(encode), 0, 2));
 
 // merge macs for signing
+const combinedMacRepresentation = combinedMACRepresentation(finalIssuerProtectedHeader, payloadMacs);
 
-const combinedMacs = payloadMacs.reduce(
-    (previousValue, currentValue, currentIndex, array) => {
-        return Buffer.concat([previousValue, currentValue])
-    },
-    issuerHeaderMac
-);
-
-const macsSignature = await signPayloadSHA256(combinedMacs, issuerPrivateKey);
+const macsSignature = await signPayloadSHA256(combinedMacRepresentation, issuerPrivateKey);
 
 // Append shared key to raw signature for issuer proof value
 const issuedProof = [macsSignature, holderSharedSecret]
@@ -100,11 +81,8 @@ const finalHolderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHea
 
 await fs.writeFile("build/mac-h256-presentation-protected-header.json.wrapped", lineWrap(JSON.stringify(holderProtectedHeaderJSON, 0, 2)));
 
-// Sign the presentation protected header w/ the holder key
-const presentationProtectedHeaderSignature = await signPayloadSHA256(finalHolderProtectedHeader, holderPrivateKey);
-
 // build presentation proof from issuer sig, presentation sig, then mac-or-key
-let pres_final = [presentationProtectedHeaderSignature, macsSignature];
+let pres_final = [macsSignature];
 
 const redactedPayloads = [4, 5, 6];
 for (let i = 0 ; i < payloads.length; i++ ) {
@@ -121,6 +99,17 @@ for (let i = 0 ; i < payloads.length; i++ ) {
         pres_final.push(payloadKeys[i]);
     }
 }
+
+let presentationInternalRepresenation = createPresentationInternalRepresentation(
+    finalIssuerProtectedHeader,
+    finalHolderProtectedHeader,
+    payloads,
+    pres_final);
+
+    // Sign the presentation protected header w/ the holder key
+const presentationHolderSignature = await signPayloadSHA256(presentationInternalRepresenation, holderPrivateKey);
+pres_final.push(presentationHolderSignature);
+
 
 await fs.writeFile("build/mac-h256-presentation-proof.json.wrapped",
     lineWrap(JSON.stringify(pres_final.map(encode), 0, 2)));
