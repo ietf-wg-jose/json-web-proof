@@ -28,7 +28,7 @@ Abstract
 
    This document defines a new container format similar in purpose and
    design to JSON Web Signature (JWS) and COSE Signed Messages called a
-   _JSON Web Proof (JWP)_. Unlike JWS, which integrity-protects only a
+   _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a
    single payload, JWP can integrity-protect multiple payloads in one
    message.  It also specifies a new presentation form that supports
    selective disclosure of individual payloads, enables additional proof
@@ -200,19 +200,17 @@ Table of Contents
 
    The following terms are used throughout this series of documents:
 
-   binding: A mechanism, indicated in an issued JWP, for how to verify a
-   presentation was created by the intended holder.
-
-   linkability: The property where multiple presentations may be
-   correlated to a single issued JWP, either through consistency in the
-   cryptographic integrity or due to particulars of JWP usage by an
-   application.  Such issued JWPs may be referred to as single-use, as
-   multiple uses may leak unintended knowledge.
-
-   unlinkability: The property of issuance and presentation algorithms
-   and of application usage, where one presentation can only be
-   correlated with other presentations based on holder-disclosed
-   information.
+   binding:  A mechanism, indicated in an issued JWP, for how to verify
+      a presentation was created by the intended holder.
+   linkability:  The property where multiple presentations may be
+      correlated to a single issued JWP, either through consistency in
+      the cryptographic integrity or due to particulars of JWP usage by
+      an application.  Such issued JWPs may be referred to as single-
+      use, as multiple uses may leak unintended knowledge.
+   unlinkability:  The property of issuance and presentation algorithms
+      and of application usage, where one presentation can only be
+      correlated with other presentations based on holder-disclosed
+      information.
 
 2.2.  Abbreviations
 
@@ -346,7 +344,7 @@ Table of Contents
    algorithm used to secure the JWP.  The JWP Proof value is not valid
    if the alg value does not represent a supported algorithm or if there
    is not a key for use with that algorithm associated with the party
-   that secured the content. alg values should either be registered in
+   that secured the content.  alg values should either be registered in
    the IANA "JSON Web Proof Algorithms" registry established by
    [I-D.ietf-jose-json-proof-algorithms] or be a value that contains a
    Collision-Resistant Name.
@@ -817,14 +815,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.p-U7nYvuem-RNi8_CkzaHWiYKS905-qEhEEWG98r
-   5USmQNTzL85mIhfnu8yxgsSVg3DD7nCn_7WsaNdmn1PtOVBkE3DaJ_VDozUV8u0NkagzH
-   D-X4MlRy_IvAkAU1UuAiB6kIhUMMSCY9rT9oBGZSXOQHINUrsWgx8pf5dB5e4bu0nSU3Q
-   Eb0h7w3czZoH1lAh29a1JLQSHI_Bx8d0WLKIxAI3m_NmUU38lNqcTxIgdCWQk_hzFBd_-
-   Rcepd6mSFwSGVZbiMv5dZaZP0KQu14BFp9Km8rOA6puziC4Xk3i5JYRZpDybTlBiU2JXS
-   LQxiJjhmr1v5xkvbRXuoDTZkR3l2Fj_zhrWSUUJxTlNqdyNLZNb0XQnKzAsIvHapxyIZQ
-   pHouMS9gNn9i5f2BdEEfmsgxeoVh-5DjobCksKbMST6949Zf-nLQC2808mZ_iChYialju
-   HmVjee3z8yxlHG1HQUzeTr8wdEXHkSOKmaAw0
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qCXrloWKK59p8McanBrqX7lDZcAowpIWDhZ6K4js
+   RduDR3S8vE6nzWHwJcNQilDEroOuyRNU-uGBOwO3J25XblkPgU-l5Y8Jjfk7vC1t-6NQf
+   t8phPqg8fljXIXlwp_jkPiLsIuX4LBmHiAcHD4i1gF5F7APOrFlXctQEUj_9UadxBz9dI
+   6mzDGjTj0d8q4GJzGCbFLBw5sEEfchUWa1k0htMnGuOKsMyQUzEPwxTcdGZbKJHPNhBl6
+   vjIrgoY0wlfOzqANtiJ3TjCg1HHvnbRpfYDkoQD2vDX6RflWvdZ5mNeM-fyTpgwUX4cdj
+   fUK1cUifH6-RiEoVhRY_kummVotkQ0bukj1xA7En6g4wk2dHesbiOiDNKXgoXI3VRmlI9
+   fCk0JoLublkmQL3reokrQpdLjR4zGD7ZyljXZriBK7RHcqju5a387GTZkL-suEIDVUFIA
+   mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1345,8 +1343,8 @@ Appendix A.  Acknowledgements
    This work was incubated in the DIF Applied Cryptography Working Group
    (https://identity.foundation/working-groups/crypto.html).
 
-   We would like to thank Brent Zundel for his valuable contributions to
-   this specification.
+   We would like to thank Brent Zundel and Emil Lundberg for their
+   valuable contributions to this specification.
 
 Appendix B.  Document History
 
@@ -1421,7 +1419,7 @@ Appendix B.  Document History
       CBOR-formatted.
    *  Moved the registry for proof_key and presentation_key to JWP where
       they are defined.  Consolidated usage, purpose and requirements
-      from algorith musage under these definitions.
+      from algorithm usage under these definitions.
    *  Clarified that proof_key and presentation_key are required by
       particular algorithms and are not more generally required for
       issued and presented JWPs.

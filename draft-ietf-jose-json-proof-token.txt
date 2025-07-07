@@ -305,9 +305,11 @@ Table of Contents
 8.  Presented Claims and Proofs
 
    Each claim in the issued form of the JPT or CPT results in one of
-   three things in the presented form of the JPT or CPT: 1.  A disclosed
-   JSON or CBOR value. 1.  An indicator that the value was not
-   disclosed. 1.  An algorithm-specific proof method.
+   three things in the presented form of the JPT or CPT:
+
+   1.  A disclosed JSON or CBOR value.
+   2.  An indicator that the value was not disclosed.
+   3.  An algorithm-specific proof method.
 
 8.1.  Disclosed
 

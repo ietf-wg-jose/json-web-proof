@@ -9,7 +9,10 @@
 <meta content="David Waite" name="author">
 <meta content="Jeremie Miller" name="author">
 <meta content="
-       The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof, JSON Web Key (JWK), and COSE specifications. It defines IANA registries for these identifiers. 
+       The JSON Proof Algorithms (JPA) specification registers cryptographic
+algorithms and identifiers to be used with the JSON Web Proof, JSON Web
+Key (JWK), and COSE specifications.  It defines IANA registries for
+these identifiers. 
     " name="description">
 <meta content="xml2rfc 3.29.0" name="generator">
 <meta content="json" name="keyword">
@@ -1096,7 +1099,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">JSON Proof Algorithms</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">The JSON Proof Algorithms (JPA) specification registers cryptographic algorithms and identifiers to be used with the JSON Web Proof, JSON Web Key (JWK), and COSE specifications. It defines IANA registries for these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">The JSON Proof Algorithms (JPA) specification registers cryptographic
+algorithms and identifiers to be used with the JSON Web Proof, JSON Web
+Key (JWK), and COSE specifications.  It defines IANA registries for
+these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1373,9 +1379,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The JSON Web Proof (JWP) <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span> draft establishes a new secure container format that supports selective disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other cryptographic algorithms.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">The JSON Web Proof (JWP) <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span> draft
+establishes a new secure container format that supports selective
+disclosure and unlinkability using Zero-Knowledge Proofs (ZKPs) or other
+cryptographic algorithms.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <blockquote id="section-1-2">
-        <p id="section-1-2.1">Editor's Note: This draft is still early and incomplete. There will be significant changes to the algorithms as currently defined here.  Please do not use any of these definitions or examples for anything except personal experimentation and learning.  Contributions and feedback are welcomed at <a href="https://github.com/ietf-wg-jose/json-web-proof">https://github.com/ietf-wg-jose/json-web-proof</a>.<a href="#section-1-2.1" class="pilcrow">¶</a></p>
+        <p id="section-1-2.1">Editor's Note: This draft is still early and incomplete.  There will
+be significant changes to the algorithms as currently defined here.
+Please do not use any of these definitions or examples for anything
+except personal experimentation and learning.  Contributions and
+feedback are welcomed at
+<a href="https://github.com/ietf-wg-jose/json-web-proof">https://github.com/ietf-wg-jose/json-web-proof</a>.<a href="#section-1-2.1" class="pilcrow">¶</a></p>
 </blockquote>
 </section>
 </div>
@@ -1384,9 +1398,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-conventions-and-definitions">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
       </h2>
-<p id="section-2-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-"MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The roles of "issuer", "holder", and "verifier" are used as defined by the VC Data Model <span>[<a href="#VC-DATA-MODEL-2.0" class="cite xref">VC-DATA-MODEL-2.0</a>]</span>.  The term "presentation" is also used as defined by this source, but the term "credential" is avoided in this specification to minimize confusion with other definitions.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in BCP 14
+<span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they appear in all
+capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">The roles of "issuer", "holder", and "verifier" are used as defined by
+the VC Data Model <span>[<a href="#VC-DATA-MODEL-2.0" class="cite xref">VC-DATA-MODEL-2.0</a>]</span>.  The term "presentation" is also
+used as defined by this source, but the term "credential" is avoided in
+this specification to minimize confusion with other definitions.<a href="#section-2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1394,20 +1414,28 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-terminology">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
       </h2>
-<p id="section-3-1">The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS Protected Header" are defined by <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP Protected Header" are defined by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-1">The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header
+Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS
+Protected Header" are defined by <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP
+Protected Header" are defined by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">These terms are defined by this specification:<a href="#section-3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlCompact dlParallel" id="section-3-4">
         <dt id="section-3-4.1">Stable Key:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.2">An asymmetric key-pair used by an issuer that is also shared via an out-of-band mechanism to a verifier to validate the signature.<a href="#section-3-4.2" class="pilcrow">¶</a>
+        <dd style="margin-left: 1.5em" id="section-3-4.2">An asymmetric key-pair used by an issuer that is also shared via an
+out-of-band mechanism to a verifier to validate the signature.<a href="#section-3-4.2" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-4.3">Ephemeral Key:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.4">An asymmetric key-pair that is generated for one-time use by an issuer and never stored or used again outside of the creation of a single JWP.<a href="#section-3-4.4" class="pilcrow">¶</a>
+        <dd style="margin-left: 1.5em" id="section-3-4.4">An asymmetric key-pair that is generated for one-time use by an issuer
+and never stored or used again outside of the creation of a single
+JWP.<a href="#section-3-4.4" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-4.5">Presentation Key:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.6">An asymmetric key-pair that is generated by a holder and used to ensure that a presentation is not able to be replayed by any other party.<a href="#section-3-4.6" class="pilcrow">¶</a>
+        <dd style="margin-left: 1.5em" id="section-3-4.6">An asymmetric key-pair that is generated by a holder and used to
+ensure that a presentation is not able to be replayed by any other
+party.<a href="#section-3-4.6" class="pilcrow">¶</a>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1418,8 +1446,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-background">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-background" class="section-name selfRef">Background</a>
       </h2>
-<p id="section-4-1">JWP defines a container binding together a protected header, one or more payloads, and a cryptographic proof.  It does not define any details about the interactions between an application and the cryptographic libraries that implement proof-supporting algorithms.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Due to the nature of ZKPs, this specification also documents the subtle but important differences in proof algorithms versus those defined by the JSON Web Algorithms <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>.  These differences help support more advanced capabilities such as blinded signatures and predicate proofs.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-1">JWP defines a container binding together a protected header, one or more
+payloads, and a cryptographic proof.  It does not define any details
+about the interactions between an application and the cryptographic
+libraries that implement proof-supporting algorithms.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">Due to the nature of ZKPs, this specification also documents the subtle
+but important differences in proof algorithms versus those defined by
+the JSON Web Algorithms <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>.  These differences help support more
+advanced capabilities such as blinded signatures and predicate proofs.<a href="#section-4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="algorithm-basics">
@@ -1427,15 +1461,22 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-algorithm-basics">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-algorithm-basics" class="section-name selfRef">Algorithm Basics</a>
       </h2>
-<p id="section-5-1">The four principal interactions that every proof algorithm MUST support are <code>[issue](#issue)</code>, <code>[confirm](#confirm)</code>, <code>[present](#present)</code>, and <code>[verify](#verify)</code>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">The four principal interactions that every proof algorithm MUST support
+are <a href="#issue">issue</a>, <a href="#confirm">confirm</a>, <a href="#present">present</a>, and
+<a href="#verify">verify</a>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="issue">
 <section id="section-5.1">
         <h3 id="name-issue">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-issue" class="section-name selfRef">Issue</a>
         </h3>
 <p id="section-5.1-1">The JWP is first created as the output of a JPA's <code>issue</code> operation.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">Every algorithm MUST support a JSON issuer protected header along with one or more octet string payloads.  The algorithm MAY support using additional items provided by the holder for issuance such as blinded payloads, keys for replay prevention, etc.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1-3">All algorithms MUST provide integrity protection for the issuer header and all payloads and MUST specify all digest and/or hash2curve methods used.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">Every algorithm MUST support a JSON issuer protected header along with
+one or more octet string payloads.  The algorithm MAY support using
+additional items provided by the holder for issuance such as blinded
+payloads, keys for replay prevention, etc.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">All algorithms MUST provide integrity protection for the issuer header
+and all payloads and MUST specify all digest and/or hash2curve methods
+used.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="confirm">
@@ -1443,9 +1484,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-confirm">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-confirm" class="section-name selfRef">Confirm</a>
         </h3>
-<p id="section-5.2-1">Performed by the holder to validate that the issued JWP is correctly formed and protected.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">Each algorithm MAY support using additional input items options, such as those sent to the issuer for issuance. After confirmation, an algorithm MAY return a modified JWP for serialized storage without the local state (such as with blinded payloads now unblinded).<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">The algorithm MUST fully verify the issued proof value against the issuer protected header and all payloads.  If given a presented JWP instead of an issued one, the confirm process MUST return an error.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">Performed by the holder to validate that the issued JWP is correctly
+formed and protected.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">Each algorithm MAY support using additional input items options, such as
+those sent to the issuer for issuance.  After confirmation, an algorithm
+MAY return a modified JWP for serialized storage without the local state
+(such as with blinded payloads now unblinded).<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">The algorithm MUST fully verify the issued proof value against the
+issuer protected header and all payloads.  If given a presented JWP
+instead of an issued one, the confirm process MUST return an error.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="present">
@@ -1453,10 +1500,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-present">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-present" class="section-name selfRef">Present</a>
         </h3>
-<p id="section-5.3-1">Used to apply any selective disclosure choices and perform any unlinkability transformations, as well as to show binding.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.3-2">An algorithm MAY support additional input options from the requesting party, such as for predicate proofs and verifiable computation requests.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.3-3">Every algorithm MUST support the ability to hide any or all payloads.  It MUST always include the issuer protected header unmodified in the presentation.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.3-4">The algorithm MUST replace the issued proof value and generate a new presented proof value.  It also MUST include a new presentation protected header that provides replay protection.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">Used to apply any selective disclosure choices and perform any
+unlinkability transformations, as well as to show binding.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-2">An algorithm MAY support additional input options from the requesting
+party, such as for predicate proofs and verifiable computation requests.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.3-3">Every algorithm MUST support the ability to hide any or all payloads.
+It MUST always include the issuer protected header unmodified in the
+presentation.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.3-4">The algorithm MUST replace the issued proof value and generate a new
+presented proof value.  It also MUST include a new presentation
+protected header that provides replay protection.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="verify">
@@ -1464,11 +1517,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-verify">
 <a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-verify" class="section-name selfRef">Verify</a>
         </h3>
-<p id="section-5.4-1">Performed by the verifier to verify the protected headers along with any disclosed payloads and/or assertions about them from the proving party, while also verifying they are the same payloads and ordering as witnessed by the issuer.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
-<p id="section-5.4-2">The algorithm MUST verify the integrity of all disclosed payloads and MUST also verify the integrity of both the issuer and presentation protected headers.<a href="#section-5.4-2" class="pilcrow">¶</a></p>
-<p id="section-5.4-3">If the presented proof contains any assertions about the hidden payloads, the algorithm MUST also verify all of those assertions.
-It MAY support additional options, such as those sent to the holder to generate the presentation.<a href="#section-5.4-3" class="pilcrow">¶</a></p>
-<p id="section-5.4-4">If given an issued JWP for verification, the algorithm MUST return an error.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
+<p id="section-5.4-1">Performed by the verifier to verify the protected headers along with any
+disclosed payloads and/or assertions about them from the proving party,
+while also verifying they are the same payloads and ordering as
+witnessed by the issuer.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.4-2">The algorithm MUST verify the integrity of all disclosed payloads and
+MUST also verify the integrity of both the issuer and presentation
+protected headers.<a href="#section-5.4-2" class="pilcrow">¶</a></p>
+<p id="section-5.4-3">If the presented proof contains any assertions about the hidden
+payloads, the algorithm MUST also verify all of those assertions.  It
+MAY support additional options, such as those sent to the holder to
+generate the presentation.<a href="#section-5.4-3" class="pilcrow">¶</a></p>
+<p id="section-5.4-4">If given an issued JWP for verification, the algorithm MUST return an
+error.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1484,16 +1545,35 @@ It MAY support additional options, such as those sent to the holder to generate 
         <h3 id="name-single-use">
 <a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-single-use" class="section-name selfRef">Single Use</a>
         </h3>
-<p id="section-6.1-1">The Single Use (SU) algorithm is based on composing multiple traditional asymmetric signatures into a single JWP proof.  It enables a very simple form of selective disclosure without requiring any advanced cryptographic techniques.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">It does not support unlinkability if the same JWP is presented multiple times, therefore when privacy is required the holder will need to interact with the issuer again to receive new single-use JWPs (dynamically or in batches).<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-1">The Single Use (SU) algorithm is based on composing multiple traditional
+asymmetric signatures into a single JWP proof.  It enables a very simple
+form of selective disclosure without requiring any advanced
+cryptographic techniques.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">It does not support unlinkability if the same JWP is presented multiple
+times, therefore when privacy is required the holder will need to
+interact with the issuer again to receive new single-use JWPs
+(dynamically or in batches).<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <div id="jws-algorithm">
 <section id="section-6.1.1">
           <h4 id="name-jws-algorithm">
 <a href="#section-6.1.1" class="section-number selfRef">6.1.1. </a><a href="#name-jws-algorithm" class="section-name selfRef">JWS Algorithm</a>
           </h4>
-<p id="section-6.1.1-1">The Single Use algorithm uses multiple signing keys to protect the protected header as well as individual payloads of an Issued JWP. The issuer uses a stable public key to sign each protected header, and a per-JWP ephemeral key (conveyed within the protected header) to protect the individual payloads. These signatures are all created using the same Asymmetric Algorithm, with the JOSE and COSE name/label of this algorithm being part of registration for a fully-specified Single Use algorithm identifier.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-2">The issuer protected header also conveys a holder presentation key, an ephemeral asymmetric key meant to only be used for presenting a single JWP. The fully-specified algorithm the holder must use for presentations is also included. This algorithm MAY be different from the algorithm used by the issuer.<a href="#section-6.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-3">The chosen algorithms MUST be an asymmetric signing algorithms, so that each signature can be verified without sharing any private values between the parties.<a href="#section-6.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.1.1-1">The Single Use algorithm uses multiple signing keys to protect the
+protected header as well as individual payloads of an Issued JWP.  The
+issuer uses a stable public key to sign each protected header, and a
+per-JWP ephemeral key (conveyed within the protected header) to protect
+the individual payloads.  These signatures are all created using the
+same Asymmetric Algorithm, with the JOSE and COSE name/label of this
+algorithm being part of registration for a fully-specified Single Use
+algorithm identifier.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.1-2">The issuer protected header also conveys a holder presentation key, an
+ephemeral asymmetric key meant to only be used for presenting a single
+JWP.  The fully-specified algorithm the holder must use for
+presentations is also included.  This algorithm MAY be different from
+the algorithm used by the issuer.<a href="#section-6.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1.1-3">The chosen algorithms MUST be an asymmetric signing algorithms, so that
+each signature can be verified without sharing any private values
+between the parties.<a href="#section-6.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="holder-setup">
@@ -1501,9 +1581,20 @@ It MAY support additional options, such as those sent to the holder to generate 
           <h4 id="name-holder-setup">
 <a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-holder-setup" class="section-name selfRef">Holder Setup</a>
           </h4>
-<p id="section-6.1.2-1">In order to support the protection of a presentation by a holder to a verifier, the holder MUST use a Presentation Key during the issuance and the presentation of every Single Use JWP.  This Presentation Key MUST be generated and used for only one JWP.<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-2">The issuer MUST verify that the holder has possession of this key.  The holder-issuer communication to exchange this information is out of scope of this specification, but can be accomplished by the holder using this key to generate a JWS that signs a value the issuer can verify as unique.<a href="#section-6.1.2-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-3">The issuer MUST deterine an appropriate holder presentation algorithm corresponding to the presentation key. If the holder and verifier cannot be assumed to know this algorithm is the appropriate choice for a given presentation key, this value MUST be conveyed in the <code>hpa</code> issuer protected header.<a href="#section-6.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.1.2-1">In order to support the protection of a presentation by a holder to a
+verifier, the holder MUST use a Presentation Key during the issuance and
+the presentation of every Single Use JWP.  This Presentation Key MUST be
+generated and used for only one JWP.<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.2-2">The issuer MUST verify that the holder has possession of this key.  The
+holder-issuer communication to exchange this information is out of scope
+of this specification, but can be accomplished by the holder using this
+key to generate a JWS that signs a value the issuer can verify as
+unique.<a href="#section-6.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.1.2-3">The issuer MUST deterine an appropriate holder presentation algorithm
+corresponding to the presentation key.  If the holder and verifier
+cannot be assumed to know this algorithm is the appropriate choice for a
+given presentation key, this value MUST be conveyed in the <code>hpa</code> issuer
+protected header.<a href="#section-6.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-setup">
@@ -1511,7 +1602,9 @@ It MAY support additional options, such as those sent to the holder to generate 
           <h4 id="name-issuer-setup">
 <a href="#section-6.1.3" class="section-number selfRef">6.1.3. </a><a href="#name-issuer-setup" class="section-name selfRef">Issuer Setup</a>
           </h4>
-<p id="section-6.1.3-1">To create a Single Use JWP, the issuer first generates a unique Ephemeral Key using the selected internal algorithm.  This key-pair will be used to sign each of the payloads of a single JWP and then discarded.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.3-1">To create a Single Use JWP, the issuer first generates a unique
+Ephemeral Key using the selected internal algorithm.  This key-pair will
+be used to sign each of the payloads of a single JWP and then discarded.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="signing-payloads">
@@ -1519,7 +1612,8 @@ It MAY support additional options, such as those sent to the holder to generate 
           <h4 id="name-signing-payloads">
 <a href="#section-6.1.4" class="section-number selfRef">6.1.4. </a><a href="#name-signing-payloads" class="section-name selfRef">Signing Payloads</a>
           </h4>
-<p id="section-6.1.4-1">Each individual payload is signed using the selected internal algorithm using the Ephemeral Key.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.4-1">Each individual payload is signed using the selected internal algorithm
+using the Ephemeral Key.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-protected-header">
@@ -1527,10 +1621,17 @@ It MAY support additional options, such as those sent to the holder to generate 
           <h4 id="name-issuer-protected-header">
 <a href="#section-6.1.5" class="section-number selfRef">6.1.5. </a><a href="#name-issuer-protected-header" class="section-name selfRef">Issuer Protected Header</a>
           </h4>
-<p id="section-6.1.5-1">The Issuer's Ephemeral Key MUST be included via the Proof Key header parameter.<a href="#section-6.1.5-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.5-2">The Holder's Presentation Key MUST be included via the Presentation Key header parameter.<a href="#section-6.1.5-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.5-3">The Holder's Presentation Algorithm MUST be included via the Holder Presentation Algorithm header parameter, unless there is another way for the holder and verifier to unambiguously determine the appropriate algorithm to use.<a href="#section-6.1.5-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.5-4">The Issuer Protected Header is signed using the appropriate internal signing algorithm for the given fully-specified single use algorithm, using the issuer's Stable Key.<a href="#section-6.1.5-4" class="pilcrow">¶</a></p>
+<p id="section-6.1.5-1">The Issuer's Ephemeral Key MUST be included via the Proof Key header
+parameter.<a href="#section-6.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.5-2">The Holder's Presentation Key MUST be included via the Presentation Key
+header parameter.<a href="#section-6.1.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.1.5-3">The Holder's Presentation Algorithm MUST be included via the Holder
+Presentation Algorithm header parameter, unless there is another way for
+the holder and verifier to unambiguously determine the appropriate
+algorithm to use.<a href="#section-6.1.5-3" class="pilcrow">¶</a></p>
+<p id="section-6.1.5-4">The Issuer Protected Header is signed using the appropriate internal
+signing algorithm for the given fully-specified single use algorithm,
+using the issuer's Stable Key.<a href="#section-6.1.5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="payloads">
@@ -1538,7 +1639,8 @@ It MAY support additional options, such as those sent to the holder to generate 
           <h4 id="name-payloads">
 <a href="#section-6.1.6" class="section-number selfRef">6.1.6. </a><a href="#name-payloads" class="section-name selfRef">Payloads</a>
           </h4>
-<p id="section-6.1.6-1">Each JWP payload is processed in order and signed using the given JWA using the issuer's Ephemeral Key.<a href="#section-6.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.6-1">Each JWP payload is processed in order and signed using the given JWA
+using the issuer's Ephemeral Key.<a href="#section-6.1.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="proof">
@@ -1546,7 +1648,9 @@ It MAY support additional options, such as those sent to the holder to generate 
           <h4 id="name-proof">
 <a href="#section-6.1.7" class="section-number selfRef">6.1.7. </a><a href="#name-proof" class="section-name selfRef">Proof</a>
           </h4>
-<p id="section-6.1.7-1">The proof value is an octet string array. The first entry is the octet string of the issuer protected header signature, with an additional entry for each payload signature.<a href="#section-6.1.7-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.7-1">The proof value is an octet string array.  The first entry is the octet
+string of the issuer protected header signature, with an additional
+entry for each payload signature.<a href="#section-6.1.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-protected-header-presentation-protected-header">
@@ -1554,12 +1658,24 @@ It MAY support additional options, such as those sent to the holder to generate 
           <h4 id="name-presentation-protected-head">
 <a href="#section-6.1.8" class="section-number selfRef">6.1.8. </a><a href="#name-presentation-protected-head" class="section-name selfRef">Presentation Protected Header #{presentation-protected-header}</a>
           </h4>
-<p id="section-6.1.8-1">To generate a new presentation, the holder first creates a presentation protected header that is specific to the verifier being presented to.  This header MUST contain a parameter that both the holder and verifier trust as being unique and non-replayable.
-Use of the <code>nonce</code> header parameter is RECOMMENDED for this purpose.<a href="#section-6.1.8-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.8-2">This specification registers the <code>nonce</code> header parameter for the presentation protected header that contains a string value either generated by the verifier or derived from values provided by the verifier.  When present, the verifier MUST ensure the nonce value matches during verification.<a href="#section-6.1.8-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.8-3">The presentation protected header MAY contain other header parameters that are either provided by the verifier or by the holder.  These presentation header parameters SHOULD NOT contain values that are common across multiple presentations and SHOULD be unique to a single presentation and verifier.<a href="#section-6.1.8-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.8-4">The presentation protected header MUST contain the same Algorithm protected header as the issuer protected header.
-The Holder Presentation Algorithm protected header MUST NOT be included.<a href="#section-6.1.8-4" class="pilcrow">¶</a></p>
+<p id="section-6.1.8-1">To generate a new presentation, the holder first creates a presentation
+protected header that is specific to the verifier being presented to.
+This header MUST contain a parameter that both the holder and verifier
+trust as being unique and non-replayable.  Use of the <code>nonce</code> header
+parameter is RECOMMENDED for this purpose.<a href="#section-6.1.8-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.8-2">This specification registers the <code>nonce</code> header parameter for the
+presentation protected header that contains a string value either
+generated by the verifier or derived from values provided by the
+verifier.  When present, the verifier MUST ensure the nonce value
+matches during verification.<a href="#section-6.1.8-2" class="pilcrow">¶</a></p>
+<p id="section-6.1.8-3">The presentation protected header MAY contain other header parameters
+that are either provided by the verifier or by the holder.  These
+presentation header parameters SHOULD NOT contain values that are common
+across multiple presentations and SHOULD be unique to a single
+presentation and verifier.<a href="#section-6.1.8-3" class="pilcrow">¶</a></p>
+<p id="section-6.1.8-4">The presentation protected header MUST contain the same Algorithm
+protected header as the issuer protected header.  The Holder
+Presentation Algorithm protected header MUST NOT be included.<a href="#section-6.1.8-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation">
@@ -1567,12 +1683,26 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-presentation">
 <a href="#section-6.1.9" class="section-number selfRef">6.1.9. </a><a href="#name-presentation" class="section-name selfRef">Presentation</a>
           </h4>
-<p id="section-6.1.9-1">The holder derives a new proof as part of presentation. The holder will also use these components to generate a <a href="#presention-internal-representation">presentation internal representation</a>. The number of components depends on the number of payloads which are being disclosed in the presented JWP.<a href="#section-6.1.9-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.9-2">The first proof component will be the signature over the issuer protected header made by the issuer's Stable Key.<a href="#section-6.1.9-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.9-3">For each payload which is to be disclosed, the corresponding payload signature (from the issued JWP) is included as a subsequent proof component. If the payload is being omitted, the corresponding payload signature is omitted from the proof components.<a href="#section-6.1.9-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.9-4">The holder protected header, issuer protected header, payload slots (distinguishing which are being disclosed) and these proof components are inputs to determine the presentation internal representation.<a href="#section-6.1.9-4" class="pilcrow">¶</a></p>
-<p id="section-6.1.9-5">The holder's signature over the presentation internal representation (using the holder's private key and the holder presentation algorithm) is then included as one additional proof component in the final presentation.<a href="#section-6.1.9-5" class="pilcrow">¶</a></p>
-<p id="section-6.1.9-6">For example, if only the second and fifth of five payloads are being disclosed, then the proof at this stage will consist of three values:<a href="#section-6.1.9-6" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-1">The holder derives a new proof as part of presentation.  The holder will
+also use these components to generate a <a href="#presentation-internal-representation">presentation internal
+representation</a>.  The number of
+components depends on the number of payloads which are being disclosed
+in the presented JWP.<a href="#section-6.1.9-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-2">The first proof component will be the signature over the issuer
+protected header made by the issuer's Stable Key.<a href="#section-6.1.9-2" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-3">For each payload which is to be disclosed, the corresponding payload
+signature (from the issued JWP) is included as a subsequent proof
+component.  If the payload is being omitted, the corresponding payload
+signature is omitted from the proof components.<a href="#section-6.1.9-3" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-4">The holder protected header, issuer protected header, payload slots
+(distinguishing which are being disclosed) and these proof components
+are inputs to determine the presentation internal representation.<a href="#section-6.1.9-4" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-5">The holder's signature over the presentation internal representation
+(using the holder's private key and the holder presentation algorithm)
+is then included as one additional proof component in the final
+presentation.<a href="#section-6.1.9-5" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-6">For example, if only the second and fifth of five payloads are being
+disclosed, then the proof at this stage will consist of three values:<a href="#section-6.1.9-6" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.1.9-7">
 <li id="section-6.1.9-7.1">The issuer's signature over the issuer protected header<a href="#section-6.1.9-7.1" class="pilcrow">¶</a>
 </li>
@@ -1581,8 +1711,14 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
             <li id="section-6.1.9-7.3">The payload signature corresponding to the fifth payload.<a href="#section-6.1.9-7.3" class="pilcrow">¶</a>
 </li>
           </ol>
-<p id="section-6.1.9-8">The presentation internal representation would be calculated with these three proof components, while the final presentation would have an additional 4th component containing the signature using the holder's private key.<a href="#section-6.1.9-8" class="pilcrow">¶</a></p>
-<p id="section-6.1.9-9">Since the individual signatures in the proof value are unique and remain unchanged across multiple presentations, a Single Use JWP SHOULD only be presented a single time to each verifier in order for the holder to remain unlinkable across multiple presentations.<a href="#section-6.1.9-9" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-8">The presentation internal representation would be calculated with these
+three proof components, while the final presentation would have an
+additional 4th component containing the signature using the holder's
+private key.<a href="#section-6.1.9-8" class="pilcrow">¶</a></p>
+<p id="section-6.1.9-9">Since the individual signatures in the proof value are unique and remain
+unchanged across multiple presentations, a Single Use JWP SHOULD only be
+presented a single time to each verifier in order for the holder to
+remain unlinkable across multiple presentations.<a href="#section-6.1.9-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="verification-of-presentation">
@@ -1592,17 +1728,27 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           </h4>
 <p id="section-6.1.10-1">Verification is performed using the following steps.<a href="#section-6.1.10-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.1.10-2">
-<li id="section-6.1.10-2.1">Check the number of proof components is appropriate for the number of disclosed payloads. There MUST be two more proof components than disclosed payloads.<a href="#section-6.1.10-2.1" class="pilcrow">¶</a>
+<li id="section-6.1.10-2.1">Check the number of proof components is appropriate for the number of
+disclosed payloads.  There MUST be two more proof components than
+disclosed payloads.<a href="#section-6.1.10-2.1" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.1.10-2.2">Verify the first proof component is a valid signature over issuer protected header octets, using the issuer's stable key.<a href="#section-6.1.10-2.2" class="pilcrow">¶</a>
+            <li id="section-6.1.10-2.2">Verify the first proof component is a valid signature over issuer
+protected header octets, using the issuer's stable key.<a href="#section-6.1.10-2.2" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.1.10-2.3">Extract the presentation key and holder presentation algorithm (if present) from the issuer protected header.<a href="#section-6.1.10-2.3" class="pilcrow">¶</a>
+            <li id="section-6.1.10-2.3">Extract the presentation key and holder presentation algorithm (if
+present) from the issuer protected header.<a href="#section-6.1.10-2.3" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.1.10-2.4">Omitting the final payload component, calculate the <a href="#presentation-internal-representation">presentation internal representation</a>.<a href="#section-6.1.10-2.4" class="pilcrow">¶</a>
+            <li id="section-6.1.10-2.4">Omitting the final payload component, calculate the <a href="#presentation-internal-representation">presentation
+internal representation</a>.<a href="#section-6.1.10-2.4" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.1.10-2.5">Verify the final proof component is a valid signature over the presentation internal binary form, using the holder's presentation key and the extracted (or otherwise determined) holder presentation algorithm.<a href="#section-6.1.10-2.5" class="pilcrow">¶</a>
+            <li id="section-6.1.10-2.5">Verify the final proof component is a valid signature over the
+presentation internal binary form, using the holder's presentation
+key and the extracted (or otherwise determined) holder presentation
+algorithm.<a href="#section-6.1.10-2.5" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.1.10-2.6">For each remaining proof component, verify they form a valid signature over each disclosed payload in sequence, using the issuer's ephemeral key.<a href="#section-6.1.10-2.6" class="pilcrow">¶</a>
+            <li id="section-6.1.10-2.6">For each remaining proof component, verify they form a valid
+signature over each disclosed payload in sequence, using the issuer's
+ephemeral key.<a href="#section-6.1.10-2.6" class="pilcrow">¶</a>
 </li>
           </ol>
 </section>
@@ -1612,7 +1758,9 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-jpa-registration">
 <a href="#section-6.1.11" class="section-number selfRef">6.1.11. </a><a href="#name-jpa-registration" class="section-name selfRef">JPA Registration</a>
           </h4>
-<p id="section-6.1.11-1">The proposed JWP <code>alg</code> value is of the format "SU-" appended with the relevant JWS <code>alg</code> value for the chosen public and ephemeral key-pair algorithm, for example "SU-ES256".<a href="#section-6.1.11-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.11-1">The proposed JWP <code>alg</code> value is of the format "SU-" appended with the
+relevant JWS <code>alg</code> value for the chosen public and ephemeral key-pair
+algorithm, for example "SU-ES256".<a href="#section-6.1.11-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1622,10 +1770,23 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
         <h3 id="name-presentation-internal-repre">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-presentation-internal-repre" class="section-name selfRef">Presentation Internal Representation</a>
         </h3>
-<p id="section-6.2-1">Some algorithms (such as Single use and MAC) use a holder key to provide integrity over the presentation. For these algorithms, an internal binary form of the presentation must be generated both for signing by the holder, and for verification by the verifier. Other algorithms MAY use this same form for consistency.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">The instructions for creating this binary representation will also create well-formed CBOR, although this data is not meant to be shared outside the implementing algorithm. Instead, it focuses on simplicity of generation by the holder and verifier implementations. Although CBOR has multiple representations of the same underlying information, this same octet string MUST be generated by an implementation.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
-<p id="section-6.2-3">When a length or count is added by the steps below, it is added as its 8 byte, network-ordered representation. For example, the length of a 1,234 byte payload would have a length representation of <code>0x00 00 00 00 00 00 04 D2</code>.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
-<p id="section-6.2-4">The binary representation is created by appending data into a single octet string in the following order:<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-1">Some algorithms (such as Single use and MAC) use a holder key to provide
+integrity over the presentation.  For these algorithms, an internal
+binary form of the presentation must be generated both for signing by
+the holder, and for verification by the verifier.  Other algorithms MAY
+use this same form for consistency.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">The instructions for creating this binary representation will also
+create well-formed CBOR, although this data is not meant to be shared
+outside the implementing algorithm.  Instead, it focuses on simplicity
+of generation by the holder and verifier implementations.  Although CBOR
+has multiple representations of the same underlying information, this
+same octet string MUST be generated by an implementation.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">When a length or count is added by the steps below, it is added as its 8
+byte, network-ordered representation.  For example, the length of a
+1,234 byte payload would have a length representation of
+<code>0x00 00 00 00 00 00 04 D2</code>.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">The binary representation is created by appending data into a single
+octet string in the following order:<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.2-5">
 <li id="section-6.2-5.1">
             <code>0x84 5B</code><a href="#section-6.2-5.1" class="pilcrow">¶</a>
@@ -1683,14 +1844,19 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
         <h3 id="name-bbs">
 <a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-bbs" class="section-name selfRef">BBS</a>
         </h3>
-<p id="section-6.3-1">The BBS Signature Scheme <span>[<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span> is under active development within the CRFG.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.3-2">This algorithm supports both selective disclosure and unlinkability, enabling the holder to generate multiple presentations from one issued JWP without a verifier being able to correlate those presentations together based on the proof.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.3-1">The BBS Signature Scheme <span>[<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span> is under
+active development within the CRFG.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3-2">This algorithm supports both selective disclosure and unlinkability,
+enabling the holder to generate multiple presentations from one issued
+JWP without a verifier being able to correlate those presentations
+together based on the proof.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <div id="BBS-registration">
 <section id="section-6.3.1">
           <h4 id="name-jpa-algorithms">
 <a href="#section-6.3.1" class="section-number selfRef">6.3.1. </a><a href="#name-jpa-algorithms" class="section-name selfRef">JPA Algorithms</a>
           </h4>
-<p id="section-6.3.1-1">The <code>BBS</code> algorithm corresponds to a ciphersuite identifier of <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code>.<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.1-1">The <code>BBS</code> algorithm corresponds to a ciphersuite identifier of
+<code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code>.<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="key-format">
@@ -1698,8 +1864,14 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-key-format">
 <a href="#section-6.3.2" class="section-number selfRef">6.3.2. </a><a href="#name-key-format" class="section-name selfRef">Key Format</a>
           </h4>
-<p id="section-6.3.2-1">The key used for the <code>BBS</code> algorithm is an elliptic curve-based key pair, specifically against the G_2 subgroup of a pairing friendly curve. Additional details on key generation can be found in <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#appendix-Section%203.4" class="relref">Section 3.4</a>. The JWK and Cose Key Object representations of the key are detailed in <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span>.<a href="#section-6.3.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.2-2">There is no additional holder presentation key necessary for presentation proofs.<a href="#section-6.3.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.2-1">The key used for the <code>BBS</code> algorithm is an elliptic curve-based key
+pair, specifically against the G_2 subgroup of a pairing friendly curve.
+Additional details on key generation can be found in
+<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#appendix-Section%203.4" class="relref">Section 3.4</a>.  The JWK and Cose Key
+Object representations of the key are detailed in
+<span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span>.<a href="#section-6.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.2-2">There is no additional holder presentation key necessary for
+presentation proofs.<a href="#section-6.3.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuance">
@@ -1707,8 +1879,14 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-issuance">
 <a href="#section-6.3.3" class="section-number selfRef">6.3.3. </a><a href="#name-issuance" class="section-name selfRef">Issuance</a>
           </h4>
-<p id="section-6.3.3-1">Issuance is performed using the <code>Sign</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>. This operation utilizes the issuer's BLS12-381 G2 key pair as <code>SK</code> and <code>PK</code>, along with desired protected header and payloads as the octets <code>header</code> and the octets array <code>messages</code>.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.3-2">The octets resulting from this operation form a single octet string in the issuance proof array, to be used along with the protected header and payloads to serialize the JWP.<a href="#section-6.3.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.3-1">Issuance is performed using the <code>Sign</code> operation from
+<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.  This operation
+utilizes the issuer's BLS12-381 G2 key pair as <code>SK</code> and <code>PK</code>, along with
+desired protected header and payloads as the octets <code>header</code> and the
+octets array <code>messages</code>.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.3-2">The octets resulting from this operation form a single octet string in
+the issuance proof array, to be used along with the protected header and
+payloads to serialize the JWP.<a href="#section-6.3.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuance-proof-verification">
@@ -1716,8 +1894,12 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-issuance-proof-verification">
 <a href="#section-6.3.4" class="section-number selfRef">6.3.4. </a><a href="#name-issuance-proof-verification" class="section-name selfRef">Issuance Proof Verification</a>
           </h4>
-<p id="section-6.3.4-1">Holder verification of the signature on issuance form is performed using the <code>Verify</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.2" class="relref">Section 3.5.2</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.3.4-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.4-2">This operation utilizes the issuer's public key as <code>PK</code>, the proof as <code>signature</code>, the protected header octets as <code>header</code> and the array of payload octets as <code>messages</code>.<a href="#section-6.3.4-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.4-1">Holder verification of the signature on issuance form is performed using
+the <code>Verify</code> operation from [@!I-D.irtf-cfrg-bbs-signatures, section
+3.5.2].<a href="#section-6.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.4-2">This operation utilizes the issuer's public key as <code>PK</code>, the proof as
+<code>signature</code>, the protected header octets as <code>header</code> and the array of
+payload octets as <code>messages</code>.<a href="#section-6.3.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-1">
@@ -1725,11 +1907,22 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-presentation-2">
 <a href="#section-6.3.5" class="section-number selfRef">6.3.5. </a><a href="#name-presentation-2" class="section-name selfRef">Presentation</a>
           </h4>
-<p id="section-6.3.5-1">Derivation of a presentation is done by the holder using the <code>ProofGen</code> operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.3.5-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.5-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer protected header as <code>header</code>, the issuance proof as <code>signature</code>, the issuance payloads as <code>messages</code>, and the holder's presentation protected header as <code>ph</code>.<a href="#section-6.3.5-2" class="pilcrow">¶</a></p>
-<p id="section-6.3.5-3">The operation also takes a vector of indexes into <code>messages</code>, describing which payloads the holder wishes to disclose. All payloads are required for proof generation, but only these indicated payloads will be required to be disclosed for later proof verification.<a href="#section-6.3.5-3" class="pilcrow">¶</a></p>
-<p id="section-6.3.5-4">The output of this operation is the presentation proof, as a single octet string.<a href="#section-6.3.5-4" class="pilcrow">¶</a></p>
-<p id="section-6.3.5-5">Presentation serialization leverages the two protected headers and presentation proof, along with the disclosed payloads. Non-disclosed payloads are represented with the absent value of <code>null</code> in CBOR serialization and a zero-length string in compact serialization.<a href="#section-6.3.5-5" class="pilcrow">¶</a></p>
+<p id="section-6.3.5-1">Derivation of a presentation is done by the holder using the <code>ProofGen</code>
+operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.5-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer
+protected header as <code>header</code>, the issuance proof as <code>signature</code>, the
+issuance payloads as <code>messages</code>, and the holder's presentation protected
+header as <code>ph</code>.<a href="#section-6.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.5-3">The operation also takes a vector of indexes into <code>messages</code>, describing
+which payloads the holder wishes to disclose.  All payloads are required
+for proof generation, but only these indicated payloads will be required
+to be disclosed for later proof verification.<a href="#section-6.3.5-3" class="pilcrow">¶</a></p>
+<p id="section-6.3.5-4">The output of this operation is the presentation proof, as a single
+octet string.<a href="#section-6.3.5-4" class="pilcrow">¶</a></p>
+<p id="section-6.3.5-5">Presentation serialization leverages the two protected headers and
+presentation proof, along with the disclosed payloads.  Non-disclosed
+payloads are represented with the absent value of <code>null</code> in CBOR
+serialization and a zero-length string in compact serialization.<a href="#section-6.3.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-verification">
@@ -1737,9 +1930,17 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-presentation-verification">
 <a href="#section-6.3.6" class="section-number selfRef">6.3.6. </a><a href="#name-presentation-verification" class="section-name selfRef">Presentation Verification</a>
           </h4>
-<p id="section-6.3.6-1">Verification of a presentation is done by the verifier using the <code>ProofVerify</code> operation from <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#appendix-Section%203.5.4" class="relref">Section 3.5.4</a>.<a href="#section-6.3.6-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.6-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer protected header as <code>header</code>, the issuance proof as <code>signature</code>, the holder's presentation protected header as <code>ph</code>, and the payloads as <code>disclosed_messages</code>.<a href="#section-6.3.6-2" class="pilcrow">¶</a></p>
-<p id="section-6.3.6-3">In addition, the <code>disclosed_indexes</code> scalar array is calculated from the payloads provided. Values disclosed in the presented payloads have a zero-based index in this array, while the indices of absent payloads are omitted.<a href="#section-6.3.6-3" class="pilcrow">¶</a></p>
+<p id="section-6.3.6-1">Verification of a presentation is done by the verifier using the
+<code>ProofVerify</code> operation from [@!I-D.irtf-cfrg-bbs-signatures, Section
+3.5.4].<a href="#section-6.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.6-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer
+protected header as <code>header</code>, the issuance proof as <code>signature</code>, the
+holder's presentation protected header as <code>ph</code>, and the payloads as
+<code>disclosed_messages</code>.<a href="#section-6.3.6-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.6-3">In addition, the <code>disclosed_indexes</code> scalar array is calculated from the
+payloads provided.  Values disclosed in the presented payloads have a
+zero-based index in this array, while the indices of absent payloads are
+omitted.<a href="#section-6.3.6-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1749,18 +1950,40 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
         <h3 id="name-message-authentication-code">
 <a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-message-authentication-code" class="section-name selfRef">Message Authentication Code</a>
         </h3>
-<p id="section-6.4-1">The Message Authentication Code (MAC) JPA uses a MAC to both generate emphemeral secrets and to authenticate payloads, along with an asymmetric signature to provide integrity to the issued JWP.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
-<p id="section-6.4-2">The holder can manipulate which payloads are disclosed from the issued JWP, and uses the holder Presentation Key to create a presentation. The signature created from the Holder Presentation Key MAY use a different algorithm than the Issuer used to sign the issued form.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
-<p id="section-6.4-3">Like the the Single Use algorithm family, it also does not support unlinkability if the same JWP is presented multiple times. and requires an individually issued JWP for each presentation in order to fully protect privacy.  When compared to the JWS approach, using a MAC requires less computation but can result in potentially larger presentation proof values.<a href="#section-6.4-3" class="pilcrow">¶</a></p>
-<p id="section-6.4-4">The design is intentionally minimal and only involves using a single standardized MAC method instead of a mix of MAC/hash methods or a custom hash-based construct.  It is able to use any published cryptographic MAC method such as HMAC <span>[<a href="#RFC2104" class="cite xref">RFC2104</a>]</span> or <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf">KMAC</a>.  It uses traditional public-key based signatures to verify the authenticity of the issuer and holder.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
+<p id="section-6.4-1">The Message Authentication Code (MAC) JPA uses a MAC to both generate
+emphemeral secrets and to authenticate payloads, along with an
+asymmetric signature to provide integrity to the issued JWP.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.4-2">The holder can manipulate which payloads are disclosed from the issued
+JWP, and uses the holder Presentation Key to create a presentation.  The
+signature created from the Holder Presentation Key MAY use a different
+algorithm than the Issuer used to sign the issued form.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
+<p id="section-6.4-3">Like the the Single Use algorithm family, it also does not support
+unlinkability if the same JWP is presented multiple times and requires
+an individually issued JWP for each presentation in order to fully
+protect privacy.  When compared to the JWS approach, using a MAC
+requires less computation but can result in potentially larger
+presentation proof values.<a href="#section-6.4-3" class="pilcrow">¶</a></p>
+<p id="section-6.4-4">The design is intentionally minimal and only involves using a single
+standardized MAC method instead of a mix of MAC/hash methods or a custom
+hash-based construct.  It is able to use any published cryptographic MAC
+method such as HMAC <span>[<a href="#RFC2104" class="cite xref">RFC2104</a>]</span> or
+<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf">KMAC</a>.
+It uses traditional public-key based signatures to verify the
+authenticity of the issuer and holder.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
 <div id="holder-setup-1">
 <section id="section-6.4.1">
           <h4 id="name-holder-setup-2">
 <a href="#section-6.4.1" class="section-number selfRef">6.4.1. </a><a href="#name-holder-setup-2" class="section-name selfRef">Holder Setup</a>
           </h4>
-<p id="section-6.4.1-1">Prior to the issuer creating a new JWP, the issuer MUST have a presentation public key provided by the holder.<a href="#section-6.4.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.4.1-2">The holder's presentation key MUST be included in the issuer's protected header using the Presentation Key header parameter.<a href="#section-6.4.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.4.1-3">The issuer MUST deterine an appropriate holder presentation algorithm corresponding to the presentation key. If the holder and verifier cannot be assumed to know this algorithm is the appropriate choice for a given presentation key, this value MUST be conveyed in the Holder Protected algoirhtm header parameter.<a href="#section-6.4.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.4.1-1">Prior to the issuer creating a new JWP, the issuer MUST have a
+presentation public key provided by the holder.<a href="#section-6.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.1-2">The holder's presentation key MUST be included in the issuer's protected
+header using the Presentation Key header parameter.<a href="#section-6.4.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.1-3">The issuer MUST deterine an appropriate holder presentation algorithm
+corresponding to the presentation key.  If the holder and verifier cannot
+be assumed to know this algorithm is the appropriate choice for a given
+presentation key, this value MUST be conveyed in the Holder Protected
+algoirhtm header parameter.<a href="#section-6.4.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-setup-1">
@@ -1768,8 +1991,13 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-issuer-setup-2">
 <a href="#section-6.4.2" class="section-number selfRef">6.4.2. </a><a href="#name-issuer-setup-2" class="section-name selfRef">Issuer Setup</a>
           </h4>
-<p id="section-6.4.2-1">To use the MAC algorithm, the issuer must have a stable public key pair to perform signing.  To start the issuance process, a single 32-byte random Shared Secret must first be generated.  This value will be shared privately to the holder as part of the issuer's JWP proof value.<a href="#section-6.4.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.4.2-2">The Shared Secret is used by both the issuer and holder as the MAC method's key to generate a new set of unique ephemeral keys.  These keys are then used as the input to generate a MAC that protects each payload.<a href="#section-6.4.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.2-1">To use the MAC algorithm, the issuer must have a stable public key pair
+to perform signing.  To start the issuance process, a single 32-byte
+random Shared Secret must first be generated.  This value will be shared
+privately to the holder as part of the issuer's JWP proof value.<a href="#section-6.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.2-2">The Shared Secret is used by both the issuer and holder as the MAC
+method's key to generate a new set of unique ephemeral keys.  These keys
+are then used as the input to generate a MAC that protects each payload.<a href="#section-6.4.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="combined-mac-representation">
@@ -1777,10 +2005,27 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-combined-mac-representation">
 <a href="#section-6.4.3" class="section-number selfRef">6.4.3. </a><a href="#name-combined-mac-representation" class="section-name selfRef">Combined MAC Representation</a>
           </h4>
-<p id="section-6.4.3-1">The combined MAC representation is a single octet string representing the MAC values of the issuer protected header, along with each payload provided by the issuer. This representation is signed by the issuer, but not shared - parties will recreate this octet string and verify the signature to verify the integrity of supplied issuer protected header and the integrity of any disclosed payloads.<a href="#section-6.4.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.4.3-2">The steps below describe a sequential concatenation of binary values to generate the Combined MAC Representation. The instructions for generating this octet string will also generate well-formed CBOR, although this data is not meant to be shared outside the implementing algorithm. Instead, it focuses on simplicity of generation by the issuer, holder and verifier implementations. Although CBOR has multiple representations of the same underlying information, this same octet string MUST be generated by an implementation.<a href="#section-6.4.3-2" class="pilcrow">¶</a></p>
-<p id="section-6.4.3-3">When a length or count is added by steps in this section, it is added as its 8 byte, network-ordered representation. For example, the length of a 1,234 byte payload would have a length representation of <code>0x00 00 00 00 00 00 04 D2</code>.<a href="#section-6.4.3-3" class="pilcrow">¶</a></p>
-<p id="section-6.4.3-4">The holder will a unique key per payload value using a MAC, with the Shared Secret as the key and a generated binary value. This binary value is constructed by appending data into a single octet string:<a href="#section-6.4.3-4" class="pilcrow">¶</a></p>
+<p id="section-6.4.3-1">The combined MAC representation is a single octet string representing
+the MAC values of the issuer protected header, along with each payload
+provided by the issuer.  This representation is signed by the issuer, but
+not shared - parties will recreate this octet string and verify the
+signature to verify the integrity of supplied issuer protected header
+and the integrity of any disclosed payloads.<a href="#section-6.4.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.3-2">The steps below describe a sequential concatenation of binary values to
+generate the Combined MAC Representation.  The instructions for
+generating this octet string will also generate well-formed CBOR,
+although this data is not meant to be shared outside the implementing
+algorithm.  Instead, it focuses on simplicity of generation by the
+issuer, holder and verifier implementations.  Although CBOR has multiple
+representations of the same underlying information, this same octet
+string MUST be generated by an implementation.<a href="#section-6.4.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.3-3">When a length or count is added by steps in this section, it is added as
+its 8 byte, network-ordered representation.  For example, the length of
+a 1,234 byte payload would have a length representation of
+<code>0x00 00 00 00 00 00 04 D2</code>.<a href="#section-6.4.3-3" class="pilcrow">¶</a></p>
+<p id="section-6.4.3-4">The holder will a unique key per payload value using a MAC, with the
+Shared Secret as the key and a generated binary value.  This binary
+value is constructed by appending data into a single octet string:<a href="#section-6.4.3-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.4.3-5">
 <li id="section-6.4.3-5.1">
               <code>0x82 67 70 61 79 6C 6F 61 64 1B</code><a href="#section-6.4.3-5.1" class="pilcrow">¶</a>
@@ -1788,15 +2033,24 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
             <li id="section-6.4.3-5.2">The zero indexed count of the payload slot<a href="#section-6.4.3-5.2" class="pilcrow">¶</a>
 </li>
           </ol>
-<p id="section-6.4.3-6">The holder will also compute a corresponding MAC of each payload. This MAC uses the unique key above and the payload octet string as the value.<a href="#section-6.4.3-6" class="pilcrow">¶</a></p>
-<p id="section-6.4.3-7">When verifying a presentation, the shared secret will be unavailable so the unique key cannot be calculated. The payload octet string may also be omitted in the presentation. The following instructions describe how to get the corresponding MAC of each payload:<a href="#section-6.4.3-7" class="pilcrow">¶</a></p>
+<p id="section-6.4.3-6">The holder will also compute a corresponding MAC of each payload.  This
+MAC uses the unique key above and the payload octet string as the value.<a href="#section-6.4.3-6" class="pilcrow">¶</a></p>
+<p id="section-6.4.3-7">When verifying a presentation, the shared secret will be unavailable so
+the unique key cannot be calculated.  The payload octet string may also
+be omitted in the presentation.  The following instructions describe how
+to get the corresponding MAC of each payload:<a href="#section-6.4.3-7" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-6.4.3-8.1">If the payload is disclosed, the corresponding proof component (as described in the (Presentation Proof section)[#mac-presentation-proof] will contain the generated unique key. The payload MAC will be calculated using this key and the payload octets as the value.<a href="#section-6.4.3-8.1" class="pilcrow">¶</a>
+<li class="compact" id="section-6.4.3-8.1">If the payload is disclosed, the corresponding proof component (as
+described in <a href="#mac-presentation-proof">MAC Presentation Proof</a>)
+will contain the generated unique key.  The payload MAC will be
+calculated using this key and the payload octets as the value.<a href="#section-6.4.3-8.1" class="pilcrow">¶</a>
 </li>
-            <li class="compact" id="section-6.4.3-8.2">If the payload is not disclosed, the corresponding proof component will be the payload MAC.<a href="#section-6.4.3-8.2" class="pilcrow">¶</a>
+            <li class="compact" id="section-6.4.3-8.2">If the payload is not disclosed, the corresponding proof component
+will be the payload MAC.<a href="#section-6.4.3-8.2" class="pilcrow">¶</a>
 </li>
           </ul>
-<p id="section-6.4.3-9">The binary representation is created by appending data into a single octet string in the following order:<a href="#section-6.4.3-9" class="pilcrow">¶</a></p>
+<p id="section-6.4.3-9">The binary representation is created by appending data into a single
+octet string in the following order:<a href="#section-6.4.3-9" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.4.3-10">
 <li id="section-6.4.3-10.1">
               <code>0x82 5B</code><a href="#section-6.4.3-10.1" class="pilcrow">¶</a>
@@ -1826,8 +2080,12 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-issuer-protected-header-2">
 <a href="#section-6.4.4" class="section-number selfRef">6.4.4. </a><a href="#name-issuer-protected-header-2" class="section-name selfRef">Issuer Protected Header</a>
           </h4>
-<p id="section-6.4.4-1">The Holder's Presentation Key MUST be included via the Presentation Key header parameter.<a href="#section-6.4.4-1" class="pilcrow">¶</a></p>
-<p id="section-6.4.4-2">The Holder's Presentation Algorithm MUST be included via the Holder Presentation Algorithm header parameter, unless there is another way for the holder and verifier to unambiguously determine the appropriate algorithm to use.<a href="#section-6.4.4-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.4-1">The Holder's Presentation Key MUST be included via the Presentation Key
+header parameter.<a href="#section-6.4.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.4-2">The Holder's Presentation Algorithm MUST be included via the Holder
+Presentation Algorithm header parameter, unless there is another way for
+the holder and verifier to unambiguously determine the appropriate
+algorithm to use.<a href="#section-6.4.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-proof">
@@ -1836,8 +2094,12 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
 <a href="#section-6.4.5" class="section-number selfRef">6.4.5. </a><a href="#name-issuer-proof" class="section-name selfRef">Issuer Proof</a>
           </h4>
 <p id="section-6.4.5-1">The issuer proof consists of two octet strings.<a href="#section-6.4.5-1" class="pilcrow">¶</a></p>
-<p id="section-6.4.5-2">The first octet string is the issuer signature over the combined MAC representation. The issuer signs the combined MAC representation using its stable public key, and the internal signing algorithm for the given fully-specified MAC algorithm variant.<a href="#section-6.4.5-2" class="pilcrow">¶</a></p>
-<p id="section-6.4.5-3">The second octet string is the Shared Secret used to generate the per-payload keys for the combined representation.<a href="#section-6.4.5-3" class="pilcrow">¶</a></p>
+<p id="section-6.4.5-2">The first octet string is the issuer signature over the combined MAC
+representation.  The issuer signs the combined MAC representation using
+its stable public key, and the internal signing algorithm for the given
+fully-specified MAC algorithm variant.<a href="#section-6.4.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.5-3">The second octet string is the Shared Secret used to generate the
+per-payload keys for the combined representation.<a href="#section-6.4.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-protected-header">
@@ -1845,7 +2107,8 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-presentation-protected-heade">
 <a href="#section-6.4.6" class="section-number selfRef">6.4.6. </a><a href="#name-presentation-protected-heade" class="section-name selfRef">Presentation Protected Header</a>
           </h4>
-<p id="section-6.4.6-1">See the <a href="#presentation-protected-header">Presentation Protected Header</a> section given for Single Use algorithms.<a href="#section-6.4.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.6-1">See the <a href="#presentation-protected-header">Presentation Protected Header</a>
+section given for Single Use algorithms.<a href="#section-6.4.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="mac-presentation-proof">
@@ -1854,14 +2117,31 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
 <a href="#section-6.4.7" class="section-number selfRef">6.4.7. </a><a href="#name-presentation-proof" class="section-name selfRef">Presentation Proof</a>
           </h4>
 <p id="section-6.4.7-1">The presentation proof is made of multiple components.<a href="#section-6.4.7-1" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-2">The first proof component is the issuer signature over the Combined MAC Representation, which is provided as the first proof component from the issued form.<a href="#section-6.4.7-2" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-3">There will now be one proof component per payload slot in the issued JWP. These are used by the verifier to reconstruct the combined MAC representation without access to the Shared Secret. The proof components are calculated per the instructions used to generate the <a href="#combined-mac-representation">Combined MAC Representation</a><a href="#section-6.4.7-3" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-4">If a payload is disclosed, the corresponding proof component will be the unique key.<a href="#section-6.4.7-4" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-5">If a payload is not disclosed, the corresponding proof component will be the payload's MAC (using the unique key.)<a href="#section-6.4.7-5" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-6">The holder protected header, issuer protected header, payload slots (distinguishing which are being disclosed) and above proof components are inputs to determine the <a href="#presentation-internal-representation">presentation internal representation</a>.<a href="#section-6.4.7-6" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-7">The holder's signature over the presentation internal representation (using the holder's private key and the holder presentation algorithm) is then included as one additional proof component in the final presentation.<a href="#section-6.4.7-7" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-8">The presented form should have two more proof components than payload slots in the issued JWP.<a href="#section-6.4.7-8" class="pilcrow">¶</a></p>
-<p id="section-6.4.7-9">Note that the second component of the issued JWP is a shared secret for use by the holder to generate the unique keys used in the Combined MAC Representation. This MUST NOT be included in the presentation.<a href="#section-6.4.7-9" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-2">The first proof component is the issuer signature over the Combined MAC
+Representation, which is provided as the first proof component from the
+issued form.<a href="#section-6.4.7-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-3">There will now be one proof component per payload slot in the issued
+JWP.  These are used by the verifier to reconstruct the combined MAC
+representation without access to the Shared Secret.  The proof
+components are calculated per the instructions used to generate the
+<a href="#combined-mac-representation">Combined MAC Representation</a><a href="#section-6.4.7-3" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-4">If a payload is disclosed, the corresponding proof component will be the
+unique key.<a href="#section-6.4.7-4" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-5">If a payload is not disclosed, the corresponding proof component will be
+the payload's MAC (using the unique key.)<a href="#section-6.4.7-5" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-6">The holder protected header, issuer protected header, payload slots
+(distinguishing which are being disclosed) and above proof components
+are inputs to determine the <a href="#presentation-internal-representation">presentation internal
+representation</a>.<a href="#section-6.4.7-6" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-7">The holder's signature over the presentation internal representation
+(using the holder's private key and the holder presentation algorithm)
+is then included as one additional proof component in the final
+presentation.<a href="#section-6.4.7-7" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-8">The presented form should have two more proof components than payload
+slots in the issued JWP.<a href="#section-6.4.7-8" class="pilcrow">¶</a></p>
+<p id="section-6.4.7-9">Note that the second component of the issued JWP is a shared secret for
+use by the holder to generate the unique keys used in the Combined MAC
+Representation.  This MUST NOT be included in the presentation.<a href="#section-6.4.7-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="verification-of-the-presentation-proof">
@@ -1871,17 +2151,28 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           </h4>
 <p id="section-6.4.8-1">Verification is performed using the following steps.<a href="#section-6.4.8-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.4.8-2">
-<li id="section-6.4.8-2.1">Check the number of proof components is appropriate for the number of disclosed payloads. There MUST be two more proof components than disclosed payloads.<a href="#section-6.4.8-2.1" class="pilcrow">¶</a>
+<li id="section-6.4.8-2.1">Check the number of proof components is appropriate for the number of
+disclosed payloads.  There MUST be two more proof components than
+disclosed payloads.<a href="#section-6.4.8-2.1" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.4.8-2.2">Using the fully-specified MAC algorithm in use, use the issuer protected header, disclosed payloads, and the proof components corresopnding to the payloads to regenerate the Combined MAC Representation.<a href="#section-6.4.8-2.2" class="pilcrow">¶</a>
+            <li id="section-6.4.8-2.2">Using the fully-specified MAC algorithm in use, use the issuer
+protected header, disclosed payloads, and the proof components
+corresopnding to the payloads to regenerate the Combined MAC
+Representation.<a href="#section-6.4.8-2.2" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.4.8-2.3">Verify the first proof component is a valid signature over the issuer protected header octets, using the issuer's stable key.<a href="#section-6.4.8-2.3" class="pilcrow">¶</a>
+            <li id="section-6.4.8-2.3">Verify the first proof component is a valid signature over the issuer
+protected header octets, using the issuer's stable key.<a href="#section-6.4.8-2.3" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.4.8-2.4">Extract the presentation key and holder presentation algorithm (if present) from the issuer protected header.<a href="#section-6.4.8-2.4" class="pilcrow">¶</a>
+            <li id="section-6.4.8-2.4">Extract the presentation key and holder presentation algorithm (if
+present) from the issuer protected header.<a href="#section-6.4.8-2.4" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.4.8-2.5">Omitting the final payload component, calculate the <a href="#presentation-internal-representation">presentation internal representation</a>.<a href="#section-6.4.8-2.5" class="pilcrow">¶</a>
+            <li id="section-6.4.8-2.5">Omitting the final payload component, calculate the <a href="#presentation-internal-representation">presentation
+internal representation</a>.<a href="#section-6.4.8-2.5" class="pilcrow">¶</a>
 </li>
-            <li id="section-6.4.8-2.6">Verify the final proof component is a valid signature over the presentation internal binary form, using the holder's presentation key and the extracted (or otherwise determined) holder presentation algorithm.<a href="#section-6.4.8-2.6" class="pilcrow">¶</a>
+            <li id="section-6.4.8-2.6">Verify the final proof component is a valid signature over the
+presentation internal binary form, using the holder's presentation
+key and the extracted (or otherwise determined) holder presentation
+algorithm.<a href="#section-6.4.8-2.6" class="pilcrow">¶</a>
 </li>
           </ol>
 </section>
@@ -1891,25 +2182,33 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
           <h4 id="name-jpa-registration-2">
 <a href="#section-6.4.9" class="section-number selfRef">6.4.9. </a><a href="#name-jpa-registration-2" class="section-name selfRef">JPA Registration</a>
           </h4>
-<p id="section-6.4.9-1">Proposed JWP <code>alg</code> value is of the format "MAC-" appended with a unique identifier for the set of MAC and signing algorithms used.  Below are the initial registrations:<a href="#section-6.4.9-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.9-1">Proposed JWP <code>alg</code> value is of the format "MAC-" appended with a unique
+identifier for the set of MAC and signing algorithms used.  Below are
+the initial registrations:<a href="#section-6.4.9-1" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-6.4.9-2.1">
-              <code>MAC-H256</code> uses <code>HMAC SHA-256</code> as the MAC and <code>ECDSA using P-256 and SHA-256</code> for the signatures<a href="#section-6.4.9-2.1" class="pilcrow">¶</a>
+              <code>MAC-H256</code> uses <code>HMAC SHA-256</code> as the MAC and
+<code>ECDSA using P-256 and SHA-256</code> for the signatures<a href="#section-6.4.9-2.1" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-6.4.9-2.2">
-              <code>MAC-H384</code> uses <code>HMAC SHA-384</code> as the MAC and <code>ECDSA using P-384 and SHA-384</code> for the signatures<a href="#section-6.4.9-2.2" class="pilcrow">¶</a>
+              <code>MAC-H384</code> uses <code>HMAC SHA-384</code> as the MAC and
+<code>ECDSA using P-384 and SHA-384</code> for the signatures<a href="#section-6.4.9-2.2" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-6.4.9-2.3">
-              <code>MAC-H512</code> uses <code>HMAC SHA-512</code> as the MAC and <code>ECDSA using P-521 and SHA-512</code> for the signatures<a href="#section-6.4.9-2.3" class="pilcrow">¶</a>
+              <code>MAC-H512</code> uses <code>HMAC SHA-512</code> as the MAC and
+<code>ECDSA using P-521 and SHA-512</code> for the signatures<a href="#section-6.4.9-2.3" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-6.4.9-2.4">
-              <code>MAC-K25519</code> uses <code>KMAC SHAKE128</code> as the MAC and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-6.4.9-2.4" class="pilcrow">¶</a>
+              <code>MAC-K25519</code> uses <code>KMAC SHAKE128</code> as the MAC and
+<code>EdDSA using Curve25519</code> for the signatures<a href="#section-6.4.9-2.4" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-6.4.9-2.5">
-              <code>MAC-K448</code> uses <code>KMAC SHAKE256</code> as the MAC and <code>EdDSA using Curve448</code> for the signatures<a href="#section-6.4.9-2.5" class="pilcrow">¶</a>
+              <code>MAC-K448</code> uses <code>KMAC SHAKE256</code> as the MAC and <code>EdDSA using Curve448</code>
+for the signatures<a href="#section-6.4.9-2.5" class="pilcrow">¶</a>
 </li>
             <li class="compact" id="section-6.4.9-2.6">
-              <code>MAC-H256K</code> uses <code>HMAC SHA-256</code> as the MAC and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#section-6.4.9-2.6" class="pilcrow">¶</a>
+              <code>MAC-H256K</code> uses <code>HMAC SHA-256</code> as the MAC and
+<code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#section-6.4.9-2.6" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
@@ -1924,7 +2223,8 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <blockquote id="section-7-1">
-        <p id="section-7-1.1">Editor's Note: This will follow once the algorithms defined here have become more stable.<a href="#section-7-1.1" class="pilcrow">¶</a></p>
+        <p id="section-7-1.1">Editor's Note: This will follow once the algorithms defined here have
+become more stable.<a href="#section-7-1.1" class="pilcrow">¶</a></p>
 </blockquote>
 <ul class="compact">
 <li class="compact" id="section-7-2.1">Data minimization of the proof value<a href="#section-7-2.1" class="pilcrow">¶</a>
@@ -1939,70 +2239,67 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
       <h2 id="name-iana-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">The following registration procedure is used for all the
-registries established by this specification.<a href="#section-8-1" class="pilcrow">¶</a></p>
-<p id="section-8-2">Values are registered on a Specification Required <span>[<a href="#RFC5226" class="cite xref">RFC5226</a>]</span> basis
-after a three-week review period on the jose-reg-review@ietf.org
-mailing list, on the advice of one or more Designated Experts.
-However, to allow for the allocation of values prior to publication,
-the Designated Experts may approve registration once they are
-satisfied that such a specification will be published.<a href="#section-8-2" class="pilcrow">¶</a></p>
-<p id="section-8-3">Registration requests sent to the mailing list for review should use
-an appropriate subject (e.g., "Request to register JWP algorithm: example").<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">Within the review period, the Designated Experts will either approve or deny
-the registration request, communicating this decision to the review list and IANA.
-Denials should include an explanation and, if applicable,
-suggestions as to how to make the request successful.
-Registration requests that are undetermined for
-a period longer than 21 days can be brought to the IESG's attention
-(using the iesg@ietf.org mailing list) for resolution.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-1">The following registration procedure is used for all the registries
+established by this specification.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">Values are registered on a Specification Required <span>[<a href="#RFC5226" class="cite xref">RFC5226</a>]</span> basis after
+a three-week review period on the <a href="mailto:jose-reg-review@ietf.org">jose-reg-review@ietf.org</a> mailing
+list, on the advice of one or more Designated Experts.  However, to
+allow for the allocation of values prior to publication, the Designated
+Experts may approve registration once they are satisfied that such a
+specification will be published.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">Registration requests sent to the mailing list for review should use an
+appropriate subject (e.g., "Request to register JWP algorithm:
+example").<a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-4">Within the review period, the Designated Experts will either approve or
+deny the registration request, communicating this decision to the review
+list and IANA.  Denials should include an explanation and, if
+applicable, suggestions as to how to make the request successful.
+Registration requests that are undetermined for a period longer than 21
+days can be brought to the IESG's attention (using the <a href="mailto:iesg@ietf.org">iesg@ietf.org</a>
+mailing list) for resolution.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <p id="section-8-5">Criteria that should be applied by the Designated Experts include
-determining whether the proposed registration duplicates existing functionality,
-whether it is likely to be of general applicability
-or useful only for a single application,
-and whether the registration description is clear.<a href="#section-8-5" class="pilcrow">¶</a></p>
-<p id="section-8-6">IANA must only accept registry updates from the Designated Experts and should direct
-all requests for registration to the review mailing list.<a href="#section-8-6" class="pilcrow">¶</a></p>
-<p id="section-8-7">It is suggested that multiple Designated Experts be appointed who are able to
-represent the perspectives of different applications using this specification,
-in order to enable broadly informed review of registration decisions.
-In cases where a registration decision could be perceived as
-creating a conflict of interest for a particular Expert,
+determining whether the proposed registration duplicates existing
+functionality, whether it is likely to be of general applicability or
+useful only for a single application, and whether the registration
+description is clear.<a href="#section-8-5" class="pilcrow">¶</a></p>
+<p id="section-8-6">IANA must only accept registry updates from the Designated Experts and
+should direct all requests for registration to the review mailing list.<a href="#section-8-6" class="pilcrow">¶</a></p>
+<p id="section-8-7">It is suggested that multiple Designated Experts be appointed who are
+able to represent the perspectives of different applications using this
+specification, in order to enable broadly informed review of
+registration decisions.  In cases where a registration decision could be
+perceived as creating a conflict of interest for a particular Expert,
 that Expert should defer to the judgment of the other Experts.<a href="#section-8-7" class="pilcrow">¶</a></p>
 <div id="AlgsReg">
 <section id="section-8.1">
         <h3 id="name-json-web-proof-algorithms-r">
 <a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-json-web-proof-algorithms-r" class="section-name selfRef">JSON Web Proof Algorithms Registry</a>
         </h3>
-<p id="section-8.1-1">This specification establishes the
-IANA "JSON Web Proof Algorithms" registry
-for values of the JWP <code>alg</code> (algorithm) parameter in JWP Header Parameters.
-The registry records the algorithm name, the algorithm description,
-the algorithm usage locations,
-the implementation requirements, the change controller,
-and a reference to the specification that defines it.
-The same algorithm name can be registered multiple times,
-provided that the sets of usage locations are disjoint.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-1">This specification establishes the IANA "JSON Web Proof Algorithms"
+registry for values of the JWP <code>alg</code> (algorithm) parameter in JWP Header
+Parameters.  The registry records the algorithm name, the algorithm
+description, the algorithm usage locations, the implementation
+requirements, the change controller, and a reference to the
+specification that defines it.  The same algorithm name can be
+registered multiple times, provided that the sets of usage locations are
+disjoint.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 <p id="section-8.1-2">It is suggested that the length of the key be included in the algorithm
-name when multiple variations of algorithms are being
-registered that use keys of different lengths and the key lengths for
-each need to be fixed (for instance, because they will be created by
-key derivation functions).
-This allows readers of the JSON text to more easily make security decisions.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
-<p id="section-8.1-3">The Designated Experts should perform reasonable due diligence
-that algorithms being registered either are currently considered
-cryptographically credible or are being registered as Deprecated
-or Prohibited.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
-<p id="section-8.1-4">The implementation requirements of an algorithm may be changed
-over time as the
-cryptographic landscape evolves, for instance,
-to change the status of an algorithm to Deprecated or
-to change the status of an algorithm from Optional
-to Recommended+ or Required.
-Changes of implementation requirements are only permitted
-on a Specification Required basis after review by the Designated Experts,
-with the new specification
-defining the revised implementation requirements level.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
+name when multiple variations of algorithms are being registered that
+use keys of different lengths and the key lengths for each need to be
+fixed (for instance, because they will be created by key derivation
+functions).  This allows readers of the JSON text to more easily make
+security decisions.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+<p id="section-8.1-3">The Designated Experts should perform reasonable due diligence that
+algorithms being registered either are currently considered
+cryptographically credible or are being registered as Deprecated or
+Prohibited.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
+<p id="section-8.1-4">The implementation requirements of an algorithm may be changed over time
+as the cryptographic landscape evolves, for instance, to change the
+status of an algorithm to Deprecated or to change the status of an
+algorithm from Optional to Recommended+ or Required.  Changes of
+implementation requirements are only permitted on a Specification
+Required basis after review by the Designated Experts, with the new
+specification defining the revised implementation requirements level.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
 <div id="AlgsTemplate">
 <section id="section-8.1.1">
           <h4 id="name-registration-template">
@@ -2018,22 +2315,22 @@ allow an exception.<a href="#section-8.1.1-1.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.3">Algorithm JSON Label:</dt>
-            <dd style="margin-left: 1.5em" id="section-8.1.1-1.4">The string label requested (e.g., <code>SU-ES256</code>). This label is a
-case-sensitive ASCII string. JSON Labels may not match other
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.4">The string label requested (e.g., <code>SU-ES256</code>).  This label is a
+case-sensitive ASCII string.  JSON Labels may not match other
 registered labels in a case-insensitive manner unless the
-Designated Experts state that there is a compelling reason to
-allow an exception.<a href="#section-8.1.1-1.4" class="pilcrow">¶</a>
+Designated Experts state that there is a compelling reason to allow
+an exception.<a href="#section-8.1.1-1.4" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.5">Algorithm CBOR Label:</dt>
-            <dd style="margin-left: 1.5em" id="section-8.1.1-1.6">The integer label requested (e.g. <code>1</code>). CBOR Labels may not match
-other registered labels unless the Designated Experts state that
-there is a compelling reason to allow an exception.<a href="#section-8.1.1-1.6" class="pilcrow">¶</a>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.6">The integer label requested (e.g. <code>1</code>).  CBOR Labels may not match
+other registered labels unless the Designated Experts state that there
+is a compelling reason to allow an exception.<a href="#section-8.1.1-1.6" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.7">Algorithm Description:</dt>
-            <dd style="margin-left: 1.5em" id="section-8.1.1-1.8">Optional additional information clarifying the algorithm. This may
-be used for example to document additional chosen parameters.<a href="#section-8.1.1-1.8" class="pilcrow">¶</a>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.8">Optional additional information clarifying the algorithm.  This may be
+used for example to document additional chosen parameters.<a href="#section-8.1.1-1.8" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.9">Algorithm Usage Location(s):</dt>
@@ -2043,43 +2340,40 @@ approval of a Designated Expert.<a href="#section-8.1.1-1.10" class="pilcrow">¶
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.11">JWP Implementation Requirements:</dt>
-            <dd style="margin-left: 1.5em" id="section-8.1.1-1.12">The algorithm implementation requirements for JWP, which must be
-one the words <code>Required</code>, <code>Recommended</code>, <code>Optional</code>, <code>Deprecated</code>,
-or <code>Prohibited</code>.
-Optionally, the word can be followed by a <code>+</code> or <code>-</code>. The use of
-<code>+</code> indicates that the requirement strength is likely to be
-increased in a future version of the specification.  The use of
-<code>-</code> indicates that the requirement strength is likely to be
-decreased in a future version of the specification.
-Any identifiers registered for algorithms that are otherwise
-unsuitable for direct use as JWP algorithms must be registered as
-<code>Prohibited</code>.<a href="#section-8.1.1-1.12" class="pilcrow">¶</a>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.12">The algorithm implementation requirements for JWP, which must be one
+the words <code>Required</code>, <code>Recommended</code>, <code>Optional</code>, <code>Deprecated</code>, or
+<code>Prohibited</code>.  Optionally, the word can be followed by a <code>+</code> or <code>-</code>.
+The use of <code>+</code> indicates that the requirement strength is likely to be
+increased in a future version of the specification.  The use of <code>-</code>
+indicates that the requirement strength is likely to be decreased in a
+future version of the specification.  Any identifiers registered for
+algorithms that are otherwise unsuitable for direct use as JWP
+algorithms must be registered as <code>Prohibited</code>.<a href="#section-8.1.1-1.12" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.13">Change Controller:</dt>
-            <dd style="margin-left: 1.5em" id="section-8.1.1-1.14">For Standards Track RFCs, list the "IETF". For others, give the
-name of the responsible party. Other details (e.g., postal address,
-email address, home page URI) may also be included.<a href="#section-8.1.1-1.14" class="pilcrow">¶</a>
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.14">For Standards Track RFCs, list the "IETF".  For others, give the name
+of the responsible party.  Other details (e.g., postal address, email
+address, home page URI) may also be included.<a href="#section-8.1.1-1.14" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.15">Specification Document(s):</dt>
             <dd style="margin-left: 1.5em" id="section-8.1.1-1.16">Reference to the document or documents that specify the parameter,
-preferably including URIs that can be used to retrieve copies of
-the documents. An indication of the relevant sections may also be
+preferably including URIs that can be used to retrieve copies of the
+documents.  An indication of the relevant sections may also be
 included but is not required.<a href="#section-8.1.1-1.16" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.17">Algorithm Analysis Documents(s):</dt>
             <dd style="margin-left: 1.5em" id="section-8.1.1-1.18">References to a publication or publications in well-known
-cryptographic conferences, by national standards bodies, or by
-other authoritative sources analyzing the cryptographic soundness
-of the algorithm to be registered. The Designated Experts may
-require convincing evidence of the cryptographic soundness of a
-new algorithm to be provided with the registration request unless
-the algorithm is being registered as Deprecated or Prohibited.
-Having gone through working group and IETF review, the initial
-registrations made by this document are exempt from the need to
-provide this information.<a href="#section-8.1.1-1.18" class="pilcrow">¶</a>
+cryptographic conferences, by national standards bodies, or by other
+authoritative sources analyzing the cryptographic soundness of the
+algorithm to be registered.  The Designated Experts may require
+convincing evidence of the cryptographic soundness of a new algorithm
+to be provided with the registration request unless the algorithm is
+being registered as Deprecated or Prohibited.  Having gone through
+working group and IETF review, the initial registrations made by this
+document are exempt from the need to provide this information.<a href="#section-8.1.1-1.18" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 </dl>
@@ -2177,7 +2471,8 @@ provide this information.<a href="#section-8.1.1-1.18" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.4-1.3">Algorithm CBOR Label: 4<a href="#section-8.1.2.4-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.4-1.4">Algorithm Description: Corresponds to a ciphersuite identifier of <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_</code><a href="#section-8.1.2.4-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.4-1.4">Algorithm Description: Corresponds to a ciphersuite identifier of
+<code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_H2G_HM2S_</code><a href="#section-8.1.2.4-1.4" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.4-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.4-1.5" class="pilcrow">¶</a>
 </li>
@@ -2204,8 +2499,8 @@ provide this information.<a href="#section-8.1.1-1.18" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.5-1.3">Algorithm CBOR Label: 5<a href="#section-8.1.2.5-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.5-1.4">Algorithm Description: <code>MAC-H256</code> uses <code>HMAC SHA-256</code> as the MAC,
-and <code>ECDSA using P-256 and SHA-256</code> for the signatures<a href="#section-8.1.2.5-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.5-1.4">Algorithm Description: <code>MAC-H256</code> uses <code>HMAC SHA-256</code> as the MAC, and
+<code>ECDSA using P-256 and SHA-256</code> for the signatures<a href="#section-8.1.2.5-1.4" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.5-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.5-1.5" class="pilcrow">¶</a>
 </li>
@@ -2232,8 +2527,8 @@ and <code>ECDSA using P-256 and SHA-256</code> for the signatures<a href="#secti
 </li>
               <li class="compact" id="section-8.1.2.6-1.3">Algorithm CBOR Label: 6<a href="#section-8.1.2.6-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.6-1.4">Algorithm Description: <code>MAC-H384</code> uses <code>HMAC SHA-384</code> as the MAC,
-and <code>ECDSA using P-384 and SHA-384</code> for the signatures<a href="#section-8.1.2.6-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.6-1.4">Algorithm Description: <code>MAC-H384</code> uses <code>HMAC SHA-384</code> as the MAC, and
+<code>ECDSA using P-384 and SHA-384</code> for the signatures<a href="#section-8.1.2.6-1.4" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.6-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.6-1.5" class="pilcrow">¶</a>
 </li>
@@ -2260,8 +2555,8 @@ and <code>ECDSA using P-384 and SHA-384</code> for the signatures<a href="#secti
 </li>
               <li class="compact" id="section-8.1.2.7-1.3">Algorithm CBOR Label: 7<a href="#section-8.1.2.7-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.7-1.4">Algorithm Description: <code>MAC-H512</code> uses <code>HMAC SHA-512</code> as the MAC,
-and <code>ECDSA using P-521 and SHA-512</code> for the signatures<a href="#section-8.1.2.7-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.7-1.4">Algorithm Description: <code>MAC-H512</code> uses <code>HMAC SHA-512</code> as the MAC, and
+<code>ECDSA using P-521 and SHA-512</code> for the signatures<a href="#section-8.1.2.7-1.4" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.7-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.7-1.5" class="pilcrow">¶</a>
 </li>
@@ -2288,8 +2583,8 @@ and <code>ECDSA using P-521 and SHA-512</code> for the signatures<a href="#secti
 </li>
               <li class="compact" id="section-8.1.2.8-1.3">Algorithm CBOR Label: 8<a href="#section-8.1.2.8-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.8-1.4">Algorithm Description: <code>MAC-K25519</code> uses <code>KMAC SHAKE128</code> as the
-MAC, and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.2.8-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.8-1.4">Algorithm Description: <code>MAC-K25519</code> uses <code>KMAC SHAKE128</code> as the MAC,
+and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.2.8-1.4" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.8-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.8-1.5" class="pilcrow">¶</a>
 </li>
@@ -2316,8 +2611,8 @@ MAC, and <code>EdDSA using Curve25519</code> for the signatures<a href="#section
 </li>
               <li class="compact" id="section-8.1.2.9-1.3">Algorithm CBOR Label: 9<a href="#section-8.1.2.9-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.9-1.4">Algorithm Description: <code>MAC-K448</code> uses <code>KMAC SHAKE256</code> as the MAC,
-and <code>EdDSA using Curve448</code> for the signatures<a href="#section-8.1.2.9-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.9-1.4">Algorithm Description: <code>MAC-K448</code> uses <code>KMAC SHAKE256</code> as the MAC, and
+<code>EdDSA using Curve448</code> for the signatures<a href="#section-8.1.2.9-1.4" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.9-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.9-1.5" class="pilcrow">¶</a>
 </li>
@@ -2344,8 +2639,8 @@ and <code>EdDSA using Curve448</code> for the signatures<a href="#section-8.1.2.
 </li>
               <li class="compact" id="section-8.1.2.10-1.3">Algorithm CBOR Label: 10<a href="#section-8.1.2.10-1.3" class="pilcrow">¶</a>
 </li>
-              <li class="compact" id="section-8.1.2.10-1.4">Algorithm Description: <code>MAC-H256K</code> uses <code>HMAC SHA-256</code> as the MAC,
-and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#section-8.1.2.10-1.4" class="pilcrow">¶</a>
+              <li class="compact" id="section-8.1.2.10-1.4">Algorithm Description: <code>MAC-H256K</code> uses <code>HMAC SHA-256</code> as the MAC, and
+<code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#section-8.1.2.10-1.4" class="pilcrow">¶</a>
 </li>
               <li class="compact" id="section-8.1.2.10-1.5">Algorithm Usage Location(s): Issued, Presented<a href="#section-8.1.2.10-1.5" class="pilcrow">¶</a>
 </li>
@@ -2438,23 +2733,33 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
       <h2 id="name-example-jwps">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-example-jwps" class="section-name selfRef">Example JWPs</a>
       </h2>
-<p id="appendix-A-1">The following examples use algorithms defined in JSON Proof Algorithms and also contain the keys used, so that implementations can validate these samples.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The following examples use algorithms defined in JSON Proof Algorithms
+and also contain the keys used, so that implementations can validate
+these samples.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <div id="example-json-serialized-single-use-jwp">
 <section id="appendix-A.1">
         <h3 id="name-example-json-serialized-sin">
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-example-json-serialized-sin" class="section-name selfRef">Example JSON-Serialized Single-Use JWP</a>
         </h3>
-<p id="appendix-A.1-1">This example uses the Single-Use Algorithm as defined in JSON Proof Algorithms to create a JSON Proof Token.  It demonstrates how to apply selective disclosure using an array of traditional JWS-based signatures.  Unlinkability is only achieved by using each JWP one time, as multiple uses are inherently linkable via the traditional ECDSA signature embedded in the proof.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-2">To begin, we need two asymmetric keys for Single Use: one that represents the JPT Issuer's stable key and the other is an ephemeral key generated by the Issuer just for this JWP.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-3">This is the Issuer's stable private key used in this example in the JWK format:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">This example uses the Single-Use Algorithm as defined in JSON Proof
+Algorithms to create a JSON Proof Token.  It demonstrates how to apply
+selective disclosure using an array of traditional JWS-based signatures.
+Unlinkability is only achieved by using each JWP one time, as multiple
+uses are inherently linkable via the traditional ECDSA signature
+embedded in the proof.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-2">To begin, we need two asymmetric keys for Single Use: one that
+represents the JPT Issuer's stable key and the other is an ephemeral key
+generated by the Issuer just for this JWP.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-3">This is the Issuer's stable private key used in this example in the JWK
+format:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-issuer-private-key-es256-in"></span><figure id="figure-1">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-4.1">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "-RXGCYmQMcP44I5OVDu-3QIBQ7bA2DuuLTPW3idiHjM",
-  "y": "4tfMySkh8Ao4sxgASwJBREPQIo7KnjITDbLYbrCxsEk",
-  "d": "lIznrG3xVAkg5-62FWjGVZJamAJfQnWR_mVAguKDHuw"
+  "x": "1XZrBIiEeRS-2HRLkC7p0nX0J_ZVU5ckTHqr2lbJvP4",
+  "y": "uRUBQegeCXQQoxVvGsLbHtLzEIiRnCMARHfQ-LNz2gM",
+  "d": "jH_m0ztv-EK5-DABUp3Bi8GgloB2byR6cEAb_qeDlLk"
 }
 
 </pre>
@@ -2462,15 +2767,16 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-issuer-private-key-es256-in" class="selfRef">Issuer Private Key (ES256 in JWK)</a>
           </figcaption></figure>
-<p id="appendix-A.1-5">This is the ephemeral private key used in this example in the JWK format:<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-5">This is the ephemeral private key used in this example in the JWK
+format:<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <span id="name-issuer-ephemeral-private-ke"></span><figure id="figure-2">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-6.1">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "friu8AR6phmKJWcQKJ1d77GrHEhAxoq2uMVleLBIt3w",
-  "y": "cIMalW_ATWh3Q43y8HcnjLv7-57W6cgxOAFxWvMojj4",
-  "d": "HYr2konorN3u1vGWLl0shDIGH4Tlitst8o1kYhjjRlA"
+  "x": "AhapAc5-ZxwwztVQGtK7aAOnig97EZYmsdEWNK3Wf7g",
+  "y": "oOUCh5ubqdik43kkWC68rTVDFdCQtL-0dgCoqrFkgj8",
+  "d": "CCh1fPPg-2E1QrT10V9UECsgM3l3cx5vCT8swgKQTqs"
 }
 
 </pre>
@@ -2478,15 +2784,16 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-issuer-ephemeral-private-ke" class="selfRef">Issuer Ephemeral Private Key (ES256 in JWK)</a>
           </figcaption></figure>
-<p id="appendix-A.1-7">This is the Holder's presentation private key used in this example in the JWK format:<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-7">This is the Holder's presentation private key used in this example in
+the JWK format:<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
 <span id="name-holder-presentation-private"></span><figure id="figure-3">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-8.1">
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "AXgkbqkeOJzfN-HpUYXnUaSLrOXm9LWpjDvTsbVrQ64",
-  "y": "1In7NcCEM6_UHkxQTmmoT6HyaKqmayz0DdNfb3DWbIs",
-  "d": "dib27Jcugfx37qDRwX9oWRs6n-6i9WldBI938W429dA"
+  "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
+  "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc",
+  "d": "3FVsYWLnUuD087iYWr1H_qC5EIso4DfG-LqooIejYYo"
 }
 
 </pre>
@@ -2494,7 +2801,11 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-holder-presentation-private" class="selfRef">Holder Presentation Private Key (ES256 in JWK)</a>
           </figcaption></figure>
-<p id="appendix-A.1-9">The JWP Protected Header declares that the data structure is a JPT and the JWP Proof Input is secured using the Single-Use ECDSA algorithm with the P-256 curve and SHA-256 digest.  It also includes the ephemeral public key, the Holder's presentation public key and list of claims used for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-9">The JWP Protected Header declares that the data structure is a JPT and
+the JWP Proof Input is secured using the Single-Use ECDSA algorithm with
+the P-256 curve and SHA-256 digest.  It also includes the ephemeral
+public key, the Holder's presentation public key and list of claims used
+for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
 <span id="name-issuer-protected-header-su-"></span><figure id="figure-4">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-10.1">
 <pre>{
@@ -2514,14 +2825,14 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
   "proof_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "friu8AR6phmKJWcQKJ1d77GrHEhAxoq2uMVleLBIt3w",
-    "y": "cIMalW_ATWh3Q43y8HcnjLv7-57W6cgxOAFxWvMojj4"
+    "x": "AhapAc5-ZxwwztVQGtK7aAOnig97EZYmsdEWNK3Wf7g",
+    "y": "oOUCh5ubqdik43kkWC68rTVDFdCQtL-0dgCoqrFkgj8"
   },
   "presentation_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "AXgkbqkeOJzfN-HpUYXnUaSLrOXm9LWpjDvTsbVrQ64",
-    "y": "1In7NcCEM6_UHkxQTmmoT6HyaKqmayz0DdNfb3DWbIs"
+    "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
+    "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc"
   }
 }
 
@@ -2535,20 +2846,28 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJmcml1OEFS
-NnBobUtKV2NRS0oxZDc3R3JIRWhBeG9xMnVNVmxlTEJJdDN3IiwieSI6ImNJTWFsV19BV
-FdoM1E0M3k4SGNuakx2Ny01N1c2Y2d4T0FGeFd2TW9qajQifSwicHJlc2VudGF0aW9uX2
-tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IkFYZ2ticWtlT0p6Zk4tSHB
-VWVhuVWFTTHJPWG05TFdwakR2VHNiVnJRNjQiLCJ5IjoiMUluN05jQ0VNNl9VSGt4UVRt
-bW9UNkh5YUtxbWF5ejBEZE5mYjNEV2JJcyJ9fQ
+dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJBaGFwQWM1
+LVp4d3d6dFZRR3RLN2FBT25pZzk3RVpZbXNkRVdOSzNXZjdnIiwieSI6Im9PVUNoNXVic
+WRpazQza2tXQzY4clRWREZkQ1F0TC0wZGdDb3FyRmtnajgifSwicHJlc2VudGF0aW9uX2
+tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjZzYTdybl9MSFBOYlpLRFJ
+LU09uMFNHdEJ4bnlMRnRYb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFh
+d0Zya3NpQ19NYlM2YTJZWWxCODh2cGNjYyJ9fQ
 
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-encoded-issuer-protected-he" class="selfRef">Encoded Issuer Protected Header (SU-ES256, JSON, encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.1-12">The Single Use algorithm utilizes multiple individual JWS Signatures.  Each signature value is generated by creating a JWS with a single Protected Header with the associated <code>alg</code> value. In this example, the fixed header used for each JWS is the serialized JSON Object <code>{"alg":"ES256"}</code>. This protected header will be used to generate a signature over each corresponding payload in the JWP. The corresponding octet value in the proof is the octet string (base64url-decoded) value of the signature.<a href="#appendix-A.1-12" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-13">The final proof value from the Issuer is an array with the octets of the header signature, followed by entries for each payload signature.<a href="#appendix-A.1-13" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-12">The Single Use algorithm utilizes multiple individual JWS Signatures.
+Each signature value is generated by creating a JWS with a single
+Protected Header with the associated <code>alg</code> value.  In this example, the
+fixed header used for each JWS is the serialized JSON Object
+<code>{"alg":"ES256"}</code>.  This protected header will be used to generate a
+signature over each corresponding payload in the JWP.  The corresponding
+octet value in the proof is the octet string (base64url-decoded) value
+of the signature.<a href="#appendix-A.1-12" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-13">The final proof value from the Issuer is an array with the octets of the
+header signature, followed by entries for each payload signature.<a href="#appendix-A.1-13" class="pilcrow">¶</a></p>
 <span id="name-issuer-payloads-json-as-arr"></span><figure id="figure-6">
           <div class="lang-json sourcecode" id="appendix-A.1-14.1">
 <pre>[
@@ -2579,39 +2898,40 @@ bW9UNkh5YUtxbWF5ejBEZE5mYjNEV2JJcyJ9fQ
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJmcml1OEFS
-NnBobUtKV2NRS0oxZDc3R3JIRWhBeG9xMnVNVmxlTEJJdDN3IiwieSI6ImNJTWFsV19BV
-FdoM1E0M3k4SGNuakx2Ny01N1c2Y2d4T0FGeFd2TW9qajQifSwicHJlc2VudGF0aW9uX2
-tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IkFYZ2ticWtlT0p6Zk4tSHB
-VWVhuVWFTTHJPWG05TFdwakR2VHNiVnJRNjQiLCJ5IjoiMUluN05jQ0VNNl9VSGt4UVRt
-bW9UNkh5YUtxbWF5ejBEZE5mYjNEV2JJcyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~
+dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJBaGFwQWM1
+LVp4d3d6dFZRR3RLN2FBT25pZzk3RVpZbXNkRVdOSzNXZjdnIiwieSI6Im9PVUNoNXVic
+WRpazQza2tXQzY4clRWREZkQ1F0TC0wZGdDb3FyRmtnajgifSwicHJlc2VudGF0aW9uX2
+tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjZzYTdybl9MSFBOYlpLRFJ
+LU09uMFNHdEJ4bnlMRnRYb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFh
+d0Zya3NpQ19NYlM2YTJZWWxCODh2cGNjYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~
 IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0I
 E1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOi
 IxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJ
-wb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.YYtzTpc9Yj5WZk
-puQhYHvgYJ8q0TiPlCHiOx6uaETwGp_fHBtKhI6EkupTZyaFxkB1XZNSUlXjm0OIOL84R
-Eqw~0dSb4R-Ssdtr-PMxwq2RYvWbkRUqeeiBuXxtrcR2AOQbWAlU193ejVJTcdYnWvOpb
-DM8VoBOXEXTefd5CqMJ1w~rKogN7dLlnif8dKzfmo9zodfd3A-1ew-7bkCnFvV8dFhmqZ
-Jts8myHOPbFl4jrqERgMuXrd1Li5HyeSLcPlgjQ~x2En64w_iHmSxbD3daNPnh3ME7w_g
-sBRn5QMQEnaRd5cJ7AWErB-PvKYa10AKvannzpsSglL4xM7gecKQi98KQ~9onKenVdcjk
-f_-jrxTFseuhUZL1N8QpKZbM1oO0mGJ4hD4IRDrVfB4jMvfW2Ifk7JJuI3k5U-QsB8Wx0
-3hPqwQ~-_tRMXSQFNvxkIuSyEFRN6OiqlXKS4Mah-2m8XdC1yEkbzt0waI08i78Y9Qckv
-yNFJ1Zr3G0omfjjX7h5uMIMg~Td9JrP55zJNjwBIkoIw3__-q5L0lavlPaPnzqrwRDpmk
-Iiemll7OVYebK9szTdRPArMaF_0vbA8pgJ1Cp0kFQQ~ZouKRxEcO6ZJnrSmKmVywFQkZq
--v-CSozZD7E0mxJ8HxDZAt4R0k1lfVRlHYJHvBJY1nxJbceMdpMVmhT590QQ
+wb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.glYimTTax1Fb_4
+fAclOTQD0wRVASWSq_0iKS_YGI3a0Val7w_3MjBfV57p66bot-_g-8FuLYnQVUgKe6dPu
+pCg~80lTHnkcTCPz9rqBMaa6PATOZUIBYVps4-U06fRYSluaM2lLLZyG0mUr-dOIBP9HG
+gPcMPuN9MrTc_SfJJZu9Q~LhGFhz16SkoP0OVS6aqkaiOByslZ4wGtpMoue-x6pytuDAq
+gVML_JZwNQCx_wcUO15HUXFPKEKRrC48BkpyRVQ~0BauQVWcSErwcR_huYJePb8kKRXOg
+jzMDsU-hmVUxRwRhqE4k33mrH3SJuYxhu2-AXV_mvSzNhKAIdeIUrQyaA~acQvcHppmE8
+aK_egxaBB0DtY0RpzYuOJ78T43HvwTtKpfPlqd1VZ8b2ex4YbDfTHKbQSEq24Ap0tk3oJ
+FG8k8g~d6CQl76utI-UaEG_RRWJSztN28pICfzBHRxOf9mkdjUE1wbgs55JDV8BseNxBW
+oz9uW0F00So_CEM_B0lg7aig~RgNcK2FxkLfuJ-WdbpT93n_hF3RgjUDs7G7baOg7Ta__
+ffLYFPnKaNw9_BNJCbaahVWm8yeZFl0pmC42ZtV_hQ~SVzM4S3lB1lrQbbKDcWoO8JiTk
+ARldtpNn9D5CQFjy_ShwQNsXi_x0iyNayAEPAtKGjyYuDY_zm8-z-awWug-A
 
 </pre>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-issued-jwp-su-es256-json-co" class="selfRef">Issued JWP (SU-ES256, JSON, Compact Serialization)</a>
           </figcaption></figure>
-<p id="appendix-A.1-17">To present this JPT, we first use the following presentation header with a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-17">To present this JPT, we first use the following presentation header with
+a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶</a></p>
 <span id="name-presentation-header-su-es25"></span><figure id="figure-8">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-18.1">
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "7xr5hFSqLvV7MQy25eISGOfcf3y4nMd7tmAenKDjVBo"
+  "nonce": "Tw_Td3kjq0x_gEafHBM0612iZ1FNnbvByt6Na11_sfE"
 }
 
 </pre>
@@ -2622,45 +2942,46 @@ Iiemll7OVYebK9szTdRPArMaF_0vbA8pgJ1Cp0kFQQ~ZouKRxEcO6ZJnrSmKmVywFQkZq
 <span id="name-presentation-header-su-es256"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-19.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiI3eHI1aEZTcUx2VjdNUXkyNWVJU0dPZmNmM3k0bk1kN3RtQWVuS0
-RqVkJvIn0
+29tIiwibm9uY2UiOiJUd19UZDNranEweF9nRWFmSEJNMDYxMmlaMUZObmJ2Qnl0Nk5hMT
+Ffc2ZFIn0
 
 </pre>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-presentation-header-su-es256" class="selfRef">Presentation Header (SU-ES256, JSON, Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.1-20">We applying selective disclosure of only the given name and age
-claims (family name and email hidden), and remove the proof components
+<p id="appendix-A.1-20">We applying selective disclosure of only the given name and age claims
+(family name and email hidden), and remove the proof components
 corresponding to these entries.<a href="#appendix-A.1-20" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-21">Using the selectively disclosed information, we generate the presentation
-internal representation. Using that and the selectively disclosed
-payloads, we get the following presented JPT in compact serialization:<a href="#appendix-A.1-21" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-21">Using the selectively disclosed information, we generate the
+presentation internal representation.  Using that and the selectively
+disclosed payloads, we get the following presented JPT in compact
+serialization:<a href="#appendix-A.1-21" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-22">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiI3eHI1aEZTcUx2VjdNUXkyNWVJU0dPZmNmM3k0bk1kN3RtQWVuS0
-RqVkJvIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJUd19UZDNranEweF9nRWFmSEJNMDYxMmlaMUZObmJ2Qnl0Nk5hMT
+Ffc2ZFIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
 3Zlcl8yMSJdLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOi
-Jmcml1OEFSNnBobUtKV2NRS0oxZDc3R3JIRWhBeG9xMnVNVmxlTEJJdDN3IiwieSI6ImN
-JTWFsV19BVFdoM1E0M3k4SGNuakx2Ny01N1c2Y2d4T0FGeFd2TW9qajQifSwicHJlc2Vu
-dGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IkFYZ2ticWtlT
-0p6Zk4tSHBVWVhuVWFTTHJPWG05TFdwakR2VHNiVnJRNjQiLCJ5IjoiMUluN05jQ0VNNl
-9VSGt4UVRtbW9UNkh5YUtxbWF5ejBEZE5mYjNEV2JJcyJ9fQ.MTcxNDUyMTYwMA~MTcxN
+JBaGFwQWM1LVp4d3d6dFZRR3RLN2FBT25pZzk3RVpZbXNkRVdOSzNXZjdnIiwieSI6Im9
+PVUNoNXVicWRpazQza2tXQzY4clRWREZkQ1F0TC0wZGdDb3FyRmtnajgifSwicHJlc2Vu
+dGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjZzYTdybl9MS
+FBOYlpLRFJLU09uMFNHdEJ4bnlMRnRYb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2
+NzYmtCNGFhd0Zya3NpQ19NYlM2YTJZWWxCODh2cGNjYyJ9fQ.MTcxNDUyMTYwMA~MTcxN
 zE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQ
 iOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2Fk
 ZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uI
-joiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.YY
-tzTpc9Yj5WZkpuQhYHvgYJ8q0TiPlCHiOx6uaETwGp_fHBtKhI6EkupTZyaFxkB1XZNSU
-lXjm0OIOL84REqw~0dSb4R-Ssdtr-PMxwq2RYvWbkRUqeeiBuXxtrcR2AOQbWAlU193ej
-VJTcdYnWvOpbDM8VoBOXEXTefd5CqMJ1w~rKogN7dLlnif8dKzfmo9zodfd3A-1ew-7bk
-CnFvV8dFhmqZJts8myHOPbFl4jrqERgMuXrd1Li5HyeSLcPlgjQ~x2En64w_iHmSxbD3d
-aNPnh3ME7w_gsBRn5QMQEnaRd5cJ7AWErB-PvKYa10AKvannzpsSglL4xM7gecKQi98KQ
-~9onKenVdcjkf_-jrxTFseuhUZL1N8QpKZbM1oO0mGJ4hD4IRDrVfB4jMvfW2Ifk7JJuI
-3k5U-QsB8Wx03hPqwQ~-_tRMXSQFNvxkIuSyEFRN6OiqlXKS4Mah-2m8XdC1yEkbzt0wa
-I08i78Y9QckvyNFJ1Zr3G0omfjjX7h5uMIMg~iP-ueZAOMAfp5g8N1s1GCzCzLppn1fha
-A2UUWO1wShC8oPJxv8HnKFLouAqptUV8u2qGdZ26qb4rrNtlfh15hA
+joiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.gl
+YimTTax1Fb_4fAclOTQD0wRVASWSq_0iKS_YGI3a0Val7w_3MjBfV57p66bot-_g-8FuL
+YnQVUgKe6dPupCg~80lTHnkcTCPz9rqBMaa6PATOZUIBYVps4-U06fRYSluaM2lLLZyG0
+mUr-dOIBP9HGgPcMPuN9MrTc_SfJJZu9Q~LhGFhz16SkoP0OVS6aqkaiOByslZ4wGtpMo
+ue-x6pytuDAqgVML_JZwNQCx_wcUO15HUXFPKEKRrC48BkpyRVQ~0BauQVWcSErwcR_hu
+YJePb8kKRXOgjzMDsU-hmVUxRwRhqE4k33mrH3SJuYxhu2-AXV_mvSzNhKAIdeIUrQyaA
+~acQvcHppmE8aK_egxaBB0DtY0RpzYuOJ78T43HvwTtKpfPlqd1VZ8b2ex4YbDfTHKbQS
+Eq24Ap0tk3oJFG8k8g~d6CQl76utI-UaEG_RRWJSztN28pICfzBHRxOf9mkdjUE1wbgs5
+5JDV8BseNxBWoz9uW0F00So_CEM_B0lg7aig~2X6Rv9vOvMKVLbuhjKOrERpuwo4Z9qzq
+QaWf4LXG0GghNYMshJvyVfAknXyDv7i3T6jTawsv6Hy1w79wBFwLhg
 
 </pre><a href="#appendix-A.1-22" class="pilcrow">¶</a>
 </div>
@@ -2697,18 +3018,18 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   8: {      / proof key /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'0178246ea91e389cdf37e1e95185e751a48bace5e6f4b5a98c3bd3b1' +
-        h'b56b43ae', / x /
-    -3: h'd489fb35c08433afd41e4c504e69a84fa1f268aaa66b2cf40dd35f6f' +
-        h'70d66c8b'  / y /
+    -2: h'eac6bbae7fcb1cf35b64a0d12923a7d121ad0719f22c5b57a1afe1fb' +
+        h'efc4d555', / x /
+    -3: h'01f4f59d1fe2f8e72c6e407869ac05ae4b220bf31b4ba6b6618941f3' +
+        h'cbe971c7'  / y /
   },
   9: {      / presentation key /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'7eb8aef0047aa6198a256710289d5defb1ab1c4840c68ab6b8c56578' +
-        h'b048b77c', / x /
-    -3: h'70831a956fc04d6877438df2f077278cbbfbfb9ed6e9c8313801715a' +
-        h'f3288e3e'  / y /
+    -2: h'0216a901ce7e671c30ced5501ad2bb6803a78a0f7b119626b1d11634' +
+        h'add67fb8', / x /
+    -3: h'a0e502879b9ba9d8a4e37924582ebcad354315d090b4bfb47600a8aa' +
+        h'b164823f'  / y /
   },
   10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
 }
@@ -2741,50 +3062,50 @@ example above, including the same public and private keys.<a href="#appendix-A.2
 <blockquote id="appendix-A.2-6">
           <p id="appendix-A.2-6.1">Figure: Issuer Payloads (as CBOR array)<a href="#appendix-A.2-6.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-7">When signed and serialized, the CPT is represented by the following
-CBOR (in hex):<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-7">When signed and serialized, the CPT is represented by the following CBOR
+(in hex):<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-8">
 <pre>8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-200178246ea91e389cdf37e1e95185e751a48bace5e6f4b5a98c3bd3b1b56b43
-ae225820d489fb35c08433afd41e4c504e69a84fa1f268aaa66b2cf40dd35f6f
-70d66c8b09a4010220012158207eb8aef0047aa6198a256710289d5defb1ab1c
-4840c68ab6b8c56578b048b77c22582070831a956fc04d6877438df2f077278c
-bbfbfb9ed6e9c8313801715af3288e3e0a28871a0a3827001a0a3c3d3f63446f
+20eac6bbae7fcb1cf35b64a0d12923a7d121ad0719f22c5b57a1afe1fbefc4d5
+5522582001f4f59d1fe2f8e72c6e407869ac05ae4b220bf31b4ba6b6618941f3
+cbe971c709a4010220012158200216a901ce7e671c30ced5501ad2bb6803a78a
+0f7b119626b1d11634add67fb8225820a0e502879b9ba9d8a4e37924582ebcad
+354315d090b4bfb47600a8aab164823f0a28871a0a3827001a0a3c3d3f63446f
 65634a6179726a6179646f65406578616d706c652e6f7267a601782331323334
 204d61696e2053742e0a416e79746f776e2c2043412031323334350a55534102
 6d31323334204d61696e2053742e0367416e79746f776e046243410565393032
-31300663555341f5885840e4cf70ad096c20bd0b2d6395429b1c254ac702f94b
-b2ccbd22abfe162b39fc6113437b32a705ae71427868b2aadeebd4d6bde9b85c
-d8b3d4b47af6fe488465a05840d566a2d219e676d948f5ac8b636c70ac68ca92
-2c14b39b712822dfeead6f4430cf8ef8c23f7ec86fe6ed260b17b53d536f03d7
-bfdca6f7af3464eb921f82d2a758404ce12e642a5c21f482a5b534fec25cd044
-2e05c6f6ad688cfbd6a6c2f89056591b6e7229d6d4d5842d1c9f4bb4ad19c14a
-28e56cd1e48abb73f438dc6fcd2da55840c23247c74197bb8dff5fa42572da02
-0a0a6dcf3c29c5cb6c47b65f191fa0c87a488153f98ffb96f8d1651aa8219260
-7fcb3b68f0f28522120e30512d2bbe78715840dbbfcc2f885d09af148fffcc07
-8a6990412fb08c1df49641006e2bf388ae414ec45a4f6d5b775e9a34c3639ae9
-8e7dda2f77a749a9f5a1e7eaf0df1a6ea86af958408bbfe2278c670513ea312f
-c955c974d840a87a10ef902fa11316c6536ebf4781de5d6003c8887fc65c2df9
-0d0aeeac037b02805bdf9e71089cf86927a4172aa75840ea92ec99b7c4cdcccf
-efdf64f9649ecd05d3d58ad2b576224d8ae6c905780d3cb06e2cef5c62a23d92
-b03b4a95bdd3c80bc5f1e8254acb7978225913c24f0e2e58407b2397c381627b
-a7e52b34ca0db4814e26cb36b40ea4a100324864453b4e03f349b90e70a4f1ea
-2632af6b4b8fdecda1d1fbc4a3343cff9c7699c58515a37c99
+31300663555341f5885840370f66a02b18ca4b6093b90ea2d69797858976012f
+b179a39ef1676576a6239daa58248bc14dd113108962de576b02c7478439f8a5
+7c9a6ab4e450a0674835975840b18bb93adef07ba3f72936a1d5d7cb761bfa3b
+0fbafb8be530bfaa35c756c20d95e68e535a11d5b5a7bb928415f7c49e87936e
+f8b78872f42fb0cf0ef17b0c405840d6266d3086b87e35e4e07477c6b24d4ba5
+c769c0aa390698b5570057afb711fac3f87c542f66300f16ad3281c400a067e0
+41d52316dd1d4597c5e23bb7957a8d58400e117eb42218741ea1108b1c9fb639
+30f77e7583a6c5bb22f8f253e6edac63fbc1843fea9dc9d372f66c2bd096c1b5
+22e4a5006956d59ea4863c316fa7bae66358402a6f80426efa05992047c65c6c
+4f4d6210f10235e3c7c1085ba64cfb51c739fb385806b791365af1c9c89a3040
+ba8dd6f695bcd4c3264678c5b096b7a5ce725d5840d70e05b622bed94a1553a6
+9ae14c7a1566a264b92905ee4a7808aafae43ae81f174d976e66e32dd0dca940
+cec22539001fcfbd5a50371cf894ff106f082a85065840f94249a4f6ef816475
+63e8de00832540365cba20e53b9aff5647bad2405f1461a98baeb9500f01cd30
+4653ac6e74108ca91fb2697d9bf04a26491386037dbd8d5840380ed9819c990e
+65c4da1d2882bbb32dfad6a98b88ef5c0019e197eb0ea56f41ca9d1e91d3b89a
+9f22fb02d2aaeccfa5aa7ce251756412a9f86fa24266bc6b2b
 
 </pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
 <blockquote id="appendix-A.2-9">
           <p id="appendix-A.2-9.1">Fixtures: Issued Form (SU-ES256, CBOR)<a href="#appendix-A.2-9.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-10">The presented form, similarly to the issued form above, is made with
-the holder conveying the same parameters and the same set of selectively
+<p id="appendix-A.2-10">The presented form, similarly to the issued form above, is made with the
+holder conveying the same parameters and the same set of selectively
 disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">¶</a></p>
 <div class="lang-edn sourcecode" id="appendix-A.2-11">
 <pre>{          / protected header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
-  7: h'ef1af98454aa2ef57b310cb6e5e21218e7dc7f7cb89cc77bb6601e9ca0e3541a', / nonce /
+  7: h'4f0fd3777923ab4c7f80469f1c1334eb5da267514d9dbbc1cade8d6b5d7fb1f1', / nonce /
 }
 
 </pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
@@ -2796,33 +3117,33 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-14">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-6c652e636f6d075820ef1af98454aa2ef57b310cb6e5e21218e7dc7f7cb89cc7
-7bb6601e9ca0e3541a58cfa701010314057668747470733a2f2f697373756572
+6c652e636f6d0758204f0fd3777923ab4c7f80469f1c1334eb5da267514d9dbb
+c1cade8d6b5d7fb1f158cfa701010314057668747470733a2f2f697373756572
 2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-08a4010220012158200178246ea91e389cdf37e1e95185e751a48bace5e6f4b5
-a98c3bd3b1b56b43ae225820d489fb35c08433afd41e4c504e69a84fa1f268aa
-a66b2cf40dd35f6f70d66c8b09a4010220012158207eb8aef0047aa6198a2567
-10289d5defb1ab1c4840c68ab6b8c56578b048b77c22582070831a956fc04d68
-77438df2f077278cbbfbfb9ed6e9c8313801715af3288e3e0a28891a0a382700
+08a401022001215820eac6bbae7fcb1cf35b64a0d12923a7d121ad0719f22c5b
+57a1afe1fbefc4d55522582001f4f59d1fe2f8e72c6e407869ac05ae4b220bf3
+1b4ba6b6618941f3cbe971c709a4010220012158200216a901ce7e671c30ced5
+501ad2bb6803a78a0f7b119626b1d11634add67fb8225820a0e502879b9ba9d8
+a4e37924582ebcad354315d090b4bfb47600a8aab164823f0a28891a0a382700
 1a0a3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267
 a601782331323334204d61696e2053742e0a416e79746f776e2c204341203132
 3334350a555341026d31323334204d61696e2053742e0367416e79746f776e04
-624341056539303231300663555341f5f6f6875840e4cf70ad096c20bd0b2d63
-95429b1c254ac702f94bb2ccbd22abfe162b39fc6113437b32a705ae71427868
-b2aadeebd4d6bde9b85cd8b3d4b47af6fe488465a05840d566a2d219e676d948
-f5ac8b636c70ac68ca922c14b39b712822dfeead6f4430cf8ef8c23f7ec86fe6
-ed260b17b53d536f03d7bfdca6f7af3464eb921f82d2a758404ce12e642a5c21
-f482a5b534fec25cd0442e05c6f6ad688cfbd6a6c2f89056591b6e7229d6d4d5
-842d1c9f4bb4ad19c14a28e56cd1e48abb73f438dc6fcd2da55840c23247c741
-97bb8dff5fa42572da020a0a6dcf3c29c5cb6c47b65f191fa0c87a488153f98f
-fb96f8d1651aa82192607fcb3b68f0f28522120e30512d2bbe78715840dbbfcc
-2f885d09af148fffcc078a6990412fb08c1df49641006e2bf388ae414ec45a4f
-6d5b775e9a34c3639ae98e7dda2f77a749a9f5a1e7eaf0df1a6ea86af958408b
-bfe2278c670513ea312fc955c974d840a87a10ef902fa11316c6536ebf4781de
-5d6003c8887fc65c2df90d0aeeac037b02805bdf9e71089cf86927a4172aa758
-40ff219f9dbe67e682e5cd842de824e275385f12b5b3010d6ba7c6a54e54826b
-106d4026d9ff4a3563b8524f576aeecf0e0e52bd2291bb6e02527ba91f4dbb56
-a2
+624341056539303231300663555341f5f6f6875840370f66a02b18ca4b6093b9
+0ea2d69797858976012fb179a39ef1676576a6239daa58248bc14dd113108962
+de576b02c7478439f8a57c9a6ab4e450a0674835975840b18bb93adef07ba3f7
+2936a1d5d7cb761bfa3b0fbafb8be530bfaa35c756c20d95e68e535a11d5b5a7
+bb928415f7c49e87936ef8b78872f42fb0cf0ef17b0c405840d6266d3086b87e
+35e4e07477c6b24d4ba5c769c0aa390698b5570057afb711fac3f87c542f6630
+0f16ad3281c400a067e041d52316dd1d4597c5e23bb7957a8d58400e117eb422
+18741ea1108b1c9fb63930f77e7583a6c5bb22f8f253e6edac63fbc1843fea9d
+c9d372f66c2bd096c1b522e4a5006956d59ea4863c316fa7bae66358402a6f80
+426efa05992047c65c6c4f4d6210f10235e3c7c1085ba64cfb51c739fb385806
+b791365af1c9c89a3040ba8dd6f695bcd4c3264678c5b096b7a5ce725d5840d7
+0e05b622bed94a1553a69ae14c7a1566a264b92905ee4a7808aafae43ae81f17
+4d976e66e32dd0dca940cec22539001fcfbd5a50371cf894ff106f082a850658
+404a5b76cbb769d2bc2747e073f36e9115a8211f65109781019caad35d5cb70e
+5b493d405d96b5eda340e40c01a8b4b23c724297bf5f60b3922e328eeb25fa02
+89
 
 </pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
 </div>
@@ -2845,13 +3166,13 @@ a2
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "DDU9c8TCUp_Ei_34rxWocXdRD6wGPwKH0wGlnrOWIqQHXFiSte0FXftP2smqj
-       SnyCeTJBbjaTBsg49iU7LgWzuAcLe9apLUmdKhuhWfQjG55R1ysmAL7hBu6-Ka
-       JBt2X",
-  "y": "FibdgkeHktyYL7ASyQ2k_k_wh6H3YJnd-UZN38AFPSRAoby_Fs2IgXVaG__vU
-       _Y1FjLSETMmouEq-mg4tCkCd8-_DVYvjmeTV3dkzV8hoMgx5OKyUgT7eNzK1nB
-       6PMnD",
-  "d": "T3T3Js-aOVrYwQBp5ltgkT4OMZGRmUwR55PQ8q__hMA"
+  "x": "CQyKLE51133AKxGIomGFDro03bW_zu0KFLG8rwtmX3aAwgMtr-EzgCy6tyhFv
+       jA5CUoad1DKxouUUi1Qzs6eahR7DBWMCCmfygrkbUkSH7p0bChFrWcuJX3_CT9
+       IWknT",
+  "y": "GepWFxRLwVnZ7MWlI4SC7-kiuDtbimBxPZxU4Qm065sv575gvXcJIflsCVl8T
+       BzBCXuPY1NIAVzmjqTrn_yLrdFRdnDUk5qbvQGMFyMduxMzYHU31ffoD1z6yd6
+       6mcXg",
+  "d": "PHDpTgY8JwAnBqBhnqpf_EIMPiNwMfIuC8ABmDtnbXg"
 }
 
 </pre>
@@ -2873,7 +3194,8 @@ a2
 <figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-example-issuer-protected-he" class="selfRef">Example issuer protected header</a>
           </figcaption></figure>
-<p id="appendix-A.3-7">These components are signed using the private issuer key previously given, which is then representable in the following serialization:<a href="#appendix-A.3-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-7">These components are signed using the private issuer key previously
+given, which is then representable in the following serialization:<a href="#appendix-A.3-7" class="pilcrow">¶</a></p>
 <span id="name-issued-jwp-bbs-json-compact"></span><figure id="figure-12">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-8.1">
 <pre>eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4I
@@ -2881,9 +3203,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.sfREbz9Sz-H15obbsQsuLznmLLcAdZLm2X
-WS7dgHrVEpkdx2mY7eYDY3JtOMbTbcAgrzmNUyRHnU6jJGAQxE6A04Wq5y4ILlz5bZ16-
-QXYQ
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.rl9NtkqS_Q7N6ER_IArM0s1z_F1J1tQtQC
+nKskYhBCWelAhmiuVajMs-R5zNP_94MGfour55ODN9kzkz0LEWlUhL_fL4CI1pW5H4Nhh
+9_ao
 
 </pre>
 </div>
@@ -2904,20 +3226,22 @@ QXYQ
 <figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-holder-presentation-header" class="selfRef">Holder Presentation Header</a>
           </figcaption></figure>
-<p id="appendix-A.3-11">The holder decides to share all information other than the email address, and generates a proof. That proof is represented in the following serialization:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-11">The holder decides to share all information other than the email
+address, and generates a proof.  That proof is represented in the
+following serialization:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <span id="name-presentation-jwp-bbs-json-c"></span><figure id="figure-14">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-12.1">
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.p-U7nYvuem-RNi8_CkzaHWiYKS905-qEhEEWG98r
-5USmQNTzL85mIhfnu8yxgsSVg3DD7nCn_7WsaNdmn1PtOVBkE3DaJ_VDozUV8u0NkagzH
-D-X4MlRy_IvAkAU1UuAiB6kIhUMMSCY9rT9oBGZSXOQHINUrsWgx8pf5dB5e4bu0nSU3Q
-Eb0h7w3czZoH1lAh29a1JLQSHI_Bx8d0WLKIxAI3m_NmUU38lNqcTxIgdCWQk_hzFBd_-
-Rcepd6mSFwSGVZbiMv5dZaZP0KQu14BFp9Km8rOA6puziC4Xk3i5JYRZpDybTlBiU2JXS
-LQxiJjhmr1v5xkvbRXuoDTZkR3l2Fj_zhrWSUUJxTlNqdyNLZNb0XQnKzAsIvHapxyIZQ
-pHouMS9gNn9i5f2BdEEfmsgxeoVh-5DjobCksKbMST6949Zf-nLQC2808mZ_iChYialju
-HmVjee3z8yxlHG1HQUzeTr8wdEXHkSOKmaAw0
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qCXrloWKK59p8McanBrqX7lDZcAowpIWDhZ6K4js
+RduDR3S8vE6nzWHwJcNQilDEroOuyRNU-uGBOwO3J25XblkPgU-l5Y8Jjfk7vC1t-6NQf
+t8phPqg8fljXIXlwp_jkPiLsIuX4LBmHiAcHD4i1gF5F7APOrFlXctQEUj_9UadxBz9dI
+6mzDGjTj0d8q4GJzGCbFLBw5sEEfchUWa1k0htMnGuOKsMyQUzEPwxTcdGZbKJHPNhBl6
+vjIrgoY0wlfOzqANtiJ3TjCg1HHvnbRpfYDkoQD2vDX6RflWvdZ5mNeM-fyTpgwUX4cdj
+fUK1cUifH6-RiEoVhRY_kummVotkQ0bukj1xA7En6g4wk2dHesbiOiDNKXgoXI3VRmlI9
+fCk0JoLublkmQL3reokrQpdLjR4zGD7ZyljXZriBK7RHcqju5a387GTZkL-suEIDVUFIA
+mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
 
 </pre>
 </div>
@@ -2938,9 +3262,9 @@ HmVjee3z8yxlHG1HQUzeTr8wdEXHkSOKmaAw0
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "-RXGCYmQMcP44I5OVDu-3QIBQ7bA2DuuLTPW3idiHjM",
-  "y": "4tfMySkh8Ao4sxgASwJBREPQIo7KnjITDbLYbrCxsEk",
-  "d": "lIznrG3xVAkg5-62FWjGVZJamAJfQnWR_mVAguKDHuw"
+  "x": "1XZrBIiEeRS-2HRLkC7p0nX0J_ZVU5ckTHqr2lbJvP4",
+  "y": "uRUBQegeCXQQoxVvGsLbHtLzEIiRnCMARHfQ-LNz2gM",
+  "d": "jH_m0ztv-EK5-DABUp3Bi8GgloB2byR6cEAb_qeDlLk"
 }
 
 </pre>
@@ -2951,7 +3275,7 @@ HmVjee3z8yxlHG1HQUzeTr8wdEXHkSOKmaAw0
 <p id="appendix-A.4-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-16">
           <div class="lang-json sourcecode" id="appendix-A.4-5.1">
-<pre>"VaEiUrh2c0gx7SuMp2Cj2RGiUrqULOLAos0pZa4QXMw"
+<pre>"IkkOhMUSioK7YnpJYtmkZVRa9MSu8M3hJspqL1iQEEY"
 
 </pre>
 </div>
@@ -2964,9 +3288,9 @@ HmVjee3z8yxlHG1HQUzeTr8wdEXHkSOKmaAw0
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "AXgkbqkeOJzfN-HpUYXnUaSLrOXm9LWpjDvTsbVrQ64",
-  "y": "1In7NcCEM6_UHkxQTmmoT6HyaKqmayz0DdNfb3DWbIs",
-  "d": "dib27Jcugfx37qDRwX9oWRs6n-6i9WldBI938W429dA"
+  "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
+  "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc",
+  "d": "3FVsYWLnUuD087iYWr1H_qC5EIso4DfG-LqooIejYYo"
 }
 
 </pre>
@@ -2995,8 +3319,8 @@ HmVjee3z8yxlHG1HQUzeTr8wdEXHkSOKmaAw0
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "AXgkbqkeOJzfN-HpUYXnUaSLrOXm9LWpjDvTsbVrQ64",
-    "y": "1In7NcCEM6_UHkxQTmmoT6HyaKqmayz0DdNfb3DWbIs"
+    "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
+    "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc"
   }
 }
 
@@ -3036,13 +3360,13 @@ on the payload slot index (from zero) as input to the HMAC operation.<a href="#a
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-20">
           <div class="lang-json sourcecode" id="appendix-A.4-13.1">
 <pre>[
-  "T6RPUPv9P_ugrJTBa_JDdRDrP6J-xVvsjJVTSla7uGo",
-  "RU78Dw9RiJ1f1IM0_CeDY5qTTZvODDTdVRwawoUDDpw",
-  "03HncuIwtpJNfcOgqEDQ2SE7iLNGoXv5um69ulDdVpU",
-  "cQZA4i5rFKSP_fZlVPdgu2NkvZNI_gD-65tp9cpQ6bM",
-  "mcbIDDGnOpU09wuV-OPwbWnxvgZf2e3TRLHfqYgJ2Jw",
-  "xmj-CeLlqyNECRN2i_SGWysqRfKPlQtqNfkGEgRHpcU",
-  "3YsbG1RjFzKJqnCwjtsQNDZ3bItjuOYAB5AbIki4KgA"
+  "TfNwQEU-pAL8ZS3ei_rJlfFHQXTgYt5vQ4uM_Vs2GLM",
+  "gsA5aP9jbcQJWH7PBTkaZY28xmrN1XrypF84FsDCz0A",
+  "88sC3AUKw7drEsjtllul-AmAc3JJ6zXmivmujeJrlAM",
+  "dZEYZCRTGcRwZeoKnhxtTR7SDs_A_7L5ZH6aNk9-sMw",
+  "y3L0TObeF3cLp5Ekhs-Xv8FNH6wXr-B_WsqD1O5ZpNo",
+  "CCQ7LQX02nPdBRl9Q1UWMOtGgpUatLf35hPEtCHF54U",
+  "ikYO_0JGopUcy3SEVa8EKzk8VubOYBF1P15FV4Qt7WM"
 ]
 
 </pre>
@@ -3051,17 +3375,17 @@ on the payload slot index (from zero) as input to the HMAC operation.<a href="#a
 <a href="#name-derived-payload-keys-base64" class="selfRef">Derived payload keys (Base64url-Encoded)</a>
           </figcaption></figure>
 <p id="appendix-A.4-14">A MAC is generated for each payload using the corresponding derived
-payload key. This results in the following set of MAC values:<a href="#appendix-A.4-14" class="pilcrow">¶</a></p>
+payload key.  This results in the following set of MAC values:<a href="#appendix-A.4-14" class="pilcrow">¶</a></p>
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-21">
           <div class="lang-json sourcecode" id="appendix-A.4-15.1">
 <pre>[
-  "EuQadw_H6_mRPIWMja-06QxIH2ON-cK1e8TzNu_itRE",
-  "zSSaHQb4esi4jbXoEq5L41xLfKPG_--X2L4LFuSMi4Y",
-  "3lavTVAXuODNZyZqKDNXFIzIVVe7uq8zxAcXgknjTO8",
-  "A8Y5cuBiGdjVzmHxE9IYi6Z3cEP3ZiTe721g1OJ-dYc",
-  "kjxIOYxtKCmoldPi1MkiKIeZKjzs2HwiiXGmjhmpJqo",
-  "y9R_06pFmar2CzDz3tleS_LxMRo8uGeL6MyGH4xSSas",
-  "ayy9ZdcW_mMOiu_uJ41bQyDtStfmaX4zHCLkDIK9MTw"
+  "9L1MUBO-9Ai19K5CcXuT6Y5BjBMOCBm-tXfbL9Z00GQ",
+  "T2YR3V8sOaFsng5g9Zzeg_dU5MSYwbUNxz892zxt2A0",
+  "Eu_9qaLqs7lUcaVjJS0VeT5Ti23Vf6gBqH0k_ESGLpc",
+  "vHatPa6Uvbl5UE2aGkE_oVynNgJ4NAKORkLaPBRCggY",
+  "vaupcvY0e2dgO1YnDGfnKYL0TMQX5vG7ETTDEzxhZYI",
+  "c2kNHJcL-VEhXx6OIh0l6O69EPQbcSoz7I73TnEnBhA",
+  "j_ONfwVAtewSZLFmAGmJvPFHbOSU8IjtpuxiExTNKJY"
 ]
 
 </pre>
@@ -3070,15 +3394,16 @@ payload key. This results in the following set of MAC values:<a href="#appendix-
 <a href="#name-payload-mac-values-base64ur" class="selfRef">Payload MAC values (Base64url-Encoded)</a>
           </figcaption></figure>
 <p id="appendix-A.4-16">The issuer protected header and payload MAC values are combined into a
-binary representation known as the Compact MAC Representation.
-This representation is signed with the issuer's private key.<a href="#appendix-A.4-16" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-17">The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.<a href="#appendix-A.4-17" class="pilcrow">¶</a></p>
+binary representation known as the Compact MAC Representation.  This
+representation is signed with the issuer's private key.<a href="#appendix-A.4-16" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-17">The proof consists of two octet string values: the signature over the
+combined MAC representation, and the shared secret.<a href="#appendix-A.4-17" class="pilcrow">¶</a></p>
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-22">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-18.1">
 <pre>[
-  "Gwfv0OTsPff4uIa4DDp9R2EF7TLjnrDQ-nIiD2k4uMkmNwGnsgTAMH82BpKgJjl6nm
-Tlzaz3jTQvC5v4YUSLNA",
-  "ApyLyEUgs-ZLDaYZ7Scf8Gjn4SkUp4d5LKQpmDcCPqY"
+  "Xa-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F1icROjgSfMTsYdgwlR4hJM
+WnD7bI85CGtu_tb4ly9Q",
+  "l15LHxspMjNj-11J4u72_B77sJ5CKpaO_XIyrTtrf3U"
 ]
 
 </pre>
@@ -3093,15 +3418,15 @@ Tlzaz3jTQvC5v4YUSLNA",
 HR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
 dLCJwcmVzZW50YXRpb25fa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ1c2Ui
-OiJzaWduIiwieCI6IkFYZ2ticWtlT0p6Zk4tSHBVWVhuVWFTTHJPWG05TFdwakR2VHNiV
-nJRNjQiLCJ5IjoiMUluN05jQ0VNNl9VSGt4UVRtbW9UNkh5YUtxbWF5ejBEZE5mYjNEV2
-JJcyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleG
+OiJzaWduIiwieCI6IjZzYTdybl9MSFBOYlpLRFJLU09uMFNHdEJ4bnlMRnRYb2FfaC0tX
+0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFhd0Zya3NpQ19NYlM2YTJZWWxCODh2cG
+NjYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleG
 FtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSA
 xMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxp
 dHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvd
-W50cnkiOiJVU0EifQ~dHJ1ZQ.Gwfv0OTsPff4uIa4DDp9R2EF7TLjnrDQ-nIiD2k4uMkm
-NwGnsgTAMH82BpKgJjl6nmTlzaz3jTQvC5v4YUSLNA~ApyLyEUgs-ZLDaYZ7Scf8Gjn4S
-kUp4d5LKQpmDcCPqY
+W50cnkiOiJVU0EifQ~dHJ1ZQ.Xa-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F
+1icROjgSfMTsYdgwlR4hJMWnD7bI85CGtu_tb4ly9Q~l15LHxspMjNj-11J4u72_B77sJ
+5CKpaO_XIyrTtrf3U
 
 </pre>
 </div>
@@ -3115,7 +3440,7 @@ kUp4d5LKQpmDcCPqY
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "7xr5hFSqLvV7MQy25eISGOfcf3y4nMd7tmAenKDjVBo"
+  "nonce": "Tw_Td3kjq0x_gEafHBM0612iZ1FNnbvByt6Na11_sfE"
 }
 
 </pre>
@@ -3123,27 +3448,33 @@ kUp4d5LKQpmDcCPqY
 <figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
 <a href="#name-presentation-protected-header" class="selfRef">Presentation Protected Header</a>
           </figcaption></figure>
-<p id="appendix-A.4-24">The holder will take the issuer proof (including shared secret) and derive the same individual payload MAC values (above).<a href="#appendix-A.4-24" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-25">In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to <code>email</code>, <code>address</code>, and <code>age_over_21</code>)<a href="#appendix-A.4-25" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-26">For each payload slot, the holder will provide one of two values as part of the
-proof value. For a disclosed payload, the holder will provide the corresponding
-derived key. For a non-disclosed payload, the holder will provide the
-corresponding MAC value.<a href="#appendix-A.4-26" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-27">The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:<a href="#appendix-A.4-27" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-24">The holder will take the issuer proof (including shared secret) and
+derive the same individual payload MAC values (above).<a href="#appendix-A.4-24" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-25">In this case, the holder has decided not to disclose the last three
+claims provided by the issuer (corresponding to <code>email</code>, <code>address</code>, and
+<code>age_over_21</code>)<a href="#appendix-A.4-25" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-26">For each payload slot, the holder will provide one of two values as part
+of the proof value.  For a disclosed payload, the holder will provide
+the corresponding derived key.  For a non-disclosed payload, the holder
+will provide the corresponding MAC value.<a href="#appendix-A.4-26" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-27">The final presented proof value is an array of octet strings.  The
+contents are presentation header signature, followed by the issuer
+signature, then the value disclosed by the holder for each payload.
+This results in the following proof:<a href="#appendix-A.4-27" class="pilcrow">¶</a></p>
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-25">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-28.1">
 <pre>[
-  "Gwfv0OTsPff4uIa4DDp9R2EF7TLjnrDQ-nIiD2k4uMkmNwGnsgTAMH82BpKgJjl6nm
-Tlzaz3jTQvC5v4YUSLNA",
-  "T6RPUPv9P_ugrJTBa_JDdRDrP6J-xVvsjJVTSla7uGo",
-  "RU78Dw9RiJ1f1IM0_CeDY5qTTZvODDTdVRwawoUDDpw",
-  "03HncuIwtpJNfcOgqEDQ2SE7iLNGoXv5um69ulDdVpU",
-  "cQZA4i5rFKSP_fZlVPdgu2NkvZNI_gD-65tp9cpQ6bM",
-  "kjxIOYxtKCmoldPi1MkiKIeZKjzs2HwiiXGmjhmpJqo",
-  "y9R_06pFmar2CzDz3tleS_LxMRo8uGeL6MyGH4xSSas",
-  "ayy9ZdcW_mMOiu_uJ41bQyDtStfmaX4zHCLkDIK9MTw",
-  "eTp7gZ8wvMwc_xgbL28-SuY6kAo0OxFInrjXa2fHfh2OQnATPv4YPg3AQGJWBX9hKu
-5evroAMA0gFlBf8GeT9w"
+  "Xa-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F1icROjgSfMTsYdgwlR4hJM
+WnD7bI85CGtu_tb4ly9Q",
+  "TfNwQEU-pAL8ZS3ei_rJlfFHQXTgYt5vQ4uM_Vs2GLM",
+  "gsA5aP9jbcQJWH7PBTkaZY28xmrN1XrypF84FsDCz0A",
+  "88sC3AUKw7drEsjtllul-AmAc3JJ6zXmivmujeJrlAM",
+  "dZEYZCRTGcRwZeoKnhxtTR7SDs_A_7L5ZH6aNk9-sMw",
+  "vaupcvY0e2dgO1YnDGfnKYL0TMQX5vG7ETTDEzxhZYI",
+  "c2kNHJcL-VEhXx6OIh0l6O69EPQbcSoz7I73TnEnBhA",
+  "j_ONfwVAtewSZLFmAGmJvPFHbOSU8IjtpuxiExTNKJY",
+  "E9rPixsWUPKAbyEOkKz6t7MaT2FsKKtB9lm98-dwFceR3mXZBdVeuOYVYhE3gBYGEN
+U5QyPs9f__G-WN_fPnNg"
 ]
 
 </pre>
@@ -3155,21 +3486,21 @@ Tlzaz3jTQvC5v4YUSLNA",
 <span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-30.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiI3eHI1aEZTcUx2VjdNUXkyNWVJU0dPZmNmM3k0bk1kN3RtQWVuS0
-RqVkJvIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
+29tIiwibm9uY2UiOiJUd19UZDNranEweF9nRWFmSEJNMDYxMmlaMUZObmJ2Qnl0Nk5hMT
+Ffc2ZFIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
 iaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
 3Zlcl8yMSJdLCJwcmVzZW50YXRpb25fa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNT
-YiLCJ1c2UiOiJzaWduIiwieCI6IkFYZ2ticWtlT0p6Zk4tSHBVWVhuVWFTTHJPWG05TFd
-wakR2VHNiVnJRNjQiLCJ5IjoiMUluN05jQ0VNNl9VSGt4UVRtbW9UNkh5YUtxbWF5ejBE
-ZE5mYjNEV2JJcyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.G
-wfv0OTsPff4uIa4DDp9R2EF7TLjnrDQ-nIiD2k4uMkmNwGnsgTAMH82BpKgJjl6nmTlza
-z3jTQvC5v4YUSLNA~T6RPUPv9P_ugrJTBa_JDdRDrP6J-xVvsjJVTSla7uGo~RU78Dw9R
-iJ1f1IM0_CeDY5qTTZvODDTdVRwawoUDDpw~03HncuIwtpJNfcOgqEDQ2SE7iLNGoXv5u
-m69ulDdVpU~cQZA4i5rFKSP_fZlVPdgu2NkvZNI_gD-65tp9cpQ6bM~kjxIOYxtKCmold
-Pi1MkiKIeZKjzs2HwiiXGmjhmpJqo~y9R_06pFmar2CzDz3tleS_LxMRo8uGeL6MyGH4x
-SSas~ayy9ZdcW_mMOiu_uJ41bQyDtStfmaX4zHCLkDIK9MTw~eTp7gZ8wvMwc_xgbL28-
-SuY6kAo0OxFInrjXa2fHfh2OQnATPv4YPg3AQGJWBX9hKu5evroAMA0gFlBf8GeT9w
+YiLCJ1c2UiOiJzaWduIiwieCI6IjZzYTdybl9MSFBOYlpLRFJLU09uMFNHdEJ4bnlMRnR
+Yb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFhd0Zya3NpQ19NYlM2YTJZ
+WWxCODh2cGNjYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.X
+a-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F1icROjgSfMTsYdgwlR4hJMWnD7
+bI85CGtu_tb4ly9Q~TfNwQEU-pAL8ZS3ei_rJlfFHQXTgYt5vQ4uM_Vs2GLM~gsA5aP9j
+bcQJWH7PBTkaZY28xmrN1XrypF84FsDCz0A~88sC3AUKw7drEsjtllul-AmAc3JJ6zXmi
+vmujeJrlAM~dZEYZCRTGcRwZeoKnhxtTR7SDs_A_7L5ZH6aNk9-sMw~vaupcvY0e2dgO1
+YnDGfnKYL0TMQX5vG7ETTDEzxhZYI~c2kNHJcL-VEhXx6OIh0l6O69EPQbcSoz7I73TnE
+nBhA~j_ONfwVAtewSZLFmAGmJvPFHbOSU8IjtpuxiExTNKJY~E9rPixsWUPKAbyEOkKz6
+t7MaT2FsKKtB9lm98-dwFceR3mXZBdVeuOYVYhE3gBYGENU5QyPs9f__G-WN_fPnNg
 
 </pre>
 </div>
@@ -3185,11 +3516,13 @@ SuY6kAo0OxFInrjXa2fHfh2OQnATPv4YPg3AQGJWBX9hKu5evroAMA0gFlBf8GeT9w
       <h2 id="name-acknowledgements">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<p id="appendix-B-1">This work was incubated in the DIF <a href="https://identity.foundation/working-groups/crypto.html">Applied Cryptography Working Group</a>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">This work was incubated in the DIF <a href="https://identity.foundation/working-groups/crypto.html">Applied Cryptography Working
+Group</a>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">We would like to thank
 Alberto Solavagione
 for his valuable contributions to this specification.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
-<p id="appendix-B-3">The BBS examples were generated using the library at <a href="https://github.com/mattrglobal/pairing_crypto">https://github.com/mattrglobal/pairing_crypto</a> .<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">The BBS examples were generated using the library at
+<a href="https://github.com/mattrglobal/pairing_crypto">https://github.com/mattrglobal/pairing_crypto</a> .<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="document-history">
@@ -3197,148 +3530,163 @@ for his valuable contributions to this specification.<a href="#appendix-B-2" cla
       <h2 id="name-document-history">
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
-<p id="appendix-C-1">[[ To be removed from the final specification ]]
- -10<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">[[ To be removed from the final specification ]]<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">-10<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-2.1">Clarify MAC issuance and presentation using new "payload slot"
-nomenclature.<a href="#appendix-C-2.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-3.1">Clarify MAC issuance and presentation using new "payload slot"
+nomenclature.<a href="#appendix-C-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-2.2">Define a new binary "Presentation Internal Representation" so that
-the holder signature protects the entire presentation<a href="#appendix-C-2.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-3.2">Define a new binary "Presentation Internal Representation" so that the
+holder signature protects the entire presentation<a href="#appendix-C-3.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-2.3">Leverage the new "Holder Presentation Algorithm" to allow the
-holder algorithm to be independant from the signature algorithm used
-by the issuer<a href="#appendix-C-2.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-3.3">Leverage the new "Holder Presentation Algorithm" to allow the holder
+algorithm to be independant from the signature algorithm used by the
+issuer<a href="#appendix-C-3.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-2.4">Redefine computation of the "Combined MAC Representation" to more
-closely match the new Presentation Internal Representation.<a href="#appendix-C-2.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-3.4">Redefine computation of the "Combined MAC Representation" to more
+closely match the new Presentation Internal Representation.<a href="#appendix-C-3.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-2.5">Change the MAC algorithm to directly sign the binary Combined MAC
-Representation rather than convert it to a JWS.<a href="#appendix-C-2.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-3.5">Change the MAC algorithm to directly sign the binary Combined MAC
+Representation rather than convert it to a JWS.<a href="#appendix-C-3.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-2.6">Do not unneccessarily hash the issuer protected header inside the
+        <li class="compact" id="appendix-C-3.6">Do not unneccessarily hash the issuer protected header inside the
 Combined MAC Representation, so that it can provide some manner of
-domain separation.<a href="#appendix-C-2.6" class="pilcrow">¶</a>
+domain separation.<a href="#appendix-C-3.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-2.7">Clarify how verifiers are to generate the Combined MAC Representation
-from available information.<a href="#appendix-C-2.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-3.7">Clarify how verifiers are to generate the Combined MAC Representation
+from available information.<a href="#appendix-C-3.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-2.8">Provider step-by-step instructions for verification of a presentation<a href="#appendix-C-2.8" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-C-3">-09<a href="#appendix-C-3" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-C-4.1">Remove JSON serialization<a href="#appendix-C-4.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-4.2">Added CBOR (CPT) example to the appendix using SU-ES256<a href="#appendix-C-4.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-3.8">Provider step-by-step instructions for verification of a presentation<a href="#appendix-C-3.8" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-5">-08<a href="#appendix-C-5" class="pilcrow">¶</a></p>
+<p id="appendix-C-4">-09<a href="#appendix-C-4" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-6.1">Made some additional references normative.<a href="#appendix-C-6.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-5.1">Remove JSON serialization<a href="#appendix-C-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-6.2">Corrected SU-ES256 issuer protected header including private keys<a href="#appendix-C-6.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-5.2">Added CBOR (CPT) example to the appendix using SU-ES256<a href="#appendix-C-5.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-7">-07<a href="#appendix-C-7" class="pilcrow">¶</a></p>
+<p id="appendix-C-6">-08<a href="#appendix-C-6" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-8.1">Changing primary editor<a href="#appendix-C-8.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-7.1">Made some additional references normative.<a href="#appendix-C-7.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-8.2">Update registry template for algorithms to account for integer
-CBOR labels<a href="#appendix-C-8.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-8.3">Restylize initial registry entries for readability<a href="#appendix-C-8.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-8.4">Defer BBS key definition to <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span><a href="#appendix-C-8.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-8.5">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code> names<a href="#appendix-C-8.5" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-8.6">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
-<code>presentation_key</code> to better represent that the key may be JSON
-or CBOR-formatted.<a href="#appendix-C-8.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-8.7">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP
-where they are defined. Consolidated usage, purpose and
-requirements from algorith musage under these definitions.<a href="#appendix-C-8.7" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-8.8">Combined <code>BBS-PROOF</code> into <code>BBS</code><a href="#appendix-C-8.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-7.2">Corrected SU-ES256 issuer protected header including private keys<a href="#appendix-C-7.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-9">-06<a href="#appendix-C-9" class="pilcrow">¶</a></p>
+<p id="appendix-C-8">-07<a href="#appendix-C-8" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-10.1">Update reference to new repository home<a href="#appendix-C-10.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-9.1">Changing primary editor<a href="#appendix-C-9.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-10.2">Fixed #77: Removed vestigial use of <code>presentation_header</code>.<a href="#appendix-C-10.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.2">Update registry template for algorithms to account for integer CBOR
+labels<a href="#appendix-C-9.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-10.3">Correct <code>pjwk</code> to <code>presentation_jwk</code><a href="#appendix-C-10.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.3">Restylize initial registry entries for readability<a href="#appendix-C-9.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.4">Defer BBS key definition to <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span><a href="#appendix-C-9.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.5">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code>
+names<a href="#appendix-C-9.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.6">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
+<code>presentation_key</code> to better represent that the key may be JSON or
+CBOR-formatted.<a href="#appendix-C-9.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.7">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP where
+they are defined.  Consolidated usage, purpose and requirements from
+algorith musage under these definitions.<a href="#appendix-C-9.7" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.8">Combined <code>BBS-PROOF</code> into <code>BBS</code><a href="#appendix-C-9.8" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-11">-05<a href="#appendix-C-11" class="pilcrow">¶</a></p>
+<p id="appendix-C-10">-06<a href="#appendix-C-10" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-12.1">Update of appendix describing MAC-H256 to now also be generated by the build system from a common set of code and templates.<a href="#appendix-C-12.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-11.1">Update reference to new repository home<a href="#appendix-C-11.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-12.2">Update single use algorithm to use an array of octet values rather than requiring splitting an octet buffer into parts during generation of a presentation and during verification.<a href="#appendix-C-12.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-11.2">Fixed #77: Removed vestigial use of <code>presentation_header</code>.<a href="#appendix-C-11.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-12.3">Update BBS algorithm description and examples to clarify the proof is an array with a single octet string.<a href="#appendix-C-12.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-12.4">Update MAC algorithm to use an array of octet values for the proof, rather than requiring splitting an octet buffer into parts.<a href="#appendix-C-12.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-12.5">Add new section on the Combined MAC Representation to clarify operations are serving to recreate this octet string value.<a href="#appendix-C-12.5" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-12.6">Correct reference to the latest BBS draft.<a href="#appendix-C-12.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-12.7">SU and MAC families now use raw JWA rather than JWS and synthesized headers<a href="#appendix-C-12.7" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-12.8">Change algorithms to not use base64url-encoding internally. Algorithms are meant to operate on octets, while base64url-encoding is used to represent those octets in JSON and compact serializations.<a href="#appendix-C-12.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-11.3">Correct <code>pjwk</code> to <code>presentation_jwk</code><a href="#appendix-C-11.3" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-13">-04<a href="#appendix-C-13" class="pilcrow">¶</a></p>
+<p id="appendix-C-12">-05<a href="#appendix-C-12" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-14.1">Refactoring figures and examples to be built from a common set across all three documents<a href="#appendix-C-14.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-13.1">Update of appendix describing MAC-H256 to now also be generated by the
+build system from a common set of code and templates.<a href="#appendix-C-13.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-14.2">Move single-use example appendix from JWP to JPA<a href="#appendix-C-14.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-13.2">Update single use algorithm to use an array of octet values rather
+than requiring splitting an octet buffer into parts during generation
+of a presentation and during verification.<a href="#appendix-C-13.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-14.3">Change algorithm from <code>BBS-DRAFT-5</code> to <code>BBS</code>, and from <code>BBS-PROOF-DRAFT-5</code> to <code>BBS-PROOF</code><a href="#appendix-C-14.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-13.3">Update BBS algorithm description and examples to clarify the proof is
+an array with a single octet string.<a href="#appendix-C-13.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-14.4">Update BBS ciphersuite ID to <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code><a href="#appendix-C-14.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-13.4">Update MAC algorithm to use an array of octet values for the proof,
+rather than requiring splitting an octet buffer into parts.<a href="#appendix-C-13.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-14.5">Update to draft 5 BLS key representations<a href="#appendix-C-14.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-13.5">Add new section on the Combined MAC Representation to clarify
+operations are serving to recreate this octet string value.<a href="#appendix-C-13.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-13.6">Correct reference to the latest BBS draft.<a href="#appendix-C-13.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-13.7">SU and MAC families now use raw JWA rather than JWS and synthesized
+headers<a href="#appendix-C-13.7" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-13.8">Change algorithms to not use base64url-encoding internally.
+Algorithms are meant to operate on octets, while base64url-encoding is
+used to represent those octets in JSON and compact serializations.<a href="#appendix-C-13.8" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-15">-03<a href="#appendix-C-15" class="pilcrow">¶</a></p>
+<p id="appendix-C-14">-04<a href="#appendix-C-14" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-16.1">Improvements resulting from a full proofreading.<a href="#appendix-C-16.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-15.1">Refactoring figures and examples to be built from a common set across
+all three documents<a href="#appendix-C-15.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-16.2">Populated IANA Considerations section.<a href="#appendix-C-16.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-15.2">Move single-use example appendix from JWP to JPA<a href="#appendix-C-15.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-16.3">Updated to use BBS draft -05.<a href="#appendix-C-16.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-15.3">Change algorithm from <code>BBS-DRAFT-5</code> to <code>BBS</code>, and from
+<code>BBS-PROOF-DRAFT-5</code> to <code>BBS-PROOF</code><a href="#appendix-C-15.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-16.4">Updated examples.<a href="#appendix-C-16.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-15.4">Update BBS ciphersuite ID to <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code><a href="#appendix-C-15.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-15.5">Update to draft 5 BLS key representations<a href="#appendix-C-15.5" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-17">-02<a href="#appendix-C-17" class="pilcrow">¶</a></p>
+<p id="appendix-C-16">-03<a href="#appendix-C-16" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-18.1">Add new <code>BBS-DRAFT-3</code> and <code>BBS-PROOF-DRAFT-3</code> algorithms based on draft-irtf-cfrg-bbs-signatures-03.<a href="#appendix-C-18.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-17.1">Improvements resulting from a full proofreading.<a href="#appendix-C-17.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-18.2">Remove prior <code>BBS-X</code> algorithm based on a particular implementation of earlier drafts.<a href="#appendix-C-18.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-17.2">Populated IANA Considerations section.<a href="#appendix-C-17.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-17.3">Updated to use BBS draft -05.<a href="#appendix-C-17.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-17.4">Updated examples.<a href="#appendix-C-17.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-19">-01<a href="#appendix-C-19" class="pilcrow">¶</a></p>
+<p id="appendix-C-18">-02<a href="#appendix-C-18" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-20.1">Correct cross-references within group<a href="#appendix-C-20.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-19.1">Add new <code>BBS-DRAFT-3</code> and <code>BBS-PROOF-DRAFT-3</code> algorithms based on
+draft-irtf-cfrg-bbs-signatures-03.<a href="#appendix-C-19.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-20.2">Describe <code>issuer_header</code> and <code>presentation_header</code><a href="#appendix-C-20.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-20.3">Update BBS references to CFRG drafts<a href="#appendix-C-20.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-20.4">Rework reference to HMAC ( RFC2104 )<a href="#appendix-C-20.4" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-20.5">Remove ZKSnark placeholder<a href="#appendix-C-20.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-19.2">Remove prior <code>BBS-X</code> algorithm based on a particular implementation of
+earlier drafts.<a href="#appendix-C-19.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-21">-00<a href="#appendix-C-21" class="pilcrow">¶</a></p>
+<p id="appendix-C-20">-01<a href="#appendix-C-20" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-22.1">Created initial working group draft based on draft-jmiller-jose-json-proof-algorithms-01<a href="#appendix-C-22.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-21.1">Correct cross-references within group<a href="#appendix-C-21.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-21.2">Describe <code>issuer_header</code> and <code>presentation_header</code><a href="#appendix-C-21.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-21.3">Update BBS references to CFRG drafts<a href="#appendix-C-21.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-21.4">Rework reference to HMAC ( RFC2104 )<a href="#appendix-C-21.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-21.5">Remove ZKSnark placeholder<a href="#appendix-C-21.5" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="appendix-C-22">-00<a href="#appendix-C-22" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-C-23.1">Created initial working group draft based on
+draft-jmiller-jose-json-proof-algorithms-01<a href="#appendix-C-23.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
