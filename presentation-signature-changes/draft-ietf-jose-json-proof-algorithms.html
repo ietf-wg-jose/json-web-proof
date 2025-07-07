@@ -1783,7 +1783,7 @@ The Holder Presentation Algorithm protected header MUST NOT be included.<a href=
 <p id="section-6.4.3-4">The holder will a unique key per payload value using a MAC, with the Shared Secret as the key and a generated binary value. This binary value is constructed by appending data into a single octet string:<a href="#section-6.4.3-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.4.3-5">
 <li id="section-6.4.3-5.1">
-              <code>0x82 67 70 61 79 6C 6F 61 64 48 1B</code><a href="#section-6.4.3-5.1" class="pilcrow">¶</a>
+              <code>0x82 67 70 61 79 6C 6F 61 64 1B</code><a href="#section-6.4.3-5.1" class="pilcrow">¶</a>
 </li>
             <li id="section-6.4.3-5.2">The zero indexed count of the payload slot<a href="#section-6.4.3-5.2" class="pilcrow">¶</a>
 </li>
@@ -2452,9 +2452,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "fNCnPHHkY-qKH17jo10ICc9TIJJABHb8Q_6QPSC4zjU",
-  "y": "wLm62EMICxT8P3iLFXYIis9SOc9mnQCPHNgM8RT88XA",
-  "d": "DzrcRktb8KhNYaJNysPQYqy4JqdvNI0NZR_RtT4MyK4"
+  "x": "LmADmWZgOf8maoNN_YQVRAKPeBafKuPVe3w4cIquSZ0",
+  "y": "ZVVkSFOJvgZipgPCrYmsOZJ0t2Q-QXh4omOzCPXpuWY",
+  "d": "KfgeQCNRFDLozldtV-RqlJa-iDFmjLnoKW_Ib3VK15I"
 }
 
 </pre>
@@ -2468,9 +2468,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "DQCNnnbdNu8MjP-wyYBpzQ5ysHD0--iLuX8qWf2ld28",
-  "y": "AlfB_jH9v2Xrn9mIIoUeAoT-WwAJiqFUuqKsFkRyTOU",
-  "d": "nuHktSZ-qOOWRahOozl39uvt2LtApxdm-3AdSgzbInA"
+  "x": "GN6dq-WDoVo9PA1GUrYXMsDQS-nUKjwtp-7sGsiUpuI",
+  "y": "8XfSfsYb_FzTreaGM2J6z1vKAHeS-HY0Ia88-slh51o",
+  "d": "RvVeBXqo4M3IQXsctBn8iuTUh7hMF8BFb5c-DmzrOlI"
 }
 
 </pre>
@@ -2484,9 +2484,9 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "rx7wjIsGnZmmtgtgtk_Y1BBTr-1pDUZ2TOqE225-0jw",
-  "y": "K0lWmevvU2pfpOtuto2pyJSRQtJ-_B33Znr98voQrS0",
-  "d": "LWFszmwzb2D6tG7PDI9hmzywrSKcgseiB-enPBv898g"
+  "x": "EkX-Cxc_riJfMIv7j_07rNG6uRX6FCnpezn4iZBu9Dw",
+  "y": "eGMYiNrKu9fKv6k1BfNPSQJ3Lp9bWmXotbVuCwG8MYc",
+  "d": "jDYFOLZky4nU6CAkGDq6kow2JeLF3-ReFdGAqLCTC6Q"
 }
 
 </pre>
@@ -2514,14 +2514,14 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
   "proof_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "DQCNnnbdNu8MjP-wyYBpzQ5ysHD0--iLuX8qWf2ld28",
-    "y": "AlfB_jH9v2Xrn9mIIoUeAoT-WwAJiqFUuqKsFkRyTOU"
+    "x": "GN6dq-WDoVo9PA1GUrYXMsDQS-nUKjwtp-7sGsiUpuI",
+    "y": "8XfSfsYb_FzTreaGM2J6z1vKAHeS-HY0Ia88-slh51o"
   },
   "presentation_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "rx7wjIsGnZmmtgtgtk_Y1BBTr-1pDUZ2TOqE225-0jw",
-    "y": "K0lWmevvU2pfpOtuto2pyJSRQtJ-_B33Znr98voQrS0"
+    "x": "EkX-Cxc_riJfMIv7j_07rNG6uRX6FCnpezn4iZBu9Dw",
+    "y": "eGMYiNrKu9fKv6k1BfNPSQJ3Lp9bWmXotbVuCwG8MYc"
   }
 }
 
@@ -2535,12 +2535,12 @@ and <code>ECDSA using secp256k1 and SHA-256</code> for the signatures<a href="#s
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJEUUNObm5i
-ZE51OE1qUC13eVlCcHpRNXlzSEQwLS1pTHVYOHFXZjJsZDI4IiwieSI6IkFsZkJfakg5d
-jJYcm45bUlJb1VlQW9ULVd3QUppcUZVdXFLc0ZrUnlUT1UifSwicHJlc2VudGF0aW9uX2
-tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6InJ4N3dqSXNHblptbXRndGd
-0a19ZMUJCVHItMXBEVVoyVE9xRTIyNS0wanciLCJ5IjoiSzBsV21ldnZVMnBmcE90dXRv
-MnB5SlNSUXRKLV9CMzNabnI5OHZvUXJTMCJ9fQ
+dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJHTjZkcS1X
+RG9WbzlQQTFHVXJZWE1zRFFTLW5VS2p3dHAtN3NHc2lVcHVJIiwieSI6IjhYZlNmc1liX
+0Z6VHJlYUdNMko2ejF2S0FIZVMtSFkwSWE4OC1zbGg1MW8ifSwicHJlc2VudGF0aW9uX2
+tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IkVrWC1DeGNfcmlKZk1Jdjd
+qXzA3ck5HNnVSWDZGQ25wZXpuNGlaQnU5RHciLCJ5IjoiZUdNWWlOckt1OWZLdjZrMUJm
+TlBTUUozTHA5YldtWG90YlZ1Q3dHOE1ZYyJ9fQ
 
 </pre>
 </div>
@@ -2579,26 +2579,26 @@ MnB5SlNSUXRKLV9CMzNabnI5OHZvUXJTMCJ9fQ
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJEUUNObm5i
-ZE51OE1qUC13eVlCcHpRNXlzSEQwLS1pTHVYOHFXZjJsZDI4IiwieSI6IkFsZkJfakg5d
-jJYcm45bUlJb1VlQW9ULVd3QUppcUZVdXFLc0ZrUnlUT1UifSwicHJlc2VudGF0aW9uX2
-tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6InJ4N3dqSXNHblptbXRndGd
-0a19ZMUJCVHItMXBEVVoyVE9xRTIyNS0wanciLCJ5IjoiSzBsV21ldnZVMnBmcE90dXRv
-MnB5SlNSUXRKLV9CMzNabnI5OHZvUXJTMCJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~
+dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJHTjZkcS1X
+RG9WbzlQQTFHVXJZWE1zRFFTLW5VS2p3dHAtN3NHc2lVcHVJIiwieSI6IjhYZlNmc1liX
+0Z6VHJlYUdNMko2ejF2S0FIZVMtSFkwSWE4OC1zbGg1MW8ifSwicHJlc2VudGF0aW9uX2
+tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IkVrWC1DeGNfcmlKZk1Jdjd
+qXzA3ck5HNnVSWDZGQ25wZXpuNGlaQnU5RHciLCJ5IjoiZUdNWWlOckt1OWZLdjZrMUJm
+TlBTUUozTHA5YldtWG90YlZ1Q3dHOE1ZYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~
 IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0I
 E1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOi
 IxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJ
-wb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.oo7enzeJZEfVOd
-Vnmn4ZtEsdApESZCCX-mpVFl5jIqeUB5mPsbWJfJ8kLU06l8BQUwSRRV6a4Aa2OULW0Sj
-2bw~ttuDe_hyTTdyS92uibUAA7UG4k4HoWQyGI_HWaXtL1kuUt32MR28hBwXqZszmpv3B
-0luPcP-FRJJL6lg1buzVw~_VQrh6YUoKHiQtPWbuB-WPE1EpfidzhAPo3ISSRUJvWM6Gx
-SdT2yB5mgqbURl1Llq5o8OyyMlNl2hETxna0VJA~wp36olkrqYg5foMELsKkfArhHUvH7
-GDJ7by0HM_I8mYHawOhKryrPdOKe2wy7o7Toy7HqI-JScWMttIZZ2fzXQ~APvvtrJN8TZ
-aKY16G1kOIF2nX5JaAjpM5Ad5H2ObcQfIBhCnRSUsDqN1ieblDU7GdC0QCnhzcK255sLv
-CBuhkw~cunXDc0MDO7mMUFEGZmfl1RGtcEDeyeh09l4h9BYi9mF26Twg9jfTVT-UzJKCk
-I8xox_G6eLkiwZp-k5Y03e3A~rL0ZUODe3Jv2n2KqEAs6XmHwRjq7fZPW_yT08l2lvAKT
-FR9cyXufc0slEhQlgQL9WLf_GzehDnBB5baYD0kRoA~pZDrX5wi5WfIjHpU1oKho3Nd5z
-dejtn0WiHJyYLmUXolm2vgyd0aUC25sRGUkL18ZkvUvgxDsHPGUI9pYKXumQ
+wb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.PWvT-r5tZm_zvA
+E8OSV3pw1uq487uAhHTL-pp5JbAGODNts-YhxTkuK4ACQHkxJxFLHMFIo4MmeVIx1Kdyc
+inQ~aMQWuzQcMciC2xSFBAYhrZEOdYH8_2VWZeTWzW2wRaeg9m8dNOq60WNO3Uv4vq8is
+fUoY7VDnLVZ8w7lN4J1hQ~o2X1fktRsjOmgCZKEZc7wcn7QHIvSq0wExdeIYbaBJwtpwR
+ZWBlejWlnA29XCIlqfsaSYJkV43Xhx5Stf2NWsg~73BkvpGMN_Q-EqPqYLMcO8gFDN3xq
+kJLKcZ4LpoZ3UfwsjsthET3VFPGYjguAoR1_1SHgvxjqz2D3HqiqbhbVQ~BzZj2sCug-v
+kQROSYmO4XBiSlZIbY3P-f9kU5goqHLlkABqsGoXcchHdL1Ab_yC6oJEPWcMuubMGpOZ5
+8YhGSQ~VvHxSIETRCs8BOJwUAgf51SfQg0QE2CqX1l_VCWPXNPG5lXHxXi0JonkA_4my6
+API2mInb7OnZs8n8niFmT1Gw~wDkZvdWgNvYlcr5UIJCRoSvtPTWKiZuM32T_VQA2LA9M
+5dmokxEfQB-mBGPJyx8aGuhC-nmOmrPqFDLk3K5G7g~rZTU4njxZdcVAp0rIdvlcsd0wC
+wUmk1eoiOtimzXHH-I9cA9wvfydcb_ZSJl9YpNL25Fhg1kqzMzdAsXXr7IvQ
 
 </pre>
 </div>
@@ -2611,7 +2611,7 @@ dejtn0WiHJyYLmUXolm2vgyd0aUC25sRGUkL18ZkvUvgxDsHPGUI9pYKXumQ
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "j0QD0cg5NYZizgOeDutJfehRvkYgF1ISxdcyOaoopsE"
+  "nonce": "IzLqrQVM9yrSBup5bfo6kqmpkEJje_7-9xaEA6XQwe0"
 }
 
 </pre>
@@ -2622,57 +2622,50 @@ dejtn0WiHJyYLmUXolm2vgyd0aUC25sRGUkL18ZkvUvgxDsHPGUI9pYKXumQ
 <span id="name-presentation-header-su-es256"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-19.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJqMFFEMGNnNU5ZWml6Z09lRHV0SmZlaFJ2a1lnRjFJU3hkY3lPYW
-9vcHNFIn0
+29tIiwibm9uY2UiOiJJekxxclFWTTl5clNCdXA1YmZvNmtxbXBrRUpqZV83LTl4YUVBNl
+hRd2UwIn0
 
 </pre>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-presentation-header-su-es256" class="selfRef">Presentation Header (SU-ES256, JSON, Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.1-20">When signed with the holder's presentation key, the resulting signature are:<a href="#appendix-A.1-20" class="pilcrow">¶</a></p>
-<div class="lang-wrapped sourcecode" id="appendix-A.1-21">
-<pre>98o-mn1Pb21TOFxBrXZzpGfTe8UbeRmji-5RY94O0jIYORWYofX6WXJWea7b1bKzCOtRd
-Tobw47X2GvoH8Kq-Q
-
-</pre><a href="#appendix-A.1-21" class="pilcrow">¶</a>
-</div>
-<blockquote id="appendix-A.1-22">
-          <p id="appendix-A.1-22.1">Figure: Holder Proof-of-Possession (SU-ES256, JSON)<a href="#appendix-A.1-22.1" class="pilcrow">¶</a></p>
-</blockquote>
-<p id="appendix-A.1-23">Then by applying selective disclosure of only the given name and age
-claims (family name and email hidden), we get the following presented
-JPT in compact serialization:<a href="#appendix-A.1-23" class="pilcrow">¶</a></p>
-<div class="lang-wrapped sourcecode" id="appendix-A.1-24">
+<p id="appendix-A.1-20">We applying selective disclosure of only the given name and age
+claims (family name and email hidden), and remove the proof components
+corresponding to these entries.<a href="#appendix-A.1-20" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-21">Using the selectively disclosed information, we generate the presentation
+internal representation. Using that and the selectively disclosed
+payloads, we get the following presented JPT in compact serialization:<a href="#appendix-A.1-21" class="pilcrow">¶</a></p>
+<div class="lang-wrapped sourcecode" id="appendix-A.1-22">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJqMFFEMGNnNU5ZWml6Z09lRHV0SmZlaFJ2a1lnRjFJU3hkY3lPYW
-9vcHNFIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJJekxxclFWTTl5clNCdXA1YmZvNmtxbXBrRUpqZV83LTl4YUVBNl
+hRd2UwIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
 3Zlcl8yMSJdLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOi
-JEUUNObm5iZE51OE1qUC13eVlCcHpRNXlzSEQwLS1pTHVYOHFXZjJsZDI4IiwieSI6IkF
-sZkJfakg5djJYcm45bUlJb1VlQW9ULVd3QUppcUZVdXFLc0ZrUnlUT1UifSwicHJlc2Vu
-dGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6InJ4N3dqSXNHb
-lptbXRndGd0a19ZMUJCVHItMXBEVVoyVE9xRTIyNS0wanciLCJ5IjoiSzBsV21ldnZVMn
-BmcE90dXRvMnB5SlNSUXRKLV9CMzNabnI5OHZvUXJTMCJ9fQ.MTcxNDUyMTYwMA~MTcxN
+JHTjZkcS1XRG9WbzlQQTFHVXJZWE1zRFFTLW5VS2p3dHAtN3NHc2lVcHVJIiwieSI6Ijh
+YZlNmc1liX0Z6VHJlYUdNMko2ejF2S0FIZVMtSFkwSWE4OC1zbGg1MW8ifSwicHJlc2Vu
+dGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IkVrWC1DeGNfc
+mlKZk1JdjdqXzA3ck5HNnVSWDZGQ25wZXpuNGlaQnU5RHciLCJ5IjoiZUdNWWlOckt1OW
+ZLdjZrMUJmTlBTUUozTHA5YldtWG90YlZ1Q3dHOE1ZYyJ9fQ.MTcxNDUyMTYwMA~MTcxN
 zE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQ
 iOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2Fk
 ZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uI
-joiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.oo
-7enzeJZEfVOdVnmn4ZtEsdApESZCCX-mpVFl5jIqeUB5mPsbWJfJ8kLU06l8BQUwSRRV6
-a4Aa2OULW0Sj2bw~ttuDe_hyTTdyS92uibUAA7UG4k4HoWQyGI_HWaXtL1kuUt32MR28h
-BwXqZszmpv3B0luPcP-FRJJL6lg1buzVw~_VQrh6YUoKHiQtPWbuB-WPE1EpfidzhAPo3
-ISSRUJvWM6GxSdT2yB5mgqbURl1Llq5o8OyyMlNl2hETxna0VJA~wp36olkrqYg5foMEL
-sKkfArhHUvH7GDJ7by0HM_I8mYHawOhKryrPdOKe2wy7o7Toy7HqI-JScWMttIZZ2fzXQ
-~APvvtrJN8TZaKY16G1kOIF2nX5JaAjpM5Ad5H2ObcQfIBhCnRSUsDqN1ieblDU7GdC0Q
-CnhzcK255sLvCBuhkw~cunXDc0MDO7mMUFEGZmfl1RGtcEDeyeh09l4h9BYi9mF26Twg9
-jfTVT-UzJKCkI8xox_G6eLkiwZp-k5Y03e3A~98o-mn1Pb21TOFxBrXZzpGfTe8UbeRmj
-i-5RY94O0jIYORWYofX6WXJWea7b1bKzCOtRdTobw47X2GvoH8Kq-Q
+joiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.PW
+vT-r5tZm_zvAE8OSV3pw1uq487uAhHTL-pp5JbAGODNts-YhxTkuK4ACQHkxJxFLHMFIo
+4MmeVIx1KdycinQ~aMQWuzQcMciC2xSFBAYhrZEOdYH8_2VWZeTWzW2wRaeg9m8dNOq60
+WNO3Uv4vq8isfUoY7VDnLVZ8w7lN4J1hQ~o2X1fktRsjOmgCZKEZc7wcn7QHIvSq0wExd
+eIYbaBJwtpwRZWBlejWlnA29XCIlqfsaSYJkV43Xhx5Stf2NWsg~73BkvpGMN_Q-EqPqY
+LMcO8gFDN3xqkJLKcZ4LpoZ3UfwsjsthET3VFPGYjguAoR1_1SHgvxjqz2D3HqiqbhbVQ
+~BzZj2sCug-vkQROSYmO4XBiSlZIbY3P-f9kU5goqHLlkABqsGoXcchHdL1Ab_yC6oJEP
+WcMuubMGpOZ58YhGSQ~VvHxSIETRCs8BOJwUAgf51SfQg0QE2CqX1l_VCWPXNPG5lXHxX
+i0JonkA_4my6API2mInb7OnZs8n8niFmT1Gw~DQvNVhLfLoXHOoFtmLBb9iITWavBeogl
+XmJKDoSVnUs6JGK0qDBUZiMr4nBDdLO4BGsZl9merq3_XDh5CdfBRg
 
-</pre><a href="#appendix-A.1-24" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.1-22" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.1-25">
-          <p id="appendix-A.1-25.1">Figure: Presentation (SU-ES256, JSON, Compact Serialization)<a href="#appendix-A.1-25.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.1-23">
+          <p id="appendix-A.1-23.1">Figure: Presentation (SU-ES256, JSON, Compact Serialization)<a href="#appendix-A.1-23.1" class="pilcrow">¶</a></p>
 </blockquote>
 </section>
 </div>
@@ -2704,18 +2697,18 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   8: {      / proof key /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'af1ef08c8b069d99a6b60b60b64fd8d41053afed690d46764cea84db' +
-        h'6e7ed23c', / x /
-    -3: h'2b495699ebef536a5fa4eb6eb68da9c8949142d27efc1df7667afdf2' +
-        h'fa10ad2d'  / y /
+    -2: h'1245fe0b173fae225f308bfb8ffd3bacd1bab915fa1429e97b39f889' +
+        h'906ef43c', / x /
+    -3: h'78631888dacabbd7cabfa93505f34f4902772e9f5b5a65e8b5b56e0b' +
+        h'01bc3187'  / y /
   },
   9: {      / presentation key /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'0d008d9e76dd36ef0c8cffb0c98069cd0e72b070f4fbe88bb97f2a59' +
-        h'fda5776f', / x /
-    -3: h'0257c1fe31fdbf65eb9fd98822851e0284fe5b00098aa154baa2ac16' +
-        h'44724ce5'  / y /
+    -2: h'18de9dabe583a15a3d3c0d4652b61732c0d04be9d42a3c2da7eeec1a' +
+        h'c894a6e2', / x /
+    -3: h'f177d27ec61bfc5cd3ade68633627acf5bca007792f8763421af3cfa' +
+        h'c961e75a'  / y /
   },
   10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
 }
@@ -2753,31 +2746,31 @@ CBOR (in hex):<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-8">
 <pre>8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-20af1ef08c8b069d99a6b60b60b64fd8d41053afed690d46764cea84db6e7ed2
-3c2258202b495699ebef536a5fa4eb6eb68da9c8949142d27efc1df7667afdf2
-fa10ad2d09a4010220012158200d008d9e76dd36ef0c8cffb0c98069cd0e72b0
-70f4fbe88bb97f2a59fda5776f2258200257c1fe31fdbf65eb9fd98822851e02
-84fe5b00098aa154baa2ac1644724ce50a28871a0a3827001a0a3c3d3f63446f
+201245fe0b173fae225f308bfb8ffd3bacd1bab915fa1429e97b39f889906ef4
+3c22582078631888dacabbd7cabfa93505f34f4902772e9f5b5a65e8b5b56e0b
+01bc318709a40102200121582018de9dabe583a15a3d3c0d4652b61732c0d04b
+e9d42a3c2da7eeec1ac894a6e2225820f177d27ec61bfc5cd3ade68633627acf
+5bca007792f8763421af3cfac961e75a0a28871a0a3827001a0a3c3d3f63446f
 65634a6179726a6179646f65406578616d706c652e6f7267a601782331323334
 204d61696e2053742e0a416e79746f776e2c2043412031323334350a55534102
 6d31323334204d61696e2053742e0367416e79746f776e046243410565393032
-31300663555341f5885840ee082e5d6260323706aa1d4b5d01ae2dd746357ac8
-22213e5b5ae5f65276d35b1ff5df54032776f0d08b58797085271106767833b7
-de91b2e09e63149ce61252584036f61518488b5a0da993bf6418e3b1e8db7594
-c13f8fac0ced3955eb273a93efed605d1968ceb25608ce304ba90d70100c02f2
-239081b2289cc8257de66b6bd65840143e88cbc6051243221b24cb95f6e4f5f2
-11869f2b8b6ea6f928611934b24f3f262443cb52856c8a58ae9fbcf67ecd2805
-70988738d73655f0ffe5a2fb318779584056efb27ee6c124ac294cc558a1716d
-74cf44dee45bfe08701a9ce8020760564a84ef03a05b35c5b20313e7644a7808
-18e457d7ebcdf73756fd04ef0ea58885c75840d72e96ed8bb69a07cafc6fe2d4
-a0a701757ad9f30e4d339672cd2a1318971283f849de2529a68bc001dd2cb813
-1f96d77d0b07273c35486b2b65a74a4edc386c5840438e4b17da222c114e38ce
-4763a6529b52fa43ef2dc0c5c05ff08316c414f6f98d73fc091d2526b5d00f78
-5c1a7ff0eb02a124b05f70bcfa624ea243fc744eb8584091f584d7cda1819b84
-644222d60e011ba44db1e658ffba8b2a3f10ece64862f9c4f03ce62f052d3556
-0a3f53a7ec20dc227f9ba1a3420eb5213b6f6bd439de64584061651de5c8ad2b
-97ef44720ed6271e5daf4e82647516d12648fca5eb1ad23d3ce35f4044bb02bd
-781f525f19489b6a2206b085eb09ee4d9a29dc7c21d5699064
+31300663555341f5885840004fab271e0961f25083413f0fb3de2551a006d7e2
+a67c47abbc4cee315aed2eba18ffaa4ad7275f5dfdda6c9983dcbbe8222e0bcf
+b32e47b5592213c466c41158405e7db3df91649c31bbfbe03d8e1b22b6cd0a35
+ab1a8cc2c1b5774397627d239244ad680c64258efe99df4a3125a684e2955aa5
+edf69a93ac465f565c36d835de58401092a50b84eea1d5488bd2e9537eca179c
+9ffa9990cbabac58aa2b8c076fd9128983fb267bd5934334782bdfe195d6d9ca
+a618a3477d01c663de9530bd322a8c58406db67036a81c2f111606b350869856
+7dc857550be4aa3c7cae016865c5aeeb9203909adf5caa773513121c0146e8ec
+ee0401d9bfef27dee8c3de4a259fc20fc658405fd136738272b57ec57a0624bd
+b6938359da2366a6babf0ffbf8e6818e2c2b5fb47afc9165b1c15cc3e802a7c8
+510fca98b729085312b5d0c9238d61154e5d9e58405a81e1d3f89ad4c872f880
+72560c286828a996066c4271d52c278c1b6e3e19fbd4802582d57dea90f14831
+5267285e678da2a7eb1e2cf09d657c0d2dfef5c85f5840eeef56dd2e19196fa0
+b4de4919f46c4974ecd8dcf5df20fce33ae6bee11c1effdbc087b1a4642b5b81
+d904964f5cfa401d897ec013fb4d0bf8c56987f8a2d5365840e67a6e34587f37
+ccf7f69fb0e5dad2b284d4b379dca1d130d35bc9ab601670e71afc254f0ccdae
+9c4075b1a5a11f473aaca14747af5f540d5541e59a30f1d768
 
 </pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
@@ -2791,7 +2784,7 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 <pre>{          / protected header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
-  7: h'8f4403d1c839358662ce039e0eeb497de851be4620175212c5d73239aa28a6c1', / nonce /
+  7: h'2332eaad054cf72ad206ea796dfa3a92a9a99042637bfefef7168403a5d0c1ed', / nonce /
 }
 
 </pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
@@ -2803,33 +2796,33 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-14">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-6c652e636f6d0758208f4403d1c839358662ce039e0eeb497de851be46201752
-12c5d73239aa28a6c158cfa701010314057668747470733a2f2f697373756572
+6c652e636f6d0758202332eaad054cf72ad206ea796dfa3a92a9a99042637bfe
+fef7168403a5d0c1ed58cfa701010314057668747470733a2f2f697373756572
 2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-08a401022001215820af1ef08c8b069d99a6b60b60b64fd8d41053afed690d46
-764cea84db6e7ed23c2258202b495699ebef536a5fa4eb6eb68da9c8949142d2
-7efc1df7667afdf2fa10ad2d09a4010220012158200d008d9e76dd36ef0c8cff
-b0c98069cd0e72b070f4fbe88bb97f2a59fda5776f2258200257c1fe31fdbf65
-eb9fd98822851e0284fe5b00098aa154baa2ac1644724ce50a28891a0a382700
+08a4010220012158201245fe0b173fae225f308bfb8ffd3bacd1bab915fa1429
+e97b39f889906ef43c22582078631888dacabbd7cabfa93505f34f4902772e9f
+5b5a65e8b5b56e0b01bc318709a40102200121582018de9dabe583a15a3d3c0d
+4652b61732c0d04be9d42a3c2da7eeec1ac894a6e2225820f177d27ec61bfc5c
+d3ade68633627acf5bca007792f8763421af3cfac961e75a0a28891a0a382700
 1a0a3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267
 a601782331323334204d61696e2053742e0a416e79746f776e2c204341203132
 3334350a555341026d31323334204d61696e2053742e0367416e79746f776e04
-624341056539303231300663555341f5f6f6875840ee082e5d6260323706aa1d
-4b5d01ae2dd746357ac822213e5b5ae5f65276d35b1ff5df54032776f0d08b58
-797085271106767833b7de91b2e09e63149ce61252584036f61518488b5a0da9
-93bf6418e3b1e8db7594c13f8fac0ced3955eb273a93efed605d1968ceb25608
-ce304ba90d70100c02f2239081b2289cc8257de66b6bd65840143e88cbc60512
-43221b24cb95f6e4f5f211869f2b8b6ea6f928611934b24f3f262443cb52856c
-8a58ae9fbcf67ecd280570988738d73655f0ffe5a2fb318779584056efb27ee6
-c124ac294cc558a1716d74cf44dee45bfe08701a9ce8020760564a84ef03a05b
-35c5b20313e7644a780818e457d7ebcdf73756fd04ef0ea58885c75840d72e96
-ed8bb69a07cafc6fe2d4a0a701757ad9f30e4d339672cd2a1318971283f849de
-2529a68bc001dd2cb8131f96d77d0b07273c35486b2b65a74a4edc386c584043
-8e4b17da222c114e38ce4763a6529b52fa43ef2dc0c5c05ff08316c414f6f98d
-73fc091d2526b5d00f785c1a7ff0eb02a124b05f70bcfa624ea243fc744eb858
-40e45f9df7fd725997b669e890173a2927bedc0e8dc5c6252b1fb437d3d3656a
-430c632afa7167664c60b3066abdd735070e973069ab8a2b0cf3d8efb2e10a68
-45
+624341056539303231300663555341f5f6f6875840004fab271e0961f2508341
+3f0fb3de2551a006d7e2a67c47abbc4cee315aed2eba18ffaa4ad7275f5dfdda
+6c9983dcbbe8222e0bcfb32e47b5592213c466c41158405e7db3df91649c31bb
+fbe03d8e1b22b6cd0a35ab1a8cc2c1b5774397627d239244ad680c64258efe99
+df4a3125a684e2955aa5edf69a93ac465f565c36d835de58401092a50b84eea1
+d5488bd2e9537eca179c9ffa9990cbabac58aa2b8c076fd9128983fb267bd593
+4334782bdfe195d6d9caa618a3477d01c663de9530bd322a8c58406db67036a8
+1c2f111606b3508698567dc857550be4aa3c7cae016865c5aeeb9203909adf5c
+aa773513121c0146e8ecee0401d9bfef27dee8c3de4a259fc20fc658405fd136
+738272b57ec57a0624bdb6938359da2366a6babf0ffbf8e6818e2c2b5fb47afc
+9165b1c15cc3e802a7c8510fca98b729085312b5d0c9238d61154e5d9e58405a
+81e1d3f89ad4c872f88072560c286828a996066c4271d52c278c1b6e3e19fbd4
+802582d57dea90f148315267285e678da2a7eb1e2cf09d657c0d2dfef5c85f58
+40f8ee4ace4469a98c17d21e9a4421043bb033a1c09ebee4784019f70f76dd35
+a176715ac6c6c4cad0e2be14db877c2827e4f498373dbd1d05c3688bb8fcea18
+cc
 
 </pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
 </div>
@@ -2852,13 +2845,13 @@ ed8bb69a07cafc6fe2d4a0a701757ad9f30e4d339672cd2a1318971283f849de
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "DadLFA8DsFwdb8Oyg8MmMKlU6bntD0Hhx8v8Ukmb3lChYZLTw5uCiBycg1p6L
-       5l0D3uOGGiZsLVPtcip4JdaDB4ktAfk1D_wPW_wCTRw_IvMv6Tc8VGKLoFIS74
-       vBi8q",
-  "y": "Cxig4m3P5CeGgJb7s48HHDTBGaDvaThkWxDzGlGw6Zf9nIoxrqWDFaac4GR5o
-       ME1FD0UeOeToigsbLTVUcPrwqpPP5u1Yo9ijicguY1Cir9Gei7eAIgV028bTtH
-       xyRXU",
-  "d": "RbxH73CFIXCr91t7dlJlpQM6ndHSQvIsmxyefPts0kc"
+  "x": "B661nl3iuEmKuy3ZcLK2veYfaYdgXk4YwoS9kRz2lwiu3zfwOMdSlgVhteAUn
+       F9KGRSAdsq_gLmPUPnAsnfOfcmlL8CXJLv9T8du3HTvfaUEGsLJHvkyYvkTDDy
+       2iia7",
+  "y": "B9LdhWtFb--J72bzFg5aLTLq42ewWkzUaFISjTKBBvCc8Nx65Z0QwN4V668AJ
+       FdGFCNh7-sdDBzsLudA85-rvHnaE3okeJpbyMkbEXBj_jO-tTpTwxzJhX3nVOb
+       vll8C",
+  "d": "P31QamLQtm-nVMneL7ANUKtyAEkx1DxE3ScdzHjK9cA"
 }
 
 </pre>
@@ -2888,9 +2881,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.j2A3U5HUhAh2THW9QJU0aMNfF-kgOOD5z0
-d6m6OwFZfrACJimb5cbtOSt55nTkJiQeWufiIhoBsFBM7NiDQiT-C4wbDoNpytVsJ5MeJ
-6Vo4
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.sj9hr-U8TPH21jQnnxVtXkjfHtCIkQos99
+TgjtS8dPB9baeYkHnxm6w0UxhPvXM9NKM9x2mKR9lTlDWx7lyBtWPSTZ30mIKbEGrh2ia
+CNW0
 
 </pre>
 </div>
@@ -2917,14 +2910,14 @@ d6m6OwFZfrACJimb5cbtOSt55nTkJiQeWufiIhoBsFBM7NiDQiT-C4wbDoNpytVsJ5MeJ
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.sGoFeOECMmr9fIB8jjjWuJg4AOlhtAgyQDPHK_5O
-3d2OZqFzI6DM0M2_k7rTs9Scib34N70wFpjAhhZsj8sTWUKcL-nKMfxkvcUr1t1MxNjyK
-fn9sEpGcj-a8o73JglSl5MgIFNSSCiMUVUPqyrX-FI0dEwu_ZdhmPZZPq6FNYpQKjXhAA
-YTH6ztmBo9ajsPPKvKO7wEST5PE3RcvHNlOBf9S3NKa90js0s4LxOVhkYAhBThyQ1Tl1A
-Fo8ereFShxz5g-gA1ZcLVK1HxM1karBbHGODF5ng0K0YwjMiYcjpqIEz1fvW5b7HuoFXW
-wK8-MDvoziV82Ho1cwl96IzFT1hT01byq_qsR4frlezPzZwd5K6tdgsLg-gHbw_DE2zIT
-IUNnHxlcbme1eBIartfr2JOW2xhzGoeFPsDmMLgMxassup2_QncKytkApTYUbaJMGUSx_
-gSXjbFPvh9dZwhNgfV5Le5lCEDpjuutw7jx9c
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.iaRNJVB4Cn_VzQRKJ2F7EMRF5f8XbrB6ROTysDnc
+L-6pS7KoPXAfFEHc7lKOtZNLoMmE6VU3BOs5hGWEpzmiKvcAUH1-Gq1ajLKX5O_H5qLqG
+mz67gQMYOiC1Xb886hMksAMQKtkjnd8hKvLmP4tHQy-HTG97Wyd8QKtfOFkkukR5hnM3L
+0J4pKUpvX6W_zOOFKdee6GFELokiwwEu70Rxcrguvi7oTeFJpeco6wqZoEXbL3mZH-fGK
+aF3uOCwBvFJjA6rdCHwiHzzzty9j_HHC4J0UT8UMNwpv7xP-7IjXCsZ1hdYgx4Mjq-5_i
+51I4Pq7g2kGPHYPRal-OSQ9kEf1kmekjcU6IncNjdKKnnFAO_G41sCiOXUmdM8mww6d0P
+wyxpXFo2b4wEV6JzHoYwSkE0OWYgNZIUflXd1j-eSN-YGGn95___OR39ngGJ2uKJFCIlU
+JpFNekpttX26zxapVNCmtOryCu_OUWUGOZCe4
 
 </pre>
 </div>
@@ -2945,9 +2938,9 @@ gSXjbFPvh9dZwhNgfV5Le5lCEDpjuutw7jx9c
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "fNCnPHHkY-qKH17jo10ICc9TIJJABHb8Q_6QPSC4zjU",
-  "y": "wLm62EMICxT8P3iLFXYIis9SOc9mnQCPHNgM8RT88XA",
-  "d": "DzrcRktb8KhNYaJNysPQYqy4JqdvNI0NZR_RtT4MyK4"
+  "x": "LmADmWZgOf8maoNN_YQVRAKPeBafKuPVe3w4cIquSZ0",
+  "y": "ZVVkSFOJvgZipgPCrYmsOZJ0t2Q-QXh4omOzCPXpuWY",
+  "d": "KfgeQCNRFDLozldtV-RqlJa-iDFmjLnoKW_Ib3VK15I"
 }
 
 </pre>
@@ -2958,7 +2951,7 @@ gSXjbFPvh9dZwhNgfV5Le5lCEDpjuutw7jx9c
 <p id="appendix-A.4-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-16">
           <div class="lang-json sourcecode" id="appendix-A.4-5.1">
-<pre>"1N9HubCTM5YBCLh_Ud4f6SPJxl0uWpA_h_bPIbTWYdo"
+<pre>"QX5cnAdXS0H1kalISBlQ_9PCNA__6yrLor5uKQafMa0"
 
 </pre>
 </div>
@@ -2971,9 +2964,9 @@ gSXjbFPvh9dZwhNgfV5Le5lCEDpjuutw7jx9c
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "rx7wjIsGnZmmtgtgtk_Y1BBTr-1pDUZ2TOqE225-0jw",
-  "y": "K0lWmevvU2pfpOtuto2pyJSRQtJ-_B33Znr98voQrS0",
-  "d": "LWFszmwzb2D6tG7PDI9hmzywrSKcgseiB-enPBv898g"
+  "x": "EkX-Cxc_riJfMIv7j_07rNG6uRX6FCnpezn4iZBu9Dw",
+  "y": "eGMYiNrKu9fKv6k1BfNPSQJ3Lp9bWmXotbVuCwG8MYc",
+  "d": "jDYFOLZky4nU6CAkGDq6kow2JeLF3-ReFdGAqLCTC6Q"
 }
 
 </pre>
@@ -3002,8 +2995,8 @@ gSXjbFPvh9dZwhNgfV5Le5lCEDpjuutw7jx9c
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "rx7wjIsGnZmmtgtgtk_Y1BBTr-1pDUZ2TOqE225-0jw",
-    "y": "K0lWmevvU2pfpOtuto2pyJSRQtJ-_B33Znr98voQrS0"
+    "x": "EkX-Cxc_riJfMIv7j_07rNG6uRX6FCnpezn4iZBu9Dw",
+    "y": "eGMYiNrKu9fKv6k1BfNPSQJ3Lp9bWmXotbVuCwG8MYc"
   }
 }
 
@@ -3036,155 +3029,151 @@ gSXjbFPvh9dZwhNgfV5Le5lCEDpjuutw7jx9c
 <figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
 <a href="#name-example-issuer-payloads-as-" class="selfRef">Example issuer payloads (as members of a JSON array)</a>
           </figcaption></figure>
-<p id="appendix-A.4-11">The first MAC is generated using the key <code>issuer_header</code> and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
-<span id="name-issuer-mac-of-protected-hea"></span><figure id="figure-20">
-          <div class="lang-txt sourcecode" id="appendix-A.4-12.1">
-<pre>-upHscumh8kOH60FsG5k-FP6Zd40zquHadHie3jyKJg
+<p id="appendix-A.4-11">The issuer generates an array of derived keys, one per payload slot.
+This is done using the shared secret as teh key and a binary value based
+on the payload slot index (from zero) as input to the HMAC operation.<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-12">This results in the following set of derived keys:<a href="#appendix-A.4-12" class="pilcrow">¶</a></p>
+<span id="name-derived-payload-keys-base64"></span><figure id="figure-20">
+          <div class="lang-json sourcecode" id="appendix-A.4-13.1">
+<pre>[
+  "es3kijhQC4j8J3VFPB5iq155k6FY_1qWAwQk8bWVuR0",
+  "r4pLHitd8P21XoD386rDO2TI_pC4hHOf5wtgYjF_0mw",
+  "vqhs2s7HLNXszH0G4nHv2r3POiATPe-iLbNzsruLiL4",
+  "3EmR33Z1-5422A3bX4vhsdVOSMUadh2s5369is59-PQ",
+  "PkSbUEML9tK81Wgj1o7nB3QQy6xvIv8Dl8SNSNhapR0",
+  "jZ16aBQFueK3Kq3yrfts9VHqJgpC1j14n01JKIA4oQ0",
+  "8GOB-_L6ltveWfPdQiQWKyotVYmudyGyazRGXrDLMVo"
+]
 
 </pre>
 </div>
 <figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
-<a href="#name-issuer-mac-of-protected-hea" class="selfRef">Issuer MAC of protected header (Base64url-Encoded)</a>
+<a href="#name-derived-payload-keys-base64" class="selfRef">Derived payload keys (Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.4-13">The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload slot (as <code>payload_{n}</code> in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:<a href="#appendix-A.4-13" class="pilcrow">¶</a></p>
-<span id="name-derived-payload-keys-base64"></span><figure id="figure-21">
-          <div class="lang-json sourcecode" id="appendix-A.4-14.1">
+<p id="appendix-A.4-14">A MAC is generated for each payload using the corresponding derived
+payload key. This results in the following set of MAC values:<a href="#appendix-A.4-14" class="pilcrow">¶</a></p>
+<span id="name-payload-mac-values-base64ur"></span><figure id="figure-21">
+          <div class="lang-json sourcecode" id="appendix-A.4-15.1">
 <pre>[
-  "KdkN_r-l6LrRtG23tJNwE5vSHwh7sxoZ_yNVjd6Nm5k",
-  "VoXGAXd1ckMbruI3QNuB3MRx3q4U-qYVvLciiaUKmdo",
-  "lyNjVVkzP73lpBLWm2nh2fKrKOQ9_2RZW5ZRmZGyCds",
-  "UoxiORcbUnYGiLOOajmv5ZwHnPGYQ3i2IC5v-JoUGUA",
-  "wK9zrUDyZzVToiZEGsiv9v2PLlI9zOvixUmH_zJi1gs",
-  "iH0R47Cfa0yLQvnfUBYzcxAwk5anuv1qbsXnzWzfcj8",
-  "bHUQYhSCHbO8fCxYYYG5BI1gOcEljYTFPigzf-ZG3XA"
+  "IocpHSpCJ4A86iLuKcBHxsTT_VEi3prPsGMtymtp12c",
+  "buNIZePkyxvhVkhE-w-5Ae3z5u258i6loKxLW95eUzQ",
+  "fcii9R1nX-u0cMyTJdd8sg6lZUumcMICauCgSkUHCJ4",
+  "KZq3T3pmSC4QbYBkWRvuHKbjP7VLiafjo3eleSH9qao",
+  "7xeJUlpW1tgXs13Nrkm3-IDJHgDfXzTv07j9i92Tl38",
+  "YYnQz9reV1m0oI6kP5yjwSt3IreVluEJ1hXleq4kYpY",
+  "qSzTOXw7EL3EbCA-t8JQSE670Z0ku1zjMrdicHajr0A"
 ]
 
 </pre>
 </div>
 <figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
-<a href="#name-derived-payload-keys-base64" class="selfRef">Derived payload keys (Base64url-Encoded)</a>
+<a href="#name-payload-mac-values-base64ur" class="selfRef">Payload MAC values (Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.4-15">A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values:<a href="#appendix-A.4-15" class="pilcrow">¶</a></p>
-<span id="name-payload-mac-values-base64ur"></span><figure id="figure-22">
-          <div class="lang-json sourcecode" id="appendix-A.4-16.1">
+<p id="appendix-A.4-16">The issuer protected header and payload MAC values are combined into a
+binary representation known as the Compact MAC Representation.
+This representation is signed with the issuer's private key.<a href="#appendix-A.4-16" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-17">The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.<a href="#appendix-A.4-17" class="pilcrow">¶</a></p>
+<span id="name-issued-proof-base64url-enco"></span><figure id="figure-22">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-18.1">
 <pre>[
-  "aPBjnOVSYtD0e4ZBx3BrAjHiRBRklAvSut0OxW0c53o",
-  "3XG-K3C8h37xlA5iukZPuCg79XHVvv7JKmOApbzqWfs",
-  "QcSJG9JHqXN3VQXd9wTJLtfpCmTlU68r3v8RuFOdCwM",
-  "gxJQMGOY-cN8BCfQ20H9aGiTt1t35ImPxdCYgNYgszk",
-  "C2Ojjll2GF_EB_JC6iK_LV2ToyHWPWy9UZK1IGcqh1k",
-  "LE_Avso8OkBlYuXD0I32ZviebkY6B52XzrH-CUiUGNg",
-  "aKHWn2S_EKY3GZskhLRobIsJapPVHryuA8YNk5MFs2M"
+  "J2d9Pwt4aeSJe1HPsw7ZV2q9IoPsjIPL_Z0iwn0vaLnK9t4UEBm2MQhmDLQqfOsgHR
+Bih2kXs14vl35KifBwkg",
+  "viTkELowl0XTNCE1-7XGfrHwoTSqUngT6vaSIifAxJc"
 ]
 
 </pre>
 </div>
 <figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
-<a href="#name-payload-mac-values-base64ur" class="selfRef">Payload MAC values (Base64url-Encoded)</a>
-          </figcaption></figure>
-<p id="appendix-A.4-17">The issuer protected header MAC and the payload MAC octet strings are concatenated into a single value known as the combined MAC representation. This representation is signed with the issuer's private key.<a href="#appendix-A.4-17" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-18">The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.<a href="#appendix-A.4-18" class="pilcrow">¶</a></p>
-<span id="name-issued-proof-base64url-enco"></span><figure id="figure-23">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-19.1">
-<pre>[
-  "GFx2FWrHiszEnMXjXQCt8GES_rGVJ27aCTA5NQ0_H_r7b1i7Lk-2v-eCYO8Va12S1S
-3Ht_STgez8-ptiIaSxgg",
-  "j3LY9ursr0hWwc7CxJriyWBcvkHiSHDurprgoW38q4Q"
-]
-
-</pre>
-</div>
-<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
 <a href="#name-issued-proof-base64url-enco" class="selfRef">Issued Proof (Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.4-20">The final issued JWP in compact serialization is:<a href="#appendix-A.4-20" class="pilcrow">¶</a></p>
-<span id="name-issued-jwp-mac-h256-json-co"></span><figure id="figure-24">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-21.1">
+<p id="appendix-A.4-19">The final issued JWP in compact serialization is:<a href="#appendix-A.4-19" class="pilcrow">¶</a></p>
+<span id="name-issued-jwp-mac-h256-json-co"></span><figure id="figure-23">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-20.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiwiaXNzIjoia
 HR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
 dLCJwcmVzZW50YXRpb25fa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ1c2Ui
-OiJzaWduIiwieCI6InJ4N3dqSXNHblptbXRndGd0a19ZMUJCVHItMXBEVVoyVE9xRTIyN
-S0wanciLCJ5IjoiSzBsV21ldnZVMnBmcE90dXRvMnB5SlNSUXRKLV9CMzNabnI5OHZvUX
-JTMCJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleG
+OiJzaWduIiwieCI6IkVrWC1DeGNfcmlKZk1JdjdqXzA3ck5HNnVSWDZGQ25wZXpuNGlaQ
+nU5RHciLCJ5IjoiZUdNWWlOckt1OWZLdjZrMUJmTlBTUUozTHA5YldtWG90YlZ1Q3dHOE
+1ZYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleG
 FtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSA
 xMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxp
 dHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvd
-W50cnkiOiJVU0EifQ~dHJ1ZQ.GFx2FWrHiszEnMXjXQCt8GES_rGVJ27aCTA5NQ0_H_r7
-b1i7Lk-2v-eCYO8Va12S1S3Ht_STgez8-ptiIaSxgg~j3LY9ursr0hWwc7CxJriyWBcvk
-HiSHDurprgoW38q4Q
+W50cnkiOiJVU0EifQ~dHJ1ZQ.J2d9Pwt4aeSJe1HPsw7ZV2q9IoPsjIPL_Z0iwn0vaLnK
+9t4UEBm2MQhmDLQqfOsgHRBih2kXs14vl35KifBwkg~viTkELowl0XTNCE1-7XGfrHwoT
+SqUngT6vaSIifAxJc
 
 </pre>
 </div>
-<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
+<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
 <a href="#name-issued-jwp-mac-h256-json-co" class="selfRef">Issued JWP (MAC-H256, JSON, Compact Serialization)</a>
           </figcaption></figure>
-<p id="appendix-A.4-22">Next, we show the presentation of the JWP with selective disclosure.<a href="#appendix-A.4-22" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-23">For presentation with the following presentation protected header:<a href="#appendix-A.4-23" class="pilcrow">¶</a></p>
-<span id="name-presentation-protected-header"></span><figure id="figure-25">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-24.1">
+<p id="appendix-A.4-21">Next, we show the presentation of the JWP with selective disclosure.<a href="#appendix-A.4-21" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-22">For presentation with the following presentation protected header:<a href="#appendix-A.4-22" class="pilcrow">¶</a></p>
+<span id="name-presentation-protected-header"></span><figure id="figure-24">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-23.1">
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "j0QD0cg5NYZizgOeDutJfehRvkYgF1ISxdcyOaoopsE"
+  "nonce": "IzLqrQVM9yrSBup5bfo6kqmpkEJje_7-9xaEA6XQwe0"
 }
 
 </pre>
 </div>
-<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
+<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
 <a href="#name-presentation-protected-header" class="selfRef">Presentation Protected Header</a>
           </figcaption></figure>
-<p id="appendix-A.4-25">The holder will take the issuer proof (including shared secret) and derive the same individual payload MAC values (above).<a href="#appendix-A.4-25" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-26">In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to <code>email</code>, <code>address</code>, and <code>age_over_21</code>)<a href="#appendix-A.4-26" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-27">For each payload slot, the holder will provide one of two values as part of the
+<p id="appendix-A.4-24">The holder will take the issuer proof (including shared secret) and derive the same individual payload MAC values (above).<a href="#appendix-A.4-24" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-25">In this case, the holder has decided not to disclose the last three claims provided by the issuer (corresponding to <code>email</code>, <code>address</code>, and <code>age_over_21</code>)<a href="#appendix-A.4-25" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-26">For each payload slot, the holder will provide one of two values as part of the
 proof value. For a disclosed payload, the holder will provide the corresponding
 derived key. For a non-disclosed payload, the holder will provide the
-corresponding MAC value.<a href="#appendix-A.4-27" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-28">The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:<a href="#appendix-A.4-28" class="pilcrow">¶</a></p>
-<span id="name-presentation-proof-base64ur"></span><figure id="figure-26">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-29.1">
+corresponding MAC value.<a href="#appendix-A.4-26" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-27">The final presented proof value is an array of octet strings. The contents are presentation header signature, followed by the issuer signature, then the value disclosed by the holder for each payload. This results in the following proof:<a href="#appendix-A.4-27" class="pilcrow">¶</a></p>
+<span id="name-presentation-proof-base64ur"></span><figure id="figure-25">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-28.1">
 <pre>[
-  "cJP0O_F-1LNgtJRzJae9hzRO5l_jjpqo-mfpyj8tA06MfPQFZhWKnKwNrrJUHTMKd_
-Sr-hNSZhkw575EIPqKhw",
-  "GFx2FWrHiszEnMXjXQCt8GES_rGVJ27aCTA5NQ0_H_r7b1i7Lk-2v-eCYO8Va12S1S
-3Ht_STgez8-ptiIaSxgg",
-  "KdkN_r-l6LrRtG23tJNwE5vSHwh7sxoZ_yNVjd6Nm5k",
-  "VoXGAXd1ckMbruI3QNuB3MRx3q4U-qYVvLciiaUKmdo",
-  "lyNjVVkzP73lpBLWm2nh2fKrKOQ9_2RZW5ZRmZGyCds",
-  "UoxiORcbUnYGiLOOajmv5ZwHnPGYQ3i2IC5v-JoUGUA",
-  "C2Ojjll2GF_EB_JC6iK_LV2ToyHWPWy9UZK1IGcqh1k",
-  "LE_Avso8OkBlYuXD0I32ZviebkY6B52XzrH-CUiUGNg",
-  "aKHWn2S_EKY3GZskhLRobIsJapPVHryuA8YNk5MFs2M"
+  "J2d9Pwt4aeSJe1HPsw7ZV2q9IoPsjIPL_Z0iwn0vaLnK9t4UEBm2MQhmDLQqfOsgHR
+Bih2kXs14vl35KifBwkg",
+  "es3kijhQC4j8J3VFPB5iq155k6FY_1qWAwQk8bWVuR0",
+  "r4pLHitd8P21XoD386rDO2TI_pC4hHOf5wtgYjF_0mw",
+  "vqhs2s7HLNXszH0G4nHv2r3POiATPe-iLbNzsruLiL4",
+  "3EmR33Z1-5422A3bX4vhsdVOSMUadh2s5369is59-PQ",
+  "7xeJUlpW1tgXs13Nrkm3-IDJHgDfXzTv07j9i92Tl38",
+  "YYnQz9reV1m0oI6kP5yjwSt3IreVluEJ1hXleq4kYpY",
+  "qSzTOXw7EL3EbCA-t8JQSE670Z0ku1zjMrdicHajr0A",
+  "rOnqp69ruW7FN4Nw-icmTxiXlOWpuccrK25yWazSXhQFppnBVFSl6ST415aj2i71pr
+nisIwi5xYYZcWPk8Pg2Q"
 ]
 
 </pre>
 </div>
-<figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
+<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
 <a href="#name-presentation-proof-base64ur" class="selfRef">Presentation proof (Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.4-30">The final presented JWP in compact serialization is:<a href="#appendix-A.4-30" class="pilcrow">¶</a></p>
-<span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-27">
-          <div class="lang-wrapped sourcecode" id="appendix-A.4-31.1">
+<p id="appendix-A.4-29">The final presented JWP in compact serialization is:<a href="#appendix-A.4-29" class="pilcrow">¶</a></p>
+<span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-26">
+          <div class="lang-wrapped sourcecode" id="appendix-A.4-30.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJqMFFEMGNnNU5ZWml6Z09lRHV0SmZlaFJ2a1lnRjFJU3hkY3lPYW
-9vcHNFIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
+29tIiwibm9uY2UiOiJJekxxclFWTTl5clNCdXA1YmZvNmtxbXBrRUpqZV83LTl4YUVBNl
+hRd2UwIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
 iaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
 3Zlcl8yMSJdLCJwcmVzZW50YXRpb25fa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNT
-YiLCJ1c2UiOiJzaWduIiwieCI6InJ4N3dqSXNHblptbXRndGd0a19ZMUJCVHItMXBEVVo
-yVE9xRTIyNS0wanciLCJ5IjoiSzBsV21ldnZVMnBmcE90dXRvMnB5SlNSUXRKLV9CMzNa
-bnI5OHZvUXJTMCJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.c
-JP0O_F-1LNgtJRzJae9hzRO5l_jjpqo-mfpyj8tA06MfPQFZhWKnKwNrrJUHTMKd_Sr-h
-NSZhkw575EIPqKhw~GFx2FWrHiszEnMXjXQCt8GES_rGVJ27aCTA5NQ0_H_r7b1i7Lk-2
-v-eCYO8Va12S1S3Ht_STgez8-ptiIaSxgg~KdkN_r-l6LrRtG23tJNwE5vSHwh7sxoZ_y
-NVjd6Nm5k~VoXGAXd1ckMbruI3QNuB3MRx3q4U-qYVvLciiaUKmdo~lyNjVVkzP73lpBL
-Wm2nh2fKrKOQ9_2RZW5ZRmZGyCds~UoxiORcbUnYGiLOOajmv5ZwHnPGYQ3i2IC5v-JoU
-GUA~C2Ojjll2GF_EB_JC6iK_LV2ToyHWPWy9UZK1IGcqh1k~LE_Avso8OkBlYuXD0I32Z
-viebkY6B52XzrH-CUiUGNg~aKHWn2S_EKY3GZskhLRobIsJapPVHryuA8YNk5MFs2M
+YiLCJ1c2UiOiJzaWduIiwieCI6IkVrWC1DeGNfcmlKZk1JdjdqXzA3ck5HNnVSWDZGQ25
+wZXpuNGlaQnU5RHciLCJ5IjoiZUdNWWlOckt1OWZLdjZrMUJmTlBTUUozTHA5YldtWG90
+YlZ1Q3dHOE1ZYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.J
+2d9Pwt4aeSJe1HPsw7ZV2q9IoPsjIPL_Z0iwn0vaLnK9t4UEBm2MQhmDLQqfOsgHRBih2
+kXs14vl35KifBwkg~es3kijhQC4j8J3VFPB5iq155k6FY_1qWAwQk8bWVuR0~r4pLHitd
+8P21XoD386rDO2TI_pC4hHOf5wtgYjF_0mw~vqhs2s7HLNXszH0G4nHv2r3POiATPe-iL
+bNzsruLiL4~3EmR33Z1-5422A3bX4vhsdVOSMUadh2s5369is59-PQ~7xeJUlpW1tgXs1
+3Nrkm3-IDJHgDfXzTv07j9i92Tl38~YYnQz9reV1m0oI6kP5yjwSt3IreVluEJ1hXleq4
+kYpY~qSzTOXw7EL3EbCA-t8JQSE670Z0ku1zjMrdicHajr0A~rOnqp69ruW7FN4Nw-icm
+TxiXlOWpuccrK25yWazSXhQFppnBVFSl6ST415aj2i71prnisIwi5xYYZcWPk8Pg2Q
 
 </pre>
 </div>
-<figcaption><a href="#figure-27" class="selfRef">Figure 27</a>:
+<figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
 <a href="#name-presented-jwp-mac-h256-json" class="selfRef">Presented JWP (MAC-H256, JSON, Compact Serialization)</a>
           </figcaption></figure>
 </section>
