@@ -1868,7 +1868,7 @@ together based on the proof.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <p id="section-6.3.2-1">The key used for the <code>BBS</code> algorithm is an elliptic curve-based key
 pair, specifically against the G_2 subgroup of a pairing friendly curve.
 Additional details on key generation can be found in
-<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#appendix-Section%203.4" class="relref">Section 3.4</a>.  The JWK and Cose Key
+<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09#appendix-Section%203.4" class="relref">Section 3.4</a>.  The JWK and Cose Key
 Object representations of the key are detailed in
 <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span>.<a href="#section-6.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.2-2">There is no additional holder presentation key necessary for
@@ -1881,7 +1881,7 @@ presentation proofs.<a href="#section-6.3.2-2" class="pilcrow">¶</a></p>
 <a href="#section-6.3.3" class="section-number selfRef">6.3.3. </a><a href="#name-issuance" class="section-name selfRef">Issuance</a>
           </h4>
 <p id="section-6.3.3-1">Issuance is performed using the <code>Sign</code> operation from
-<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.  This operation
+<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.  This operation
 utilizes the issuer's BLS12-381 G2 key pair as <code>SK</code> and <code>PK</code>, along with
 desired protected header octets as <code>header</code>, and the array of payload
 octet string as <code>messages</code>.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
@@ -1909,7 +1909,7 @@ payload octets as <code>messages</code>.<a href="#section-6.3.4-2" class="pilcro
 <a href="#section-6.3.5" class="section-number selfRef">6.3.5. </a><a href="#name-presentation-2" class="section-name selfRef">Presentation</a>
           </h4>
 <p id="section-6.3.5-1">Derivation of a presentation is done by the holder using the <code>ProofGen</code>
-operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.3.5-1" class="pilcrow">¶</a></p>
+operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.3.5-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.5-2">This operation utilizes the issuer's public key as <code>PK</code>, the issuer
 protected header as <code>header</code>, the issuance proof as <code>signature</code>, the
 issuance payloads as <code>messages</code>, and the holder's presentation protected
@@ -2685,7 +2685,7 @@ and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.
 <dd class="break"></dd>
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
         <dd>
-<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-08</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08</a>&gt;</span>. </dd>
+<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-09</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -2708,7 +2708,7 @@ and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.
 <dl class="references">
 <dt id="I-D.ietf-cbor-edn-literals">[I-D.ietf-cbor-edn-literals]</dt>
         <dd>
-<span class="refAuthor">Bormann, C.</span>, <span class="refTitle">"CBOR Extended Diagnostic Notation (EDN)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cbor-edn-literals-17</span>, <time datetime="2025-05-12" class="refDate">12 May 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cbor-edn-literals-17">https://datatracker.ietf.org/doc/html/draft-ietf-cbor-edn-literals-17</a>&gt;</span>. </dd>
+<span class="refAuthor">Bormann, C.</span>, <span class="refTitle">"CBOR Extended Diagnostic Notation (EDN)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cbor-edn-literals-18</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cbor-edn-literals-18">https://datatracker.ietf.org/doc/html/draft-ietf-cbor-edn-literals-18</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-cose-bls-key-representations">[I-D.ietf-cose-bls-key-representations]</dt>
         <dd>
@@ -2766,9 +2766,9 @@ format:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "3uQgjXHFpjbHnxa_fnFXXh-p2mlygIieIZSmx-Du4Kc",
-  "y": "O58zNd8OX_O0G6uMjQeTgcNHTTl7Q5N3HKqIGgtYSXI",
-  "d": "h5xaguFHPJUyRHSYlrQsrdJbDia3xaJdK6g0siDILEs"
+  "x": "w0Cp0EHZsqo6bfcVisBIh7YD63niYBR-cZtQQI9Ecjg",
+  "y": "c-iH_xhJvZP-XF_1dy89BSa_0txk0IQjqTqxEVz88lQ",
+  "d": "-rjlG05jRNS9tkl4rxQ4iv0qakc04za6LCm_af6r2_c"
 }
 
 </pre>
@@ -2783,9 +2783,9 @@ format:<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "G0s4YrtsOmI1rE8nRSmGKchcZQEvjtScFhf8N0W8Bgg",
-  "y": "d_HbP5VWIg5kXoDFFRebQ2Yx-MMowkQbfw3E1kGYm4c",
-  "d": "otHu75ocUdDxDodz2J0QsAkpjuXWGz3Z4bS6Zl5Xi6Y"
+  "x": "TvODdykVxGdJGmra-PC6v8VzyQv2emoXF-hbULAWUIQ",
+  "y": "04QgbjSxnqkLJZWfyDFGaMxXRoeqQGoIMJpPXzKbY7s",
+  "d": "I-2DkEtyzHDkvO4HXwt4d4TeKmjCXGkpMCHu4tgOQWM"
 }
 
 </pre>
@@ -2800,9 +2800,9 @@ the JWK format:<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "L1JBowFlYZuyUCOFaMaBdyxXnxdHfp4cMZYo4_YnF5g",
-  "y": "qzfFpS7l1yaHkE28amudipigL4mGz3i-ayH5PuK4tl0",
-  "d": "sAFOhYGiQfSn4bSYRuWhQ8-XNB5zIIF8j0ZoPbICYBA"
+  "x": "zpLXVfOaUCmpBABg2Kfg4efNgHZBPDiFc38wa5pNai8",
+  "y": "M7ehm3b-HwSxFoSYRTyJHU0E8_dI5k1lOcuWE-0ryxg",
+  "d": "swsKyZx4VBR-4TGGr3jbYvWNmRLCjzCKscgl0d3WM-8"
 }
 
 </pre>
@@ -2834,14 +2834,14 @@ for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
   "iek": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "G0s4YrtsOmI1rE8nRSmGKchcZQEvjtScFhf8N0W8Bgg",
-    "y": "d_HbP5VWIg5kXoDFFRebQ2Yx-MMowkQbfw3E1kGYm4c"
+    "x": "TvODdykVxGdJGmra-PC6v8VzyQv2emoXF-hbULAWUIQ",
+    "y": "04QgbjSxnqkLJZWfyDFGaMxXRoeqQGoIMJpPXzKbY7s"
   },
   "hpk": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "L1JBowFlYZuyUCOFaMaBdyxXnxdHfp4cMZYo4_YnF5g",
-    "y": "qzfFpS7l1yaHkE28amudipigL4mGz3i-ayH5PuK4tl0"
+    "x": "zpLXVfOaUCmpBABg2Kfg4efNgHZBPDiFc38wa5pNai8",
+    "y": "M7ehm3b-HwSxFoSYRTyJHU0E8_dI5k1lOcuWE-0ryxg"
   }
 }
 
@@ -2855,12 +2855,12 @@ for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJHMHM0WXJ0c09tSTFy
-RThuUlNtR0tjaGNaUUV2anRTY0ZoZjhOMFc4QmdnIiwieSI6ImRfSGJQNVZXSWc1a1hvR
-EZGUmViUTJZeC1NTW93a1FiZnczRTFrR1ltNGMifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
-J2IjoiUC0yNTYiLCJ4IjoiTDFKQm93RmxZWnV5VUNPRmFNYUJkeXhYbnhkSGZwNGNNWll
-vNF9ZbkY1ZyIsInkiOiJxemZGcFM3bDF5YUhrRTI4YW11ZGlwaWdMNG1HejNpLWF5SDVQ
-dUs0dGwwIn19
+dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJUdk9EZHlrVnhHZEpH
+bXJhLVBDNnY4Vnp5UXYyZW1vWEYtaGJVTEFXVUlRIiwieSI6IjA0UWdialN4bnFrTEpaV
+2Z5REZHYU14WFJvZXFRR29JTUpwUFh6S2JZN3MifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
+J2IjoiUC0yNTYiLCJ4IjoienBMWFZmT2FVQ21wQkFCZzJLZmc0ZWZOZ0haQlBEaUZjMzh
+3YTVwTmFpOCIsInkiOiJNN2VobTNiLUh3U3hGb1NZUlR5SkhVMEU4X2RJNWsxbE9jdVdF
+LTByeXhnIn19
 
 </pre>
 </div>
@@ -2907,26 +2907,26 @@ header signature, followed by entries for each payload signature.<a href="#appen
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJHMHM0WXJ0c09tSTFy
-RThuUlNtR0tjaGNaUUV2anRTY0ZoZjhOMFc4QmdnIiwieSI6ImRfSGJQNVZXSWc1a1hvR
-EZGUmViUTJZeC1NTW93a1FiZnczRTFrR1ltNGMifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
-J2IjoiUC0yNTYiLCJ4IjoiTDFKQm93RmxZWnV5VUNPRmFNYUJkeXhYbnhkSGZwNGNNWll
-vNF9ZbkY1ZyIsInkiOiJxemZGcFM3bDF5YUhrRTI4YW11ZGlwaWdMNG1HejNpLWF5SDVQ
-dUs0dGwwIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZU
+dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJUdk9EZHlrVnhHZEpH
+bXJhLVBDNnY4Vnp5UXYyZW1vWEYtaGJVTEFXVUlRIiwieSI6IjA0UWdialN4bnFrTEpaV
+2Z5REZHYU14WFJvZXFRR29JTUpwUFh6S2JZN3MifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
+J2IjoiUC0yNTYiLCJ4IjoienBMWFZmT2FVQ21wQkFCZzJLZmc0ZWZOZ0haQlBEaUZjMzh
+3YTVwTmFpOCIsInkiOiJNN2VobTNiLUh3U3hGb1NZUlR5SkhVMEU4X2RJNWsxbE9jdVdF
+LTByeXhnIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZU
 BleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCB
 DQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9j
 YWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsI
-mNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.l-RvihVsOVbPEbnpfx-I4SjFoZAyzHRUUV6f6Tg0
-9uswExtzf_TONN21zXeSXTze_gafT2qd9ix715cH-WRkDg~_IK_Mq9EB_bTTBeNfq_y8c
-RcgPLE9Jn8igO4k8ic2cxUlMc4C7V1MwF49eyC_eRL6fypPHgV_e7MdcopBtD8Fw~T5Q_
-43h1KOp71qnWxhn1FRRR5nS8N7W3guSG4Ds2of8MfTLsj94dFuBKFFGCKWFQSkQ2mY_TL
-mekvUCDOUqX_w~pqLqJ-hJEkcqUD6HDGIuenutEmp_QHE1l5JZuq50Wj-5TuYp3iYqqwX
-3q-03DHPzSzR382OwlFHJFaRPP49dqg~yHRaSvgz7fDKLSKREr2VzevotMN5xbgd31RfM
-UnWZPbz5CIf0RjX4bWeq2aYfgQgHAePfNJdRlCpmoIyUOmW7w~US8-nMDmsWr8LRO1jSS
-KbiTE-nW6qJ9Nq9CB45k5nRysz58mjxvQ2iCeRuCl-z4YEsl2zczGM3hDQMnAGeEVyQ~b
-UDW5ip7hRdlTI0oxgV5vi0nTkmzlNRXUTLD8X875I26aiSpNQy2V61J4_5uyX1TexK-GG
-Tyx5NxsN995HVnaw~pxcAD9useT9bo47JNiq1D_5MYRNXSS_MowQay9iIwpNHqGWHM4em
-ZY0b8EONzRPzyd2wfIEtWdspXCVTtMbbaA
+mNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.1VeYSDPoVuR4JclOHWom6qds_1EIovMyh_9AzMQd
+LzDUWiqEIYofPXZ5PPRT7aedj7iHepgTa3raOkl1zQMtEA~9jUlw9aiT75xLyzBa12iNh
+TEoZtye_nGOB1kAE3WW5fRfPL5Bahdo6wf-NLXEdESr878FWn8j6EiSan3LGUA3w~UCBf
+RWTqCaLybao4KD0z82yaKSnGVpBi_41w9b9_dpILDj96MhnG561o8pB7-filFnsXE3-UO
+fEgusAoNles8A~09NzGFXibw_1oD0dbjcFeXUNVJb4IeoJqy_B4BNT1lmWOm4Legakr6V
+8vOWJ8FEg0OGUVYYVtl3cxWTPsW20oQ~_eZH-t6HLIR34qC5t8Wvfq_lkBffYM0q9-ddR
+oxgHXsOZuw2bOgTja98kHR5GlmpcHK8YrKPVTIpTTcy3Aum8g~GVWPBG0vnfrbeNrwlT6
+N7gfLiUJlP_LtUB3pcLKrB3vNGMH6qHVkuHlKBTW_QymV3qORcj4jBw1ThgW0ROwMXA~m
+g8DnreZ97O8VsN6-l5k8RnvRpPuAoS8FQ-Rx0D-N_-hrOB53v_TTw4Yu0e-pLDDTJAQUb
+FawKHx2I4iQU5RMw~ERNHp0bFjFH2GmSRP2NCVMEe78u0j2CnpkP3hmu5TXKH-U5MlDcm
+mw6gGpXBctbCF8m6jGdn9HlUqqP_TfYVug
 
 </pre>
 </div>
@@ -2940,7 +2940,7 @@ a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "bpn7Gna-HX-5Ka-uyaw2a4fUNYlgGaGVumh6Js5Tilc"
+  "nonce": "8NGMvPDI5gODnW3kY5i4zE65kGghuFRBo_xQxYmwRpw"
 }
 
 </pre>
@@ -2951,8 +2951,8 @@ a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶
 <span id="name-presentation-header-su-es256"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-19.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJicG43R25hLUhYLTVLYS11eWF3MmE0ZlVOWWxnR2FHVnVtaDZKcz
-VUaWxjIn0
+29tIiwibm9uY2UiOiI4TkdNdlBESTVnT0RuVzNrWTVpNHpFNjVrR2dodUZSQm9feFF4WW
+13UnB3In0
 
 </pre>
 </div>
@@ -2968,29 +2968,29 @@ disclosed payloads, we get the following presented JPT in compact
 serialization:<a href="#appendix-A.1-21" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-22">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJicG43R25hLUhYLTVLYS11eWF3MmE0ZlVOWWxnR2FHVnVtaDZKcz
-VUaWxjIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiI4TkdNdlBESTVnT0RuVzNrWTVpNHpFNjVrR2dodUZSQm9feFF4WW
+13UnB3In0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
-3Zlcl8yMSJdLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJHMHM0WX
-J0c09tSTFyRThuUlNtR0tjaGNaUUV2anRTY0ZoZjhOMFc4QmdnIiwieSI6ImRfSGJQNVZ
-XSWc1a1hvREZGUmViUTJZeC1NTW93a1FiZnczRTFrR1ltNGMifSwiaHBrIjp7Imt0eSI6
-IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiTDFKQm93RmxZWnV5VUNPRmFNYUJkeXhYbnhkS
-GZwNGNNWllvNF9ZbkY1ZyIsInkiOiJxemZGcFM3bDF5YUhrRTI4YW11ZGlwaWdMNG1Hej
-NpLWF5SDVQdUs0dGwwIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~
+3Zlcl8yMSJdLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJUdk9EZH
+lrVnhHZEpHbXJhLVBDNnY4Vnp5UXYyZW1vWEYtaGJVTEFXVUlRIiwieSI6IjA0UWdialN
+4bnFrTEpaV2Z5REZHYU14WFJvZXFRR29JTUpwUFh6S2JZN3MifSwiaHBrIjp7Imt0eSI6
+IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoienBMWFZmT2FVQ21wQkFCZzJLZmc0ZWZOZ0haQ
+lBEaUZjMzh3YTVwTmFpOCIsInkiOiJNN2VobTNiLUh3U3hGb1NZUlR5SkhVMEU4X2RJNW
+sxbE9jdVdFLTByeXhnIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~
 ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bb
 nl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3
 QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI
-6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.l-RvihVsOVbPEbnpfx-I4SjFoZAy
-zHRUUV6f6Tg09uswExtzf_TONN21zXeSXTze_gafT2qd9ix715cH-WRkDg~_IK_Mq9EB_
-bTTBeNfq_y8cRcgPLE9Jn8igO4k8ic2cxUlMc4C7V1MwF49eyC_eRL6fypPHgV_e7Mdco
-pBtD8Fw~T5Q_43h1KOp71qnWxhn1FRRR5nS8N7W3guSG4Ds2of8MfTLsj94dFuBKFFGCK
-WFQSkQ2mY_TLmekvUCDOUqX_w~pqLqJ-hJEkcqUD6HDGIuenutEmp_QHE1l5JZuq50Wj-
-5TuYp3iYqqwX3q-03DHPzSzR382OwlFHJFaRPP49dqg~yHRaSvgz7fDKLSKREr2Vzevot
-MN5xbgd31RfMUnWZPbz5CIf0RjX4bWeq2aYfgQgHAePfNJdRlCpmoIyUOmW7w~US8-nMD
-msWr8LRO1jSSKbiTE-nW6qJ9Nq9CB45k5nRysz58mjxvQ2iCeRuCl-z4YEsl2zczGM3hD
-QMnAGeEVyQ~5xptiXC4qQ14EfoATC6RpnK5deneb8aroDEoJ0nxJt7WHqc-GTalfzdC1L
-TuYTUA40hggxwQpUncPhz3enr1Uw
+6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.1VeYSDPoVuR4JclOHWom6qds_1EI
+ovMyh_9AzMQdLzDUWiqEIYofPXZ5PPRT7aedj7iHepgTa3raOkl1zQMtEA~9jUlw9aiT7
+5xLyzBa12iNhTEoZtye_nGOB1kAE3WW5fRfPL5Bahdo6wf-NLXEdESr878FWn8j6EiSan
+3LGUA3w~UCBfRWTqCaLybao4KD0z82yaKSnGVpBi_41w9b9_dpILDj96MhnG561o8pB7-
+filFnsXE3-UOfEgusAoNles8A~09NzGFXibw_1oD0dbjcFeXUNVJb4IeoJqy_B4BNT1lm
+WOm4Legakr6V8vOWJ8FEg0OGUVYYVtl3cxWTPsW20oQ~_eZH-t6HLIR34qC5t8Wvfq_lk
+BffYM0q9-ddRoxgHXsOZuw2bOgTja98kHR5GlmpcHK8YrKPVTIpTTcy3Aum8g~GVWPBG0
+vnfrbeNrwlT6N7gfLiUJlP_LtUB3pcLKrB3vNGMH6qHVkuHlKBTW_QymV3qORcj4jBw1T
+hgW0ROwMXA~x8eEWCWGPxHXZQnEYh-QzBMvCc2xwripGk-OAwVNA2oyAhm7shd_e5DHtu
+EsCDYqEU-9fT0Pym141G9ohs9F0g
 
 </pre><a href="#appendix-A.1-22" class="pilcrow">¶</a>
 </div>
@@ -3027,18 +3027,18 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   8: {      / iek /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'1b4b3862bb6c3a6235ac4f2745298629c85c65012f8ed49c1617fc37' +
-        h'45bc0608', / x /
-    -3: h'77f1db3f9556220e645e80c515179b436631f8c328c2441b7f0dc4d6' +
-        h'41989b87'  / y /
+    -2: h'4ef383772915c467491a6adaf8f0babfc573c90bf67a6a1717e85b50' +
+        h'b0165084', / x /
+    -3: h'd384206e34b19ea90b25959fc8314668cc574687aa406a08309a4f5f' +
+        h'329b63bb'  / y /
   },
   9: {      / hpk /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'2f5241a30165619bb250238568c681772c579f17477e9e1c319628e3' +
-        h'f6271798', / x /
-    -3: h'ab37c5a52ee5d72687904dbc6a6b9d8a98a02f8986cf78be6b21f93e' +
-        h'e2b8b65d'  / y /
+    -2: h'ce92d755f39a5029a9040060d8a7e0e1e7cd8076413c3885737f306b' +
+        h'9a4d6a2f', / x /
+    -3: h'33b7a19b76fe1f04b1168498453c891d4d04f3f748e64d6539cb9613' +
+        h'ed2bcb18'  / y /
   },
   10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
 }
@@ -3076,31 +3076,31 @@ example above, including the same public and private keys.<a href="#appendix-A.2
 <div class="lang-hex sourcecode" id="appendix-A.2-8">
 <pre>8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-201b4b3862bb6c3a6235ac4f2745298629c85c65012f8ed49c1617fc3745bc06
-0822582077f1db3f9556220e645e80c515179b436631f8c328c2441b7f0dc4d6
-41989b8709a4010220012158202f5241a30165619bb250238568c681772c579f
-17477e9e1c319628e3f6271798225820ab37c5a52ee5d72687904dbc6a6b9d8a
-98a02f8986cf78be6b21f93ee2b8b65d0a28871a0a3827001a0a3c3d3f63446f
+204ef383772915c467491a6adaf8f0babfc573c90bf67a6a1717e85b50b01650
+84225820d384206e34b19ea90b25959fc8314668cc574687aa406a08309a4f5f
+329b63bb09a401022001215820ce92d755f39a5029a9040060d8a7e0e1e7cd80
+76413c3885737f306b9a4d6a2f22582033b7a19b76fe1f04b1168498453c891d
+4d04f3f748e64d6539cb9613ed2bcb180a28871a0a3827001a0a3c3d3f63446f
 65634a6179726a6179646f65406578616d706c652e6f7267a601782331323334
 204d61696e2053742e0a416e79746f776e2c2043412031323334350a55534102
 6d31323334204d61696e2053742e0367416e79746f776e046243410565393032
-31300663555341f58858406d47a27f02f7d405c0bf4c7a1142016abacfe72019
-27fd23ea6b2cc60a79be2880635d3e588573349a1056779d6a3b9870934deadb
-92c9a289754ac84b8c5357584016f3a368f2cef0d01e048d296855e7ca9bb200
-c6a0acad641c67ebba088df5f3d4ec70774e96564669ee2bb551415413f89ebf
-572996290f5566102d7c188b095840490f381d6c7805a3fc6131cc4f58f9640b
-3c39df4e4397375437040a80a88a95318fdc30a2189c76eb032df46e136b3fce
-4794994dc6ab341d87f2c5c453360f5840b3182d60658e6822a0dd8448904d2e
-1eb538c08541b31b92333c867fc677ed3677786aefaa42c96bd7109466890a29
-50a36ff17748860ebcccfb5245b3815ee05840e614e56a3791e13e65f08fb7dc
-0247cce18a21ad2cd5a648d5955a76c5b86a732d04f8c81903af15b87aec52c2
-3ee03f302aff15c2ce24cbcaa533694ac618b258407f2af439096712f837a585
-1ca22ea90f51dca62907fb759492e8dca52e7167bfe09ab70251e32460475aa1
-10356b6c05896fc918d9a3f522ef2090f725b24662584026614f3cfbe20b766b
-51f2f960e09be0f345f379db729276d3ea4d03b7a65b945998148a77b110f4ad
-4173f6caff944afc71075a1f6726d3ee9f8dbb7e686fe3584008976a51f8a431
-1f058dd9f6fcf235d2b28a2fc552e2fac35bf5e2907c6f74ce89b2f64e59a26b
-37a0a23300f9a1c1547db6066783200f8c071ab396d46b9ddb
+31300663555341f58858407930f72483dfc54f8ddeb79ffa82d3521e09824b0e
+1927618edb709b97b473c54279fd906241fe4dde95750f9aba857e13a05bf920
+7760e3d8659ee7770678ed58408c54b08ac131dfe38e4f6d84f9fafba9293d46
+b402bc1c4ea3bf7858373a75a2fbf01c5951d81e3358031e374f1a4c5a9e6ea6
+7d0d1d2c629677bed5d7c9097258404f3021950fdfde68760fe88519e7d474b1
+c1641a76f1d6e3ec912e62e692beb3cbbc92c2545cab3a445e5600fe86bf1520
+59c09de29910abd8c1a9cf79e2d4415840340878e23e206dee6fdaddf8dd7518
+f11846bf7a17e9dd5e9616704e587b4047dd4a830caead34509a89586983cd36
+02f4e361bf44f77ab832be246ccc0fc864584030fe7fec47e25901410e92ece3
+0406e22d2022d6d95271dca4af8bd7c213c43c406088f575230696680366d859
+5ef27453b90de3a75d17affdb7dec07336e04058407abdec681d4d094fcb26b2
+bf2a620d18cc4c65e4b644bb7445673ceb8a9eb2c5d432231afd9b9a4a02fbe5
+77b28509eef9d5a4100f5f6f0a065183e3fcc8ca01584031efbe4f57c6303a1f
+d7a95282dd351e22bd5dacc1f4c8dedfab3a1a3cc25ed076e753757c893c1a2c
+8af00e3dfb8a9147fae39fa5235a38a275044ac93b7b65584075037da26e5d56
+1858073810b8c0390a81fd8e069c97414ff1971b3cbf694ff7abd4b21fc5dcc3
+c989d25f1bce952a3cfd901226821c8dcc061da6ddeaadd4aa
 
 </pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
@@ -3114,7 +3114,7 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 <pre>{          / protected header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
-  7: h'6e99fb1a76be1d7fb929afaec9ac366b87d435896019a195ba687a26ce538a57', / nonce /
+  7: h'f0d18cbcf0c8e603839d6de46398b8cc4eb9906821b85441a3fc50c589b0469c', / nonce /
 }
 
 </pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
@@ -3126,33 +3126,33 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-14">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-6c652e636f6d0758206e99fb1a76be1d7fb929afaec9ac366b87d435896019a1
-95ba687a26ce538a5758cfa701010314057668747470733a2f2f697373756572
+6c652e636f6d075820f0d18cbcf0c8e603839d6de46398b8cc4eb9906821b854
+41a3fc50c589b0469c58cfa701010314057668747470733a2f2f697373756572
 2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-08a4010220012158201b4b3862bb6c3a6235ac4f2745298629c85c65012f8ed4
-9c1617fc3745bc060822582077f1db3f9556220e645e80c515179b436631f8c3
-28c2441b7f0dc4d641989b8709a4010220012158202f5241a30165619bb25023
-8568c681772c579f17477e9e1c319628e3f6271798225820ab37c5a52ee5d726
-87904dbc6a6b9d8a98a02f8986cf78be6b21f93ee2b8b65d0a28891a0a382700
+08a4010220012158204ef383772915c467491a6adaf8f0babfc573c90bf67a6a
+1717e85b50b0165084225820d384206e34b19ea90b25959fc8314668cc574687
+aa406a08309a4f5f329b63bb09a401022001215820ce92d755f39a5029a90400
+60d8a7e0e1e7cd8076413c3885737f306b9a4d6a2f22582033b7a19b76fe1f04
+b1168498453c891d4d04f3f748e64d6539cb9613ed2bcb180a28891a0a382700
 1a0a3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267
 a601782331323334204d61696e2053742e0a416e79746f776e2c204341203132
 3334350a555341026d31323334204d61696e2053742e0367416e79746f776e04
-624341056539303231300663555341f5f6f68758406d47a27f02f7d405c0bf4c
-7a1142016abacfe7201927fd23ea6b2cc60a79be2880635d3e588573349a1056
-779d6a3b9870934deadb92c9a289754ac84b8c5357584016f3a368f2cef0d01e
-048d296855e7ca9bb200c6a0acad641c67ebba088df5f3d4ec70774e96564669
-ee2bb551415413f89ebf572996290f5566102d7c188b095840490f381d6c7805
-a3fc6131cc4f58f9640b3c39df4e4397375437040a80a88a95318fdc30a2189c
-76eb032df46e136b3fce4794994dc6ab341d87f2c5c453360f5840b3182d6065
-8e6822a0dd8448904d2e1eb538c08541b31b92333c867fc677ed3677786aefaa
-42c96bd7109466890a2950a36ff17748860ebcccfb5245b3815ee05840e614e5
-6a3791e13e65f08fb7dc0247cce18a21ad2cd5a648d5955a76c5b86a732d04f8
-c81903af15b87aec52c23ee03f302aff15c2ce24cbcaa533694ac618b258407f
-2af439096712f837a5851ca22ea90f51dca62907fb759492e8dca52e7167bfe0
-9ab70251e32460475aa110356b6c05896fc918d9a3f522ef2090f725b2466258
-40775b88e1bce6c38dcd92cd79abc8230fa20846a875a76e240345b590d9a31e
-3d67d0f770f243392a988c07aa19460e2ed45c74d840fed66155f6ed576b4bd4
-2b
+624341056539303231300663555341f5f6f68758407930f72483dfc54f8ddeb7
+9ffa82d3521e09824b0e1927618edb709b97b473c54279fd906241fe4dde9575
+0f9aba857e13a05bf9207760e3d8659ee7770678ed58408c54b08ac131dfe38e
+4f6d84f9fafba9293d46b402bc1c4ea3bf7858373a75a2fbf01c5951d81e3358
+031e374f1a4c5a9e6ea67d0d1d2c629677bed5d7c9097258404f3021950fdfde
+68760fe88519e7d474b1c1641a76f1d6e3ec912e62e692beb3cbbc92c2545cab
+3a445e5600fe86bf152059c09de29910abd8c1a9cf79e2d4415840340878e23e
+206dee6fdaddf8dd7518f11846bf7a17e9dd5e9616704e587b4047dd4a830cae
+ad34509a89586983cd3602f4e361bf44f77ab832be246ccc0fc864584030fe7f
+ec47e25901410e92ece30406e22d2022d6d95271dca4af8bd7c213c43c406088
+f575230696680366d8595ef27453b90de3a75d17affdb7dec07336e04058407a
+bdec681d4d094fcb26b2bf2a620d18cc4c65e4b644bb7445673ceb8a9eb2c5d4
+32231afd9b9a4a02fbe577b28509eef9d5a4100f5f6f0a065183e3fcc8ca0158
+40418f866ba722087e89d9807e5b4c372ea7ffa45cc3db3c94713e44987c3934
+a1f74b47ab3a6319760a8c1010a0cb1bf4cf04e9662e869464fbd52c8d7cf6de
+13
 
 </pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
 </div>
@@ -3175,13 +3175,13 @@ c81903af15b87aec52c23ee03f302aff15c2ce24cbcaa533694ac618b258407f
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "Bklkp1C2a4FQ95g4sj345KfGnovMGu8_1YX-uGUnhozyxLfuMWJ58I5ZaDRmo
-       PrnFAOzuROe7lmuuWj3WiKw65mSvw7RIS0AJ_RtVKF5pIKwIVaIXgIf_Uyz9az
-       xNEUH",
-  "y": "AbsvbZjQNWTffoybcBi4BgK3Keg8KYCvW7W6QcLppPVC33XUuPb3-PnvzOvL0
-       7a6DQanl22ol9ihw-ymztOE78QUqEgkug6BsuNCora2CG3FlcwkXMdOiQlceKq
-       kGOGH",
-  "d": "RaV9AYNdY-a-AtMnQE5A8HR20D_Gj5XpLNKNBcQk1ME"
+  "x": "EFj7Eg7WbxnONkvFDHpKxuN3eQMwh2h7rE7cJVpEVi11f2v76FAu0j0CrjcJ-
+       v1MFcB1Lu_duo8znKBGxLJSaHYaTbqs_1fAHY8Mnk8AdFkhejEgbcq2McAGxXv
+       tFn1y",
+  "y": "CUsaSfWZAIEoqbbgQM8YYlSaFbm2KRspOCmBTXsLmfQWBq-BM5Wo_a0Inenom
+       AUvFYp--j8uKMprJeW3l47zBnPtUVr9VIVHhthYIW0AojmmRgHpufKKqWyFglE
+       GyJPd",
+  "d": "Wbj_TIzxCLw1YWuEchZUCa8alAQjGlwYAdcTFad832k"
 }
 
 </pre>
@@ -3212,9 +3212,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.mOuRL5VFesTDHyN5LYFx020XmWZKE4NsJ7
-STXwXZ8RIBz4s51aoWrM4oi9powAgMK5cyWj1eGcuuus99CNbHGLuMqvuZhMo2mIK11Tp
-bPY0
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.kv0Hnjuq5S7FAA5CubBbIHGmtywgvun2xh
+KCIaOAUZa1taTFYJFKlF91ruOX55aTQm4Wk0XJX2Cm3bAqqOGxkkW0o0dy17TINm1qrkQ
+T3Tk
 
 </pre>
 </div>
@@ -3243,14 +3243,14 @@ following serialization:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.i7ynBM1tP3Beq-dd3LfnYo4KZ_kycgeNsm9VouB8
-Jvbg5GAqz2AJ82LnZ5dSeq5Sr12FRZej-D5_Yh9QVe57fNwiJd6KF28o11uyphhhUSMUF
-Uzy0v7xGKeIQfv0r1VclLQLneptayvtzQwvbR-V6T4XzOxnhTDbCZf8HVo2JxqB3_W5DG
-Dhr5rwj3h3xuQACyg6PZ-upB3bDijwcL63ZdUpKZH4KIayTHophl9FMwUqP8DTUt6Q_u6
-v3cIlDS03wIAjiZw0IMHkicXk2euvxDmh5IdVxWlhw57vsMlNvgiti1MNuFXH2NHQllLK
-wv7MOObjP5FWNvVia3fCKT_YWBO8vqozu_MHngRXOrTysicfB1xdzcxhMHVb_gH-knAgy
-ZCGBBIwwBJEZ9qwVsjImQBEDrUBtrHk8vV7rL9P78CXDUZJGHSZdOWNdXPjV1LUPGhwvA
-f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.lLSg42sfxPAce87z1cqCw3M7m71iyPDggaDMLZl2
+BF6ZLsikaMruhZ1Qg1wP3cJTi8TvYtDHME_0B9YcI1X1rY0Hed404kd4UjG5tC8lhIvB0
+d2L0OOz9M6eRf7NjFewgA7x5vWwqD0DGGyOIRzzRVI-WaLB43TxARJEQ5BBDIgsJOfeqR
+HN_McxpkPj1X_jOdCrP4UnIdk5GGkRzVDujGO30cbH-MYNIxpM4w0d-0Mll_-biGNKreX
+2f07xyW3Jcgx3UJUHME1e_LlWfvGksFqgscdCQXEcEiORkGeIGYRhiDlCBqtSDI1jOMQl
+MLdTK35lPI3QKD93WRZ3OwqjWHqEEFP1-y4osIC5mD0t9qgnyWfWhP3pdk3zBq37eiXJT
+0oGRfQGbN-68xSOfOzZ_TQIPmyCp01KhVdtBcxHY5c4U0zDpPeLtyYUo4g1eSXtaJhola
+UJXuuiuohfQJRfBHJ_ZaQK0F8xZJDAipVAT4Q
 
 </pre>
 </div>
@@ -3271,9 +3271,9 @@ f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "3uQgjXHFpjbHnxa_fnFXXh-p2mlygIieIZSmx-Du4Kc",
-  "y": "O58zNd8OX_O0G6uMjQeTgcNHTTl7Q5N3HKqIGgtYSXI",
-  "d": "h5xaguFHPJUyRHSYlrQsrdJbDia3xaJdK6g0siDILEs"
+  "x": "w0Cp0EHZsqo6bfcVisBIh7YD63niYBR-cZtQQI9Ecjg",
+  "y": "c-iH_xhJvZP-XF_1dy89BSa_0txk0IQjqTqxEVz88lQ",
+  "d": "-rjlG05jRNS9tkl4rxQ4iv0qakc04za6LCm_af6r2_c"
 }
 
 </pre>
@@ -3284,7 +3284,7 @@ f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
 <p id="appendix-A.4-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-16">
           <div class="lang-json sourcecode" id="appendix-A.4-5.1">
-<pre>"Zca6aboyKaOPXc6PTMJRS3wN7HAFtP09GxR6d8PaKpI"
+<pre>"vj2cEE3Kw5bAcQGwgq5rf2MQcFOEzVjt_WujPiqjUmI"
 
 </pre>
 </div>
@@ -3297,9 +3297,9 @@ f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "L1JBowFlYZuyUCOFaMaBdyxXnxdHfp4cMZYo4_YnF5g",
-  "y": "qzfFpS7l1yaHkE28amudipigL4mGz3i-ayH5PuK4tl0",
-  "d": "sAFOhYGiQfSn4bSYRuWhQ8-XNB5zIIF8j0ZoPbICYBA"
+  "x": "zpLXVfOaUCmpBABg2Kfg4efNgHZBPDiFc38wa5pNai8",
+  "y": "M7ehm3b-HwSxFoSYRTyJHU0E8_dI5k1lOcuWE-0ryxg",
+  "d": "swsKyZx4VBR-4TGGr3jbYvWNmRLCjzCKscgl0d3WM-8"
 }
 
 </pre>
@@ -3328,8 +3328,8 @@ f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "L1JBowFlYZuyUCOFaMaBdyxXnxdHfp4cMZYo4_YnF5g",
-    "y": "qzfFpS7l1yaHkE28amudipigL4mGz3i-ayH5PuK4tl0"
+    "x": "zpLXVfOaUCmpBABg2Kfg4efNgHZBPDiFc38wa5pNai8",
+    "y": "M7ehm3b-HwSxFoSYRTyJHU0E8_dI5k1lOcuWE-0ryxg"
   }
 }
 
@@ -3369,13 +3369,13 @@ on the payload slot index (from zero) as input to the HMAC operation.<a href="#a
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-20">
           <div class="lang-json sourcecode" id="appendix-A.4-13.1">
 <pre>[
-  "989YD4iYckuUCtIlVQFleDuiCCpKDSuiy8UQDyLJL7Y",
-  "tjXceGBXzb4-7zjncktm69uisIHfzDiian4ov0O4iYI",
-  "_LxLatLF33aw125B3KcWIInNYxcGsod0UqxiLXcftGk",
-  "GHw3WtgVnj4SiqTEVQmIOcuV3hLigQ_YcYZOnhZI1sk",
-  "eC5sSvTNkrzQXUrlJtGractWOsYJP8HiXwUI9ACIqyo",
-  "Wgh-TCqoR8l3PtMZUdwkk-c-65pTP4KXhRtYB5ZUhxs",
-  "jYLNMHyV7n7fDJxfsZ4mXMohZdO-vN20JtHsbCdq1vw"
+  "y3HmL0bVur3nTw_37cTJDNKU7FZwXAauwn2bFyTtuoE",
+  "EoKUkvjIQKTXP_lGpcOqlmWWjqULuq0m6CriGcgExCM",
+  "f1Ie_H8lZODf-ea__XR60e9afR-KuIhsRbE4XtxWnsw",
+  "r_sLzWlD1nqdBjTyYW9avlgm_aJ4p-EhHJDkujVpOy0",
+  "NOVMIzzDmlC460UvGO1xr-yTNqdTfd6Crvtsst7-uUY",
+  "8Kd-J0qPdqDIvqKMCX6yNEK_dgQoSzGZ4qzSG-KpRVk",
+  "prtZh3JHJVBuF9v4LjRNSMniXi6K0KtmGMHRkWRSN-w"
 ]
 
 </pre>
@@ -3388,13 +3388,13 @@ payload key.  This results in the following set of MAC values:<a href="#appendix
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-21">
           <div class="lang-json sourcecode" id="appendix-A.4-15.1">
 <pre>[
-  "rCfGDgXzKnbVGlGGIOc_5yqsHgUbRNlXqvcMfNdHnWU",
-  "hHpbKXicVip2OA2_5pOIRoo_e3utmzKJkht6y8YyKqI",
-  "in8iER9R3_R5rWE_fa6mPDJ21MqmDdzXohT9CgNbp1c",
-  "kWTx9itT5kaaMTQxnGDRAHm0WNxcB8uZLBDn8FDhNKM",
-  "oZHM6MDXo1YvyTeybokmDsRa7uKPQ-kX3b2QVA1wVvM",
-  "f4G6q6hjziaQ6WTAo4mKeo6srCcD6fhwXdJoHwEAmzs",
-  "3YMaDsZVCfgDMnf5TC0IX1wRh-klGrgGVa5nY_ezQiw"
+  "Eld6YdiKWqnNBoSZI31cVNbh9wiLxBqqENaSrGjZ5dw",
+  "IE43RCa-l91jozYLUBMDqBVUfTmxAmYw8k1Ef5YoJf4",
+  "C28ql3Kd-14tRYV-n6g3AhdD3mcdkSG53IYvh_oMcXM",
+  "PxtolC_NQBbcZ6NAUhzwR3f8hL_QsHOO7kZZphDtNdA",
+  "bKQFxu-hcim_bonx86O6Il-WpFXOE0ivHpYf-rjjDuA",
+  "BtZHZkP-kjnljpMhEmLBqVfYpEQjmDI-QwwaxdGKczs",
+  "knLrZiHQBjKtmw3ZuJyjL1vDBGX_339jiiIJuKHhhEM"
 ]
 
 </pre>
@@ -3410,9 +3410,9 @@ combined MAC representation, and the shared secret.<a href="#appendix-A.4-17" cl
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-22">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-18.1">
 <pre>[
-  "Myix-97vXuhepsaOspRUboRVIUfu_3o3-VjV3o1Gg_DREWqrMpLU1Uiyc5dYtTLbqW
-aeBzxBQObja_yX3FmuaQ",
-  "8eRRT4LepJAFkbUJ1oLd5ac59ajYJwVGl_sJuLSofVI"
+  "W3KChHQd76Ix28FpCWRUX-W-oiBJxKQh_xMpLSSrRp1E3DTXU3rWsLuwHXpCA-njyK
+9YsGTkhbiGw0LIhpMBMQ",
+  "ig_aPR5heZiFKW9e_t34OoV4aoPijvBP8lrKArXdZFY"
 ]
 
 </pre>
@@ -3427,14 +3427,14 @@ aeBzxBQObja_yX3FmuaQ",
 HR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
 dLCJocGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsInVzZSI6InNpZ24iLCJ4Ijoi
-TDFKQm93RmxZWnV5VUNPRmFNYUJkeXhYbnhkSGZwNGNNWllvNF9ZbkY1ZyIsInkiOiJxe
-mZGcFM3bDF5YUhrRTI4YW11ZGlwaWdMNG1HejNpLWF5SDVQdUs0dGwwIn19.MTcxNDUyM
+enBMWFZmT2FVQ21wQkFCZzJLZmc0ZWZOZ0haQlBEaUZjMzh3YTVwTmFpOCIsInkiOiJNN
+2VobTNiLUh3U3hGb1NZUlR5SkhVMEU4X2RJNWsxbE9jdVdFLTByeXhnIn19.MTcxNDUyM
 TYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJm
 b3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic
 3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIi
 wicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~
-dHJ1ZQ.Myix-97vXuhepsaOspRUboRVIUfu_3o3-VjV3o1Gg_DREWqrMpLU1Uiyc5dYtT
-LbqWaeBzxBQObja_yX3FmuaQ~8eRRT4LepJAFkbUJ1oLd5ac59ajYJwVGl_sJuLSofVI
+dHJ1ZQ.W3KChHQd76Ix28FpCWRUX-W-oiBJxKQh_xMpLSSrRp1E3DTXU3rWsLuwHXpCA-
+njyK9YsGTkhbiGw0LIhpMBMQ~ig_aPR5heZiFKW9e_t34OoV4aoPijvBP8lrKArXdZFY
 
 </pre>
 </div>
@@ -3448,7 +3448,7 @@ LbqWaeBzxBQObja_yX3FmuaQ~8eRRT4LepJAFkbUJ1oLd5ac59ajYJwVGl_sJuLSofVI
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "bpn7Gna-HX-5Ka-uyaw2a4fUNYlgGaGVumh6Js5Tilc"
+  "nonce": "8NGMvPDI5gODnW3kY5i4zE65kGghuFRBo_xQxYmwRpw"
 }
 
 </pre>
@@ -3472,17 +3472,17 @@ This results in the following proof:<a href="#appendix-A.4-27" class="pilcrow">�
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-25">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-28.1">
 <pre>[
-  "Myix-97vXuhepsaOspRUboRVIUfu_3o3-VjV3o1Gg_DREWqrMpLU1Uiyc5dYtTLbqW
-aeBzxBQObja_yX3FmuaQ",
-  "989YD4iYckuUCtIlVQFleDuiCCpKDSuiy8UQDyLJL7Y",
-  "tjXceGBXzb4-7zjncktm69uisIHfzDiian4ov0O4iYI",
-  "_LxLatLF33aw125B3KcWIInNYxcGsod0UqxiLXcftGk",
-  "GHw3WtgVnj4SiqTEVQmIOcuV3hLigQ_YcYZOnhZI1sk",
-  "oZHM6MDXo1YvyTeybokmDsRa7uKPQ-kX3b2QVA1wVvM",
-  "f4G6q6hjziaQ6WTAo4mKeo6srCcD6fhwXdJoHwEAmzs",
-  "3YMaDsZVCfgDMnf5TC0IX1wRh-klGrgGVa5nY_ezQiw",
-  "2zZQVkw5A5gdeYaQ3JdSRDJW8LrO8erPt_SzWoyjwsQ3aeJ590dUfg7ujAK6BO2sv0
-zxlyouuBKJ_mHgAlk7FA"
+  "W3KChHQd76Ix28FpCWRUX-W-oiBJxKQh_xMpLSSrRp1E3DTXU3rWsLuwHXpCA-njyK
+9YsGTkhbiGw0LIhpMBMQ",
+  "y3HmL0bVur3nTw_37cTJDNKU7FZwXAauwn2bFyTtuoE",
+  "EoKUkvjIQKTXP_lGpcOqlmWWjqULuq0m6CriGcgExCM",
+  "f1Ie_H8lZODf-ea__XR60e9afR-KuIhsRbE4XtxWnsw",
+  "r_sLzWlD1nqdBjTyYW9avlgm_aJ4p-EhHJDkujVpOy0",
+  "bKQFxu-hcim_bonx86O6Il-WpFXOE0ivHpYf-rjjDuA",
+  "BtZHZkP-kjnljpMhEmLBqVfYpEQjmDI-QwwaxdGKczs",
+  "knLrZiHQBjKtmw3ZuJyjL1vDBGX_339jiiIJuKHhhEM",
+  "dCQZYia4Np-QDpxJaZ5ABUxiltuP8vbfuA6MOCVcjGlcxvyeV3oQcCBOGeTDePjmRR
+pyyGGV5Fq5QJUBR1DDxw"
 ]
 
 </pre>
@@ -3494,21 +3494,21 @@ zxlyouuBKJ_mHgAlk7FA"
 <span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-30.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJicG43R25hLUhYLTVLYS11eWF3MmE0ZlVOWWxnR2FHVnVtaDZKcz
-VUaWxjIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
+29tIiwibm9uY2UiOiI4TkdNdlBESTVnT0RuVzNrWTVpNHpFNjVrR2dodUZSQm9feFF4WW
+13UnB3In0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
 iaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
 3Zlcl8yMSJdLCJocGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsInVzZSI6InNpZ2
-4iLCJ4IjoiTDFKQm93RmxZWnV5VUNPRmFNYUJkeXhYbnhkSGZwNGNNWllvNF9ZbkY1ZyI
-sInkiOiJxemZGcFM3bDF5YUhrRTI4YW11ZGlwaWdMNG1HejNpLWF5SDVQdUs0dGwwIn19
-.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.Myix-97vXuhepsaOspR
-UboRVIUfu_3o3-VjV3o1Gg_DREWqrMpLU1Uiyc5dYtTLbqWaeBzxBQObja_yX3FmuaQ~9
-89YD4iYckuUCtIlVQFleDuiCCpKDSuiy8UQDyLJL7Y~tjXceGBXzb4-7zjncktm69uisI
-HfzDiian4ov0O4iYI~_LxLatLF33aw125B3KcWIInNYxcGsod0UqxiLXcftGk~GHw3Wtg
-Vnj4SiqTEVQmIOcuV3hLigQ_YcYZOnhZI1sk~oZHM6MDXo1YvyTeybokmDsRa7uKPQ-kX
-3b2QVA1wVvM~f4G6q6hjziaQ6WTAo4mKeo6srCcD6fhwXdJoHwEAmzs~3YMaDsZVCfgDM
-nf5TC0IX1wRh-klGrgGVa5nY_ezQiw~2zZQVkw5A5gdeYaQ3JdSRDJW8LrO8erPt_SzWo
-yjwsQ3aeJ590dUfg7ujAK6BO2sv0zxlyouuBKJ_mHgAlk7FA
+4iLCJ4IjoienBMWFZmT2FVQ21wQkFCZzJLZmc0ZWZOZ0haQlBEaUZjMzh3YTVwTmFpOCI
+sInkiOiJNN2VobTNiLUh3U3hGb1NZUlR5SkhVMEU4X2RJNWsxbE9jdVdFLTByeXhnIn19
+.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.W3KChHQd76Ix28FpCWR
+UX-W-oiBJxKQh_xMpLSSrRp1E3DTXU3rWsLuwHXpCA-njyK9YsGTkhbiGw0LIhpMBMQ~y
+3HmL0bVur3nTw_37cTJDNKU7FZwXAauwn2bFyTtuoE~EoKUkvjIQKTXP_lGpcOqlmWWjq
+ULuq0m6CriGcgExCM~f1Ie_H8lZODf-ea__XR60e9afR-KuIhsRbE4XtxWnsw~r_sLzWl
+D1nqdBjTyYW9avlgm_aJ4p-EhHJDkujVpOy0~bKQFxu-hcim_bonx86O6Il-WpFXOE0iv
+HpYf-rjjDuA~BtZHZkP-kjnljpMhEmLBqVfYpEQjmDI-QwwaxdGKczs~knLrZiHQBjKtm
+w3ZuJyjL1vDBGX_339jiiIJuKHhhEM~dCQZYia4Np-QDpxJaZ5ABUxiltuP8vbfuA6MOC
+VcjGlcxvyeV3oQcCBOGeTDePjmRRpyyGGV5Fq5QJUBR1DDxw
 
 </pre>
 </div>

@@ -814,14 +814,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.i7ynBM1tP3Beq-dd3LfnYo4KZ_kycgeNsm9VouB8
-   Jvbg5GAqz2AJ82LnZ5dSeq5Sr12FRZej-D5_Yh9QVe57fNwiJd6KF28o11uyphhhUSMUF
-   Uzy0v7xGKeIQfv0r1VclLQLneptayvtzQwvbR-V6T4XzOxnhTDbCZf8HVo2JxqB3_W5DG
-   Dhr5rwj3h3xuQACyg6PZ-upB3bDijwcL63ZdUpKZH4KIayTHophl9FMwUqP8DTUt6Q_u6
-   v3cIlDS03wIAjiZw0IMHkicXk2euvxDmh5IdVxWlhw57vsMlNvgiti1MNuFXH2NHQllLK
-   wv7MOObjP5FWNvVia3fCKT_YWBO8vqozu_MHngRXOrTysicfB1xdzcxhMHVb_gH-knAgy
-   ZCGBBIwwBJEZ9qwVsjImQBEDrUBtrHk8vV7rL9P78CXDUZJGHSZdOWNdXPjV1LUPGhwvA
-   f4ncRtQdUlXj6sUo1Xli-KqdjoLxltlxeNYxU
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.lLSg42sfxPAce87z1cqCw3M7m71iyPDggaDMLZl2
+   BF6ZLsikaMruhZ1Qg1wP3cJTi8TvYtDHME_0B9YcI1X1rY0Hed404kd4UjG5tC8lhIvB0
+   d2L0OOz9M6eRf7NjFewgA7x5vWwqD0DGGyOIRzzRVI-WaLB43TxARJEQ5BBDIgsJOfeqR
+   HN_McxpkPj1X_jOdCrP4UnIdk5GGkRzVDujGO30cbH-MYNIxpM4w0d-0Mll_-biGNKreX
+   2f07xyW3Jcgx3UJUHME1e_LlWfvGksFqgscdCQXEcEiORkGeIGYRhiDlCBqtSDI1jOMQl
+   MLdTK35lPI3QKD93WRZ3OwqjWHqEEFP1-y4osIC5mD0t9qgnyWfWhP3pdk3zBq37eiXJT
+   0oGRfQGbN-68xSOfOzZ_TQIPmyCp01KhVdtBcxHY5c4U0zDpPeLtyYUo4g1eSXtaJhola
+   UJXuuiuohfQJRfBHJ_ZaQK0F8xZJDAipVAT4Q
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1278,9 +1278,9 @@ Table of Contents
    [I-D.irtf-cfrg-bbs-signatures]
               Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
               BBS Signature Scheme", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-bbs-signatures-08, 3 March 2025,
+              draft-irtf-cfrg-bbs-signatures-09, 7 July 2025,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              bbs-signatures-08>.
+              bbs-signatures-09>.
 
    [IANA.CoAP.Formats]
               IANA, "CoAP Content-Formats",
