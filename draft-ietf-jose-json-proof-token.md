@@ -54,7 +54,7 @@ to be digitally signed and selectively disclosed.  JPTs also support
 reusability and unlinkability when using Zero-Knowledge Proofs (ZKPs).
 
 A CBOR-based representation of JPTs is also defined, called a CBOR Proof
-Token (CPT).  It has the same properties of JPTs, but uses the JSON Web
+Token (CPT).  It has the same properties as JPTs, but uses the JSON Web
 Proof (JWP) CBOR Serialization, rather than the JSON-based JWP Compact
 Serialization.
 
@@ -176,7 +176,7 @@ IANA CBOR Web Token Claims Registry [@IANA.CWT] established by
 
 # Claims Header Parameter {#claimsDef}
 
-A JSON Proof Token or CBOR Proof Token assigns each playload a claim
+A JSON Proof Token or CBOR Proof Token assigns each payload a claim
 name.  Payloads MUST each have a negotiated and understood claim name
 within the application context.  The simplest solution to establish
 payload claim names is as an ordered array that aligns with the ordering
@@ -219,7 +219,7 @@ The structure of the `cid` value is unspecified.  For JPTs, its value
 MUST be a case-sensitive string.  For CPTs, its value MUST be a binary
 string.  Use of this JWP Header Parameter is OPTIONAL.
 
-The `cid` can be used similarly to a `kid` in order to ensure that is it
+The `cid` can be used similarly to a `kid` in order to ensure that it is
 possible to externally resolve and then verify that the correct list of
 claim names is being used when processing the payloads containing the
 claim values.
@@ -235,7 +235,7 @@ Protected Header, any variations of that array between JWP will be
 visible to the verifier, and can leak information about the subject or
 provide an additional vector for linkability.  Given the privacy design
 considerations around linkability, it is RECOMMENDED that the claims are
-defined external to an individual JPT or CPT and either referenced or
+defined externally to an individual JPT or CPT and either referenced or
 known by the application context.
 
 The following is an example JWP Protected Header that includes a `cid`:
@@ -331,7 +331,7 @@ This section registers the following COSE_Key parameter in the IANA
 ## Media Types Registry
 
 This section registers the following media type [@RFC2046] in the IANA
-"Media Types" registry <xref target="IANA.MediaTypes"/> in the manner
+"Media Types" registry [@IANA.MediaTypes] in the manner
 described in [@RFC6838].
 
 ### application/jpt {#jpt_media_type}
@@ -390,7 +390,7 @@ The media type for a CBOR Proof Token (CPT) is `application/cpt`.
 
 ## Structured Syntax Suffix Registry
 
-This section registraters the following entries in the IANA "Structured
+This section registers the following entries in the IANA "Structured
 Syntax Suffix" registry [IANA.StructuredSuffix] in the manner described
 in [@RFC6838].
 
