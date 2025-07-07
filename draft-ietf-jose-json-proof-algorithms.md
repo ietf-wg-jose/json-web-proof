@@ -239,25 +239,25 @@ When a length or count is added by the steps below, it is added as its 8 byte, n
 
 The binary representation is created by appending data into a single octet string in the following order:
 
-1. `0x84 5A`
+1. `0x84 5B`
 2. The length and octets of the presentation protected header
-3. `0x5A`
+3. `0x5B`
 4. The length and octets of the issuer protected header
-5. `0x9A`
+5. `0x9B`
 6. The number of payload slots in the issued message
 7. For each payload representation:
 
     - If the payload is being ommitted, the value `0xF6`
     - Otherwise:
 
-      1. `0x5A`
+      1. `0x5B`
       2. The length and octets of the payload
 
-8. `0x9A`
+8. `0x9B`
 9. The number of proof components as specified by the algorithm
 10. For each proof component, append:
 
-    1. `0x5A`
+    1. `0x5B`
     2. The length and octets of the proof component
 
 ## BBS
@@ -342,7 +342,7 @@ When a length or count is added by steps in this section, it is added as its 8 b
 
 The holder will a unique key per payload value using a MAC, with the Shared Secret as the key and a generated binary value. This binary value is constructed by appending data into a single octet string:
 
-1. `0x82 67 70 61 79 6C 6F 61 64 48 1A`
+1. `0x82 67 70 61 79 6C 6F 61 64 48 1B`
 2. The zero indexed count of the payload slot
 
 The holder will also compute a corresponding MAC of each payload. This MAC uses the unique key above and the payload octet string as the value.
@@ -354,12 +354,12 @@ When verifying a presentation, the shared secret will be unavailable so the uniq
 
 The binary representation is created by appending data into a single octet string in the following order:
 
-1. `0x82 5A`
+1. `0x82 5B`
 2. The length and octets of the issuer protected header
-3. `0x9A`
+3. `0x9B`
 4. The number of payload slots in the issued JWP
 5. For each payload representation:
-   1. `0x5A`
+   1. `0x5B`
    2. The length and value of the per payload MAC
 
 ### Issuer Protected Header
