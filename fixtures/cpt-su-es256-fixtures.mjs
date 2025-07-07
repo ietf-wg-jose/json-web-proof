@@ -92,10 +92,10 @@ const ephemeralPublicKey = cwkFromP256Jwk(ephemeralPrivateKeyJSON);
 // update EDN with key text
 var issuerProtectedHeaderText = 
     (await fs.readFile("./template/cpt-issuer-protected-header.edn", {encoding: "utf-8"})).
-        replace("/ proof-x /", "-2: h'" + base64urlToHex(holderPrivateKeyJSON.x).match(/.{1,56}/g).join("' +\n        h'") + "', / x /").
-        replace("/ proof-y /", "-3: h'" + base64urlToHex(holderPrivateKeyJSON.y).match(/.{1,56}/g).join("' +\n        h'") + "'  / y /").
-        replace("/ ephemeral-x /", "-2: h'" + base64urlToHex(ephemeralPrivateKeyJSON.x).match(/.{1,56}/g).join("' +\n        h'") + "', / x /").
-        replace("/ ephemeral-y /", "-3: h'" + base64urlToHex(ephemeralPrivateKeyJSON.y).match(/.{1,56}/g).join("' +\n        h'") + "'  / y /");
+        replace("/ iek-x /", "-2: h'" + base64urlToHex(ephemeralPrivateKeyJSON.x).match(/.{1,56}/g).join("' +\n        h'") + "', / x /").
+        replace("/ iek-y /", "-3: h'" + base64urlToHex(ephemeralPrivateKeyJSON.y).match(/.{1,56}/g).join("' +\n        h'") + "'  / y /").
+        replace("/ hpk-x /", "-2: h'" + base64urlToHex(holderPrivateKeyJSON.x).match(/.{1,56}/g).join("' +\n        h'") + "', / x /").
+        replace("/ hpk-y /", "-3: h'" + base64urlToHex(holderPrivateKeyJSON.y).match(/.{1,56}/g).join("' +\n        h'") + "'  / y /");
 await fs.writeFile("./build/cpt-issuer-protected-header.edn", issuerProtectedHeaderText, {encoding: "utf-8"});
 
 const issuerProtectedHeaderOctets = await cborBinaryFromFile("./build/cpt-issuer-protected-header.edn");

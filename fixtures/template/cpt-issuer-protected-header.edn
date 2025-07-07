@@ -12,17 +12,17 @@
     187,    / "address"     (I-D.maldant-spice-oidc-cwt TBD18) /
     "age_over_21"
   ],
-  8: {      / proof key /
+  8: {      / iek /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    / proof-x / 
-    / proof-y / 
+    / iek-x / 
+    / iek-y / 
   },
-  9: {      / presentation key /
+  9: {      / hpk /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    / ephemeral-x / 
-    / ephemeral-y / 
+    / hpk-x / 
+    / hpk-y / 
   },
   10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
 }
