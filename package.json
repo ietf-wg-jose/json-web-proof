@@ -7,7 +7,7 @@
     "node": ">=22.13.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +17,8 @@
     "cbor2": "^2.0.1",
     "jose": "^6",
     "jsonpath": "^1.1.1"
+  },
+  "devDependencies": {
+    "jasmine": "^5.8.0"
   }
 }
