@@ -342,7 +342,7 @@ When a length or count is added by steps in this section, it is added as its 8 b
 
 The holder will a unique key per payload value using a MAC, with the Shared Secret as the key and a generated binary value. This binary value is constructed by appending data into a single octet string:
 
-1. `0x82 67 70 61 79 6C 6F 61 64 48 1B`
+1. `0x82 67 70 61 79 6C 6F 61 64 1B`
 2. The zero indexed count of the payload slot
 
 The holder will also compute a corresponding MAC of each payload. This MAC uses the unique key above and the payload octet string as the value.
@@ -753,14 +753,13 @@ Figure: Presentation Header (SU-ES256, JSON)
 <{{./fixtures/build/su-es256-holder-protected-header.b64.wrapped}}
 Figure: Presentation Header (SU-ES256, JSON, Base64url-Encoded)
 
-When signed with the holder's presentation key, the resulting signature are:
+We applying selective disclosure of only the given name and age
+claims (family name and email hidden), and remove the proof components
+corresponding to these entries.
 
-<{{./fixtures/build/su-es256-holder-pop.b64.wrapped}}>
-Figure: Holder Proof-of-Possession (SU-ES256, JSON)
-
-Then by applying selective disclosure of only the given name and age
-claims (family name and email hidden), we get the following presented
-JPT in compact serialization:
+Using the selectively disclosed information, we generate the presentation
+internal representation. Using that and the selectively disclosed
+payloads, we get the following presented JPT in compact serialization:
 
 <{{./fixtures/build/su-es256-presentation.compact.jwp.wrapped}}>
 Figure: Presentation (SU-ES256, JSON, Compact Serialization)
@@ -857,22 +856,24 @@ Figure: Example issuer protected header
 <{{./fixtures/template/jpt-issuer-payloads.json}}
 Figure: Example issuer payloads (as members of a JSON array)
 
-The first MAC is generated using the key `issuer_header` and a value of the issuer protected header as a UTF-8 encoded octet string. This results in the following MAC:
+The issuer generates an array of derived keys, one per payload slot.
+This is done using the shared secret as teh key and a binary value based
+on the payload slot index (from zero) as input to the HMAC operation.
 
-<{{./fixtures/build/mac-h256-issuer-protected-header-mac.txt}}
-Figure: Issuer MAC of protected header (Base64url-Encoded)
-
-The issuer generates an array of derived keys with one for each payload by using the shared secret as the key, and the index of the payload slot (as `payload_{n}` in UTF-8 encoded octets) as the input in a HMAC operation. This results in the following set of derived keys:
+This results in the following set of derived keys:
 
 <{{./fixtures/build/mac-h256-issuer-derived-payload-keys.json}}
 Figure: Derived payload keys (Base64url-Encoded)
 
-A MAC is generated for each payload using the corresponding derived payload key. This results in the following set of MAC values:
+A MAC is generated for each payload using the corresponding derived
+payload key. This results in the following set of MAC values:
 
 <{{./fixtures/build/mac-h256-payload-macs.json}}
 Figure: Payload MAC values (Base64url-Encoded)
 
-The issuer protected header MAC and the payload MAC octet strings are concatenated into a single value known as the combined MAC representation. This representation is signed with the issuer's private key.
+The issuer protected header and payload MAC values are combined into a
+binary representation known as the Compact MAC Representation.
+This representation is signed with the issuer's private key.
 
 The proof consists of two octet string values: the signature over the combined MAC representation, and the shared secret.
 

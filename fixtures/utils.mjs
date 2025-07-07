@@ -64,15 +64,15 @@ export function createPresentationInternalRepresentation(
     proofComponents) {
         return Buffer.concat([
             Buffer.from("84", "hex"),
-            internalLengthAndValue(presentationHeaderOctets),
-            internalLengthAndValue(issuedHeaderOctets),
+            internalBSTRValue(presentationHeaderOctets),
+            internalBSTRValue(issuedHeaderOctets),
             Buffer.from("9B", "hex"),
             internalCount(payloads.length),
             Buffer.concat(payloads.map((payload) => 
-                payload? internalLengthAndValue(payload) : Buffer.from("F6", "hex"))),
+                payload? internalBSTRValue(payload) : Buffer.from("F6", "hex"))),
             Buffer.from("9B", "hex"),
             internalCount(proofComponents.length),
-            Buffer.concat(proofComponents.map(internalLengthAndValue))
+            Buffer.concat(proofComponents.map(internalBSTRValue))
         ]);
 }
 
@@ -83,7 +83,7 @@ function internalCount(count) {
     return new Uint8Array(buffer);
 }
 
-function internalLengthAndValue(data) {
+function internalBSTRValue(data) {
     const value = new Uint8Array(data);
     const length = value.byteLength;
 
@@ -98,4 +98,53 @@ function internalLengthAndValue(data) {
     return result;
 }
 
-export let exportForTesting = { internalCount, internalLengthAndValue };
+function payloadSecretGenerationValue(index) {
+    return Buffer.concat([
+        Buffer.from("82677061796C6F61641B", "hex"),
+        internalCount(index)
+    ]);
+}
+
+export function payloadSecrets(hmacAlg, secretKey, count) {
+    return Array.from({length: count }, (v, idx) => idx)
+        .map(payloadSecretGenerationValue)
+        .map((generator) => {
+            const hmac = crypto.createHmac(hmacAlg, secretKey);
+            hmac.update(generator);
+            return hmac.digest();
+        });
+}
+
+function zip(...arrays) {
+  // Find the length of the shortest array to determine the iteration limit
+  const minLength = Math.min(...arrays.map(arr => arr.length));
+
+  // Use Array.from to create an array of the appropriate length
+  // and map over its indices to construct the zipped elements.
+  return Array.from({ length: minLength }).map((_, i) => {
+    // For each index, create a new array containing the element at that index
+    // from each of the input arrays.
+    return arrays.map(arr => arr[i]);
+  });
+};
+
+
+export function payloadMACs(hmacAlg, payloadSecrets, payloads) {
+    return zip(payloadSecrets, payloads).map(([secret, payload]) => {
+        const hmac = crypto.createHmac(hmacAlg, secret);
+        hmac.update(payload);
+        return hmac.digest();
+    });
+}
+
+export function combinedMACRepresentation(issuerProtectedHeaderOctets, payloadMACs) {
+    return Buffer.concat([
+        Buffer.from("82", "hex"),
+        internalBSTRValue(issuerProtectedHeaderOctets),
+        Buffer.from("9B", "hex"),
+        internalCount(payloadMACs.length),
+        Buffer.concat(payloadMACs.map(internalBSTRValue))
+    ]);
+}
+
+export let exportForTesting = { internalCount, internalLengthAndValue: internalBSTRValue, payloadSecretGenerationValue };
