@@ -194,7 +194,7 @@ additional ZKPs covering non-disclosed payloads.
 
 While `issue` and `confirm` only occur when a JWP is initially created
 by the issuer, the `present` and `verify` steps may be safely repeated
-by a holder on an issued JWP.  He resulting presented JWP is only
+by a holder on an issued JWP.  The resulting presented JWP is only
 unlinkable when supported by the underlying algorithm.
 
 Algorithm definitions that support JWPs are in separate companion
@@ -249,7 +249,7 @@ parameters having the same label.
 
 2. Collision-resistant parameter labels. These labels are not
 coordinated through IANA, but are otherwise namespaced to prevent
-conflict. One example would a string label representing the URI of a
+conflict. One example would be a string label representing the URI of a
 controlled resource, such as the HTTPS-hosted documentation of the
 header parameter.
 
@@ -426,14 +426,14 @@ implementations when present.
 ### "hpa" (Holder Presentation Algorithm) Header Parameter {#holder_presentation_algorithm_keyDef}
 
 The `hpa` (Holder Presentation Algorithm) Header Parameter represents
-the algorithm to be used by the holder for presenting a JWP when using a
+the algorithm to be used by the holder for presenting a JWP when using an
 asymmetric algorithm and a Holder Presentation Key.
 
 This Header Parameter SHOULD be included when appropriate for the JWP
-algorithm, unless a single appropriate algorithm is negotiated through
+algorithm unless a single appropriate algorithm is negotiated through
 other means.
 
-This Header Prameter references the name of a JSON Web Algorithm (JWA)
+This Header Parameter references the name of a JSON Web Algorithm (JWA)
 when represented as a JSON Protected Header, and an integer or text
 value when represented as a CBOR Protected Header.
 
@@ -641,12 +641,12 @@ represented is specific to the serialization used.
 In addition to disclosing the contents of a payload, some algorithms MAY
 support disclosing other information not representable as a payload.
 
-For example, rather than releasing a data of birth, the algorithm may
+For example, rather than releasing a date of birth, the algorithm may
 include proof information indicating that the subject is over a certain
 age at the time of the presentation. Such information is not disclosed
 as a payload, and instead would be included in the presentation proof.
 
-A non-exaustive list of such proof methods along with examples includes:
+A non-exhaustive list of such proof methods along with examples includes:
 
 * Ranges: Age acceptable currently, Geolocation near a specified
   location
@@ -657,7 +657,7 @@ A non-exaustive list of such proof methods along with examples includes:
 * Proof of Knowledge: Holder has proof of possession of a secret key or
   secret value
 
-* Derived Values: (Verifier-specific) stable pseuonymous values
+* Derived Values: (Verifier-specific) stable pseudonymous values
 
 ### Presentation Proof
 
@@ -686,7 +686,7 @@ CBOR Serialization.  Both serializations represent one or more Protected
 Headers, multiple Payload slots, and a single Proof (which may be
 composed of multiple octet strings).
 
-The JWP Compact Serialiation provides a JSON-based, space-efficient
+The JWP Compact Serialization provides a JSON-based, space-efficient
 encoding of a JWP in URL-safe characters.  Its design closely parallels
 the JWS Compact Serialization [@RFC7515].  No representation parallel to
 the JWS JSON serialization is defined.
@@ -697,7 +697,7 @@ for constrained environments.  Its design closely parallels COSE_Sign1
 
 ## Compact Serialization {#CompactSerialization}
 
-JWP Compact Serialiation provides a JSON-based encoding of a JWP,
+JWP Compact Serialization provides a JSON-based encoding of a JWP,
 expressed in URL-safe characters. In addition to the alphabet of
 unpadded BASE64URL-safe encoding, Compact Serialization uses the "." and
 "~" characters as separators. This serialization is inspired by JWS.
@@ -915,7 +915,7 @@ values.
 
 Header Parameter Name:
 : The descriptive name of the parameter.
-  (e.g. "Key Identifier").
+  (e.g., "Key Identifier").
 
 Header Parameter JSON Label:
 : The string label requested within a JSON context. (e.g., `kid`).
@@ -931,7 +931,7 @@ Header Parameter JSON Label:
 
 Header Parameter CBOR Label:
 : The string or integer label requested within a CBOR context
-  (e.g. `2`).  This label may not match other integer values, match
+  (e.g., `2`).  This label may not match other integer values, match
   other string values in a case-insensitive manner, or be a differing
   string value from the JSON label unless the Designated Experts state
   that there is a compelling reason to allow an exception.
@@ -1175,11 +1175,11 @@ for their valuable contributions to this specification.
   slots. The issued form and presented form have a certain number of
   ordered payload slots, and a presentation may choose to omit
   information from a slot.
-* Recommendation for Isuser Protected Header is to make the header
-  static aross issued JWP if possible, to prevent unintentional
+* Recommendation for Issuer Protected Header is to make the header
+  static across issued JWPs if possible, to prevent unintentional
   correlation by verifiers
 * Cleaned up the text around algorithmic support for additional proofs
-  of knowledge outside of payload disclosure (e.g. range proofs)
+  of knowledge outside of payload disclosure (e.g., range proofs)
 * Clarify that a proof is made up of multiple octet strings
 * (CDDL) The protected header definitions now reference
   `empty_or_serialized_map` properly
@@ -1215,7 +1215,7 @@ for their valuable contributions to this specification.
  -07
 
 * Changing primary editor
-* Broad changes to define a CBOR serialization, which leverage new CBOR
+* Broad changes to define a CBOR serialization, which leverages the new CBOR
   Protected Headers
 * Deemphasis of JSON in some parts of the document to represent CBOR
   alternatives
@@ -1233,7 +1233,7 @@ for their valuable contributions to this specification.
   `presentation_key` to better represent that the key may be JSON or
   CBOR-formatted.
 * Moved the registry for `proof_key` and `presentation_key` to JWP where
-  they are defined. Consolidated usage, purpose and requirements from
+  they are defined. Consolidated usage, purpose, and requirements from
   algorithm usage under these definitions.
 * Clarified that `proof_key` and `presentation_key` are required by
   particular algorithms and are not more generally required for issued

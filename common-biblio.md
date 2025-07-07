@@ -1,4 +1,4 @@
-<reference anchor="ECMAScript" target="http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf">
+<reference anchor="ECMAScript" target="https://262.ecma-international.org/5.1/">
   <front>
     <title>ECMAScript Language Specification, 5.1 Edition</title>
     <author>
@@ -7,8 +7,6 @@
     <date month="June" year="2011"/>
   </front>
   <seriesInfo name="ECMA" value="262"/>
-  <format target="http://www.ecma-international.org/ecma-262/5.1/" type="HTML"/>
-  <format target="http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf" type="PDF"/>
 </reference>
 <reference anchor="VC-DATA-MODEL-2.0" target="https://www.w3.org/TR/vc-data-model-2.0">
   <front>
