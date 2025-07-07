@@ -24,7 +24,7 @@ Abstract
    Proofs (ZKPs).
 
    A CBOR-based representation of JPTs is also defined, called a CBOR
-   Proof Token (CPT).  It has the same properties of JPTs, but uses the
+   Proof Token (CPT).  It has the same properties as JPTs, but uses the
    JSON Web Proof (JWP) CBOR Serialization, rather than the JSON-based
    JWP Compact Serialization.
 
@@ -220,7 +220,7 @@ Table of Contents
 
 6.  Claims Header Parameter
 
-   A JSON Proof Token or CBOR Proof Token assigns each playload a claim
+   A JSON Proof Token or CBOR Proof Token assigns each payload a claim
    name.  Payloads MUST each have a negotiated and understood claim name
    within the application context.  The simplest solution to establish
    payload claim names is as an ordered array that aligns with the
@@ -275,7 +275,7 @@ Table of Contents
    MUST be a case-sensitive string.  For CPTs, its value MUST be a
    binary string.  Use of this JWP Header Parameter is OPTIONAL.
 
-   The cid can be used similarly to a kid in order to ensure that is it
+   The cid can be used similarly to a kid in order to ensure that it is
    possible to externally resolve and then verify that the correct list
    of claim names is being used when processing the payloads containing
    the claim values.
@@ -291,7 +291,7 @@ Table of Contents
    visible to the verifier, and can leak information about the subject
    or provide an additional vector for linkability.  Given the privacy
    design considerations around linkability, it is RECOMMENDED that the
-   claims are defined external to an individual JPT or CPT and either
+   claims are defined externally to an individual JPT or CPT and either
    referenced or known by the application context.
 
    The following is an example JWP Protected Header that includes a cid:
@@ -391,8 +391,8 @@ Table of Contents
 11.4.  Media Types Registry
 
    This section registers the following media type [RFC2046] in the IANA
-   "Media Types" registry <xref target="IANA.MediaTypes"/> in the manner
-   described in [RFC6838].
+   "Media Types" registry [IANA.MediaTypes] in the manner described in
+   [RFC6838].
 
 11.4.1.  application/jpt
 
@@ -450,9 +450,9 @@ Table of Contents
 
 11.5.  Structured Syntax Suffix Registry
 
-   This section registraters the following entries in the IANA
-   "Structured Syntax Suffix" registry [IANA.StructuredSuffix] in the
-   manner described in [RFC6838].
+   This section registers the following entries in the IANA "Structured
+   Syntax Suffix" registry [IANA.StructuredSuffix] in the manner
+   described in [RFC6838].
 
 11.5.1.  +jpt
 
@@ -547,6 +547,10 @@ Table of Contents
 
    [IANA.JWT] IANA, "JSON Web Token",
               <https://www.iana.org/assignments/jwt>.
+
+   [IANA.MediaTypes]
+              IANA, "Media Types",
+              <https://www.iana.org/assignments/media-types>.
 
    [RFC2046]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
               Extensions (MIME) Part Two: Media Types", RFC 2046,

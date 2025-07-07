@@ -1571,7 +1571,7 @@ ephemeral asymmetric key meant to only be used for presenting a single
 JWP.  The fully-specified algorithm the holder must use for
 presentations is also included.  This algorithm MAY be different from
 the algorithm used by the issuer.<a href="#section-6.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-3">The chosen algorithms MUST be an asymmetric signing algorithms, so that
+<p id="section-6.1.1-3">The chosen algorithms MUST be asymmetric signing algorithms, so that
 each signature can be verified without sharing any private values
 between the parties.<a href="#section-6.1.1-3" class="pilcrow">¶</a></p>
 </section>
@@ -1590,7 +1590,7 @@ holder-issuer communication to exchange this information is out of scope
 of this specification, but can be accomplished by the holder using this
 key to generate a JWS that signs a value the issuer can verify as
 unique.<a href="#section-6.1.2-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-3">The issuer MUST deterine an appropriate holder presentation algorithm
+<p id="section-6.1.2-3">The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the presentation key.  If the holder and verifier
 cannot be assumed to know this algorithm is the appropriate choice for a
 given presentation key, this value MUST be conveyed in the <code>hpa</code> issuer
@@ -1626,7 +1626,7 @@ parameter.<a href="#section-6.1.5-1" class="pilcrow">¶</a></p>
 <p id="section-6.1.5-2">The Holder's Presentation Key MUST be included via the Presentation Key
 header parameter.<a href="#section-6.1.5-2" class="pilcrow">¶</a></p>
 <p id="section-6.1.5-3">The Holder's Presentation Algorithm MUST be included via the Holder
-Presentation Algorithm header parameter, unless there is another way for
+Presentation Algorithm header parameter unless there is another way for
 the holder and verifier to unambiguously determine the appropriate
 algorithm to use.<a href="#section-6.1.5-3" class="pilcrow">¶</a></p>
 <p id="section-6.1.5-4">The Issuer Protected Header is signed using the appropriate internal
@@ -1713,7 +1713,7 @@ disclosed, then the proof at this stage will consist of three values:<a href="#s
           </ol>
 <p id="section-6.1.9-8">The presentation internal representation would be calculated with these
 three proof components, while the final presentation would have an
-additional 4th component containing the signature using the holder's
+additional fourth component containing the signature using the holder's
 private key.<a href="#section-6.1.9-8" class="pilcrow">¶</a></p>
 <p id="section-6.1.9-9">Since the individual signatures in the proof value are unique and remain
 unchanged across multiple presentations, a Single Use JWP SHOULD only be
@@ -1728,7 +1728,7 @@ remain unlinkable across multiple presentations.<a href="#section-6.1.9-9" class
           </h4>
 <p id="section-6.1.10-1">Verification is performed using the following steps.<a href="#section-6.1.10-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-6.1.10-2">
-<li id="section-6.1.10-2.1">Check the number of proof components is appropriate for the number of
+<li id="section-6.1.10-2.1">Check that the number of proof components is appropriate for the number of
 disclosed payloads.  There MUST be two more proof components than
 disclosed payloads.<a href="#section-6.1.10-2.1" class="pilcrow">¶</a>
 </li>
@@ -1806,7 +1806,7 @@ octet string in the following order:<a href="#section-6.2-4" class="pilcrow">¶<
           <li id="section-6.2-5.7">
             <p id="section-6.2-5.7.1">For each payload representation:<a href="#section-6.2-5.7.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.2-5.7.2.1">If the payload is being ommitted, the value <code>0xF6</code><a href="#section-6.2-5.7.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.2-5.7.2.1">If the payload is being omitted, the value <code>0xF6</code><a href="#section-6.2-5.7.2.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-6.2-5.7.2.2">
                 <p id="section-6.2-5.7.2.2.1">Otherwise:<a href="#section-6.2-5.7.2.2.1" class="pilcrow">¶</a></p>
@@ -1882,8 +1882,8 @@ presentation proofs.<a href="#section-6.3.2-2" class="pilcrow">¶</a></p>
 <p id="section-6.3.3-1">Issuance is performed using the <code>Sign</code> operation from
 <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-08#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.  This operation
 utilizes the issuer's BLS12-381 G2 key pair as <code>SK</code> and <code>PK</code>, along with
-desired protected header and payloads as the octets <code>header</code> and the
-octets array <code>messages</code>.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
+desired protected header octets as <code>header</code>, and the array of payload
+octet string as <code>messages</code>.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.3-2">The octets resulting from this operation form a single octet string in
 the issuance proof array, to be used along with the protected header and
 payloads to serialize the JWP.<a href="#section-6.3.3-2" class="pilcrow">¶</a></p>
@@ -1951,13 +1951,13 @@ omitted.<a href="#section-6.3.6-3" class="pilcrow">¶</a></p>
 <a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-message-authentication-code" class="section-name selfRef">Message Authentication Code</a>
         </h3>
 <p id="section-6.4-1">The Message Authentication Code (MAC) JPA uses a MAC to both generate
-emphemeral secrets and to authenticate payloads, along with an
+ephemeral secrets and to authenticate payloads, along with an
 asymmetric signature to provide integrity to the issued JWP.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 <p id="section-6.4-2">The holder can manipulate which payloads are disclosed from the issued
 JWP, and uses the holder Presentation Key to create a presentation.  The
 signature created from the Holder Presentation Key MAY use a different
 algorithm than the Issuer used to sign the issued form.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
-<p id="section-6.4-3">Like the the Single Use algorithm family, it also does not support
+<p id="section-6.4-3">Like the Single Use algorithm family, it also does not support
 unlinkability if the same JWP is presented multiple times and requires
 an individually issued JWP for each presentation in order to fully
 protect privacy.  When compared to the JWS approach, using a MAC
@@ -1968,7 +1968,7 @@ standardized MAC method instead of a mix of MAC/hash methods or a custom
 hash-based construct.  It is able to use any published cryptographic MAC
 method such as HMAC <span>[<a href="#RFC2104" class="cite xref">RFC2104</a>]</span> or
 <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf">KMAC</a>.
-It uses traditional public-key based signatures to verify the
+It uses traditional public key-based signatures to verify the
 authenticity of the issuer and holder.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
 <div id="holder-setup-1">
 <section id="section-6.4.1">
@@ -1979,11 +1979,11 @@ authenticity of the issuer and holder.<a href="#section-6.4-4" class="pilcrow">�
 presentation public key provided by the holder.<a href="#section-6.4.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.4.1-2">The holder's presentation key MUST be included in the issuer's protected
 header using the Presentation Key header parameter.<a href="#section-6.4.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.4.1-3">The issuer MUST deterine an appropriate holder presentation algorithm
+<p id="section-6.4.1-3">The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the presentation key.  If the holder and verifier cannot
 be assumed to know this algorithm is the appropriate choice for a given
 presentation key, this value MUST be conveyed in the Holder Protected
-algoirhtm header parameter.<a href="#section-6.4.1-3" class="pilcrow">¶</a></p>
+algorithm header parameter.<a href="#section-6.4.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-setup-1">
@@ -1994,7 +1994,7 @@ algoirhtm header parameter.<a href="#section-6.4.1-3" class="pilcrow">¶</a></p>
 <p id="section-6.4.2-1">To use the MAC algorithm, the issuer must have a stable public key pair
 to perform signing.  To start the issuance process, a single 32-byte
 random Shared Secret must first be generated.  This value will be shared
-privately to the holder as part of the issuer's JWP proof value.<a href="#section-6.4.2-1" class="pilcrow">¶</a></p>
+privately with the holder as part of the issuer's JWP proof value.<a href="#section-6.4.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.4.2-2">The Shared Secret is used by both the issuer and holder as the MAC
 method's key to generate a new set of unique ephemeral keys.  These keys
 are then used as the input to generate a MAC that protects each payload.<a href="#section-6.4.2-2" class="pilcrow">¶</a></p>
@@ -2016,12 +2016,12 @@ generate the Combined MAC Representation.  The instructions for
 generating this octet string will also generate well-formed CBOR,
 although this data is not meant to be shared outside the implementing
 algorithm.  Instead, it focuses on simplicity of generation by the
-issuer, holder and verifier implementations.  Although CBOR has multiple
+issuer, holder, and verifier implementations.  Although CBOR has multiple
 representations of the same underlying information, this same octet
 string MUST be generated by an implementation.<a href="#section-6.4.3-2" class="pilcrow">¶</a></p>
 <p id="section-6.4.3-3">When a length or count is added by steps in this section, it is added as
-its 8 byte, network-ordered representation.  For example, the length of
-a 1,234 byte payload would have a length representation of
+its 8-byte, network-ordered representation.  For example, the length of
+a 1,234-byte payload would have a length representation of
 <code>0x00 00 00 00 00 00 04 D2</code>.<a href="#section-6.4.3-3" class="pilcrow">¶</a></p>
 <p id="section-6.4.3-4">The holder will a unique key per payload value using a MAC, with the
 Shared Secret as the key and a generated binary value.  This binary
@@ -2083,7 +2083,7 @@ octet string in the following order:<a href="#section-6.4.3-9" class="pilcrow">�
 <p id="section-6.4.4-1">The Holder's Presentation Key MUST be included via the Presentation Key
 header parameter.<a href="#section-6.4.4-1" class="pilcrow">¶</a></p>
 <p id="section-6.4.4-2">The Holder's Presentation Algorithm MUST be included via the Holder
-Presentation Algorithm header parameter, unless there is another way for
+Presentation Algorithm header parameter unless there is another way for
 the holder and verifier to unambiguously determine the appropriate
 algorithm to use.<a href="#section-6.4.4-2" class="pilcrow">¶</a></p>
 </section>
@@ -2157,7 +2157,7 @@ disclosed payloads.<a href="#section-6.4.8-2.1" class="pilcrow">¶</a>
 </li>
             <li id="section-6.4.8-2.2">Using the fully-specified MAC algorithm in use, use the issuer
 protected header, disclosed payloads, and the proof components
-corresopnding to the payloads to regenerate the Combined MAC
+corresponding to the payloads to regenerate the Combined MAC
 Representation.<a href="#section-6.4.8-2.2" class="pilcrow">¶</a>
 </li>
             <li id="section-6.4.8-2.3">Verify the first proof component is a valid signature over the issuer
@@ -2323,7 +2323,7 @@ an exception.<a href="#section-8.1.1-1.4" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.5">Algorithm CBOR Label:</dt>
-            <dd style="margin-left: 1.5em" id="section-8.1.1-1.6">The integer label requested (e.g. <code>1</code>).  CBOR Labels may not match
+            <dd style="margin-left: 1.5em" id="section-8.1.1-1.6">The integer label requested (e.g., <code>1</code>).  CBOR Labels may not match
 other registered labels unless the Designated Experts state that there
 is a compelling reason to allow an exception.<a href="#section-8.1.1-1.6" class="pilcrow">¶</a>
 </dd>
@@ -2757,9 +2757,9 @@ format:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "1XZrBIiEeRS-2HRLkC7p0nX0J_ZVU5ckTHqr2lbJvP4",
-  "y": "uRUBQegeCXQQoxVvGsLbHtLzEIiRnCMARHfQ-LNz2gM",
-  "d": "jH_m0ztv-EK5-DABUp3Bi8GgloB2byR6cEAb_qeDlLk"
+  "x": "9rKM0b7L5H6JqYJdPm-3M6xW4mVr0ldCm1Yfyk0f6Fg",
+  "y": "WFJgHxuB1xbXblcRcGIxap6M2cw3UNU7vA0FaSnBps8",
+  "d": "Rbuuq8T0XlSB9PpcCS1NsIbnew0bbBZ16oi6Mv4hUZI"
 }
 
 </pre>
@@ -2774,9 +2774,9 @@ format:<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "AhapAc5-ZxwwztVQGtK7aAOnig97EZYmsdEWNK3Wf7g",
-  "y": "oOUCh5ubqdik43kkWC68rTVDFdCQtL-0dgCoqrFkgj8",
-  "d": "CCh1fPPg-2E1QrT10V9UECsgM3l3cx5vCT8swgKQTqs"
+  "x": "5gSyARLHWbTDK4Mi9LCotcrcCkyPxM9cxm1E6DEbSbg",
+  "y": "DaXSe3rYJgePeYJDNHTtru5FINkztVYXXcGL8WFSP9E",
+  "d": "aHnZUW8LEbFK8jHnFAf67mglWqMy9gxPGow-4g9SG7U"
 }
 
 </pre>
@@ -2791,9 +2791,9 @@ the JWK format:<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
-  "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc",
-  "d": "3FVsYWLnUuD087iYWr1H_qC5EIso4DfG-LqooIejYYo"
+  "x": "UDGPPdLvm6zaJD1cy5TqJT4jM7qiEjzL2xe_JR6HNTI",
+  "y": "1hC3bovYDN1uEouSjgeEHtS2X9CwCvOJ9cBdp6uYZ3g",
+  "d": "0bk1ZcrPg4Nk8a4lmCKEuC57kywI7IvJ8qpzU-3UkY4"
 }
 
 </pre>
@@ -2825,14 +2825,14 @@ for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
   "proof_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "AhapAc5-ZxwwztVQGtK7aAOnig97EZYmsdEWNK3Wf7g",
-    "y": "oOUCh5ubqdik43kkWC68rTVDFdCQtL-0dgCoqrFkgj8"
+    "x": "5gSyARLHWbTDK4Mi9LCotcrcCkyPxM9cxm1E6DEbSbg",
+    "y": "DaXSe3rYJgePeYJDNHTtru5FINkztVYXXcGL8WFSP9E"
   },
   "presentation_key": {
     "kty": "EC",
     "crv": "P-256",
-    "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
-    "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc"
+    "x": "UDGPPdLvm6zaJD1cy5TqJT4jM7qiEjzL2xe_JR6HNTI",
+    "y": "1hC3bovYDN1uEouSjgeEHtS2X9CwCvOJ9cBdp6uYZ3g"
   }
 }
 
@@ -2846,12 +2846,12 @@ for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJBaGFwQWM1
-LVp4d3d6dFZRR3RLN2FBT25pZzk3RVpZbXNkRVdOSzNXZjdnIiwieSI6Im9PVUNoNXVic
-WRpazQza2tXQzY4clRWREZkQ1F0TC0wZGdDb3FyRmtnajgifSwicHJlc2VudGF0aW9uX2
-tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjZzYTdybl9MSFBOYlpLRFJ
-LU09uMFNHdEJ4bnlMRnRYb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFh
-d0Zya3NpQ19NYlM2YTJZWWxCODh2cGNjYyJ9fQ
+dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiI1Z1N5QVJM
+SFdiVERLNE1pOUxDb3RjcmNDa3lQeE05Y3htMUU2REViU2JnIiwieSI6IkRhWFNlM3JZS
+mdlUGVZSkROSFR0cnU1RklOa3p0VllYWGNHTDhXRlNQOUUifSwicHJlc2VudGF0aW9uX2
+tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IlVER1BQZEx2bTZ6YUpEMWN
+5NVRxSlQ0ak03cWlFanpMMnhlX0pSNkhOVEkiLCJ5IjoiMWhDM2JvdllETjF1RW91U2pn
+ZUVIdFMyWDlDd0N2T0o5Y0JkcDZ1WVozZyJ9fQ
 
 </pre>
 </div>
@@ -2898,26 +2898,26 @@ header signature, followed by entries for each payload signature.<a href="#appen
 <pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
 mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJBaGFwQWM1
-LVp4d3d6dFZRR3RLN2FBT25pZzk3RVpZbXNkRVdOSzNXZjdnIiwieSI6Im9PVUNoNXVic
-WRpazQza2tXQzY4clRWREZkQ1F0TC0wZGdDb3FyRmtnajgifSwicHJlc2VudGF0aW9uX2
-tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjZzYTdybl9MSFBOYlpLRFJ
-LU09uMFNHdEJ4bnlMRnRYb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFh
-d0Zya3NpQ19NYlM2YTJZWWxCODh2cGNjYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~
+dLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiI1Z1N5QVJM
+SFdiVERLNE1pOUxDb3RjcmNDa3lQeE05Y3htMUU2REViU2JnIiwieSI6IkRhWFNlM3JZS
+mdlUGVZSkROSFR0cnU1RklOa3p0VllYWGNHTDhXRlNQOUUifSwicHJlc2VudGF0aW9uX2
+tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IlVER1BQZEx2bTZ6YUpEMWN
+5NVRxSlQ0ak03cWlFanpMMnhlX0pSNkhOVEkiLCJ5IjoiMWhDM2JvdllETjF1RW91U2pn
+ZUVIdFMyWDlDd0N2T0o5Y0JkcDZ1WVozZyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~
 IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0I
 E1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOi
 IxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJ
-wb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.glYimTTax1Fb_4
-fAclOTQD0wRVASWSq_0iKS_YGI3a0Val7w_3MjBfV57p66bot-_g-8FuLYnQVUgKe6dPu
-pCg~80lTHnkcTCPz9rqBMaa6PATOZUIBYVps4-U06fRYSluaM2lLLZyG0mUr-dOIBP9HG
-gPcMPuN9MrTc_SfJJZu9Q~LhGFhz16SkoP0OVS6aqkaiOByslZ4wGtpMoue-x6pytuDAq
-gVML_JZwNQCx_wcUO15HUXFPKEKRrC48BkpyRVQ~0BauQVWcSErwcR_huYJePb8kKRXOg
-jzMDsU-hmVUxRwRhqE4k33mrH3SJuYxhu2-AXV_mvSzNhKAIdeIUrQyaA~acQvcHppmE8
-aK_egxaBB0DtY0RpzYuOJ78T43HvwTtKpfPlqd1VZ8b2ex4YbDfTHKbQSEq24Ap0tk3oJ
-FG8k8g~d6CQl76utI-UaEG_RRWJSztN28pICfzBHRxOf9mkdjUE1wbgs55JDV8BseNxBW
-oz9uW0F00So_CEM_B0lg7aig~RgNcK2FxkLfuJ-WdbpT93n_hF3RgjUDs7G7baOg7Ta__
-ffLYFPnKaNw9_BNJCbaahVWm8yeZFl0pmC42ZtV_hQ~SVzM4S3lB1lrQbbKDcWoO8JiTk
-ARldtpNn9D5CQFjy_ShwQNsXi_x0iyNayAEPAtKGjyYuDY_zm8-z-awWug-A
+wb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.jFpOVWnvt1pP5O
+gAnA0gAkdCB30vVr2GHyPSvBDa139aLyZ0aJS2EPCZe_PdI1Oqf6eCDOJdZR8XERrUwwq
+GYQ~un-6LwYr-nebbahCNQr0vowwRA-T6VKEYwtkcq0085omErLjQQ5gdNzUMxopiDcdZ
+xmFI1DJXc5C2xBJoxp50g~_-bK314uQ-Fmj36qAoMkxsaNzfXOTGIumQyqqPcAcsQajqq
+sC2AZDgdHasbpNc-xcfm0aqlHUeJKK5eTeQGskQ~6h76LNuIkCYnQe-bizsvRTseuiQeA
+qMYuDbbWEokxf8Z5VJrfQ2Vr_JOgjurSeajwvoC099MAKOiZ7dDz-Bf-g~mI7RmEn5aC4
+sFhFcYyNGhTv6sEg4no6kXUmIReEi6zbw0yIzDUiRqEdp9dqbWoijobVY7pIwha8vT44T
+bmFPbA~Wzkggvoy486_exmm_3RXSWOztgRtnfMbgylYKaRaUZ7aC2qZb90OluOtbeTgYc
+-LgV9qW7_Kh8nj5BrXVFlmog~rVrjkEeQbUJA_JIWpHyMp9Lbv0va8ZSV2MOfkkqa702l
+YSL5wI4zhYeyJIKBMA8r2Y-Qq4ZMD94utL-DXbOIeg~eDAg_o-EonVDP8oVbxqJkadj3r
+MZQCWnPo4UmLtQrQy2AhEzpkBZPK3HIJ3Koo5AqZnM7ZtFWorzUpHECUwAUw
 
 </pre>
 </div>
@@ -2931,7 +2931,7 @@ a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "Tw_Td3kjq0x_gEafHBM0612iZ1FNnbvByt6Na11_sfE"
+  "nonce": "L8_iAhvN0UDqoxvQwLNMPffq-ZOsIBqSoNtINwmIxHM"
 }
 
 </pre>
@@ -2942,15 +2942,15 @@ a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶
 <span id="name-presentation-header-su-es256"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-19.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJUd19UZDNranEweF9nRWFmSEJNMDYxMmlaMUZObmJ2Qnl0Nk5hMT
-Ffc2ZFIn0
+29tIiwibm9uY2UiOiJMOF9pQWh2TjBVRHFveHZRd0xOTVBmZnEtWk9zSUJxU29OdElOd2
+1JeEhNIn0
 
 </pre>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-presentation-header-su-es256" class="selfRef">Presentation Header (SU-ES256, JSON, Base64url-Encoded)</a>
           </figcaption></figure>
-<p id="appendix-A.1-20">We applying selective disclosure of only the given name and age claims
+<p id="appendix-A.1-20">We apply selective disclosure of only the given name and age claims
 (family name and email hidden), and remove the proof components
 corresponding to these entries.<a href="#appendix-A.1-20" class="pilcrow">¶</a></p>
 <p id="appendix-A.1-21">Using the selectively disclosed information, we generate the
@@ -2959,29 +2959,29 @@ disclosed payloads, we get the following presented JPT in compact
 serialization:<a href="#appendix-A.1-21" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-22">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJUd19UZDNranEweF9nRWFmSEJNMDYxMmlaMUZObmJ2Qnl0Nk5hMT
-Ffc2ZFIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+29tIiwibm9uY2UiOiJMOF9pQWh2TjBVRHFveHZRd0xOTVBmZnEtWk9zSUJxU29OdElOd2
+1JeEhNIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
 vaXNzdWVyLmV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
 3Zlcl8yMSJdLCJwcm9vZl9rZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOi
-JBaGFwQWM1LVp4d3d6dFZRR3RLN2FBT25pZzk3RVpZbXNkRVdOSzNXZjdnIiwieSI6Im9
-PVUNoNXVicWRpazQza2tXQzY4clRWREZkQ1F0TC0wZGdDb3FyRmtnajgifSwicHJlc2Vu
-dGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjZzYTdybl9MS
-FBOYlpLRFJLU09uMFNHdEJ4bnlMRnRYb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2
-NzYmtCNGFhd0Zya3NpQ19NYlM2YTJZWWxCODh2cGNjYyJ9fQ.MTcxNDUyMTYwMA~MTcxN
+I1Z1N5QVJMSFdiVERLNE1pOUxDb3RjcmNDa3lQeE05Y3htMUU2REViU2JnIiwieSI6IkR
+hWFNlM3JZSmdlUGVZSkROSFR0cnU1RklOa3p0VllYWGNHTDhXRlNQOUUifSwicHJlc2Vu
+dGF0aW9uX2tleSI6eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IlVER1BQZEx2b
+TZ6YUpEMWN5NVRxSlQ0ak03cWlFanpMMnhlX0pSNkhOVEkiLCJ5IjoiMWhDM2JvdllETj
+F1RW91U2pnZUVIdFMyWDlDd0N2T0o5Y0JkcDZ1WVozZyJ9fQ.MTcxNDUyMTYwMA~MTcxN
 zE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQ
 iOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2Fk
 ZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uI
-joiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.gl
-YimTTax1Fb_4fAclOTQD0wRVASWSq_0iKS_YGI3a0Val7w_3MjBfV57p66bot-_g-8FuL
-YnQVUgKe6dPupCg~80lTHnkcTCPz9rqBMaa6PATOZUIBYVps4-U06fRYSluaM2lLLZyG0
-mUr-dOIBP9HGgPcMPuN9MrTc_SfJJZu9Q~LhGFhz16SkoP0OVS6aqkaiOByslZ4wGtpMo
-ue-x6pytuDAqgVML_JZwNQCx_wcUO15HUXFPKEKRrC48BkpyRVQ~0BauQVWcSErwcR_hu
-YJePb8kKRXOgjzMDsU-hmVUxRwRhqE4k33mrH3SJuYxhu2-AXV_mvSzNhKAIdeIUrQyaA
-~acQvcHppmE8aK_egxaBB0DtY0RpzYuOJ78T43HvwTtKpfPlqd1VZ8b2ex4YbDfTHKbQS
-Eq24Ap0tk3oJFG8k8g~d6CQl76utI-UaEG_RRWJSztN28pICfzBHRxOf9mkdjUE1wbgs5
-5JDV8BseNxBWoz9uW0F00So_CEM_B0lg7aig~2X6Rv9vOvMKVLbuhjKOrERpuwo4Z9qzq
-QaWf4LXG0GghNYMshJvyVfAknXyDv7i3T6jTawsv6Hy1w79wBFwLhg
+joiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.jF
+pOVWnvt1pP5OgAnA0gAkdCB30vVr2GHyPSvBDa139aLyZ0aJS2EPCZe_PdI1Oqf6eCDOJ
+dZR8XERrUwwqGYQ~un-6LwYr-nebbahCNQr0vowwRA-T6VKEYwtkcq0085omErLjQQ5gd
+NzUMxopiDcdZxmFI1DJXc5C2xBJoxp50g~_-bK314uQ-Fmj36qAoMkxsaNzfXOTGIumQy
+qqPcAcsQajqqsC2AZDgdHasbpNc-xcfm0aqlHUeJKK5eTeQGskQ~6h76LNuIkCYnQe-bi
+zsvRTseuiQeAqMYuDbbWEokxf8Z5VJrfQ2Vr_JOgjurSeajwvoC099MAKOiZ7dDz-Bf-g
+~mI7RmEn5aC4sFhFcYyNGhTv6sEg4no6kXUmIReEi6zbw0yIzDUiRqEdp9dqbWoijobVY
+7pIwha8vT44TbmFPbA~Wzkggvoy486_exmm_3RXSWOztgRtnfMbgylYKaRaUZ7aC2qZb9
+0OluOtbeTgYc-LgV9qW7_Kh8nj5BrXVFlmog~JI2ihUf7f85b0d0GiY-JFBzoOStcc13w
+QizgwxEdk3uAbOAvADhyAQHfaMtRUdCrCRpa4fpMre4h5d_Gzj0pxA
 
 </pre><a href="#appendix-A.1-22" class="pilcrow">¶</a>
 </div>
@@ -3018,18 +3018,18 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   8: {      / proof key /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'eac6bbae7fcb1cf35b64a0d12923a7d121ad0719f22c5b57a1afe1fb' +
-        h'efc4d555', / x /
-    -3: h'01f4f59d1fe2f8e72c6e407869ac05ae4b220bf31b4ba6b6618941f3' +
-        h'cbe971c7'  / y /
+    -2: h'50318f3dd2ef9bacda243d5ccb94ea253e2333baa2123ccbdb17bf25' +
+        h'1e873532', / x /
+    -3: h'd610b76e8bd80cdd6e128b928e07841ed4b65fd0b00af389f5c05da7' +
+        h'ab986778'  / y /
   },
   9: {      / presentation key /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'0216a901ce7e671c30ced5501ad2bb6803a78a0f7b119626b1d11634' +
-        h'add67fb8', / x /
-    -3: h'a0e502879b9ba9d8a4e37924582ebcad354315d090b4bfb47600a8aa' +
-        h'b164823f'  / y /
+    -2: h'e604b20112c759b4c32b8322f4b0a8b5cadc0a4c8fc4cf5cc66d44e8' +
+        h'311b49b8', / x /
+    -3: h'0da5d27b7ad826078f7982433474edaeee4520d933b556175dc18bf1' +
+        h'61523fd1'  / y /
   },
   10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
 }
@@ -3067,31 +3067,31 @@ example above, including the same public and private keys.<a href="#appendix-A.2
 <div class="lang-hex sourcecode" id="appendix-A.2-8">
 <pre>8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-20eac6bbae7fcb1cf35b64a0d12923a7d121ad0719f22c5b57a1afe1fbefc4d5
-5522582001f4f59d1fe2f8e72c6e407869ac05ae4b220bf31b4ba6b6618941f3
-cbe971c709a4010220012158200216a901ce7e671c30ced5501ad2bb6803a78a
-0f7b119626b1d11634add67fb8225820a0e502879b9ba9d8a4e37924582ebcad
-354315d090b4bfb47600a8aab164823f0a28871a0a3827001a0a3c3d3f63446f
+2050318f3dd2ef9bacda243d5ccb94ea253e2333baa2123ccbdb17bf251e8735
+32225820d610b76e8bd80cdd6e128b928e07841ed4b65fd0b00af389f5c05da7
+ab98677809a401022001215820e604b20112c759b4c32b8322f4b0a8b5cadc0a
+4c8fc4cf5cc66d44e8311b49b82258200da5d27b7ad826078f7982433474edae
+ee4520d933b556175dc18bf161523fd10a28871a0a3827001a0a3c3d3f63446f
 65634a6179726a6179646f65406578616d706c652e6f7267a601782331323334
 204d61696e2053742e0a416e79746f776e2c2043412031323334350a55534102
 6d31323334204d61696e2053742e0367416e79746f776e046243410565393032
-31300663555341f5885840370f66a02b18ca4b6093b90ea2d69797858976012f
-b179a39ef1676576a6239daa58248bc14dd113108962de576b02c7478439f8a5
-7c9a6ab4e450a0674835975840b18bb93adef07ba3f72936a1d5d7cb761bfa3b
-0fbafb8be530bfaa35c756c20d95e68e535a11d5b5a7bb928415f7c49e87936e
-f8b78872f42fb0cf0ef17b0c405840d6266d3086b87e35e4e07477c6b24d4ba5
-c769c0aa390698b5570057afb711fac3f87c542f66300f16ad3281c400a067e0
-41d52316dd1d4597c5e23bb7957a8d58400e117eb42218741ea1108b1c9fb639
-30f77e7583a6c5bb22f8f253e6edac63fbc1843fea9dc9d372f66c2bd096c1b5
-22e4a5006956d59ea4863c316fa7bae66358402a6f80426efa05992047c65c6c
-4f4d6210f10235e3c7c1085ba64cfb51c739fb385806b791365af1c9c89a3040
-ba8dd6f695bcd4c3264678c5b096b7a5ce725d5840d70e05b622bed94a1553a6
-9ae14c7a1566a264b92905ee4a7808aafae43ae81f174d976e66e32dd0dca940
-cec22539001fcfbd5a50371cf894ff106f082a85065840f94249a4f6ef816475
-63e8de00832540365cba20e53b9aff5647bad2405f1461a98baeb9500f01cd30
-4653ac6e74108ca91fb2697d9bf04a26491386037dbd8d5840380ed9819c990e
-65c4da1d2882bbb32dfad6a98b88ef5c0019e197eb0ea56f41ca9d1e91d3b89a
-9f22fb02d2aaeccfa5aa7ce251756412a9f86fa24266bc6b2b
+31300663555341f588584040947078ef28a7c92482eeb42b0d0159dab5715bed
+e5d7c88fb062ee8645715d69971a564035c70ea19f4382dfe3e2cbb7f2113caf
+c78a31e3dff6684083f92f5840e7280664ec4dd2b64d25bc9b1d28280ae64ceb
+9bfa348ddb4660b12612e53d4d35a8b9a25774462ddf3968b7c0428b3546540b
+55aba204636aa76a9c86cc816f584048f7531304fe9e26d1b4da5f52621f675c
+1fecf3ee786e58e7e9e4cedd34e55f095768e2265e549ea3aa31a343c1246578
+a729eee8c30de05ab76332ab4e315758408802dd3d9f09a594107a3242350dd8
+981c3cff03fca6e40c9f36c32650170f1b2caddbf06fbdc3792cc7dc18fb0dae
+8c2c6dbc82571ad3bea0e070a0875a5301584099357af7ac203d65be1ee33c58
+6e17d8a02c48ab13be3b2e1afd9af401a3e9c85abab4c2cb0f60cfe4982d4b89
+1eb778d7e0dc39620185332eb6471c07a23b0f584081b952941fa39a09faf263
+7eb6f4608af507dfef0f73208c1b3839c4146b1639cc5ead436ab1a9cd7ed5ae
+467bfc8a917e723e9655123e37fb76ea129aeb17b95840de80f0df11cb20a829
+1c23eabc2942cb0e327e66f7f04149398eeb006fb8387db0defef52feed512b7
+3c7075cc0bce38633090ee86aa71e633e7c188b869ee575840eb3c2a05455a38
+e4b0b3165c4dd7132d633c79de242fd6d6a197b9cf47c02f9a0f0ec39886b350
+9920aabaa4140424d91c7565611733e9ca6d3e2159f20c1d85
 
 </pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
@@ -3105,7 +3105,7 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 <pre>{          / protected header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
-  7: h'4f0fd3777923ab4c7f80469f1c1334eb5da267514d9dbbc1cade8d6b5d7fb1f1', / nonce /
+  7: h'2fcfe2021bcdd140eaa31bd0c0b34c3df7eaf993ac201a92a0db48370988c473', / nonce /
 }
 
 </pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
@@ -3117,33 +3117,33 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-14">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-6c652e636f6d0758204f0fd3777923ab4c7f80469f1c1334eb5da267514d9dbb
-c1cade8d6b5d7fb1f158cfa701010314057668747470733a2f2f697373756572
+6c652e636f6d0758202fcfe2021bcdd140eaa31bd0c0b34c3df7eaf993ac201a
+92a0db48370988c47358cfa701010314057668747470733a2f2f697373756572
 2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-08a401022001215820eac6bbae7fcb1cf35b64a0d12923a7d121ad0719f22c5b
-57a1afe1fbefc4d55522582001f4f59d1fe2f8e72c6e407869ac05ae4b220bf3
-1b4ba6b6618941f3cbe971c709a4010220012158200216a901ce7e671c30ced5
-501ad2bb6803a78a0f7b119626b1d11634add67fb8225820a0e502879b9ba9d8
-a4e37924582ebcad354315d090b4bfb47600a8aab164823f0a28891a0a382700
+08a40102200121582050318f3dd2ef9bacda243d5ccb94ea253e2333baa2123c
+cbdb17bf251e873532225820d610b76e8bd80cdd6e128b928e07841ed4b65fd0
+b00af389f5c05da7ab98677809a401022001215820e604b20112c759b4c32b83
+22f4b0a8b5cadc0a4c8fc4cf5cc66d44e8311b49b82258200da5d27b7ad82607
+8f7982433474edaeee4520d933b556175dc18bf161523fd10a28891a0a382700
 1a0a3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267
 a601782331323334204d61696e2053742e0a416e79746f776e2c204341203132
 3334350a555341026d31323334204d61696e2053742e0367416e79746f776e04
-624341056539303231300663555341f5f6f6875840370f66a02b18ca4b6093b9
-0ea2d69797858976012fb179a39ef1676576a6239daa58248bc14dd113108962
-de576b02c7478439f8a57c9a6ab4e450a0674835975840b18bb93adef07ba3f7
-2936a1d5d7cb761bfa3b0fbafb8be530bfaa35c756c20d95e68e535a11d5b5a7
-bb928415f7c49e87936ef8b78872f42fb0cf0ef17b0c405840d6266d3086b87e
-35e4e07477c6b24d4ba5c769c0aa390698b5570057afb711fac3f87c542f6630
-0f16ad3281c400a067e041d52316dd1d4597c5e23bb7957a8d58400e117eb422
-18741ea1108b1c9fb63930f77e7583a6c5bb22f8f253e6edac63fbc1843fea9d
-c9d372f66c2bd096c1b522e4a5006956d59ea4863c316fa7bae66358402a6f80
-426efa05992047c65c6c4f4d6210f10235e3c7c1085ba64cfb51c739fb385806
-b791365af1c9c89a3040ba8dd6f695bcd4c3264678c5b096b7a5ce725d5840d7
-0e05b622bed94a1553a69ae14c7a1566a264b92905ee4a7808aafae43ae81f17
-4d976e66e32dd0dca940cec22539001fcfbd5a50371cf894ff106f082a850658
-404a5b76cbb769d2bc2747e073f36e9115a8211f65109781019caad35d5cb70e
-5b493d405d96b5eda340e40c01a8b4b23c724297bf5f60b3922e328eeb25fa02
-89
+624341056539303231300663555341f5f6f687584040947078ef28a7c92482ee
+b42b0d0159dab5715bede5d7c88fb062ee8645715d69971a564035c70ea19f43
+82dfe3e2cbb7f2113cafc78a31e3dff6684083f92f5840e7280664ec4dd2b64d
+25bc9b1d28280ae64ceb9bfa348ddb4660b12612e53d4d35a8b9a25774462ddf
+3968b7c0428b3546540b55aba204636aa76a9c86cc816f584048f7531304fe9e
+26d1b4da5f52621f675c1fecf3ee786e58e7e9e4cedd34e55f095768e2265e54
+9ea3aa31a343c1246578a729eee8c30de05ab76332ab4e315758408802dd3d9f
+09a594107a3242350dd8981c3cff03fca6e40c9f36c32650170f1b2caddbf06f
+bdc3792cc7dc18fb0dae8c2c6dbc82571ad3bea0e070a0875a5301584099357a
+f7ac203d65be1ee33c586e17d8a02c48ab13be3b2e1afd9af401a3e9c85abab4
+c2cb0f60cfe4982d4b891eb778d7e0dc39620185332eb6471c07a23b0f584081
+b952941fa39a09faf2637eb6f4608af507dfef0f73208c1b3839c4146b1639cc
+5ead436ab1a9cd7ed5ae467bfc8a917e723e9655123e37fb76ea129aeb17b958
+406c7c68bd30495ffaede6c65f6fd326524a4b4307e8a41ffabd63b2142a1cbc
+98ce5028115ab35bfb736bbd6e7ecaa1329870e8ada6600b1855ea3e7087144e
+2d
 
 </pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
 </div>
@@ -3166,13 +3166,13 @@ b791365af1c9c89a3040ba8dd6f695bcd4c3264678c5b096b7a5ce725d5840d7
   "alg": "BBS",
   "use": "proof",
   "crv": "BLS12381G2",
-  "x": "CQyKLE51133AKxGIomGFDro03bW_zu0KFLG8rwtmX3aAwgMtr-EzgCy6tyhFv
-       jA5CUoad1DKxouUUi1Qzs6eahR7DBWMCCmfygrkbUkSH7p0bChFrWcuJX3_CT9
-       IWknT",
-  "y": "GepWFxRLwVnZ7MWlI4SC7-kiuDtbimBxPZxU4Qm065sv575gvXcJIflsCVl8T
-       BzBCXuPY1NIAVzmjqTrn_yLrdFRdnDUk5qbvQGMFyMduxMzYHU31ffoD1z6yd6
-       6mcXg",
-  "d": "PHDpTgY8JwAnBqBhnqpf_EIMPiNwMfIuC8ABmDtnbXg"
+  "x": "EXGppDwjOOJgcQ5GuLQRa0cMmIYHMFuVT0kwJdSzK8FJL_zLCoLLhv9KVDXUH
+       P58FC-cZf9AssitObgO7RwcDCRy3YCdFj_Q5ppPhzq_0f9V7AVTHNsNDKhKIN0
+       sBT8u",
+  "y": "C1J_cUazABViCggv94HIikg57YCf-IxXMPYQ0mL1z_d-w5g3i1hfiGneOYGUZ
+       PG0Ci7NIihtmNvNx1nDBLE7UMXHEsDhP9yR06nX94Ey4pawI_D6wg8-a_zANWL
+       PEfXo",
+  "d": "PEFtTj81N6H9wSlGQaYAIrvOc-rARUGRX7zprEXfuiE"
 }
 
 </pre>
@@ -3203,9 +3203,9 @@ iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
 eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
 3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
 wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.rl9NtkqS_Q7N6ER_IArM0s1z_F1J1tQtQC
-nKskYhBCWelAhmiuVajMs-R5zNP_94MGfour55ODN9kzkz0LEWlUhL_fL4CI1pW5H4Nhh
-9_ao
+zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.sUwFMqNNhtbr3_MM1Rp863BfMCx55ixxel
+FLGGJaudmRfsrY7mpC7pQ-j5yyRlTFBAABeTePIXon7WqtNYf0iwIaYIG6lkzGqNyydR4
+Xl_8
 
 </pre>
 </div>
@@ -3234,14 +3234,14 @@ following serialization:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
 m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
 UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qCXrloWKK59p8McanBrqX7lDZcAowpIWDhZ6K4js
-RduDR3S8vE6nzWHwJcNQilDEroOuyRNU-uGBOwO3J25XblkPgU-l5Y8Jjfk7vC1t-6NQf
-t8phPqg8fljXIXlwp_jkPiLsIuX4LBmHiAcHD4i1gF5F7APOrFlXctQEUj_9UadxBz9dI
-6mzDGjTj0d8q4GJzGCbFLBw5sEEfchUWa1k0htMnGuOKsMyQUzEPwxTcdGZbKJHPNhBl6
-vjIrgoY0wlfOzqANtiJ3TjCg1HHvnbRpfYDkoQD2vDX6RflWvdZ5mNeM-fyTpgwUX4cdj
-fUK1cUifH6-RiEoVhRY_kummVotkQ0bukj1xA7En6g4wk2dHesbiOiDNKXgoXI3VRmlI9
-fCk0JoLublkmQL3reokrQpdLjR4zGD7ZyljXZriBK7RHcqju5a387GTZkL-suEIDVUFIA
-mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.kqbkCKoQYCF_ZHrVhTB6JUneALywrK6zvQZ8D5TQ
+SyKFFdGH6c2c-KFWDVlOt9QQpqUp8y0ttFdj_GGJSet67ZwXoSyjpuJu-_hoHCT0yGP2g
+Ztnz-VxBQ3Gw0edSlGml0EQGYgdn73YaRDAUHAKnNbeR1qTG5kVsalprRnAIvfEPoQ0yn
+xmz_nf6mRLcZWLE4HtN4bbBW-MPp_PrcU1nGSLTOxrt67uXDm8D-SUv9gsZ92Z5Wa7YDB
+xDIYhl8lFKuLIsBFbO53Bm6_7bjjwe1YqbEFwVdkOO_dsAczhCQLwOxRU0HHQmepHE_Gr
+PPTxTrtMSO-m3eiUCJCZOxGK-dYvsf8VM6e6QtDRuZ3W5VYlznRjNyDvhH0rxreFkGyLt
+JUD6jf6uUn44p_FH3ViDwnStyslmYWbMWcnTRHXvd6EbmCWnN_ZHWPTBFgE12wYVasoKY
+4qtpDHyIEr4A1GBO_eWE9frAR7OCNlFwxUTrI
 
 </pre>
 </div>
@@ -3262,9 +3262,9 @@ mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "1XZrBIiEeRS-2HRLkC7p0nX0J_ZVU5ckTHqr2lbJvP4",
-  "y": "uRUBQegeCXQQoxVvGsLbHtLzEIiRnCMARHfQ-LNz2gM",
-  "d": "jH_m0ztv-EK5-DABUp3Bi8GgloB2byR6cEAb_qeDlLk"
+  "x": "9rKM0b7L5H6JqYJdPm-3M6xW4mVr0ldCm1Yfyk0f6Fg",
+  "y": "WFJgHxuB1xbXblcRcGIxap6M2cw3UNU7vA0FaSnBps8",
+  "d": "Rbuuq8T0XlSB9PpcCS1NsIbnew0bbBZ16oi6Mv4hUZI"
 }
 
 </pre>
@@ -3275,7 +3275,7 @@ mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
 <p id="appendix-A.4-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-16">
           <div class="lang-json sourcecode" id="appendix-A.4-5.1">
-<pre>"IkkOhMUSioK7YnpJYtmkZVRa9MSu8M3hJspqL1iQEEY"
+<pre>"ADDydqeGFHo2vo0w1spFFg4im7Lc-zpryxKT7IeUy5Y"
 
 </pre>
 </div>
@@ -3288,9 +3288,9 @@ mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
 <pre>{
   "kty": "EC",
   "crv": "P-256",
-  "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
-  "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc",
-  "d": "3FVsYWLnUuD087iYWr1H_qC5EIso4DfG-LqooIejYYo"
+  "x": "UDGPPdLvm6zaJD1cy5TqJT4jM7qiEjzL2xe_JR6HNTI",
+  "y": "1hC3bovYDN1uEouSjgeEHtS2X9CwCvOJ9cBdp6uYZ3g",
+  "d": "0bk1ZcrPg4Nk8a4lmCKEuC57kywI7IvJ8qpzU-3UkY4"
 }
 
 </pre>
@@ -3319,8 +3319,8 @@ mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
     "kty": "EC",
     "crv": "P-256",
     "use": "sign",
-    "x": "6sa7rn_LHPNbZKDRKSOn0SGtBxnyLFtXoa_h--_E1VU",
-    "y": "AfT1nR_i-OcsbkB4aawFrksiC_MbS6a2YYlB88vpccc"
+    "x": "UDGPPdLvm6zaJD1cy5TqJT4jM7qiEjzL2xe_JR6HNTI",
+    "y": "1hC3bovYDN1uEouSjgeEHtS2X9CwCvOJ9cBdp6uYZ3g"
   }
 }
 
@@ -3354,19 +3354,19 @@ mUr3XWq-xga-JRogVg1CDzuxI62o2oZdWrCFM
 <a href="#name-example-issuer-payloads-as-" class="selfRef">Example issuer payloads (as members of a JSON array)</a>
           </figcaption></figure>
 <p id="appendix-A.4-11">The issuer generates an array of derived keys, one per payload slot.
-This is done using the shared secret as teh key and a binary value based
+This is done using the shared secret as the key and a binary value based
 on the payload slot index (from zero) as input to the HMAC operation.<a href="#appendix-A.4-11" class="pilcrow">¶</a></p>
 <p id="appendix-A.4-12">This results in the following set of derived keys:<a href="#appendix-A.4-12" class="pilcrow">¶</a></p>
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-20">
           <div class="lang-json sourcecode" id="appendix-A.4-13.1">
 <pre>[
-  "TfNwQEU-pAL8ZS3ei_rJlfFHQXTgYt5vQ4uM_Vs2GLM",
-  "gsA5aP9jbcQJWH7PBTkaZY28xmrN1XrypF84FsDCz0A",
-  "88sC3AUKw7drEsjtllul-AmAc3JJ6zXmivmujeJrlAM",
-  "dZEYZCRTGcRwZeoKnhxtTR7SDs_A_7L5ZH6aNk9-sMw",
-  "y3L0TObeF3cLp5Ekhs-Xv8FNH6wXr-B_WsqD1O5ZpNo",
-  "CCQ7LQX02nPdBRl9Q1UWMOtGgpUatLf35hPEtCHF54U",
-  "ikYO_0JGopUcy3SEVa8EKzk8VubOYBF1P15FV4Qt7WM"
+  "bpdUoU5cCf5UlM8jO39U_4E8RrSl2quc9umLfszFzbI",
+  "gaF8-zHN7oogZRbuanajf0IjGuX2eRi0umMf5CSC9Yg",
+  "Wy1J33l5qX6jjSDRhIIdeNA0Eo1f54JdhW90cuGgVCI",
+  "R_NJq2y58bwJWFHPu4QQRXR0w_v-00W8Mk7QzPNYRpc",
+  "DUsvobVyP4fFNnhLP6YnKJw4KnPKoLC_uR5iPJkYNa4",
+  "JCRhvDRtF-YZuxveDFSf9IrldD2urinW3vcC5EZfsrw",
+  "urdWvz61PsUqsVdKcq2P1bMGHxMufz1eMlEI-WLaBEk"
 ]
 
 </pre>
@@ -3379,13 +3379,13 @@ payload key.  This results in the following set of MAC values:<a href="#appendix
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-21">
           <div class="lang-json sourcecode" id="appendix-A.4-15.1">
 <pre>[
-  "9L1MUBO-9Ai19K5CcXuT6Y5BjBMOCBm-tXfbL9Z00GQ",
-  "T2YR3V8sOaFsng5g9Zzeg_dU5MSYwbUNxz892zxt2A0",
-  "Eu_9qaLqs7lUcaVjJS0VeT5Ti23Vf6gBqH0k_ESGLpc",
-  "vHatPa6Uvbl5UE2aGkE_oVynNgJ4NAKORkLaPBRCggY",
-  "vaupcvY0e2dgO1YnDGfnKYL0TMQX5vG7ETTDEzxhZYI",
-  "c2kNHJcL-VEhXx6OIh0l6O69EPQbcSoz7I73TnEnBhA",
-  "j_ONfwVAtewSZLFmAGmJvPFHbOSU8IjtpuxiExTNKJY"
+  "GviV1lt_8KzGvX7gPhZvf76B3nws_9nZa6Np04RGj0c",
+  "gfgEiqItw74RPqcQEnAFkubJmhX86S3hF3MDSED8TRc",
+  "XWRewuhNAF-Xzv005dvi_kIBSyOEz3EOZINnENFnVcc",
+  "JALEwwHnncoEkx5RbJ_cF5LUB9zhoOcsiXh-b_3nlwk",
+  "FqzsvDIF2gRQC_Rh5Ws9MD4usaPRLvaE8S55LRPcG00",
+  "rwQVbkklDBCsNdXVb3GCbBk4zWr6Ehu-QRioh7jVIXw",
+  "ahYOdLdWr0Q0L429Lq0nZB3-hGYsi40Hh9w1M6vsfqI"
 ]
 
 </pre>
@@ -3401,9 +3401,9 @@ combined MAC representation, and the shared secret.<a href="#appendix-A.4-17" cl
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-22">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-18.1">
 <pre>[
-  "Xa-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F1icROjgSfMTsYdgwlR4hJM
-WnD7bI85CGtu_tb4ly9Q",
-  "l15LHxspMjNj-11J4u72_B77sJ5CKpaO_XIyrTtrf3U"
+  "UT9Qo7y_J2XfsufwFwU1Dur8TMXmwbdy62KPeDbdLhXSmZpa0nbjqYN8risZU8q7rs
+T13AboPy6aTp-TjYK8mw",
+  "XjkGGMyG6fgUF2hf5KiBiWoORS7vPmFuzzhDNAGrE58"
 ]
 
 </pre>
@@ -3418,15 +3418,15 @@ WnD7bI85CGtu_tb4ly9Q",
 HR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
 lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
 dLCJwcmVzZW50YXRpb25fa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ1c2Ui
-OiJzaWduIiwieCI6IjZzYTdybl9MSFBOYlpLRFJLU09uMFNHdEJ4bnlMRnRYb2FfaC0tX
-0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFhd0Zya3NpQ19NYlM2YTJZWWxCODh2cG
-NjYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleG
+OiJzaWduIiwieCI6IlVER1BQZEx2bTZ6YUpEMWN5NVRxSlQ0ak03cWlFanpMMnhlX0pSN
+khOVEkiLCJ5IjoiMWhDM2JvdllETjF1RW91U2pnZUVIdFMyWDlDd0N2T0o5Y0JkcDZ1WV
+ozZyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleG
 FtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSA
 xMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxp
 dHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvd
-W50cnkiOiJVU0EifQ~dHJ1ZQ.Xa-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F
-1icROjgSfMTsYdgwlR4hJMWnD7bI85CGtu_tb4ly9Q~l15LHxspMjNj-11J4u72_B77sJ
-5CKpaO_XIyrTtrf3U
+W50cnkiOiJVU0EifQ~dHJ1ZQ.UT9Qo7y_J2XfsufwFwU1Dur8TMXmwbdy62KPeDbdLhXS
+mZpa0nbjqYN8risZU8q7rsT13AboPy6aTp-TjYK8mw~XjkGGMyG6fgUF2hf5KiBiWoORS
+7vPmFuzzhDNAGrE58
 
 </pre>
 </div>
@@ -3440,7 +3440,7 @@ W50cnkiOiJVU0EifQ~dHJ1ZQ.Xa-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "Tw_Td3kjq0x_gEafHBM0612iZ1FNnbvByt6Na11_sfE"
+  "nonce": "L8_iAhvN0UDqoxvQwLNMPffq-ZOsIBqSoNtINwmIxHM"
 }
 
 </pre>
@@ -3464,17 +3464,17 @@ This results in the following proof:<a href="#appendix-A.4-27" class="pilcrow">�
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-25">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-28.1">
 <pre>[
-  "Xa-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F1icROjgSfMTsYdgwlR4hJM
-WnD7bI85CGtu_tb4ly9Q",
-  "TfNwQEU-pAL8ZS3ei_rJlfFHQXTgYt5vQ4uM_Vs2GLM",
-  "gsA5aP9jbcQJWH7PBTkaZY28xmrN1XrypF84FsDCz0A",
-  "88sC3AUKw7drEsjtllul-AmAc3JJ6zXmivmujeJrlAM",
-  "dZEYZCRTGcRwZeoKnhxtTR7SDs_A_7L5ZH6aNk9-sMw",
-  "vaupcvY0e2dgO1YnDGfnKYL0TMQX5vG7ETTDEzxhZYI",
-  "c2kNHJcL-VEhXx6OIh0l6O69EPQbcSoz7I73TnEnBhA",
-  "j_ONfwVAtewSZLFmAGmJvPFHbOSU8IjtpuxiExTNKJY",
-  "E9rPixsWUPKAbyEOkKz6t7MaT2FsKKtB9lm98-dwFceR3mXZBdVeuOYVYhE3gBYGEN
-U5QyPs9f__G-WN_fPnNg"
+  "UT9Qo7y_J2XfsufwFwU1Dur8TMXmwbdy62KPeDbdLhXSmZpa0nbjqYN8risZU8q7rs
+T13AboPy6aTp-TjYK8mw",
+  "bpdUoU5cCf5UlM8jO39U_4E8RrSl2quc9umLfszFzbI",
+  "gaF8-zHN7oogZRbuanajf0IjGuX2eRi0umMf5CSC9Yg",
+  "Wy1J33l5qX6jjSDRhIIdeNA0Eo1f54JdhW90cuGgVCI",
+  "R_NJq2y58bwJWFHPu4QQRXR0w_v-00W8Mk7QzPNYRpc",
+  "FqzsvDIF2gRQC_Rh5Ws9MD4usaPRLvaE8S55LRPcG00",
+  "rwQVbkklDBCsNdXVb3GCbBk4zWr6Ehu-QRioh7jVIXw",
+  "ahYOdLdWr0Q0L429Lq0nZB3-hGYsi40Hh9w1M6vsfqI",
+  "tnKqfUThyZgjUF_sdnlGQu9IY1w-QqDf0-OZnNgwgqIkZyfmzd_l9GB0i2AnOuDvWy
+CObYxPCND2mbznfvTWMQ"
 ]
 
 </pre>
@@ -3486,21 +3486,21 @@ U5QyPs9f__G-WN_fPnNg"
 <span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-30.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJUd19UZDNranEweF9nRWFmSEJNMDYxMmlaMUZObmJ2Qnl0Nk5hMT
-Ffc2ZFIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
+29tIiwibm9uY2UiOiJMOF9pQWh2TjBVRHFveHZRd0xOTVBmZnEtWk9zSUJxU29OdElOd2
+1JeEhNIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
 iaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAi
 LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
 3Zlcl8yMSJdLCJwcmVzZW50YXRpb25fa2V5Ijp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNT
-YiLCJ1c2UiOiJzaWduIiwieCI6IjZzYTdybl9MSFBOYlpLRFJLU09uMFNHdEJ4bnlMRnR
-Yb2FfaC0tX0UxVlUiLCJ5IjoiQWZUMW5SX2ktT2NzYmtCNGFhd0Zya3NpQ19NYlM2YTJZ
-WWxCODh2cGNjYyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.X
-a-MCF1i1AN7-CGk766qRrLNC2EhCVaTUw1KzyFy370F1icROjgSfMTsYdgwlR4hJMWnD7
-bI85CGtu_tb4ly9Q~TfNwQEU-pAL8ZS3ei_rJlfFHQXTgYt5vQ4uM_Vs2GLM~gsA5aP9j
-bcQJWH7PBTkaZY28xmrN1XrypF84FsDCz0A~88sC3AUKw7drEsjtllul-AmAc3JJ6zXmi
-vmujeJrlAM~dZEYZCRTGcRwZeoKnhxtTR7SDs_A_7L5ZH6aNk9-sMw~vaupcvY0e2dgO1
-YnDGfnKYL0TMQX5vG7ETTDEzxhZYI~c2kNHJcL-VEhXx6OIh0l6O69EPQbcSoz7I73TnE
-nBhA~j_ONfwVAtewSZLFmAGmJvPFHbOSU8IjtpuxiExTNKJY~E9rPixsWUPKAbyEOkKz6
-t7MaT2FsKKtB9lm98-dwFceR3mXZBdVeuOYVYhE3gBYGENU5QyPs9f__G-WN_fPnNg
+YiLCJ1c2UiOiJzaWduIiwieCI6IlVER1BQZEx2bTZ6YUpEMWN5NVRxSlQ0ak03cWlFanp
+MMnhlX0pSNkhOVEkiLCJ5IjoiMWhDM2JvdllETjF1RW91U2pnZUVIdFMyWDlDd0N2T0o5
+Y0JkcDZ1WVozZyJ9fQ.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.U
+T9Qo7y_J2XfsufwFwU1Dur8TMXmwbdy62KPeDbdLhXSmZpa0nbjqYN8risZU8q7rsT13A
+boPy6aTp-TjYK8mw~bpdUoU5cCf5UlM8jO39U_4E8RrSl2quc9umLfszFzbI~gaF8-zHN
+7oogZRbuanajf0IjGuX2eRi0umMf5CSC9Yg~Wy1J33l5qX6jjSDRhIIdeNA0Eo1f54Jdh
+W90cuGgVCI~R_NJq2y58bwJWFHPu4QQRXR0w_v-00W8Mk7QzPNYRpc~FqzsvDIF2gRQC_
+Rh5Ws9MD4usaPRLvaE8S55LRPcG00~rwQVbkklDBCsNdXVb3GCbBk4zWr6Ehu-QRioh7j
+VIXw~ahYOdLdWr0Q0L429Lq0nZB3-hGYsi40Hh9w1M6vsfqI~tnKqfUThyZgjUF_sdnlG
+Qu9IY1w-QqDf0-OZnNgwgqIkZyfmzd_l9GB0i2AnOuDvWyCObYxPCND2mbznfvTWMQ
 
 </pre>
 </div>
@@ -3540,7 +3540,7 @@ nomenclature.<a href="#appendix-C-3.1" class="pilcrow">¶</a>
 holder signature protects the entire presentation<a href="#appendix-C-3.2" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-C-3.3">Leverage the new "Holder Presentation Algorithm" to allow the holder
-algorithm to be independant from the signature algorithm used by the
+algorithm to be independent from the signature algorithm used by the
 issuer<a href="#appendix-C-3.3" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-C-3.4">Redefine computation of the "Combined MAC Representation" to more
@@ -3549,7 +3549,7 @@ closely match the new Presentation Internal Representation.<a href="#appendix-C-
         <li class="compact" id="appendix-C-3.5">Change the MAC algorithm to directly sign the binary Combined MAC
 Representation rather than convert it to a JWS.<a href="#appendix-C-3.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-3.6">Do not unneccessarily hash the issuer protected header inside the
+        <li class="compact" id="appendix-C-3.6">Do not unnecessarily hash the issuer protected header inside the
 Combined MAC Representation, so that it can provide some manner of
 domain separation.<a href="#appendix-C-3.6" class="pilcrow">¶</a>
 </li>
@@ -3592,8 +3592,8 @@ names<a href="#appendix-C-9.5" class="pilcrow">¶</a>
 CBOR-formatted.<a href="#appendix-C-9.6" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-C-9.7">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP where
-they are defined.  Consolidated usage, purpose and requirements from
-algorith musage under these definitions.<a href="#appendix-C-9.7" class="pilcrow">¶</a>
+they are defined.  Consolidated usage, purpose, and requirements from
+algorithm usage under these definitions.<a href="#appendix-C-9.7" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-C-9.8">Combined <code>BBS-PROOF</code> into <code>BBS</code><a href="#appendix-C-9.8" class="pilcrow">¶</a>
 </li>
