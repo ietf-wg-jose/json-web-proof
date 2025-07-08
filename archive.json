@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-06T01:05:30.969800+00:00",
+  "timestamp": "2025-07-08T01:00:22.924112+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2061,7 +2061,7 @@
       "id": "I_kwDOFsQObc5rbGF6",
       "title": "for single-use algorithm, document whether the issuer and holder algorithms may be different",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/78",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2072,8 +2072,8 @@
       ],
       "body": "From @OR13, https://mailarchive.ietf.org/arch/msg/jose/GkL3I9hEoKjaIDCgno_rYqQsSP0/ :\r\n\r\n> An example with a mixed algorithm for issue and holder would be nice here,\r\nor a comment about it being forbidden... for example issuer signing with\r\nES256 and holder presenting with EdDSA.",
       "createdAt": "2023-07-13T06:15:20Z",
-      "updatedAt": "2025-06-12T22:52:01Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-07T07:08:40Z",
+      "closedAt": "2025-07-07T07:08:40Z",
       "comments": [
         {
           "author": "selfissued",
@@ -2280,7 +2280,7 @@
       "id": "I_kwDOFsQObc57k3NV",
       "title": "\"The holder's signature needs to also incorporate the presented proof\"",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/94",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2291,8 +2291,8 @@
       ],
       "body": "In review, we interpreted this old comment as the presentation proof needs to sign over the entire derived message (issuer header and presented payloads) rather than just the header. this changes the SU and MAC based algorithms.",
       "createdAt": "2024-01-09T22:14:50Z",
-      "updatedAt": "2025-06-11T20:54:53Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-07T07:08:40Z",
+      "closedAt": "2025-07-07T07:08:40Z",
       "comments": [
         {
           "author": "dwaite",
@@ -3087,6 +3087,38 @@
           "updatedAt": "2025-07-05T23:05:18Z"
         }
       ]
+    },
+    {
+      "number": 173,
+      "id": "I_kwDOFsQObc6_JshY",
+      "title": "Add Emil Lundberg  (@emlun) to acknowledgements",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/173",
+      "state": "CLOSED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-07-06T20:41:22Z",
+      "updatedAt": "2025-07-07T19:49:44Z",
+      "closedAt": "2025-07-07T19:49:44Z",
+      "comments": []
+    },
+    {
+      "number": 174,
+      "id": "I_kwDOFsQObc6_JsqC",
+      "title": "Correct issues reported by markdownlint /add markdownlint configuration",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/174",
+      "state": "CLOSED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-07-06T20:42:07Z",
+      "updatedAt": "2025-07-07T19:49:57Z",
+      "closedAt": "2025-07-07T19:49:57Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -11058,6 +11090,242 @@
           "body": "",
           "createdAt": "2025-07-05T18:33:42Z",
           "updatedAt": "2025-07-05T18:33:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 175,
+      "id": "PR_kwDOFsQObc6dqKjG",
+      "title": "Improve MAC and SU algorithm families ",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/175",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite"
+      ],
+      "labels": [],
+      "body": "Significant changes to the SU and MAC algorithm families to provide presentation signatures over the entire presentation, and to allow the holder to use different signing algorithms from the issuer.\r\n\r\nThis creates a new internal binary representation of a presentation for use by algorithms. It also makes changes to the existing internal combined MAC representation to bring it closer in line.\r\n\r\nIt also defines a new issuer protected header, the Holder Presentation Algorithm (`hpa`) for limiting which algorithm the holder can use to sign the presentation (in case there are multiple choices for the given holder key).\r\n\r\nCloses #78. Closes #94.",
+      "createdAt": "2025-07-06T21:57:57Z",
+      "updatedAt": "2025-07-07T07:08:39Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "2a1e891b286ffacb663268d05da2ebb69b3a420e",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "presentation-signature-changes",
+      "headRefOid": "2e91caaba0b7be598e9c7aee525ecfc21ec45b01",
+      "closedAt": "2025-07-07T07:08:39Z",
+      "mergedAt": "2025-07-07T07:08:39Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "4b1c241fb4243ae7322315b91eb920196f93ce6d"
+      },
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The examples have not yet been updated to match these new processes.",
+          "createdAt": "2025-07-06T22:01:30Z",
+          "updatedAt": "2025-07-06T22:01:30Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6yXFnX",
+          "commit": {
+            "abbreviatedOid": "dc5e883"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Great work - thanks!",
+          "createdAt": "2025-07-07T06:51:16Z",
+          "updatedAt": "2025-07-07T06:51:16Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 176,
+      "id": "PR_kwDOFsQObc6d0MmJ",
+      "title": "Formatting consistency changes",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/176",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added a number of formatting changes to promote consistency with formatting:\r\n\r\n- line wrapping (column 72)\r\n- unordered list bullets using hypen (`-`)\r\n- ordered list use correct ordering\r\n- sylization of email and bare html links when not in IANA templates\r\n\r\nIn addition, added a markdownlint file, which should provide warnings for several of these when using a supporting editor like VS Code.",
+      "createdAt": "2025-07-07T19:37:01Z",
+      "updatedAt": "2025-07-07T19:48:55Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "4b1c241fb4243ae7322315b91eb920196f93ce6d",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "markdownlint",
+      "headRefOid": "1b5f2087281bdb9bd4f69557f23f3222ab9caa9b",
+      "closedAt": "2025-07-07T19:48:55Z",
+      "mergedAt": "2025-07-07T19:48:55Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "7e504e6f2b27d7fca7c8c0238c76b8370dee0972"
+      },
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I assume these changes are no-ops.  I'm not going to try to review them.",
+          "createdAt": "2025-07-07T19:47:09Z",
+          "updatedAt": "2025-07-07T19:47:09Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6yhYpe",
+          "commit": {
+            "abbreviatedOid": "1b5f208"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-07-07T19:46:39Z",
+          "updatedAt": "2025-07-07T19:46:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 177,
+      "id": "PR_kwDOFsQObc6d0O9b",
+      "title": "Add @emlun to acknowledgements",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/177",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "For his help revising the CDDL to match the spec text.",
+      "createdAt": "2025-07-07T19:42:38Z",
+      "updatedAt": "2025-07-07T19:45:50Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "markdownlint",
+      "baseRefOid": "b849837654f9fa64d7f5ef7685e77264aedf8f1f",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "add-emlun-to-acknowledgements",
+      "headRefOid": "6780b89ea281d9c52f217d6a4426ee360e4f2f46",
+      "closedAt": "2025-07-07T19:45:50Z",
+      "mergedAt": "2025-07-07T19:45:50Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "1b5f2087281bdb9bd4f69557f23f3222ab9caa9b"
+      },
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closes #173 ",
+          "createdAt": "2025-07-07T19:44:52Z",
+          "updatedAt": "2025-07-07T19:44:52Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6yhYLD",
+          "commit": {
+            "abbreviatedOid": "6780b89"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-07-07T19:45:42Z",
+          "updatedAt": "2025-07-07T19:45:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 178,
+      "id": "PR_kwDOFsQObc6d1B0r",
+      "title": "Change Proof and Presentation Key names.",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/178",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Change Proof Key (proof_key) to Issuer Ephemeral Key (iek) and Presentation Key (presentation_key) to Holder Presentation Key (hpk).",
+      "createdAt": "2025-07-07T21:33:08Z",
+      "updatedAt": "2025-07-07T21:48:33Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "99c4fd82cc45120e276fe32f49fc64f3606609dd",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "proof-and-presentation-key-rename",
+      "headRefOid": "ad4b137a1f4c20bcb4c35b8bd3b3b906cca3be7b",
+      "closedAt": "2025-07-07T21:48:33Z",
+      "mergedAt": "2025-07-07T21:48:33Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "49f13bf91757c65312ad1590bd79e88323da1cea"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6yiWFv",
+          "commit": {
+            "abbreviatedOid": "ad4b137"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-07-07T21:48:05Z",
+          "updatedAt": "2025-07-07T21:48:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 179,
+      "id": "PR_kwDOFsQObc6d1CjJ",
+      "title": "Proofreading fixes for the -10 drafts",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/179",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-07-07T21:35:07Z",
+      "updatedAt": "2025-07-07T21:39:10Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "7e504e6f2b27d7fca7c8c0238c76b8370dee0972",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "mbj-10-proofreading",
+      "headRefOid": "6f3d8f79a466eb437ed8f9f8d3c08702b424b519",
+      "closedAt": "2025-07-07T21:39:10Z",
+      "mergedAt": "2025-07-07T21:39:10Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "99c4fd82cc45120e276fe32f49fc64f3606609dd"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc6yiSin",
+          "commit": {
+            "abbreviatedOid": "6f3d8f7"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-07-07T21:39:02Z",
+          "updatedAt": "2025-07-07T21:39:02Z",
           "comments": []
         }
       ]
