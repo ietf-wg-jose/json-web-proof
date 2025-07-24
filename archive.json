@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-20T01:09:02.570101+00:00",
+  "timestamp": "2025-07-24T01:03:04.058825+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -3150,6 +3150,38 @@
           "updatedAt": "2025-07-17T13:25:49Z"
         }
       ]
+    },
+    {
+      "number": 181,
+      "id": "I_kwDOFsQObc7CFeV7",
+      "title": "Evaluate BBS Extensions",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/181",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There are two extensions currently being specified within the CFRG: \n\n* [BBS Blind Signatures](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bbs-blind-signatures/)\n* [BBS per Verifier Linkability](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bbs-per-verifier-linkability/)\n\nWe need to evaluate the applicability of these to JWP, provide feedback to the CFRG, and potentially specify their use within JWP if they require changes.\n\nExpected Challenges that may lead to changes.\n\n1. Encoding for both of these is expected outside of payloads, within the proof construction. We will need to specify encoding within the proof section\n2. These may require us to specify commitment and challenge requirements on an algorithm. Unlike `nonce`, I would expect these to not leave an artifact within the protected header.\n3. We will need to define how the extensions are signaled within the JWP presentation and possibly the issued form, such as a `bbs+extension` algorithm. \n\n",
+      "createdAt": "2025-07-23T12:34:27Z",
+      "updatedAt": "2025-07-23T12:34:27Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 182,
+      "id": "I_kwDOFsQObc7CFkpi",
+      "title": "Investigate Sigma Protocols",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/182",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "[Sigma Protocols and Fiat-Shamir](https://datatracker.ietf.org/doc/draft-orru-zkproof-sigma-protocols/)\" begins to add commitment schemes to prove knowledge about witnesses (secrets) and combinators.\n\nNeed to investigate if there is (or is planned to be) enough here for an algorithm. ",
+      "createdAt": "2025-07-23T12:41:34Z",
+      "updatedAt": "2025-07-23T12:41:34Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
