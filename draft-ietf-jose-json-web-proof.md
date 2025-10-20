@@ -1166,6 +1166,10 @@ for their valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-11
+
+* Examples with regenerated keys and proofs.
+
  -10
 
 * Replaced `application/jwp+cbor` with `application/cwp`.

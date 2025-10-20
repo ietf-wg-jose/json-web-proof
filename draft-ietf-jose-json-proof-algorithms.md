@@ -1263,6 +1263,10 @@ The BBS examples were generated using the library at
 
   [[ To be removed from the final specification ]]
 
+-11
+
+* Examples with regenerated keys and proofs.
+
 -10
 
 - Clarify MAC issuance and presentation using new "payload slot"
