@@ -68,11 +68,10 @@ Table of Contents
        6.1.2.  Holder Setup
        6.1.3.  Issuer Setup
        6.1.4.  Signing Payloads
-       6.1.5.  Issuer Protected Header
+       6.1.5.  Issuer Header
        6.1.6.  Payloads
        6.1.7.  Proof
-       6.1.8.  Presentation Protected Header
-               #{presentation-protected-header}
+       6.1.8.  Presentation Header #{presentation-protected-header}
        6.1.9.  Presentation
        6.1.10. Verification of Presentation
        6.1.11. JPA Registration
@@ -88,9 +87,9 @@ Table of Contents
        6.4.1.  Holder Setup
        6.4.2.  Issuer Setup
        6.4.3.  Combined MAC Representation
-       6.4.4.  Issuer Protected Header
+       6.4.4.  Issuer Header
        6.4.5.  Issuer Proof
-       6.4.6.  Presentation Protected Header
+       6.4.6.  Presentation Header
        6.4.7.  Presentation Proof
        6.4.8.  Verification of the Presentation Proof
        6.4.9.  JPA Registration
@@ -157,7 +156,7 @@ Table of Contents
    Protected Header" are defined by [RFC7515].
 
    The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and
-   "JWP Protected Header" are defined by [I-D.ietf-jose-json-web-proof].
+   "JWP Header" are defined by [I-D.ietf-jose-json-web-proof].
 
    These terms are defined by this specification:
 
@@ -173,10 +172,10 @@ Table of Contents
 
 4.  Background
 
-   JWP defines a container binding together a protected header, one or
-   more payloads, and a cryptographic proof.  It does not define any
-   details about the interactions between an application and the
-   cryptographic libraries that implement proof-supporting algorithms.
+   JWP defines a container binding together a Header, one or more
+   payloads, and a cryptographic proof.  It does not define any details
+   about the interactions between an application and the cryptographic
+   libraries that implement proof-supporting algorithms.
 
    Due to the nature of ZKPs, this specification also documents the
    subtle but important differences in proof algorithms versus those
@@ -194,13 +193,13 @@ Table of Contents
 
    The JWP is first created as the output of a JPA's issue operation.
 
-   Every algorithm MUST support a JSON issuer protected header along
-   with one or more octet string payloads.  The algorithm MAY support
-   using additional items provided by the holder for issuance such as
-   blinded payloads, keys for replay prevention, etc.
+   Every algorithm MUST support a JSON issuer Header along with one or
+   more octet string payloads.  The algorithm MAY support using
+   additional items provided by the holder for issuance such as blinded
+   payloads, keys for replay prevention, etc.
 
-   All algorithms MUST provide integrity protection for the issuer
-   header and all payloads and MUST specify all digest and/or hash2curve
+   All algorithms MUST provide integrity protection for the Issuer
+   Header and all payloads and MUST specify all digest and/or hash2curve
    methods used.
 
 5.2.  Confirm
@@ -214,8 +213,8 @@ Table of Contents
    the local state (such as with blinded payloads now unblinded).
 
    The algorithm MUST fully verify the issued proof value against the
-   issuer protected header and all payloads.  If given a presented JWP
-   instead of an issued one, the confirm process MUST return an error.
+   Issuer Header and all payloads.  If given a presented JWP instead of
+   an issued one, the confirm process MUST return an error.
 
 5.3.  Present
 
@@ -227,23 +226,23 @@ Table of Contents
    requests.
 
    Every algorithm MUST support the ability to hide any or all payloads.
-   It MUST always include the issuer protected header unmodified in the
+   It MUST always include the Issuer Header unmodified in the
    presentation.
 
    The algorithm MUST replace the issued proof value and generate a new
-   presented proof value.  It also MUST include a new presentation
-   protected header that provides replay protection.
+   presented proof value.  It also MUST include a new Presentation
+   Header that provides replay protection.
 
 5.4.  Verify
 
-   Performed by the verifier to verify the protected headers along with
-   any disclosed payloads and/or assertions about them from the proving
+   Performed by the verifier to verify the Headers along with any
+   disclosed payloads and/or assertions about them from the proving
    party, while also verifying they are the same payloads and ordering
    as witnessed by the issuer.
 
    The algorithm MUST verify the integrity of all disclosed payloads and
-   MUST also verify the integrity of both the issuer and presentation
-   protected headers.
+   MUST also verify the integrity of both the Issuer and Presentation
+   Headers.
 
    If the presented proof contains any assertions about the hidden
    payloads, the algorithm MUST also verify all of those assertions.  It
@@ -272,16 +271,15 @@ Table of Contents
 6.1.1.  JWS Algorithm
 
    The Single Use algorithm uses multiple signing keys to protect the
-   protected header as well as individual payloads of an Issued JWP.
-   The issuer uses a stable public key to sign each protected header,
-   and a per-JWP ephemeral key (conveyed within the protected header) to
-   protect the individual payloads.  These signatures are all created
-   using the same Asymmetric Algorithm, with the JOSE and COSE name/
-   label of this algorithm being part of registration for a fully-
-   specified Single Use algorithm identifier.
+   Header as well as individual payloads of an Issued JWP.  The issuer
+   uses a stable public key to sign each Header, and a per-JWP ephemeral
+   key (conveyed within the Header) to protect the individual payloads.
+   These signatures are all created using the same Asymmetric Algorithm,
+   with the JOSE and COSE name/label of this algorithm being part of
+   registration for a fully-specified Single Use algorithm identifier.
 
-   The issuer protected header also conveys a holder presentation key,
-   an ephemeral asymmetric key meant to only be used for presenting a
+   The Issuer Header also conveys a holder presentation key, an
+   ephemeral asymmetric key meant to only be used for presenting a
    single JWP.  The fully-specified algorithm the holder must use for
    presentations is also included.  This algorithm MAY be different from
    the algorithm used by the issuer.
@@ -308,7 +306,7 @@ Table of Contents
    algorithm corresponding to the holder presentation key.  If the
    holder and verifier cannot be assumed to know this algorithm is the
    appropriate choice for a given holder presentation key, this value
-   MUST be conveyed in the hpa issuer protected header.
+   MUST be conveyed in the hpa Issuer Header.
 
 6.1.3.  Issuer Setup
 
@@ -322,22 +320,22 @@ Table of Contents
    Each individual payload is signed using the selected internal
    algorithm using the Ephemeral Key.
 
-6.1.5.  Issuer Protected Header
+6.1.5.  Issuer Header
 
    The Issuer's Ephemeral Key MUST be included via the Issuer Ephemeral
-   Key header parameter.
+   Key Header Parameter.
 
    The Holder's Presentation Key MUST be included via the Holder
-   Presentation Key header parameter.
+   Presentation Key Header Parameter.
 
    The Holder's Presentation Algorithm MUST be included via the Holder
-   Presentation Algorithm header parameter unless there is another way
+   Presentation Algorithm Header Parameter unless there is another way
    for the holder and verifier to unambiguously determine the
    appropriate algorithm to use.
 
-   The Issuer Protected Header is signed using the appropriate internal
-   signing algorithm for the given fully-specified single use algorithm,
-   using the issuer's Stable Key.
+   The Issuer Header is signed using the appropriate internal signing
+   algorithm for the given fully-specified single use algorithm, using
+   the issuer's Stable Key.
 
 6.1.6.  Payloads
 
@@ -347,32 +345,32 @@ Table of Contents
 6.1.7.  Proof
 
    The proof value is an octet string array.  The first entry is the
-   octet string of the issuer protected header signature, with an
-   additional entry for each payload signature.
+   octet string of the Issuer Header signature, with an additional entry
+   for each payload signature.
 
-6.1.8.  Presentation Protected Header #{presentation-protected-header}
+6.1.8.  Presentation Header #{presentation-protected-header}
 
    To generate a new presentation, the holder first creates a
-   presentation protected header that is specific to the verifier being
-   presented to.  This header MUST contain a parameter that both the
-   holder and verifier trust as being unique and non-replayable.  Use of
-   the nonce header parameter is RECOMMENDED for this purpose.
+   Presentation Header that is specific to the verifier being presented
+   to.  This Header MUST contain a parameter that both the holder and
+   verifier trust as being unique and non-replayable.  Use of the nonce
+   Header Parameter is RECOMMENDED for this purpose.
 
-   This specification registers the nonce header parameter for the
-   presentation protected header that contains a string value either
-   generated by the verifier or derived from values provided by the
-   verifier.  When present, the verifier MUST ensure the nonce value
-   matches during verification.
+   This specification registers the nonce Header Parameter for the
+   Presentation Header that contains a string value either generated by
+   the verifier or derived from values provided by the verifier.  When
+   present, the verifier MUST ensure the nonce value matches during
+   verification.
 
-   The presentation protected header MAY contain other header parameters
-   that are either provided by the verifier or by the holder.  These
-   presentation header parameters SHOULD NOT contain values that are
-   common across multiple presentations and SHOULD be unique to a single
-   presentation and verifier.
+   The Presentation Header MAY contain other Header Parameters that are
+   either provided by the verifier or by the holder.  These Presentation
+   Header Parameters SHOULD NOT contain values that are common across
+   multiple presentations and SHOULD be unique to a single presentation
+   and verifier.
 
-   The presentation protected header MUST contain the same Algorithm
-   protected header as the issuer protected header.  The Holder
-   Presentation Algorithm protected header MUST NOT be included.
+   The Presentation Header MUST contain the same Algorithm protected
+   header as the Issuer Header.  The Holder Presentation Algorithm
+   Header Parameter MUST NOT be included.
 
 6.1.9.  Presentation
 
@@ -382,17 +380,17 @@ Table of Contents
    of components depends on the number of payloads which are being
    disclosed in the presented JWP.
 
-   The first proof component will be the signature over the issuer
-   protected header made by the issuer's Stable Key.
+   The first proof component will be the signature over the Issuer
+   Header made by the issuer's Stable Key.
 
    For each payload which is to be disclosed, the corresponding payload
    signature (from the issued JWP) is included as a subsequent proof
    component.  If the payload is being omitted, the corresponding
    payload signature is omitted from the proof components.
 
-   The holder protected header, issuer protected header, payload slots
-   (distinguishing which are being disclosed) and these proof components
-   are inputs to determine the presentation internal representation.
+   The Presentation Header, Issuer Header, payload slots (distinguishing
+   which are being disclosed) and these proof components are inputs to
+   determine the presentation internal representation.
 
    The holder's signature over the presentation internal representation
    (using the holder's private key and the holder presentation
@@ -402,7 +400,7 @@ Table of Contents
    For example, if only the second and fifth of five payloads are being
    disclosed, then the proof at this stage will consist of three values:
 
-   1.  The issuer's signature over the issuer protected header
+   1.  The issuer's signature over the Issuer Header
    2.  The payload signature corresponding to the second payload
    3.  The payload signature corresponding to the fifth payload.
 
@@ -423,10 +421,10 @@ Table of Contents
    1.  Check that the number of proof components is appropriate for the
        number of disclosed payloads.  There MUST be two more proof
        components than disclosed payloads.
-   2.  Verify the first proof component is a valid signature over issuer
-       protected header octets, using the issuer's stable key.
+   2.  Verify the first proof component is a valid signature over Issuer
+       Header octets, using the issuer's stable key.
    3.  Extract the holder presentation key and holder presentation
-       algorithm (if present) from the issuer protected header.
+       algorithm (if present) from the Issuer Header.
    4.  Omitting the final payload component, calculate the presentation
        internal representation (#presentation-internal-representation).
    5.  Verify the final proof component is a valid signature over the
@@ -469,11 +467,11 @@ Table of Contents
 
    1.   0x84 5B
 
-   2.   The length and octets of the presentation protected header
+   2.   The length and octets of the Presentation Header
 
    3.   0x5B
 
-   4.   The length and octets of the issuer protected header
+   4.   The length and octets of the Issuer Header
 
    5.   0x9B
 
@@ -527,13 +525,12 @@ Table of Contents
 
    Issuance is performed using the Sign operation from Section 3.5.1 of
    [I-D.irtf-cfrg-bbs-signatures].  This operation utilizes the issuer's
-   BLS12-381 G2 key pair as SK and PK, along with desired protected
-   header octets as header, and the array of payload octet string as
-   messages.
+   BLS12-381 G2 key pair as SK and PK, along with desired Header octets
+   as header, and the array of payload octet string as messages.
 
    The octets resulting from this operation form a single octet string
-   in the issuance proof array, to be used along with the protected
-   header and payloads to serialize the JWP.
+   in the issuance proof array, to be used along with the Header and
+   payloads to serialize the JWP.
 
 6.3.4.  Issuance Proof Verification
 
@@ -542,18 +539,17 @@ Table of Contents
    section 3.5.2].
 
    This operation utilizes the issuer's public key as PK, the proof as
-   signature, the protected header octets as header and the array of
-   payload octets as messages.
+   signature, the Header octets as header and the array of payload
+   octets as messages.
 
 6.3.5.  Presentation
 
    Derivation of a presentation is done by the holder using the ProofGen
    operation from Section 3.5.3 of [I-D.irtf-cfrg-bbs-signatures].
 
-   This operation utilizes the issuer's public key as PK, the issuer
-   protected header as header, the issuance proof as signature, the
-   issuance payloads as messages, and the holder's presentation
-   protected header as ph.
+   This operation utilizes the issuer's public key as PK, the Issuer
+   Header as header, the issuance proof as signature, the issuance
+   payloads as messages, and the holder's Presentation Header as ph.
 
    The operation also takes a vector of indexes into messages,
    describing which payloads the holder wishes to disclose.  All
@@ -564,10 +560,10 @@ Table of Contents
    The output of this operation is the presentation proof, as a single
    octet string.
 
-   Presentation serialization leverages the two protected headers and
-   presentation proof, along with the disclosed payloads.  Non-disclosed
-   payloads are represented with the absent value of null in CBOR
-   serialization and a zero-length string in compact serialization.
+   Presentation serialization leverages the two Headers and presentation
+   proof, along with the disclosed payloads.  Non-disclosed payloads are
+   represented with the absent value of null in CBOR serialization and a
+   zero-length string in compact serialization.
 
 6.3.6.  Presentation Verification
 
@@ -575,10 +571,9 @@ Table of Contents
    ProofVerify operation from [@!I-D.irtf-cfrg-bbs-signatures,
    Section 3.5.4].
 
-   This operation utilizes the issuer's public key as PK, the issuer
-   protected header as header, the issuance proof as signature, the
-   holder's presentation protected header as ph, and the payloads as
-   disclosed_messages.
+   This operation utilizes the issuer's public key as PK, the Issuer
+   Header as header, the issuance proof as signature, the holder's
+   Presentation Header as ph, and the payloads as disclosed_messages.
 
    In addition, the disclosed_indexes scalar array is calculated from
    the payloads provided.  Values disclosed in the presented payloads
@@ -626,14 +621,14 @@ Table of Contents
    using this key to generate a JWS that signs a value the issuer can
    verify as unique.
 
-   The holder's presentation key MUST be included in the issuer's
-   protected header using the Holder Presentation Key header parameter.
+   The holder's presentation key MUST be included in the Issuer Header
+   using the Holder Presentation Key Header Parameter.
 
    The issuer MUST determine an appropriate holder presentation
    algorithm corresponding to the holder presentation key.  If the
    holder and verifier cannot be assumed to know this algorithm is the
    appropriate choice for a given holder presentation key, this value
-   MUST be conveyed in the Holder Protected Algorithm header parameter.
+   MUST be conveyed in the Holder Protected Algorithm Header Parameter.
 
 6.4.2.  Issuer Setup
 
@@ -651,11 +646,11 @@ Table of Contents
 6.4.3.  Combined MAC Representation
 
    The combined MAC representation is a single octet string representing
-   the MAC values of the issuer protected header, along with each
-   payload provided by the issuer.  This representation is signed by the
-   issuer, but not shared - parties will recreate this octet string and
-   verify the signature to verify the integrity of supplied issuer
-   protected header and the integrity of any disclosed payloads.
+   the MAC values of the Issuer Header, along with each payload provided
+   by the issuer.  This representation is signed by the issuer, but not
+   shared - parties will recreate this octet string and verify the
+   signature to verify the integrity of supplied Issuer Header and the
+   integrity of any disclosed payloads.
 
    The steps below describe a sequential concatenation of binary values
    to generate the Combined MAC Representation.  The instructions for
@@ -698,20 +693,20 @@ Table of Contents
    octet string in the following order:
 
    1.  0x82 5B
-   2.  The length and octets of the issuer protected header
+   2.  The length and octets of the Issuer Header
    3.  0x9B
    4.  The number of payload slots in the issued JWP
    5.  For each payload representation:
        1.  0x5B
        2.  The length and value of the per payload MAC
 
-6.4.4.  Issuer Protected Header
+6.4.4.  Issuer Header
 
    The Holder's Presentation Key MUST be included via the Holder
-   Presentation Key header parameter.
+   Presentation Key Header Parameter.
 
    The Holder's Presentation Algorithm MUST be included via the Holder
-   Presentation Algorithm header parameter unless there is another way
+   Presentation Algorithm Header Parameter unless there is another way
    for the holder and verifier to unambiguously determine the
    appropriate algorithm to use.
 
@@ -727,10 +722,10 @@ Table of Contents
    The second octet string is the Shared Secret used to generate the
    per-payload keys for the combined representation.
 
-6.4.6.  Presentation Protected Header
+6.4.6.  Presentation Header
 
-   See the Presentation Protected Header (#presentation-protected-
-   header) section given for Single Use algorithms.
+   See the Presentation Header (#presentation-protected-header) section
+   given for Single Use algorithms.
 
 6.4.7.  Presentation Proof
 
@@ -752,10 +747,10 @@ Table of Contents
    If a payload is not disclosed, the corresponding proof component will
    be the payload's MAC (using the unique key.)
 
-   The holder protected header, issuer protected header, payload slots
-   (distinguishing which are being disclosed) and above proof components
-   are inputs to determine the presentation internal representation
-   (#presentation-internal-representation).
+   The Presentation Header, Issuer Header, payload slots (distinguishing
+   which are being disclosed) and above proof components are inputs to
+   determine the presentation internal representation (#presentation-
+   internal-representation).
 
    The holder's signature over the presentation internal representation
    (using the holder's private key and the holder presentation
@@ -777,14 +772,14 @@ Table of Contents
    1.  Check the number of proof components is appropriate for the
        number of disclosed payloads.  There MUST be two more proof
        components than disclosed payloads.
-   2.  Using the fully-specified MAC algorithm in use, use the issuer
-       protected header, disclosed payloads, and the proof components
+   2.  Using the fully-specified MAC algorithm in use, use the Issuer
+       Header, disclosed payloads, and the proof components
        corresponding to the payloads to regenerate the Combined MAC
        Representation.
    3.  Verify the first proof component is a valid signature over the
-       issuer protected header octets, using the issuer's stable key.
+       Issuer Header octets, using the issuer's stable key.
    4.  Extract the holder presentation key and holder presentation
-       algorithm (if present) from the issuer protected header.
+       algorithm (if present) from the Issuer Header.
    5.  Omitting the final payload component, calculate the presentation
        internal representation (#presentation-internal-representation).
    6.  Verify the final proof component is a valid signature over the
@@ -817,7 +812,7 @@ Table of Contents
    |  have become more stable.
 
    *  Data minimization of the proof value
-   *  Unlinkability of the protected header contents
+   *  Unlinkability of the Header contents
 
 8.  IANA Considerations
 
@@ -865,11 +860,11 @@ Table of Contents
 8.1.  JSON Web Proof Algorithms Registry
 
    This specification establishes the IANA "JSON Web Proof Algorithms"
-   registry for values of the JWP alg (algorithm) parameter in JWP
-   Header Parameters.  The registry records the algorithm name, the
-   algorithm description, the algorithm usage locations, the
-   implementation requirements, the change controller, and a reference
-   to the specification that defines it.  The same algorithm name can be
+   registry for values of the JWP alg (algorithm) parameter in Header
+   Parameters.  The registry records the algorithm name, the algorithm
+   description, the algorithm usage locations, the implementation
+   requirements, the change controller, and a reference to the
+   specification that defines it.  The same algorithm name can be
    registered multiple times, provided that the sets of usage locations
    are disjoint.
 
@@ -1167,9 +1162,9 @@ A.1.  Example JSON-Serialized Single-Use JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "zqnz4f9wB-TfD8EOzkc1ykoYbxkI00d-0T_x8mVcMjc",
-     "y": "stYepPS05qjO9IfwvfBIyhZg55F2CnLEFGv5FuQQ0xo",
-     "d": "2_7n0GqdwP9mf-wSfRTkVR33P98sU8N6sr5dfdH_q-8"
+     "x": "9xcP5HK_8qK5x3hQHB047oa1QOv0sLJ9VqNwuMehPsk",
+     "y": "6rbeFHmk1iAW-ZAsTdVGBUp3MbjxaoOZjswabQcmJ2Q",
+     "d": "_w87Rg80iMs-ePxz_jegGyKH74gWf2WnN--VTM_dw6I"
    }
 
                 Figure 1: Issuer Private Key (ES256 in JWK)
@@ -1180,9 +1175,9 @@ A.1.  Example JSON-Serialized Single-Use JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "lchzRiDrod_c43jv_KQBrucaDztuntTQ9NyqNsAZbPI",
-     "y": "JtURL542nB47L9awnnq4QXu3IrA81v7XE8CS3Xb8Fqg",
-     "d": "BNfcKR9HJDbe7g3trgVrYq0SH-MJ09VV1T458YMp0Qw"
+     "x": "qJ1O9zID3wesYTcMn_MMuXtEMT59-qEz-5WBbiueYY0",
+     "y": "ZA0bKDBOHbwYE1VwNgOc2HI3Mo-rfMxHJq8JsIvREMc",
+     "d": "jHeDK6W1HwzpWlvoALr_z4dRone7lyc5avJZuBJXSVs"
    }
 
            Figure 2: Issuer Ephemeral Private Key (ES256 in JWK)
@@ -1193,18 +1188,18 @@ A.1.  Example JSON-Serialized Single-Use JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "K4tqDU1zz_VaahJgB2sq6OtQkFJq0TNTHNkAeQGfdq0",
-     "y": "J6VVyk5VnrKQHZGPoTIbys9UhfpD7LHU2tO_TTxklqE",
-     "d": "a0loMsMEiim7km-sTog3Ui7eWpDTP2Pf4zt9bOAKcwg"
+     "x": "c05p7vBKbK2b7YkSXZPzS-SGpgsOH5i0YYqQB-PsykU",
+     "y": "eNErUnYEMVuEdJ5e4HrQotzvnT1hT5Vi6wNDcnIHYWk",
+     "d": "nvQa8LZaBobh1r8iSzdWwDfulz-tEvHUvp2hlk_Tbfk"
    }
 
           Figure 3: Holder Presentation Private Key (ES256 in JWK)
 
-   The JWP Protected Header declares that the data structure is a JPT
-   and the JWP Proof Input is secured using the Single-Use ECDSA
-   algorithm with the P-256 curve and SHA-256 digest.  It also includes
-   the ephemeral public key, the Holder's presentation public key and
-   list of claims used for this JPT.
+   The Header declares that the data structure is a JPT and the JWP
+   Proof Input is secured using the Single-Use ECDSA algorithm with the
+   P-256 curve and SHA-256 digest.  It also includes the ephemeral
+   public key, the Holder's presentation public key and list of claims
+   used for this JPT.
 
    {
      "alg": "SU-ES256",
@@ -1223,42 +1218,42 @@ A.1.  Example JSON-Serialized Single-Use JWP
      "iek": {
        "kty": "EC",
        "crv": "P-256",
-       "x": "lchzRiDrod_c43jv_KQBrucaDztuntTQ9NyqNsAZbPI",
-       "y": "JtURL542nB47L9awnnq4QXu3IrA81v7XE8CS3Xb8Fqg"
+       "x": "qJ1O9zID3wesYTcMn_MMuXtEMT59-qEz-5WBbiueYY0",
+       "y": "ZA0bKDBOHbwYE1VwNgOc2HI3Mo-rfMxHJq8JsIvREMc"
      },
      "hpk": {
        "kty": "EC",
        "crv": "P-256",
-       "x": "K4tqDU1zz_VaahJgB2sq6OtQkFJq0TNTHNkAeQGfdq0",
-       "y": "J6VVyk5VnrKQHZGPoTIbys9UhfpD7LHU2tO_TTxklqE"
+       "x": "c05p7vBKbK2b7YkSXZPzS-SGpgsOH5i0YYqQB-PsykU",
+       "y": "eNErUnYEMVuEdJ5e4HrQotzvnT1hT5Vi6wNDcnIHYWk"
      }
    }
 
-             Figure 4: Issuer Protected header (SU-ES256, JSON)
+                  Figure 4: Issuer Header (SU-ES256, JSON)
 
    eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
    mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
    lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-   dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJsY2h6UmlEcm9kX2M0
-   M2p2X0tRQnJ1Y2FEenR1bnRUUTlOeXFOc0FaYlBJIiwieSI6Ikp0VVJMNTQybkI0N0w5Y
-   XdubnE0UVh1M0lyQTgxdjdYRThDUzNYYjhGcWcifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
-   J2IjoiUC0yNTYiLCJ4IjoiSzR0cURVMXp6X1ZhYWhKZ0Iyc3E2T3RRa0ZKcTBUTlRITmt
-   BZVFHZmRxMCIsInkiOiJKNlZWeWs1Vm5yS1FIWkdQb1RJYnlzOVVoZnBEN0xIVTJ0T19U
-   VHhrbHFFIn19
+   dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJxSjFPOXpJRDN3ZXNZ
+   VGNNbl9NTXVYdEVNVDU5LXFFei01V0JiaXVlWVkwIiwieSI6IlpBMGJLREJPSGJ3WUUxV
+   ndOZ09jMkhJM01vLXJmTXhISnE4SnNJdlJFTWMifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
+   J2IjoiUC0yNTYiLCJ4IjoiYzA1cDd2QktiSzJiN1lrU1haUHpTLVNHcGdzT0g1aTBZWXF
+   RQi1Qc3lrVSIsInkiOiJlTkVyVW5ZRU1WdUVkSjVlNEhyUW90enZuVDFoVDVWaTZ3TkRj
+   bklIWVdrIn19
 
-    Figure 5: Encoded Issuer Protected Header (SU-ES256, JSON, encoded)
+         Figure 5: Encoded Issuer Header (SU-ES256, JSON, encoded)
 
    The Single Use algorithm utilizes multiple individual JWS Signatures.
    Each signature value is generated by creating a JWS with a single
-   Protected Header with the associated alg value.  In this example, the
-   fixed header used for each JWS is the serialized JSON Object
-   {"alg":"ES256"}.  This protected header will be used to generate a
-   signature over each corresponding payload in the JWP.  The
-   corresponding octet value in the proof is the octet string
-   (base64url-decoded) value of the signature.
+   Header with the associated alg value.  In this example, the fixed
+   Header used for each JWS is the serialized JSON Object
+   {"alg":"ES256"}.  This Header will be used to generate a signature
+   over each corresponding payload in the JWP.  The corresponding octet
+   value in the proof is the octet string (base64url-decoded) value of
+   the signature.
 
    The final proof value from the Issuer is an array with the octets of
-   the header signature, followed by entries for each payload signature.
+   the Header signature, followed by entries for each payload signature.
 
    [
        1714521600,
@@ -1284,43 +1279,43 @@ A.1.  Example JSON-Serialized Single-Use JWP
    eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
    mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
    lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-   dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJsY2h6UmlEcm9kX2M0
-   M2p2X0tRQnJ1Y2FEenR1bnRUUTlOeXFOc0FaYlBJIiwieSI6Ikp0VVJMNTQybkI0N0w5Y
-   XdubnE0UVh1M0lyQTgxdjdYRThDUzNYYjhGcWcifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
-   J2IjoiUC0yNTYiLCJ4IjoiSzR0cURVMXp6X1ZhYWhKZ0Iyc3E2T3RRa0ZKcTBUTlRITmt
-   BZVFHZmRxMCIsInkiOiJKNlZWeWs1Vm5yS1FIWkdQb1RJYnlzOVVoZnBEN0xIVTJ0T19U
-   VHhrbHFFIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZU
+   dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJxSjFPOXpJRDN3ZXNZ
+   VGNNbl9NTXVYdEVNVDU5LXFFei01V0JiaXVlWVkwIiwieSI6IlpBMGJLREJPSGJ3WUUxV
+   ndOZ09jMkhJM01vLXJmTXhISnE4SnNJdlJFTWMifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
+   J2IjoiUC0yNTYiLCJ4IjoiYzA1cDd2QktiSzJiN1lrU1haUHpTLVNHcGdzT0g1aTBZWXF
+   RQi1Qc3lrVSIsInkiOiJlTkVyVW5ZRU1WdUVkSjVlNEhyUW90enZuVDFoVDVWaTZ3TkRj
+   bklIWVdrIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZU
    BleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCB
    DQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9j
    YWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsI
-   mNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.60jm4D0U9wmJ1WCTxPlMoC6phc_iATddQDA93kl9
-   L3W93xn_DV7Br6IScibKqEP0IBB6ifgfXPpBX_x0EHQCQA~Ex32GfzhEZwMAaaCysUv4A
-   KAoEF3XvUTybitGf-KXaPSVnaCXT-1eaOXkn30jQl5j_nVVClaoR7PQXjBsPgeqQ~9Rtx
-   5TRppC52QbCH5w1etnXRgviRkoNTE0hKXOWqgW61RUrMEmHUAFGb_1Ylk4vpPyWJ6oJVi
-   SAV0fjb7xI_TQ~xRB7ACTlILaNW56WnL2c6dAFQVJc0F8JN_X-GakU7-dodS1tnX-vLZr
-   EUT_DrUo6zhi36LTTgi-jkvMX-pn-XA~tqkhaCq1_tUCZSaWK-DPUrDBfjhIK_lm_9J0H
-   Go-D-hJPzchsn8eoaQzYVryqFY_RBhS4sfBwAiqMpL1fF3t2g~S_3eJcS1MTDGszn8ggm
-   YPa46ZaFOVp9zdHgaGU0EW837XOgsCmRrnVw7VmWnbjLeXIDOgUu5eUuG9sKTVzpYrA~s
-   osZhUFKGMC4WlUpY7JCo5ldTksQXSQeWJNTWuVwqVTlanR1nNZxi0iJRBzeze01InIjhI
-   HkYZXMlfCdJwCl7Q~FMBIQC_J-6eT0Oj27Fi-RbrkQz3Of6e-ETZOCX8tHDghOcpwjMqG
-   Qi2JY-FrGThu2mGaISfsAEC7hzoMFQDHLQ
+   mNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.U2EotmjJCQY6fYqnAssCEKANrOGPcEhja60edPBy
+   OQ0KK4FVMuF5nYzyEZBHaPMIdyieTKipGNroI_gC7EJiig~WYVAEVjFQPZVEQNCl_z2O-
+   ANzDobGhmAwwcAPIBMcN5UO3-nw0A6dA-AOxC32jwnC-YEQTGiNqC-Z1SMFJCwmw~y_sh
+   TlsFxKhJWA2zj__MHX5bYRKtV_dtbXPt7i7-eh0Mi1kAL4QC3WjbLl_RuRC9YuBy920bU
+   orSUoBEWLvbCg~CAP1-OehAHBJ7ObbGnS7RiYTscHmmTt9ubxKLjdV6axZg8qC88QFhXQ
+   N81P55ShpEjz60npasvZmmkPLKcKxJg~IVmpssdk0od4Avd94Lfl1dRKaV9veJI6fM2Ha
+   pYAI1J47rmJyeEbG1ThBQT5Gt3EsKWP0OX9isEKq4eh4uLsMg~8IDCOLRfdZsmzHLLB6y
+   8rw1FXB0sVI92Ld3TBsD0QUdbEEqKTwwZGQtY5Oqxe8TqKJD9XM2VfcUQb7RZkrWTbA~g
+   KY9A-0z9xKNhbI5R4-uDnbQyP-qd5GMhBynBGC7Z4S4Pt1UyV6rcK8-R2s_k0bUh7eQ4g
+   fB2zNYgyTlvUiNyg~4uCaOusDlohCfd_8kcBDsIguI0T-KnMt-RJ3uNiNOcGQE5TdHG-E
+   YMgE5ehGpuLRVxun_7DApI9QFmFzrhqQdA
 
         Figure 7: Issued JWP (SU-ES256, JSON, Compact Serialization)
 
-   To present this JPT, we first use the following presentation header
+   To present this JPT, we first use the following Presentation Header
    with a nonce (provided by the Verifier):
 
    {
      "alg": "SU-ES256",
      "aud": "https://recipient.example.com",
-     "nonce": "J4CehHJ6sOkcBZwbTb928f_QVf81TXfFy8JuDzqB12Y"
+     "nonce": "nl4Mq7aJl1_P6RBo2LuKRBulZGkVw8uYDTta1GOHaD4"
    }
 
                Figure 8: Presentation Header (SU-ES256, JSON)
 
    eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-   29tIiwibm9uY2UiOiJKNENlaEhKNnNPa2NCWndiVGI5MjhmX1FWZjgxVFhmRnk4SnVEen
-   FCMTJZIn0
+   29tIiwibm9uY2UiOiJubDRNcTdhSmwxX1A2UkJvMkx1S1JCdWxaR2tWdzh1WURUdGExR0
+   9IYUQ0In0
 
      Figure 9: Presentation Header (SU-ES256, JSON, Base64url-Encoded)
 
@@ -1334,29 +1329,29 @@ A.1.  Example JSON-Serialized Single-Use JWP
    serialization:
 
    eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-   29tIiwibm9uY2UiOiJKNENlaEhKNnNPa2NCWndiVGI5MjhmX1FWZjgxVFhmRnk4SnVEen
-   FCMTJZIn0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
+   29tIiwibm9uY2UiOiJubDRNcTdhSmwxX1A2UkJvMkx1S1JCdWxaR2tWdzh1WURUdGExR0
+   9IYUQ0In0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
    vaXNzdWVyLmV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAi
    LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
-   3Zlcl8yMSJdLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJsY2h6Um
-   lEcm9kX2M0M2p2X0tRQnJ1Y2FEenR1bnRUUTlOeXFOc0FaYlBJIiwieSI6Ikp0VVJMNTQ
-   ybkI0N0w5YXdubnE0UVh1M0lyQTgxdjdYRThDUzNYYjhGcWcifSwiaHBrIjp7Imt0eSI6
-   IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiSzR0cURVMXp6X1ZhYWhKZ0Iyc3E2T3RRa0ZKc
-   TBUTlRITmtBZVFHZmRxMCIsInkiOiJKNlZWeWs1Vm5yS1FIWkdQb1RJYnlzOVVoZnBEN0
-   xIVTJ0T19UVHhrbHFFIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~
+   3Zlcl8yMSJdLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJxSjFPOX
+   pJRDN3ZXNZVGNNbl9NTXVYdEVNVDU5LXFFei01V0JiaXVlWVkwIiwieSI6IlpBMGJLREJ
+   PSGJ3WUUxVndOZ09jMkhJM01vLXJmTXhISnE4SnNJdlJFTWMifSwiaHBrIjp7Imt0eSI6
+   IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiYzA1cDd2QktiSzJiN1lrU1haUHpTLVNHcGdzT
+   0g1aTBZWXFRQi1Qc3lrVSIsInkiOiJlTkVyVW5ZRU1WdUVkSjVlNEhyUW90enZuVDFoVD
+   VWaTZ3TkRjbklIWVdrIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~
    ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bb
    nl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3
    QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI
-   6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.60jm4D0U9wmJ1WCTxPlMoC6phc_i
-   ATddQDA93kl9L3W93xn_DV7Br6IScibKqEP0IBB6ifgfXPpBX_x0EHQCQA~Ex32GfzhEZ
-   wMAaaCysUv4AKAoEF3XvUTybitGf-KXaPSVnaCXT-1eaOXkn30jQl5j_nVVClaoR7PQXj
-   BsPgeqQ~9Rtx5TRppC52QbCH5w1etnXRgviRkoNTE0hKXOWqgW61RUrMEmHUAFGb_1Ylk
-   4vpPyWJ6oJViSAV0fjb7xI_TQ~xRB7ACTlILaNW56WnL2c6dAFQVJc0F8JN_X-GakU7-d
-   odS1tnX-vLZrEUT_DrUo6zhi36LTTgi-jkvMX-pn-XA~tqkhaCq1_tUCZSaWK-DPUrDBf
-   jhIK_lm_9J0HGo-D-hJPzchsn8eoaQzYVryqFY_RBhS4sfBwAiqMpL1fF3t2g~S_3eJcS
-   1MTDGszn8ggmYPa46ZaFOVp9zdHgaGU0EW837XOgsCmRrnVw7VmWnbjLeXIDOgUu5eUuG
-   9sKTVzpYrA~BOcPqW1mjoM1LEF0E3_nJRd5YUP0swYYfI_yWih1gUK466Ib5APpQKWj4D
-   ybggH9qkquz8YsRg7TBajerq9Ciw
+   6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.U2EotmjJCQY6fYqnAssCEKANrOGP
+   cEhja60edPByOQ0KK4FVMuF5nYzyEZBHaPMIdyieTKipGNroI_gC7EJiig~WYVAEVjFQP
+   ZVEQNCl_z2O-ANzDobGhmAwwcAPIBMcN5UO3-nw0A6dA-AOxC32jwnC-YEQTGiNqC-Z1S
+   MFJCwmw~y_shTlsFxKhJWA2zj__MHX5bYRKtV_dtbXPt7i7-eh0Mi1kAL4QC3WjbLl_Ru
+   RC9YuBy920bUorSUoBEWLvbCg~CAP1-OehAHBJ7ObbGnS7RiYTscHmmTt9ubxKLjdV6ax
+   Zg8qC88QFhXQN81P55ShpEjz60npasvZmmkPLKcKxJg~IVmpssdk0od4Avd94Lfl1dRKa
+   V9veJI6fM2HapYAI1J47rmJyeEbG1ThBQT5Gt3EsKWP0OX9isEKq4eh4uLsMg~8IDCOLR
+   fdZsmzHLLB6y8rw1FXB0sVI92Ld3TBsD0QUdbEEqKTwwZGQtY5Oqxe8TqKJD9XM2VfcUQ
+   b7RZkrWTbA~2GPYe91O_Sx-PUo75Q5j3vnHtj-gd7JzTv8odzNemchqLTIBd448k416mL
+   bXM0w9THq2uJraFDoWEB6D5hDN1w
 
    |  Figure: Presentation (SU-ES256, JSON, Compact Serialization)
 
@@ -1385,23 +1380,23 @@ A.2.  Example CBOR-Serialized Single-Use CPT
      8: {      / iek /
        1: 2,   / kty : "EC2" /
        -1: 1,  / crv: "P-256" /
-       -2: h'95c8734620eba1dfdce378effca401aee71a0f3b6e9ed4d0f4dcaa36' +
-           h'c0196cf2', / x /
-       -3: h'26d5112f9e369c1e3b2fd6b09e7ab8417bb722b03cd6fed713c092dd' +
-           h'76fc16a8'  / y /
+       -2: h'a89d4ef73203df07ac61370c9ff30cb97b44313e7dfaa133fb95816e' +
+           h'2b9e618d', / x /
+       -3: h'640d1b28304e1dbc1813557036039cd87237328fab7ccc4726af09b0' +
+           h'8bd110c7'  / y /
      },
      9: {      / hpk /
        1: 2,   / kty: "EC2" /
        -1: 1,  / crv: "P-256" /
-       -2: h'2b8b6a0d4d73cff55a6a1260076b2ae8eb5090526ad133531cd90079' +
-           h'019f76ad', / x /
-       -3: h'27a555ca4e559eb2901d918fa1321bcacf5485fa43ecb1d4dad3bf4d' +
-           h'3c6496a1'  / y /
+       -2: h'734e69eef04a6cad9bed89125d93f34be486a60b0e1f98b4618a9007' +
+           h'e3ecca45', / x /
+       -3: h'78d12b527604315b84749e5ee07ad0a2dcef9d3d614f9562eb034372' +
+           h'72076169'  / y /
      },
      10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
    }
 
-   |  Figure: Issuer Protected Header (SU-ES256, CBOR)
+   |  Figure: Issuer Header (SU-ES256, CBOR)
 
    [ / payloads    /
      / iat         / 171452160,
@@ -1427,31 +1422,31 @@ A.2.  Example CBOR-Serialized Single-Use CPT
 
    8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
    0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-   2095c8734620eba1dfdce378effca401aee71a0f3b6e9ed4d0f4dcaa36c0196c
-   f222582026d5112f9e369c1e3b2fd6b09e7ab8417bb722b03cd6fed713c092dd
-   76fc16a809a4010220012158202b8b6a0d4d73cff55a6a1260076b2ae8eb5090
-   526ad133531cd90079019f76ad22582027a555ca4e559eb2901d918fa1321bca
-   cf5485fa43ecb1d4dad3bf4d3c6496a10a28871a0a3827001a0a3c3d3f63446f
+   20a89d4ef73203df07ac61370c9ff30cb97b44313e7dfaa133fb95816e2b9e61
+   8d225820640d1b28304e1dbc1813557036039cd87237328fab7ccc4726af09b0
+   8bd110c709a401022001215820734e69eef04a6cad9bed89125d93f34be486a6
+   0b0e1f98b4618a9007e3ecca4522582078d12b527604315b84749e5ee07ad0a2
+   dcef9d3d614f9562eb034372720761690a28871a0a3827001a0a3c3d3f63446f
    65634a6179726a6179646f65406578616d706c652e6f7267a601782331323334
    204d61696e2053742e0a416e79746f776e2c2043412031323334350a55534102
    6d31323334204d61696e2053742e0367416e79746f776e046243410565393032
-   31300663555341f5885840acc7e54698dc639847396d93a5d574fc4f6b621344
-   a88105caa23410ca9134837ed8d55875f2a1b997a058d444beea85bfbaf3327a
-   ae0e6af2f5103c8de75b065840a2d1737f168ba0e20efa8606777c0aed8a924d
-   832eaac309340c9bde62cdc4a5e5a0b322664f08fb08ea312ddabfa472d1e289
-   d9080b9bae4a12c063b7e82e4358404ec8e2a1624a9b94ebad4525ea3c8997dc
-   1207cfad877f0533f99d25d270e6d865f264cb8cf6be0902adaec5e104586c30
-   b56afe0e45d1ca8f13e191e24c67c258400ee5571be6055256677585cfecd8fb
-   ad5a591dd6dc904983a6c86c59a700ade0786aec01b4586cbb016b2480b3aad2
-   639bc93a175443ecea1c1cb0b8e758dbe85840cea2fd532d43e7830ea84c5771
-   ed887082934ec4c96f69fe18d8192556e80787b4845aa428308b5a94ce72583d
-   320e6ba0e77fa061d708aec10ed52f4869dfda584038df9c33c86ef32654e1ff
-   6e95747d439b65933d7541143107f0fcf93a98ef9866f05ee9fd012e60ebf94d
-   6041c231eac20ff0a094284ad363553322c1ef9cb1584052a24fdab32e152817
-   4fe94e2ce7ce4abc21c26d3ea376ef6c5d5e84bd0f747a49be21bb639367cf73
-   a7075298342a0596f70f13539132f9c48cd2055295639f5840172299412f08af
-   9e3713d4b0d487e2f9570a9aea577d0cc08a68cc3c2657d08f56ebd5532ff11e
-   17efa8d27d78df2acc096464e925f35ac1bfa00d5b53708d48
+   31300663555341f58858407e01d6451ebf5a1f5e57969bf86f393f133badc2c8
+   db2a0f81b24e6228b736512da2da1b54a06b3d4746600bcedf502b6a50172b5c
+   8cf072389fd15d3b2bf27b584026197b8e610c2724f9993a26309fa07aba2a20
+   b431c6e1a25f3bd5a0a90a390ed03dc35d43adb316af0bf5e12d3ee650c1020c
+   f7b0c4db31dacf1c99205f543b58409467943fe4a5eb5c2c4810a8f00ebb879f
+   b1af8ec6ddf21cebbfe494acb97457b7ebc975c15a8f751f71f3f8b03c8c18be
+   2a523dac11eeb60a7a85310385ba945840c221616f2c409635fbe894531d9b36
+   83841c535cc56d81ae0ffaea134448273d1b38c278b8a14abbe643ea8df7b3c1
+   16392cbe399da217816000d19a4618fcc8584049e2fecad4ad99c5f8b27a455c
+   25e6e5fbafd5a3ed0cae931ca76798d22744bed3882f3933dea340395c28ebe1
+   8cd6e2f233fed93635a51e15a484fa1b2403445840499436166ca2a74b5b8ab7
+   5a67e593eacbcd9f558be996fde57a3ba9b68b8fc185a8f262c02274fa577ff1
+   f171ea0e2cbb0cd22a40e50d35c5176f06453b52075840144296a5ccb2cdc8bf
+   cc773cf058343020051d082f2dcd0719acb355167247d878192b72c01c032f9e
+   0b716a8509449bf97ace8728d5fcfabd4921c45571af0e584008421cf5ec9bf3
+   719ece121521d51694784b53182482c09a35abce52a5ad8913a6e43819c4c092
+   79bb800d78d541d4844c662a402d51440e7fa3140927e5a007
 
    |  Fixtures: Issued Form (SU-ES256, CBOR)
 
@@ -1462,42 +1457,42 @@ A.2.  Example CBOR-Serialized Single-Use CPT
    {          / protected header /
      1: 1,    / alg: "SU-ES256" /
      6: "https://recipient.example.com", / aud /
-     7: h'27809e84727ab0e91c059c1b4dbf76f1ffd055ff354d77c5cbc26e0f3a81d766', / nonce /
+     7: h'9e5e0cabb689975fcfe91068d8bb8a441ba5646915c3cb980d3b5ad46387683e', / nonce /
    }
 
-   |  Figure: Holder Protected Header (SU-ES256, CBOR)
+   |  Figure: Presentation Header (SU-ES256, CBOR)
 
    When the appropriate proof is generated, the CPT is serialized into
    the following CBOR (in hex):
 
    845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-   6c652e636f6d07582027809e84727ab0e91c059c1b4dbf76f1ffd055ff354d77
-   c5cbc26e0f3a81d76658cfa701010314057668747470733a2f2f697373756572
+   6c652e636f6d0758209e5e0cabb689975fcfe91068d8bb8a441ba5646915c3cb
+   980d3b5ad46387683e58cfa701010314057668747470733a2f2f697373756572
    2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-   08a40102200121582095c8734620eba1dfdce378effca401aee71a0f3b6e9ed4
-   d0f4dcaa36c0196cf222582026d5112f9e369c1e3b2fd6b09e7ab8417bb722b0
-   3cd6fed713c092dd76fc16a809a4010220012158202b8b6a0d4d73cff55a6a12
-   60076b2ae8eb5090526ad133531cd90079019f76ad22582027a555ca4e559eb2
-   901d918fa1321bcacf5485fa43ecb1d4dad3bf4d3c6496a10a28891a0a382700
+   08a401022001215820a89d4ef73203df07ac61370c9ff30cb97b44313e7dfaa1
+   33fb95816e2b9e618d225820640d1b28304e1dbc1813557036039cd87237328f
+   ab7ccc4726af09b08bd110c709a401022001215820734e69eef04a6cad9bed89
+   125d93f34be486a60b0e1f98b4618a9007e3ecca4522582078d12b527604315b
+   84749e5ee07ad0a2dcef9d3d614f9562eb034372720761690a28891a0a382700
    1a0a3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267
    a601782331323334204d61696e2053742e0a416e79746f776e2c204341203132
    3334350a555341026d31323334204d61696e2053742e0367416e79746f776e04
-   624341056539303231300663555341f5f6f6875840acc7e54698dc639847396d
-   93a5d574fc4f6b621344a88105caa23410ca9134837ed8d55875f2a1b997a058
-   d444beea85bfbaf3327aae0e6af2f5103c8de75b065840a2d1737f168ba0e20e
-   fa8606777c0aed8a924d832eaac309340c9bde62cdc4a5e5a0b322664f08fb08
-   ea312ddabfa472d1e289d9080b9bae4a12c063b7e82e4358404ec8e2a1624a9b
-   94ebad4525ea3c8997dc1207cfad877f0533f99d25d270e6d865f264cb8cf6be
-   0902adaec5e104586c30b56afe0e45d1ca8f13e191e24c67c258400ee5571be6
-   055256677585cfecd8fbad5a591dd6dc904983a6c86c59a700ade0786aec01b4
-   586cbb016b2480b3aad2639bc93a175443ecea1c1cb0b8e758dbe85840cea2fd
-   532d43e7830ea84c5771ed887082934ec4c96f69fe18d8192556e80787b4845a
-   a428308b5a94ce72583d320e6ba0e77fa061d708aec10ed52f4869dfda584038
-   df9c33c86ef32654e1ff6e95747d439b65933d7541143107f0fcf93a98ef9866
-   f05ee9fd012e60ebf94d6041c231eac20ff0a094284ad363553322c1ef9cb158
-   409d1e65387c495e88e9f5fc1af4b1e23b3953a2107dc42e7ba42057e4f6a0f0
-   abea05c8c243ad9db463bc140f6a90b23924a5b1f8da6271940655d8c9fb778c
-   28
+   624341056539303231300663555341f5f6f68758407e01d6451ebf5a1f5e5796
+   9bf86f393f133badc2c8db2a0f81b24e6228b736512da2da1b54a06b3d474660
+   0bcedf502b6a50172b5c8cf072389fd15d3b2bf27b584026197b8e610c2724f9
+   993a26309fa07aba2a20b431c6e1a25f3bd5a0a90a390ed03dc35d43adb316af
+   0bf5e12d3ee650c1020cf7b0c4db31dacf1c99205f543b58409467943fe4a5eb
+   5c2c4810a8f00ebb879fb1af8ec6ddf21cebbfe494acb97457b7ebc975c15a8f
+   751f71f3f8b03c8c18be2a523dac11eeb60a7a85310385ba945840c221616f2c
+   409635fbe894531d9b3683841c535cc56d81ae0ffaea134448273d1b38c278b8
+   a14abbe643ea8df7b3c116392cbe399da217816000d19a4618fcc8584049e2fe
+   cad4ad99c5f8b27a455c25e6e5fbafd5a3ed0cae931ca76798d22744bed3882f
+   3933dea340395c28ebe18cd6e2f233fed93635a51e15a484fa1b240344584049
+   9436166ca2a74b5b8ab75a67e593eacbcd9f558be996fde57a3ba9b68b8fc185
+   a8f262c02274fa577ff1f171ea0e2cbb0cd22a40e50d35c5176f06453b520758
+   4051d0c5921ba63ca3bdf970705c06c33beff7a945f78a4ce6a6fa4b1058d87d
+   e4aaec15cc97b39b806b9bc1a10a839e07d695f767eb26eb806245a34e7e25da
+   f7
 
    |  Figure: Presented Form (SU-ES256, CBOR)
 
@@ -1512,13 +1507,13 @@ A.3.  Example BBS JWP
      "alg": "BBS",
      "use": "proof",
      "crv": "BLS12381G2",
-     "x": "DN4uYCuyyFBMG9OVWnZQt6nvfkBeR_X77PZrvdC_pmjDe3lq-0JJ32GTC4OWa
-          OlEAtkNgXo6K49P5kZp46JH_N5CW0_dwAB_Bu7Q1mIB7PvvCgCbzlooAYwOLOX
-          trLo_",
-     "y": "CfKsTZcZDNtv9qNpJM3N-7chH2Zu9ATOfnZg72_Jx9vdiETzBw8KKlOZgTzj5
-          UslCIMz09y5mKsjsgF5JIWFZsXkRZp4d-GHBWusAVuhrYoGQJoRUw7aWYj5dgK
-          fUuR-",
-     "d": "bn5fYDakUfg5iB8fu1QRVk46h8WQFkRlU7tgv4RCE6I"
+     "x": "GQDoOqDdFbsWyEFD6huHwM6LxJJlh9TPFs6AQ8gbtsTGr0YjSBCdYIKQGE6Lr
+          hWPCHJMXMxum4SrrwIw23CkeT3AN7HGsWDBPivhlzzQHWm7yKiqv6gbbJWsKpR
+          xb5Ad",
+     "y": "GSPc5f_sK0EU0E4TTEPR_osYZYEt_9Eljve8Y13nvoVeAbvUDKqFrKhcFYPFJ
+          4UvCeh2v7rJ6UuZHfOFTYLf0UCPFI4Nrdm18SSyOecOcO5mepLI1Ar0g0fytOh
+          SLAoa",
+     "d": "W-Due3FOMkLqPfHVRoDahO70I7ogslx7dMHL-kI0mTg"
    }
 
                   Figure 10: BBS private key in JWK format
@@ -1532,7 +1527,7 @@ A.3.  Example BBS JWP
      "alg": "BBS"
    }
 
-                 Figure 11: Example issuer protected header
+                      Figure 11: Example Issuer Header
 
    These components are signed using the private issuer key previously
    given, which is then representable in the following serialization:
@@ -1542,13 +1537,13 @@ A.3.  Example BBS JWP
    eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
    3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
    wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-   zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.qgp3rbLKfQB62OzWkFzcy_XVWCZ1PDbTRa
-   BXLxEBaH2tn0AjFmWIbZ2-0INRH8q1NCjkLuFpS2XWL7nkZiluN5Ci1z1X1182Or3aTkB
-   0i7w
+   zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.iES1iL4h0UAW5KE3Vqb7JKnB7OJjnNUc2B
+   gRrSXRmGByp_XzHd0EVzY6BAQgUe8EHg82rNi-5JPmRLfRIOLQejLmmVUE9O8zBTtV-9a
+   U-UI
 
           Figure 12: Issued JWP (BBS, JSON, Compact Serialization)
 
-   For a presentation with the following presentation header:
+   For a presentation with the following Presentation Header:
 
    {
        "alg": "BBS",
@@ -1556,7 +1551,7 @@ A.3.  Example BBS JWP
        "nonce": "wrmBRkKtXjQ"
    }
 
-                   Figure 13: Holder Presentation Header
+                       Figure 13: Presentation Header
 
    The holder decides to share all information other than the email
    address, and generates a proof.  That proof is represented in the
@@ -1565,14 +1560,14 @@ A.3.  Example BBS JWP
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.s_W7lIz_qO5AKI6jimPufW5GxfnJN-umYwyH7gIM
-   hxmBKQGapXohXAoMk6rmV0YbpH1Ue5SJLPIlWBVz74SBo5QJRZo9-wjnncR8taHLIL95Z
-   TVHHq2l5ewx5hjZ2sxlsvpC240Wj4zq3K9H60dNeknVWnJy_H_axg8GfFkgRExUpOmNTc
-   GQAVe3eJZbPVjKSizeqeHnMNm2hLE5spXhDsWjwYc09i9AYI-sm4JpNF9TOekGVQqSiNe
-   4DI7iJ2n01Pj5PRhwugqhWJZVqswFQhX-kmHY-DK2QJdKU8K4qwkZPiIQvxXown30fNax
-   -VbOBPx2uoFsCTB2JpM1p-q0fIL7IsxR3cKOPRnEhs8l7oxp2Rvwl3PzphtMUJj2h4-2e
-   ka547aiExK8f8lxx9g7uRn40374rbC4honrSWugCuROC5wYdm_zB63HFQUnScuOF70uew
-   jhnZvSaHaHqZh379e8Pb6IYncqlpxachrbZnU
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qmEyCpzTnuW5j8GTzbcXx1V54hOYkFs8-hd6o5bf
+   p4ymfiap9nfMIZTnTIdrc4nqgZUtUysn85IeqmpkTow46rTSz38mhnCjGccwxQR5X8dxH
+   21dvv98onXV4EnnWJv0ggk3C04R0IwExhApjyA8k3nIess7TOL1rcByDHoI3uROiwZ27z
+   bnS523EqlaudMIRXG-iz-bHvvVtncT9O0qAriJKsKVZ71P2c6TcrJTDbpUNy9pjlRBXru
+   kT4L_NSxp3EEMEtwv8oiwimictPh1Hw_oha0WkTX2tb0gdXw3itX84dwkCM2uJR56BT3U
+   W_NYNepnNYC-MobLt6gPz9zeCyW0RTInf8pWe_dSsGwVNI1Vk1gIAfpSPP-2WpFxzATe8
+   RTUQpglDyIrq4Ap64nJ9HLh6mO56ZO6LVqkO9QocJmqRtrPsf5UL-LFctxDptvcSrDt7H
+   blsNsObF1QaWOKppE5Rs0OQOZPP06EfYTH5dQ
 
        Figure 14: Presentation JWP (BBS, JSON, Compact serialization)
 
@@ -1585,16 +1580,16 @@ A.4.  Example MAC JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "zqnz4f9wB-TfD8EOzkc1ykoYbxkI00d-0T_x8mVcMjc",
-     "y": "stYepPS05qjO9IfwvfBIyhZg55F2CnLEFGv5FuQQ0xo",
-     "d": "2_7n0GqdwP9mf-wSfRTkVR33P98sU8N6sr5dfdH_q-8"
+     "x": "9xcP5HK_8qK5x3hQHB047oa1QOv0sLJ9VqNwuMehPsk",
+     "y": "6rbeFHmk1iAW-ZAsTdVGBUp3MbjxaoOZjswabQcmJ2Q",
+     "d": "_w87Rg80iMs-ePxz_jegGyKH74gWf2WnN--VTM_dw6I"
    }
 
                        Figure 15: Issuer private key
 
    This is the Issuer's ephemerally generated shared secret:
 
-   "jsPM6EdGQjf81DbJKcKP7blqHeLMEDn6T38LOizrabI"
+   "QEl4Hf1YdGKBptV8cNfiNRjSK6pynGpS3aj6nE0_6cs"
 
                           Figure 16: Shared Secret
 
@@ -1603,14 +1598,14 @@ A.4.  Example MAC JWP
    {
      "kty": "EC",
      "crv": "P-256",
-     "x": "K4tqDU1zz_VaahJgB2sq6OtQkFJq0TNTHNkAeQGfdq0",
-     "y": "J6VVyk5VnrKQHZGPoTIbys9UhfpD7LHU2tO_TTxklqE",
-     "d": "a0loMsMEiim7km-sTog3Ui7eWpDTP2Pf4zt9bOAKcwg"
+     "x": "c05p7vBKbK2b7YkSXZPzS-SGpgsOH5i0YYqQB-PsykU",
+     "y": "eNErUnYEMVuEdJ5e4HrQotzvnT1hT5Vi6wNDcnIHYWk",
+     "d": "nvQa8LZaBobh1r8iSzdWwDfulz-tEvHUvp2hlk_Tbfk"
    }
 
                        Figure 17: Holder private key
 
-   For the following protected header and array of payloads:
+   For the following Header and array of payloads:
 
    {
      "alg": "MAC-H256",
@@ -1630,12 +1625,12 @@ A.4.  Example MAC JWP
        "kty": "EC",
        "crv": "P-256",
        "use": "sign",
-       "x": "K4tqDU1zz_VaahJgB2sq6OtQkFJq0TNTHNkAeQGfdq0",
-       "y": "J6VVyk5VnrKQHZGPoTIbys9UhfpD7LHU2tO_TTxklqE"
+       "x": "c05p7vBKbK2b7YkSXZPzS-SGpgsOH5i0YYqQB-PsykU",
+       "y": "eNErUnYEMVuEdJ5e4HrQotzvnT1hT5Vi6wNDcnIHYWk"
      }
    }
 
-                 Figure 18: Example issuer protected header
+                      Figure 18: Example Issuer Header
 
    [
        1714521600,
@@ -1664,13 +1659,13 @@ A.4.  Example MAC JWP
    This results in the following set of derived keys:
 
    [
-     "AenmBQ61kvZcoX6j9Lr8He6DaHuRBBOIunQPREXnS8Q",
-     "0EnRxQCn3aaSXDlC-mR4T6dxPlXQFWMlFM0bdW62H-E",
-     "nWgtu8OGoMoUyGEUWUGhK7Fe-wo8shFmnHjFkkjlfo8",
-     "tuSOTlqTeMt9rVv90j_RQydCGPX6h0T7Gw4Jfka1rnM",
-     "_alJJ-mxHCPDMvUHlYo5qdQ_Pu8p1VzlfqSYgif8XQM",
-     "Ms6-mbxtuGbr7w_bI_piwztGVxSB_b7WR7DN4VM97RE",
-     "q5JnJ1M8RZ9XpTF_kOGUHE47K-yKIedQYKZXoJu-HaA"
+     "v5F11WMUPTTxSSH3jGwsZWc9HUHemW6ciO9U0Ooa3FI",
+     "8rWAlUgk9LWfYOMbF0iP1moTw3RRlv6t1o2XXVU1_Wk",
+     "k6mQ0nHjiUJgJdaaW79hvuL1bLwbWVPHZXNaUzCoXmE",
+     "PeXMrQLwXdKGxWl38M7a2z9RF3I1uA8tu3D2DX8Ctp8",
+     "0FGP3HCvXZrCQknzF9WzFYikLmHbk9Zv0L48I4BXWDg",
+     "gFTy6SRPKxSrIw2kjx0mZ6hBu7aq5CbE8W1j79nqGpo",
+     "9e20jQvuW0pnBSl-fL_PbeEzJZ8XcE72vPUo9AUYk04"
    ]
 
             Figure 20: Derived payload keys (Base64url-Encoded)
@@ -1679,28 +1674,28 @@ A.4.  Example MAC JWP
    payload key.  This results in the following set of MAC values:
 
    [
-     "DJf-rRwbOmmNjWM8VyC4pB1FKtif2BCJbeVD-0Pboc0",
-     "LlJx-Alz0ba-J49eIcXdjI57_6n4zmm1_rXm7jZgs8o",
-     "h_ca-_qQ94iCQ3LFzHJJM46FRt6sbbugNdAIQINaXSE",
-     "zI--Yzjt5LjwIfBkguzAH4GtyLNY4UUs9SP0mjFUvjg",
-     "tWD4InBOxV1s4_4RMeROmfTPh6LAIO-r-ioagRXLl5E",
-     "IrNOkPMfETW5ReUtnNKv7Wte_6L6Irk78mbc4_SSREM",
-     "-X54AZTiSkCiHCJ_cS6WUSnk05RB6jbHG4YDVldoJp0"
+     "X_Vfa9oafcbGS1RQb7_aKpgrhFVe2PzQRhNC5FX9pcc",
+     "VOONUdV4gO1ij7yLzkAaEofHGo3wj9puZjfMvHFezqg",
+     "GM00t7tAu7wJRpJb7LQ8yhqUD9VZq0es4Ua4VbgUXQ4",
+     "cT56Z1wbjWwf4dZ05Wf9ZmoDhEDd_j2nLbju8tk4scg",
+     "a2vKauld9sd-S5yhQINlRumV77Pvd31OWf2hpBNsLNA",
+     "OpbtfZFaN74U05cLVordYbz2vaFzx4MjMhUcMDRzLlQ",
+     "hffY9nPFaSwz9DsL9OwoEJ6pLDWcI0BDQzKT7ZXiMkk"
    ]
 
              Figure 21: Payload MAC values (Base64url-Encoded)
 
-   The issuer protected header and payload MAC values are combined into
-   a binary representation known as the Compact MAC Representation.
-   This representation is signed with the issuer's private key.
+   The Issuer Header and payload MAC values are combined into a binary
+   representation known as the Compact MAC Representation.  This
+   representation is signed with the issuer's private key.
 
    The proof consists of two octet string values: the signature over the
    combined MAC representation, and the shared secret.
 
    [
-     "UuMk61cJ2iA4QbTrmcf2FgSsS0AaWfwKs1Zqd3aCJKOuB0dE0xxxz0F6f5DSLV-d5Z
-   xqjjEaWIeVL8cnlS4cNQ",
-     "O_fwiZWOg9lVa4d4tGqWmH9ZV2pjJ8HLoZ-haxHyBOE"
+     "YlOdt3EJpQpMPwJODLKXXFSZArINFG9wL88MF8Vr5E5jI98ijdrAXzR65fTv4pgr7_
+   cJtEZsfcWOM3tbtWhFUw",
+     "S3PyEleage0bOpBf3TKuL5VCoeTXYHb_dvfjKJe1eiw"
    ]
 
                 Figure 22: Issued Proof (Base64url-Encoded)
@@ -1711,28 +1706,28 @@ A.4.  Example MAC JWP
    HR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
    lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
    dLCJocGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsInVzZSI6InNpZ24iLCJ4Ijoi
-   SzR0cURVMXp6X1ZhYWhKZ0Iyc3E2T3RRa0ZKcTBUTlRITmtBZVFHZmRxMCIsInkiOiJKN
-   lZWeWs1Vm5yS1FIWkdQb1RJYnlzOVVoZnBEN0xIVTJ0T19UVHhrbHFFIn19.MTcxNDUyM
+   YzA1cDd2QktiSzJiN1lrU1haUHpTLVNHcGdzT0g1aTBZWXFRQi1Qc3lrVSIsInkiOiJlT
+   kVyVW5ZRU1WdUVkSjVlNEhyUW90enZuVDFoVDVWaTZ3TkRjbklIWVdrIn19.MTcxNDUyM
    TYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJm
    b3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic
    3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIi
    wicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~
-   dHJ1ZQ.UuMk61cJ2iA4QbTrmcf2FgSsS0AaWfwKs1Zqd3aCJKOuB0dE0xxxz0F6f5DSLV
-   -d5ZxqjjEaWIeVL8cnlS4cNQ~O_fwiZWOg9lVa4d4tGqWmH9ZV2pjJ8HLoZ-haxHyBOE
+   dHJ1ZQ.YlOdt3EJpQpMPwJODLKXXFSZArINFG9wL88MF8Vr5E5jI98ijdrAXzR65fTv4p
+   gr7_cJtEZsfcWOM3tbtWhFUw~S3PyEleage0bOpBf3TKuL5VCoeTXYHb_dvfjKJe1eiw
 
        Figure 23: Issued JWP (MAC-H256, JSON, Compact Serialization)
 
    Next, we show the presentation of the JWP with selective disclosure.
 
-   For presentation with the following presentation protected header:
+   For presentation with the following Presentation Header:
 
    {
      "alg": "MAC-H256",
      "aud": "https://recipient.example.com",
-     "nonce": "J4CehHJ6sOkcBZwbTb928f_QVf81TXfFy8JuDzqB12Y"
+     "nonce": "nl4Mq7aJl1_P6RBo2LuKRBulZGkVw8uYDTta1GOHaD4"
    }
 
-                  Figure 24: Presentation Protected Header
+                       Figure 24: Presentation Header
 
    The holder will take the issuer proof (including shared secret) and
    derive the same individual payload MAC values (above).
@@ -1747,22 +1742,22 @@ A.4.  Example MAC JWP
    the holder will provide the corresponding MAC value.
 
    The final presented proof value is an array of octet strings.  The
-   contents are presentation header signature, followed by the issuer
+   contents are Presentation Header signature, followed by the issuer
    signature, then the value disclosed by the holder for each payload.
    This results in the following proof:
 
    [
-     "UuMk61cJ2iA4QbTrmcf2FgSsS0AaWfwKs1Zqd3aCJKOuB0dE0xxxz0F6f5DSLV-d5Z
-   xqjjEaWIeVL8cnlS4cNQ",
-     "AenmBQ61kvZcoX6j9Lr8He6DaHuRBBOIunQPREXnS8Q",
-     "0EnRxQCn3aaSXDlC-mR4T6dxPlXQFWMlFM0bdW62H-E",
-     "nWgtu8OGoMoUyGEUWUGhK7Fe-wo8shFmnHjFkkjlfo8",
-     "tuSOTlqTeMt9rVv90j_RQydCGPX6h0T7Gw4Jfka1rnM",
-     "tWD4InBOxV1s4_4RMeROmfTPh6LAIO-r-ioagRXLl5E",
-     "IrNOkPMfETW5ReUtnNKv7Wte_6L6Irk78mbc4_SSREM",
-     "-X54AZTiSkCiHCJ_cS6WUSnk05RB6jbHG4YDVldoJp0",
-     "NP3NTYgBoFuCzQdqqdjn6wKRvwuuXaYXZYy-D5kFJNE-EnUH5ACMqvB7-FAKqQ9vse
-   VNwHBSCG-9oIRGHkY-eQ"
+     "YlOdt3EJpQpMPwJODLKXXFSZArINFG9wL88MF8Vr5E5jI98ijdrAXzR65fTv4pgr7_
+   cJtEZsfcWOM3tbtWhFUw",
+     "v5F11WMUPTTxSSH3jGwsZWc9HUHemW6ciO9U0Ooa3FI",
+     "8rWAlUgk9LWfYOMbF0iP1moTw3RRlv6t1o2XXVU1_Wk",
+     "k6mQ0nHjiUJgJdaaW79hvuL1bLwbWVPHZXNaUzCoXmE",
+     "PeXMrQLwXdKGxWl38M7a2z9RF3I1uA8tu3D2DX8Ctp8",
+     "a2vKauld9sd-S5yhQINlRumV77Pvd31OWf2hpBNsLNA",
+     "OpbtfZFaN74U05cLVordYbz2vaFzx4MjMhUcMDRzLlQ",
+     "hffY9nPFaSwz9DsL9OwoEJ6pLDWcI0BDQzKT7ZXiMkk",
+     "Q5cpNqCZoNCptVYb3OTgnjNPZY4eSYMWaBRGXzvhSQDangzVuPVFh2AIlUnYDQJNgZ
+   dVpZKvwOx4tXuVpsQrjQ"
    ]
 
              Figure 25: Presentation proof (Base64url-Encoded)
@@ -1770,21 +1765,21 @@ A.4.  Example MAC JWP
    The final presented JWP in compact serialization is:
 
    eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-   29tIiwibm9uY2UiOiJKNENlaEhKNnNPa2NCWndiVGI5MjhmX1FWZjgxVFhmRnk4SnVEen
-   FCMTJZIn0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
+   29tIiwibm9uY2UiOiJubDRNcTdhSmwxX1A2UkJvMkx1S1JCdWxaR2tWdzh1WURUdGExR0
+   9IYUQ0In0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
    iaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAi
    LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
    3Zlcl8yMSJdLCJocGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsInVzZSI6InNpZ2
-   4iLCJ4IjoiSzR0cURVMXp6X1ZhYWhKZ0Iyc3E2T3RRa0ZKcTBUTlRITmtBZVFHZmRxMCI
-   sInkiOiJKNlZWeWs1Vm5yS1FIWkdQb1RJYnlzOVVoZnBEN0xIVTJ0T19UVHhrbHFFIn19
-   .MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.UuMk61cJ2iA4QbTrmcf
-   2FgSsS0AaWfwKs1Zqd3aCJKOuB0dE0xxxz0F6f5DSLV-d5ZxqjjEaWIeVL8cnlS4cNQ~A
-   enmBQ61kvZcoX6j9Lr8He6DaHuRBBOIunQPREXnS8Q~0EnRxQCn3aaSXDlC-mR4T6dxPl
-   XQFWMlFM0bdW62H-E~nWgtu8OGoMoUyGEUWUGhK7Fe-wo8shFmnHjFkkjlfo8~tuSOTlq
-   TeMt9rVv90j_RQydCGPX6h0T7Gw4Jfka1rnM~tWD4InBOxV1s4_4RMeROmfTPh6LAIO-r
-   -ioagRXLl5E~IrNOkPMfETW5ReUtnNKv7Wte_6L6Irk78mbc4_SSREM~-X54AZTiSkCiH
-   CJ_cS6WUSnk05RB6jbHG4YDVldoJp0~NP3NTYgBoFuCzQdqqdjn6wKRvwuuXaYXZYy-D5
-   kFJNE-EnUH5ACMqvB7-FAKqQ9vseVNwHBSCG-9oIRGHkY-eQ
+   4iLCJ4IjoiYzA1cDd2QktiSzJiN1lrU1haUHpTLVNHcGdzT0g1aTBZWXFRQi1Qc3lrVSI
+   sInkiOiJlTkVyVW5ZRU1WdUVkSjVlNEhyUW90enZuVDFoVDVWaTZ3TkRjbklIWVdrIn19
+   .MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.YlOdt3EJpQpMPwJODLK
+   XXFSZArINFG9wL88MF8Vr5E5jI98ijdrAXzR65fTv4pgr7_cJtEZsfcWOM3tbtWhFUw~v
+   5F11WMUPTTxSSH3jGwsZWc9HUHemW6ciO9U0Ooa3FI~8rWAlUgk9LWfYOMbF0iP1moTw3
+   RRlv6t1o2XXVU1_Wk~k6mQ0nHjiUJgJdaaW79hvuL1bLwbWVPHZXNaUzCoXmE~PeXMrQL
+   wXdKGxWl38M7a2z9RF3I1uA8tu3D2DX8Ctp8~a2vKauld9sd-S5yhQINlRumV77Pvd31O
+   Wf2hpBNsLNA~OpbtfZFaN74U05cLVordYbz2vaFzx4MjMhUcMDRzLlQ~hffY9nPFaSwz9
+   DsL9OwoEJ6pLDWcI0BDQzKT7ZXiMkk~Q5cpNqCZoNCptVYb3OTgnjNPZY4eSYMWaBRGXz
+   vhSQDangzVuPVFh2AIlUnYDQJNgZdVpZKvwOx4tXuVpsQrjQ
 
       Figure 26: Presented JWP (MAC-H256, JSON, Compact Serialization)
 
@@ -1802,7 +1797,11 @@ Appendix B.  Acknowledgements
 
 Appendix C.  Document History
 
-   [[ To be removed from the final specification ]]
+   [[ To be removed from the final specification ]] -11
+
+   *  Change Issuer Protected Header to Issuer Header
+   *  Change Presentation Protected Header and Holder Presentation
+      Header to Presentation Header
 
    -10
 

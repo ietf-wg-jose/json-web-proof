@@ -32,7 +32,7 @@ Abstract
    single payload, JWP can integrity-protect multiple payloads in one
    message.  It also specifies a new presentation form that supports
    selective disclosure of individual payloads, enables additional proof
-   computation, and adds a protected header to prevent replay.
+   computation, and adds a Presentation Header to prevent replay.
 
 Status of This Memo
 
@@ -72,62 +72,63 @@ Table of Contents
      2.1.  Terminology
      2.2.  Abbreviations
    3.  Background
-   4.  JWP Header
-     4.1.  Header Parameter Labeling Requirements
-     4.2.  Registered Header Parameter Labels
-       4.2.1.  "alg" (Algorithm) Header Parameter
-       4.2.2.  "kid" (Key ID) Header Parameter
-       4.2.3.  "typ" (Type) Header Parameter
-       4.2.4.  "crit" (Critical) Header Parameter
-       4.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
-       4.2.6.  "hpk" (Holder Presentation Key) Header Parameter
-       4.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
-       4.2.8.  "iss" (Issuer) Header Parameter
-       4.2.9.  "aud" (Audience) Header Parameter
-       4.2.10. "nonce" (Nonce) Header Parameter
-     4.3.  Public Header Parameter Names
-     4.4.  Private Header Parameter Names
-   5.  JWP Forms
-     5.1.  Issued Form
-       5.1.1.  Issuer Protected Header
-       5.1.2.  Issuer Payloads
-       5.1.3.  Issuer Proof
-     5.2.  Presented Form
-       5.2.1.  Presentation Protected Header
-       5.2.2.  Presentation Payloads
-       5.2.3.  Algorithm Specific Proof Methods
-       5.2.4.  Presentation Proof
-   6.  Serializations
-     6.1.  Compact Serialization
-     6.2.  CBOR Serialization
-   7.  Encrypted JSON Web Proofs
-   8.  Detached Payloads
-   9.  Security Considerations
-   10. IANA Considerations
-     10.1.  JSON Web Proof Header Parameters Registry
-       10.1.1.  Registration Template
-       10.1.2.  Initial Registry Contents
-         10.1.2.1.  Algorithm Header Parameter
-         10.1.2.2.  Key ID Header Parameter
-         10.1.2.3.  Type Header Parameter
-         10.1.2.4.  Critical Header Parameter
-         10.1.2.5.  Issuer Header Parameter
-         10.1.2.6.  Audience Header Parameter
-         10.1.2.7.  Nonce Header Parameter
-         10.1.2.8.  Issuer Ephemeral Key Header Parameter
-         10.1.2.9.  Holder Presentation Key Header Parameter
-         10.1.2.10. Holder Presentation Algorithm Header Parameter
-     10.2.  Media Type Registry
-       10.2.1.  Registry Contents
-         10.2.1.1.  The application/jwp Media Type
-         10.2.1.2.  The application/cwp Media Type
-     10.3.  Structured Syntax Suffix Registry
-       10.3.1.  Registry Contents
-         10.3.1.1.  The +jwp Structured Syntax Suffix
-         10.3.1.2.  The +cwp Structured Syntax Suffix
-   11. References
-     11.1.  Normative References
-     11.2.  Informative References
+   4.  JSON Web Proof Header
+   5.  Header Parameter
+     5.1.  Header Parameter Labeling Requirements
+     5.2.  Registered Header Parameter Labels
+       5.2.1.  "alg" (Algorithm) Header Parameter
+       5.2.2.  "kid" (Key ID) Header Parameter
+       5.2.3.  "typ" (Type) Header Parameter
+       5.2.4.  "crit" (Critical) Header Parameter
+       5.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
+       5.2.6.  "hpk" (Holder Presentation Key) Header Parameter
+       5.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
+       5.2.8.  "iss" (Issuer) Header Parameter
+       5.2.9.  "aud" (Audience) Header Parameter
+       5.2.10. "nonce" (Nonce) Header Parameter
+     5.3.  Public Header Parameter Names
+     5.4.  Private Header Parameter Names
+   6.  JWP Forms
+     6.1.  Issued Form
+       6.1.1.  Issuer Header
+       6.1.2.  Issuer Payloads
+       6.1.3.  Issuer Proof
+     6.2.  Presented Form
+       6.2.1.  Presentation Header
+       6.2.2.  Presentation Payloads
+       6.2.3.  Algorithm Specific Proof Methods
+       6.2.4.  Presentation Proof
+   7.  Serializations
+     7.1.  Compact Serialization
+     7.2.  CBOR Serialization
+   8.  Encrypted JSON Web Proofs
+   9.  Detached Payloads
+   10. Security Considerations
+   11. IANA Considerations
+     11.1.  JSON Web Proof Header Parameters Registry
+       11.1.1.  Registration Template
+       11.1.2.  Initial Registry Contents
+         11.1.2.1.  Algorithm Header Parameter
+         11.1.2.2.  Key ID Header Parameter
+         11.1.2.3.  Type Header Parameter
+         11.1.2.4.  Critical Header Parameter
+         11.1.2.5.  Issuer Header Parameter
+         11.1.2.6.  Audience Header Parameter
+         11.1.2.7.  Nonce Header Parameter
+         11.1.2.8.  Issuer Ephemeral Key Header Parameter
+         11.1.2.9.  Holder Presentation Key Header Parameter
+         11.1.2.10. Holder Presentation Algorithm Header Parameter
+     11.2.  Media Type Registry
+       11.2.1.  Registry Contents
+         11.2.1.1.  The application/jwp Media Type
+         11.2.1.2.  The application/cwp Media Type
+     11.3.  Structured Syntax Suffix Registry
+       11.3.1.  Registry Contents
+         11.3.1.1.  The +jwp Structured Syntax Suffix
+         11.3.1.2.  The +cwp Structured Syntax Suffix
+   12. References
+     12.1.  Normative References
+     12.2.  Informative References
    Appendix A.  Acknowledgements
    Appendix B.  Document History
    Authors' Addresses
@@ -244,20 +245,19 @@ Table of Contents
    present, and verify.
 
    A JWP is initially created by the issuer using the issue interaction.
-   A successful result is an issued JWP that has a single issuer-
-   protected header, one or more payloads, and an initial proof value
-   that contains the issuing algorithm output.  The holder, upon
-   receiving an issued JWP, then uses the confirm interaction to check
-   the integrity protection of the header and all payloads using the
-   proof value.
+   A successful result is an issued JWP that has a single Issuer Header,
+   one or more payloads, and an initial proof value that contains the
+   issuing algorithm output.  The holder, upon receiving an issued JWP,
+   then uses the confirm interaction to check the integrity protection
+   of the Header and all payloads using the proof value.
 
    After validation, the holder uses the present interaction to apply
    any selective disclosure choices, perform privacy-preserving
-   transformations for unlinkability, and add a presentation-protected
-   header that ensures the resulting presented JWP cannot be replayed.
-   The verifier then uses the verify interaction to ensure the integrity
-   protection of the protected headers and any disclosed payloads, along
-   with verifying any additional ZKPs covering non-disclosed payloads.
+   transformations for unlinkability, and add a Presentation Header that
+   ensures the resulting presented JWP cannot be replayed.  The verifier
+   then uses the verify interaction to ensure the integrity protection
+   of the Headers and any disclosed payloads, along with verifying any
+   additional ZKPs covering non-disclosed payloads.
 
    While issue and confirm only occur when a JWP is initially created by
    the issuer, the present and verify steps may be safely repeated by a
@@ -270,13 +270,28 @@ Table of Contents
    Algorithms (JPA) [I-D.ietf-jose-json-proof-algorithms] specification
    defines how an initial set of algorithms are used with JWP.
 
-4.  JWP Header
+4.  JSON Web Proof Header
 
-   A JWP Header is a set of Header Parameters that apply to the JWP.
-   These Header Parameters may be specific to the proof applied to the
-   JWP, they may identify the party issuing the proof, and they may
-   describe the application purpose and format of the JWP, as well as
-   provide other potential metadata.
+   A Header consists of an integrity-protected set of Header Parameters
+   that apply to the JWP.
+
+   A Header is represented either as a JSON Object holding JSON-
+   formatted Header Parameters, or a CBOR map holding CBOR-formatted
+   Header Parameters.
+
+   In addition, there are two kinds of Headers - an Issuer Header (see
+   Section 6.1.1) supplied on issue by the issuer, and an additional
+   Presentation Header (see Section 6.2.1) supplied on present by the
+   holder.  Both Headers should have their integrity protected, and are
+   mandatory to present unmodified to the verifier.
+
+5.  Header Parameter
+
+   A Header Parameter is a name/value pair supplying information within
+   a Header in a JWP.  A Header Parameter may provide information
+   specific to the proof algorithm in use for the JWP, it may identify
+   the issuer of the proof, it may describe the application purpose or
+   format of the JWP, as well as provide other potential metadata.
 
    A Header Parameter may be represented as JSON or as CBOR.  When
    represented using JSON, each Header Parameter has a string label and
@@ -284,14 +299,14 @@ Table of Contents
    using CBOR, each parameter has either an integer (int) or string
    (tstr) label, and has a CBOR-structured value within a CBOR map.
 
-   The Header Parameter labels within the JWP Header MUST be unique.
-   CBOR processing MUST reject messages if two headers with the same
+   The Header Parameter labels within the Header MUST be unique.  CBOR
+   processing MUST reject messages if two Headers with the same
    parameter label are encountered.  JSON processing SHOULD reject
    messages received with the same parameter label, but MAY instead
    represent only the lexically last member with that label, as
    specified in Section 15.12 ("The JSON Object") of ECMAScript 5.1
    [ECMAScript].  JSON processing MUST take one of these two approaches
-   with regards to encountering duplicate header parameter labels.
+   with regards to encountering duplicate Header Parameter labels.
 
    Implementations are required to understand the specific Header
    Parameters defined by this specification that are designated as "MUST
@@ -299,16 +314,16 @@ Table of Contents
    specification.  All other Header Parameters defined by this
    specification that are not so designated MUST be ignored when not
    understood.  Unless listed as a critical Header Parameter, per
-   Section 4.2.4, all Header Parameters not defined by this
+   Section 5.2.4, all Header Parameters not defined by this
    specification MUST be ignored when not understood.
 
-4.1.  Header Parameter Labeling Requirements
+5.1.  Header Parameter Labeling Requirements
 
    As labels are the mechanism for semantically distinguishing parameter
    names, it is important to describe the mechanism to reduce the risk
    of conflicts.
 
-   There are three strategies for labeling header parameters:
+   There are three strategies for labeling Header Parameters:
 
    1.  Registered parameter labels.  These labels are coordinated
        through the IANA "JSON Web Proof Header Parameters" registry,
@@ -318,7 +333,7 @@ Table of Contents
        coordinated through IANA, but are otherwise namespaced to prevent
        conflict.  One example would be a string label representing the
        URI of a controlled resource, such as the HTTPS-hosted
-       documentation of the header parameter.
+       documentation of the Header Parameter.
 
    3.  Private parameter labels.  These labels are not coordinated
        through IANA or another party, but are expected to only be used
@@ -327,18 +342,18 @@ Table of Contents
    These classes of Header Parameters are intentionally parallel to
    those in Section 4 of [RFC7515].
 
-4.2.  Registered Header Parameter Labels
+5.2.  Registered Header Parameter Labels
 
    The following Header Parameter names for use in JWPs are registered
    in the IANA "JSON Web Proof Header Parameters" registry established
-   by Section 10.1, with meanings as defined in the subsections below.
+   by Section 11.1, with meanings as defined in the subsections below.
 
    As indicated by the common registry, Header Parameters used in the
-   Issued Form (see Section 5.1) and the Presented Form Section 5.2
-   share a common Header Parameter space; when a parameter is used by
-   both forms, its usage must be compatible between them.
+   Issuer Header (see Section 6.1) and the Presentation Header
+   Section 6.2 share a common Header Parameter space; when a parameter
+   is used by both forms, its usage must be compatible between them.
 
-4.2.1.  "alg" (Algorithm) Header Parameter
+5.2.1.  "alg" (Algorithm) Header Parameter
 
    The alg (algorithm) Header Parameter identifies the cryptographic
    algorithm used to secure the JWP.  The JWP Proof value is not valid
@@ -349,9 +364,9 @@ Table of Contents
    [I-D.ietf-jose-json-proof-algorithms] or be a value that contains a
    Collision-Resistant Name.
 
-   As a JSON-formatted header parameter, the alg value is a case-
+   As a JSON-formatted Header Parameter, the alg value is a case-
    sensitive ASCII string containing a StringOrURI value.  As a CBOR-
-   formatted header parameter, this value may also be an integer value.
+   formatted Header Parameter, this value may also be an integer value.
 
    The list of defined alg values for this use can be found in the IANA
    "JSON Web Proof Algorithms" registry established by
@@ -360,7 +375,7 @@ Table of Contents
 
    Use of this Header Parameter is REQUIRED.
 
-4.2.2.  "kid" (Key ID) Header Parameter
+5.2.2.  "kid" (Key ID) Header Parameter
 
    The kid (Key ID) Header Parameter is a hint indicating which key was
    used to secure the JWP.  This parameter allows originators to
@@ -368,17 +383,17 @@ Table of Contents
 
    The structure of the kid value is unspecified.
 
-   When kid is used for a JSON Protected Header, its value MUST be a
+   When kid is used for a JSON-formatted Header, its value MUST be a
    case-sensitive string.  When referencing a JWK, the kid value is
    matched to the JWK kid parameter value.
 
-   When kid is used for a CBOR Protected Header, its value is a binary
+   When kid is used for a CBOR-formatted Header, its value is a binary
    string.  When referencing a COSE Key, the kid value is matched to the
    COSE_Key kid structure member.
 
    Use of this Header Parameter is OPTIONAL.
 
-4.2.3.  "typ" (Type) Header Parameter
+5.2.3.  "typ" (Type) Header Parameter
 
    The typ (type) Header Parameter is used by JWP applications to
    declare the media type [IANA.MediaTypes] of this complete JWP.  This
@@ -391,7 +406,7 @@ Table of Contents
    processing of this parameter is performed by the JWP application.
    Use of this Header Parameter is OPTIONAL.
 
-   For COSE Protected Headers, typ MAY also instead be an integer value
+   For COSE-formatted Headers, typ MAY also instead be an integer value
    which corresponds to the IANA "CoAP Content-Formats" registry
    [IANA.CoAP.Formats], which describes the corresponding media type, as
    described in [RFC9596].
@@ -418,14 +433,14 @@ Table of Contents
    typing, in parallel to the recommendations in Section 3.11 of
    [RFC8725].
 
-4.2.4.  "crit" (Critical) Header Parameter
+5.2.4.  "crit" (Critical) Header Parameter
 
    The crit (critical) Header Parameter indicates that extensions to
    this specification and/or [I-D.ietf-jose-json-proof-algorithms] are
    being used that MUST be understood and processed.  Its value is an
    array listing the Header Parameter labels present in the JWP Header
-   that use those extensions.  For JSON Protected Headers this is a list
-   of strings, while for CBOR protected headers it is a list containing
+   that use those extensions.  For JSON-formatted Headers this is a list
+   of strings, while for CBOR-formatted Headers it is a list containing
    string and/or int values.
 
    If any of the listed extension Header Parameters are not understood
@@ -433,26 +448,25 @@ Table of Contents
    MUST NOT include Header Parameter names defined by this specification
    or [I-D.ietf-jose-json-proof-algorithms] for use with JWP, duplicate
    names, or names that do not occur as Header Parameter names within
-   the JWP Header in the crit list.  Producers MUST NOT use the empty
-   list [] as the crit value.  Recipients MAY consider the JWP to be
-   invalid if the critical list contains any Header Parameter names
-   defined by this specification or
-   [I-D.ietf-jose-json-proof-algorithms] for use with JWP or if any
-   other constraints on its use are violated.  When used, this Header
-   Parameter MUST be integrity protected; therefore, it MUST occur only
-   within the JWP Protected Header.  Use of this Header Parameter is
-   OPTIONAL.  This Header Parameter MUST be understood and processed by
-   implementations.
+   the Header in the crit list.  Producers MUST NOT use the empty list
+   [] as the crit value.  Recipients MAY consider the JWP to be invalid
+   if the critical list contains any Header Parameter names defined by
+   this specification or [I-D.ietf-jose-json-proof-algorithms] for use
+   with JWP or if any other constraints on its use are violated.  When
+   used, this Header Parameter MUST be integrity protected; therefore,
+   it MUST occur only within the Header.  Use of this Header Parameter
+   is OPTIONAL.  This Header Parameter MUST be understood and processed
+   by implementations.
 
-4.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
+5.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
 
    The iek (Issuer Ephemeral Key) represents the public key used by the
    issuer for indirect signatures within certain algorithms.  This is an
    ephemeral key that MUST be unique for each issued JWP.
 
-   This header parameter is references a JSON Web Key (JWK) public key
-   value when represented as a JSON Protected Header, and a COSE Key
-   Object when represented as a CBOR Protected Header.
+   This Header Parameter is references a JSON Web Key (JWK) public key
+   value when represented as a JSON-formatted Header, and a COSE Key
+   Object when represented as a CBOR-formatted Header.
 
    It MUST contain only public key parameters and SHOULD contain only
    the minimum parameters necessary to represent the key; other
@@ -462,19 +476,19 @@ Table of Contents
    When present, this Header Parameter MUST be understood and processed
    by implementations.
 
-4.2.6.  "hpk" (Holder Presentation Key) Header Parameter
+5.2.6.  "hpk" (Holder Presentation Key) Header Parameter
 
    The hpk (Holder Presentation Key) represents the public key with
    certain algorithms, and is used by the holder for proof of possession
-   and integrity protection of the presented protected header.
+   and integrity protection of the Presented Header.
 
    The issuer MUST validate that the holder has possession of this key
    through a trusted mechanism, such as requiring the signature of a
    unique nonce value from the holder before issuing the JWP.
 
-   This header parameter is references a JSON Web Key (JWK) public key
-   value when represented as a JSON Protected Header, and a COSE Key
-   Object when represented as a CBOR Protected Header.
+   This Header Parameter is references a JSON Web Key (JWK) public key
+   value when represented as a JSON-formatted Header, and a COSE Key
+   Object when represented as a CBOR-formatted Header.
 
    It MUST contain only public key parameters and SHOULD contain only
    the minimum parameters necessary to represent the key; other
@@ -488,7 +502,7 @@ Table of Contents
    This Header Parameter MUST be understood and processed by
    implementations when present.
 
-4.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
+5.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
 
    The hpa (Holder Presentation Algorithm) Header Parameter represents
    the algorithm to be used by the holder for presenting a JWP when
@@ -499,13 +513,13 @@ Table of Contents
    other means.
 
    This Header Parameter references the name of a JSON Web Algorithm
-   (JWA) when represented as a JSON Protected Header, and an integer or
-   text value when represented as a CBOR Protected Header.
+   (JWA) when represented as a JSON-formatted Header, and an integer or
+   text value when represented as a CBOR-formatted Header.
 
    This Header Parameter MUST be understood and processed by
    implementations when present.
 
-4.2.8.  "iss" (Issuer) Header Parameter
+5.2.8.  "iss" (Issuer) Header Parameter
 
    The iss (issuer) Header Parameter identifies the principal that
    issued the JWP.  The processing of this claim is generally
@@ -517,7 +531,7 @@ Table of Contents
 
    Use of this Header Parameter is OPTIONAL.
 
-4.2.9.  "aud" (Audience) Header Parameter
+5.2.9.  "aud" (Audience) Header Parameter
 
    The aud (audience) Header Parameter identifies the recipients that
    the JWP is intended for.  Each principal intended to process the JWP
@@ -538,7 +552,7 @@ Table of Contents
 
    Use of this Header Parameter is OPTIONAL.
 
-4.2.10.  "nonce" (Nonce) Header Parameter
+5.2.10.  "nonce" (Nonce) Header Parameter
 
    The nonce (nonce) Header Parameter is used to associate protocol
    state with a presented JWP.  Usage is protocol-specific, but examples
@@ -546,22 +560,22 @@ Table of Contents
    prevent replay, or for associating a JWP back to the context where it
    was requested.
 
-   When used as a JSON Protected Header, the value is a case-sensitive
+   When used as a JSON-formatted Header, the value is a case-sensitive
    string value.
 
-   When used as a CBOR Protected Header, the value is a binary string.
+   When used as a CBOR-formatted Header, the value is a binary string.
 
    This definition is intentionally parallel to the nonce claim
    registered in the IANA "JSON Web Token Claims" registry [IANA.JWT].
 
    Use of this Header Parameter is OPTIONAL.
 
-4.3.  Public Header Parameter Names
+5.3.  Public Header Parameter Names
 
    Additional Header Parameter names can be defined by those using JWPs.
    However, in order to prevent collisions, any new Header Parameter
    name should either be registered in the IANA "JSON Web Proof Header
-   Parameters" registry established by Section 10.1 or be a Public Name
+   Parameters" registry established by Section 11.1 or be a Public Name
    (a value that contains a Collision-Resistant Name).  In each case,
    the definer of the name or value needs to take reasonable precautions
    to make sure they are in control of the part of the namespace they
@@ -570,24 +584,22 @@ Table of Contents
    New Header Parameters should be introduced sparingly, as they can
    result in non-interoperable JWPs.
 
-4.4.  Private Header Parameter Names
+5.4.  Private Header Parameter Names
 
    A producer and consumer of a JWP may agree to use Header Parameter
    names that are Private Names (names that are not Registered Header
-   Parameter labels Section 4.2 or Public Header Parameter names
-   Section 4.3.)  Unlike Public Header Parameter names, Private Header
+   Parameter labels Section 5.2 or Public Header Parameter names
+   Section 5.3.)  Unlike Public Header Parameter names, Private Header
    Parameter names are subject to collision and should be used with
    caution.
 
-5.  JWP Forms
+6.  JWP Forms
 
    A JWP is always in one of two forms: the issued form or the presented
    form.  A structural difference between the two forms is the number of
-   protected headers.  An issued JWP has only one issuer protected
-   header, while a presented JWP will have both the issuer protected
-   header and an additional presentation protected header.  Each
-   protected header is a JSON object that is serialized as a UTF-8
-   encoded octet string.
+   Headers.  An issued JWP has only an Issuer Header, while a presented
+   JWP will have both the Issuer Header and an additional Presentation
+   Header.
 
    All JWP forms support multiple payloads, which are individual octet
    strings.  The issued form will contain one or more ordered payload
@@ -600,33 +612,32 @@ Table of Contents
    to be generated from and processed by the underlying JPA.
    Internally, the proof value may contain one or more cryptographic
    statements that are used to check the integrity protection of the
-   header(s) and all payloads.  Each of these statements may be a ZKP or
+   Header(s) and all payloads.  Each of these statements may be a ZKP or
    a traditional cryptographic signature.  The algorithm is responsible
    for how these statements are serialized into a single proof value.
 
-5.1.  Issued Form
+6.1.  Issued Form
 
    When a JWP is first created, it is always in the issued form.  It
-   will contain the issuer protected header along with all of the
-   payloads.
+   will contain the Issuer Header along with all of the payloads.
 
    The issued form can only be confirmed by a holder as being correctly
    formed and protected.  It is NOT to be verified directly or presented
    as-is to a verifier.  The holder SHOULD treat an issued JWP as
    private and use appropriately protected storage.
 
-5.1.1.  Issuer Protected Header
+6.1.1.  Issuer Header
 
-   The Issuer Protected Header is always presented as-is to verifiers.
-   Differences in protected headers from two Issued JWP could
-   unintentionally serve to differentiate these messages to verifiers,
-   allowing grouping or correlation of credentials based on these
-   variations.  It is RECOMMENDED that the Issuer Protected Header have
-   the same representation (identical octet string sequence) for Issued
-   JWP which are otherwise meant to not be distinguishable.
+   The Issuer Header is always presented as-is to verifiers.
+   Differences in Headers from two Issued JWP could unintentionally
+   serve to differentiate these messages to verifiers, allowing grouping
+   or correlation of credentials based on these variations.  It is
+   RECOMMENDED that the Issuer Header have the same representation
+   (identical octet string sequence) for Issued JWP which are otherwise
+   meant to not be distinguishable.
 
-   Every issuer protected header MUST have an alg value that identifies
-   a valid JSON Proof Algorithm (JPA).
+   Every Issuer Header MUST have an alg value that identifies a valid
+   JSON Proof Algorithm (JPA).
 
    For example:
 
@@ -634,7 +645,7 @@ Table of Contents
      "alg": "BBS"
    }
 
-5.1.2.  Issuer Payloads
+6.1.2.  Issuer Payloads
 
    Payloads are represented and processed as individual octet strings
    and arranged in an ordered array of payload slots.  All application
@@ -650,7 +661,7 @@ Table of Contents
    well as include protection of that payload in the combined proof
    value.
 
-5.1.3.  Issuer Proof
+6.1.3.  Issuer Proof
 
    The issuer proof is one or more octet strings that are opaque to
    applications.  Individual proof-supporting algorithms are responsible
@@ -658,18 +669,18 @@ Table of Contents
    required internal structures.
 
    The issuer proof is used by the holder to perform validation,
-   checking that the issuer header and all payloads are properly encoded
+   checking that the Issuer Header and all payloads are properly encoded
    and protected by the given proof.
 
-5.2.  Presented Form
+6.2.  Presented Form
 
    When an issued JWP is presented, it undergoes a transformation that
-   adds a presentation protected header.  While the payload slots are
-   identical to the Issued JWP, the Presented JWP may have one or more
-   payloads omitted, disclosing only a subset of the original issued
-   payloads.  The proof value will always be updated to add integrity
-   protection of the presentation header along with the necessary
-   cryptographic statements to verify the presented JWP.
+   adds a Presentation Header.  While the payload slots are identical to
+   the Issued JWP, the Presented JWP may have one or more payloads
+   omitted, disclosing only a subset of the original issued payloads.
+   The proof value will always be updated to add integrity protection of
+   the Presentation Header along with the necessary cryptographic
+   statements to verify the presented JWP.
 
    When supported by the underling JPA, a single issued JWP can be used
    to safely generate multiple presented JWPs without becoming
@@ -681,21 +692,22 @@ Table of Contents
    useful for applications needing only selective disclosure or where
    new unique issued JWPs can be retrieved easily.
 
-5.2.1.  Presentation Protected Header
+6.2.1.  Presentation Header
 
-   The presented form of a JWP MUST contain a presentation protected
-   header.  It is added by the holder and MUST be integrity protected by
-   the underling JPA.
+   The presented form of a JWP MUST contain a Presentation Header.  It
+   is added by the holder and MUST be integrity protected by the
+   underling JPA.
 
-   This header is used to ensure that a presented JWP cannot be replayed
+   This Header is used to ensure that a presented JWP cannot be replayed
    and is cryptographically bound to the verifier it was presented to.
 
-   While there are not any required values in the presentation header,
-   it MUST contain one or more header values that uniquely identify the
-   presented JWP to both the holder and verifier.  For example, header
-   values that would satisfy this requirement include nonce and aud.
+   While there are not any required Header Parameters in the
+   Presentation Header, it MUST contain one or Header Parameters that
+   uniquely identify the presented JWP to both the holder and verifier.
+   For example, Header Parameters that would satisfy this requirement
+   include nonce and aud.
 
-5.2.2.  Presentation Payloads
+6.2.2.  Presentation Payloads
 
    The presentation has one or more payload slots, each of which either
    contains the issued payload or represents that the payload is being
@@ -708,7 +720,7 @@ Table of Contents
    issued and presented forms of the JWP.  How the sparse array is
    represented is specific to the serialization used.
 
-5.2.3.  Algorithm Specific Proof Methods
+6.2.3.  Algorithm Specific Proof Methods
 
    In addition to disclosing the contents of a payload, some algorithms
    MAY support disclosing other information not representable as a
@@ -734,7 +746,7 @@ Table of Contents
 
    *  Derived Values: (Verifier-specific) stable pseudonymous values
 
-5.2.4.  Presentation Proof
+6.2.4.  Presentation Proof
 
    The presentation proof is one or more octet strings that are opaque
    to applications.  Individual proof-supporting algorithms are
@@ -743,7 +755,7 @@ Table of Contents
 
    The proof of a presented JWP will always be different than the issued
    proof.  At a minimum, it MUST be updated to include protection of the
-   added presentation header.
+   added Presentation Header.
 
    Algorithms SHOULD generate an un-correlatable presentation proof in
    order to support multiple presentations from a single issued JWP.
@@ -754,12 +766,12 @@ Table of Contents
    algorithm is responsible for defining how such information is
    represented within one or more octet strings.
 
-6.  Serializations
+7.  Serializations
 
    JWP defines two serializations: a JSON-based Compact Serialization
    and a CBOR Serialization.  Both serializations represent one or more
-   Protected Headers, multiple Payload slots, and a single Proof (which
-   may be composed of multiple octet strings).
+   Headers, multiple Payload slots, and a single Proof (which may be
+   composed of multiple octet strings).
 
    The JWP Compact Serialization provides a JSON-based, space-efficient
    encoding of a JWP in URL-safe characters.  Its design closely
@@ -770,7 +782,7 @@ Table of Contents
    suitable for constrained environments.  Its design closely parallels
    COSE_Sign1 [RFC9338].
 
-6.1.  Compact Serialization
+7.1.  Compact Serialization
 
    JWP Compact Serialization provides a JSON-based encoding of a JWP,
    expressed in URL-safe characters.  In addition to the alphabet of
@@ -778,11 +790,11 @@ Table of Contents
    and "~" characters as separators.  This serialization is inspired by
    JWS.
 
-   The Protected Header MUST be JSON-formatted for Compact
-   Serialization.  This includes both headers sets in presented form.
+   The Header MUST be JSON-formatted for Compact Serialization.  This
+   includes both Headers in presented form.
 
    All binary data is BASE64URL encoded, including the octets of the
-   UTF-8 encoded headers and the individual payload slot data and the
+   UTF-8 encoded Headers and the individual payload slot data and the
    proof values.
 
    Payload slots and proof values are each concatenated into a single
@@ -801,45 +813,44 @@ Table of Contents
    normally encoded data.
 
    The issued form is created by concatenating the base64url-encoded
-   issuer protected header, concatenated payloads, and concatenated
-   proof separated each by a . character.  The concatenated payloads MAY
-   be omitted if the application is using detached payloads.
+   Issuer Header, concatenated payloads, and concatenated proof
+   separated each by a . character.  The concatenated payloads MAY be
+   omitted if the application is using detached payloads.
 
    The presented form is created by concatenating the base64url-encoded
-   presenter protected header, base64url-encoded issuer protected
-   header, concatenated payloads, and concatenated proof separated each
-   by a . character.  The concatenated payloads MAY be omitted if the
-   application is using detached payloads.
+   Presentation Header, base64url-encoded Issuer Header, concatenated
+   payloads, and concatenated proof separated each by a . character.
+   The concatenated payloads MAY be omitted if the application is using
+   detached payloads.
 
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.s_W7lIz_qO5AKI6jimPufW5GxfnJN-umYwyH7gIM
-   hxmBKQGapXohXAoMk6rmV0YbpH1Ue5SJLPIlWBVz74SBo5QJRZo9-wjnncR8taHLIL95Z
-   TVHHq2l5ewx5hjZ2sxlsvpC240Wj4zq3K9H60dNeknVWnJy_H_axg8GfFkgRExUpOmNTc
-   GQAVe3eJZbPVjKSizeqeHnMNm2hLE5spXhDsWjwYc09i9AYI-sm4JpNF9TOekGVQqSiNe
-   4DI7iJ2n01Pj5PRhwugqhWJZVqswFQhX-kmHY-DK2QJdKU8K4qwkZPiIQvxXown30fNax
-   -VbOBPx2uoFsCTB2JpM1p-q0fIL7IsxR3cKOPRnEhs8l7oxp2Rvwl3PzphtMUJj2h4-2e
-   ka547aiExK8f8lxx9g7uRn40374rbC4honrSWugCuROC5wYdm_zB63HFQUnScuOF70uew
-   jhnZvSaHaHqZh379e8Pb6IYncqlpxachrbZnU
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qmEyCpzTnuW5j8GTzbcXx1V54hOYkFs8-hd6o5bf
+   p4ymfiap9nfMIZTnTIdrc4nqgZUtUysn85IeqmpkTow46rTSz38mhnCjGccwxQR5X8dxH
+   21dvv98onXV4EnnWJv0ggk3C04R0IwExhApjyA8k3nIess7TOL1rcByDHoI3uROiwZ27z
+   bnS523EqlaudMIRXG-iz-bHvvVtncT9O0qAriJKsKVZ71P2c6TcrJTDbpUNy9pjlRBXru
+   kT4L_NSxp3EEMEtwv8oiwimictPh1Hw_oha0WkTX2tb0gdXw3itX84dwkCM2uJR56BT3U
+   W_NYNepnNYC-MobLt6gPz9zeCyW0RTInf8pWe_dSsGwVNI1Vk1gIAfpSPP-2WpFxzATe8
+   RTUQpglDyIrq4Ap64nJ9HLh6mO56ZO6LVqkO9QocJmqRtrPsf5UL-LFctxDptvcSrDt7H
+   blsNsObF1QaWOKppE5Rs0OQOZPP06EfYTH5dQ
 
    |  Figure: Compact Serialization of Presentation
 
-6.2.  CBOR Serialization
+7.2.  CBOR Serialization
 
    A CBOR-based serialization is also defined, which uses the CBOR for
    describing Header Parameters and does not use base64url encoding to
    ensure safety in text-based protocols.  While this supports the same
-   data model and algorithms, the difference in header representations
+   data model and algorithms, the difference in Header representations
    does not allow interchangeability with Compact Serialization.
 
    The CBOR serialization provides a compact binary representation of a
    JWP.  The serialization consists of two arrays, representing issued
    and presented forms.
 
-   The protected headers MUST be CBOR formatted for CBOR serialization.
-   This includes both the issued and presented headers in the presented
-   form.
+   The Headers MUST be CBOR formatted for CBOR serialization.  This
+   includes both the issued and Presented Headers in the presented form.
 
    The issued form consists of a three-element array, while the
    presented form consists of a four-element array.
@@ -886,7 +897,7 @@ Table of Contents
 
    Figure 1: CDDL [RFC8610] for CBOR Serializations.
 
-7.  Encrypted JSON Web Proofs
+8.  Encrypted JSON Web Proofs
 
    Access to JWPs containing non-public material by parties without
    legitimate access to the non-public information MUST be prevented.
@@ -896,9 +907,9 @@ Table of Contents
    purpose.  The processing of Encrypted JWPs is identical to the
    processing of other JWEs.
 
-   For a JWP with JSON-formatted headers, an Encrypted JWP is a JWE
+   For a JWP with JSON-formatted Headers, an Encrypted JWP is a JWE
    [RFC7516] with a JWP in Compact Serialization as its plaintext value.
-   For a JWP with CBOR-formatted headers, an Encrypted JWP should use
+   For a JWP with CBOR-formatted Headers, an Encrypted JWP should use
    COSE_Encrypt0 or COSE_Encrypt [RFC9052] with the CBOR Serialization
    as its plaintext.
 
@@ -918,7 +929,7 @@ Table of Contents
    application knows that the encrypted content is a JWP by another
    means or convention, in which case the cty value MAY be omitted.
 
-8.  Detached Payloads
+9.  Detached Payloads
 
    In some contexts, it is useful to make statements about payloads
    which are not themselves contained within the JWP, similar to
@@ -933,20 +944,20 @@ Table of Contents
    order and optionality.  This effectively recreates the fully
    specified serialization of the JWP.
 
-9.  Security Considerations
+10.  Security Considerations
 
    Notes to be expanded:
 
    *  Requirements for supporting algorithms, see JPA
    *  Application interface for verification
-   *  Data minimization of the protected header
+   *  Data minimization of the Header(s)
    *  To prevent accidentally introducing linkability, when an issuer
       uses the same key with the same grouping of payload types, they
-      SHOULD also use the same issuer protected header.  This header
-      SHOULD be represented by the same octets, avoiding distinguishing
-      a JWP due to non-deterministic serialization.
+      SHOULD also use the same Issuer Header.  This Header SHOULD be
+      represented by the same octets, avoiding distinguishing a JWP due
+      to non-deterministic serialization.
 
-10.  IANA Considerations
+11.  IANA Considerations
 
    The following registration procedure is used for all the registries
    established by this specification.
@@ -959,8 +970,8 @@ Table of Contents
    satisfied that such a specification will be published.
 
    Registration requests sent to the mailing list for review should use
-   an appropriate subject (e.g., "Request to register JWP header
-   parameter: example").
+   an appropriate subject (e.g., "Request to register JWP Header
+   Parameter: example").
 
    Within the review period, the Designated Experts will either approve
    or deny the registration request, communicating this decision to the
@@ -988,7 +999,7 @@ Table of Contents
    Expert, that Expert should defer to the judgment of the other
    Experts.
 
-10.1.  JSON Web Proof Header Parameters Registry
+11.1.  JSON Web Proof Header Parameters Registry
 
    This specification establishes the IANA "JSON Web Proof Header
    Parameters" registry for Header Parameter names.  The registry
@@ -999,7 +1010,7 @@ Table of Contents
    the same Header Parameter name will typically use different Header
    Parameter Usage Locations values.
 
-10.1.1.  Registration Template
+11.1.1.  Registration Template
 
    Header Parameter Name:  The descriptive name of the parameter. (e.g.,
       "Key Identifier").
@@ -1012,8 +1023,8 @@ Table of Contents
       characters.  Labels may not match another registered names in a
       case-insensitive manner unless the Designated Experts state that
       there is a compelling reason to allow an exception.  This registry
-      value SHOULD be supplied, but MAY be omitted if this header
-      parameter will never be formatted as JSON.
+      value SHOULD be supplied, but MAY be omitted if this Header
+      Parameter will never be formatted as JSON.
    Header Parameter CBOR Label:  The string or integer label requested
       within a CBOR context (e.g., 2).  This label may not match other
       integer values, match other string values in a case-insensitive
@@ -1033,111 +1044,111 @@ Table of Contents
       used to retrieve copies of the documents.  An indication of the
       relevant sections may also be included but is not required.
 
-10.1.2.  Initial Registry Contents
+11.1.2.  Initial Registry Contents
 
-   This section registers the Header Parameters defined in Section 4.2
+   This section registers the Header Parameters defined in Section 5.2
    in this registry.
 
-10.1.2.1.  Algorithm Header Parameter
+11.1.2.1.  Algorithm Header Parameter
 
    *  Header Parameter Name: Algorithm
    *  Header Parameter JSON Label: alg
    *  Header Parameter CBOR Label: 1
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.1 of this specification
+   *  Specification Document(s): Section 5.2.1 of this specification
 
-10.1.2.2.  Key ID Header Parameter
+11.1.2.2.  Key ID Header Parameter
 
    *  Header Parameter Name: Key Identifier
    *  Header Parameter JSON Label: kid
    *  Header Parameter CBOR Label: 2
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.2 of this specification
+   *  Specification Document(s): Section 5.2.2 of this specification
 
-10.1.2.3.  Type Header Parameter
+11.1.2.3.  Type Header Parameter
 
    *  Header Parameter Name: Type
    *  Header Parameter JSON Label: typ
    *  Header Parameter CBOR Label: 3
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.3 of this specification
+   *  Specification Document(s): Section 5.2.3 of this specification
 
-10.1.2.4.  Critical Header Parameter
+11.1.2.4.  Critical Header Parameter
 
    *  Header Parameter Name: Critical
    *  Header Parameter JSON Label: crit
    *  Header Parameter CBOR Label: 4
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.4 of this specification
+   *  Specification Document(s): Section 5.2.4 of this specification
 
-10.1.2.5.  Issuer Header Parameter
+11.1.2.5.  Issuer Header Parameter
 
    *  Header Parameter Name: Issuer
    *  Header Parameter JSON Label: iss
    *  Header Parameter CBOR Label: 5
    *  Header Parameter Usage Location(s): Issued, Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.8 of this specification
+   *  Specification Document(s): Section 5.2.8 of this specification
 
-10.1.2.6.  Audience Header Parameter
+11.1.2.6.  Audience Header Parameter
 
    *  Header Parameter Name: Audience
    *  Header Parameter JSON Label: aud
    *  Header Parameter CBOR Label: 6
    *  Header Parameter Usage Location(s): Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.9 of this specification
+   *  Specification Document(s): Section 5.2.9 of this specification
 
-10.1.2.7.  Nonce Header Parameter
+11.1.2.7.  Nonce Header Parameter
 
    *  Header Parameter Name: Nonce
    *  Header Parameter JSON Label: nonce
    *  Header Parameter CBOR Label: 7
    *  Header Parameter Usage Location(s): Presented
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.10 of this specification
+   *  Specification Document(s): Section 5.2.10 of this specification
 
-10.1.2.8.  Issuer Ephemeral Key Header Parameter
+11.1.2.8.  Issuer Ephemeral Key Header Parameter
 
    *  Header Parameter Name: Issuer Ephemeral Key
    *  Header Parameter JSON Label: iek
    *  Header Parameter CBOR Label: 8
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.5 of this specification
+   *  Specification Document(s): Section 5.2.5 of this specification
 
-10.1.2.9.  Holder Presentation Key Header Parameter
+11.1.2.9.  Holder Presentation Key Header Parameter
 
    *  Header Parameter Name: Holder Presentation Key
    *  Header Parameter JSON Label: hpk
    *  Header Parameter CBOR Label: 9
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.6 of this specification
+   *  Specification Document(s): Section 5.2.6 of this specification
 
-10.1.2.10.  Holder Presentation Algorithm Header Parameter
+11.1.2.10.  Holder Presentation Algorithm Header Parameter
 
    *  Header Parameter Name: Holder Presentation Algorithm
    *  Header Parameter JSON Label: hpa
    *  Header Parameter CBOR Label: 10
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
-   *  Specification Document(s): Section 4.2.7 of this specification
+   *  Specification Document(s): Section 5.2.7 of this specification
 
-10.2.  Media Type Registry
+11.2.  Media Type Registry
 
-10.2.1.  Registry Contents
+11.2.1.  Registry Contents
 
    This section registers the application/jwp media type [RFC2046] in
    the IANA "Media Types" registry [IANA.MediaTypes] in the manner
    described in [RFC6838], which can be used to indicate that the
    content is a JWP using the JWP Compact Serialization.
 
-10.2.1.1.  The application/jwp Media Type
+11.2.1.1.  The application/jwp Media Type
 
    *  Type name: application
    *  Subtype name: jwp
@@ -1146,7 +1157,7 @@ Table of Contents
    *  Encoding considerations: 8bit; application/jwp values are encoded
       as a series of base64url-encoded values (some of which may be the
       empty string) separated by period ('.') and tilde ('~') characters
-   *  Security considerations: See Section 9 of this specification
+   *  Security considerations: See Section 10 of this specification
    *  Interoperability considerations: n/a
    *  Published specification: this specification
    *  Applications that use this media type: TBD
@@ -1163,7 +1174,7 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-10.2.1.2.  The application/cwp Media Type
+11.2.1.2.  The application/cwp Media Type
 
    *  Type name: application
    *  Subtype name: cwp
@@ -1171,7 +1182,7 @@ Table of Contents
    *  Optional parameters: n/a
    *  Encoding considerations: 8bit; application/cwp values are
       represented as a CBOR data item.
-   *  Security considerations: See Section 9 of this specification
+   *  Security considerations: See Section 10 of this specification
    *  Interoperability considerations: n/a
    *  Published specification: this specification
    *  Applications that use this media type: TBD
@@ -1188,44 +1199,44 @@ Table of Contents
    *  Change Controller: IETF
    *  Provisional registration?  No
 
-10.3.  Structured Syntax Suffix Registry
+11.3.  Structured Syntax Suffix Registry
 
-10.3.1.  Registry Contents
+11.3.1.  Registry Contents
 
    This section registers the following entries in the IANA "Structured
    Syntax Suffix" registry [IANA.StructuredSuffix] in the manner
    described in [RFC6838].
 
-10.3.1.1.  The +jwp Structured Syntax Suffix
+11.3.1.1.  The +jwp Structured Syntax Suffix
 
    *  Name: JSON Web Proof (JWP)
    *  +suffix: +jwp
-   *  References: Section 6.1 of this specification
+   *  References: Section 7.1 of this specification
    *  Encoding considerations: binary; JWP values are encoded as a
       series of base64url-encoded values (some of which may be the empty
       string) separated by period ('.') and tilde ('~') characters
    *  Interoperability considerations: n/a
    *  Fragment identifier considerations: n/a
-   *  Security considerations: See Section 9 of this specification
+   *  Security considerations: See Section 10 of this specification
    *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
    *  Author/Change controller: IETF
 
-10.3.1.2.  The +cwp Structured Syntax Suffix
+11.3.1.2.  The +cwp Structured Syntax Suffix
 
    *  Name: CBOR Web Proof (CWP)
    *  +suffix: +cwp
-   *  References: Section 6.1 of this specification
+   *  References: Section 7.1 of this specification
    *  Encoding considerations: 8bit; CWP values are represented as a
       CBOR data item.
    *  Interoperability considerations: n/a
    *  Fragment identifier considerations: n/a
-   *  Security considerations: See Section 9 of this specification
+   *  Security considerations: See Section 10 of this specification
    *  Contact: Michael B.  Jones, michael_b_jones@hotmail.com
    *  Author/Change controller: IETF
 
-11.  References
+12.  References
 
-11.1.  Normative References
+12.1.  Normative References
 
    [I-D.ietf-jose-json-proof-algorithms]
               Jones, M. B., Waite, D., and J. Miller, "JSON Proof
@@ -1268,7 +1279,7 @@ Table of Contents
               RFC 9596, DOI 10.17487/RFC9596, June 2024,
               <https://www.rfc-editor.org/info/rfc9596>.
 
-11.2.  Informative References
+12.2.  Informative References
 
    [ECMAScript]
               Ecma International, "ECMAScript Language Specification,
@@ -1348,6 +1359,10 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -11 * Change Issuer Protected Header to Issuer Header * Change
+   Presentation Protected Header to Presentation Header * Clarify usage
+   of headers and header parameters
 
    -10
 
