@@ -62,7 +62,7 @@ _JSON Web Proof (JWP)_.  Unlike JWS, which integrity-protects only a
 single payload, JWP can integrity-protect multiple payloads in one
 message.  It also specifies a new presentation form that supports
 selective disclosure of individual payloads, enables additional proof
-computation, and adds a protected header to prevent replay.
+computation, and adds a Presentation Header to prevent replay.
 
 {mainmatter}
 
@@ -178,18 +178,18 @@ The four principal interactions used by JWP are `issue`, `confirm`,
 `present`, and `verify`.
 
 A JWP is initially created by the issuer using the `issue` interaction.
-A successful result is an issued JWP that has a single issuer-protected
-header, one or more payloads, and an initial proof value that contains
+A successful result is an issued JWP that has a single Issuer Header,
+one or more payloads, and an initial proof value that contains
 the issuing algorithm output.  The holder, upon receiving an issued JWP,
 then uses the `confirm` interaction to check the integrity protection of
-the header and all payloads using the proof value.
+the Header and all payloads using the proof value.
 
 After validation, the holder uses the `present` interaction to apply any
 selective disclosure choices, perform privacy-preserving transformations
-for unlinkability, and add a presentation-protected header that ensures
+for unlinkability, and add a Presentation Header that ensures
 the resulting presented JWP cannot be replayed.  The verifier then uses
 the `verify` interaction to ensure the integrity protection of the
-protected headers and any disclosed payloads, along with verifying any
+Headers and any disclosed payloads, along with verifying any
 additional ZKPs covering non-disclosed payloads.
 
 While `issue` and `confirm` only occur when a JWP is initially created
@@ -203,13 +203,28 @@ specification does for JWS and JWE [@RFC7516].  The JSON Proof
 Algorithms (JPA) [@!I-D.ietf-jose-json-proof-algorithms] specification
 defines how an initial set of algorithms are used with JWP.
 
-# JWP Header
+# JSON Web Proof Header
 
-A JWP Header is a set of Header Parameters that apply to the JWP.  These
-Header Parameters may be specific to the proof applied to the JWP, they
-may identify the party issuing the proof, and they may describe the
-application purpose and format of the JWP, as well as provide other
-potential metadata.
+A Header consists of an integrity-protected set of Header Parameters
+that apply to the JWP.
+
+A Header is represented either as a JSON Object holding JSON-formatted
+Header Parameters, or a CBOR map holding CBOR-formatted Header
+Parameters.
+
+In addition, there are two kinds of Headers - an Issuer Header
+(see (#issuer-header)) supplied on `issue` by the issuer, and an
+additional Presentation Header (see (#presentation-header)) supplied on
+`present` by the holder.  Both Headers should have their integrity
+protected, and are mandatory to present unmodified to the verifier.
+
+# Header Parameter
+
+A Header Parameter is a name/value pair supplying information within a
+Header in a JWP. A Header Parameter may provide information specific to
+the proof algorithm in use for the JWP, it may identify the issuer of
+the proof, it may describe the application purpose or format of the JWP,
+as well as provide other potential metadata.
 
 A Header Parameter may be represented as JSON or as CBOR. When
 represented using JSON, each Header Parameter has a string label and has
@@ -217,14 +232,14 @@ a JSON-structured value within a JSON Object. When described using CBOR,
 each parameter has either an integer (int) or string (tstr) label, and
 has a CBOR-structured value within a CBOR map.
 
-The Header Parameter labels within the JWP Header MUST be unique.  CBOR
-processing MUST reject messages if two headers with the same parameter
+The Header Parameter labels within the Header MUST be unique.  CBOR
+processing MUST reject messages if two Headers with the same parameter
 label are encountered. JSON processing SHOULD reject messages received
 with the same parameter label, but MAY instead represent only the
 lexically last member with that label, as specified in Section 15.12
 ("The JSON Object") of ECMAScript 5.1 [@ECMAScript]. JSON processing
 MUST take one of these two approaches with regards to encountering
-duplicate header parameter labels.
+duplicate Header Parameter labels.
 
 Implementations are required to understand the specific Header
 Parameters defined by this specification that are designated as "MUST be
@@ -241,7 +256,7 @@ As labels are the mechanism for semantically distinguishing parameter
 names, it is important to describe the mechanism to reduce the risk of
 conflicts.
 
-There are three strategies for labeling header parameters:
+There are three strategies for labeling Header Parameters:
 
 1. Registered parameter labels. These labels are coordinated through the
 IANA "JSON Web Proof Header Parameters" registry, which protects against
@@ -251,7 +266,7 @@ parameters having the same label.
 coordinated through IANA, but are otherwise namespaced to prevent
 conflict. One example would be a string label representing the URI of a
 controlled resource, such as the HTTPS-hosted documentation of the
-header parameter.
+Header Parameter.
 
 3. Private parameter labels. These labels are not coordinated through
 IANA or another party, but are expected to only be used for testing or
@@ -267,7 +282,7 @@ the IANA "JSON Web Proof Header Parameters" registry established by
 (#HdrReg), with meanings as defined in the subsections below.
 
 As indicated by the common registry, Header Parameters used in the
-Issued Form (see (#issued-form)) and the Presented Form
+Issuer Header (see (#issued-form)) and the Presentation Header
 (#presented-form) share a common Header Parameter space; when a
 parameter is used by both forms, its usage must be compatible between
 them.
@@ -283,9 +298,9 @@ IANA "JSON Web Proof Algorithms" registry established by
 [@!I-D.ietf-jose-json-proof-algorithms] or be a value that contains a
 Collision-Resistant Name.
 
-As a JSON-formatted header parameter, the `alg` value is a
+As a JSON-formatted Header Parameter, the `alg` value is a
 case-sensitive ASCII string containing a StringOrURI value. As a
-CBOR-formatted header parameter, this value may also be an integer
+CBOR-formatted Header Parameter, this value may also be an integer
 value.
 
 The list of defined `alg` values for this use can be found in the IANA
@@ -303,11 +318,11 @@ signal a change of key to recipients.
 
 The structure of the `kid` value is unspecified.
 
-When `kid` is used for a JSON Protected Header, its value MUST be a
+When `kid` is used for a JSON-formatted Header, its value MUST be a
 case-sensitive string. When referencing a JWK, the `kid` value is
 matched to the JWK `kid` parameter value.
 
-When `kid` is used for a CBOR Protected Header, its value is a binary
+When `kid` is used for a CBOR-formatted Header, its value is a binary
 string. When referencing a COSE Key, the `kid` value is matched to the
 COSE_Key `kid` structure member.
 
@@ -326,7 +341,7 @@ parameter is ignored by JWP implementations; any processing of this
 parameter is performed by the JWP application.  Use of this Header
 Parameter is OPTIONAL.
 
-For COSE Protected Headers, `typ` MAY also instead be an integer value
+For COSE-formatted Headers, `typ` MAY also instead be an integer value
 which corresponds to the IANA "CoAP Content-Formats" registry
 [@IANA.CoAP.Formats], which describes the corresponding media type, as
 described in [@!RFC9596].
@@ -360,8 +375,8 @@ The `crit` (critical) Header Parameter indicates that extensions to this
 specification and/or [@!I-D.ietf-jose-json-proof-algorithms] are being
 used that MUST be understood and processed.  Its value is an array
 listing the Header Parameter labels present in the JWP Header that use
-those extensions. For JSON Protected Headers this is a list of strings,
-while for CBOR protected headers it is a list containing string and/or
+those extensions. For JSON-formatted Headers this is a list of strings,
+while for CBOR-formatted Headers it is a list containing string and/or
 int values.
 
 If any of the listed extension Header Parameters are not understood and
@@ -369,13 +384,13 @@ supported by the recipient, then the JWP is invalid.  Producers MUST NOT
 include Header Parameter names defined by this specification or
 [@!I-D.ietf-jose-json-proof-algorithms] for use with JWP, duplicate
 names, or names that do not occur as Header Parameter names within the
-JWP Header in the `crit` list.  Producers MUST NOT use the empty list
+Header in the `crit` list.  Producers MUST NOT use the empty list
 `[]` as the `crit` value.  Recipients MAY consider the JWP to be invalid
 if the critical list contains any Header Parameter names defined by this
 specification or [@!I-D.ietf-jose-json-proof-algorithms] for use with
 JWP or if any other constraints on its use are violated.  When used,
 this Header Parameter MUST be integrity protected; therefore, it MUST
-occur only within the JWP Protected Header.  Use of this Header
+occur only within the Header.  Use of this Header
 Parameter is OPTIONAL.  This Header Parameter MUST be understood and
 processed by implementations.
 
@@ -385,9 +400,9 @@ The `iek` (Issuer Ephemeral Key) represents the public key used by the
 issuer for indirect signatures within certain algorithms. This is an
 ephemeral key that MUST be unique for each issued JWP.
 
-This header parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON Protected Header, and a COSE Key Object
-when represented as a CBOR Protected Header.
+This Header Parameter is references a JSON Web Key (JWK) public key
+value when represented as a JSON-formatted Header, and a COSE Key Object
+when represented as a CBOR-formatted Header.
 
 It MUST contain only public key parameters and SHOULD contain only the
 minimum parameters necessary to represent the key; other parameters
@@ -401,15 +416,15 @@ implementations.
 
 The `hpk` (Holder Presentation Key) represents the public key with
 certain algorithms, and is used by the holder for proof of possession
-and integrity protection of the presented protected header.
+and integrity protection of the Presented Header.
 
 The issuer MUST validate that the holder has possession of this key
 through a trusted mechanism, such as requiring the signature of a unique
 nonce value from the holder before issuing the JWP.
 
-This header parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON Protected Header, and a COSE Key Object
-when represented as a CBOR Protected Header.
+This Header Parameter is references a JSON Web Key (JWK) public key
+value when represented as a JSON-formatted Header, and a COSE Key Object
+when represented as a CBOR-formatted Header.
 
 It MUST contain only public key parameters and SHOULD contain only the
 minimum parameters necessary to represent the key; other parameters
@@ -434,8 +449,8 @@ algorithm unless a single appropriate algorithm is negotiated through
 other means.
 
 This Header Parameter references the name of a JSON Web Algorithm (JWA)
-when represented as a JSON Protected Header, and an integer or text
-value when represented as a CBOR Protected Header.
+when represented as a JSON-formatted Header, and an integer or text
+value when represented as a CBOR-formatted Header.
 
 This Header Parameter MUST be understood and processed by
 implementations when present.
@@ -481,10 +496,10 @@ requiring a unique nonce in requests as part of a strategy to prevent
 replay, or for associating a JWP back to the context where it was
 requested.
 
-When used as a JSON Protected Header, the value is a case-sensitive
+When used as a JSON-formatted Header, the value is a case-sensitive
 string value.
 
-When used as a CBOR Protected Header, the value is a binary string.
+When used as a CBOR-formatted Header, the value is a binary string.
 
 This definition is intentionally parallel to the `nonce` claim
 registered in the IANA "JSON Web Token Claims" registry [@IANA.JWT].
@@ -518,10 +533,9 @@ should be used with caution.
 
 A JWP is always in one of two forms: the issued form or the presented
 form.  A structural difference between the two forms is the number of
-protected headers.  An issued JWP has only one issuer protected header,
-while a presented JWP will have both the issuer protected header and an
-additional presentation protected header.  Each protected header is a
-JSON object that is serialized as a UTF-8 encoded octet string.
+Headers.  An issued JWP has only an Issuer Header, while a presented
+JWP will have both the Issuer Header and an additional Presentation
+Header.
 
 All JWP forms support multiple payloads, which are individual octet
 strings. The issued form will contain one or more ordered payload slots,
@@ -532,7 +546,7 @@ may choose to omit payload information on a slot-by-slot basis.
 The JWP proof value is one or more octet strings that are only meant to
 be generated from and processed by the underlying JPA.  Internally, the
 proof value may contain one or more cryptographic statements that are
-used to check the integrity protection of the header(s) and all
+used to check the integrity protection of the Header(s) and all
 payloads.  Each of these statements may be a ZKP or a traditional
 cryptographic signature.  The algorithm is responsible for how these
 statements are serialized into a single proof value.
@@ -540,24 +554,24 @@ statements are serialized into a single proof value.
 ## Issued Form {#issued-form}
 
 When a JWP is first created, it is always in the issued form.  It will
-contain the issuer protected header along with all of the payloads.
+contain the Issuer Header along with all of the payloads.
 
 The issued form can only be confirmed by a holder as being correctly
 formed and protected. It is NOT to be verified directly or presented
 as-is to a verifier.  The holder SHOULD treat an issued JWP as private
 and use appropriately protected storage.
 
-### Issuer Protected Header
+### Issuer Header {#issuer-header}
 
-The Issuer Protected Header is always presented as-is to verifiers.
-Differences in protected headers from two Issued JWP could
+The Issuer Header is always presented as-is to verifiers.
+Differences in Headers from two Issued JWP could
 unintentionally serve to differentiate these messages to verifiers,
 allowing grouping or correlation of credentials based on these
-variations. It is RECOMMENDED that the Issuer Protected Header have the
+variations. It is RECOMMENDED that the Issuer Header have the
 same representation (identical octet string sequence) for Issued JWP
 which are otherwise meant to not be distinguishable.
 
-Every issuer protected header MUST have an `alg` value that identifies a
+Every Issuer Header MUST have an `alg` value that identifies a
 valid JSON Proof Algorithm (JPA).
 
 For example:
@@ -587,17 +601,17 @@ for the contents and security of the proof value, along with any
 required internal structures.
 
 The issuer proof is used by the holder to perform validation, checking
-that the issuer header and all payloads are properly encoded and
+that the Issuer Header and all payloads are properly encoded and
 protected by the given proof.
 
 ## Presented Form {#presented-form}
 
 When an issued JWP is presented, it undergoes a transformation that adds
-a presentation protected header. While the payload slots are identical
+a Presentation Header. While the payload slots are identical
 to the Issued JWP, the Presented JWP may have one or more payloads
 omitted, disclosing only a subset of the original issued payloads.  The
 proof value will always be updated to add integrity protection of the
-presentation header along with the necessary cryptographic statements to
+Presentation Header along with the necessary cryptographic statements to
 verify the presented JWP.
 
 When supported by the underling JPA, a single issued JWP can be used to
@@ -609,19 +623,19 @@ would be inherently correlatable.  These are still useful for
 applications needing only selective disclosure or where new unique
 issued JWPs can be retrieved easily.
 
-### Presentation Protected Header
+### Presentation Header {#presentation-header}
 
-The presented form of a JWP MUST contain a presentation protected
-header.  It is added by the holder and MUST be integrity protected by
-the underling JPA.
+The presented form of a JWP MUST contain a Presentation Header.  It is
+added by the holder and MUST be integrity protected by the underling
+JPA.
 
-This header is used to ensure that a presented JWP cannot be replayed
+This Header is used to ensure that a presented JWP cannot be replayed
 and is cryptographically bound to the verifier it was presented to.
 
-While there are not any required values in the presentation header, it
-MUST contain one or more header values that uniquely identify the
-presented JWP to both the holder and verifier.  For example, header
-values that would satisfy this requirement include `nonce` and `aud`.
+While there are not any required Header Parameters in the Presentation
+Header, it MUST contain one or Header Parameters that uniquely identify
+the presented JWP to both the holder and verifier.  For example, Header
+Parameters that would satisfy this requirement include `nonce` and `aud`.
 
 ### Presentation Payloads
 
@@ -668,7 +682,7 @@ internal structures.
 
 The proof of a presented JWP will always be different than the issued
 proof.  At a minimum, it MUST be updated to include protection of the
-added presentation header.
+added Presentation Header.
 
 Algorithms SHOULD generate an un-correlatable presentation proof in
 order to support multiple presentations from a single issued JWP.
@@ -682,7 +696,7 @@ represented within one or more octet strings.
 # Serializations
 
 JWP defines two serializations: a JSON-based Compact Serialization and a
-CBOR Serialization.  Both serializations represent one or more Protected
+CBOR Serialization.  Both serializations represent one or more
 Headers, multiple Payload slots, and a single Proof (which may be
 composed of multiple octet strings).
 
@@ -702,11 +716,11 @@ expressed in URL-safe characters. In addition to the alphabet of
 unpadded BASE64URL-safe encoding, Compact Serialization uses the "." and
 "~" characters as separators. This serialization is inspired by JWS.
 
-The Protected Header MUST be JSON-formatted for Compact Serialization.
-This includes both headers sets in presented form.
+The Header MUST be JSON-formatted for Compact Serialization.
+This includes both Headers in presented form.
 
 All binary data is BASE64URL encoded, including the octets of the UTF-8
-encoded headers and the individual payload slot data and the proof
+encoded Headers and the individual payload slot data and the proof
 values.
 
 Payload slots and proof values are each concatenated into a single text
@@ -724,13 +738,13 @@ character. This character does not represent a valid BASE64URL-encoded
 octet string, allowing it to be distinguished from normally encoded
 data.
 
-The issued form is created by concatenating the base64url-encoded issuer
-protected header, concatenated payloads, and concatenated proof
+The issued form is created by concatenating the base64url-encoded Issuer
+Header, concatenated payloads, and concatenated proof
 separated each by a `.` character. The concatenated payloads MAY be
 omitted if the application is using detached payloads.
 
 The presented form is created by concatenating the base64url-encoded
-presenter protected header, base64url-encoded issuer protected header,
+Presentation Header, base64url-encoded Issuer Header,
 concatenated payloads, and concatenated proof separated each by a `.`
 character. The concatenated payloads MAY be omitted if the application
 is using detached payloads.
@@ -743,15 +757,15 @@ Figure: Compact Serialization of Presentation
 A CBOR-based serialization is also defined, which uses the CBOR for
 describing Header Parameters and does not use base64url encoding to
 ensure safety in text-based protocols. While this supports the same data
-model and algorithms, the difference in header representations does not
+model and algorithms, the difference in Header representations does not
 allow interchangeability with Compact Serialization.
 
 The CBOR serialization provides a compact binary representation of a
 JWP.  The serialization consists of two arrays, representing issued and
 presented forms.
 
-The protected headers MUST be CBOR formatted for CBOR serialization.
-This includes both the issued and presented headers in the presented
+The Headers MUST be CBOR formatted for CBOR serialization.
+This includes both the issued and Presented Headers in the presented
 form.
 
 The issued form consists of a three-element array, while the presented
@@ -810,9 +824,9 @@ such parties to prevent the disclosure of private information.  The use
 of an Encrypted JWP is recommended for this purpose.  The processing of
 Encrypted JWPs is identical to the processing of other JWEs.
 
-For a JWP with JSON-formatted headers, an Encrypted JWP is a JWE
+For a JWP with JSON-formatted Headers, an Encrypted JWP is a JWE
 [@!RFC7516] with a JWP in Compact Serialization as its plaintext value.
-For a JWP with CBOR-formatted headers, an Encrypted JWP should use
+For a JWP with CBOR-formatted Headers, an Encrypted JWP should use
 `COSE_Encrypt0` or `COSE_Encrypt` [@!RFC9052] with the CBOR
 Serialization as its plaintext.
 
@@ -853,10 +867,10 @@ Notes to be expanded:
 
 * Requirements for supporting algorithms, see JPA
 * Application interface for verification
-* Data minimization of the protected header
+* Data minimization of the Header(s)
 * To prevent accidentally introducing linkability, when an issuer uses
   the same key with the same grouping of payload types, they SHOULD also
-  use the same issuer protected header. This header SHOULD be
+  use the same Issuer Header. This Header SHOULD be
   represented by the same octets, avoiding distinguishing a JWP due to
   non-deterministic serialization.
 
@@ -873,7 +887,7 @@ may approve registration once they are satisfied that such a
 specification will be published.
 
 Registration requests sent to the mailing list for review should use an
-appropriate subject (e.g., "Request to register JWP header parameter:
+appropriate subject (e.g., "Request to register JWP Header Parameter:
 example").
 
 Within the review period, the Designated Experts will either approve or
@@ -926,7 +940,7 @@ Header Parameter JSON Label:
   upper-case characters. Labels may not match another registered names
   in a case-insensitive manner unless the Designated Experts state that
   there is a compelling reason to allow an exception. This registry
-  value SHOULD be supplied, but MAY be omitted if this header parameter
+  value SHOULD be supplied, but MAY be omitted if this Header Parameter
   will never be formatted as JSON.
 
 Header Parameter CBOR Label:
@@ -1165,6 +1179,11 @@ for their valuable contributions to this specification.
 # Document History
 
 [[ To be removed from the final specification ]]
+
+ -11
+* Change Issuer Protected Header to Issuer Header
+* Change Presentation Protected Header to Presentation Header
+* Clarify usage of headers and header parameters
 
  -10
 

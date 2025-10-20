@@ -90,13 +90,13 @@ capitals, as shown here.
 
 # Background
 
-JWP defines a container binding together a protected header, one or more
-payload slots, and a cryptographic proof.  It does not define how claims
-are organized into payloads and what formats they are in.  JPTs are
-intended to be as close to a JWT as possible, while also supporting the
-selective disclosure and unlinkability of JWPs.  Likewise, CPTs are
-intended to be as close to a CWT as possible, while also supporting the
-selective disclosure and unlinkability of JWPs.
+JWP defines a container binding together an integrity-protected Header,
+one or more payload slots, and a cryptographic proof.  It does not
+define how claims are organized into payloads and what formats they are
+in.  JPTs are intended to be as close to a JWT as possible, while also
+supporting the selective disclosure and unlinkability of JWPs.
+Likewise, CPTs are intended to be as close to a CWT as possible, while
+also supporting the selective disclosure and unlinkability of JWPs.
 
 # Design Considerations
 
@@ -119,7 +119,7 @@ algorithm when presented.
 
 Any other data that is repeated across multiple JPTs or CPTs is
 externalized so that it is uniform across every issuance.  This includes
-preventing the usage of optional headers, dynamic mapping of claims to
+preventing the usage of optional Headers, dynamic mapping of claims to
 payloads, changes to how many payloads are included, and the ordering of
 the payloads.
 
@@ -181,7 +181,7 @@ name.  Payloads MUST each have a negotiated and understood claim name
 within the application context.  The simplest solution to establish
 payload claim names is as an ordered array that aligns with the ordering
 of payload slots.  This claims array can be conveniently included in the
-Claims header parameter.
+Claims Header Parameter.
 
 The `claims` Header Parameter is an array listing the Claim Names
 corresponding to the JWP payload slots, in the same order as the payload
@@ -199,7 +199,7 @@ CPT predicate proofs derived from payload values are not represented as
 claims; they are contained in the presentation proof using
 algorithm-specific representations.
 
-The following is an example JWP Issuer Protected Header that includes a
+The following is an example Issuer Header that includes a
 claims property:
 
 <{{./fixtures/template/jpt-issuer-protected-header-with-claims.json}}
@@ -209,15 +209,15 @@ In this example, the "iat" and "exp" would be JSON-formatted numbers,
 quotes), "address" would be a JSON object, and "age_over_21" would be
 either `true` or `false`.
 
-# Claims ID ("cid") JWP Header Parameter {#cidDef}
+# Claims ID ("cid") Header Parameter {#cidDef}
 
 A Claims ID ("cid") value can be used as an identifier for a set of
 claim names without explicitly listing them.  Its use is similar to the
-Key ID ("kid") header parameter.
+Key ID ("kid") Header Parameter.
 
 The structure of the `cid` value is unspecified.  For JPTs, its value
 MUST be a case-sensitive string.  For CPTs, its value MUST be a binary
-string.  Use of this JWP Header Parameter is OPTIONAL.
+string.  Use of this Header Parameter is OPTIONAL.
 
 The `cid` can be used similarly to a `kid` in order to ensure that it is
 possible to externally resolve and then verify that the correct list of
@@ -230,15 +230,15 @@ the claim names.  Likewise, if there is an associated COSE_Key
 containing the signing key information, the `claims` key is also
 registered there as a convenient location for the claim names.
 
-When the claims array is transferred as a property in the Issuer
-Protected Header, any variations of that array between JWP will be
-visible to the verifier, and can leak information about the subject or
-provide an additional vector for linkability.  Given the privacy design
+When the claims array is transferred as a property in the Issuer Header,
+any variations of that array between JWP will be visible to the
+verifier, and can leak information about the subject or provide an
+additional vector for linkability.  Given the privacy design
 considerations around linkability, it is RECOMMENDED that the claims are
 defined externally to an individual JPT or CPT and either referenced or
 known by the application context.
 
-The following is an example JWP Protected Header that includes a `cid`:
+The following is an example Header that includes a `cid`:
 
 <{{./fixtures/template/jpt-issuer-protected-header-with-cid.json}}
 
@@ -269,13 +269,13 @@ See the examples in [@I-D.ietf-jose-json-proof-algorithms, section A.1].
 
 # Security Considerations {#security}
 
-- Protected Header Minimization
+- Header Minimization
 
 # IANA Considerations
 
 ## JSON Web Proof Header Parameters Registration {#HdrReg}
 
-This section registers the following JWP Header Parameter in the IANA
+This section registers the following Header Parameter in the IANA
 "JSON Web Proof Header Parameters" registry established by
 [@!I-D.ietf-jose-json-web-proof].
 
@@ -450,6 +450,11 @@ for his valuable contributions to this specification.
 # Document History
 
 [[ To be removed from the final specification ]]
+
+ -11
+
+- Change Issuer Protected Header to Protected Header
+- Remove JWP qualifiers on Header and Protected Header
 
  -10
 

@@ -87,7 +87,7 @@ Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS
 Protected Header" are defined by [@!RFC7515].
 
 The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP
-Protected Header" are defined by [@!I-D.ietf-jose-json-web-proof].
+ Header" are defined by [@!I-D.ietf-jose-json-web-proof].
 
 These terms are defined by this specification:
 
@@ -107,7 +107,7 @@ Holder Presentation Key:
 
 # Background
 
-JWP defines a container binding together a protected header, one or more
+JWP defines a container binding together a Header, one or more
 payloads, and a cryptographic proof.  It does not define any details
 about the interactions between an application and the cryptographic
 libraries that implement proof-supporting algorithms.
@@ -127,12 +127,12 @@ are [issue](#issue), [confirm](#confirm), [present](#present), and
 
 The JWP is first created as the output of a JPA's `issue` operation.
 
-Every algorithm MUST support a JSON issuer protected header along with
+Every algorithm MUST support a JSON issuer Header along with
 one or more octet string payloads.  The algorithm MAY support using
 additional items provided by the holder for issuance such as blinded
 payloads, keys for replay prevention, etc.
 
-All algorithms MUST provide integrity protection for the issuer header
+All algorithms MUST provide integrity protection for the Issuer Header
 and all payloads and MUST specify all digest and/or hash2curve methods
 used.
 
@@ -147,7 +147,7 @@ MAY return a modified JWP for serialized storage without the local state
 (such as with blinded payloads now unblinded).
 
 The algorithm MUST fully verify the issued proof value against the
-issuer protected header and all payloads.  If given a presented JWP
+Issuer Header and all payloads.  If given a presented JWP
 instead of an issued one, the confirm process MUST return an error.
 
 ## Present
@@ -159,23 +159,23 @@ An algorithm MAY support additional input options from the requesting
 party, such as for predicate proofs and verifiable computation requests.
 
 Every algorithm MUST support the ability to hide any or all payloads.
-It MUST always include the issuer protected header unmodified in the
+It MUST always include the Issuer Header unmodified in the
 presentation.
 
 The algorithm MUST replace the issued proof value and generate a new
-presented proof value.  It also MUST include a new presentation
-protected header that provides replay protection.
+presented proof value.  It also MUST include a new Presentation
+Header that provides replay protection.
 
 ## Verify
 
-Performed by the verifier to verify the protected headers along with any
+Performed by the verifier to verify the Headers along with any
 disclosed payloads and/or assertions about them from the proving party,
 while also verifying they are the same payloads and ordering as
 witnessed by the issuer.
 
 The algorithm MUST verify the integrity of all disclosed payloads and
-MUST also verify the integrity of both the issuer and presentation
-protected headers.
+MUST also verify the integrity of both the Issuer and Presentation
+Headers.
 
 If the presented proof contains any assertions about the hidden
 payloads, the algorithm MUST also verify all of those assertions.  It
@@ -204,15 +204,15 @@ interact with the issuer again to receive new single-use JWPs
 ### JWS Algorithm
 
 The Single Use algorithm uses multiple signing keys to protect the
-protected header as well as individual payloads of an Issued JWP.  The
-issuer uses a stable public key to sign each protected header, and a
-per-JWP ephemeral key (conveyed within the protected header) to protect
+Header as well as individual payloads of an Issued JWP.  The
+issuer uses a stable public key to sign each Header, and a
+per-JWP ephemeral key (conveyed within the Header) to protect
 the individual payloads.  These signatures are all created using the
 same Asymmetric Algorithm, with the JOSE and COSE name/label of this
 algorithm being part of registration for a fully-specified Single Use
 algorithm identifier.
 
-The issuer protected header also conveys a holder presentation key, an
+The Issuer Header also conveys a holder presentation key, an
 ephemeral asymmetric key meant to only be used for presenting a single
 JWP.  The fully-specified algorithm the holder must use for
 presentations is also included.  This algorithm MAY be different from
@@ -240,7 +240,7 @@ The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the `hpa` issuer protected header.
+in the `hpa` Issuer Header.
 
 ### Issuer Setup
 
@@ -253,20 +253,20 @@ be used to sign each of the payloads of a single JWP and then discarded.
 Each individual payload is signed using the selected internal algorithm
 using the Ephemeral Key.
 
-### Issuer Protected Header
+### Issuer Header
 
 The Issuer's Ephemeral Key MUST be included via the Issuer Ephemeral Key
-header parameter.
+Header Parameter.
 
 The Holder's Presentation Key MUST be included via the Holder
-Presentation Key header parameter.
+Presentation Key Header Parameter.
 
 The Holder's Presentation Algorithm MUST be included via the Holder
-Presentation Algorithm header parameter unless there is another way for
+Presentation Algorithm Header Parameter unless there is another way for
 the holder and verifier to unambiguously determine the appropriate
 algorithm to use.
 
-The Issuer Protected Header is signed using the appropriate internal
+The Issuer Header is signed using the appropriate internal
 signing algorithm for the given fully-specified single use algorithm,
 using the issuer's Stable Key.
 
@@ -278,32 +278,32 @@ using the issuer's Ephemeral Key.
 ### Proof
 
 The proof value is an octet string array.  The first entry is the octet
-string of the issuer protected header signature, with an additional
+string of the Issuer Header signature, with an additional
 entry for each payload signature.
 
-### Presentation Protected Header #{presentation-protected-header}
+### Presentation Header #{presentation-protected-header}
 
-To generate a new presentation, the holder first creates a presentation
-protected header that is specific to the verifier being presented to.
-This header MUST contain a parameter that both the holder and verifier
-trust as being unique and non-replayable.  Use of the `nonce` header
-parameter is RECOMMENDED for this purpose.
+To generate a new presentation, the holder first creates a Presentation
+Header that is specific to the verifier being presented to.
+This Header MUST contain a parameter that both the holder and verifier
+trust as being unique and non-replayable.  Use of the `nonce` Header
+Parameter is RECOMMENDED for this purpose.
 
-This specification registers the `nonce` header parameter for the
-presentation protected header that contains a string value either
+This specification registers the `nonce` Header Parameter for the
+Presentation Header that contains a string value either
 generated by the verifier or derived from values provided by the
 verifier.  When present, the verifier MUST ensure the nonce value
 matches during verification.
 
-The presentation protected header MAY contain other header parameters
+The Presentation Header MAY contain other Header Parameters
 that are either provided by the verifier or by the holder.  These
-presentation header parameters SHOULD NOT contain values that are common
+Presentation Header Parameters SHOULD NOT contain values that are common
 across multiple presentations and SHOULD be unique to a single
 presentation and verifier.
 
-The presentation protected header MUST contain the same Algorithm
-protected header as the issuer protected header.  The Holder
-Presentation Algorithm protected header MUST NOT be included.
+The Presentation Header MUST contain the same Algorithm
+protected header as the Issuer Header.  The Holder
+Presentation Algorithm Header Parameter MUST NOT be included.
 
 ### Presentation
 
@@ -313,15 +313,15 @@ representation](#presentation-internal-representation).  The number of
 components depends on the number of payloads which are being disclosed
 in the presented JWP.
 
-The first proof component will be the signature over the issuer
-protected header made by the issuer's Stable Key.
+The first proof component will be the signature over the Issuer
+Header made by the issuer's Stable Key.
 
 For each payload which is to be disclosed, the corresponding payload
 signature (from the issued JWP) is included as a subsequent proof
 component.  If the payload is being omitted, the corresponding payload
 signature is omitted from the proof components.
 
-The holder protected header, issuer protected header, payload slots
+The Presentation Header, Issuer Header, payload slots
 (distinguishing which are being disclosed) and these proof components
 are inputs to determine the presentation internal representation.
 
@@ -333,7 +333,7 @@ presentation.
 For example, if only the second and fifth of five payloads are being
 disclosed, then the proof at this stage will consist of three values:
 
-1. The issuer's signature over the issuer protected header
+1. The issuer's signature over the Issuer Header
 2. The payload signature corresponding to the second payload
 3. The payload signature corresponding to the fifth payload.
 
@@ -354,10 +354,10 @@ Verification is performed using the following steps.
 1. Check that the number of proof components is appropriate for the number of
    disclosed payloads.  There MUST be two more proof components than
    disclosed payloads.
-2. Verify the first proof component is a valid signature over issuer
-   protected header octets, using the issuer's stable key.
+2. Verify the first proof component is a valid signature over Issuer
+   Header octets, using the issuer's stable key.
 3. Extract the holder presentation key and holder presentation algorithm
-   (if present) from the issuer protected header.
+   (if present) from the Issuer Header.
 4. Omitting the final payload component, calculate the [presentation
    internal representation](#presentation-internal-representation).
 5. Verify the final proof component is a valid signature over the
@@ -398,9 +398,9 @@ The binary representation is created by appending data into a single
 octet string in the following order:
 
 1. `0x84 5B`
-2. The length and octets of the presentation protected header
+2. The length and octets of the Presentation Header
 3. `0x5B`
-4. The length and octets of the issuer protected header
+4. The length and octets of the Issuer Header
 5. `0x9B`
 6. The number of payload slots in the issued message
 7. For each payload representation:
@@ -450,11 +450,11 @@ presentation proofs.
 Issuance is performed using the `Sign` operation from
 [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.1].  This operation
 utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with
-desired protected header octets as `header`, and the array of payload
+desired Header octets as `header`, and the array of payload
 octet string as `messages`.
 
 The octets resulting from this operation form a single octet string in
-the issuance proof array, to be used along with the protected header and
+the issuance proof array, to be used along with the Header and
 payloads to serialize the JWP.
 
 ### Issuance Proof Verification
@@ -464,7 +464,7 @@ the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, section
 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as
-`signature`, the protected header octets as `header` and the array of
+`signature`, the Header octets as `header` and the array of
 payload octets as `messages`.
 
 ### Presentation
@@ -472,10 +472,10 @@ payload octets as `messages`.
 Derivation of a presentation is done by the holder using the `ProofGen`
 operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.3].
 
-This operation utilizes the issuer's public key as `PK`, the issuer
-protected header as `header`, the issuance proof as `signature`, the
-issuance payloads as `messages`, and the holder's presentation protected
-header as `ph`.
+This operation utilizes the issuer's public key as `PK`, the Issuer
+Header as `header`, the issuance proof as `signature`, the
+issuance payloads as `messages`, and the holder's Presentation Header
+as `ph`.
 
 The operation also takes a vector of indexes into `messages`, describing
 which payloads the holder wishes to disclose.  All payloads are required
@@ -485,7 +485,7 @@ to be disclosed for later proof verification.
 The output of this operation is the presentation proof, as a single
 octet string.
 
-Presentation serialization leverages the two protected headers and
+Presentation serialization leverages the two Headers and
 presentation proof, along with the disclosed payloads.  Non-disclosed
 payloads are represented with the absent value of `null` in CBOR
 serialization and a zero-length string in compact serialization.
@@ -496,9 +496,9 @@ Verification of a presentation is done by the verifier using the
 `ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section
 3.5.4].
 
-This operation utilizes the issuer's public key as `PK`, the issuer
-protected header as `header`, the issuance proof as `signature`, the
-holder's presentation protected header as `ph`, and the payloads as
+This operation utilizes the issuer's public key as `PK`, the Issuer
+Header as `header`, the issuance proof as `signature`, the
+holder's Presentation Header as `ph`, and the payloads as
 `disclosed_messages`.
 
 In addition, the `disclosed_indexes` scalar array is calculated from the
@@ -546,14 +546,14 @@ of this specification, but can be accomplished by the holder using this
 key to generate a JWS that signs a value the issuer can verify as
 unique.
 
-The holder's presentation key MUST be included in the issuer's protected
-header using the Holder Presentation Key header parameter.
+The holder's presentation key MUST be included in the Issuer Header
+using the Holder Presentation Key Header Parameter.
 
 The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the Holder Protected Algorithm header parameter.
+in the Holder Protected Algorithm Header Parameter.
 
 ### Issuer Setup
 
@@ -569,10 +569,10 @@ are then used as the input to generate a MAC that protects each payload.
 ### Combined MAC Representation {#combined-mac-representation}
 
 The combined MAC representation is a single octet string representing
-the MAC values of the issuer protected header, along with each payload
+the MAC values of the Issuer Header, along with each payload
 provided by the issuer.  This representation is signed by the issuer, but
 not shared - parties will recreate this octet string and verify the
-signature to verify the integrity of supplied issuer protected header
+signature to verify the integrity of supplied Issuer Header
 and the integrity of any disclosed payloads.
 
 The steps below describe a sequential concatenation of binary values to
@@ -615,20 +615,20 @@ The binary representation is created by appending data into a single
 octet string in the following order:
 
 1. `0x82 5B`
-2. The length and octets of the issuer protected header
+2. The length and octets of the Issuer Header
 3. `0x9B`
 4. The number of payload slots in the issued JWP
 5. For each payload representation:
    1. `0x5B`
    2. The length and value of the per payload MAC
 
-### Issuer Protected Header
+### Issuer Header
 
 The Holder's Presentation Key MUST be included via the Holder
-Presentation Key header parameter.
+Presentation Key Header Parameter.
 
 The Holder's Presentation Algorithm MUST be included via the Holder
-Presentation Algorithm header parameter unless there is another way for
+Presentation Algorithm Header Parameter unless there is another way for
 the holder and verifier to unambiguously determine the appropriate
 algorithm to use.
 
@@ -644,9 +644,9 @@ fully-specified MAC algorithm variant.
 The second octet string is the Shared Secret used to generate the
 per-payload keys for the combined representation.
 
-### Presentation Protected Header
+### Presentation Header
 
-See the [Presentation Protected Header](#presentation-protected-header)
+See the [Presentation Header](#presentation-protected-header)
 section given for Single Use algorithms.
 
 ### Presentation Proof {#mac-presentation-proof}
@@ -669,7 +669,7 @@ unique key.
 If a payload is not disclosed, the corresponding proof component will be
 the payload's MAC (using the unique key.)
 
-The holder protected header, issuer protected header, payload slots
+The Presentation Header, Issuer Header, payload slots
 (distinguishing which are being disclosed) and above proof components
 are inputs to determine the [presentation internal
 representation](#presentation-internal-representation).
@@ -693,14 +693,14 @@ Verification is performed using the following steps.
 1. Check the number of proof components is appropriate for the number of
    disclosed payloads.  There MUST be two more proof components than
    disclosed payloads.
-2. Using the fully-specified MAC algorithm in use, use the issuer
-   protected header, disclosed payloads, and the proof components
+2. Using the fully-specified MAC algorithm in use, use the Issuer
+   Header, disclosed payloads, and the proof components
    corresponding to the payloads to regenerate the Combined MAC
    Representation.
-3. Verify the first proof component is a valid signature over the issuer
-   protected header octets, using the issuer's stable key.
+3. Verify the first proof component is a valid signature over the Issuer
+   Header octets, using the issuer's stable key.
 4. Extract the holder presentation key and holder presentation algorithm
-   (if present) from the issuer protected header.
+   (if present) from the Issuer Header.
 5. Omitting the final payload component, calculate the [presentation
    internal representation](#presentation-internal-representation).
 6. Verify the final proof component is a valid signature over the
@@ -733,7 +733,7 @@ the initial registrations:
 > become more stable.
 
 - Data minimization of the proof value
-- Unlinkability of the protected header contents
+- Unlinkability of the Header contents
 
 # IANA Considerations
 
@@ -778,7 +778,7 @@ that Expert should defer to the judgment of the other Experts.
 ## JSON Web Proof Algorithms Registry {#AlgsReg}
 
 This specification establishes the IANA "JSON Web Proof Algorithms"
-registry for values of the JWP `alg` (algorithm) parameter in JWP Header
+registry for values of the JWP `alg` (algorithm) parameter in Header
 Parameters.  The registry records the algorithm name, the algorithm
 description, the algorithm usage locations, the implementation
 requirements, the change controller, and a reference to the
@@ -1037,29 +1037,29 @@ the JWK format:
 <{{./fixtures/build/holder-private-key-es256.jwk.wrapped}}
 Figure: Holder Presentation Private Key (ES256 in JWK)
 
-The JWP Protected Header declares that the data structure is a JPT and
+The Header declares that the data structure is a JPT and
 the JWP Proof Input is secured using the Single-Use ECDSA algorithm with
 the P-256 curve and SHA-256 digest.  It also includes the ephemeral
 public key, the Holder's presentation public key and list of claims used
 for this JPT.
 
 <{{./fixtures/build/su-es256-issuer-protected-header.json.wrapped}}
-Figure: Issuer Protected header (SU-ES256, JSON)
+Figure: Issuer Header (SU-ES256, JSON)
 
 <{{./fixtures/build/su-es256-issuer-protected-header.b64.wrapped}}
-Figure: Encoded Issuer Protected Header (SU-ES256, JSON, encoded)
+Figure: Encoded Issuer Header (SU-ES256, JSON, encoded)
 
 The Single Use algorithm utilizes multiple individual JWS Signatures.
 Each signature value is generated by creating a JWS with a single
-Protected Header with the associated `alg` value.  In this example, the
-fixed header used for each JWS is the serialized JSON Object
-`{"alg":"ES256"}`.  This protected header will be used to generate a
+Header with the associated `alg` value.  In this example, the
+fixed Header used for each JWS is the serialized JSON Object
+`{"alg":"ES256"}`.  This Header will be used to generate a
 signature over each corresponding payload in the JWP.  The corresponding
 octet value in the proof is the octet string (base64url-decoded) value
 of the signature.
 
 The final proof value from the Issuer is an array with the octets of the
-header signature, followed by entries for each payload signature.
+Header signature, followed by entries for each payload signature.
 
 <{{./fixtures/template/jpt-issuer-payloads.json}}
 Figure: Issuer payloads (JSON, as array)
@@ -1069,7 +1069,7 @@ The compact serialization of the same JPT is:
 <{{./fixtures/build/su-es256-issuer.compact.jwp.wrapped}}
 Figure: Issued JWP (SU-ES256, JSON, Compact Serialization)
 
-To present this JPT, we first use the following presentation header with
+To present this JPT, we first use the following Presentation Header with
 a nonce (provided by the Verifier):
 
 <{{./fixtures/build/su-es256-presentation-protected-header.json.wrapped}}
@@ -1100,7 +1100,7 @@ To simplify this example, the same information is represented as the JPT
 example above, including the same public and private keys.
 
 <{{./fixtures/build/cpt-issuer-protected-header.edn}}>
-Figure: Issuer Protected Header (SU-ES256, CBOR)
+Figure: Issuer Header (SU-ES256, CBOR)
 
 <{{./fixtures/template/cpt-issuer-payloads.edn}}>
 Figure: Issuer Payloads (as CBOR array)
@@ -1116,7 +1116,7 @@ holder conveying the same parameters and the same set of selectively
 disclosed payloads as the JPT above:
 
 <{{./fixtures/build/cpt-presentation-protected-header.edn}}>
-Figure: Holder Protected Header (SU-ES256, CBOR)
+Figure: Presentation Header (SU-ES256, CBOR)
 
 When the appropriate proof is generated, the CPT is serialized into the
 following CBOR (in hex):
@@ -1138,7 +1138,7 @@ There is no additional holder key necessary for presentation proofs.
 For the following protected header and array of payloads:
 
 <{{./fixtures/template/jpt-issuer-protected-header.json}}
-Figure: Example issuer protected header
+Figure: Example Issuer Header
 
 These components are signed using the private issuer key previously
 given, which is then representable in the following serialization:
@@ -1146,10 +1146,10 @@ given, which is then representable in the following serialization:
 <{{./fixtures/build/bbs-issuer.compact.jwp.wrapped}}
 Figure: Issued JWP (BBS, JSON, Compact Serialization)
 
-For a presentation with the following presentation header:
+For a presentation with the following Presentation Header:
 
 <{{./fixtures/template/bbs-holder-presentation-header.json}}
-Figure: Holder Presentation Header
+Figure: Presentation Header
 
 The holder decides to share all information other than the email
 address, and generates a proof.  That proof is represented in the
@@ -1177,10 +1177,10 @@ This is the Holder's presentation private key in the JWK format:
 <{{./fixtures/build/holder-private-key-es256.jwk.wrapped}}
 Figure: Holder private key
 
-For the following protected header and array of payloads:
+For the following Header and array of payloads:
 
 <{{./fixtures/build/mac-h256-issuer-protected-header.json}}
-Figure: Example issuer protected header
+Figure: Example Issuer Header
 
 <{{./fixtures/template/jpt-issuer-payloads.json}}
 Figure: Example issuer payloads (as members of a JSON array)
@@ -1200,7 +1200,7 @@ payload key.  This results in the following set of MAC values:
 <{{./fixtures/build/mac-h256-payload-macs.json}}
 Figure: Payload MAC values (Base64url-Encoded)
 
-The issuer protected header and payload MAC values are combined into a
+The Issuer Header and payload MAC values are combined into a
 binary representation known as the Compact MAC Representation.  This
 representation is signed with the issuer's private key.
 
@@ -1217,10 +1217,10 @@ Figure: Issued JWP (MAC-H256, JSON, Compact Serialization)
 
 Next, we show the presentation of the JWP with selective disclosure.
 
-For presentation with the following presentation protected header:
+For presentation with the following Presentation Header:
 
 <{{./fixtures/build/mac-h256-presentation-protected-header.json.wrapped}}
-Figure: Presentation Protected Header
+Figure: Presentation Header
 
 The holder will take the issuer proof (including shared secret) and
 derive the same individual payload MAC values (above).
@@ -1235,7 +1235,7 @@ the corresponding derived key.  For a non-disclosed payload, the holder
 will provide the corresponding MAC value.
 
 The final presented proof value is an array of octet strings.  The
-contents are presentation header signature, followed by the issuer
+contents are Presentation Header signature, followed by the issuer
 signature, then the value disclosed by the holder for each payload.
 This results in the following proof:
 
@@ -1262,6 +1262,11 @@ The BBS examples were generated using the library at
 # Document History
 
   [[ To be removed from the final specification ]]
+-11
+
+- Change Issuer Protected Header to Issuer Header
+- Change Presentation Protected Header and Holder Presentation Header to
+  Presentation Header
 
 -10
 
