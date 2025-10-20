@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 8 January 2026                           Self-Issued Consulting
+Expires: 23 April 2026                            Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                             7 July 2025
+                                                         20 October 2025
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 January 2026.
+   This Internet-Draft will expire on 23 April 2026.
 
 Copyright Notice
 
@@ -79,8 +79,8 @@ Table of Contents
        4.2.2.  "kid" (Key ID) Header Parameter
        4.2.3.  "typ" (Type) Header Parameter
        4.2.4.  "crit" (Critical) Header Parameter
-       4.2.5.  "proof_key" (Proof Key) Header Parameter
-       4.2.6.  "presentation_key" (Presentation Key) Header Parameter
+       4.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
+       4.2.6.  "hpk" (Holder Presentation Key) Header Parameter
        4.2.7.  "hpa" (Holder Presentation Algorithm) Header Parameter
        4.2.8.  "iss" (Issuer) Header Parameter
        4.2.9.  "aud" (Audience) Header Parameter
@@ -114,8 +114,8 @@ Table of Contents
          10.1.2.5.  Issuer Header Parameter
          10.1.2.6.  Audience Header Parameter
          10.1.2.7.  Nonce Header Parameter
-         10.1.2.8.  Proof Key Header Parameter
-         10.1.2.9.  Presentation Key Header Parameter
+         10.1.2.8.  Issuer Ephemeral Key Header Parameter
+         10.1.2.9.  Holder Presentation Key Header Parameter
          10.1.2.10. Holder Presentation Algorithm Header Parameter
      10.2.  Media Type Registry
        10.2.1.  Registry Contents
@@ -444,10 +444,10 @@ Table of Contents
    OPTIONAL.  This Header Parameter MUST be understood and processed by
    implementations.
 
-4.2.5.  "proof_key" (Proof Key) Header Parameter
+4.2.5.  "iek" (Issuer Ephemeral Key) Header Parameter
 
-   The proof_key (Proof Key) represents the public key used by the
-   issuer for proof of possession within certain algorithms.  This is an
+   The iek (Issuer Ephemeral Key) represents the public key used by the
+   issuer for indirect signatures within certain algorithms.  This is an
    ephemeral key that MUST be unique for each issued JWP.
 
    This header parameter is references a JSON Web Key (JWK) public key
@@ -462,12 +462,11 @@ Table of Contents
    When present, this Header Parameter MUST be understood and processed
    by implementations.
 
-4.2.6.  "presentation_key" (Presentation Key) Header Parameter
+4.2.6.  "hpk" (Holder Presentation Key) Header Parameter
 
-   The presentation_key (Presentation Key) represents the public key
-   with certain algorithms, and is used by the holder for proof of
-   possession and integrity protection of the presented protected
-   header.
+   The hpk (Holder Presentation Key) represents the public key with
+   certain algorithms, and is used by the holder for proof of possession
+   and integrity protection of the presented protected header.
 
    The issuer MUST validate that the holder has possession of this key
    through a trusted mechanism, such as requiring the signature of a
@@ -483,7 +482,7 @@ Table of Contents
    they can be ignored.
 
    If holder unlinkability is required, this value MUST not be repeated
-   in multiple issued JWPs; a different presentation key MUST be
+   in multiple issued JWPs; a different holder presentation key MUST be
    included in each issuance.
 
    This Header Parameter MUST be understood and processed by
@@ -493,7 +492,7 @@ Table of Contents
 
    The hpa (Holder Presentation Algorithm) Header Parameter represents
    the algorithm to be used by the holder for presenting a JWP when
-   using an asymmetric algorithm and Presentation Key.
+   using an asymmetric algorithm and a Holder Presentation Key.
 
    This Header Parameter SHOULD be included when appropriate for the JWP
    algorithm unless a single appropriate algorithm is negotiated through
@@ -815,14 +814,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.hseta9Fzo_xxDAQVQ_b6FwwTV_-HKTYJ4CHC0Zyo
-   C9xOQIGiIpzX7B1Y1IAzy2ZqkwAEuxdhGgJkjgtdROozxvTqJevvGLvBL_5Wm10tV-bnD
-   bEzfTVnoHzn0xo0ZJ1ErA2xv-r2izXUHdIad8eHfwAuZMHMVCdJGnJe5a5gU0_BQs58Tj
-   JnPY055xyhnrTdT5hwOZeEmPbG-18kAVSkksfZxjOuHGhsUzv3hiPfQh8TWwi4b_0EAEc
-   O_SEzieFn621saAcazdZ-4UkWBFqnoQgg6ClpcFWd0sFnlFPcECSlOoWtc0bbSrvV_AUk
-   ocNnRojJ0vzNfhJKa1e5-tZT00YtdMHshusau_i--pmv3bNmKhxppTHV7atsHa7GJOWSg
-   r0JPBNhxF2ZqfxnA51LlD9OHHP2LazNW3i170rne3nSTFXCVvWaTH55HuxOyQ79EywBWD
-   XPJvqBYPTe7ZHrocCwqzLpdIFz5rwCdGQTz0U
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.qqOn9-0MjHdB-H5ww0e-GucjrMAd6XYTyOTT1MeC
+   yVm6vbZDNl0vPYNEQPUw3Sn1lSJ7XZf_Qk8AAXjsNqC2TdUKtxABzO4LMRhsZyJ2syCGM
+   Dy3hFFCh1EEXM3ZpbTeq0HGolg2Bg2HAKcF-RRQ4kCr6KK5COyGIYBcaXQ9RoKpTnLBqq
+   6wU2p0LpPfUzTsFNzte1DZ7_Cg0jfT81UGgVkG73OkuLFDxbkdlacXeYwvozQzzyov4j0
+   EsBD3_oC9jgr-3IaTVsNrENiPrjoMa1yinLNgXk3rXEjkeeFxEN5SW86dUGlw5qhlehhM
+   joxMUu1j59Ffad_CBsFiRzgqdcNVZnAx4B3SR9aF3D_QPxEFyNAIaRlqauwMP65UxEnMF
+   -wr9hU6txpf1Z4u6iBCdxhrhVVZ5xmA0_RlmOBtut1PXWggjenRTk_TW8PVFawuYMunCl
+   P-vHAEPLaenxLfI3lepDJSV6wP18U9IbJtjZo
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1102,19 +1101,19 @@ Table of Contents
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.10 of this specification
 
-10.1.2.8.  Proof Key Header Parameter
+10.1.2.8.  Issuer Ephemeral Key Header Parameter
 
-   *  Header Parameter Name: Proof Key
-   *  Header Parameter JSON Label: proof_key
+   *  Header Parameter Name: Issuer Ephemeral Key
+   *  Header Parameter JSON Label: iek
    *  Header Parameter CBOR Label: 8
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
    *  Specification Document(s): Section 4.2.5 of this specification
 
-10.1.2.9.  Presentation Key Header Parameter
+10.1.2.9.  Holder Presentation Key Header Parameter
 
-   *  Header Parameter Name: Presentation Key
-   *  Header Parameter JSON Label: presentation_key
+   *  Header Parameter Name: Holder Presentation Key
+   *  Header Parameter JSON Label: hpk
    *  Header Parameter CBOR Label: 9
    *  Header Parameter Usage Location(s): Issued
    *  Change Controller: IETF
@@ -1279,9 +1278,9 @@ Table of Contents
    [I-D.irtf-cfrg-bbs-signatures]
               Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
               BBS Signature Scheme", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-bbs-signatures-08, 3 March 2025,
+              draft-irtf-cfrg-bbs-signatures-09, 7 July 2025,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              bbs-signatures-08>.
+              bbs-signatures-09>.
 
    [IANA.CoAP.Formats]
               IANA, "CoAP Content-Formats",
@@ -1350,6 +1349,10 @@ Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
 
+   -11
+
+   *  Examples with regenerated keys and proofs.
+
    -10
 
    *  Replaced application/jwp+cbor with application/cwp.
@@ -1384,6 +1387,8 @@ Appendix B.  Document History
    *  Added Holder Presentation Algorithm (hpa) parameter to support the
       holder presenting using a different key type and algorithm than
       the issuer in SU and MAC family algorithms
+   *  Change "proof_key" to "iek" and "presentation_key" to "hpk", both
+      to shorten their JSON labels and to clarify owner/purpose.
 
    -09
 
