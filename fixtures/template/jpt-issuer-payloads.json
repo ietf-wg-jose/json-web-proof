@@ -1,6 +1,8 @@
 [
+    "e7d5785d-1fa0-42bf-aadb-7a7d9880aa2a",
     1714521600,
     1717199999,
+    "1000723",
     "Doe",
     "Jay",
     "jaydoe@example.org",
@@ -12,5 +14,14 @@
         "postal_code": 12345,
         "country": "USA"        
     },
+    {
+        "formatted": "18995 Sycamore Dr.\nAnytown, CA 12346\nUSA",
+        "street_address": "18995 Sycamore Dr",
+        "locality": "Anytown",
+        "region": "CA",
+        "postal_code": 12346,
+        "country": "USA"
+    },
+    ["USA", "USA"],
     true
 ]

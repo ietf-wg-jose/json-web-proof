@@ -2,12 +2,17 @@
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
   "alg": "BBS",
   "claims": [
+    "jti",
     "iat",
     "exp",
+    "sub",
     "family_name",
     "given_name",
     "email",
-    "address",
-    "age_over_21"
+    "addresses",
+    ["addresses", 0],
+    ["addresses", 1],
+    ["addresses", null, "country"],
+    ["age_equal_or_over", "21"]
   ]
 }
