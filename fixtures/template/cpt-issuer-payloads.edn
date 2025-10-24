@@ -1,10 +1,12 @@
 [ / payloads    /
+  / cti         / h'e7d5785d1fa042bfaadb7a7d9880aa2a',
   / iat         / 171452160,
   / exp         / 171719999,
+  / sub         / "1000723",
   / family_name / "Doe",
   / given_name  / "Jay",
   / email       / "jaydoe@example.org",
-  / address     / {
+  / address 0   / {
     / formatted / 1: "1234 Main St.\nAnytown, CA 12345\nUSA",
     / street    / 2: "1234 Main St.",
     / locality  / 3: "Anytown",
@@ -12,5 +14,14 @@
     / post code / 5: "90210",
     / country   / 6: "USA"
   },
-  / age_over_21 / true
+  / address 1.  / {
+    / formatted / 1: "18995 Sycamore Dr.\nAnytown, CA 12346\nUSA",
+    / street    / 2: "18995 Sycamore Dr",
+    / locality  / 3: "Anytown",
+    / region.   / 4: "CA",
+    / post code / 5: "12346",
+    / country   / 6: "USA"
+  },
+  / addrs co.   / [ "USA", "USA"],
+  / age over 21 / true
 ]

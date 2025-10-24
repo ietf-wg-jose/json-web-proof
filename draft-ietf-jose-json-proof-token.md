@@ -176,38 +176,103 @@ IANA CBOR Web Token Claims Registry [@IANA.CWT] established by
 
 # Claims Header Parameter {#claimsDef}
 
-A JSON Proof Token or CBOR Proof Token assigns each payload a claim
-name.  Payloads MUST each have a negotiated and understood claim name
-within the application context.  The simplest solution to establish
-payload claim names is as an ordered array that aligns with the ordering
-of payload slots.  This claims array can be conveniently included in the
-Claims Header Parameter.
+The issuer of a JPT or CPT assigns each payload a named claim, or a
+selector to a subset of data within a named claim.  Payloads MUST each
+have a negotiated and understood claim name within the application
+context. The `claims` Header Parameter allows for the mapping of payload
+slots to claims (and claim subsets) to be expressed within the Issuer
+Header.
 
-The `claims` Header Parameter is an array listing the Claim Names
-corresponding to the JWP payload slots, in the same order as the payload
-slots.  Each array value is a Claim Name, as defined in [@!RFC7519] or
-[@!RFC8392].  Use of this Header Parameter is OPTIONAL.
+The `claims` Header Parameter is an array of ordered elements, where
+each element is either a claim name, or selects some subset of a named
+claim. Use of this Header Parameter is OPTIONAL.
 
-All JPT payloads that are claim values MUST be the base64url encoding of
-the UTF-8 representation of a JSON value.  That said, predicate proofs
-derived from payload values are not represented as claims; they are
-contained in the presentation proof using algorithm-specific
-representations.
+An element value which is a string (or integer for CPT) indicates the
+claim name of the payload slot. For JPT, the corresponding payload MUST
+be the UTF-8 JSON Text containing the claim value, or a zero length
+payload if there is no corresponding claim value. For CPT, the
+corresponding payload MUST be the CBOR containing the claim value, or a
+zero length payload if there is no corresponding claim value.
 
-All CPT payloads that are claim values MUST be a CBOR value.  Likewise,
-CPT predicate proofs derived from payload values are not represented as
-claims; they are contained in the presentation proof using
+The claim mechanism is meant to disclose issuer-specified values.
+Predicate proofs derived from payload values are not represented as
+claims; they are instead contained in the presentation proof using
 algorithm-specific representations.
 
-The following is an example Issuer Header that includes a
+## Claims Path Selector
+
+This syntax is purposely meant to align with [DCQL], [SD-JWT-VC], and
+[CBOR-POINTER].
+
+A selector is represented as an array, where each element in sequence
+represents a rule for selecting a subset of a data item in context.
+Unlike selectors as defined in [CSS] and [JSONPATH], the syntax and
+processing are purposefully limited to prevent issues with forward
+traversal, and to limit implementation complexity.
+
+There are four limitations to traversal to allow for efficient forward
+traversal and implementation:
+
+1. Evaluation of a rule can only return either children of the data item
+or a calculated string, integer, or boolean result.
+
+2. Only one rule per expression is allowed to return multiple children.
+
+3. No support is provided for expressions or functions with arguments
+
+4. No nesting or operation precedence rules.
+
+The goal is to allow for disclosure of a subset of claims (or
+information about a claim) to prove a credential matches a query, while
+the query language the application uses is out of scope.
+
+The selector is evaluated against a context, which is either a JSON
+value or CBOR data item. Each element in the selector array corresponds
+to a rule, which will evaluate against the current context and either
+return a new context or fail. If evaluation of a rule fails, further
+rules in the selector will also fail.
+
+The initial context for the selector is a JSON object or CBOR map
+containing all named claims and their values. The following describes
+the evaluation of rules based on the current context:
+
+- For a CBOR Map or JSON Object, the rule specifies a key. For JSON,
+the rule MUST represented as a string. For CBOR, the rule is allowed to
+be any CBOR data item. On match, the context changes to the value
+specified by the key.
+
+- For a CBOR or JSON Array, there are two rules defined:
+
+  1. If the rule is a positive integer, it is selecting a particular
+  index of the array. The context changes to the value at that index
+  2. If the rule is `null`, it is describing an evaluation over all
+  values in the array as described below.
+
+  For a `null` rule, the implementation should evaluate the remainder of
+  the rules against the value of each index. Each evaluation will result
+  in either a CBOR data item/JSON value, or a failure to evaluate based
+  on the rules. The data items should be combined into an array and
+  returned as the result of this evaluation.
+
+  When evaluating against each value in the array, the implementation MUST
+  NOT allow an additional evaluation against all values.
+
+- For a CBOR tag, a matching positive integer will return the untagged
+data item.
+
+There are no rules currently which evaluate against other data items/values.
+
+The following is an example JSON-formatted Issuer Header that includes a
 claims property:
 
 <{{./fixtures/template/jpt-issuer-protected-header-with-claims.json}}
 
 In this example, the "iat" and "exp" would be JSON-formatted numbers,
 "family_name", "given_name" and "email" would be JSON strings (in
-quotes), "address" would be a JSON object, and "age_over_21" would be
-either `true` or `false`.
+quotes), "addresses" would be a JSON array containing at least two JSON
+objects,
+and "age_equal_or_over" would be A JSON object containing at least a key
+21 and corresponding value of either `true` or `false`.
 
 # Claims ID ("cid") Header Parameter {#cidDef}
 
