@@ -12,7 +12,8 @@
     "addresses",
     ["addresses", 0],
     ["addresses", 1],
-    ["addresses", null, "country"],
+    ["addresses", 0, "country"],
+    ["addresses", 1, "country"],
     ["age_equal_or_over", "21"]
   ]
 }

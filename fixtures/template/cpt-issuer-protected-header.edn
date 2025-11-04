@@ -13,8 +13,9 @@
     179,    / "email"       (I-D.maldant-spice-oidc-cwt TBD10) /
     ["addresses", 0], / no array variant defined.              /
     ["addresses", 1], / no array variant defined.              /
-    ["addresses", null, 6 ], / countries                       /
-    ["age_equal_or_over", 21]
+    ["addresses", 0, 6 ], / country 0                          /
+    ["addresses", 1, 6 ], / country 1                          /
+    ["age_equal_or_over", 21] / age_equal_or_over_21 /
   ],
   
   8: {      / iek /

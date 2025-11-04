@@ -22,6 +22,7 @@
     / post code / 5: "12346",
     / country   / 6: "USA"
   },
-  / addrs co.   / [ "USA", "USA"],
+  "USA",
+  "USA",
   / age over 21 / true
 ]
