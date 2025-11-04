@@ -1,12 +1,12 @@
 // generate two files (public-key.jwk and private-key.jwk)
 // containing a BLS curve key pair usable for issuance, based on 
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
-import {bbs, utilities} from "@mattrglobal/pairing-crypto"
+// import {bbs, utilities} from "@mattrglobal/pairing-crypto"
+import { CTX } from "amcl-js";
 import {base64url} from "jose";
 import {lineWrap} from "./utils.mjs"
 import fs from "node:fs/promises";
 import { assert } from "node:console";
-import { encode as cborEncode, diagnose } from "cbor2";
 
 const encode = base64url.encode
 var keys = await bbs.bls12381_sha256.generateKeyPair();
@@ -26,19 +26,8 @@ JSON.stringify({
     d: secretKeyStr
 }, null, 2);
 
-const cborPrivateKey = new Map();
-
-cborPrivateKey.set(1, 1); // kty = OKP
-cborPrivateKey.set(-1, 14 ); // crv = BLS12381G2
-cborPrivateKey.set(-2, publicKeyX ); // x = ...
-cborPrivateKey.set(-4, keys.secretKey ); // d = ...
-
-var encodedCborPrivateKey = cborEncode(cborPrivateKey);
-
 await fs.writeFile("build/private-key.jwk", privateKeyStr);
 await fs.writeFile("build/private-key.jwk.wrapped", lineWrap(privateKeyStr, 8));
-await fs.writeFile("build/private-key.cwk", encodedCborPrivateKey);
-await fs.writeFile("build/private-key.cwk.edn", diagnose(encodedCborPrivateKey, { pretty: true }));
 
 var publicKeyStr = 
 JSON.stringify({
@@ -49,15 +38,5 @@ JSON.stringify({
     x: encode(publicKeyX)
 }, null, 2);
 
-const cborPublicKey = new Map();
-
-cborPublicKey.set(1, 1); // kty = OKP
-cborPublicKey.set(-1, 14 ); // crv = BLS12381G2
-cborPublicKey.set(-2, publicKeyX ); // x = ...
-
-var encodedCborPublicKey = cborEncode(cborPublicKey);
-
 await fs.writeFile("build/public-key.jwk", publicKeyStr);
 await fs.writeFile("build/public-key.jwk.wrapped", lineWrap(publicKeyStr, 8));
-await fs.writeFile("build/public-key.cwk", encodedCborPublicKey);
-await fs.writeFile("build/public-key.cwk.edn", diagnose(encodedCborPublicKey, { pretty: true }));
