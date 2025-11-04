@@ -1062,11 +1062,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">json-proof-token</td>
-<td class="right">October 2025</td>
+<td class="right">November 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 27 April 2026</td>
+<td class="center">Expires 8 May 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1079,12 +1079,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-proof-token-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-24" class="published">24 October 2025</time>
+<time datetime="2025-11-04" class="published">4 November 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-27">27 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-05-08">8 May 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1135,7 @@ Serialization.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 27 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1197,7 +1197,7 @@ Serialization.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-claims-header-parameter" class="internal xref">Claims Header Parameter</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-claims-path-selector" class="internal xref">Claims Path Selector</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-claims-path-pointer" class="internal xref">Claims Path Pointer</a></p>
 </li>
             </ul>
 </li>
@@ -1463,7 +1463,7 @@ IANA CBOR Web Token Claims Registry <span>[<a href="#IANA.CWT" class="cite xref"
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-claims-header-parameter" class="section-name selfRef">Claims Header Parameter</a>
       </h2>
 <p id="section-6-1">The issuer of a JPT or CPT assigns each payload a named claim, or a
-selector to a subset of data within a named claim.  Payloads MUST each
+pointer to a subset of data within a named claim.  Payloads MUST each
 have a negotiated and understood claim name within the application
 context. The <code>claims</code> Header Parameter allows for the mapping of payload
 slots to claims (and claim subsets) to be expressed within the Issuer
@@ -1481,81 +1481,57 @@ zero length payload if there is no corresponding claim value.<a href="#section-6
 Predicate proofs derived from payload values are not represented as
 claims; they are instead contained in the presentation proof using
 algorithm-specific representations.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<div id="claims-path-selector">
+<div id="claims-path-pointer">
 <section id="section-6.1">
-        <h3 id="name-claims-path-selector">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-claims-path-selector" class="section-name selfRef">Claims Path Selector</a>
+        <h3 id="name-claims-path-pointer">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-claims-path-pointer" class="section-name selfRef">Claims Path Pointer</a>
         </h3>
 <p id="section-6.1-1">This syntax is purposely meant to align with [DCQL], [SD-JWT-VC], and
 [CBOR-POINTER].<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">A selector is represented as an array, where each element in sequence
-represents a rule for selecting a subset of a data item in context.
-Unlike selectors as defined in [CSS] and [JSONPATH], the syntax and
-processing are purposefully limited to prevent issues with forward
-traversal, and to limit implementation complexity.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3">There are four limitations to traversal to allow for efficient forward
-traversal and implementation:<a href="#section-6.1-3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-6.1-4">
-<li id="section-6.1-4.1">
-            <p id="section-6.1-4.1.1">Evaluation of a rule can only return either children of the data item
-or a calculated string, integer, or boolean result.<a href="#section-6.1-4.1.1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">A Claims Path Pointer is used to disclose a subset of a claim. This
+allows for claim to be declared as having structured information (such
+as a mailing address or transcript), while still allowing for only a
+subset of the information needed to be disclosed.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">The pointer is evaluated against a context, which is either a JSON
+value or CBOR data item representing all claims. The result of the
+pointer is a JSON value or CBOR data item, or a failure if no such data
+item is available. For the purpose of representation in a payload, a
+failure is represented as a zero-length octet string.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.1-4">A pointer is represented as an array, where each element in sequence
+represents a pathspec for selecting a subset of a data item in context.
+Unlike selectors in [CSS] and expression languages like [JSONPATH], the
+syntax is purposefully restricted to aid in implementation, and to
+prevent attacker-chosen pointers from causing unexpectedly high runtime
+resource usage.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.1-5">Each pathspec element is evaluated in sequence, and will select either
+a new value/data item or fail. The resulting value/data item is then
+evaluated against the next pathspec element until evaluation completes.
+If evaluation of a pathspec fails, further evaluation is aborted.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<p id="section-6.1-6">Evaluation is dependent on the type of value or data item currently
+in context.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6.1-7">
+<li id="section-6.1-7.1">
+            <p id="section-6.1-7.1.1">For a CBOR Map or JSON Object the pathspec defines an exact match
+against the key. For JSON, the pathspec MUST represented as a string.
+For CBOR, the pathspec is any valid CBOR data item. On match, the result
+is the value associated with the matched key.<a href="#section-6.1-7.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li id="section-6.1-4.2">
-            <p id="section-6.1-4.2.1">Only one rule per expression is allowed to return multiple children.<a href="#section-6.1-4.2.1" class="pilcrow">¶</a></p>
+          <li id="section-6.1-7.2">
+            <p id="section-6.1-7.2.1">For a CBOR or JSON array, the pathspec MUST be a non-negative integer
+corresponding to the zero-based index of the array. On match, the result
+is the value at the corresponding array index. Indexes outside the
+bounds of the array are considered normal failures.<a href="#section-6.1-7.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li id="section-6.1-4.3">
-            <p id="section-6.1-4.3.1">No support is provided for expressions or functions with arguments<a href="#section-6.1-4.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-6.1-4.4">
-            <p id="section-6.1-4.4.1">No nesting or operation precedence rules.<a href="#section-6.1-4.4.1" class="pilcrow">¶</a></p>
+          <li id="section-6.1-7.3">
+            <p id="section-6.1-7.3.1">For a CBOR tag, a matching non-negative integer will return the
+untagged data item.<a href="#section-6.1-7.3.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
-<p id="section-6.1-5">The goal is to allow for disclosure of a subset of claims (or
-information about a claim) to prove a credential matches a query, while
-the query language the application uses is out of scope.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
-<p id="section-6.1-6">The selector is evaluated against a context, which is either a JSON
-value or CBOR data item. Each element in the selector array corresponds
-to a rule, which will evaluate against the current context and either
-return a new context or fail. If evaluation of a rule fails, further
-rules in the selector will also fail.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
-<p id="section-6.1-7">The initial context for the selector is a JSON object or CBOR map
-containing all named claims and their values. The following describes
-the evaluation of rules based on the current context:<a href="#section-6.1-7" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-6.1-8.1">
-            <p id="section-6.1-8.1.1">For a CBOR Map or JSON Object, the rule specifies a key. For JSON,
-the rule MUST represented as a string. For CBOR, the rule is allowed to
-be any CBOR data item. On match, the context changes to the value
-specified by the key.<a href="#section-6.1-8.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-6.1-8.2">
-            <p id="section-6.1-8.2.1">For a CBOR or JSON Array, there are two rules defined:<a href="#section-6.1-8.2.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="compact type-1" id="section-6.1-8.2.2">
-<li id="section-6.1-8.2.2.1">If the rule is a positive integer, it is selecting a particular
-index of the array. The context changes to the value at that index<a href="#section-6.1-8.2.2.1" class="pilcrow">¶</a>
-</li>
-              <li id="section-6.1-8.2.2.2">If the rule is <code>null</code>, it is describing an evaluation over all
-values in the array as described below.<a href="#section-6.1-8.2.2.2" class="pilcrow">¶</a>
-</li>
-            </ol>
-</li>
-        </ul>
-<p id="section-6.1-9">For a <code>null</code> rule, the implementation should evaluate the remainder of
-  the rules against the value of each index. Each evaluation will result
-  in either a CBOR data item/JSON value, or a failure to evaluate based
-  on the rules. The data items should be combined into an array and
-  returned as the result of this evaluation.<a href="#section-6.1-9" class="pilcrow">¶</a></p>
-<p id="section-6.1-10">When evaluating against each value in the array, the implementation MUST
-  NOT allow an additional evaluation against all values.<a href="#section-6.1-10" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="section-6.1-11.1">For a CBOR tag, a matching positive integer will return the untagged
-data item.<a href="#section-6.1-11.1" class="pilcrow">¶</a>
-</li>
-        </ul>
-<p id="section-6.1-12">There are no rules currently which evaluate against other data items/values.<a href="#section-6.1-12" class="pilcrow">¶</a></p>
-<p id="section-6.1-13">The following is an example JSON-formatted Issuer Header that includes a
-claims property:<a href="#section-6.1-13" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-6.1-14">
+<p id="section-6.1-8">There are no rules currently which evaluate against other CBOR data
+items.<a href="#section-6.1-8" class="pilcrow">¶</a></p>
+<p id="section-6.1-9">The following is an example JSON-formatted Issuer Header containing a
+claims property:<a href="#section-6.1-9" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-6.1-10">
 <pre>{
   "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
   "alg": "BBS",
@@ -1570,19 +1546,20 @@ claims property:<a href="#section-6.1-13" class="pilcrow">¶</a></p>
     "addresses",
     ["addresses", 0],
     ["addresses", 1],
-    ["addresses", null, "country"],
+    ["addresses", 0, "country"],
+    ["addresses", 1, "country"],
     ["age_equal_or_over", "21"]
   ]
 }
 
-</pre><a href="#section-6.1-14" class="pilcrow">¶</a>
+</pre><a href="#section-6.1-10" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1-15">In this example, the "iat" and "exp" would be JSON-formatted numbers,
+<p id="section-6.1-11">In this example, the "iat" and "exp" would be JSON-formatted numbers,
 "family_name", "given_name" and "email" would be JSON strings (in
 quotes), "addresses" would be a JSON array containing at least two JSON
 objects,
 and "age_equal_or_over" would be A JSON object containing at least a key
-21 and corresponding value of either <code>true</code> or <code>false</code>.<a href="#section-6.1-15" class="pilcrow">¶</a></p>
+21 and corresponding value of either <code>true</code> or <code>false</code>.<a href="#section-6.1-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
