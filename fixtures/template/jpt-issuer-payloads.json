@@ -22,6 +22,7 @@
         "postal_code": 12346,
         "country": "USA"
     },
-    ["USA", "USA"],
+    "USA",
+    "USA",
     true
 ]
