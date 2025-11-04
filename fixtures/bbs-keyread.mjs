@@ -14,6 +14,9 @@ export async function keyRead() {
             x: decode(jwk.x)
         }
     };
+
+    //convert to little endian as currently expected by library
+    result.secretKey.reverse();
     result.publicKey.compressed = result.publicKey.x;
     return result;
 }

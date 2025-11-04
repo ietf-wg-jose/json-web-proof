@@ -12,6 +12,11 @@ const encode = base64url.encode
 var keys = await bbs.bls12381_sha256.generateKeyPair();
 var publicKeyX = await utilities.uncompressedToCompressedPublicKey(keys.publicKey);
 var publicKeyStr = encode(publicKeyX);
+
+// reverse secretKey to big endian
+keys.secretKey.reverse();
+assert(keys.secretKey.length == 32);
+
 var secretKeyStr = encode(keys.secretKey);
 
 try { await fs.mkdir("build");  } catch (e) { /* ignore */ }
@@ -27,7 +32,6 @@ JSON.stringify({
 }, null, 2);
 
 const cborPrivateKey = new Map();
-
 cborPrivateKey.set(1, 1); // kty = OKP
 cborPrivateKey.set(-1, 14 ); // crv = BLS12381G2
 cborPrivateKey.set(-2, publicKeyX ); // x = ...
