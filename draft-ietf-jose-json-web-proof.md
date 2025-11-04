@@ -917,7 +917,8 @@ that Expert should defer to the judgment of the other Experts.
 ## JSON Web Proof Header Parameters Registry {#HdrReg}
 
 This specification establishes the IANA "JSON Web Proof Header
-Parameters" registry for Header Parameter names.  The registry records
+Parameters" registry for Header Parameter names, under the "JSON Object
+Signing and Encryption (JOSE)" registry group. The registry records
 the Header Parameter name and a reference to the specification that
 defines it.  The same Header Parameter name can be registered multiple
 times, provided that the parameter usage is compatible between the
@@ -956,7 +957,7 @@ Header Parameter Usage Location(s):
   approval of a Designated Expert.
 
 Change Controller:
-: For Standards Track RFCs, list the "IETF". For others, give the name
+: For IETF Stream RFCs, list the IETF. For others, give the name
   of the responsible party. Other details (e.g., postal address, email
   address, home page URI) may also be included.
 

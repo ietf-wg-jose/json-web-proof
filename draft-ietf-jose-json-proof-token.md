@@ -310,7 +310,7 @@ Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
 - Parameter Description: Array of claim names
 - Used with "kty" Value(s): *
 - Parameter Information Class: Public
-- Change Controller: IETF
+- Change Controller: IESG
 - Specification Document(s): (#cidDef) of this specification
 
 ## COSE Key Common Parameters Registry {#COSEKeyParamReg}
