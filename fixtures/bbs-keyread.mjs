@@ -11,12 +11,12 @@ export async function keyRead() {
     var result = {
         secretKey: decode(jwk.d),
         publicKey: {
-            x: decode(jwk.x),
-            y: decode(jwk.y)
+            x: decode(jwk.x)
         }
     };
-    const uncompressed = Buffer.concat([result.publicKey.x, result.publicKey.y]);
-    result.publicKey.uncompressed = uncompressed;
-    result.publicKey.compressed = await utilities.uncompressedToCompressedPublicKey(uncompressed);
+
+    //convert to little endian as currently expected by library
+    result.secretKey.reverse();
+    result.publicKey.compressed = result.publicKey.x;
     return result;
 }
