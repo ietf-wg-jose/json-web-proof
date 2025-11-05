@@ -370,7 +370,7 @@ Table of Contents
    *  Parameter Description: Array of claim names
    *  Used with "kty" Value(s): *
    *  Parameter Information Class: Public
-   *  Change Controller: IETF
+   *  Change Controller: IESG
    *  Specification Document(s): Section 7 of this specification
 
 11.3.  COSE Key Common Parameters Registry
