@@ -176,38 +176,87 @@ IANA CBOR Web Token Claims Registry [@IANA.CWT] established by
 
 # Claims Header Parameter {#claimsDef}
 
-A JSON Proof Token or CBOR Proof Token assigns each payload a claim
-name.  Payloads MUST each have a negotiated and understood claim name
-within the application context.  The simplest solution to establish
-payload claim names is as an ordered array that aligns with the ordering
-of payload slots.  This claims array can be conveniently included in the
-Claims Header Parameter.
+The issuer of a JPT or CPT assigns each payload a named claim, or a
+pointer to a subset of data within a named claim.  Payloads MUST each
+have a negotiated and understood claim name within the application
+context. The `claims` Header Parameter allows for the mapping of payload
+slots to claims (and claim subsets) to be expressed within the Issuer
+Header.
 
-The `claims` Header Parameter is an array listing the Claim Names
-corresponding to the JWP payload slots, in the same order as the payload
-slots.  Each array value is a Claim Name, as defined in [@!RFC7519] or
-[@!RFC8392].  Use of this Header Parameter is OPTIONAL.
+The `claims` Header Parameter is an array of ordered elements, where
+each element is either a claim name, or selects some subset of a named
+claim. Use of this Header Parameter is OPTIONAL.
 
-All JPT payloads that are claim values MUST be the base64url encoding of
-the UTF-8 representation of a JSON value.  That said, predicate proofs
-derived from payload values are not represented as claims; they are
-contained in the presentation proof using algorithm-specific
-representations.
+An element value which is a string (or integer for CPT) indicates the
+claim name of the payload slot. For JPT, the corresponding payload MUST
+be the UTF-8 JSON Text containing the claim value, or a zero length
+payload if there is no corresponding claim value. For CPT, the
+corresponding payload MUST be the CBOR containing the claim value, or a
+zero length payload if there is no corresponding claim value.
 
-All CPT payloads that are claim values MUST be a CBOR value.  Likewise,
-CPT predicate proofs derived from payload values are not represented as
-claims; they are contained in the presentation proof using
+The claim mechanism is meant to disclose issuer-specified values.
+Predicate proofs derived from payload values are not represented as
+claims; they are instead contained in the presentation proof using
 algorithm-specific representations.
 
-The following is an example Issuer Header that includes a
+## Claims Path Pointer
+
+This syntax is purposely meant to align with [DCQL], [SD-JWT-VC], and
+[CBOR-POINTER].
+
+A Claims Path Pointer is used to disclose a subset of a claim. This
+allows for claim to be declared as having structured information (such
+as a mailing address or transcript), while still allowing for only a
+subset of the information needed to be disclosed.
+
+The pointer is evaluated against a context, which is either a JSON
+value or CBOR data item representing all claims. The result of the
+pointer is a JSON value or CBOR data item, or a failure if no such data
+item is available. For the purpose of representation in a payload, a
+failure is represented as a zero-length octet string.
+
+A pointer is represented as an array, where each element in sequence
+represents a pathspec for selecting a subset of a data item in context.
+Unlike selectors in [CSS] and expression languages like [JSONPATH], the
+syntax is purposefully restricted to aid in implementation, and to
+prevent attacker-chosen pointers from causing unexpectedly high runtime
+resource usage.
+
+Each pathspec element is evaluated in sequence, and will select either
+a new value/data item or fail. The resulting value/data item is then
+evaluated against the next pathspec element until evaluation completes.
+If evaluation of a pathspec fails, further evaluation is aborted.
+
+Evaluation is dependent on the type of value or data item currently
+in context.
+
+1. For a CBOR Map or JSON Object the pathspec defines an exact match
+against the key. For JSON, the pathspec MUST represented as a string.
+For CBOR, the pathspec is any valid CBOR data item. On match, the result
+is the value associated with the matched key.
+
+2. For a CBOR or JSON array, the pathspec MUST be a non-negative integer
+corresponding to the zero-based index of the array. On match, the result
+is the value at the corresponding array index. Indexes outside the
+bounds of the array are considered normal failures.
+
+3. For a CBOR tag, a matching non-negative integer will return the
+untagged data item.
+
+There are no rules currently which evaluate against other CBOR data
+items.
+
+The following is an example JSON-formatted Issuer Header containing a
 claims property:
 
 <{{./fixtures/template/jpt-issuer-protected-header-with-claims.json}}
 
 In this example, the "iat" and "exp" would be JSON-formatted numbers,
 "family_name", "given_name" and "email" would be JSON strings (in
-quotes), "address" would be a JSON object, and "age_over_21" would be
-either `true` or `false`.
+quotes), "addresses" would be a JSON array containing at least two JSON
+objects,
+and "age_equal_or_over" would be A JSON object containing at least a key
+21 and corresponding value of either `true` or `false`.
 
 # Claims ID ("cid") Header Parameter {#cidDef}
 
