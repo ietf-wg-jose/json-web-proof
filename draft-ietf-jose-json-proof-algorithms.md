@@ -778,9 +778,10 @@ that Expert should defer to the judgment of the other Experts.
 ## JSON Web Proof Algorithms Registry {#AlgsReg}
 
 This specification establishes the IANA "JSON Web Proof Algorithms"
-registry for values of the JWP `alg` (algorithm) parameter in Header
-Parameters.  The registry records the algorithm name, the algorithm
-description, the algorithm usage locations, the implementation
+registry, under the "JSON Object Signing and Encryption (JOSE)" registry
+group. The registry records values values of the JWP `alg` (algorithm)
+Header Parameter.  The registry records the algorithm name, the
+algorithm description, the algorithm usage locations, the implementation
 requirements, the change controller, and a reference to the
 specification that defines it.  The same algorithm name can be
 registered multiple times, provided that the sets of usage locations are
@@ -848,7 +849,7 @@ JWP Implementation Requirements:
   algorithms must be registered as `Prohibited`.
 
 Change Controller:
-: For Standards Track RFCs, list the "IETF".  For others, give the name
+: For IETF Stream RFCs, list the IETF.  For others, give the name
   of the responsible party.  Other details (e.g., postal address, email
   address, home page URI) may also be included.
 
