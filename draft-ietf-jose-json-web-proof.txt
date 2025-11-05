@@ -826,14 +826,14 @@ Table of Contents
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
    m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
    UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.ph60pFqujKOVk8jZWzIfsMegoOKJfTsIp3fJV8wL
-   hkG6PaKn-nbkm7kg13P7-hkaldKeFA8VfSlhch34Pimo4Fna_C5u7dHFjlmvxaewIaLNr
-   Kg4wMT7W3NrAX9NT_x9iUiwVEjUlWBvgYvnLanTGJFpuC-Clc65LVvNWVTY6gERzw1XB5
-   szYUYNzdVw2GvbbCwzKMklWC0A45l7ZQwpZdgouL4qbqmm3elX0BtinEZknoPuUkhiQFc
-   Rs2j465q50Vzzmp2UkDnAC52PRJNkqxYBxle6dz_9Z5LKyFoZDjWlV00V2Ql_d-LPmAIs
-   hcVcHX1D4NCnH8R3nd8A5_xq9AOUdlk7kk0fJDGxAhPbGsM-ZkzkuL_SDsDGY9NErdBu2
-   _L9S42k2zhceN6Dl6HkdkYlsOWVfNLrhWf1zKlcpO9oIoo-4RtJ5hz2gB8XYr9JLpF-PA
-   FgH9NBKSNrxIa9U0AwCO2fjJ8XRLoGeG_GosI
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.hHfPFGabxEfCEV9CwCfVviGOptT4u_43NLtq8HPJ
+   xDYZmr9WC0VaPyZwbPalsLK3qlfAMHNr0hbUpXb3jZb-RZHyn1zifZuL-204eHRBKXnOS
+   iPTZmkAbIXH94k1jAGAhxP6gIr7q6SKZQRhbY14LeoVvSAPub4dDX5N3C9-zI1mc_VJFx
+   QRDDN9GbjQD4gYRDos03Ak21W6-KCj6B85EVjbKnF2mwY06X1CPsKSa8olS4ue_hcYDVi
+   FOtgjNR20QKlDUot2op3Sj7nBmdotymxZsGHstCVKgIj4A5CBCfKXyH8HR76ZgjDmqDHu
+   znwXE1orD4q2Ns99RR9gwJKsUvpxX44yACayXt_nQmoxTpAbTzeHzLfNZ7eYXhP99oXKz
+   zbq1y_ACe182o36j4dXngvyFPJuEIS67T-t_KHBJ6ODIexpGBJC19O-qMQEld7UOEPuLu
+   WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1361,9 +1361,15 @@ Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
 
-   -11 * Change Issuer Protected Header to Issuer Header * Change
-   Presentation Protected Header to Presentation Header * Clarify usage
-   of headers and header parameters
+   -12
+
+   *  IANA Considerations section changes from IANA Early Review
+
+   -11
+
+   *  Change Issuer Protected Header to Issuer Header
+   *  Change Presentation Protected Header to Presentation Header
+   *  Clarify usage of headers and header parameters
 
    -10
 
