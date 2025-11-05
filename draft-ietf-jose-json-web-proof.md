@@ -1181,7 +1181,12 @@ for their valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-12
+
+- IANA Considerations section changes from IANA Early Review
+
  -11
+
 * Change Issuer Protected Header to Issuer Header
 * Change Presentation Protected Header to Presentation Header
 * Clarify usage of headers and header parameters

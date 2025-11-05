@@ -1263,6 +1263,12 @@ The BBS examples were generated using the library at
 # Document History
 
   [[ To be removed from the final specification ]]
+
+-12
+
+- IANA Considerations section changes from IANA Early Review
+- Updated BLS keys to match BLS Key Representations draft 8
+
 -11
 
 - Change Issuer Protected Header to Issuer Header
