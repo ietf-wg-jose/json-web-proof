@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-03T01:10:25.800038+00:00",
+  "timestamp": "2025-11-06T00:57:07.214258+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -2892,7 +2892,7 @@
       "labels": [],
       "body": "Hey David and JWP team!\u200b\n\nIt was great meeting you at IIW last week. \nI've been working on a JWP debugger tool since I came back to Japan \ud83c\uddef\ud83c\uddf5 \n\nhttps://dorakemon.github.io/jwp-debugger/\n\nCurrently, it's about 70% complete and supports only BBS for now. I would love to deploy it to jwp.tool eventually.\n\nWould love to get your thoughts and any feedback you have! \ud83d\ude01\n\nHere are the repositories which I created:\n\nDebugger UI: \n  https://github.com/dorakemon/jwp-debugger\nWasm for JWP logics: \n   https://github.com/dorakemon/json-proof-token-js\n\nHope you like it.",
       "createdAt": "2025-04-18T13:41:27Z",
-      "updatedAt": "2025-05-09T20:11:11Z",
+      "updatedAt": "2025-10-22T19:21:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -2922,6 +2922,13 @@
           "body": "Heya @dorakemon - I realized my comment never showed up here. This looks amazing!\n\nHave you considered a license for the work, such as the Apache license that the LINKS cybersecurity group work is under?",
           "createdAt": "2025-05-09T20:11:10Z",
           "updatedAt": "2025-05-09T20:11:10Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Talking with @dorakemon at IIW, his intention was for this to be unrestrictive licensing (specifically MIT). ",
+          "createdAt": "2025-10-22T19:21:21Z",
+          "updatedAt": "2025-10-22T19:21:21Z"
         }
       ]
     },
@@ -3053,15 +3060,15 @@
       "id": "I_kwDOFsQObc6-j2R9",
       "title": "Verify current BBS version before next publication",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/170",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "It looks like there will be a draft 9 published soon for IETF 123; see if we can reference it if possible.",
       "createdAt": "2025-07-02T20:12:48Z",
-      "updatedAt": "2025-07-02T20:12:48Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-16T16:44:26Z",
+      "closedAt": "2025-10-16T16:44:26Z",
       "comments": []
     },
     {
@@ -3194,6 +3201,57 @@
       "body": "[Sigma Protocols and Fiat-Shamir](https://datatracker.ietf.org/doc/draft-orru-zkproof-sigma-protocols/)\" begins to add commitment schemes to prove knowledge about witnesses (secrets) and combinators.\n\nNeed to investigate if there is (or is planned to be) enough here for an algorithm. ",
       "createdAt": "2025-07-23T12:41:34Z",
       "updatedAt": "2025-07-23T12:41:34Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 186,
+      "id": "I_kwDOFsQObc7TH_cj",
+      "title": "Change JPT claim declaration syntax to mirror implementor experience",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/186",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite"
+      ],
+      "labels": [],
+      "body": "We should evaluate whether changes to JPT are desirable based on the [implementation notes and feedback][wwWallet-notes] on a BBS-based JPT digital credential from the wwWallet project.\n\nThis implementation used two newer developments - [SD-JWT VC claims metadata][sd-jwt-vctm] as an internet draft in IETF, and [OpenID DCQL][dcql].\n\nSpecifically, the claims syntax in both of these allow indexing into sub-claims, for example to disclose just the country of an address structure.\n\nThe SD-JWT-based Verifiable Credentials draft defines issuer metadata, accessible at a well-known location. This includes type metadata, where a `claims` array supplies objects describing the various claims for the type.\n\nAn individual claim requires a path, which is in a new format mirroring DCQL syntax. It also contains optional data providing a localized display name and description, selective disclosure information and an identifier to reference a SVG graphic template. \n\nI suspect we want to add this path syntax, while leaving other metadata and the like to be defined by applications of JPT like a credential profile. This would also mean one additional characteristic - the claims array would then be ordered.\n\nIt is worth noting that the path component currently has full fidelity with a representation in  [JSON Pointer][json-pointer] when utilizing an application-specific usage of \"-\", for example:\n\n| VC SD-JWT Path | JSON Pointer |\n| --- | --- |\n| `[\"name\"]` | `\"/name\"` |\n| `[\"address\"]` | `\"/address\"` |\n| `[\"address\", \"street_address\"`] | `\"/address/street_address\"` |\n| `[\"degrees\", 0 ]` | `\"/degrees/0\"` |\n| `[\"degrees\", null, \"type\"]` | `\"/degrees/-/type\"` |\n\nHowever, if the SD-JWT based Verifiable Credentials draft is seeking to standardize the path format already used by DCQL, we may not have any reason to push for JSON Pointer to be used (as was an earlier leaning). There is also a fresh [CBOR Pointer](https://www.ietf.org/archive/id/draft-mahy-cbor-pointer-00.html) independent draft which has significant alignment. We would not be able to index into CBOR using just a text string.\n",
+      "createdAt": "2025-10-22T19:18:40Z",
+      "updatedAt": "2025-10-23T22:04:32Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Talking with @c2bo , there was an (internal?) prototype which had a similar approach, although they had extensions to the syntax such as being able to represent the number of entries within an array.",
+          "createdAt": "2025-10-23T21:58:05Z",
+          "updatedAt": "2025-10-23T21:58:05Z"
+        },
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There are three potential ways we could support a claims member to be specified:\n\n| type  | meaning  |\n| ------ | --------- |\n| string | claim name |\n| array | claim path |\n| object | optional `path` key references a claim path; other values are application specific |\n\nCBOR would add the possibility of integer claim labels.\n\nI don't think we need to complicate implementations with this full set of options, however. We just need to decide if a more terse format than `{\"path\": [\"address\"] }` is desirable",
+          "createdAt": "2025-10-23T22:01:55Z",
+          "updatedAt": "2025-10-23T22:04:32Z"
+        }
+      ]
+    },
+    {
+      "number": 188,
+      "id": "I_kwDOFsQObc7Vm05q",
+      "title": "JWK/CWK `alg` does not reference JWP algorithm registry.",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/188",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite"
+      ],
+      "labels": [],
+      "body": "While attempting to improve the CBOR examples, I noticed that the CWK `alg` parameter references the \"COSE Algorithms\" registry, while the `alg` header in JWP references the \"JSON Web Proof Algorithms\" registry.\n\nFor JWK, it references the \"JSON Web Signature and Encryption Algorithms\" registry, which additionally indicates whether it is used for signing or encryption\n\nTwo ways I see to correct this:\n\n1. Create a new JWK/CWK key, perhaps spelled `proof-alg`, which provides the same behavior of `alg` but uses the JWP algorithms registry\n2. Remove the JWP algorithms registry, and instead register parameters in the \"COSE Algorithms\" registry, and work to modify the \"JSON Web Signature and Encryption Algorithms\" registry to also support JWP.",
+      "createdAt": "2025-11-03T20:56:42Z",
+      "updatedAt": "2025-11-03T20:56:48Z",
       "closedAt": null,
       "comments": []
     }
@@ -10147,7 +10205,7 @@
       "labels": [],
       "body": "Change primary editor from Jeremie Miller to David Waite, as discussed",
       "createdAt": "2024-10-19T23:40:54Z",
-      "updatedAt": "2024-10-20T16:46:52Z",
+      "updatedAt": "2025-10-20T23:33:12Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "21ead88ff9ed0bcbfec8aa031adb7daedcf66c2a",
@@ -10189,7 +10247,7 @@
       "labels": [],
       "body": "New headers instead describe Issued/Presented Keys as part of CBOR addition.\r\n\r\nThis resulted in a slightly larger change with some additional editorial cleanups.\r\n\r\n1. The Proof Key and Presented Key definitions were in JWP, while the registry was in JPA. Moved the registry to JWP.\r\n2. The text was simplified by referring to e.g. \"Proof Key protected header\" rather than \"the `proof_key` issuer protected header value\"\r\n3. Requirements and usage purpose information inline in the algorithms leveraging these header parameters were moved to JWP under the header definitions.\r\n4. There was clarification in the new definition that the header parameters are not mandatory in general (specific algorithms mandate them).",
       "createdAt": "2024-10-20T06:15:51Z",
-      "updatedAt": "2024-10-20T16:57:33Z",
+      "updatedAt": "2025-10-20T23:33:13Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "cbor-serialization",
       "baseRefOid": "ebdc0ba50f13bff14a02ae30c62bac58d842586b",
@@ -10271,7 +10329,7 @@
       "labels": [],
       "body": "Eliminate the additional algorithm, as the form (issued vs presented) serves to differentiate.",
       "createdAt": "2024-10-21T04:27:22Z",
-      "updatedAt": "2024-10-21T04:28:02Z",
+      "updatedAt": "2025-10-20T23:33:17Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "85d4f8a03100b56791cdf01d30f910e33295db0d",
@@ -10307,7 +10365,7 @@
       "labels": [],
       "body": "Describe the CBOR protected header as containing a binary string.\r\n\r\nWhile in the section, ellaborate usage of the nonce protected header.",
       "createdAt": "2024-10-21T04:49:54Z",
-      "updatedAt": "2024-10-21T05:43:48Z",
+      "updatedAt": "2025-10-20T23:33:18Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "c6911d20249c16d450ebf6f9ccabb91b62afb627",
@@ -10357,7 +10415,7 @@
       "labels": [],
       "body": "Also updates `cid` to the new registry format, and renumbers the CBOR labels (before first publication) so `claims` and `cid` are adjacent.",
       "createdAt": "2024-10-21T21:42:56Z",
-      "updatedAt": "2024-10-21T21:53:56Z",
+      "updatedAt": "2025-10-20T23:33:19Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "254ad3c55dd737b3ceea6628b06c69cda72e20d5",
@@ -10399,7 +10457,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-10-21T21:55:23Z",
-      "updatedAt": "2024-10-21T22:37:25Z",
+      "updatedAt": "2025-10-20T23:33:20Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "9c507cfe30b5031b33ab0cc216facd7c289f8d86",
@@ -10483,7 +10541,7 @@
       "labels": [],
       "body": "Aiming to unify header parameters and claims, and to define a mechanism to reference the existing claims registries for JWT/CWT.\r\n\r\nImmediate tasks:\r\n\r\n- [x] Determine if [draft-bormann-cbor-draft-numbers](https://datatracker.ietf.org/doc/draft-bormann-cbor-draft-numbers/) is planned to be a recommendation by the CBOR WG, and how to properly use it for tags\r\n- [x] Convert Header Parameter -> Parameter in JPA, and verify there aren't other impacts\r\n- [ ] Coordinate JPT changes with @selfissued \r\n- [x] Parameter validity must be defined by the application - parameters exist to have common semantics for processing",
       "createdAt": "2025-03-11T20:57:45Z",
-      "updatedAt": "2025-07-25T08:02:26Z",
+      "updatedAt": "2025-10-20T23:33:21Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "b5047b3e1ba6134bf8f183c5c1b1ea2b54592236",
@@ -10650,7 +10708,7 @@
       "labels": [],
       "body": "Correction to generation code for example",
       "createdAt": "2025-03-16T07:02:13Z",
-      "updatedAt": "2025-03-16T07:50:32Z",
+      "updatedAt": "2025-10-20T23:33:21Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "44cc4363d104fc1772e259ffe0ac12b14dcf1acc",
@@ -10734,7 +10792,7 @@
       "labels": [],
       "body": "Initial code to generate a CPT example using single use ES256, and corresponding text for the algorithms appendix.",
       "createdAt": "2025-03-21T04:55:03Z",
-      "updatedAt": "2025-03-27T07:34:14Z",
+      "updatedAt": "2025-10-20T23:33:22Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "09c0b21a8faf28a83b9f70de59ac1149e5d8d821",
@@ -10824,7 +10882,7 @@
       "labels": [],
       "body": "Per discussion at IETF 122, this change removes JSON serialization\r\n\r\n- [x] first pass at text changes\r\n- [x] remove templates and fixtures to generate JSON serialized examples\r\n- [x] proofread changed sections in documents\r\n- [x] verify document change history",
       "createdAt": "2025-03-27T18:28:43Z",
-      "updatedAt": "2025-04-08T00:33:24Z",
+      "updatedAt": "2025-10-20T23:33:23Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "dacc4232cbad80120bcf1674c204e3f15574682b",
@@ -10970,7 +11028,7 @@
       "labels": [],
       "body": "Correct two issues with references:\r\n\r\n1. References to non-IETF documents are now consolidated into a single `common-biblio.md` included in all files.\r\n2. References within this document series are overridden to point to the non-versioned \"latest\" document, to prevent draft releases from referencing the prior document version.",
       "createdAt": "2025-04-07T22:37:02Z",
-      "updatedAt": "2025-04-08T00:37:06Z",
+      "updatedAt": "2025-10-20T23:33:28Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "dacc4232cbad80120bcf1674c204e3f15574682b",
@@ -11054,7 +11112,7 @@
       "labels": [],
       "body": "Fixes #155",
       "createdAt": "2025-06-24T22:16:20Z",
-      "updatedAt": "2025-06-24T22:31:14Z",
+      "updatedAt": "2025-10-20T23:33:24Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "9abad3a7c10e8ec997c5d55c9169b802ba2abe85",
@@ -11096,7 +11154,7 @@
       "labels": [],
       "body": "Fixes #162 ",
       "createdAt": "2025-06-25T02:48:29Z",
-      "updatedAt": "2025-06-25T19:58:34Z",
+      "updatedAt": "2025-10-20T23:33:25Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "694237d9b1e9252ed23e80ab23df3ef028c7c99d",
@@ -11140,7 +11198,7 @@
       "labels": [],
       "body": "Cleanups clarifying that messages have one or more payload slots. This includes also a few\r\nclarifications that came about while doing this editorial pass.\r\n\r\nFixes #167, Fixes #169\r\n\r\n  * Replaced `application/jwp+cbor` with `application/cwp`.\r\n  * Registered `+cwp` structured syntax suffix and simplified +jwp suffix.\r\n  * Expanded descriptions of and rationale for the serializations.\r\n  * Payload nomenclature was clarified by adding the concept of payload slots. The issued form and presented form have a certain number of ordered payload slots, and a presentation may choose to omit information from a slot.\r\n  * Recommendation for Isuser Protected Header is to make the header static aross issued JWP if possible, to prevent unintentional correlation by verifiers\r\n  * Cleaned up the text around algorithmic support for additional proofs of knowledge outside of payload disclosure (e.g. range proofs)\r\n  * Clarify that a proof is made up of multiple octet strings\r\n  * (CDDL) The protected header definitions now reference `empty_or_serialized_map` properly\r\n  * (CDDL) `payloads` is now `PayloadSlots`, and represents you need at least one slot\r\n  * (CDDL) The issuer `PayloadSlots` contains `payload`, which is not omittable\r\n  * (CDDL) The presented form likewise references `disclosable_payload`, which is nillable to represent omission\r\n  * (CDDL) `Proof` is capitalized to match, and properly represents you need at least one `bstr`\r\n  * (CDDL) `header_map`, `label` and `value` definitions imported from RFC 9052",
       "createdAt": "2025-07-04T23:11:08Z",
-      "updatedAt": "2025-07-05T19:56:48Z",
+      "updatedAt": "2025-10-20T23:33:26Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "79fa9ce05692399109ab2903d6bbf54543372d76",
@@ -11192,7 +11250,7 @@
       "labels": [],
       "body": "Significant changes to the SU and MAC algorithm families to provide presentation signatures over the entire presentation, and to allow the holder to use different signing algorithms from the issuer.\r\n\r\nThis creates a new internal binary representation of a presentation for use by algorithms. It also makes changes to the existing internal combined MAC representation to bring it closer in line.\r\n\r\nIt also defines a new issuer protected header, the Holder Presentation Algorithm (`hpa`) for limiting which algorithm the holder can use to sign the presentation (in case there are multiple choices for the given holder key).\r\n\r\nCloses #78. Closes #94.",
       "createdAt": "2025-07-06T21:57:57Z",
-      "updatedAt": "2025-07-07T07:08:39Z",
+      "updatedAt": "2025-10-20T23:33:28Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "2a1e891b286ffacb663268d05da2ebb69b3a420e",
@@ -11242,7 +11300,7 @@
       "labels": [],
       "body": "Added a number of formatting changes to promote consistency with formatting:\r\n\r\n- line wrapping (column 72)\r\n- unordered list bullets using hypen (`-`)\r\n- ordered list use correct ordering\r\n- sylization of email and bare html links when not in IANA templates\r\n\r\nIn addition, added a markdownlint file, which should provide warnings for several of these when using a supporting editor like VS Code.",
       "createdAt": "2025-07-07T19:37:01Z",
-      "updatedAt": "2025-07-07T19:48:55Z",
+      "updatedAt": "2025-10-20T23:33:39Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "4b1c241fb4243ae7322315b91eb920196f93ce6d",
@@ -11292,7 +11350,7 @@
       "labels": [],
       "body": "For his help revising the CDDL to match the spec text.",
       "createdAt": "2025-07-07T19:42:38Z",
-      "updatedAt": "2025-07-07T19:45:50Z",
+      "updatedAt": "2025-10-20T23:33:27Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "markdownlint",
       "baseRefOid": "b849837654f9fa64d7f5ef7685e77264aedf8f1f",
@@ -11342,7 +11400,7 @@
       "labels": [],
       "body": "Change Proof Key (proof_key) to Issuer Ephemeral Key (iek) and Presentation Key (presentation_key) to Holder Presentation Key (hpk).",
       "createdAt": "2025-07-07T21:33:08Z",
-      "updatedAt": "2025-07-07T21:48:33Z",
+      "updatedAt": "2025-10-20T23:33:47Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
       "baseRefOid": "99c4fd82cc45120e276fe32f49fc64f3606609dd",
@@ -11410,6 +11468,242 @@
           "body": "LGTM",
           "createdAt": "2025-07-07T21:39:02Z",
           "updatedAt": "2025-07-07T21:39:02Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 183,
+      "id": "PR_kwDOFsQObc6uuS6B",
+      "title": "Add history entries for the -11 specs",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/183",
+      "state": "CLOSED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T22:29:14Z",
+      "updatedAt": "2025-10-20T23:35:58Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "49f13bf91757c65312ad1590bd79e88323da1cea",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "mbj-11",
+      "headRefOid": "f18504323b7fc9315d457f258d135f2a11ca1719",
+      "closedAt": "2025-10-20T23:35:58Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Overtaken by events",
+          "createdAt": "2025-10-20T23:35:58Z",
+          "updatedAt": "2025-10-20T23:35:58Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 184,
+      "id": "PR_kwDOFsQObc6uuqre",
+      "title": "Proofreading corrections for -11",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/184",
+      "state": "MERGED",
+      "author": "selfissued",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T23:22:03Z",
+      "updatedAt": "2025-10-20T23:32:45Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "49f13bf91757c65312ad1590bd79e88323da1cea",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "mbj-11-proofread",
+      "headRefOid": "09dc9613fa87520df242262fc7437f3bb22b8693",
+      "closedAt": "2025-10-20T23:32:33Z",
+      "mergedAt": "2025-10-20T23:32:33Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "de8829a41143901f94def9d7f4e8fed9062383da"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc7IKzL9",
+          "commit": {
+            "abbreviatedOid": "09dc961"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-20T23:32:26Z",
+          "updatedAt": "2025-10-20T23:32:26Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 185,
+      "id": "PR_kwDOFsQObc6uuvSs",
+      "title": "Clean up usages of Header and Header Parameter",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/185",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T23:31:25Z",
+      "updatedAt": "2025-10-20T23:35:36Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "49f13bf91757c65312ad1590bd79e88323da1cea",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "protected-header-to-header",
+      "headRefOid": "dc663370c388f49ff35c9581097fa969614fec0a",
+      "closedAt": "2025-10-20T23:35:36Z",
+      "mergedAt": "2025-10-20T23:35:36Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "f91adf269ab2d3af214509aeb37b3541b6cbaf16"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc7IK3YQ",
+          "commit": {
+            "abbreviatedOid": "dc66337"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-20T23:35:30Z",
+          "updatedAt": "2025-10-20T23:35:30Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 187,
+      "id": "PR_kwDOFsQObc6vmCwb",
+      "title": "Add pointers to JPT/CPT",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/187",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #186 \r\n\r\nFirst pass at trying to define a path/pointer syntax that meets the requirements I've heard so far:\r\n\r\n1. mirrors DCQL and SD-JWT-VC as closely as possible\r\n2. keeps a way to select parts of an array of values\r\n3. defines a CBOR equivalent which attempts to align with [CBOR Pointer](https://www.ietf.org/archive/id/draft-mahy-cbor-pointer-00.html)\r\n\r\nThe ability to filter an array to component values adds a fair bit of complexity and keeps us from being able to use some existing work (like the new CBOR Pointer) outright. We should think about whether this is required.\r\n\r\nThis does not attempt to add functions (such as length of array, something @c2bo mentioned they used in their prototype). Functions are actually somewhat difficult to represent in such a selector as a special case within CBOR, since a CBOR map can be keyed off of literally anything.\r\n\r\nAs specified (and as shown in examples), it is possible to have a root document of claims which cannot be reconstructed from the payloads and selectors. It is also possible to have an issuer release a claim and provide a selector into it which does not match when evaluated by the holder/verifier. We probably need to have opinions on these behaviors.",
+      "createdAt": "2025-10-24T20:32:19Z",
+      "updatedAt": "2025-11-04T19:53:24Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "f91adf269ab2d3af214509aeb37b3541b6cbaf16",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "change-jpt-to-array-query-syntax",
+      "headRefOid": "2a8693f4d735762402e6a215e334c74745f68f14",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Link to section in built PR document. https://ietf-wg-jose.github.io/json-web-proof/change-jpt-to-array-query-syntax/draft-ietf-jose-json-proof-token.html#name-claims-header-parameter . I'll add a link to the examples once I verify I fixed their build.",
+          "createdAt": "2025-10-24T20:33:49Z",
+          "updatedAt": "2025-10-24T21:11:50Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 189,
+      "id": "PR_kwDOFsQObc6xdqQ_",
+      "title": "Change back to compressed keys pending upstream update",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/189",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Pending draft-ietf-cose-bls-key-representations-08 \r\n\r\nAlso added code for CWK key generation, but keys do not currently appear in draft.",
+      "createdAt": "2025-11-04T16:46:45Z",
+      "updatedAt": "2025-11-05T00:53:44Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "f1559914e5cdb0e096fb32efef94ab9b72fe8f5f",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "revert-to-zcash-style-keys",
+      "headRefOid": "4279b694484d7fa9289f94bb1a5e522d58698b6f",
+      "closedAt": "2025-11-05T00:53:41Z",
+      "mergedAt": "2025-11-05T00:53:41Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "5b83f95c01cb787c5c22eaa6de8021a07d3fc944"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc7Ly_lC",
+          "commit": {
+            "abbreviatedOid": "4279b69"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-05T00:53:01Z",
+          "updatedAt": "2025-11-05T00:53:01Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 190,
+      "id": "PR_kwDOFsQObc6xeni4",
+      "title": "Update per Amanda Baber's early review",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/190",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Corrects [IANA #1435635], [IANA #1435636], and [IANA #1435637].\r\n\r\nAlso #1435636 mentioned declaring the registry under the JOSE registry group while #1435635 did not, so I made the additional change to JPA.",
+      "createdAt": "2025-11-04T18:01:13Z",
+      "updatedAt": "2025-11-05T00:54:02Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "f1559914e5cdb0e096fb32efef94ab9b72fe8f5f",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "iana-early-review-25-11",
+      "headRefOid": "ee9501f8c6240b1adde7c743e561d8aab549c9b2",
+      "closedAt": "2025-11-05T00:53:59Z",
+      "mergedAt": "2025-11-05T00:53:59Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "41aa4c4d71a7c3fea86c9547106de2ba54ab5c9e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc7Ly_zU",
+          "commit": {
+            "abbreviatedOid": "ee9501f"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-05T00:53:38Z",
+          "updatedAt": "2025-11-05T00:53:38Z",
           "comments": []
         }
       ]
