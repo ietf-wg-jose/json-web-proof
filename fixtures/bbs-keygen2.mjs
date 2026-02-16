@@ -1,7 +1,6 @@
 // generate two files (public-key.jwk and private-key.jwk)
 // containing a BLS curve key pair usable for issuance, based on 
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
-// import {bbs, utilities} from "@mattrglobal/pairing-crypto"
 import { CTX } from "amcl-js";
 import {base64url} from "jose";
 import {lineWrap} from "./utils.mjs"

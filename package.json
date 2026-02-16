@@ -7,12 +7,12 @@
     "node": ">=22.13.1"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "cd fixtures && jasmine --config=spec/support/jasmine.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mattrglobal/pairing-crypto": "file:mattrglobal-pairing-crypto-df72bf1b.tgz",
+    "@alksol/cfrg-bbs": "file:/Users/david/Projects/jwp/alksol-cfrg-bbs/npm",
     "cbor-edn": "^0.2.2",
     "cbor2": "^2.0.1",
     "jose": "^6",

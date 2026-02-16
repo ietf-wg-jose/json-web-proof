@@ -1,10 +1,10 @@
 import fs from "fs/promises";
 
-import pairing from "@mattrglobal/pairing-crypto";
+import { createProofSHA256, signSHA256 } from "@alksol/cfrg-bbs";
 import { base64url } from 'jose';
 
 import { keyRead } from './bbs-keyread.mjs';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode } from './utils.mjs';
+import { lineWrap, compactPayloadEncode } from './utils.mjs';
 
 import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" with {type: "json"};
 import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" with {type: "json"};
@@ -19,12 +19,12 @@ const payloads = payloadsJSON.map((item)=>Buffer.from(JSON.stringify(item), "UTF
 const presentationHeader = Buffer.from(JSON.stringify(presentationHeaderJSON), "UTF-8");
 
 // calculate signature
-const signature = await pairing.bbs.bls12381_sha256.sign({
-    publicKey: keyPair.publicKey.compressed, 
-    secretKey: keyPair.secretKey, 
-    header: protectedHeader,
-    messages: payloads
-});
+const signature = signSHA256(
+    keyPair.secretKey,
+    keyPair.publicKey.compressed,
+    protectedHeader,
+    payloads
+);
 
 await fs.writeFile("build/bbs-issuer-proof.base64url", encode(signature), {encoding: "UTF-8"});
 
@@ -38,22 +38,14 @@ await fs.writeFile("build/bbs-issuer.compact.jwp", compactSerialization, {encodi
 await fs.writeFile("build/bbs-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
 
 // Generate proof, selectively disclosing only name and age
-var proof = await pairing.bbs.bls12381_sha256.deriveProof({
-    publicKey: keyPair.publicKey.compressed,
-    header: protectedHeader,
-    presentationHeader: presentationHeader,
-    signature: signature,
-    verifySignature: false,
-    messages: [
-        { value: payloads[0], reveal: true },
-        { value: payloads[1], reveal: true },
-        { value: payloads[2], reveal: true },
-        { value: payloads[3], reveal: true },
-        { value: payloads[4], reveal: false },
-        { value: payloads[5], reveal: false },
-        { value: payloads[6], reveal: false },
-    ]
-});
+const proof = createProofSHA256(
+    keyPair.publicKey.compressed,
+    signature,
+    protectedHeader,
+    presentationHeader,
+    payloads,
+    new Uint32Array([0, 1, 2, 3])
+);
 await fs.writeFile("build/bbs-holder-proof.base64url", encode(proof), {encoding: "UTF-8"});
 
 // go ahead and modify payloads in place for final output

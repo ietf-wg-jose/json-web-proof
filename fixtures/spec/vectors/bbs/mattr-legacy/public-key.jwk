@@ -1,0 +1,7 @@
+{
+  "kty": "OKP",
+  "alg": "BBS",
+  "use": "proof",
+  "crv": "BLS12381G2",
+  "x": "tEe_hXJKhEU8NY3Qr_rbyZh0C797RK96CS4mIFXR6I7-N2ZYxOk7OZyxIKX6VNX6AMk0-dUv3e9_7KgOYpP5SMweJjIGruoHihRM6cnXiR5Fr2YhnNEEca-qoztd43uj"
+}

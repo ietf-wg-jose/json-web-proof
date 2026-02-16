@@ -2,7 +2,6 @@
 
 import { base64url } from "jose"
 import fs from "fs/promises";
-import { utilities } from "@mattrglobal/pairing-crypto";
 
 const decode = base64url.decode;
 
@@ -15,8 +14,6 @@ export async function keyRead() {
         }
     };
 
-    //convert to little endian as currently expected by library
-    result.secretKey.reverse();
     result.publicKey.compressed = result.publicKey.x;
     return result;
 }
