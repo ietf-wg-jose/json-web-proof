@@ -41,28 +41,24 @@ async function collectManifest() {
     const manifest = new Map();
     const buildDir = path.join(root, "fixtures", "build");
     const buildFiles = await walkFiles(buildDir);
-    const bbsFileNames = new Set([
-        "private-key.jwk",
-        "private-key.jwk.wrapped",
-        "private-key.cwk",
-        "private-key.cwk.edn",
-        "public-key.jwk",
-        "public-key.jwk.wrapped",
-        "public-key.cwk",
-        "public-key.cwk.edn",
-        "bbs-issuer-proof.base64url",
-        "bbs-issuer.compact.jwp",
-        "bbs-issuer.compact.jwp.wrapped",
-        "bbs-holder-proof.base64url",
-        "bbs-holder.compact.jwp",
-        "bbs-holder.compact.jwp.wrapped"
-    ]);
     for (const filePath of buildFiles) {
         const rel = path.relative(root, filePath);
-        if (!bbsFileNames.has(path.basename(filePath))) {
+        manifest.set(rel, await hashFile(filePath));
+    }
+
+    const topLevelEntries = await readdir(root, { withFileTypes: true });
+    for (const entry of topLevelEntries) {
+        if (!entry.isFile()) {
             continue;
         }
-        manifest.set(rel, await hashFile(filePath));
+        if (!entry.name.startsWith("draft-ietf-jose-")) {
+            continue;
+        }
+        if (!entry.name.endsWith(".html") && !entry.name.endsWith(".txt")) {
+            continue;
+        }
+        const fullPath = path.join(root, entry.name);
+        manifest.set(entry.name, await hashFile(fullPath));
     }
 
     return manifest;

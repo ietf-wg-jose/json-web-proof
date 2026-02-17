@@ -1,4 +1,13 @@
-import {createPresentationInternalRepresentation, exportForTesting, payloadSecrets, payloadMACs, combinedMACRepresentation } from  "../utils.mjs";
+import crypto from "node:crypto";
+import {
+    createPresentationInternalRepresentation,
+    exportForTesting,
+    payloadSecrets,
+    payloadMACs,
+    combinedMACRepresentation,
+    signPayloadSHA256
+} from  "../utils.mjs";
+import { validP256PrivateKey } from "../deterministic.mjs";
 
 let internalCount = exportForTesting.internalCount;
 let internalLengthAndValue = exportForTesting.internalLengthAndValue;
@@ -108,4 +117,33 @@ describe("combinedMACRepresentation", () => {
         
         expect(Buffer(cmr).toString("hex")).toEqual(expected);
     });
-})
+});
+
+describe("signPayloadSHA256", () => {
+    it("should produce deterministic signatures that verify", async () => {
+        const privateScalar = validP256PrivateKey("tests:es256:sign:v1");
+        const ecdh = crypto.createECDH("prime256v1");
+        ecdh.setPrivateKey(privateScalar);
+        const publicKey = ecdh.getPublicKey(undefined, "uncompressed");
+        const privateJwk = {
+            kty: "EC",
+            crv: "P-256",
+            d: Buffer.from(privateScalar).toString("base64url"),
+            x: Buffer.from(publicKey.subarray(1, 33)).toString("base64url"),
+            y: Buffer.from(publicKey.subarray(33, 65)).toString("base64url")
+        };
+        const privateKey = crypto.createPrivateKey({ key: privateJwk, format: "jwk" });
+        const publicKeyObj = crypto.createPublicKey(privateKey);
+        const payload = Buffer.from("deterministic-signature-test", "utf-8");
+
+        const sig1 = await signPayloadSHA256(payload, privateKey);
+        const sig2 = await signPayloadSHA256(payload, privateKey);
+
+        expect(sig1).toEqual(sig2);
+        expect(sig1.length).toBe(64);
+        expect(crypto.verify("SHA256", payload, {
+            dsaEncoding: "ieee-p1363",
+            key: publicKeyObj
+        }, sig1)).toBeTrue();
+    });
+});
