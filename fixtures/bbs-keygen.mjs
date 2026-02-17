@@ -1,14 +1,17 @@
 // generate two files (public-key.jwk and private-key.jwk)
 // containing a BLS curve key pair usable for issuance, based on 
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
-import { generateKeyPairSha256 } from "@alksol/cfrg-bbs";
+import { KeyPair } from "@alksol/cfrg-bbs";
 import {base64url} from "jose";
 import {lineWrap} from "./utils.mjs"
 import fs from "node:fs/promises";
 import { encode as cborEncode, diagnose } from "cbor2";
+import { seed32 } from "./deterministic.mjs";
 
 const encode = base64url.encode
-const keyPair = generateKeyPairSha256();
+const keyPair = KeyPair.fromKeyMaterialSha256(
+    seed32("bbs:key-material:v1")
+);
 const publicKeyX = keyPair.getPublicKey();
 const secretKey = keyPair.getSecretKey();
 const publicKeyStr = encode(publicKeyX);

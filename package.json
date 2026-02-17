@@ -7,7 +7,8 @@
     "node": ">=22.13.1"
   },
   "scripts": {
-    "test": "cd fixtures && jasmine --config=spec/support/jasmine.mjs"
+    "test": "cd fixtures && jasmine --config=spec/support/jasmine.mjs",
+    "check:repro": "node --no-warnings scripts/check-repro.mjs"
   },
   "author": "",
   "license": "ISC",

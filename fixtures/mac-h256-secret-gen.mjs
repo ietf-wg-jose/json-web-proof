@@ -1,12 +1,12 @@
-import * as crypto from "crypto";
 import { base64url } from 'jose';
 import * as fs from "fs/promises";
+import { bytes32 } from "./deterministic.mjs";
 
-const {encode, decode} = base64url;
-
-const sharedSecret = new Buffer.alloc(32);
+const {encode} = base64url;
 
 try { await fs.mkdir("build");  } catch (e) { /* ignore */ }
 
-crypto.getRandomValues(sharedSecret);
-await fs.writeFile(`build/mac-h256-holder-shared-secret.json`, JSON.stringify(encode(sharedSecret)));
+await fs.writeFile(
+    "build/mac-h256-holder-shared-secret.json",
+    JSON.stringify(encode(bytes32("mac-h256-holder-shared-secret:v1")))
+);

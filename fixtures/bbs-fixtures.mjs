@@ -1,10 +1,12 @@
 import fs from "fs/promises";
 
-import { createProofSHA256, signSHA256 } from "@alksol/cfrg-bbs";
+import { signSHA256 } from "@alksol/cfrg-bbs";
+import { generateProofSha256 } from "@alksol/cfrg-bbs/deterministic";
 import { base64url } from 'jose';
 
 import { keyRead } from './bbs-keyread.mjs';
 import { lineWrap, compactPayloadEncode } from './utils.mjs';
+import { seed32 } from "./deterministic.mjs";
 
 import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" with {type: "json"};
 import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" with {type: "json"};
@@ -38,13 +40,14 @@ await fs.writeFile("build/bbs-issuer.compact.jwp", compactSerialization, {encodi
 await fs.writeFile("build/bbs-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
 
 // Generate proof, selectively disclosing only name and age
-const proof = createProofSHA256(
+const proof = generateProofSha256(
     keyPair.publicKey.compressed,
     signature,
     protectedHeader,
     presentationHeader,
     payloads,
-    new Uint32Array([0, 1, 2, 3])
+    new Uint32Array([0, 1, 2, 3]),
+    seed32("bbs:proof-seed:v1")
 );
 await fs.writeFile("build/bbs-holder-proof.base64url", encode(proof), {encoding: "UTF-8"});
 
