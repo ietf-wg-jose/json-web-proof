@@ -10,7 +10,7 @@ import { validP256PrivateKey } from "./deterministic.mjs";
 
 const encode = base64url.encode;
 
-import { argv, exit } from "process";
+import { argv } from "process";
 
 if (argv.length != 3) {
     console.error("Must call with single key name argument");

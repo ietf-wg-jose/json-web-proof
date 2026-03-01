@@ -1,5 +1,5 @@
 import { base64url } from 'jose';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256, createPresentationInternalRepresentation } from './utils.mjs';
+import { lineWrap, signPayloadSHA256, createPresentationInternalRepresentation } from './utils.mjs';
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 import * as cbor from "cbor2";
@@ -9,7 +9,6 @@ import {registerEncoder} from "cbor2/encoder";
 import issuerPrivateKeyJSON from "./build/issuer-private-key-es256.jwk.json" with {type: "json"};
 import holderPrivateKeyJSON from "./build/holder-private-key-es256.jwk.json" with {type: "json"};
 import ephemeralPrivateKeyJSON from "./build/ephemeral-private-key-es256.jwk.json" with {type: "json"};
-import issuerNonceStr from "./build/issuer-nonce.json" with {type: "json"};
 import presentationNonceStr from "./build/presentation-nonce.json" with {type: "json"};
 
 const { encode, decode } = base64url;
@@ -58,7 +57,6 @@ async function cborFromFile(filename) {
     return cborFromString(await fs.readFile(filename, {encoding: "utf-8"}), filename);
 }
 
-const issuerNonce = decode(issuerNonceStr);
 const presentationNonce = decode(presentationNonceStr);
 
 // pull private key JSON from disk, create corresponding KeyObjects,
@@ -75,19 +73,6 @@ const ephemeralPrivateKey = crypto.createPrivateKey({
     key: ephemeralPrivateKeyJSON, 
     format: "jwk"
 });
-
-function cwkFromP256Jwk(jwk) {
-    return new Map([
-        [ 1, 2 ],  // kty : "EC2" /
-        [-1, 1 ],  // crv: "P-256" /
-        [-2, decode(jwk.x)],
-        [-3, decode(jwk.y)]
-        ]);
-}
-
-const issuerPublicKey = cwkFromP256Jwk(issuerPrivateKeyJSON);
-const holderPublicKey = cwkFromP256Jwk(holderPrivateKeyJSON);
-const ephemeralPublicKey = cwkFromP256Jwk(ephemeralPrivateKeyJSON);
 
 // update EDN with key text
 var issuerProtectedHeaderText = 

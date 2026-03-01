@@ -1,6 +1,5 @@
 import { base64url } from 'jose';
-import { GeneralSign } from 'jose';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode,
+import { lineWrap, compactPayloadEncode,
     signPayloadSHA256, payloadSecrets, payloadMACs, 
     createPresentationInternalRepresentation, combinedMACRepresentation
 } from './utils.mjs';
@@ -16,7 +15,6 @@ import presentationNonceStr from "./build/presentation-nonce.json" with {type: "
 import issuerProtectedHeaderJSON from "./template/mac-h256-issuer-protected-header.json" with {type: "json"};
 import holderProtectedHeaderJSON from "./template/mac-h256-holder-protected-header.json" with {type: "json"};
 import holderSharedSecretStr from "./build/mac-h256-holder-shared-secret.json" with {type: "json"};
-import { create } from 'domain';
 
 const { encode, decode } = base64url;
 

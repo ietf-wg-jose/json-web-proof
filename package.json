@@ -7,13 +7,18 @@
     "node": ">=22.13.1"
   },
   "scripts": {
-    "test": "cd fixtures && jasmine --config=spec/support/jasmine.mjs",
-    "check:repro": "node --no-warnings scripts/check-repro.mjs"
+    "pretest": "make fixtures",
+    "test": "cd fixtures && jasmine --config=spec/support/jasmine.mjs --random=true --seed=1337",
+    "test:random": "cd fixtures && jasmine --config=spec/support/jasmine.mjs --random=true",
+    "check:repro:fixtures": "node --no-warnings scripts/check-repro.mjs --mode=fixtures",
+    "check:repro": "node --no-warnings scripts/check-repro.mjs --mode=full",
+    "lint:fixtures": "node --no-warnings scripts/lint-fixtures.mjs",
+    "verify": "make fixtures && npm run lint:fixtures && npm test && npm run test:random && npm run check:repro:fixtures && make"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@alksol/cfrg-bbs": "file:/Users/david/Projects/jwp/alksol-cfrg-bbs/npm",
+    "@alksol/cfrg-bbs": "file:./fixtures/vendor/alksol-cfrg-bbs-0.1.0.tgz",
     "cbor-edn": "^0.2.2",
     "cbor2": "^2.0.1",
     "jose": "^6"

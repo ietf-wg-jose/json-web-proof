@@ -1,11 +1,9 @@
 // generate two files (public-key.jwk and private-key.jwk)
 // containing a BLS curve key pair usable for issuance, based on 
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
-import { CTX } from "amcl-js";
 import {base64url} from "jose";
 import {lineWrap} from "./utils.mjs"
 import fs from "node:fs/promises";
-import { assert } from "node:console";
 
 const encode = base64url.encode
 var keys = await bbs.bls12381_sha256.generateKeyPair();

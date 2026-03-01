@@ -1,5 +1,5 @@
 import { base64url } from 'jose';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode, signPayloadSHA256, createPresentationInternalRepresentation } from './utils.mjs';
+import { lineWrap, compactPayloadEncode, signPayloadSHA256, createPresentationInternalRepresentation } from './utils.mjs';
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 
@@ -7,16 +7,13 @@ import payloadsJSON from "./template/jpt-issuer-payloads.json" with {type: "json
 import issuerPrivateKeyJSON from "./build/issuer-private-key-es256.jwk.json" with {type: "json"};
 import holderPrivateKeyJSON from "./build/holder-private-key-es256.jwk.json" with {type: "json"};
 import ephemeralPrivateKeyJSON from "./build/ephemeral-private-key-es256.jwk.json" with {type: "json"};
-import issuerNonceStr from "./build/issuer-nonce.json" with {type: "json"};
 import presentationNonceStr from "./build/presentation-nonce.json" with {type: "json"};
 import issuerProtectedHeaderJSON from "./template/su-es256-issuer-protected-header.json" with {type: "json"};
 import holderProtectedHeaderJSON from "./template/su-es256-holder-protected-header.json" with {type: "json"};
 
-const { encode, decode } = base64url;
+const { encode } = base64url;
 
 const payloads = payloadsJSON.map((item) => Buffer.from(JSON.stringify(item), "UTF-8"));
-const issuerNonce = decode(issuerNonceStr);
-const presentationNonce = decode(presentationNonceStr);
 
 const issuerPrivateKey = crypto.createPrivateKey({
     key: issuerPrivateKeyJSON, 
@@ -54,8 +51,6 @@ for (let payload of payloads) {
     sigs.push(signature);
 };
 
-// merge final signature
-let final = Buffer.from([]);
 await fs.writeFile("build/su-es256-issuer-proof.json.wrapped", lineWrap(JSON.stringify(sigs.map(encode), 0, 2)), {encoding: "UTF-8"});
 
 // Compact Serialization

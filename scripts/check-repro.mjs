@@ -37,13 +37,17 @@ async function walkFiles(dirPath) {
     return results;
 }
 
-async function collectManifest() {
+async function collectManifest({ includeDrafts }) {
     const manifest = new Map();
     const buildDir = path.join(root, "fixtures", "build");
     const buildFiles = await walkFiles(buildDir);
     for (const filePath of buildFiles) {
         const rel = path.relative(root, filePath);
         manifest.set(rel, await hashFile(filePath));
+    }
+
+    if (!includeDrafts) {
+        return manifest;
     }
 
     const topLevelEntries = await readdir(root, { withFileTypes: true });
@@ -88,12 +92,14 @@ function describeDelta(run1, run2) {
     return { added, removed, changed };
 }
 
-async function runCycle(label) {
+async function runCycle(label, { includeDrafts }) {
     console.log(`\n=== ${label}: clean and rebuild ===`);
     await rm(path.join(root, "fixtures", "build"), { recursive: true, force: true });
     run("make", ["fixtures"]);
-    run("make", []);
-    return collectManifest();
+    if (includeDrafts) {
+        run("make", []);
+    }
+    return collectManifest({ includeDrafts });
 }
 
 function assertNoDelta(delta) {
@@ -116,12 +122,26 @@ function assertNoDelta(delta) {
     throw new Error(`Reproducibility check failed:\n${lines.join("\n")}`);
 }
 
+function parseMode(argv) {
+    const modeArg = argv.find((arg) => arg.startsWith("--mode="));
+    if (!modeArg) {
+        return "full";
+    }
+    const mode = modeArg.substring("--mode=".length);
+    if (mode !== "fixtures" && mode !== "full") {
+        throw new Error(`Unknown mode: ${mode}. Use --mode=fixtures or --mode=full.`);
+    }
+    return mode;
+}
+
 async function main() {
-    const run1 = await runCycle("run1");
-    const run2 = await runCycle("run2");
+    const mode = parseMode(process.argv.slice(2));
+    const includeDrafts = mode === "full";
+    const run1 = await runCycle("run1", { includeDrafts });
+    const run2 = await runCycle("run2", { includeDrafts });
     const delta = describeDelta(run1, run2);
     assertNoDelta(delta);
-    console.log("\nReproducibility check passed: run1 and run2 match.");
+    console.log(`\nReproducibility check passed (${mode}): run1 and run2 match.`);
 }
 
 await main();
