@@ -209,9 +209,7 @@ algorithm that is used with the key. If this parameter is present in the
 key structure, the application MUST verify that this algorithm matches
 the algorithm for which the key is being used. If the algorithms do not
 match, then this key object MUST NOT be used to perform the
-cryptographic operation.  Note that the same key can be in a different
-key structure with a different or no algorithm specified; however, this
-is considered to be a poor security practice.
+cryptographic operation.
 
 As a JWK parameter, the `proof_alg` value is a case-sensitive ASCII
 string containing a StringOrURI value.  The value MUST be a name
