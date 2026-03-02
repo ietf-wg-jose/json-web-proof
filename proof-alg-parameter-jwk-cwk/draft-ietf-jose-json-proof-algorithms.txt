@@ -266,7 +266,7 @@ Table of Contents
    a collision-resistant name.
 
    To avoid the risk of collision with algorithms registered in the
-   "JSON Web Proof Algorithms" registry, this specification defines
+   "JSON Web Proof Algorithms" registry, this specification defines the
    proof_alg key parameter.
 
    For COSE_Key values, a proof_alg key parameter is likewise defined to
