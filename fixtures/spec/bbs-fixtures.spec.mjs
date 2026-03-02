@@ -25,6 +25,8 @@ function inDir(basePath, fileName) {
     return new URL(fileName, basePath);
 }
 
+const PROOF_ALG_CWK_LABEL = 7;
+
 async function assertKeyStructure(basePath) {
     const privateJwk = await readJSON(inDir(basePath, "bbs-private-key.jwk"));
     const publicJwk = await readJSON(inDir(basePath, "bbs-public-key.jwk"));
@@ -32,11 +34,13 @@ async function assertKeyStructure(basePath) {
     const publicCwk = cborDecode(await fs.readFile(inDir(basePath, "bbs-public-key.cwk")));
 
     expect(privateJwk.kty).toBe("OKP");
+    expect(privateJwk.proof_alg).toBe("BBS");
     expect(privateJwk.crv).toBe("BLS12381G2");
     expect(typeof privateJwk.x).toBe("string");
     expect(typeof privateJwk.d).toBe("string");
 
     expect(publicJwk.kty).toBe("OKP");
+    expect(publicJwk.proof_alg).toBe("BBS");
     expect(publicJwk.crv).toBe("BLS12381G2");
     expect(typeof publicJwk.x).toBe("string");
     expect(publicJwk.d).toBeUndefined();
@@ -45,10 +49,12 @@ async function assertKeyStructure(basePath) {
     expect(privateCwk instanceof Map).toBeTrue();
     expect(publicCwk instanceof Map).toBeTrue();
     expect(privateCwk.get(1)).toBe(1);
+    expect(privateCwk.get(PROOF_ALG_CWK_LABEL)).toBe(4);
     expect(privateCwk.get(-1)).toBe(14);
     expect(privateCwk.get(-2) instanceof Uint8Array).toBeTrue();
     expect(privateCwk.get(-4) instanceof Uint8Array).toBeTrue();
     expect(publicCwk.get(1)).toBe(1);
+    expect(publicCwk.get(PROOF_ALG_CWK_LABEL)).toBe(4);
     expect(publicCwk.get(-1)).toBe(14);
     expect(publicCwk.get(-2) instanceof Uint8Array).toBeTrue();
     expect(publicCwk.has(-4)).toBeFalse();

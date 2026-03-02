@@ -185,6 +185,46 @@ generate the presentation.
 If given an issued JWP for verification, the algorithm MUST return an
 error.
 
+# JWK and COSE_Key Parameters
+
+For JSON Web Keys, the optional `alg` (algorithm) parameter identifies
+the algorithm intended for use. This can reference the IANA "JSON Web
+Signature and Encryption Algorithms" registry [@IANA.JOSE], or be a
+collision-resistant name.
+
+To avoid the risk of collision with algorithms registered in
+the "JSON Web Proof Algorithms" registry, this specification
+defines the `proof_alg` key parameter.
+
+For COSE_Key values, a `proof_alg` key parameter is likewise defined to
+avoid collisions with the IANA "COSE Algorithms" registry [@IANA.COSE].
+
+Implementations SHOULD NOT specify proof algorithms using the `alg`
+key parameter.
+
+## The "proof_alg" JWK/COSE_Key Parameter {#proof_algDef}
+
+The `proof_alg` (Proof Algorithm) key parameter is used to restrict the
+algorithm that is used with the key. If this parameter is present in the
+key structure, the application MUST verify that this algorithm matches
+the algorithm for which the key is being used. If the algorithms do not
+match, then this key object MUST NOT be used to perform the
+cryptographic operation.
+
+As a JWK parameter, the `proof_alg` value is a case-sensitive ASCII
+string containing a StringOrURI value.  The value MUST be a name
+registered in the IANA "JSON Web Proof Algorithms" registry established
+by this specification, or be a collision-resistant name for a JSON Web
+Proof Algorithm.
+
+As a CWK paramter, this value may also be an integer value.
+The integer CBOR Label from the "JSON Web Proof Algorithms" registry
+SHOULD be used when one is available.
+
+When `proof_alg` is present, the `alg` key parameter SHOULD NOT be used.
+
+Use of this key parameter is OPTIONAL.
+
 # Algorithm Specifications
 
 This section defines how to use specific algorithms for JWPs.
@@ -996,6 +1036,39 @@ Algorithm Analysis Documents(s):
 - Specification Document(s): (#MAC-registration) of this specification
 - Algorithm Analysis Documents(s): n/a
 
+## JSON Web Key Parameters Registry {#JWKParamReg}
+
+This section registers the following JWK parameter in the IANA "JSON Web
+Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
+
+### Registry Contents {#JWKParamContents}
+
+- Parameter Name: proof_alg
+- Parameter Description: JSON Web Proof algorithm associated with the key
+- Used with "kty" Value(s): *
+- Parameter Information Class: Public
+- Change Controller: IESG
+- Specification Document(s): (#proof_algDef) of this specification
+
+## COSE Key Common Parameters Registry {#COSEKeyParamReg}
+
+This section registers the following COSE_Key parameter in the IANA
+"COSE Key Common Parameters" registry [@IANA.COSE] established by
+[@RFC9052].
+
+### Registry Contents {#COSEKeyParamContents}
+
+- Name: proof_alg
+- Label: TBD (requested assignment 7)
+- CBOR Type: int / tstr
+- Value Registry: JSON Web Proof Algorithms
+- Description: JSON Web Proof algorithm associated with the key
+- Reference: (#proof_algDef) of this specification
+
+[RFC-EDITOR: The temporary development label for this COSE_Key parameter
+is 7CPA, following [@I-D.bormann-cbor-draft-numbers]. Please replace 7CPA with
+the final assigned value and remove this note before publication.]
+
 {backmatter}
 
 {{common-biblio.md}}
@@ -1268,6 +1341,9 @@ The BBS examples were generated using the library at
 
 - Examples are now built deterministically (using RFC 6979 deterministic
   ECDSA and seeded random number generation for BBS)
+- Add `proof_alg` to JWK and CWK to prevent potential collisions between
+  the JWS/JWE algorithm registry, COSE algorithms registry, and JWP
+  algorithms registry
 
 -12
 

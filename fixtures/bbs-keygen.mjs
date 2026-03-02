@@ -16,6 +16,7 @@ import {
 } from "./output-writers.mjs";
 
 const encode = base64url.encode;
+const PROOF_ALG_CWK_LABEL = 7;
 
 async function loadInputs() {
     await fs.mkdir("build", { recursive: true });
@@ -29,7 +30,7 @@ function deriveValues() {
 
     const privateJwk = {
         kty: "OKP",
-        alg: "BBS",
+        proof_alg: "BBS",
         use: "proof",
         crv: "BLS12381G2",
         x: encode(publicKeyX),
@@ -38,13 +39,14 @@ function deriveValues() {
 
     const privateCwk = new Map();
     privateCwk.set(1, 1);
+    privateCwk.set(PROOF_ALG_CWK_LABEL, 4);
     privateCwk.set(-1, 14);
     privateCwk.set(-2, publicKeyX);
     privateCwk.set(-4, secretKey);
 
     const publicJwk = {
         kty: "OKP",
-        alg: "BBS",
+        proof_alg: "BBS",
         use: "proof",
         crv: "BLS12381G2",
         x: encode(publicKeyX)
@@ -52,6 +54,7 @@ function deriveValues() {
 
     const publicCwk = new Map();
     publicCwk.set(1, 1);
+    publicCwk.set(PROOF_ALG_CWK_LABEL, 4);
     publicCwk.set(-1, 14);
     publicCwk.set(-2, publicKeyX);
 
