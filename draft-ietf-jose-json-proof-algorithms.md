@@ -192,9 +192,9 @@ the algorithm intended for use. This can reference the IANA "JSON Web
 Signature and Encryption Algorithms" registry [@IANA.JOSE], or be a
 collision-resistant name.
 
-To avoid the risk of collision with algorithms contained here,
-registered in the "JSON Web Proof Algorithms" registry, this
-specification defines `proof_alg`.
+To avoid the risk of collision with algorithms registered in
+the "JSON Web Proof Algorithms" registry, this specification
+defines `proof_alg` key parameter.
 
 For COSE_Key values, a `proof_alg` key parameter is likewise defined to
 avoid collisions with the IANA "COSE Algorithms" registry [@IANA.COSE].
