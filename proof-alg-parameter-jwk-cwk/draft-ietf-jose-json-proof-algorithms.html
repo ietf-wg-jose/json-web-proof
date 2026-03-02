@@ -1568,9 +1568,9 @@ error.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
 the algorithm intended for use. This can reference the IANA "JSON Web
 Signature and Encryption Algorithms" registry <span>[<a href="#IANA.JOSE" class="cite xref">IANA.JOSE</a>]</span>, or be a
 collision-resistant name.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">To avoid the risk of collision with algorithms contained here,
-registered in the "JSON Web Proof Algorithms" registry, this
-specification defines <code>proof_alg</code>.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-2">To avoid the risk of collision with algorithms registered in
+the "JSON Web Proof Algorithms" registry, this specification
+defines <code>proof_alg</code> key parameter.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">For COSE_Key values, a <code>proof_alg</code> key parameter is likewise defined to
 avoid collisions with the IANA "COSE Algorithms" registry <span>[<a href="#IANA.COSE" class="cite xref">IANA.COSE</a>]</span>.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">Implementations SHOULD NOT specify proof algorithms using the <code>alg</code>
