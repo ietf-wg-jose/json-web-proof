@@ -21,6 +21,5 @@ draft-ietf-jose-json-proof-algorithms.xml
 draft-ietf-jose-json-proof-token.xml
 draft-ietf-jose-json-web-proof.xml
 Gemfile.lock
-package-lock.json
 report.xml
 !requirements.txt
