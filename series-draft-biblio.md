@@ -58,3 +58,12 @@ JSON Proof Token (JPT) is a compact, URL-safe, privacy-preserving representation
     </front>
     <seriesInfo name="Internet-Draft" value="draft-ietf-jose-json-proof-token-latest"/>
 </reference>
+<reference anchor="I-D.bormann-cbor-draft-numbers" target="https://datatracker.ietf.org/doc/html/draft-bormann-cbor-draft-numbers">
+    <front>
+        <title>CBOR: Code Point Allocation and Assigned Numbers</title>
+        <author fullname="Carsten Bormann" initials="C." surname="Bormann">
+            <organization>Universitaet Bremen TZI</organization>
+        </author>
+    </front>
+    <seriesInfo name="Internet-Draft" value="draft-bormann-cbor-draft-numbers-latest"/>
+</reference>
