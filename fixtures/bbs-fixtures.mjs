@@ -4,7 +4,7 @@ import { signSHA256 } from "@alksol/cfrg-bbs";
 import { generateProofSha256 } from "@alksol/cfrg-bbs/deterministic";
 import { base64url } from 'jose';
 
-import { keyRead } from './bbs-keyread.mjs';
+import { keyRead } from './bbs-key-load.mjs';
 import {
     compactPayloadEncode,
     serializeJSON,
