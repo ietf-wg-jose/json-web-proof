@@ -1343,6 +1343,9 @@ The BBS examples were generated using the library at
 
 - Examples are now built deterministically (using RFC 6979 deterministic
   ECDSA and seeded random number generation for BBS)
+- Add `proof_alg` to JWK and CWK to prevent potential collisions between
+  the JWS/JWE algorithm registry, COSE algorithms registry, and JWP
+  algorithms registry
 
 -12
 
