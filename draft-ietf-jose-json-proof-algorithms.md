@@ -1266,7 +1266,8 @@ The BBS examples were generated using the library at
 
 -13
 
-- Examples are now built deterministically
+- Examples are now built deterministically (using RFC 6979 deterministic
+  ECDSA and seeded random number generation for BBS)
 
 -12
 

@@ -453,7 +453,8 @@ for his valuable contributions to this specification.
 
 -13
 
-- Examples are now built deterministically
+- Examples are now built deterministically (using RFC 6979 deterministic
+  ECDSA and seeded random number generation for BBS)
 
 -12
 
