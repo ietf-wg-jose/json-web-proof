@@ -221,7 +221,7 @@ As a CWK paramter, this value may also be an integer value.
 The integer CBOR Label from the "JSON Web Proof Algorithms" registry
 SHOULD be used when one is available.
 
-When present, the `alg` parameter SHOULD NOT be used.
+When `proof_alg` is present, the `alg` key parameter SHOULD NOT be used.
 
 Use of this key parameter is OPTIONAL.
 
