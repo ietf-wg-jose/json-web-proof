@@ -1,5 +1,5 @@
 import { base64url } from "jose";
-import * as crypto from "crypto";
+import * as crypto from "node:crypto";
 
 const decode = base64url.decode;
 

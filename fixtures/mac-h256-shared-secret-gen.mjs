@@ -1,13 +1,33 @@
-import { base64url } from 'jose';
-import * as fs from "fs/promises";
+import { base64url } from "jose";
+import * as fs from "node:fs/promises";
+
 import { bytes32 } from "./deterministic.mjs";
 import { writeJSON } from "./output-writers.mjs";
 
-const {encode} = base64url;
+const { encode } = base64url;
 
-try { await fs.mkdir("build");  } catch (e) { /* ignore */ }
+async function loadInputs() {
+    await fs.mkdir("build", { recursive: true });
+    return {};
+}
 
-await writeJSON(
-    "build/mac-h256-holder-shared-secret.base64url.json",
-    encode(bytes32("mac-h256-holder-shared-secret:v1"))
-);
+function deriveValues() {
+    return {
+        holderSharedSecret: encode(bytes32("mac-h256-holder-shared-secret:v1"))
+    };
+}
+
+async function writeOutputs({ holderSharedSecret }) {
+    await writeJSON(
+        "build/mac-h256-holder-shared-secret.base64url.json",
+        holderSharedSecret
+    );
+}
+
+async function main() {
+    await loadInputs();
+    const values = deriveValues();
+    await writeOutputs(values);
+}
+
+await main();
