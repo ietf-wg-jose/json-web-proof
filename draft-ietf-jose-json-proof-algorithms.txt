@@ -62,55 +62,61 @@ Table of Contents
      5.2.  Confirm
      5.3.  Present
      5.4.  Verify
-   6.  Algorithm Specifications
-     6.1.  Single Use
-       6.1.1.  JWS Algorithm
-       6.1.2.  Holder Setup
-       6.1.3.  Issuer Setup
-       6.1.4.  Signing Payloads
-       6.1.5.  Issuer Header
-       6.1.6.  Payloads
-       6.1.7.  Proof
-       6.1.8.  Presentation Header #{presentation-header}
-       6.1.9.  Presentation
-       6.1.10. Verification of Presentation
-       6.1.11. JPA Registration
-     6.2.  Presentation Internal Representation
-     6.3.  BBS
-       6.3.1.  JPA Algorithms
-       6.3.2.  Key Format
-       6.3.3.  Issuance
-       6.3.4.  Issuance Proof Verification
-       6.3.5.  Presentation
-       6.3.6.  Presentation Verification
-     6.4.  Message Authentication Code
-       6.4.1.  Holder Setup
-       6.4.2.  Issuer Setup
-       6.4.3.  Combined MAC Representation
-       6.4.4.  Issuer Header
-       6.4.5.  Issuer Proof
-       6.4.6.  Presentation Header
-       6.4.7.  Presentation Proof
-       6.4.8.  Verification of the Presentation Proof
-       6.4.9.  JPA Registration
-   7.  Security Considerations
-   8.  IANA Considerations
-     8.1.  JSON Web Proof Algorithms Registry
-       8.1.1.  Registration Template
-       8.1.2.  Initial Registry Contents
-         8.1.2.1.  Single-Use JWP using ES256 Algorithm
-         8.1.2.2.  Single-Use JWP using ES384 Algorithm
-         8.1.2.3.  Single-Use JWP using ES512 Algorithm
-         8.1.2.4.  BBS using SHA-256 Algorithm
-         8.1.2.5.  MAC-H256 Algorithm
-         8.1.2.6.  MAC-H384 Algorithm
-         8.1.2.7.  MAC-H512 Algorithm
-         8.1.2.8.  MAC-K25519 Algorithm
-         8.1.2.9.  MAC-K448 Algorithm
-         8.1.2.10. MAC-H256K Algorithm
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   6.  JWK and COSE_Key Parameters
+     6.1.  The "proof_alg" JWK/COSE_Key Parameter
+   7.  Algorithm Specifications
+     7.1.  Single Use
+       7.1.1.  JWS Algorithm
+       7.1.2.  Holder Setup
+       7.1.3.  Issuer Setup
+       7.1.4.  Signing Payloads
+       7.1.5.  Issuer Header
+       7.1.6.  Payloads
+       7.1.7.  Proof
+       7.1.8.  Presentation Header #{presentation-header}
+       7.1.9.  Presentation
+       7.1.10. Verification of Presentation
+       7.1.11. JPA Registration
+     7.2.  Presentation Internal Representation
+     7.3.  BBS
+       7.3.1.  JPA Algorithms
+       7.3.2.  Key Format
+       7.3.3.  Issuance
+       7.3.4.  Issuance Proof Verification
+       7.3.5.  Presentation
+       7.3.6.  Presentation Verification
+     7.4.  Message Authentication Code
+       7.4.1.  Holder Setup
+       7.4.2.  Issuer Setup
+       7.4.3.  Combined MAC Representation
+       7.4.4.  Issuer Header
+       7.4.5.  Issuer Proof
+       7.4.6.  Presentation Header
+       7.4.7.  Presentation Proof
+       7.4.8.  Verification of the Presentation Proof
+       7.4.9.  JPA Registration
+   8.  Security Considerations
+   9.  IANA Considerations
+     9.1.  JSON Web Proof Algorithms Registry
+       9.1.1.  Registration Template
+       9.1.2.  Initial Registry Contents
+         9.1.2.1.  Single-Use JWP using ES256 Algorithm
+         9.1.2.2.  Single-Use JWP using ES384 Algorithm
+         9.1.2.3.  Single-Use JWP using ES512 Algorithm
+         9.1.2.4.  BBS using SHA-256 Algorithm
+         9.1.2.5.  MAC-H256 Algorithm
+         9.1.2.6.  MAC-H384 Algorithm
+         9.1.2.7.  MAC-H512 Algorithm
+         9.1.2.8.  MAC-K25519 Algorithm
+         9.1.2.9.  MAC-K448 Algorithm
+         9.1.2.10. MAC-H256K Algorithm
+     9.2.  JSON Web Key Parameters Registry
+       9.2.1.  Registry Contents
+     9.3.  COSE Key Common Parameters Registry
+       9.3.1.  Registry Contents
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Example JWPs
      A.1.  Example JSON-Serialized Single-Use JWP
      A.2.  Example CBOR-Serialized Single-Use CPT
@@ -252,11 +258,52 @@ Table of Contents
    If given an issued JWP for verification, the algorithm MUST return an
    error.
 
-6.  Algorithm Specifications
+6.  JWK and COSE_Key Parameters
+
+   For JSON Web Keys, the optional alg (algorithm) parameter identifies
+   the algorithm intended for use.  This can reference the IANA "JSON
+   Web Signature and Encryption Algorithms" registry [IANA.JOSE], or be
+   a collision-resistant name.
+
+   To avoid the risk of collision with algorithms registered in the
+   "JSON Web Proof Algorithms" registry, this specification defines the
+   proof_alg key parameter.
+
+   For COSE_Key values, a proof_alg key parameter is likewise defined to
+   avoid collisions with the IANA "COSE Algorithms" registry
+   [IANA.COSE].
+
+   Implementations SHOULD NOT specify proof algorithms using the alg key
+   parameter.
+
+6.1.  The "proof_alg" JWK/COSE_Key Parameter
+
+   The proof_alg (Proof Algorithm) key parameter is used to restrict the
+   algorithm that is used with the key.  If this parameter is present in
+   the key structure, the application MUST verify that this algorithm
+   matches the algorithm for which the key is being used.  If the
+   algorithms do not match, then this key object MUST NOT be used to
+   perform the cryptographic operation.
+
+   As a JWK parameter, the proof_alg value is a case-sensitive ASCII
+   string containing a StringOrURI value.  The value MUST be a name
+   registered in the IANA "JSON Web Proof Algorithms" registry
+   established by this specification, or be a collision-resistant name
+   for a JSON Web Proof Algorithm.
+
+   As a CWK paramter, this value may also be an integer value.  The
+   integer CBOR Label from the "JSON Web Proof Algorithms" registry
+   SHOULD be used when one is available.
+
+   When proof_alg is present, the alg key parameter SHOULD NOT be used.
+
+   Use of this key parameter is OPTIONAL.
+
+7.  Algorithm Specifications
 
    This section defines how to use specific algorithms for JWPs.
 
-6.1.  Single Use
+7.1.  Single Use
 
    The Single Use (SU) algorithm is based on composing multiple
    traditional asymmetric signatures into a single JWP proof.  It
@@ -268,7 +315,7 @@ Table of Contents
    need to interact with the issuer again to receive new single-use JWPs
    (dynamically or in batches).
 
-6.1.1.  JWS Algorithm
+7.1.1.  JWS Algorithm
 
    The Single Use algorithm uses multiple signing keys to protect the
    Header as well as individual payloads of an Issued JWP.  The issuer
@@ -288,7 +335,7 @@ Table of Contents
    each signature can be verified without sharing any private values
    between the parties.
 
-6.1.2.  Holder Setup
+7.1.2.  Holder Setup
 
    In order to support the protection of a presentation by a holder to a
    verifier, the holder MUST use a Holder Presentation Key during the
@@ -308,19 +355,19 @@ Table of Contents
    appropriate choice for a given holder presentation key, this value
    MUST be conveyed in the hpa Issuer Header.
 
-6.1.3.  Issuer Setup
+7.1.3.  Issuer Setup
 
    To create a Single Use JWP, the issuer first generates a unique
    Ephemeral Key using the selected internal algorithm.  This key-pair
    will be used to sign each of the payloads of a single JWP and then
    discarded.
 
-6.1.4.  Signing Payloads
+7.1.4.  Signing Payloads
 
    Each individual payload is signed using the selected internal
    algorithm using the Ephemeral Key.
 
-6.1.5.  Issuer Header
+7.1.5.  Issuer Header
 
    The Issuer's Ephemeral Key MUST be included via the Issuer Ephemeral
    Key Header Parameter.
@@ -337,18 +384,18 @@ Table of Contents
    algorithm for the given fully-specified single use algorithm, using
    the issuer's Stable Key.
 
-6.1.6.  Payloads
+7.1.6.  Payloads
 
    Each JWP payload is processed in order and signed using the given JWA
    using the issuer's Ephemeral Key.
 
-6.1.7.  Proof
+7.1.7.  Proof
 
    The proof value is an octet string array.  The first entry is the
    octet string of the Issuer Header signature, with an additional entry
    for each payload signature.
 
-6.1.8.  Presentation Header #{presentation-header}
+7.1.8.  Presentation Header #{presentation-header}
 
    To generate a new presentation, the holder first creates a
    Presentation Header that is specific to the verifier being presented
@@ -372,7 +419,7 @@ Table of Contents
    header as the Issuer Header.  The Holder Presentation Algorithm
    Header Parameter MUST NOT be included.
 
-6.1.9.  Presentation
+7.1.9.  Presentation
 
    The holder derives a new proof as part of presentation.  The holder
    will also use these components to generate a presentation internal
@@ -414,7 +461,7 @@ Table of Contents
    SHOULD only be presented a single time to each verifier in order for
    the holder to remain unlinkable across multiple presentations.
 
-6.1.10.  Verification of Presentation
+7.1.10.  Verification of Presentation
 
    Verification is performed using the following steps.
 
@@ -435,13 +482,13 @@ Table of Contents
        signature over each disclosed payload in sequence, using the
        issuer's ephemeral key.
 
-6.1.11.  JPA Registration
+7.1.11.  JPA Registration
 
    The proposed JWP alg value is of the format "SU-" appended with the
    relevant JWS alg value for the chosen public and ephemeral key-pair
    algorithm, for example "SU-ES256".
 
-6.2.  Presentation Internal Representation
+7.2.  Presentation Internal Representation
 
    Some algorithms (such as Single use and MAC) use a holder key to
    provide integrity over the presentation.  For these algorithms, an
@@ -495,7 +542,7 @@ Table of Contents
         1.  0x5B
         2.  The length and octets of the proof component
 
-6.3.  BBS
+7.3.  BBS
 
    The BBS Signature Scheme [I-D.irtf-cfrg-bbs-signatures] is under
    active development within the CRFG.
@@ -505,12 +552,12 @@ Table of Contents
    issued JWP without a verifier being able to correlate those
    presentations together based on the proof.
 
-6.3.1.  JPA Algorithms
+7.3.1.  JPA Algorithms
 
    The BBS algorithm corresponds to a cipher suite identifier of
    BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_.
 
-6.3.2.  Key Format
+7.3.2.  Key Format
 
    The key used for the BBS algorithm is an elliptic curve-based key
    pair, specifically against the G_2 subgroup of a pairing friendly
@@ -521,7 +568,7 @@ Table of Contents
    There is no additional holder presentation key necessary for
    presentation proofs.
 
-6.3.3.  Issuance
+7.3.3.  Issuance
 
    Issuance is performed using the Sign operation from Section 3.5.1 of
    [I-D.irtf-cfrg-bbs-signatures].  This operation utilizes the issuer's
@@ -532,7 +579,7 @@ Table of Contents
    in the issuance proof array, to be used along with the Header and
    payloads to serialize the JWP.
 
-6.3.4.  Issuance Proof Verification
+7.3.4.  Issuance Proof Verification
 
    Holder verification of the signature on issuance form is performed
    using the Verify operation from [@!I-D.irtf-cfrg-bbs-signatures,
@@ -542,7 +589,7 @@ Table of Contents
    signature, the Header octets as header and the array of payload
    octets as messages.
 
-6.3.5.  Presentation
+7.3.5.  Presentation
 
    Derivation of a presentation is done by the holder using the ProofGen
    operation from Section 3.5.3 of [I-D.irtf-cfrg-bbs-signatures].
@@ -565,7 +612,7 @@ Table of Contents
    represented with the absent value of null in CBOR serialization and a
    zero-length string in compact serialization.
 
-6.3.6.  Presentation Verification
+7.3.6.  Presentation Verification
 
    Verification of a presentation is done by the verifier using the
    ProofVerify operation from [@!I-D.irtf-cfrg-bbs-signatures,
@@ -580,7 +627,7 @@ Table of Contents
    have a zero-based index in this array, while the indices of absent
    payloads are omitted.
 
-6.4.  Message Authentication Code
+7.4.  Message Authentication Code
 
    The Message Authentication Code (MAC) JPA uses a MAC to both generate
    ephemeral secrets and to authenticate payloads, along with an
@@ -607,7 +654,7 @@ Table of Contents
    NIST.SP.800-185.pdf).  It uses traditional public key-based
    signatures to verify the authenticity of the issuer and holder.
 
-6.4.1.  Holder Setup
+7.4.1.  Holder Setup
 
    In order to support the protection of a presentation by a holder to a
    verifier, the holder MUST use a Holder Presentation Key during the
@@ -630,7 +677,7 @@ Table of Contents
    appropriate choice for a given holder presentation key, this value
    MUST be conveyed in the Holder Protected Algorithm Header Parameter.
 
-6.4.2.  Issuer Setup
+7.4.2.  Issuer Setup
 
    To use the MAC algorithm, the issuer must have a stable public key
    pair to perform signing.  To start the issuance process, a single
@@ -643,7 +690,7 @@ Table of Contents
    keys are then used as the input to generate a MAC that protects each
    payload.
 
-6.4.3.  Combined MAC Representation
+7.4.3.  Combined MAC Representation
 
    The combined MAC representation is a single octet string representing
    the MAC values of the Issuer Header, along with each payload provided
@@ -700,7 +747,7 @@ Table of Contents
        1.  0x5B
        2.  The length and value of the per payload MAC
 
-6.4.4.  Issuer Header
+7.4.4.  Issuer Header
 
    The Holder's Presentation Key MUST be included via the Holder
    Presentation Key Header Parameter.
@@ -710,7 +757,7 @@ Table of Contents
    for the holder and verifier to unambiguously determine the
    appropriate algorithm to use.
 
-6.4.5.  Issuer Proof
+7.4.5.  Issuer Proof
 
    The issuer proof consists of two octet strings.
 
@@ -722,12 +769,12 @@ Table of Contents
    The second octet string is the Shared Secret used to generate the
    per-payload keys for the combined representation.
 
-6.4.6.  Presentation Header
+7.4.6.  Presentation Header
 
    See the Presentation Header (#presentation-header) section given for
    Single Use algorithms.
 
-6.4.7.  Presentation Proof
+7.4.7.  Presentation Proof
 
    The presentation proof is made of multiple components.
 
@@ -765,7 +812,7 @@ Table of Contents
    Combined MAC Representation.  This MUST NOT be included in the
    presentation.
 
-6.4.8.  Verification of the Presentation Proof
+7.4.8.  Verification of the Presentation Proof
 
    Verification is performed using the following steps.
 
@@ -787,7 +834,7 @@ Table of Contents
        presentation key and the extracted (or otherwise determined)
        holder presentation algorithm.
 
-6.4.9.  JPA Registration
+7.4.9.  JPA Registration
 
    Proposed JWP alg value is of the format "MAC-" appended with a unique
    identifier for the set of MAC and signing algorithms used.  Below are
@@ -806,7 +853,7 @@ Table of Contents
    *  MAC-H256K uses HMAC SHA-256 as the MAC and ECDSA using secp256k1
       and SHA-256 for the signatures
 
-7.  Security Considerations
+8.  Security Considerations
 
    |  Editor's Note: This will follow once the algorithms defined here
    |  have become more stable.
@@ -814,7 +861,7 @@ Table of Contents
    *  Data minimization of the proof value
    *  Unlinkability of the Header contents
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    The following registration procedure is used for all the registries
    established by this specification.
@@ -857,7 +904,7 @@ Table of Contents
    Expert, that Expert should defer to the judgment of the other
    Experts.
 
-8.1.  JSON Web Proof Algorithms Registry
+9.1.  JSON Web Proof Algorithms Registry
 
    This specification establishes the IANA "JSON Web Proof Algorithms"
    registry, under the "JSON Object Signing and Encryption (JOSE)"
@@ -889,7 +936,7 @@ Table of Contents
    Required basis after review by the Designated Experts, with the new
    specification defining the revised implementation requirements level.
 
-8.1.1.  Registration Template
+9.1.1.  Registration Template
 
    Algorithm Name:  Brief descriptive name of the algorithm (e.g.,
       Single-Use JWP using ES256.)  Descriptive names may not match
@@ -939,9 +986,9 @@ Table of Contents
       IETF review, the initial registrations made by this document are
       exempt from the need to provide this information.
 
-8.1.2.  Initial Registry Contents
+9.1.2.  Initial Registry Contents
 
-8.1.2.1.  Single-Use JWP using ES256 Algorithm
+9.1.2.1.  Single-Use JWP using ES256 Algorithm
 
    *  Algorithm Name: Single-Use JWP using ES256
    *  Algorithm JSON Label: SU-ES256
@@ -949,10 +996,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Recommended
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.1.11 of this specification
+   *  Specification Document(s): Section 7.1.11 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.2.  Single-Use JWP using ES384 Algorithm
+9.1.2.2.  Single-Use JWP using ES384 Algorithm
 
    *  Algorithm Name: Single-Use JWP using ES384
    *  Algorithm JSON Label: SU-ES384
@@ -960,10 +1007,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.1.11 of this specification
+   *  Specification Document(s): Section 7.1.11 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.3.  Single-Use JWP using ES512 Algorithm
+9.1.2.3.  Single-Use JWP using ES512 Algorithm
 
    *  Algorithm Name: Single-Use JWP using ES512
    *  Algorithm JSON Label: SU-ES512
@@ -971,10 +1018,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.1.11 of this specification
+   *  Specification Document(s): Section 7.1.11 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.4.  BBS using SHA-256 Algorithm
+9.1.2.4.  BBS using SHA-256 Algorithm
 
    *  Algorithm Name: BBS using SHA-256
    *  Algorithm JSON Label: BBS
@@ -984,10 +1031,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Required
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.3.1 of this specification
+   *  Specification Document(s): Section 7.3.1 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.5.  MAC-H256 Algorithm
+9.1.2.5.  MAC-H256 Algorithm
 
    *  Algorithm Name: MAC-H256
    *  Algorithm JSON Label: MAC-H256
@@ -997,10 +1044,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.4.9 of this specification
+   *  Specification Document(s): Section 7.4.9 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.6.  MAC-H384 Algorithm
+9.1.2.6.  MAC-H384 Algorithm
 
    *  Algorithm Name: MAC-H384
    *  Algorithm JSON Label: MAC-H384
@@ -1010,10 +1057,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.4.9 of this specification
+   *  Specification Document(s): Section 7.4.9 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.7.  MAC-H512 Algorithm
+9.1.2.7.  MAC-H512 Algorithm
 
    *  Algorithm Name: MAC-H512
    *  Algorithm JSON Label: MAC-H512
@@ -1023,10 +1070,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.4.9 of this specification
+   *  Specification Document(s): Section 7.4.9 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.8.  MAC-K25519 Algorithm
+9.1.2.8.  MAC-K25519 Algorithm
 
    *  Algorithm Name: MAC-K25519
    *  Algorithm JSON Label: MAC-K25519
@@ -1036,10 +1083,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.4.9 of this specification
+   *  Specification Document(s): Section 7.4.9 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.9.  MAC-K448 Algorithm
+9.1.2.9.  MAC-K448 Algorithm
 
    *  Algorithm Name: MAC-K448
    *  Algorithm JSON Label: MAC-K448
@@ -1049,10 +1096,10 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.4.9 of this specification
+   *  Specification Document(s): Section 7.4.9 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-8.1.2.10.  MAC-H256K Algorithm
+9.1.2.10.  MAC-H256K Algorithm
 
    *  Algorithm Name: MAC-H256K
    *  Algorithm JSON Label: MAC-H256K
@@ -1062,12 +1109,47 @@ Table of Contents
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
-   *  Specification Document(s): Section 6.4.9 of this specification
+   *  Specification Document(s): Section 7.4.9 of this specification
    *  Algorithm Analysis Documents(s): n/a
 
-9.  References
+9.2.  JSON Web Key Parameters Registry
 
-9.1.  Normative References
+   This section registers the following JWK parameter in the IANA "JSON
+   Web Key Parameters" registry [IANA.JOSE] established by [RFC7517].
+
+9.2.1.  Registry Contents
+
+   *  Parameter Name: proof_alg
+   *  Parameter Description: JSON Web Proof algorithm associated with
+      the key
+   *  Used with "kty" Value(s): *
+   *  Parameter Information Class: Public
+   *  Change Controller: IESG
+   *  Specification Document(s): Section 6.1 of this specification
+
+9.3.  COSE Key Common Parameters Registry
+
+   This section registers the following COSE_Key parameter in the IANA
+   "COSE Key Common Parameters" registry [IANA.COSE] established by
+   [RFC9052].
+
+9.3.1.  Registry Contents
+
+   *  Name: proof_alg
+   *  Label: TBD (requested assignment 7)
+   *  CBOR Type: int / tstr
+   *  Value Registry: JSON Web Proof Algorithms
+   *  Description: JSON Web Proof algorithm associated with the key
+   *  Reference: Section 6.1 of this specification
+
+   [RFC-EDITOR: The temporary development label for this COSE_Key
+   parameter is 7CPA, following [I-D.bormann-cbor-draft-numbers].
+   Please replace 7CPA with the final assigned value and remove this
+   note before publication.]
+
+10.  References
+
+10.1.  Normative References
 
    [I-D.ietf-jose-json-web-proof]
               Waite, D., Jones, M. B., and J. Miller, "JSON Web Proof",
@@ -1095,7 +1177,14 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-9.2.  Informative References
+10.2.  Informative References
+
+   [I-D.bormann-cbor-draft-numbers]
+              Bormann, C., "CBOR: Code Point Allocation and Assigned
+              Numbers", Work in Progress, Internet-Draft, draft-bormann-
+              cbor-draft-numbers-latest,
+              <https://datatracker.ietf.org/doc/html/draft-bormann-cbor-
+              draft-numbers>.
 
    [I-D.ietf-cbor-edn-literals]
               Bormann, C., "CBOR Extended Diagnostic Notation (EDN)",
@@ -1119,6 +1208,14 @@ Table of Contents
               November 2025, <https://datatracker.ietf.org/doc/html/
               draft-ietf-spice-oidc-cwt-04>.
 
+   [IANA.COSE]
+              IANA, "CBOR Object Signing and Encryption",
+              <https://www.iana.org/assignments/cose>.
+
+   [IANA.JOSE]
+              IANA, "JSON Object Signing and Encryption",
+              <https://www.iana.org/assignments/jose>.
+
    [RFC2104]  Krawczyk, H., Bellare, M., and R. Canetti, "HMAC: Keyed-
               Hashing for Message Authentication", RFC 2104,
               DOI 10.17487/RFC2104, February 1997,
@@ -1129,9 +1226,18 @@ Table of Contents
               DOI 10.17487/RFC5226, May 2008,
               <https://www.rfc-editor.org/info/rfc5226>.
 
+   [RFC7517]  Jones, M., "JSON Web Key (JWK)", RFC 7517,
+              DOI 10.17487/RFC7517, May 2015,
+              <https://www.rfc-editor.org/info/rfc7517>.
+
    [RFC7518]  Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
               DOI 10.17487/RFC7518, May 2015,
               <https://www.rfc-editor.org/info/rfc7518>.
+
+   [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Structures and Process", STD 96, RFC 9052,
+              DOI 10.17487/RFC9052, August 2022,
+              <https://www.rfc-editor.org/info/rfc9052>.
 
    [VC-DATA-MODEL-2.0]
               Sporny, M., Jr, T. T., Herman, I., Cohen, G., and M. B.
@@ -1504,10 +1610,10 @@ A.3.  Example BBS JWP
    This is the Issuer's stable private key in the JWK format:
 
    {
-     "alg": "BBS",
      "crv": "BLS12381G2",
      "d": "NvpnjNccjwvZTsmcBO4Ntw46mzig50sfOYjeljAl8Bk",
      "kty": "OKP",
+     "proof_alg": "BBS",
      "use": "proof",
      "x": "l5CqEP9LwItyq0KzEU7FVrNollmcqgUGX6v69ghb3VNRMfPP3wGg7Tk8m9VEn
            edsFUKjxj35OiCTWU3w43faSmn3wenj3E52S4ifIRJgBI1JP_q_1-7TsA7Wmt
@@ -1801,6 +1907,9 @@ Appendix C.  Document History
 
    *  Examples are now built deterministically (using RFC 6979
       deterministic ECDSA and seeded random number generation for BBS)
+   *  Add proof_alg to JWK and CWK to prevent potential collisions
+      between the JWS/JWE algorithm registry, COSE algorithms registry,
+      and JWP algorithms registry
 
    -12
 
