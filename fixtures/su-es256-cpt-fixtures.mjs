@@ -1,10 +1,12 @@
 import { base64url } from 'jose';
 import {
-    createPresentationInternalRepresentation,
-    signPayloadSHA256,
     writeBinary,
     writeUtf8,
-} from './utils.mjs';
+} from './output-writers.mjs';
+import {
+    createPresentationInternalRepresentation,
+    signPayloadSHA256
+} from "./crypto-ops.mjs";
 import * as fs from "fs/promises";
 import * as crypto from "crypto";
 import * as cbor from "cbor2";

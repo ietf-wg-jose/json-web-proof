@@ -10,7 +10,7 @@ import {
 import issuerHeaderJSON from "../template/jpt-issuer-header.json" with { type: "json" };
 import holderHeaderJSON from "../template/bbs-holder-header.json" with { type: "json" };
 import payloadsJSON from "../template/jpt-issuer-payloads.json" with { type: "json" };
-import { compactPayloadEncode } from "../utils.mjs";
+import { compactPayloadEncode } from "../output-writers.mjs";
 
 const disclosedIndexes = new Uint32Array([0, 1, 2, 3]);
 async function readJSON(path) {

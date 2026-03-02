@@ -3,7 +3,12 @@
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
 import { KeyPair } from "@alksol/cfrg-bbs";
 import {base64url} from "jose";
-import { writeBinary, writeJSON, writeUtf8, writeWrappedJSON } from "./utils.mjs"
+import {
+    writeBinary,
+    writeJSON,
+    writeUtf8,
+    writeWrappedJSON
+} from "./output-writers.mjs"
 import fs from "node:fs/promises";
 import { encode as cborEncode, diagnose } from "cbor2";
 import { seed32 } from "./deterministic.mjs";

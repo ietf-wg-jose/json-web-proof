@@ -17,14 +17,7 @@ endif
 
 .PHONY: $(SUBDIRS)
 fixtures:
-	@cd fixtures; node --no-warnings shared-nonce-gen.mjs
-	@cd fixtures; node --no-warnings bbs-keygen.mjs; node --no-warnings bbs-fixtures.mjs
-	@cd fixtures; node --no-warnings es256-keygen.mjs issuer; \
-		node --no-warnings es256-keygen.mjs holder; \
-		node --no-warnings es256-keygen.mjs ephemeral; \
-		node --no-warnings su-es256-jwp-fixtures.mjs; \
-		node --no-warnings su-es256-cpt-fixtures.mjs
-	@cd fixtures; node --no-warnings mac-h256-shared-secret-gen.mjs; node --no-warnings mac-h256-fixtures.mjs 
+	@cd fixtures; node --no-warnings build-fixtures.mjs
 
 $(drafts_xml): fixtures
 

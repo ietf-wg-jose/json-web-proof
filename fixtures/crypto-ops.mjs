@@ -1,15 +1,13 @@
-import { base64url } from 'jose';
-import * as crypto from 'crypto';
-import fs from "node:fs/promises";
+import { base64url } from "jose";
+import * as crypto from "crypto";
 
-const encode = base64url.encode;
 const decode = base64url.decode;
 
 const P256 = {
     p: BigInt("0xffffffff00000001000000000000000000000000ffffffffffffffffffffffff"),
     n: BigInt("0xffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551"),
     gx: BigInt("0x6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296"),
-    gy: BigInt("0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"),
+    gy: BigInt("0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5")
 };
 P256.a = P256.p - 3n;
 
@@ -60,10 +58,7 @@ function pointDouble(point) {
     if (y === 0n) {
         return null;
     }
-    const slope = mod(
-        (3n * x * x + P256.a) * modInv(2n * y, P256.p),
-        P256.p
-    );
+    const slope = mod((3n * x * x + P256.a) * modInv(2n * y, P256.p), P256.p);
     const x3 = mod(slope * slope - 2n * x, P256.p);
     const y3 = mod(slope * (x - x3) - y, P256.p);
     return { x: x3, y: y3 };
@@ -82,10 +77,7 @@ function pointAdd(p1, p2) {
         }
         return pointDouble(p1);
     }
-    const slope = mod(
-        (p2.y - p1.y) * modInv(p2.x - p1.x, P256.p),
-        P256.p
-    );
+    const slope = mod((p2.y - p1.y) * modInv(p2.x - p1.x, P256.p), P256.p);
     const x3 = mod(slope * slope - p1.x - p2.x, P256.p);
     const y3 = mod(slope * (p1.x - x3) - p1.y, P256.p);
     return { x: x3, y: y3 };
@@ -197,129 +189,31 @@ function signP256Deterministic(payload, key) {
     }
 }
 
-export function lineWrap(str, paddingLength) {
-    if (!paddingLength) {
-        paddingLength = 0;
-    }
-    var output = [];
-    for (var line of str.split('\n')) {
-        if (line.length > 69) {
-            while (line.length > 69) {
-                output.push(line.substring(0, 69));
-                line = Array(paddingLength).join(" ") + line.substring(69);
-            }
-            output.push(line);
-        }
-        else {
-            output.push(line);
-        }
-    }
-    return output.join("\n");
-}
-
-function isPlainObject(value) {
-    if (value === null || typeof value !== "object") {
-        return false;
-    }
-    return Object.getPrototypeOf(value) === Object.prototype;
-}
-
-export function canonicalizeJSON(value) {
-    if (Array.isArray(value)) {
-        return value.map(canonicalizeJSON);
-    }
-    if (isPlainObject(value)) {
-        const out = {};
-        for (const key of Object.keys(value).sort()) {
-            out[key] = canonicalizeJSON(value[key]);
-        }
-        return out;
-    }
-    return value;
-}
-
-export function serializeJSON(value, { pretty = false } = {}) {
-    const canonical = canonicalizeJSON(value);
-    return pretty
-        ? JSON.stringify(canonical, null, 2)
-        : JSON.stringify(canonical);
-}
-
-export async function writeUtf8(path, text) {
-    await fs.writeFile(path, text, { encoding: "utf-8" });
-}
-
-export async function writeWrapped(path, text, paddingLength = 0) {
-    await writeUtf8(path, lineWrap(text, paddingLength));
-}
-
-export async function writeJSON(path, value, { pretty = false } = {}) {
-    await writeUtf8(path, serializeJSON(value, { pretty }));
-}
-
-export async function writeWrappedJSON(
-    path,
-    value,
-    { pretty = true, paddingLength = 0 } = {}
-) {
-    await writeWrapped(path, serializeJSON(value, { pretty }), paddingLength);
-}
-
-export async function writeBinary(path, bytes) {
-    await fs.writeFile(path, bytes);
-}
-
-export function compactPayloadEncode(payload) {
-    if (payload == null) {
-        return "";
-    }
-    if (payload == "") {
-        return "_";
-    }
-    return encode(payload);
-}
-
-export function jsonPayloadEncode(payload) {
-    if (payload == null) {
-        return null;
-    }
-    return encode(payload);
-}
-
-export async function signPayloadSHA256(payload, key){
+export async function signPayloadSHA256(payload, key) {
     return signP256Deterministic(payload, key);
 }
 
-// take presentation internal representation and output a binary representation for signing/verifying
-//
-// Parameters:
-// issuerHeaderOctets - uint8array holding the binary data of the JSON or CBOR issuer header
-// holderHeaderOctets - uint8array holding the binary data of the JSON or CBOR holder header
-// array sized to the number of payload slots, with uint8arrays or null entries
-// array of uint8array proof components, sans the holder's signature (which this will be used to calculate
-//
-// Returns: uint8array
-//
 export function createPresentationInternalRepresentation(
     issuerHeaderOctets,
     holderHeaderOctets,
-    payloads, 
-    proofComponents) {
-        return Buffer.concat([
-            Buffer.from("84", "hex"),
-            internalBSTRValue(holderHeaderOctets),
-            internalBSTRValue(issuerHeaderOctets),
-            Buffer.from("9B", "hex"),
-            internalCount(payloads.length),
-            Buffer.concat(payloads.map((payload) => 
-                payload? internalBSTRValue(payload) : Buffer.from("F6", "hex"))),
-            Buffer.from("9B", "hex"),
-            internalCount(proofComponents.length),
-            Buffer.concat(proofComponents.map(internalBSTRValue))
-        ]);
+    payloads,
+    proofComponents
+) {
+    return Buffer.concat([
+        Buffer.from("84", "hex"),
+        internalBSTRValue(holderHeaderOctets),
+        internalBSTRValue(issuerHeaderOctets),
+        Buffer.from("9B", "hex"),
+        internalCount(payloads.length),
+        Buffer.concat(payloads.map((payload) => (
+            payload ? internalBSTRValue(payload) : Buffer.from("F6", "hex")
+        ))),
+        Buffer.from("9B", "hex"),
+        internalCount(proofComponents.length),
+        Buffer.concat(proofComponents.map(internalBSTRValue))
+    ]);
 }
 
-// takes a number holding a non-negative integer value and returns a uint8array
 function internalCount(count) {
     const buffer = new ArrayBuffer(8);
     new DataView(buffer).setBigInt64(0, BigInt(count), false);
@@ -349,7 +243,7 @@ function payloadSecretGenerationValue(index) {
 }
 
 export function payloadSecrets(hmacAlg, secretKey, count) {
-    return Array.from({length: count }, (v, idx) => idx)
+    return Array.from({ length: count }, (_v, idx) => idx)
         .map(payloadSecretGenerationValue)
         .map((generator) => {
             const hmac = crypto.createHmac(hmacAlg, secretKey);
@@ -359,38 +253,29 @@ export function payloadSecrets(hmacAlg, secretKey, count) {
 }
 
 function zip(...arrays) {
-  // Find the length of the shortest array to determine the iteration limit
-  const minLength = Math.min(...arrays.map(arr => arr.length));
+    const minLength = Math.min(...arrays.map((arr) => arr.length));
+    return Array.from({ length: minLength }).map((_, i) => arrays.map((arr) => arr[i]));
+}
 
-  // Use Array.from to create an array of the appropriate length
-  // and map over its indices to construct the zipped elements.
-  return Array.from({ length: minLength }).map((_, i) => {
-    // For each index, create a new array containing the element at that index
-    // from each of the input arrays.
-    return arrays.map(arr => arr[i]);
-  });
-};
-
-
-export function payloadMACs(hmacAlg, payloadSecrets, payloads) {
-    return zip(payloadSecrets, payloads).map(([secret, payload]) => {
+export function payloadMACs(hmacAlg, payloadSecretsIn, payloads) {
+    return zip(payloadSecretsIn, payloads).map(([secret, payload]) => {
         const hmac = crypto.createHmac(hmacAlg, secret);
         hmac.update(payload);
         return hmac.digest();
     });
 }
 
-export function combinedMACRepresentation(issuerHeaderOctets, payloadMACs) {
+export function combinedMACRepresentation(issuerHeaderOctets, payloadMACsIn) {
     return Buffer.concat([
         Buffer.from("82", "hex"),
         internalBSTRValue(issuerHeaderOctets),
         Buffer.from("9B", "hex"),
-        internalCount(payloadMACs.length),
-        Buffer.concat(payloadMACs.map(internalBSTRValue))
+        internalCount(payloadMACsIn.length),
+        Buffer.concat(payloadMACsIn.map(internalBSTRValue))
     ]);
 }
 
-export let exportForTesting = {
+export const exportForTesting = {
     internalCount,
     internalLengthAndValue: internalBSTRValue,
     payloadSecretGenerationValue

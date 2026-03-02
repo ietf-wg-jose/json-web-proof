@@ -10,7 +10,7 @@ import {
     serializeJSON,
     writeUtf8,
     writeWrapped
-} from './utils.mjs';
+} from './output-writers.mjs';
 import { seed32 } from "./deterministic.mjs";
 
 import protectedHeaderJSON from "./template/jpt-issuer-header.json" with {type: "json"};

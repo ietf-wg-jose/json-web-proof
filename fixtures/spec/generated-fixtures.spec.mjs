@@ -9,9 +9,9 @@ import {
     combinedMACRepresentation,
     createPresentationInternalRepresentation,
     payloadMACs,
-    payloadSecrets,
-    serializeJSON
-} from "../utils.mjs";
+    payloadSecrets
+} from "../crypto-ops.mjs";
+import { serializeJSON } from "../output-writers.mjs";
 
 const encodePayload = (payload) => Buffer.from(serializeJSON(payload), "utf-8");
 const issuerPayloads = payloadsJSON.map(encodePayload);

@@ -1,16 +1,18 @@
 import { base64url } from 'jose';
 import {
-    combinedMACRepresentation,
     compactPayloadEncode,
-    createPresentationInternalRepresentation,
-    payloadMACs,
-    payloadSecrets,
     serializeJSON,
-    signPayloadSHA256,
     writeJSON,
     writeWrapped,
     writeWrappedJSON
-} from './utils.mjs';
+} from './output-writers.mjs';
+import {
+    combinedMACRepresentation,
+    createPresentationInternalRepresentation,
+    payloadMACs,
+    payloadSecrets,
+    signPayloadSHA256
+} from "./crypto-ops.mjs";
 import * as crypto from "crypto";
 
 import payloadsJSON from "./template/jpt-issuer-payloads.json" with {type: "json"};

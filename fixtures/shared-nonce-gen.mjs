@@ -1,7 +1,7 @@
 import { base64url } from 'jose';
 import * as fs from "fs/promises";
 import { bytes32 } from "./deterministic.mjs";
-import { writeJSON } from "./utils.mjs";
+import { writeJSON } from "./output-writers.mjs";
 
 const encode = base64url.encode;
 

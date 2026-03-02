@@ -1,14 +1,16 @@
 import { base64url } from 'jose';
 import {
     compactPayloadEncode,
-    createPresentationInternalRepresentation,
     serializeJSON,
-    signPayloadSHA256,
     writeJSON,
     writeUtf8,
     writeWrapped,
     writeWrappedJSON
-} from './utils.mjs';
+} from './output-writers.mjs';
+import {
+    createPresentationInternalRepresentation,
+    signPayloadSHA256
+} from "./crypto-ops.mjs";
 import * as crypto from "crypto";
 import fs from "node:fs/promises";
 

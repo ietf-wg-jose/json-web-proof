@@ -6,7 +6,7 @@ import {
     payloadMACs,
     combinedMACRepresentation,
     signPayloadSHA256
-} from  "../utils.mjs";
+} from  "../crypto-ops.mjs";
 import { validP256PrivateKey } from "../deterministic.mjs";
 
 let internalCount = exportForTesting.internalCount;

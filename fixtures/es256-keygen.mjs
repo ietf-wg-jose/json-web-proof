@@ -4,7 +4,7 @@
 import * as crypto from "node:crypto"
 
 import {base64url} from "jose";
-import { writeJSON, writeWrappedJSON } from "./utils.mjs"
+import { writeJSON, writeWrappedJSON } from "./output-writers.mjs"
 import fs from "node:fs/promises";
 import { validP256PrivateKey } from "./deterministic.mjs";
 
