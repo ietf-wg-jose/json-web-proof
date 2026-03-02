@@ -34,6 +34,12 @@ jobs:
     - name: "Lint Fixture Scripts"
       run: npm run lint:fixtures
 
+    - name: "Check Fixture Artifact Manifest"
+      run: npm run check:fixtures:artifacts
+
+    - name: "Check Fixture Doc Consistency"
+      run: npm run check:fixtures:docs
+
     - name: "Run Deterministic Tests"
       run: npm test
 

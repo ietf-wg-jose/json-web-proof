@@ -28,5 +28,23 @@ fixtures:
 
 $(drafts_xml): fixtures
 
+.PHONY: check-fixtures-artifacts check-fixtures-docs update-fixtures-manifests verify-fixtures
+check-fixtures-artifacts:
+	@npm run check:fixtures:artifacts
+
+check-fixtures-docs:
+	@npm run check:fixtures:docs
+
+update-fixtures-manifests: fixtures
+	@npm run update:fixtures:manifests
+
+verify-fixtures: fixtures
+	@npm run check:fixtures:artifacts
+	@npm run check:fixtures:docs
+	@npm run lint:fixtures
+	@npm test
+	@npm run test:random
+	@npm run check:repro:fixtures
+
 clean::
 	rm -r fixtures/build

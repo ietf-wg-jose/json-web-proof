@@ -576,7 +576,7 @@ valid JSON Proof Algorithm (JPA).
 
 For example:
 
-<{{./fixtures/template/simple-issuer-protected-header.json}}
+<{{./fixtures/template/simple-issuer-header.json}}
 
 ### Issuer Payloads
 
@@ -749,7 +749,7 @@ concatenated payloads, and concatenated proof separated each by a `.`
 character. The concatenated payloads MAY be omitted if the application
 is using detached payloads.
 
-<{{./fixtures/build/bbs-holder.compact.jwp.wrapped}}>
+<{{./fixtures/build/bbs-presentation-compact.jwp.wrapped}}>
 Figure: Compact Serialization of Presentation
 
 ## CBOR Serialization

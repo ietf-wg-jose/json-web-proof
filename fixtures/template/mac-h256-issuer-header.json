@@ -1,6 +1,5 @@
 {
-  "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
-  "alg": "BBS",
+  "alg": "MAC-H256",
   "claims": [
     "iat",
     "exp",
@@ -9,5 +8,8 @@
     "email",
     "address",
     "age_over_21"
-  ]
+  ],
+  "hpa": "ES256",
+  "iss": "https://issuer.example",
+  "typ": "JPT"
 }

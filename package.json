@@ -12,8 +12,13 @@
     "test:random": "cd fixtures && jasmine --config=spec/support/jasmine.mjs --random=true",
     "check:repro:fixtures": "node --no-warnings scripts/check-repro.mjs --mode=fixtures",
     "check:repro": "node --no-warnings scripts/check-repro.mjs --mode=full",
+    "check:fixtures:artifacts": "node --no-warnings scripts/check-fixture-artifacts.mjs",
+    "check:fixtures:docs": "node --no-warnings scripts/check-fixture-docs.mjs",
+    "update:fixtures:manifest": "node --no-warnings scripts/update-fixture-manifest.mjs",
+    "update:fixtures:doc-manifest": "node --no-warnings scripts/update-fixture-doc-manifest.mjs",
+    "update:fixtures:manifests": "npm run update:fixtures:manifest && npm run update:fixtures:doc-manifest",
     "lint:fixtures": "node --no-warnings scripts/lint-fixtures.mjs",
-    "verify": "make fixtures && npm run lint:fixtures && npm test && npm run test:random && npm run check:repro:fixtures && make"
+    "verify": "make fixtures && npm run check:fixtures:artifacts && npm run check:fixtures:docs && npm run lint:fixtures && npm test && npm run test:random && npm run check:repro:fixtures && make"
   },
   "author": "",
   "license": "ISC",

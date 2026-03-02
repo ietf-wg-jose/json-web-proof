@@ -1,9 +1,9 @@
-// generate two files (public-key.jwk and private-key.jwk)
+// generate BBS key artifacts in JWK and CWK forms
 // containing a BLS curve key pair usable for issuance, based on 
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
 import { KeyPair } from "@alksol/cfrg-bbs";
 import {base64url} from "jose";
-import {lineWrap} from "./utils.mjs"
+import { writeBinary, writeJSON, writeUtf8, writeWrappedJSON } from "./utils.mjs"
 import fs from "node:fs/promises";
 import { encode as cborEncode, diagnose } from "cbor2";
 import { seed32 } from "./deterministic.mjs";
@@ -27,7 +27,6 @@ const privateJwk = {
     x: publicKeyStr,
     d: secretKeyStr
 };
-const privateKeyStr = JSON.stringify(privateJwk, null, 2);
 
 const cborPrivateKey = new Map();
 cborPrivateKey.set(1, 1); // kty = OKP
@@ -37,10 +36,13 @@ cborPrivateKey.set(-4, secretKey ); // d = ...
 
 const encodedCborPrivateKey = cborEncode(cborPrivateKey);
 
-await fs.writeFile("build/private-key.jwk", privateKeyStr);
-await fs.writeFile("build/private-key.jwk.wrapped", lineWrap(privateKeyStr, 8));
-await fs.writeFile("build/private-key.cwk", encodedCborPrivateKey);
-await fs.writeFile("build/private-key.cwk.edn", diagnose(encodedCborPrivateKey, { pretty: true }));
+await writeJSON("build/bbs-private-key.jwk", privateJwk, { pretty: true });
+await writeWrappedJSON("build/bbs-private-key.jwk.wrapped", privateJwk, {
+    pretty: true,
+    paddingLength: 8
+});
+await writeBinary("build/bbs-private-key.cwk", encodedCborPrivateKey);
+await writeUtf8("build/bbs-private-key.cwk.edn", diagnose(encodedCborPrivateKey, { pretty: true }));
 
 const publicJwk = {
     kty: "OKP",
@@ -49,7 +51,6 @@ const publicJwk = {
     crv: "BLS12381G2",
     x: publicKeyStr
 };
-const publicKeyJson = JSON.stringify(publicJwk, null, 2);
 
 const cborPublicKey = new Map();
 
@@ -59,7 +60,7 @@ cborPublicKey.set(-2, publicKeyX ); // x = ...
 
 const encodedCborPublicKey = cborEncode(cborPublicKey);
 
-await fs.writeFile("build/public-key.jwk", publicKeyJson);
-await fs.writeFile("build/public-key.jwk.wrapped", lineWrap(publicKeyJson, 8));
-await fs.writeFile("build/public-key.cwk", encodedCborPublicKey);
-await fs.writeFile("build/public-key.cwk.edn", diagnose(encodedCborPublicKey, { pretty: true }));
+await writeJSON("build/bbs-public-key.jwk", publicJwk, { pretty: true });
+await fs.rm("build/bbs-public-key.jwk.wrapped", { force: true });
+await writeBinary("build/bbs-public-key.cwk", encodedCborPublicKey);
+await writeUtf8("build/bbs-public-key.cwk.edn", diagnose(encodedCborPublicKey, { pretty: true }));

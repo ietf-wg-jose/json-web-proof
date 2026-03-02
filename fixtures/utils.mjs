@@ -1,5 +1,6 @@
 import { base64url } from 'jose';
 import * as crypto from 'crypto';
+import fs from "node:fs/promises";
 
 const encode = base64url.encode;
 const decode = base64url.decode;
@@ -216,6 +217,58 @@ export function lineWrap(str, paddingLength) {
     return output.join("\n");
 }
 
+function isPlainObject(value) {
+    if (value === null || typeof value !== "object") {
+        return false;
+    }
+    return Object.getPrototypeOf(value) === Object.prototype;
+}
+
+export function canonicalizeJSON(value) {
+    if (Array.isArray(value)) {
+        return value.map(canonicalizeJSON);
+    }
+    if (isPlainObject(value)) {
+        const out = {};
+        for (const key of Object.keys(value).sort()) {
+            out[key] = canonicalizeJSON(value[key]);
+        }
+        return out;
+    }
+    return value;
+}
+
+export function serializeJSON(value, { pretty = false } = {}) {
+    const canonical = canonicalizeJSON(value);
+    return pretty
+        ? JSON.stringify(canonical, null, 2)
+        : JSON.stringify(canonical);
+}
+
+export async function writeUtf8(path, text) {
+    await fs.writeFile(path, text, { encoding: "utf-8" });
+}
+
+export async function writeWrapped(path, text, paddingLength = 0) {
+    await writeUtf8(path, lineWrap(text, paddingLength));
+}
+
+export async function writeJSON(path, value, { pretty = false } = {}) {
+    await writeUtf8(path, serializeJSON(value, { pretty }));
+}
+
+export async function writeWrappedJSON(
+    path,
+    value,
+    { pretty = true, paddingLength = 0 } = {}
+) {
+    await writeWrapped(path, serializeJSON(value, { pretty }), paddingLength);
+}
+
+export async function writeBinary(path, bytes) {
+    await fs.writeFile(path, bytes);
+}
+
 export function compactPayloadEncode(payload) {
     if (payload == null) {
         return "";
@@ -240,22 +293,22 @@ export async function signPayloadSHA256(payload, key){
 // take presentation internal representation and output a binary representation for signing/verifying
 //
 // Parameters:
-// issuedHeaderOctets - uint8array holding the binary data of the JSON or CBOR issuer header
-// presentationHeaderOctets - uint8array holding the binary data of the JSON or CBOR presentation header
+// issuerHeaderOctets - uint8array holding the binary data of the JSON or CBOR issuer header
+// holderHeaderOctets - uint8array holding the binary data of the JSON or CBOR holder header
 // array sized to the number of payload slots, with uint8arrays or null entries
 // array of uint8array proof components, sans the holder's signature (which this will be used to calculate
 //
 // Returns: uint8array
 //
 export function createPresentationInternalRepresentation(
-    issuedHeaderOctets, 
-    presentationHeaderOctets, 
+    issuerHeaderOctets,
+    holderHeaderOctets,
     payloads, 
     proofComponents) {
         return Buffer.concat([
             Buffer.from("84", "hex"),
-            internalBSTRValue(presentationHeaderOctets),
-            internalBSTRValue(issuedHeaderOctets),
+            internalBSTRValue(holderHeaderOctets),
+            internalBSTRValue(issuerHeaderOctets),
             Buffer.from("9B", "hex"),
             internalCount(payloads.length),
             Buffer.concat(payloads.map((payload) => 
@@ -327,10 +380,10 @@ export function payloadMACs(hmacAlg, payloadSecrets, payloads) {
     });
 }
 
-export function combinedMACRepresentation(issuerProtectedHeaderOctets, payloadMACs) {
+export function combinedMACRepresentation(issuerHeaderOctets, payloadMACs) {
     return Buffer.concat([
         Buffer.from("82", "hex"),
-        internalBSTRValue(issuerProtectedHeaderOctets),
+        internalBSTRValue(issuerHeaderOctets),
         Buffer.from("9B", "hex"),
         internalCount(payloadMACs.length),
         Buffer.concat(payloadMACs.map(internalBSTRValue))

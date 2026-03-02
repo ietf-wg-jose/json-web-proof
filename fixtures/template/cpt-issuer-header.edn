@@ -1,5 +1,5 @@
 
-{          / protected header /
+{          / issuer header /
   1: 1,     / alg: "SU-ES256" /
   3: 20,    / typ: "JPT" (20CPA) /
   5: "https://issuer.example",  / iss: "https://issuer.example" /

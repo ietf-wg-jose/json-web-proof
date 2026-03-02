@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const scanDirs = ["fixtures", "scripts"];
+const templateDir = path.join(root, "fixtures", "template");
 
 function escapeRegex(value) {
     return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -78,6 +79,55 @@ async function walk(dirPath) {
     return results;
 }
 
+function isPlainObject(value) {
+    if (value === null || typeof value !== "object") {
+        return false;
+    }
+    return Object.getPrototypeOf(value) === Object.prototype;
+}
+
+function canonicalizeJSON(value) {
+    if (Array.isArray(value)) {
+        return value.map(canonicalizeJSON);
+    }
+    if (isPlainObject(value)) {
+        const out = {};
+        for (const key of Object.keys(value).sort()) {
+            out[key] = canonicalizeJSON(value[key]);
+        }
+        return out;
+    }
+    return value;
+}
+
+async function collectTemplateJSONFindings() {
+    const findings = [];
+    const entries = await readdir(templateDir, { withFileTypes: true });
+    const files = entries
+        .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+        .map((entry) => entry.name)
+        .sort((a, b) => a.localeCompare(b));
+
+    for (const name of files) {
+        const fullPath = path.join(templateDir, name);
+        const relPath = path.relative(root, fullPath);
+        const text = await readFile(fullPath, "utf-8");
+        let parsed;
+        try {
+            parsed = JSON.parse(text);
+        } catch (error) {
+            findings.push(`${relPath}: invalid JSON (${error.message})`);
+            continue;
+        }
+
+        const canonical = JSON.stringify(canonicalizeJSON(parsed), null, 2);
+        if (text !== canonical) {
+            findings.push(`${relPath}: non-canonical JSON formatting/key order`);
+        }
+    }
+    return findings;
+}
+
 async function main() {
     const files = (await Promise.all(scanDirs.map((dir) => walk(path.join(root, dir)))))
         .flat()
@@ -88,6 +138,7 @@ async function main() {
         const text = await readFile(filePath, "utf-8");
         findings.push(...findUnusedImports(path.relative(root, filePath), text));
     }
+    findings.push(...(await collectTemplateJSONFindings()));
 
     if (findings.length > 0) {
         console.error("Fixture lint failed:");
@@ -98,7 +149,7 @@ async function main() {
         return;
     }
 
-    console.log(`Fixture lint passed for ${files.length} files.`);
+    console.log(`Fixture lint passed for ${files.length} .mjs files and template JSON files.`);
 }
 
 await main();

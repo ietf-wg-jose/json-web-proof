@@ -1,19 +1,28 @@
 import { base64url } from 'jose';
-import { lineWrap, compactPayloadEncode, signPayloadSHA256, createPresentationInternalRepresentation } from './utils.mjs';
-import * as fs from "fs/promises";
+import {
+    compactPayloadEncode,
+    createPresentationInternalRepresentation,
+    serializeJSON,
+    signPayloadSHA256,
+    writeJSON,
+    writeUtf8,
+    writeWrapped,
+    writeWrappedJSON
+} from './utils.mjs';
 import * as crypto from "crypto";
+import fs from "node:fs/promises";
 
 import payloadsJSON from "./template/jpt-issuer-payloads.json" with {type: "json"};
-import issuerPrivateKeyJSON from "./build/issuer-private-key-es256.jwk.json" with {type: "json"};
-import holderPrivateKeyJSON from "./build/holder-private-key-es256.jwk.json" with {type: "json"};
-import ephemeralPrivateKeyJSON from "./build/ephemeral-private-key-es256.jwk.json" with {type: "json"};
-import presentationNonceStr from "./build/presentation-nonce.json" with {type: "json"};
-import issuerProtectedHeaderJSON from "./template/su-es256-issuer-protected-header.json" with {type: "json"};
-import holderProtectedHeaderJSON from "./template/su-es256-holder-protected-header.json" with {type: "json"};
+import issuerPrivateKeyJSON from "./build/es256-issuer-private-key.jwk.json" with {type: "json"};
+import holderPrivateKeyJSON from "./build/es256-holder-private-key.jwk.json" with {type: "json"};
+import ephemeralPrivateKeyJSON from "./build/es256-ephemeral-private-key.jwk.json" with {type: "json"};
+import presentationNonceStr from "./build/shared-presentation-nonce.base64url.json" with {type: "json"};
+import issuerHeaderJSON from "./template/su-es256-issuer-header.json" with {type: "json"};
+import holderHeaderJSON from "./template/su-es256-holder-header.json" with {type: "json"};
 
 const { encode } = base64url;
 
-const payloads = payloadsJSON.map((item) => Buffer.from(JSON.stringify(item), "UTF-8"));
+const payloads = payloadsJSON.map((item) => Buffer.from(serializeJSON(item), "utf-8"));
 
 const issuerPrivateKey = crypto.createPrivateKey({
     key: issuerPrivateKeyJSON, 
@@ -31,64 +40,85 @@ const ephemeralPrivateKey = crypto.createPrivateKey({
 // storage as we build up
 const sigs = [];
 
-issuerProtectedHeaderJSON.iek = structuredClone(ephemeralPrivateKeyJSON);
-delete issuerProtectedHeaderJSON.iek.d;
+issuerHeaderJSON.iek = structuredClone(ephemeralPrivateKeyJSON);
+delete issuerHeaderJSON.iek.d;
 
-issuerProtectedHeaderJSON.hpk = structuredClone(holderPrivateKeyJSON);
-delete issuerProtectedHeaderJSON.hpk.d;
+issuerHeaderJSON.hpk = structuredClone(holderPrivateKeyJSON);
+delete issuerHeaderJSON.hpk.d;
 
-await fs.writeFile("build/su-es256-issuer-protected-header.json", JSON.stringify(issuerProtectedHeaderJSON, null, 2), {encoding: "UTF-8"});
-await fs.writeFile("build/su-es256-issuer-protected-header.json.wrapped", lineWrap(JSON.stringify(issuerProtectedHeaderJSON, null, 2)), {encoding: "UTF-8"});
+await writeJSON("build/su-es256-issuer-header.json", issuerHeaderJSON, {
+    pretty: true
+});
+await writeWrappedJSON(
+    "build/su-es256-issuer-header.json.wrapped",
+    issuerHeaderJSON,
+    { pretty: true }
+);
 
-let issuerProtectedHeader = Buffer.from(JSON.stringify(issuerProtectedHeaderJSON), "UTF-8");
-await fs.writeFile("build/su-es256-issuer-protected-header.b64.wrapped", lineWrap(encode(issuerProtectedHeader)), "UTF-8");
+const issuerHeader = Buffer.from(serializeJSON(issuerHeaderJSON), "utf-8");
+await writeWrapped(
+    "build/su-es256-issuer-header.base64url.wrapped",
+    encode(issuerHeader)
+);
 
-// encode/sign the issuer protected header w/ the stable key
-sigs.push(await signPayloadSHA256(issuerProtectedHeader, issuerPrivateKey));
+// encode/sign the issuer header with the stable key
+sigs.push(await signPayloadSHA256(issuerHeader, issuerPrivateKey));
 
 for (let payload of payloads) {
     const signature = await signPayloadSHA256(payload, ephemeralPrivateKey);
     sigs.push(signature);
 };
 
-await fs.writeFile("build/su-es256-issuer-proof.json.wrapped", lineWrap(JSON.stringify(sigs.map(encode), 0, 2)), {encoding: "UTF-8"});
+await writeJSON("build/su-es256-issuer-proof.json", sigs.map(encode), { pretty: true });
+await fs.rm("build/su-es256-issuer-proof.json.wrapped", { force: true });
 
 // Compact Serialization
 let compactSerialization = [
-    encode(issuerProtectedHeader),
+    encode(issuerHeader),
     payloads.map(compactPayloadEncode).join("~"),
     sigs.map(encode).join("~")
 ].join(".");
 
-await fs.writeFile("build/su-es256-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
-await fs.writeFile("build/su-es256-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
+await writeUtf8("build/su-es256-issuer-compact.jwp", compactSerialization);
+await writeWrapped("build/su-es256-issuer-compact.jwp.wrapped", compactSerialization);
 
-holderProtectedHeaderJSON.nonce = presentationNonceStr;
-let holderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHeaderJSON), "UTF-8");
-await fs.writeFile("build/su-es256-presentation-protected-header.json", JSON.stringify(holderProtectedHeaderJSON, null, 2), {encoding: "UTF-8"});
-await fs.writeFile("build/su-es256-presentation-protected-header.json.wrapped", lineWrap(JSON.stringify(holderProtectedHeaderJSON, null, 2)), {encoding: "UTF-8"});
+holderHeaderJSON.nonce = presentationNonceStr;
+const holderHeader = Buffer.from(serializeJSON(holderHeaderJSON), "utf-8");
+await writeJSON("build/su-es256-holder-header.json", holderHeaderJSON, {
+    pretty: true
+});
+await writeWrappedJSON(
+    "build/su-es256-holder-header.json.wrapped",
+    holderHeaderJSON,
+    { pretty: true }
+);
 
-await fs.writeFile("build/su-es256-holder-protected-header.b64.wrapped", lineWrap(encode(holderProtectedHeader)), "UTF-8");
+await writeWrapped(
+    "build/su-es256-holder-header.base64url.wrapped",
+    encode(holderHeader)
+);
 
 payloads[7] = null;
 payloads[8] = null;
 
-let internalRepresentation = createPresentationInternalRepresentation(issuerProtectedHeader, holderProtectedHeader, payloads, sigs );
+let internalRepresentation = createPresentationInternalRepresentation(issuerHeader, holderHeader, payloads, sigs );
 
 let signature = await signPayloadSHA256(internalRepresentation, holderPrivateKey);
-await fs.writeFile("build/su-es256-holder-pop.b64.wrapped", lineWrap(encode(signature)), "UTF-8");
+await writeUtf8("build/su-es256-presentation-pop.base64url", encode(signature));
+await fs.rm("build/su-es256-presentation-pop.base64url.wrapped", { force: true });
 
 sigs.splice(6, 2); // remove last two
 sigs.push(signature);
 
-await fs.writeFile("build/su-es256-presentation-proof.json.wrapped", lineWrap(JSON.stringify(sigs.map(encode), 0, 2)), {encoding: "UTF-8"});
+await writeJSON("build/su-es256-presentation-proof.json", sigs.map(encode), { pretty: true });
+await fs.rm("build/su-es256-presentation-proof.json.wrapped", { force: true });
 
 // Compact Serialization
 compactSerialization = [
-    encode(holderProtectedHeader),
-    encode(issuerProtectedHeader),
+    encode(holderHeader),
+    encode(issuerHeader),
     payloads.map(compactPayloadEncode).join("~"),
     sigs.map(encode).join("~")
 ].join(".");
-await fs.writeFile("build/su-es256-presentation.compact.jwp", compactSerialization, {encoding: "UTF-8"});
-await fs.writeFile("build/su-es256-presentation.compact.jwp.wrapped", lineWrap(compactSerialization));
+await writeUtf8("build/su-es256-presentation-compact.jwp", compactSerialization);
+await writeWrapped("build/su-es256-presentation-compact.jwp.wrapped", compactSerialization);

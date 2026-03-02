@@ -1,5 +1,0 @@
-{
-    "alg": "MAC-H256",
-    "aud": "https://recipient.example.com",
-    "nonce": "wrmBRkKtXjQ"
-}

@@ -7,16 +7,12 @@ import {
     verifySHA256
 } from "@alksol/cfrg-bbs";
 
-import protectedHeaderJSON from "../template/jpt-issuer-protected-header.json" with { type: "json" };
-import presentationHeaderJSON from "../template/bbs-holder-presentation-header.json" with { type: "json" };
+import issuerHeaderJSON from "../template/jpt-issuer-header.json" with { type: "json" };
+import holderHeaderJSON from "../template/bbs-holder-header.json" with { type: "json" };
 import payloadsJSON from "../template/jpt-issuer-payloads.json" with { type: "json" };
+import { compactPayloadEncode } from "../utils.mjs";
 
 const disclosedIndexes = new Uint32Array([0, 1, 2, 3]);
-const protectedHeader = Buffer.from(JSON.stringify(protectedHeaderJSON), "utf-8");
-const presentationHeader = Buffer.from(JSON.stringify(presentationHeaderJSON), "utf-8");
-const payloads = payloadsJSON.map((item) => Buffer.from(JSON.stringify(item), "utf-8"));
-const disclosedPayloads = payloads.slice(0, 4);
-
 async function readJSON(path) {
     return JSON.parse(await fs.readFile(path, "utf-8"));
 }
@@ -30,10 +26,10 @@ function inDir(basePath, fileName) {
 }
 
 async function assertKeyStructure(basePath) {
-    const privateJwk = await readJSON(inDir(basePath, "private-key.jwk"));
-    const publicJwk = await readJSON(inDir(basePath, "public-key.jwk"));
-    const privateCwk = cborDecode(await fs.readFile(inDir(basePath, "private-key.cwk")));
-    const publicCwk = cborDecode(await fs.readFile(inDir(basePath, "public-key.cwk")));
+    const privateJwk = await readJSON(inDir(basePath, "bbs-private-key.jwk"));
+    const publicJwk = await readJSON(inDir(basePath, "bbs-public-key.jwk"));
+    const privateCwk = cborDecode(await fs.readFile(inDir(basePath, "bbs-private-key.cwk")));
+    const publicCwk = cborDecode(await fs.readFile(inDir(basePath, "bbs-public-key.cwk")));
 
     expect(privateJwk.kty).toBe("OKP");
     expect(privateJwk.crv).toBe("BLS12381G2");
@@ -59,19 +55,31 @@ async function assertKeyStructure(basePath) {
 }
 
 async function assertCryptographicVerification(basePath) {
-    const publicJwk = await readJSON(inDir(basePath, "public-key.jwk"));
+    const publicJwk = await readJSON(inDir(basePath, "bbs-public-key.jwk"));
     const publicKey = base64url.decode(publicJwk.x);
 
+    const issuerCompact = await fs.readFile(inDir(basePath, "bbs-issuer-compact.jwp"), "utf-8");
+    const holderCompact = await fs.readFile(inDir(basePath, "bbs-presentation-compact.jwp"), "utf-8");
     const signature = await readBase64url(inDir(basePath, "bbs-issuer-proof.base64url"));
-    const proof = await readBase64url(inDir(basePath, "bbs-holder-proof.base64url"));
+    const proof = await readBase64url(inDir(basePath, "bbs-presentation-proof.base64url"));
 
-    expect(verifySHA256(publicKey, signature, protectedHeader, payloads)).toBeTrue();
+    const [issuerHeaderB64, issuerPayloadPart] = issuerCompact.split(".");
+    const [holderHeaderB64] = holderCompact.split(".");
+
+    const issuerHeader = base64url.decode(issuerHeaderB64);
+    const holderHeader = base64url.decode(holderHeaderB64);
+    const payloads = issuerPayloadPart
+        .split("~")
+        .map((item) => (item === compactPayloadEncode(null) ? null : base64url.decode(item)));
+    const disclosedPayloads = payloads.slice(0, 4);
+
+    expect(verifySHA256(publicKey, signature, issuerHeader, payloads)).toBeTrue();
     expect(
         validateProofSHA256(
             publicKey,
             proof,
-            protectedHeader,
-            presentationHeader,
+            issuerHeader,
+            holderHeader,
             disclosedPayloads,
             disclosedIndexes
         )
@@ -79,10 +87,10 @@ async function assertCryptographicVerification(basePath) {
 }
 
 async function assertCompactMatches(basePath) {
-    const issuerCompact = await fs.readFile(inDir(basePath, "bbs-issuer.compact.jwp"), "utf-8");
-    const holderCompact = await fs.readFile(inDir(basePath, "bbs-holder.compact.jwp"), "utf-8");
+    const issuerCompact = await fs.readFile(inDir(basePath, "bbs-issuer-compact.jwp"), "utf-8");
+    const holderCompact = await fs.readFile(inDir(basePath, "bbs-presentation-compact.jwp"), "utf-8");
     const issuerSignature = await readBase64url(inDir(basePath, "bbs-issuer-proof.base64url"));
-    const holderProof = await readBase64url(inDir(basePath, "bbs-holder-proof.base64url"));
+    const holderProof = await readBase64url(inDir(basePath, "bbs-presentation-proof.base64url"));
 
     const issuerParts = issuerCompact.split(".");
     const holderParts = holderCompact.split(".");
@@ -95,6 +103,9 @@ async function assertCompactMatches(basePath) {
 
 describe("BBS fixture compatibility", () => {
     it("verifies MATTR legacy vectors with the new library", async () => {
+        expect(issuerHeaderJSON).toBeDefined();
+        expect(holderHeaderJSON).toBeDefined();
+        expect(payloadsJSON.length).toBeGreaterThan(0);
         const legacyPath = new URL("./vectors/bbs/mattr-legacy/", import.meta.url);
         await assertKeyStructure(legacyPath);
         await assertCompactMatches(legacyPath);
