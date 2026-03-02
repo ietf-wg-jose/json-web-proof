@@ -200,7 +200,7 @@ For COSE_Key values, a `proof_alg` key parameter is likewise defined to
 avoid collisions with the IANA "COSE Algorithms" registry [@IANA.COSE].
 
 Implementations SHOULD NOT specify proof algorithms using the `alg`
-parameter.
+key parameter.
 
 ## The "proof_alg" JWK/COSE_Key Parameter {#proof_algDef}
 
