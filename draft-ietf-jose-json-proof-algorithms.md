@@ -194,7 +194,7 @@ collision-resistant name.
 
 To avoid the risk of collision with algorithms registered in
 the "JSON Web Proof Algorithms" registry, this specification
-defines `proof_alg` key parameter.
+defines the `proof_alg` key parameter.
 
 For COSE_Key values, a `proof_alg` key parameter is likewise defined to
 avoid collisions with the IANA "COSE Algorithms" registry [@IANA.COSE].
