@@ -1068,7 +1068,7 @@ This section registers the following COSE_Key parameter in the IANA
 - Reference: (#proof_algDef) of this specification
 
 [RFC-EDITOR: The temporary development label for this COSE_Key parameter
-is 7CPA, following [@I-D.bormann-cbor-draft-numbers]. Replace 7CPA with
+is 7CPA, following [@I-D.bormann-cbor-draft-numbers]. Please replace 7CPA with
 the final assigned value and remove this note before publication.]
 
 {backmatter}
