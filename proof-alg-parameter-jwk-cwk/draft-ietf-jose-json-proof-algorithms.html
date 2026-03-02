@@ -1585,9 +1585,7 @@ algorithm that is used with the key. If this parameter is present in the
 key structure, the application MUST verify that this algorithm matches
 the algorithm for which the key is being used. If the algorithms do not
 match, then this key object MUST NOT be used to perform the
-cryptographic operation.  Note that the same key can be in a different
-key structure with a different or no algorithm specified; however, this
-is considered to be a poor security practice.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+cryptographic operation.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1-2">As a JWK parameter, the <code>proof_alg</code> value is a case-sensitive ASCII
 string containing a StringOrURI value.  The value MUST be a name
 registered in the IANA "JSON Web Proof Algorithms" registry established
@@ -2795,7 +2793,7 @@ Key Parameters" registry <span>[<a href="#IANA.JOSE" class="cite xref">IANA.JOSE
 </li>
           </ul>
 <p id="section-9.3.1-2">[RFC-EDITOR: The temporary development label for this COSE_Key parameter
-is 7CPA, following <span>[<a href="#I-D.bormann-cbor-draft-numbers" class="cite xref">I-D.bormann-cbor-draft-numbers</a>]</span>. Replace 7CPA with
+is 7CPA, following <span>[<a href="#I-D.bormann-cbor-draft-numbers" class="cite xref">I-D.bormann-cbor-draft-numbers</a>]</span>. Please replace 7CPA with
 the final assigned value and remove this note before publication.]<a href="#section-9.3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>

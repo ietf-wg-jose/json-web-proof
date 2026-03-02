@@ -283,10 +283,7 @@ Table of Contents
    the key structure, the application MUST verify that this algorithm
    matches the algorithm for which the key is being used.  If the
    algorithms do not match, then this key object MUST NOT be used to
-   perform the cryptographic operation.  Note that the same key can be
-   in a different key structure with a different or no algorithm
-   specified; however, this is considered to be a poor security
-   practice.
+   perform the cryptographic operation.
 
    As a JWK parameter, the proof_alg value is a case-sensitive ASCII
    string containing a StringOrURI value.  The value MUST be a name
@@ -1147,8 +1144,8 @@ Table of Contents
 
    [RFC-EDITOR: The temporary development label for this COSE_Key
    parameter is 7CPA, following [I-D.bormann-cbor-draft-numbers].
-   Replace 7CPA with the final assigned value and remove this note
-   before publication.]
+   Please replace 7CPA with the final assigned value and remove this
+   note before publication.]
 
 10.  References
 
