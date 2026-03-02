@@ -17,16 +17,27 @@ endif
 
 .PHONY: $(SUBDIRS)
 fixtures:
-	@cd fixtures; node --no-warnings nonce.mjs
-	@cd fixtures; node --no-warnings bbs-keygen.mjs; node --no-warnings bbs-fixtures.mjs
-	@cd fixtures; node --no-warnings es256-keygen.mjs issuer; \
-		node --no-warnings es256-keygen.mjs holder; \
-		node --no-warnings es256-keygen.mjs ephemeral; \
-		node --no-warnings su-es256-fixtures.mjs; \
-		node --no-warnings cpt-su-es256-fixtures.mjs
-	@cd fixtures; node --no-warnings mac-h256-secret-gen.mjs; node --no-warnings mac-h256-fixtures.mjs 
+	@cd fixtures; node --no-warnings build-fixtures.mjs
 
 $(drafts_xml): fixtures
+
+.PHONY: check-fixtures-artifacts check-fixtures-docs update-fixtures-manifests verify-fixtures
+check-fixtures-artifacts:
+	@npm run check:fixtures:artifacts
+
+check-fixtures-docs:
+	@npm run check:fixtures:docs
+
+update-fixtures-manifests: fixtures
+	@npm run update:fixtures:manifests
+
+verify-fixtures: fixtures
+	@npm run check:fixtures:artifacts
+	@npm run check:fixtures:docs
+	@npm run lint:fixtures
+	@npm test
+	@npm run test:random
+	@npm run check:repro:fixtures
 
 clean::
 	rm -r fixtures/build

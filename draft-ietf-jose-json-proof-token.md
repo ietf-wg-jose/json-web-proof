@@ -202,7 +202,7 @@ algorithm-specific representations.
 The following is an example Issuer Header that includes a
 claims property:
 
-<{{./fixtures/template/jpt-issuer-protected-header-with-claims.json}}
+<{{./fixtures/template/jpt-issuer-header-with-claims.json}}
 
 In this example, the "iat" and "exp" would be JSON-formatted numbers,
 "family_name", "given_name" and "email" would be JSON strings (in
@@ -240,7 +240,7 @@ known by the application context.
 
 The following is an example Header that includes a `cid`:
 
-<{{./fixtures/template/jpt-issuer-protected-header-with-cid.json}}
+<{{./fixtures/template/jpt-issuer-header-with-cid.json}}
 
 # Presented Claims and Proofs
 
@@ -450,6 +450,10 @@ for his valuable contributions to this specification.
 # Document History
 
 [[ To be removed from the final specification ]]
+
+-13
+
+- Examples are now built deterministically
 
 -12
 

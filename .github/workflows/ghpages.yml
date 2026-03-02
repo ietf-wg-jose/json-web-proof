@@ -15,9 +15,47 @@ on:
     - .gitignore
 
 jobs:
+  fixtures:
+    name: "Fixture Checks"
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v5
+
+    - name: "Setup Node.js"
+      uses: actions/setup-node@v5
+      with:
+        node-version: "22.13.1"
+        cache: "npm"
+
+    - name: "Install Dependencies"
+      run: npm ci
+
+    - name: "Generate Fixtures"
+      run: make fixtures
+
+    - name: "Lint Fixture Scripts"
+      run: npm run lint:fixtures
+
+    - name: "Check Fixture Artifact Manifest"
+      run: npm run check:fixtures:artifacts
+
+    - name: "Check Fixture Doc Consistency"
+      run: npm run check:fixtures:docs
+
+    - name: "Run Deterministic Tests"
+      run: npm test
+
+    - name: "Run Randomized Tests"
+      run: npm run test:random
+
+    - name: "Check Fixture Reproducibility"
+      run: npm run check:repro:fixtures
+
   build:
     name: "Update Editor's Copy"
     runs-on: ubuntu-latest
+    needs: fixtures
     permissions:
       contents: write
     steps:
@@ -39,6 +77,15 @@ jobs:
           .targets.mk
         key: i-d-${{ steps.setup.outputs.date }}
         restore-keys: i-d-
+
+    - name: "Setup Node.js"
+      uses: actions/setup-node@v5
+      with:
+        node-version: "22.13.1"
+        cache: "npm"
+
+    - name: "Install Dependencies"
+      run: npm ci
 
     - name: "Build Drafts"
       uses: martinthomson/i-d-template@v1

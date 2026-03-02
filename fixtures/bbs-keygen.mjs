@@ -1,67 +1,93 @@
-// generate two files (public-key.jwk and private-key.jwk)
-// containing a BLS curve key pair usable for issuance, based on 
+// generate BBS key artifacts in JWK and CWK forms
+// containing a BLS curve key pair usable for issuance, based on
 // https://www.ietf.org/archive/id/draft-ietf-cose-bls-key-representations-02.html
-import {bbs, utilities} from "@mattrglobal/pairing-crypto"
-import {base64url} from "jose";
-import {lineWrap} from "./utils.mjs"
 import fs from "node:fs/promises";
-import { assert } from "node:console";
+
+import { KeyPair } from "@alksol/cfrg-bbs";
 import { encode as cborEncode, diagnose } from "cbor2";
+import { base64url } from "jose";
 
-const encode = base64url.encode
-var keys = await bbs.bls12381_sha256.generateKeyPair();
-var publicKeyX = await utilities.uncompressedToCompressedPublicKey(keys.publicKey);
-var publicKeyStr = encode(publicKeyX);
+import { seed32 } from "./deterministic.mjs";
+import {
+    writeBinary,
+    writeJSON,
+    writeUtf8,
+    writeWrappedJSON
+} from "./output-writers.mjs";
 
-// reverse secretKey to big endian
-keys.secretKey.reverse();
-assert(keys.secretKey.length == 32);
+const encode = base64url.encode;
 
-var secretKeyStr = encode(keys.secretKey);
+async function loadInputs() {
+    await fs.mkdir("build", { recursive: true });
+    return {};
+}
 
-try { await fs.mkdir("build");  } catch (e) { /* ignore */ }
+function deriveValues() {
+    const keyPair = KeyPair.fromKeyMaterialSha256(seed32("bbs:key-material:v1"));
+    const publicKeyX = keyPair.getPublicKey();
+    const secretKey = keyPair.getSecretKey();
 
-var privateKeyStr = 
-JSON.stringify({
-    kty: "OKP",
-    alg: "BBS",
-    use: "proof",
-    crv: "BLS12381G2",
-    x: publicKeyStr,
-    d: secretKeyStr
-}, null, 2);
+    const privateJwk = {
+        kty: "OKP",
+        alg: "BBS",
+        use: "proof",
+        crv: "BLS12381G2",
+        x: encode(publicKeyX),
+        d: encode(secretKey)
+    };
 
-const cborPrivateKey = new Map();
-cborPrivateKey.set(1, 1); // kty = OKP
-cborPrivateKey.set(-1, 14 ); // crv = BLS12381G2
-cborPrivateKey.set(-2, publicKeyX ); // x = ...
-cborPrivateKey.set(-4, keys.secretKey ); // d = ...
+    const privateCwk = new Map();
+    privateCwk.set(1, 1);
+    privateCwk.set(-1, 14);
+    privateCwk.set(-2, publicKeyX);
+    privateCwk.set(-4, secretKey);
 
-var encodedCborPrivateKey = cborEncode(cborPrivateKey);
+    const publicJwk = {
+        kty: "OKP",
+        alg: "BBS",
+        use: "proof",
+        crv: "BLS12381G2",
+        x: encode(publicKeyX)
+    };
 
-await fs.writeFile("build/private-key.jwk", privateKeyStr);
-await fs.writeFile("build/private-key.jwk.wrapped", lineWrap(privateKeyStr, 8));
-await fs.writeFile("build/private-key.cwk", encodedCborPrivateKey);
-await fs.writeFile("build/private-key.cwk.edn", diagnose(encodedCborPrivateKey, { pretty: true }));
+    const publicCwk = new Map();
+    publicCwk.set(1, 1);
+    publicCwk.set(-1, 14);
+    publicCwk.set(-2, publicKeyX);
 
-var publicKeyStr = 
-JSON.stringify({
-    kty: "OKP",
-    alg: "BBS",
-    use: "proof",
-    crv: "BLS12381G2",
-    x: encode(publicKeyX)
-}, null, 2);
+    return {
+        privateJwk,
+        privateCwkBinary: cborEncode(privateCwk),
+        publicJwk,
+        publicCwkBinary: cborEncode(publicCwk)
+    };
+}
 
-const cborPublicKey = new Map();
+async function writeOutputs({ privateJwk, privateCwkBinary, publicJwk, publicCwkBinary }) {
+    await writeJSON("build/bbs-private-key.jwk", privateJwk, { pretty: true });
+    await writeWrappedJSON("build/bbs-private-key.jwk.wrapped", privateJwk, {
+        pretty: true,
+        paddingLength: 8
+    });
+    await writeBinary("build/bbs-private-key.cwk", privateCwkBinary);
+    await writeUtf8(
+        "build/bbs-private-key.cwk.edn",
+        diagnose(privateCwkBinary, { pretty: true })
+    );
 
-cborPublicKey.set(1, 1); // kty = OKP
-cborPublicKey.set(-1, 14 ); // crv = BLS12381G2
-cborPublicKey.set(-2, publicKeyX ); // x = ...
+    await writeJSON("build/bbs-public-key.jwk", publicJwk, { pretty: true });
+    await fs.rm("build/bbs-public-key.jwk.wrapped", { force: true });
+    await writeBinary("build/bbs-public-key.cwk", publicCwkBinary);
+    await writeUtf8(
+        "build/bbs-public-key.cwk.edn",
+        diagnose(publicCwkBinary, { pretty: true })
+    );
+}
 
-var encodedCborPublicKey = cborEncode(cborPublicKey);
+async function main() {
+    await loadInputs();
+    const values = deriveValues();
+    await writeOutputs(values);
+}
 
-await fs.writeFile("build/public-key.jwk", publicKeyStr);
-await fs.writeFile("build/public-key.jwk.wrapped", lineWrap(publicKeyStr, 8));
-await fs.writeFile("build/public-key.cwk", encodedCborPublicKey);
-await fs.writeFile("build/public-key.cwk.edn", diagnose(encodedCborPublicKey, { pretty: true }));
+await main();

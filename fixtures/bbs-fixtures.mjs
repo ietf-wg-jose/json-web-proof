@@ -1,72 +1,92 @@
-import fs from "fs/promises";
+import { signSHA256 } from "@alksol/cfrg-bbs";
+import { generateProofSha256 } from "@alksol/cfrg-bbs/deterministic";
+import { base64url } from "jose";
 
-import pairing from "@mattrglobal/pairing-crypto";
-import { base64url } from 'jose';
+import { seed32 } from "./deterministic.mjs";
+import { keyRead } from "./bbs-key-load.mjs";
+import {
+    compactPayloadEncode,
+    serializeJSON,
+    writeUtf8,
+    writeWrapped
+} from "./output-writers.mjs";
 
-import { keyRead } from './bbs-keyread.mjs';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode } from './utils.mjs';
-
-import protectedHeaderJSON from "./template/jpt-issuer-protected-header.json" with {type: "json"};
-import presentationHeaderJSON from "./template/bbs-holder-presentation-header.json" with {type: "json"};
-import payloadsJSON from "./template/jpt-issuer-payloads.json" with {type: "json"};
+import holderHeaderJSON from "./template/bbs-holder-header.json" with { type: "json" };
+import issuerHeaderJSON from "./template/jpt-issuer-header.json" with { type: "json" };
+import payloadsJSON from "./template/jpt-issuer-payloads.json" with { type: "json" };
 
 const encode = base64url.encode;
+const DISCLOSED_INDEXES = new Uint32Array([0, 1, 2, 3]);
 
-// load/massage data
-const keyPair = await keyRead();
-const protectedHeader = Buffer.from(JSON.stringify(protectedHeaderJSON), "UTF-8");
-const payloads = payloadsJSON.map((item)=>Buffer.from(JSON.stringify(item), "UTF-8"));
-const presentationHeader = Buffer.from(JSON.stringify(presentationHeaderJSON), "UTF-8");
+async function loadInputs() {
+    const keyPair = await keyRead();
+    return {
+        keyPair,
+        issuerHeader: Buffer.from(serializeJSON(issuerHeaderJSON), "utf-8"),
+        holderHeader: Buffer.from(serializeJSON(holderHeaderJSON), "utf-8"),
+        payloads: payloadsJSON.map((item) => Buffer.from(serializeJSON(item), "utf-8"))
+    };
+}
 
-// calculate signature
-const signature = await pairing.bbs.bls12381_sha256.sign({
-    publicKey: keyPair.publicKey.compressed, 
-    secretKey: keyPair.secretKey, 
-    header: protectedHeader,
-    messages: payloads
-});
+function deriveValues({ keyPair, issuerHeader, holderHeader, payloads }) {
+    const issuerPayloads = [...payloads];
+    const signature = signSHA256(
+        keyPair.secretKey,
+        keyPair.publicKey.compressed,
+        issuerHeader,
+        issuerPayloads
+    );
 
-await fs.writeFile("build/bbs-issuer-proof.base64url", encode(signature), {encoding: "UTF-8"});
+    const issuerCompact = [
+        encode(issuerHeader),
+        issuerPayloads.map(compactPayloadEncode).join("~"),
+        encode(signature)
+    ].join(".");
 
-// Compact Serialization
-const compactSerialization = [
-    encode(protectedHeader),
-    payloads.map(compactPayloadEncode).join("~"),
-    encode(signature)
-].join(".");
-await fs.writeFile("build/bbs-issuer.compact.jwp", compactSerialization, {encoding: "UTF-8"});
-await fs.writeFile("build/bbs-issuer.compact.jwp.wrapped", lineWrap(compactSerialization));
+    const proof = generateProofSha256(
+        keyPair.publicKey.compressed,
+        signature,
+        issuerHeader,
+        holderHeader,
+        issuerPayloads,
+        DISCLOSED_INDEXES,
+        seed32("bbs:proof-seed:v1")
+    );
 
-// Generate proof, selectively disclosing only name and age
-var proof = await pairing.bbs.bls12381_sha256.deriveProof({
-    publicKey: keyPair.publicKey.compressed,
-    header: protectedHeader,
-    presentationHeader: presentationHeader,
-    signature: signature,
-    verifySignature: false,
-    messages: [
-        { value: payloads[0], reveal: true },
-        { value: payloads[1], reveal: true },
-        { value: payloads[2], reveal: true },
-        { value: payloads[3], reveal: true },
-        { value: payloads[4], reveal: false },
-        { value: payloads[5], reveal: false },
-        { value: payloads[6], reveal: false },
-    ]
-});
-await fs.writeFile("build/bbs-holder-proof.base64url", encode(proof), {encoding: "UTF-8"});
+    const presentationPayloads = [...issuerPayloads];
+    presentationPayloads[4] = null;
+    presentationPayloads[5] = null;
+    presentationPayloads[6] = null;
 
-// go ahead and modify payloads in place for final output
-payloads[4] = null; // remove email
-payloads[5] = null; // remove address
-payloads[6] = null; // remove age_over_21
+    const presentationCompact = [
+        encode(holderHeader),
+        encode(issuerHeader),
+        presentationPayloads.map(compactPayloadEncode).join("~"),
+        encode(proof)
+    ].join(".");
 
-// Compact Serialization
-const compactHolderSerialization = [
-    encode(presentationHeader),
-    encode(protectedHeader),
-    payloads.map(compactPayloadEncode).join("~"),
-    encode(proof)
-].join(".");
-await fs.writeFile("build/bbs-holder.compact.jwp", compactHolderSerialization, {encoding: "UTF-8"});
-await fs.writeFile("build/bbs-holder.compact.jwp.wrapped", lineWrap(compactHolderSerialization, 0));
+    return {
+        signature,
+        issuerCompact,
+        proof,
+        presentationCompact
+    };
+}
+
+async function writeOutputs({ signature, issuerCompact, proof, presentationCompact }) {
+    await writeUtf8("build/bbs-issuer-proof.base64url", encode(signature));
+    await writeUtf8("build/bbs-issuer-compact.jwp", issuerCompact);
+    await writeWrapped("build/bbs-issuer-compact.jwp.wrapped", issuerCompact);
+
+    await writeUtf8("build/bbs-presentation-proof.base64url", encode(proof));
+    await writeUtf8("build/bbs-presentation-compact.jwp", presentationCompact);
+    await writeWrapped("build/bbs-presentation-compact.jwp.wrapped", presentationCompact);
+}
+
+async function main() {
+    const inputs = await loadInputs();
+    const values = deriveValues(inputs);
+    await writeOutputs(values);
+}
+
+await main();

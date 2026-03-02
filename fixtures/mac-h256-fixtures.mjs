@@ -1,126 +1,174 @@
-import { base64url } from 'jose';
-import { GeneralSign } from 'jose';
-import { lineWrap, compactPayloadEncode, jsonPayloadEncode,
-    signPayloadSHA256, payloadSecrets, payloadMACs, 
-    createPresentationInternalRepresentation, combinedMACRepresentation
-} from './utils.mjs';
-import * as fs from "fs/promises";
-import * as crypto from "crypto";
+import * as crypto from "node:crypto";
 
-import payloadsJSON from "./template/jpt-issuer-payloads.json" with {type: "json"};
-import issuerPrivateKeyJSON from "./build/issuer-private-key-es256.jwk.json" with {type: "json"};
-import holderPrivateKeyJSON from "./build/holder-private-key-es256.jwk.json" with {type: "json"};
-import holderPublicKeyJSON from "./build/holder-public-key-es256.jwk.json" with {type: "json"};
-import issuerNonceStr from "./build/issuer-nonce.json" with {type: "json"};
-import presentationNonceStr from "./build/presentation-nonce.json" with {type: "json"};
-import issuerProtectedHeaderJSON from "./template/mac-h256-issuer-protected-header.json" with {type: "json"};
-import holderProtectedHeaderJSON from "./template/mac-h256-holder-protected-header.json" with {type: "json"};
-import holderSharedSecretStr from "./build/mac-h256-holder-shared-secret.json" with {type: "json"};
-import { create } from 'domain';
+import { base64url } from "jose";
+
+import {
+    combinedMACRepresentation,
+    createPresentationInternalRepresentation,
+    payloadMACs,
+    payloadSecrets,
+    signPayloadSHA256
+} from "./crypto-ops.mjs";
+import {
+    compactPayloadEncode,
+    serializeJSON,
+    writeJSON,
+    writeWrapped,
+    writeWrappedJSON
+} from "./output-writers.mjs";
+
+import holderPrivateKeyJSON from "./build/es256-holder-private-key.jwk.json" with { type: "json" };
+import holderPublicKeyJSON from "./build/es256-holder-public-key.jwk.json" with { type: "json" };
+import issuerPrivateKeyJSON from "./build/es256-issuer-private-key.jwk.json" with { type: "json" };
+import holderSharedSecretStr from "./build/mac-h256-holder-shared-secret.base64url.json" with { type: "json" };
+import issuerNonceStr from "./build/shared-issuer-nonce.base64url.json" with { type: "json" };
+import presentationNonceStr from "./build/shared-presentation-nonce.base64url.json" with { type: "json" };
+import holderHeaderTemplate from "./template/mac-h256-holder-header.json" with { type: "json" };
+import issuerHeaderTemplate from "./template/mac-h256-issuer-header.json" with { type: "json" };
+import payloadsJSON from "./template/jpt-issuer-payloads.json" with { type: "json" };
 
 const { encode, decode } = base64url;
+const REDACTED_PAYLOAD_INDEXES = new Set([4, 5, 6]);
 
-/// Set up usable data forms from JSON imports
+function loadInputs() {
+    const payloads = payloadsJSON.map((item) => Buffer.from(serializeJSON(item), "utf-8"));
 
-const payloads = payloadsJSON.map((item) => Buffer.from(JSON.stringify(item), "UTF-8"));
-const issuerNonce = decode(issuerNonceStr);
-const presentationNonce = decode(presentationNonceStr);
-const holderSharedSecret = decode(holderSharedSecretStr);
-
-const issuerPrivateKey = crypto.createPrivateKey({
-    key: issuerPrivateKeyJSON, 
-    format: "jwk"
-});
-const holderPrivateKey = crypto.createPrivateKey({
-    key: holderPrivateKeyJSON,
-    format: "jwk"
-});
-
-/// Create Issued JWP
-
-// Modify the issuer protected header by adding the Holder's Presentation key
-issuerProtectedHeaderJSON.hpk = holderPublicKeyJSON;
-
-// encode/sign the issuer protected header w/ the stable key
-const finalIssuerProtectedHeader = JSON.stringify(issuerProtectedHeaderJSON);
-
-await fs.writeFile("build/mac-h256-issuer-protected-header.json", lineWrap(JSON.stringify(issuerProtectedHeaderJSON, 0, 2)));
-
-// process the issued payloads
-
-const payloadKeys = payloadSecrets('sha256', issuerNonce, payloads.length);
-const payloadMacs = payloadMACs("sha256", payloadKeys, payloads);
-
-await fs.writeFile("build/mac-h256-issuer-derived-payload-keys.json", JSON.stringify(payloadKeys.map(encode), 0, 2));
-await fs.writeFile("build/mac-h256-payload-macs.json", JSON.stringify(payloadMacs.map(encode), 0, 2));
-
-// merge macs for signing
-const combinedMacRepresentation = combinedMACRepresentation(finalIssuerProtectedHeader, payloadMacs);
-
-const macsSignature = await signPayloadSHA256(combinedMacRepresentation, issuerPrivateKey);
-
-// Append shared key to raw signature for issuer proof value
-const issuedProof = [macsSignature, holderSharedSecret]
-
-await fs.writeFile("build/mac-h256-issued-proof.json.wrapped", lineWrap(JSON.stringify(issuedProof.map(encode), 0, 2)));
-
-// create issued compact serialization
-const serialized = [];
-serialized.push(encode(finalIssuerProtectedHeader));
-serialized.push(payloads.map(compactPayloadEncode).join('~'));
-serialized.push(issuedProof.map(encode).join("~"));
-const issuerCompactOutput = serialized.join('.');
-
-await fs.writeFile("build/mac-h256-issuer.compact.jwp.wrapped", lineWrap(issuerCompactOutput));
-
-/// Create JWP Presentation
-
-// Modify the holder protected header by adding a nonce
-holderProtectedHeaderJSON.nonce = encode(presentationNonce);
-const finalHolderProtectedHeader = Buffer.from(JSON.stringify(holderProtectedHeaderJSON));
-
-await fs.writeFile("build/mac-h256-presentation-protected-header.json.wrapped", lineWrap(JSON.stringify(holderProtectedHeaderJSON, 0, 2)));
-
-// build presentation proof from issuer sig, presentation sig, then mac-or-key
-let pres_final = [macsSignature];
-
-const redactedPayloads = [4, 5, 6];
-for (let i = 0 ; i < payloads.length; i++ ) {
-    // redact payloads
-    const redacted = redactedPayloads.includes(i);
-    if (redacted) {
-        payloads[i] = null;
-    }
-
-    // append key for disclosed payloads, mac for redacted payloads
-    if (redacted) {
-        pres_final.push(payloadMacs[i]);
-    } else {
-        pres_final.push(payloadKeys[i]);
-    }
+    return {
+        payloads,
+        issuerNonce: decode(issuerNonceStr),
+        presentationNonce: decode(presentationNonceStr),
+        holderSharedSecret: decode(holderSharedSecretStr),
+        issuerPrivateKey: crypto.createPrivateKey({
+            key: issuerPrivateKeyJSON,
+            format: "jwk"
+        }),
+        holderPrivateKey: crypto.createPrivateKey({
+            key: holderPrivateKeyJSON,
+            format: "jwk"
+        }),
+        issuerHeaderJSON: structuredClone(issuerHeaderTemplate),
+        holderHeaderJSON: structuredClone(holderHeaderTemplate)
+    };
 }
 
-let presentationInternalRepresenation = createPresentationInternalRepresentation(
-    finalIssuerProtectedHeader,
-    finalHolderProtectedHeader,
+async function deriveValues({
     payloads,
-    pres_final);
+    issuerNonce,
+    presentationNonce,
+    holderSharedSecret,
+    issuerPrivateKey,
+    holderPrivateKey,
+    issuerHeaderJSON,
+    holderHeaderJSON
+}) {
+    const issuerPayloads = [...payloads];
 
-    // Sign the presentation protected header w/ the holder key
-const presentationHolderSignature = await signPayloadSHA256(presentationInternalRepresenation, holderPrivateKey);
-pres_final.push(presentationHolderSignature);
+    issuerHeaderJSON.hpk = holderPublicKeyJSON;
+    const issuerHeader = serializeJSON(issuerHeaderJSON);
 
+    const payloadKeys = payloadSecrets("sha256", issuerNonce, issuerPayloads.length);
+    const payloadMacs = payloadMACs("sha256", payloadKeys, issuerPayloads);
 
-await fs.writeFile("build/mac-h256-presentation-proof.json.wrapped",
-    lineWrap(JSON.stringify(pres_final.map(encode), 0, 2)));
+    const combinedMacRepresentation = combinedMACRepresentation(issuerHeader, payloadMacs);
+    const macsSignature = await signPayloadSHA256(combinedMacRepresentation, issuerPrivateKey);
+    const issuedProof = [macsSignature, holderSharedSecret];
 
-// create issued compact serialization
-const serialized2 = [];
-serialized2.push(encode(finalHolderProtectedHeader));
-serialized2.push(encode(finalIssuerProtectedHeader));
-serialized2.push(payloads.map(compactPayloadEncode).join('~'));
-serialized2.push(pres_final.map(encode).join('~'));
-const presentedCompactOutput = serialized2.join('.');
+    const issuerCompact = [
+        encode(issuerHeader),
+        issuerPayloads.map(compactPayloadEncode).join("~"),
+        issuedProof.map(encode).join("~")
+    ].join(".");
 
-await fs.writeFile("build/mac-h256-presentation.compact.jwp.wrapped",
-    lineWrap(presentedCompactOutput));
+    holderHeaderJSON.nonce = encode(presentationNonce);
+    const holderHeader = Buffer.from(serializeJSON(holderHeaderJSON), "utf-8");
+
+    const presentationPayloads = [...issuerPayloads];
+    const presentationProof = [macsSignature];
+
+    for (let i = 0; i < presentationPayloads.length; i += 1) {
+        const redacted = REDACTED_PAYLOAD_INDEXES.has(i);
+        if (redacted) {
+            presentationPayloads[i] = null;
+            presentationProof.push(payloadMacs[i]);
+        } else {
+            presentationProof.push(payloadKeys[i]);
+        }
+    }
+
+    const presentationInternalRepresentation = createPresentationInternalRepresentation(
+        issuerHeader,
+        holderHeader,
+        presentationPayloads,
+        presentationProof
+    );
+
+    const presentationHolderSignature = await signPayloadSHA256(
+        presentationInternalRepresentation,
+        holderPrivateKey
+    );
+    presentationProof.push(presentationHolderSignature);
+
+    const presentationCompact = [
+        encode(holderHeader),
+        encode(issuerHeader),
+        presentationPayloads.map(compactPayloadEncode).join("~"),
+        presentationProof.map(encode).join("~")
+    ].join(".");
+
+    return {
+        issuerHeaderJSON,
+        holderHeaderJSON,
+        payloadKeys,
+        payloadMacs,
+        issuedProof,
+        issuerCompact,
+        presentationProof,
+        presentationCompact
+    };
+}
+
+async function writeOutputs({
+    issuerHeaderJSON,
+    holderHeaderJSON,
+    payloadKeys,
+    payloadMacs,
+    issuedProof,
+    issuerCompact,
+    presentationProof,
+    presentationCompact
+}) {
+    await writeJSON("build/mac-h256-issuer-header.json", issuerHeaderJSON, {
+        pretty: true
+    });
+
+    await writeJSON("build/mac-h256-issuer-payload-keys.json", payloadKeys.map(encode), {
+        pretty: true
+    });
+    await writeJSON("build/mac-h256-payload-macs.json", payloadMacs.map(encode), {
+        pretty: true
+    });
+
+    await writeWrappedJSON("build/mac-h256-issuer-proof.json.wrapped", issuedProof.map(encode), {
+        pretty: true
+    });
+    await writeWrapped("build/mac-h256-issuer-compact.jwp.wrapped", issuerCompact);
+
+    await writeWrappedJSON("build/mac-h256-holder-header.json.wrapped", holderHeaderJSON, {
+        pretty: true
+    });
+
+    await writeWrappedJSON(
+        "build/mac-h256-presentation-proof.json.wrapped",
+        presentationProof.map(encode),
+        { pretty: true }
+    );
+    await writeWrapped("build/mac-h256-presentation-compact.jwp.wrapped", presentationCompact);
+}
+
+async function main() {
+    const inputs = loadInputs();
+    const values = await deriveValues(inputs);
+    await writeOutputs(values);
+}
+
+await main();

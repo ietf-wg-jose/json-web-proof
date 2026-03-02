@@ -1,0 +1,15 @@
+{
+  "alg": "SU-ES256",
+  "claims": [
+    "iat",
+    "exp",
+    "family_name",
+    "given_name",
+    "email",
+    "address",
+    "age_over_21"
+  ],
+  "hpa": "ES256",
+  "iss": "https://issuer.example",
+  "typ": "JPT"
+}

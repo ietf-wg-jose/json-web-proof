@@ -1,0 +1,147 @@
+import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
+import { readFile, readdir, rm } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+function run(command, args) {
+    const result = spawnSync(command, args, {
+        cwd: root,
+        stdio: "inherit",
+        env: process.env
+    });
+    if (result.status !== 0) {
+        throw new Error(`Command failed: ${command} ${args.join(" ")}`);
+    }
+}
+
+async function hashFile(filePath) {
+    const data = await readFile(filePath);
+    return createHash("sha256").update(data).digest("hex");
+}
+
+async function walkFiles(dirPath) {
+    const results = [];
+    const entries = await readdir(dirPath, { withFileTypes: true });
+    entries.sort((a, b) => a.name.localeCompare(b.name));
+    for (const entry of entries) {
+        const fullPath = path.join(dirPath, entry.name);
+        if (entry.isDirectory()) {
+            results.push(...(await walkFiles(fullPath)));
+        } else if (entry.isFile()) {
+            results.push(fullPath);
+        }
+    }
+    return results;
+}
+
+async function collectManifest({ includeDrafts }) {
+    const manifest = new Map();
+    const buildDir = path.join(root, "fixtures", "build");
+    const buildFiles = await walkFiles(buildDir);
+    for (const filePath of buildFiles) {
+        const rel = path.relative(root, filePath);
+        manifest.set(rel, await hashFile(filePath));
+    }
+
+    if (!includeDrafts) {
+        return manifest;
+    }
+
+    const topLevelEntries = await readdir(root, { withFileTypes: true });
+    for (const entry of topLevelEntries) {
+        if (!entry.isFile()) {
+            continue;
+        }
+        if (!entry.name.startsWith("draft-ietf-jose-")) {
+            continue;
+        }
+        if (!entry.name.endsWith(".html") && !entry.name.endsWith(".txt")) {
+            continue;
+        }
+        const fullPath = path.join(root, entry.name);
+        manifest.set(entry.name, await hashFile(fullPath));
+    }
+
+    return manifest;
+}
+
+function describeDelta(run1, run2) {
+    const added = [];
+    const removed = [];
+    const changed = [];
+
+    for (const [key, hash] of run1.entries()) {
+        if (!run2.has(key)) {
+            removed.push(key);
+            continue;
+        }
+        if (run2.get(key) !== hash) {
+            changed.push(key);
+        }
+    }
+
+    for (const key of run2.keys()) {
+        if (!run1.has(key)) {
+            added.push(key);
+        }
+    }
+
+    return { added, removed, changed };
+}
+
+async function runCycle(label, { includeDrafts }) {
+    console.log(`\n=== ${label}: clean and rebuild ===`);
+    await rm(path.join(root, "fixtures", "build"), { recursive: true, force: true });
+    run("make", ["fixtures"]);
+    if (includeDrafts) {
+        run("make", []);
+    }
+    return collectManifest({ includeDrafts });
+}
+
+function assertNoDelta(delta) {
+    if (delta.added.length === 0 &&
+        delta.removed.length === 0 &&
+        delta.changed.length === 0) {
+        return;
+    }
+
+    const lines = [];
+    if (delta.added.length > 0) {
+        lines.push(`added: ${delta.added.join(", ")}`);
+    }
+    if (delta.removed.length > 0) {
+        lines.push(`removed: ${delta.removed.join(", ")}`);
+    }
+    if (delta.changed.length > 0) {
+        lines.push(`changed: ${delta.changed.join(", ")}`);
+    }
+    throw new Error(`Reproducibility check failed:\n${lines.join("\n")}`);
+}
+
+function parseMode(argv) {
+    const modeArg = argv.find((arg) => arg.startsWith("--mode="));
+    if (!modeArg) {
+        return "full";
+    }
+    const mode = modeArg.substring("--mode=".length);
+    if (mode !== "fixtures" && mode !== "full") {
+        throw new Error(`Unknown mode: ${mode}. Use --mode=fixtures or --mode=full.`);
+    }
+    return mode;
+}
+
+async function main() {
+    const mode = parseMode(process.argv.slice(2));
+    const includeDrafts = mode === "full";
+    const run1 = await runCycle("run1", { includeDrafts });
+    const run2 = await runCycle("run2", { includeDrafts });
+    const delta = describeDelta(run1, run2);
+    assertNoDelta(delta);
+    console.log(`\nReproducibility check passed (${mode}): run1 and run2 match.`);
+}
+
+await main();
