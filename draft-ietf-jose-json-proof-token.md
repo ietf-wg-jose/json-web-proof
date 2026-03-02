@@ -451,6 +451,10 @@ for his valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-13
+
+- Examples are now built deterministically
+
 -12
 
 - IANA Considerations section changes from IANA Early Review

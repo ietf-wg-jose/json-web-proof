@@ -1264,6 +1264,10 @@ The BBS examples were generated using the library at
 
   [[ To be removed from the final specification ]]
 
+-13
+
+- Examples are now built deterministically
+
 -12
 
 - IANA Considerations section changes from IANA Early Review
