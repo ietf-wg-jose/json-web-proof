@@ -29,14 +29,14 @@ these identifiers.
     Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
-    intervaltree 3.1.0
+    intervaltree 3.2.1
     Jinja2 3.1.6
-    lxml 5.3.1
-    platformdirs 4.5.0
+    lxml 6.0.2
+    platformdirs 4.5.1
     pycountry 24.6.1
-    PyYAML 6.0.2
+    PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.2.14
+    wcwidth 0.3.0
 -->
 <link href="draft-ietf-jose-json-proof-algorithms.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -177,7 +177,7 @@ these identifiers.
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: 'Oxygen Mono';
@@ -185,7 +185,8 @@ these identifiers.
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 }
 
 @font-face {
@@ -577,6 +578,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -647,7 +649,7 @@ a.pilcrow {
   }
 }
 @media not print {
-  :hover > a.pilcrow {
+  :hover > a.pilcrow, a.pilcrow:focus {
     opacity: 1;
   }
   a.pilcrow[href]:hover {
@@ -1055,11 +1057,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">json-proof-algorithms</td>
-<td class="right">November 2025</td>
+<td class="right">March 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 9 May 2026</td>
+<td class="center">Expires 3 September 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1074,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-jose-json-proof-algorithms-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-05" class="published">5 November 2025</time>
+<time datetime="2026-03-02" class="published">2 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-09">9 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-09-03">3 September 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1122,7 +1124,7 @@ these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1131,7 +1133,7 @@ these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2025 IETF Trust and the persons identified as the
+            Copyright (c) 2026 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1208,7 +1210,7 @@ these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                     <p id="section-toc.1-1.6.2.1.2.7.1"><a href="#section-6.1.7" class="auto internal xref">6.1.7</a>.  <a href="#name-proof" class="internal xref">Proof</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.8">
-                    <p id="section-toc.1-1.6.2.1.2.8.1"><a href="#section-6.1.8" class="auto internal xref">6.1.8</a>.  <a href="#name-presentation-header-present" class="internal xref">Presentation Header #{presentation-protected-header}</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.8.1"><a href="#section-6.1.8" class="auto internal xref">6.1.8</a>.  <a href="#name-presentation-header-present" class="internal xref">Presentation Header #{presentation-header}</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.9">
                     <p id="section-toc.1-1.6.2.1.2.9.1"><a href="#section-6.1.9" class="auto internal xref">6.1.9</a>.  <a href="#name-presentation" class="internal xref">Presentation</a></p>
@@ -1653,10 +1655,10 @@ string of the Issuer Header signature, with an additional
 entry for each payload signature.<a href="#section-6.1.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="presentation-header-presentation-protected-header">
+<div id="presentation-header-presentation-header">
 <section id="section-6.1.8">
           <h4 id="name-presentation-header-present">
-<a href="#section-6.1.8" class="section-number selfRef">6.1.8. </a><a href="#name-presentation-header-present" class="section-name selfRef">Presentation Header #{presentation-protected-header}</a>
+<a href="#section-6.1.8" class="section-number selfRef">6.1.8. </a><a href="#name-presentation-header-present" class="section-name selfRef">Presentation Header #{presentation-header}</a>
           </h4>
 <p id="section-6.1.8-1">To generate a new presentation, the holder first creates a Presentation
 Header that is specific to the verifier being presented to.
@@ -1867,7 +1869,7 @@ together based on the proof.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <p id="section-6.3.2-1">The key used for the <code>BBS</code> algorithm is an elliptic curve-based key
 pair, specifically against the G_2 subgroup of a pairing friendly curve.
 Additional details on key generation can be found in
-<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09#appendix-Section%203.4" class="relref">Section 3.4</a>.  The JWK and Cose Key
+<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10#appendix-Section%203.4" class="relref">Section 3.4</a>.  The JWK and Cose Key
 Object representations of the key are detailed in
 <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span>.<a href="#section-6.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.2-2">There is no additional holder presentation key necessary for
@@ -1880,7 +1882,7 @@ presentation proofs.<a href="#section-6.3.2-2" class="pilcrow">¶</a></p>
 <a href="#section-6.3.3" class="section-number selfRef">6.3.3. </a><a href="#name-issuance" class="section-name selfRef">Issuance</a>
           </h4>
 <p id="section-6.3.3-1">Issuance is performed using the <code>Sign</code> operation from
-<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.  This operation
+<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10#section-3.5.1" class="relref">Section 3.5.1</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.  This operation
 utilizes the issuer's BLS12-381 G2 key pair as <code>SK</code> and <code>PK</code>, along with
 desired Header octets as <code>header</code>, and the array of payload
 octet string as <code>messages</code>.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
@@ -1908,7 +1910,7 @@ payload octets as <code>messages</code>.<a href="#section-6.3.4-2" class="pilcro
 <a href="#section-6.3.5" class="section-number selfRef">6.3.5. </a><a href="#name-presentation-2" class="section-name selfRef">Presentation</a>
           </h4>
 <p id="section-6.3.5-1">Derivation of a presentation is done by the holder using the <code>ProofGen</code>
-operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.3.5-1" class="pilcrow">¶</a></p>
+operation from <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10#section-3.5.3" class="relref">Section 3.5.3</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-6.3.5-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.5-2">This operation utilizes the issuer's public key as <code>PK</code>, the Issuer
 Header as <code>header</code>, the issuance proof as <code>signature</code>, the
 issuance payloads as <code>messages</code>, and the holder's Presentation Header
@@ -2115,7 +2117,7 @@ per-payload keys for the combined representation.<a href="#section-6.4.5-3" clas
           <h4 id="name-presentation-header">
 <a href="#section-6.4.6" class="section-number selfRef">6.4.6. </a><a href="#name-presentation-header" class="section-name selfRef">Presentation Header</a>
           </h4>
-<p id="section-6.4.6-1">See the <a href="#presentation-protected-header">Presentation Header</a>
+<p id="section-6.4.6-1">See the <a href="#presentation-header">Presentation Header</a>
 section given for Single Use algorithms.<a href="#section-6.4.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2685,7 +2687,7 @@ and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.
 <dd class="break"></dd>
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
         <dd>
-<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-09</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-10</span>, <time datetime="2026-01-08" class="refDate">8 January 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -2712,11 +2714,11 @@ and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-8.1.
 <dd class="break"></dd>
 <dt id="I-D.ietf-cose-bls-key-representations">[I-D.ietf-cose-bls-key-representations]</dt>
         <dd>
-<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Barreto-Lynn-Scott Elliptic Curve Key Representations for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-bls-key-representations-07</span>, <time datetime="2025-07-20" class="refDate">20 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-07">https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Barreto-Lynn-Scott Elliptic Curve Key Representations for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-bls-key-representations-08</span>, <time datetime="2025-11-04" class="refDate">4 November 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-08">https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-spice-oidc-cwt">[I-D.ietf-spice-oidc-cwt]</dt>
         <dd>
-<span class="refAuthor">Maldant, B.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"OpenID Connect Standard Claims Registration for CBOR Web Tokens"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-spice-oidc-cwt-02</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-spice-oidc-cwt-02">https://datatracker.ietf.org/doc/html/draft-ietf-spice-oidc-cwt-02</a>&gt;</span>. </dd>
+<span class="refAuthor">Maldant, B.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"OpenID Connect Standard Claims Registration for CBOR Web Tokens"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-spice-oidc-cwt-04</span>, <time datetime="2025-11-30" class="refDate">30 November 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-spice-oidc-cwt-04">https://datatracker.ietf.org/doc/html/draft-ietf-spice-oidc-cwt-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2104">[RFC2104]</dt>
         <dd>
@@ -2764,11 +2766,11 @@ format:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-issuer-private-key-es256-in"></span><figure id="figure-1">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-4.1">
 <pre>{
-  "kty": "EC",
   "crv": "P-256",
-  "x": "8myWxXBitjdD68c2AcLzhOVehZwK67MHsqICCi-L1c8",
-  "y": "ZgdqvtQRfZnVearSpaDz599MPDmwkdhiK_n7lUtSkdU",
-  "d": "ctmcqo-Hb_tj1xyr137wINzO-jQztJV5uz4waBJekRA"
+  "d": "DK-sovUBcervl5QDJKW6Ujwq51ICSfkSSRdcd6fSpOE",
+  "kty": "EC",
+  "x": "xs_KueKqEaJbGljUbyYH76P5Z94HOkafqrD1BGKnijU",
+  "y": "BHbl5x2yWAOufTsB5EHetmBGl_c1TjzbtoTL3TZgvPk"
 }
 
 </pre>
@@ -2781,11 +2783,11 @@ format:<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <span id="name-issuer-ephemeral-private-ke"></span><figure id="figure-2">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-6.1">
 <pre>{
-  "kty": "EC",
   "crv": "P-256",
-  "x": "EvUmBgnf4FRdYhtcT4PmaCmSXxkMtDjQ3D6n2UUT9s8",
-  "y": "cyRXKv1mVQdnFRvkt_kbr0lZ8u8s8imM07ce4j_FnZg",
-  "d": "aKoTaJMHcGU65garV89SMLRxJrWESbELcap7HeaW_xI"
+  "d": "kK_tJMtwmY15FvJfAJBceewzYibZhh1Uz9jQWUHEDfc",
+  "kty": "EC",
+  "x": "9zZSaMP_X_NFOm1Dinx_Ek0JQCi1Q62wyJYW_4Ge8J0",
+  "y": "niWuxuD82iGuZ9fHHtvaruTuwebTqlPoiltsLNcv5LM"
 }
 
 </pre>
@@ -2798,11 +2800,11 @@ the JWK format:<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
 <span id="name-holder-presentation-private"></span><figure id="figure-3">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-8.1">
 <pre>{
-  "kty": "EC",
   "crv": "P-256",
-  "x": "SOpwG4Am3N4P5Au0ZJMKZojrlJfRyT3Rtu1c5GlIs30",
-  "y": "pvpJrufFY82BdFzgVhuq8F31XkhZlG1dw68ZoP8k8Ic",
-  "d": "kT5HYWs0P7kULvlA--mxxF4x3dzDed7rWMDBf0ks4yo"
+  "d": "sYGORNvEEUbzbOUsPVAxYPK0Nh-Pt86ToMGp-GNA4Rg",
+  "kty": "EC",
+  "x": "xP_7tI1acMDwEVxUp-XtCVxNTkzfPKUXYH-1w8YsfnU",
+  "y": "PkCV1HmrruCRjM44DAbdb_1opv03xAEMZeKbih_CEJQ"
 }
 
 </pre>
@@ -2819,9 +2821,6 @@ for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
           <div class="lang-wrapped sourcecode" id="appendix-A.1-10.1">
 <pre>{
   "alg": "SU-ES256",
-  "typ": "JPT",
-  "iss": "https://issuer.example",
-  "hpa": "ES256",
   "claims": [
     "iat",
     "exp",
@@ -2831,18 +2830,21 @@ for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
     "address",
     "age_over_21"
   ],
-  "iek": {
-    "kty": "EC",
-    "crv": "P-256",
-    "x": "EvUmBgnf4FRdYhtcT4PmaCmSXxkMtDjQ3D6n2UUT9s8",
-    "y": "cyRXKv1mVQdnFRvkt_kbr0lZ8u8s8imM07ce4j_FnZg"
-  },
+  "hpa": "ES256",
   "hpk": {
-    "kty": "EC",
     "crv": "P-256",
-    "x": "SOpwG4Am3N4P5Au0ZJMKZojrlJfRyT3Rtu1c5GlIs30",
-    "y": "pvpJrufFY82BdFzgVhuq8F31XkhZlG1dw68ZoP8k8Ic"
-  }
+    "kty": "EC",
+    "x": "xP_7tI1acMDwEVxUp-XtCVxNTkzfPKUXYH-1w8YsfnU",
+    "y": "PkCV1HmrruCRjM44DAbdb_1opv03xAEMZeKbih_CEJQ"
+  },
+  "iek": {
+    "crv": "P-256",
+    "kty": "EC",
+    "x": "9zZSaMP_X_NFOm1Dinx_Ek0JQCi1Q62wyJYW_4Ge8J0",
+    "y": "niWuxuD82iGuZ9fHHtvaruTuwebTqlPoiltsLNcv5LM"
+  },
+  "iss": "https://issuer.example",
+  "typ": "JPT"
 }
 
 </pre>
@@ -2852,15 +2854,15 @@ for this JPT.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
           </figcaption></figure>
 <span id="name-encoded-issuer-header-su-es"></span><figure id="figure-5">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-11.1">
-<pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
-mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
-lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJFdlVtQmduZjRGUmRZ
-aHRjVDRQbWFDbVNYeGtNdERqUTNENm4yVVVUOXM4IiwieSI6ImN5UlhLdjFtVlFkbkZSd
-mt0X2ticjBsWjh1OHM4aW1NMDdjZTRqX0ZuWmcifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
-J2IjoiUC0yNTYiLCJ4IjoiU09wd0c0QW0zTjRQNUF1MFpKTUtab2pybEpmUnlUM1J0dTF
-jNUdsSXMzMCIsInkiOiJwdnBKcnVmRlk4MkJkRnpnVmh1cThGMzFYa2habEcxZHc2OFpv
-UDhrOEljIn19
+<pre>eyJhbGciOiJTVS1FUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbHlfbmFtZ
+SIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJdLCJocG
+EiOiJFUzI1NiIsImhwayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6InhQXzd
+0STFhY01Ed0VWeFVwLVh0Q1Z4TlRremZQS1VYWUgtMXc4WXNmblUiLCJ5IjoiUGtDVjFI
+bXJydUNSak00NERBYmRiXzFvcHYwM3hBRU1aZUtiaWhfQ0VKUSJ9LCJpZWsiOnsiY3J2I
+joiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiI5elpTYU1QX1hfTkZPbTFEaW54X0VrMEpRQ2
+kxUTYyd3lKWVdfNEdlOEowIiwieSI6Im5pV3V4dUQ4MmlHdVo5ZkhIdHZhcnVUdXdlYlR
+xbFBvaWx0c0xOY3Y1TE0ifSwiaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsInR5
+cCI6IkpQVCJ9
 
 </pre>
 </div>
@@ -2880,20 +2882,20 @@ Header signature, followed by entries for each payload signature.<a href="#appen
 <span id="name-issuer-payloads-json-as-arr"></span><figure id="figure-6">
           <div class="lang-json sourcecode" id="appendix-A.1-14.1">
 <pre>[
-    1714521600,
-    1717199999,
-    "Doe",
-    "Jay",
-    "jaydoe@example.org",
-    {
-        "formatted": "1234 Main St.\nAnytown, CA 12345\nUSA",
-        "street_address": "1234 Main St.",
-        "locality": "Anytown",
-        "region": "CA",
-        "postal_code": 12345,
-        "country": "USA"
-    },
-    true
+  1714521600,
+  1717199999,
+  "Doe",
+  "Jay",
+  "jaydoe@example.org",
+  {
+    "country": "USA",
+    "formatted": "1234 Main St.\nAnytown, CA 12345\nUSA",
+    "locality": "Anytown",
+    "postal_code": 12345,
+    "region": "CA",
+    "street_address": "1234 Main St."
+  },
+  true
 ]
 
 </pre>
@@ -2904,29 +2906,29 @@ Header signature, followed by entries for each payload signature.<a href="#appen
 <p id="appendix-A.1-15">The compact serialization of the same JPT is:<a href="#appendix-A.1-15" class="pilcrow">¶</a></p>
 <span id="name-issued-jwp-su-es256-json-co"></span><figure id="figure-7">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-16.1">
-<pre>eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8vaXNzdWVyL
-mV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
-lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJFdlVtQmduZjRGUmRZ
-aHRjVDRQbWFDbVNYeGtNdERqUTNENm4yVVVUOXM4IiwieSI6ImN5UlhLdjFtVlFkbkZSd
-mt0X2ticjBsWjh1OHM4aW1NMDdjZTRqX0ZuWmcifSwiaHBrIjp7Imt0eSI6IkVDIiwiY3
-J2IjoiUC0yNTYiLCJ4IjoiU09wd0c0QW0zTjRQNUF1MFpKTUtab2pybEpmUnlUM1J0dTF
-jNUdsSXMzMCIsInkiOiJwdnBKcnVmRlk4MkJkRnpnVmh1cThGMzFYa2habEcxZHc2OFpv
-UDhrOEljIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZU
-BleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCB
-DQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9j
-YWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsI
-mNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.4oib02ZZVPFNNWbztE_E0Wmq1NhBqjC4tZzF904H
-8X4mTRD61SHcL0CJRN3-wpgYbSoqyg06VIr4cqy9Zn1icQ~tJh-4LMPG4GhxK-uLkLmrB
-YVwBZPRvIdOK-O6xBM_0bQ-kM5832qf1rJGTHF1DtFRJ13348ZRvjgqyCWuMNgyg~FJgT
-22UK8tAaEhA6t-XWJUfznly0llVFrudN3i3nQXwpJEAwocM79jKeQBkJsB0irp-DGYwN1
-omc10vQYc88Zg~pnQT0QEoTuWQPaQ5S1JoLxD9YjAAahvx_DI_4NL54_rpCsuQSd2iiBn
-JK4vn0p0AOn6tXHN7J3n1AdlYYcnXsA~r9bCsBvJcQxaGigTl01f2bbtqqhrcYIdXylP9
-m9pWlllKXZPdrTQ88zLjalfeF-0OddPS3VTp2uoyYPl7kYQdA~-B6ueiozE01Bbac-8RU
-O-BwVzYI5msc3YeKa-1_EgvuxRacJ_q-6uktKfVri9JUZjDyctRbDwgws4cHTTxRQ9w~Q
-453yacgfmbW3kvshJaaTKUt9DIWpac7Xcyr1oa6f0US7KL2kTUGGDHgu3oJXtbuIYeip3
-xw-nrmxUuQj2FWdw~JVx96aeMSY23CW0oU_Xr5S7raBOVPwKl4q_OAbs4_21WSLFrnEx4
-tbCqxsfskrUr0Q4dWuGsGdyyUFKfGa3eDA
+<pre>eyJhbGciOiJTVS1FUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbHlfbmFtZ
+SIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJdLCJocG
+EiOiJFUzI1NiIsImhwayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6InhQXzd
+0STFhY01Ed0VWeFVwLVh0Q1Z4TlRremZQS1VYWUgtMXc4WXNmblUiLCJ5IjoiUGtDVjFI
+bXJydUNSak00NERBYmRiXzFvcHYwM3hBRU1aZUtiaWhfQ0VKUSJ9LCJpZWsiOnsiY3J2I
+joiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiI5elpTYU1QX1hfTkZPbTFEaW54X0VrMEpRQ2
+kxUTYyd3lKWVdfNEdlOEowIiwieSI6Im5pV3V4dUQ4MmlHdVo5ZkhIdHZhcnVUdXdlYlR
+xbFBvaWx0c0xOY3Y1TE0ifSwiaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsInR5
+cCI6IkpQVCJ9.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZU
+BleGFtcGxlLm9yZyI~eyJjb3VudHJ5IjoiVVNBIiwiZm9ybWF0dGVkIjoiMTIzNCBNYWl
+uIFN0LlxuQW55dG93biwgQ0EgMTIzNDVcblVTQSIsImxvY2FsaXR5IjoiQW55dG93biIs
+InBvc3RhbF9jb2RlIjoxMjM0NSwicmVnaW9uIjoiQ0EiLCJzdHJlZXRfYWRkcmVzcyI6I
+jEyMzQgTWFpbiBTdC4ifQ~dHJ1ZQ.2hSttoVIGlLP727_737J5Srtkr8w5P4zG1QihW2J
+uvob4EkqDiJ319D5TdQczv3bAqBeWtxuDOHWOhiIrYaGTw~KuiMmRW7h-2OqDCZ6R8Zn3
+XQ_8youcBFxEmmXWMJyiceg6mZtEPcDTTN3l6HOE-5jzZ-G2cDl5gMjilbhGDxeQ~RSTl
+0mFdKoQYMAcAzt7_3XV6lCkxVRR0rJQtgGFFujxZXFAAyGRR02Cuu7T6Fn0c8IGmySw7T
+NIzcxeyEyYTlQ~1l9iFb7xjMiRjUCrnyH12Gf99LSjEOKW_Spguex4mkNdwdpET7qRZq1
+siO2tWKB_Z6nIX2cTOZRhmzzjGF_m4Q~TXc80HAXqHvTUOyg990ihSMCCV8aLRyn_gyaX
+6mnkHRIbjDaV-CAMLx3RhmdC3YkthnyEnaXFF5HZtmkIxGLEA~eA9uT8m3CTYttNl0_dd
+XKhhh1RnVnIOE4rbMfLq7jw8PAUBXZ7o1y26gV5g7Kpghmt2Fd0N9oK2imQvtFn9bUA~b
+YGxg3HjwR7O406Ne2U1O207QdOm6kF2g-N9NQtkaTFwGaEz_1U5uonRPylkR1xlmvKvt2
+rMTqiYf-_-pSYdmg~nMkClCSY1g-U5YMW473p2UKm7TFYs3bpjWUrAFCcaC0U958yRXmH
+S0nY0iFIfqVkTUxqhrvq55VV4r8xKsp6fQ
 
 </pre>
 </div>
@@ -2940,7 +2942,7 @@ a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶
 <pre>{
   "alg": "SU-ES256",
   "aud": "https://recipient.example.com",
-  "nonce": "CXZnznMxxoxrefyz6-c77cwAd22UnSmn-pByeEz6ga4"
+  "nonce": "Kbyx9Mlh-XUgbOdam1vR-dl4WK13Ltn6y7nfvFUQKKM"
 }
 
 </pre>
@@ -2951,8 +2953,8 @@ a nonce (provided by the Verifier):<a href="#appendix-A.1-17" class="pilcrow">¶
 <span id="name-presentation-header-su-es256"></span><figure id="figure-9">
           <div class="lang-wrapped sourcecode" id="appendix-A.1-19.1">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJDWFpuem5NeHhveHJlZnl6Ni1jNzdjd0FkMjJVblNtbi1wQnllRX
-o2Z2E0In0
+29tIiwibm9uY2UiOiJLYnl4OU1saC1YVWdiT2RhbTF2Ui1kbDRXSzEzTHRuNnk3bmZ2Rl
+VRS0tNIn0
 
 </pre>
 </div>
@@ -2968,29 +2970,29 @@ disclosed payloads, we get the following presented JPT in compact
 serialization:<a href="#appendix-A.1-21" class="pilcrow">¶</a></p>
 <div class="lang-wrapped sourcecode" id="appendix-A.1-22">
 <pre>eyJhbGciOiJTVS1FUzI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJDWFpuem5NeHhveHJlZnl6Ni1jNzdjd0FkMjJVblNtbi1wQnllRX
-o2Z2E0In0.eyJhbGciOiJTVS1FUzI1NiIsInR5cCI6IkpQVCIsImlzcyI6Imh0dHBzOi8
-vaXNzdWVyLmV4YW1wbGUiLCJocGEiOiJFUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAi
-LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
-3Zlcl8yMSJdLCJpZWsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJFdlVtQm
-duZjRGUmRZaHRjVDRQbWFDbVNYeGtNdERqUTNENm4yVVVUOXM4IiwieSI6ImN5UlhLdjF
-tVlFkbkZSdmt0X2ticjBsWjh1OHM4aW1NMDdjZTRqX0ZuWmcifSwiaHBrIjp7Imt0eSI6
-IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiU09wd0c0QW0zTjRQNUF1MFpKTUtab2pybEpmU
-nlUM1J0dTFjNUdsSXMzMCIsInkiOiJwdnBKcnVmRlk4MkJkRnpnVmh1cThGMzFYa2habE
-cxZHc2OFpvUDhrOEljIn19.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~
-ImpheWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bb
-nl0b3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3
-QuIiwibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI
-6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ~~.4oib02ZZVPFNNWbztE_E0Wmq1NhB
-qjC4tZzF904H8X4mTRD61SHcL0CJRN3-wpgYbSoqyg06VIr4cqy9Zn1icQ~tJh-4LMPG4
-GhxK-uLkLmrBYVwBZPRvIdOK-O6xBM_0bQ-kM5832qf1rJGTHF1DtFRJ13348ZRvjgqyC
-WuMNgyg~FJgT22UK8tAaEhA6t-XWJUfznly0llVFrudN3i3nQXwpJEAwocM79jKeQBkJs
-B0irp-DGYwN1omc10vQYc88Zg~pnQT0QEoTuWQPaQ5S1JoLxD9YjAAahvx_DI_4NL54_r
-pCsuQSd2iiBnJK4vn0p0AOn6tXHN7J3n1AdlYYcnXsA~r9bCsBvJcQxaGigTl01f2bbtq
-qhrcYIdXylP9m9pWlllKXZPdrTQ88zLjalfeF-0OddPS3VTp2uoyYPl7kYQdA~-B6ueio
-zE01Bbac-8RUO-BwVzYI5msc3YeKa-1_EgvuxRacJ_q-6uktKfVri9JUZjDyctRbDwgws
-4cHTTxRQ9w~LqZr45Fn1iAQCdfzGbhZS6TmzIKUBLO9ZMosSCk-1la1v5mjdN4z68K9O_
-5JsqJ32-S9MCFdK8f9hLZcheIo4A
+29tIiwibm9uY2UiOiJLYnl4OU1saC1YVWdiT2RhbTF2Ui1kbDRXSzEzTHRuNnk3bmZ2Rl
+VRS0tNIn0.eyJhbGciOiJTVS1FUzI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1
+pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8y
+MSJdLCJocGEiOiJFUzI1NiIsImhwayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwie
+CI6InhQXzd0STFhY01Ed0VWeFVwLVh0Q1Z4TlRremZQS1VYWUgtMXc4WXNmblUiLCJ5Ij
+oiUGtDVjFIbXJydUNSak00NERBYmRiXzFvcHYwM3hBRU1aZUtiaWhfQ0VKUSJ9LCJpZWs
+iOnsiY3J2IjoiUC0yNTYiLCJrdHkiOiJFQyIsIngiOiI5elpTYU1QX1hfTkZPbTFEaW54
+X0VrMEpRQ2kxUTYyd3lKWVdfNEdlOEowIiwieSI6Im5pV3V4dUQ4MmlHdVo5ZkhIdHZhc
+nVUdXdlYlRxbFBvaWx0c0xOY3Y1TE0ifSwiaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbX
+BsZSIsInR5cCI6IkpQVCJ9.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~
+ImpheWRvZUBleGFtcGxlLm9yZyI~eyJjb3VudHJ5IjoiVVNBIiwiZm9ybWF0dGVkIjoiM
+TIzNCBNYWluIFN0LlxuQW55dG93biwgQ0EgMTIzNDVcblVTQSIsImxvY2FsaXR5IjoiQW
+55dG93biIsInBvc3RhbF9jb2RlIjoxMjM0NSwicmVnaW9uIjoiQ0EiLCJzdHJlZXRfYWR
+kcmVzcyI6IjEyMzQgTWFpbiBTdC4ifQ~dHJ1ZQ~~.2hSttoVIGlLP727_737J5Srtkr8w
+5P4zG1QihW2Juvob4EkqDiJ319D5TdQczv3bAqBeWtxuDOHWOhiIrYaGTw~KuiMmRW7h-
+2OqDCZ6R8Zn3XQ_8youcBFxEmmXWMJyiceg6mZtEPcDTTN3l6HOE-5jzZ-G2cDl5gMjil
+bhGDxeQ~RSTl0mFdKoQYMAcAzt7_3XV6lCkxVRR0rJQtgGFFujxZXFAAyGRR02Cuu7T6F
+n0c8IGmySw7TNIzcxeyEyYTlQ~1l9iFb7xjMiRjUCrnyH12Gf99LSjEOKW_Spguex4mkN
+dwdpET7qRZq1siO2tWKB_Z6nIX2cTOZRhmzzjGF_m4Q~TXc80HAXqHvTUOyg990ihSMCC
+V8aLRyn_gyaX6mnkHRIbjDaV-CAMLx3RhmdC3YkthnyEnaXFF5HZtmkIxGLEA~eA9uT8m
+3CTYttNl0_ddXKhhh1RnVnIOE4rbMfLq7jw8PAUBXZ7o1y26gV5g7Kpghmt2Fd0N9oK2i
+mQvtFn9bUA~Iuh1OiiA7HfaQ-C8rEoHTiOHW5NfGOPVYT2hn1P70X1gMCGKTwt2faDggF
+J3FhYEJ3hTiPhH0B_z0lMMn-Gmlw
 
 </pre><a href="#appendix-A.1-22" class="pilcrow">¶</a>
 </div>
@@ -3011,7 +3013,7 @@ illustrated using <span>[<a href="#I-D.ietf-cbor-edn-literals" class="cite xref"
 example above, including the same public and private keys.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
 <div class="lang-edn sourcecode" id="appendix-A.2-3">
 <pre>
-{          / protected header /
+{          / issuer header /
   1: 1,     / alg: "SU-ES256" /
   3: 20,    / typ: "JPT" (20CPA) /
   5: "https://issuer.example",  / iss: "https://issuer.example" /
@@ -3027,18 +3029,18 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   8: {      / iek /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'12f5260609dfe0545d621b5c4f83e66829925f190cb438d0dc3ea7d9' +
-        h'4513f6cf', / x /
-    -3: h'7324572afd66550767151be4b7f91baf4959f2ef2cf2298cd3b71ee2' +
-        h'3fc59d98'  / y /
+    -2: h'f7365268c3ff5ff3453a6d438a7c7f124d094028b543adb0c89616ff' +
+        h'819ef09d', / x /
+    -3: h'9e25aec6e0fcda21ae67d7c71edbdaaee4eec1e6d3aa53e88a5b6c2c' +
+        h'd72fe4b3'  / y /
   },
   9: {      / hpk /
     1: 2,   / kty: "EC2" /
     -1: 1,  / crv: "P-256" /
-    -2: h'48ea701b8026dcde0fe40bb464930a6688eb9497d1c93dd1b6ed5ce4' +
-        h'6948b37d', / x /
-    -3: h'a6fa49aee7c563cd81745ce0561baaf05df55e4859946d5dc3af19a0' +
-        h'ff24f087'  / y /
+    -2: h'c4fffbb48d5a70c0f0115c54a7e5ed095c4d4e4cdf3ca517607fb5c3' +
+        h'c62c7e75', / x /
+    -3: h'3e4095d479abaee0918cce380c06dd6ffd68a6fd37c4010c65e29b8a' +
+        h'1fc21094'  / y /
   },
   10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
 }
@@ -3076,31 +3078,31 @@ example above, including the same public and private keys.<a href="#appendix-A.2
 <div class="lang-hex sourcecode" id="appendix-A.2-8">
 <pre>8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
-2012f5260609dfe0545d621b5c4f83e66829925f190cb438d0dc3ea7d94513f6
-cf2258207324572afd66550767151be4b7f91baf4959f2ef2cf2298cd3b71ee2
-3fc59d9809a40102200121582048ea701b8026dcde0fe40bb464930a6688eb94
-97d1c93dd1b6ed5ce46948b37d225820a6fa49aee7c563cd81745ce0561baaf0
-5df55e4859946d5dc3af19a0ff24f0870a28871a0a3827001a0a3c3d3f63446f
+20f7365268c3ff5ff3453a6d438a7c7f124d094028b543adb0c89616ff819ef0
+9d2258209e25aec6e0fcda21ae67d7c71edbdaaee4eec1e6d3aa53e88a5b6c2c
+d72fe4b309a401022001215820c4fffbb48d5a70c0f0115c54a7e5ed095c4d4e
+4cdf3ca517607fb5c3c62c7e752258203e4095d479abaee0918cce380c06dd6f
+fd68a6fd37c4010c65e29b8a1fc210940a28871a0a3827001a0a3c3d3f63446f
 65634a6179726a6179646f65406578616d706c652e6f7267a601782331323334
 204d61696e2053742e0a416e79746f776e2c2043412031323334350a55534102
 6d31323334204d61696e2053742e0367416e79746f776e046243410565393032
-31300663555341f58858403266591ea0ee686ce93dda81aea8137064240b6148
-11cf1b22914f3288296f6b786d8f70debbd78055142531938d3563000e4b6beb
-12ed92b70ba315ef43859b584027599cdae606a41c3f9a56b8120019efad0ead
-759a251d90ffd60aeebeb3f835f25ac637e4bd0f0f7ea44552ba2b423708177d
-fb5864f8a1b1f42e5226024e0a58409c180210bc918a50f491d37861b6d87fd7
-0db65253f32f31d2b803866c038023e99fd6094295bbcd614d4119826ef3b80f
-cb64432875fa0336e722feb883124e584065c29f40dab1d72d6a0cb3532c5b48
-b4fc1160edc23a46c1fb51d0b59b1cfc70a793864550190a9b20f48fd3133640
-9d3e95f04846d799dd9333992b15220da758401efe0da1b8b47b5d0e5601b079
-a43d5d3b0f7dc470645a76ce8881567c026bcb7d9d70e1c9154414348fad99fc
-847c9c43f96c777c3ae4d2c22921ac16e303975840d3e2a577a701dc217ca36d
-f5f2e8f4d28343a7f47a787d6af673d70e5afa0356094ce62bba0b7ab8527d3e
-282736e28f8c36ab0e45ddcdb4423e6da1170cb3bd584001c1ee7cebcd006d39
-4768cd663984c58ff9a437863e0fe8316a0455f90f18c18a9ec2b996111921fe
-e8b01788a79ca25fd0fa783182ac42f14bcf37907d3085584004c3f72e130779
-63166eadfba65a6bee74ddb663b6aa1948107caeb1ea343794954c9bb6bd7910
-b60e82276b3686d9d4ea154c62d8b7b17893cce6b66bcb2b75
+31300663555341f588584015f0d68fd8b959e464a73c04a0f5cdfc50c5bbfdeb
+d57ac3c2e65e619661de99548321d644c07b0cc37bc783eb3074bb0a3874bbe5
+210d6d5e9df02087eb9d3b584003397555302f7b41f5f3a707ad6c96b8f5ae82
+3c3bc93e4fdd1a5bb177e179a60a85bdf79f16dec69dd06047bbb0e16fe614d8
+db4c6d64d653cc7e894dbf985958400ca4dec2ad2d58fda6516ecfd625e2601a
+6072baaa875e74fb57dc9111f7f54d0a5376bf64c4abd6c217c0243e68894236
+28aeaa64a8534fbbcd7fc61e9be8e55840ac33af78f15644ee5426dfc05ecf4f
+cef0737a848feb68db76ef11a74ca878ef272fdf49e5b0c2739a9e025e641cc2
+4bb5f8f0badfecfc3f14d9f5e2a806bb3b58404887f2272fbeb8d2f95b464cfd
+6c2f30c64a9b63317d90dd096d31b8ff656b846ea92278d1d23ead6020d73c96
+8c9016a12a7866e24931a2fc84363973d306ee5840a34b660c9cad70e682d216
+c0ab67063b9f2ca76073bd718dfce1fe39aef0a23b3caf7fcee083067dbfb720
+35d33dd5c47dee84d73561687fd41f8cc8bc5cd07c58400f70a6cd9ee624c2db
+5128ffef0d93f2866d3fa4028c1c7996d8c8d7094baebd24f53829a04b5be6df
+ecd39d0df8ef109947ca3eaecdd69140d0040035dee0e45840f30fe8507b3f1b
+40479608fe99bd4318e965275dc9ae9089571fa5935f3c1c6777560a7f494116
+5b491edb25fe800726cbd1f8b2a169b3543b7f69c86220b620
 
 </pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
@@ -3111,10 +3113,10 @@ b60e82276b3686d9d4ea154c62d8b7b17893cce6b66bcb2b75
 holder conveying the same parameters and the same set of selectively
 disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">¶</a></p>
 <div class="lang-edn sourcecode" id="appendix-A.2-11">
-<pre>{          / protected header /
+<pre>{          / holder header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
-  7: h'097667ce7331c68c6b79fcb3ebe73bedcc00776d949d29a7fa9072784cfa81ae', / nonce /
+  7: h'29bcb1f4c961f975206ce75a9b5bd1f9d97858ad772ed9facbb9dfbc551028a3', / nonce /
 }
 
 </pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
@@ -3126,33 +3128,33 @@ disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">�
 following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <div class="lang-hex sourcecode" id="appendix-A.2-14">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
-6c652e636f6d075820097667ce7331c68c6b79fcb3ebe73bedcc00776d949d29
-a7fa9072784cfa81ae58cfa701010314057668747470733a2f2f697373756572
+6c652e636f6d07582029bcb1f4c961f975206ce75a9b5bd1f9d97858ad772ed9
+facbb9dfbc551028a358cfa701010314057668747470733a2f2f697373756572
 2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
-08a40102200121582012f5260609dfe0545d621b5c4f83e66829925f190cb438
-d0dc3ea7d94513f6cf2258207324572afd66550767151be4b7f91baf4959f2ef
-2cf2298cd3b71ee23fc59d9809a40102200121582048ea701b8026dcde0fe40b
-b464930a6688eb9497d1c93dd1b6ed5ce46948b37d225820a6fa49aee7c563cd
-81745ce0561baaf05df55e4859946d5dc3af19a0ff24f0870a28891a0a382700
+08a401022001215820f7365268c3ff5ff3453a6d438a7c7f124d094028b543ad
+b0c89616ff819ef09d2258209e25aec6e0fcda21ae67d7c71edbdaaee4eec1e6
+d3aa53e88a5b6c2cd72fe4b309a401022001215820c4fffbb48d5a70c0f0115c
+54a7e5ed095c4d4e4cdf3ca517607fb5c3c62c7e752258203e4095d479abaee0
+918cce380c06dd6ffd68a6fd37c4010c65e29b8a1fc210940a28891a0a382700
 1a0a3c3d3f63446f65634a6179726a6179646f65406578616d706c652e6f7267
 a601782331323334204d61696e2053742e0a416e79746f776e2c204341203132
 3334350a555341026d31323334204d61696e2053742e0367416e79746f776e04
-624341056539303231300663555341f5f6f68758403266591ea0ee686ce93dda
-81aea8137064240b614811cf1b22914f3288296f6b786d8f70debbd780551425
-31938d3563000e4b6beb12ed92b70ba315ef43859b584027599cdae606a41c3f
-9a56b8120019efad0ead759a251d90ffd60aeebeb3f835f25ac637e4bd0f0f7e
-a44552ba2b423708177dfb5864f8a1b1f42e5226024e0a58409c180210bc918a
-50f491d37861b6d87fd70db65253f32f31d2b803866c038023e99fd6094295bb
-cd614d4119826ef3b80fcb64432875fa0336e722feb883124e584065c29f40da
-b1d72d6a0cb3532c5b48b4fc1160edc23a46c1fb51d0b59b1cfc70a793864550
-190a9b20f48fd31336409d3e95f04846d799dd9333992b15220da758401efe0d
-a1b8b47b5d0e5601b079a43d5d3b0f7dc470645a76ce8881567c026bcb7d9d70
-e1c9154414348fad99fc847c9c43f96c777c3ae4d2c22921ac16e303975840d3
-e2a577a701dc217ca36df5f2e8f4d28343a7f47a787d6af673d70e5afa035609
-4ce62bba0b7ab8527d3e282736e28f8c36ab0e45ddcdb4423e6da1170cb3bd58
-404240825d0c50620cc7e6c4e92c8361ecae3ebfffa92a5d45e1641be8db3396
-aca5780a6c4ce3e732a2b9f8fdbd34eb32eaa799145925ca7af5039322fce178
-05
+624341056539303231300663555341f5f6f687584015f0d68fd8b959e464a73c
+04a0f5cdfc50c5bbfdebd57ac3c2e65e619661de99548321d644c07b0cc37bc7
+83eb3074bb0a3874bbe5210d6d5e9df02087eb9d3b584003397555302f7b41f5
+f3a707ad6c96b8f5ae823c3bc93e4fdd1a5bb177e179a60a85bdf79f16dec69d
+d06047bbb0e16fe614d8db4c6d64d653cc7e894dbf985958400ca4dec2ad2d58
+fda6516ecfd625e2601a6072baaa875e74fb57dc9111f7f54d0a5376bf64c4ab
+d6c217c0243e6889423628aeaa64a8534fbbcd7fc61e9be8e55840ac33af78f1
+5644ee5426dfc05ecf4fcef0737a848feb68db76ef11a74ca878ef272fdf49e5
+b0c2739a9e025e641cc24bb5f8f0badfecfc3f14d9f5e2a806bb3b58404887f2
+272fbeb8d2f95b464cfd6c2f30c64a9b63317d90dd096d31b8ff656b846ea922
+78d1d23ead6020d73c968c9016a12a7866e24931a2fc84363973d306ee5840a3
+4b660c9cad70e682d216c0ab67063b9f2ca76073bd718dfce1fe39aef0a23b3c
+af7fcee083067dbfb72035d33dd5c47dee84d73561687fd41f8cc8bc5cd07c58
+40621c11e241d050eacef5daba36d765214648a6ba10d9ce291cbe454bf3d961
+f1697d065ce80a21092b0be7e8d41aef385a4f75d4f282a9822322a134f113ea
+c3
 
 </pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
 </div>
@@ -3171,14 +3173,14 @@ aca5780a6c4ce3e732a2b9f8fdbd34eb32eaa799145925ca7af5039322fce178
 <span id="name-bbs-private-key-in-jwk-form"></span><figure id="figure-10">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-3.1">
 <pre>{
-  "kty": "OKP",
   "alg": "BBS",
-  "use": "proof",
   "crv": "BLS12381G2",
-  "x": "iZhVPw4ATLix9p39sBNFtHQsfVyNTmvPavLMVlTEzJQrJRkT-IORAV7Q2J42J
-       RCGEPGIjgwrjZ-GTdZUh8zebqM9jXL0bLRrIDoZoNyr4ybTeo1eW-BqfI7yZGp
-       NaXTB",
-  "d": "E09ew05r27h5xeoJ0dpWhhiGa9LuaIiDWnnSV__oKkc"
+  "d": "NvpnjNccjwvZTsmcBO4Ntw46mzig50sfOYjeljAl8Bk",
+  "kty": "OKP",
+  "use": "proof",
+  "x": "l5CqEP9LwItyq0KzEU7FVrNollmcqgUGX6v69ghb3VNRMfPP3wGg7Tk8m9VEn
+        edsFUKjxj35OiCTWU3w43faSmn3wenj3E52S4ifIRJgBI1JP_q_1-7TsA7Wmt
+        wj1Z05"
 }
 
 </pre>
@@ -3191,8 +3193,8 @@ aca5780a6c4ce3e732a2b9f8fdbd34eb32eaa799145925ca7af5039322fce178
 <span id="name-example-issuer-header"></span><figure id="figure-11">
           <div class="lang-json sourcecode" id="appendix-A.3-6.1">
 <pre>{
-  "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
-  "alg": "BBS"
+  "alg": "BBS",
+  "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8"
 }
 
 </pre>
@@ -3204,14 +3206,14 @@ aca5780a6c4ce3e732a2b9f8fdbd34eb32eaa799145925ca7af5039322fce178
 given, which is then representable in the following serialization:<a href="#appendix-A.3-7" class="pilcrow">¶</a></p>
 <span id="name-issued-jwp-bbs-json-compact"></span><figure id="figure-12">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-8.1">
-<pre>eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4I
-iwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
-eWRvZUBleGFtcGxlLm9yZyI~eyJmb3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b
-3duLCBDQSAxMjM0NVxuVVNBIiwic3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIi
-wibG9jYWxpdHkiOiJBbnl0b3duIiwicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTI
-zNDUsImNvdW50cnkiOiJVU0EifQ~dHJ1ZQ.gXwNY-mdVA4RK1_3CfgIadooToCXZFoBpH
-hA_1BxnIhiwPsF0anlvBJDbVi_1ejzVAonj7NIddvB8j6YgOt6WYtgSg5XwF6CpUrLMXu
-C3gg
+<pre>eyJhbGciOiJCQlMiLCJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJUOVJiYm5yb2Jwd
+GRuRXhSMERValU4In0.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~Imph
+eWRvZUBleGFtcGxlLm9yZyI~eyJjb3VudHJ5IjoiVVNBIiwiZm9ybWF0dGVkIjoiMTIzN
+CBNYWluIFN0LlxuQW55dG93biwgQ0EgMTIzNDVcblVTQSIsImxvY2FsaXR5IjoiQW55dG
+93biIsInBvc3RhbF9jb2RlIjoxMjM0NSwicmVnaW9uIjoiQ0EiLCJzdHJlZXRfYWRkcmV
+zcyI6IjEyMzQgTWFpbiBTdC4ifQ~dHJ1ZQ.t-CcghOPDTsp5rqRS3Uxc71LnFXzeFuLln
+5xL1QjofTHVe7l_0CNFuKmfxDC51uCKIjBhPEy3gmKSC3sj6I2tcDz9HmgH0iD2qSOiRt
+IALk
 
 </pre>
 </div>
@@ -3222,9 +3224,9 @@ C3gg
 <span id="name-presentation-header-2"></span><figure id="figure-13">
           <div class="lang-json sourcecode" id="appendix-A.3-10.1">
 <pre>{
-    "alg": "BBS",
-    "aud": "https://recipient.example.com",
-    "nonce": "wrmBRkKtXjQ"
+  "alg": "BBS",
+  "aud": "https://recipient.example.com",
+  "nonce": "wrmBRkKtXjQ"
 }
 
 </pre>
@@ -3238,16 +3240,16 @@ following serialization:<a href="#appendix-A.3-11" class="pilcrow">¶</a></p>
 <span id="name-presentation-jwp-bbs-json-c"></span><figure id="figure-14">
           <div class="lang-wrapped sourcecode" id="appendix-A.3-12.1">
 <pre>eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
-m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
-UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-zE5OTk5OQ~IkRvZSI~IkpheSI~~~.hHfPFGabxEfCEV9CwCfVviGOptT4u_43NLtq8HPJ
-xDYZmr9WC0VaPyZwbPalsLK3qlfAMHNr0hbUpXb3jZb-RZHyn1zifZuL-204eHRBKXnOS
-iPTZmkAbIXH94k1jAGAhxP6gIr7q6SKZQRhbY14LeoVvSAPub4dDX5N3C9-zI1mc_VJFx
-QRDDN9GbjQD4gYRDos03Ak21W6-KCj6B85EVjbKnF2mwY06X1CPsKSa8olS4ue_hcYDVi
-FOtgjNR20QKlDUot2op3Sj7nBmdotymxZsGHstCVKgIj4A5CBCfKXyH8HR76ZgjDmqDHu
-znwXE1orD4q2Ns99RR9gwJKsUvpxX44yACayXt_nQmoxTpAbTzeHzLfNZ7eYXhP99oXKz
-zbq1y_ACe182o36j4dXngvyFPJuEIS67T-t_KHBJ6ODIexpGBJC19O-qMQEld7UOEPuLu
-WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
+m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJhbGciOiJCQlMiLCJraWQiOiJIamZjcHlqdVp
+RLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4In0.MTcxNDUyMTYwMA~MTcxN
+zE5OTk5OQ~IkRvZSI~IkpheSI~~~.j8Un-MjA3J3D5HN9_dC3WLgFx51MIWLc--NPxO1N
+SIb7RZENkiwMo8pzHcq3uevulTEy0Ni_BqBQ6wrS19uBtfBAlsqf3boYAwroR4RIMFc7D
+Ko3qhKgy_Y7A1Zt_2CIrfjEPj_PsaKCntHZRjGZs9ZA1tzvc3CyrGYlE4ssiEHU9AY_t1
+eGCEro_nI8VAVhCVOyl-_GkhjstRLxACFlM8lAJ1MRrNPfIYKsMjFV5PlBkY9sab1dE5S
+n7ZpQyQEl2g9jlLfYm2plGUPT4KV6mV0sWlmAT73XWQwsnc6WR_dhoL-QNLSBRgKXklDu
+yN40M02Qy0SndGHx-W-rlvCD7LkoHbuKpX2GtyE6aR4EBxMsMtRZXLsfD0JzG37TfRw2F
+II_BFslao_0XsWNbpUATyX5DvYB0Uvzd94a_B0eCuf-qfoLTlZIeqWZIO9kVVk3Iu1HSh
+pL1vx21g7iVQM7Wo1jgkwjpcml7Nn4WGFee_s
 
 </pre>
 </div>
@@ -3266,11 +3268,11 @@ WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
 <span id="name-issuer-private-key"></span><figure id="figure-15">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-3.1">
 <pre>{
-  "kty": "EC",
   "crv": "P-256",
-  "x": "8myWxXBitjdD68c2AcLzhOVehZwK67MHsqICCi-L1c8",
-  "y": "ZgdqvtQRfZnVearSpaDz599MPDmwkdhiK_n7lUtSkdU",
-  "d": "ctmcqo-Hb_tj1xyr137wINzO-jQztJV5uz4waBJekRA"
+  "d": "DK-sovUBcervl5QDJKW6Ujwq51ICSfkSSRdcd6fSpOE",
+  "kty": "EC",
+  "x": "xs_KueKqEaJbGljUbyYH76P5Z94HOkafqrD1BGKnijU",
+  "y": "BHbl5x2yWAOufTsB5EHetmBGl_c1TjzbtoTL3TZgvPk"
 }
 
 </pre>
@@ -3281,7 +3283,7 @@ WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
 <p id="appendix-A.4-4">This is the Issuer's ephemerally generated shared secret:<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
 <span id="name-shared-secret"></span><figure id="figure-16">
           <div class="lang-json sourcecode" id="appendix-A.4-5.1">
-<pre>"inlYOrwiRya-C1sdQ71hLudeTFhHVluiTgsVD6hM1mA"
+<pre>"btenJSeYxfYFWF_1WYcQSj5VCY-ecbfibB9Y1V9gHZo"
 
 </pre>
 </div>
@@ -3292,11 +3294,11 @@ WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
 <span id="name-holder-private-key"></span><figure id="figure-17">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-7.1">
 <pre>{
-  "kty": "EC",
   "crv": "P-256",
-  "x": "SOpwG4Am3N4P5Au0ZJMKZojrlJfRyT3Rtu1c5GlIs30",
-  "y": "pvpJrufFY82BdFzgVhuq8F31XkhZlG1dw68ZoP8k8Ic",
-  "d": "kT5HYWs0P7kULvlA--mxxF4x3dzDed7rWMDBf0ks4yo"
+  "d": "sYGORNvEEUbzbOUsPVAxYPK0Nh-Pt86ToMGp-GNA4Rg",
+  "kty": "EC",
+  "x": "xP_7tI1acMDwEVxUp-XtCVxNTkzfPKUXYH-1w8YsfnU",
+  "y": "PkCV1HmrruCRjM44DAbdb_1opv03xAEMZeKbih_CEJQ"
 }
 
 </pre>
@@ -3309,9 +3311,6 @@ WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
           <div class="lang-json sourcecode" id="appendix-A.4-9.1">
 <pre>{
   "alg": "MAC-H256",
-  "hpa": "ES256",
-  "typ": "JPT",
-  "iss": "https://issuer.example",
   "claims": [
     "iat",
     "exp",
@@ -3321,13 +3320,16 @@ WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
     "address",
     "age_over_21"
   ],
+  "hpa": "ES256",
   "hpk": {
-    "kty": "EC",
     "crv": "P-256",
+    "kty": "EC",
     "use": "sign",
-    "x": "SOpwG4Am3N4P5Au0ZJMKZojrlJfRyT3Rtu1c5GlIs30",
-    "y": "pvpJrufFY82BdFzgVhuq8F31XkhZlG1dw68ZoP8k8Ic"
-  }
+    "x": "xP_7tI1acMDwEVxUp-XtCVxNTkzfPKUXYH-1w8YsfnU",
+    "y": "PkCV1HmrruCRjM44DAbdb_1opv03xAEMZeKbih_CEJQ"
+  },
+  "iss": "https://issuer.example",
+  "typ": "JPT"
 }
 
 </pre>
@@ -3338,20 +3340,20 @@ WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
 <span id="name-example-issuer-payloads-as-"></span><figure id="figure-19">
           <div class="lang-json sourcecode" id="appendix-A.4-10.1">
 <pre>[
-    1714521600,
-    1717199999,
-    "Doe",
-    "Jay",
-    "jaydoe@example.org",
-    {
-        "formatted": "1234 Main St.\nAnytown, CA 12345\nUSA",
-        "street_address": "1234 Main St.",
-        "locality": "Anytown",
-        "region": "CA",
-        "postal_code": 12345,
-        "country": "USA"
-    },
-    true
+  1714521600,
+  1717199999,
+  "Doe",
+  "Jay",
+  "jaydoe@example.org",
+  {
+    "country": "USA",
+    "formatted": "1234 Main St.\nAnytown, CA 12345\nUSA",
+    "locality": "Anytown",
+    "postal_code": 12345,
+    "region": "CA",
+    "street_address": "1234 Main St."
+  },
+  true
 ]
 
 </pre>
@@ -3366,13 +3368,13 @@ on the payload slot index (from zero) as input to the HMAC operation.<a href="#a
 <span id="name-derived-payload-keys-base64"></span><figure id="figure-20">
           <div class="lang-json sourcecode" id="appendix-A.4-13.1">
 <pre>[
-  "3-mtN-m_3lUzngc_1hRgCa2lj92oQQ1GvmhpVlBcjWU",
-  "LHpWHEUm2jm3ssvh6dlXn2bIxBDNC_kfTAvfVJIYyOM",
-  "JGrj5aipcK1LyCoGaHmRdTYARn1tSetlGc3YsKAsIRY",
-  "3tqDY1JCm1G89pVia6pR_RFQ9-dHNbJHWmZy1U2ulJo",
-  "Oa9otP1CcP2s_3pAtKsww7C9OFxkM-QXooWyGCzPsC8",
-  "8J8P5Ew7F42MNhZXy_FHNb-2a6q4WA4LoE3fCtSFEmA",
-  "KjEPv8MtPdvzsqsX0FPeFTt2xgp0raKeIip1LjSCvVs"
+  "dAl1DDShaQd8JNWxtb_geTjPpdlUvhAYxhjZXQT9m78",
+  "ixhgL6Xok1TY8qhJQs5RpUUdwaI2UUth-c1kE_Tp9Is",
+  "AlsVYc-OkHzb-jjK11lXIebmaMydqDqInqVe29W2Vpo",
+  "sMtqZYvHga5XmI0iXfjt590DUGTkijkW2uBlcxUtNic",
+  "rdM7EBeXSoiWAH2LEwF29M9OfuuL6CBPy0BHe7kfhiU",
+  "BxMPFRpKIr2mxKh5CJh1T4uUTaR6FOUNFtViGUp2Rpg",
+  "5dhLeVVCb6qFOJWf3juea0t1BxQxVtfjZ60bB-Wx3-g"
 ]
 
 </pre>
@@ -3385,13 +3387,13 @@ payload key.  This results in the following set of MAC values:<a href="#appendix
 <span id="name-payload-mac-values-base64ur"></span><figure id="figure-21">
           <div class="lang-json sourcecode" id="appendix-A.4-15.1">
 <pre>[
-  "_rIV4LIOEyhzjHwXBftmdtE395cXmrZi4JVaEje1Zow",
-  "etwYFJTWjjPp1oZaUKT1jTMP2GEdsfzazXMjyW9LpQM",
-  "acyx5yJRfz8sKv_5rnge4eYpySPFXgvVXgDF6jvmQew",
-  "e91B1hdpxL_nGDsUz-QIPw0vKdVjLRPeD0Z5HammsHs",
-  "uEKRhR5V5hRrMVLAQ8i7fjj8FV03ye5EiLcthrKzcF8",
-  "sIGsyYcbpCnZiBYJ8QCwKafgfO-iCE0pKqbsWOCPHFc",
-  "eTsESe_k0iT7KSbcLmX2wMBjJeigjxDyoD1k32hvmnM"
+  "pbFrro8SUA49BeLEhzFHsO0YXW1H9i2Q3Fx5zwvaGp8",
+  "507GVZGewdO3yNLRx3SmSDpBrOu_TIcZsNBStpxcbZ0",
+  "klrnMHpYlOCPR0mHqaABeajd7vLP7FPy7G-IqKCwY4s",
+  "jvC3hx68X9-wWetwIZAcUcpdpfO2dg0pZhUQwgTqBvo",
+  "LCwZOoqRRM0OePErrPelGxf0TEngY8ZjoDDi2OJLHZo",
+  "BJ5DQg-cWglSDDxdmXs1AD0Zkb09a32h3vCEqFdj0PI",
+  "d4PaY2wWPAy8xYbK4yYrnZIZAbPKIb0OYScKVd7Er5I"
 ]
 
 </pre>
@@ -3407,9 +3409,9 @@ combined MAC representation, and the shared secret.<a href="#appendix-A.4-17" cl
 <span id="name-issued-proof-base64url-enco"></span><figure id="figure-22">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-18.1">
 <pre>[
-  "Ugxjmfb6bLwYMNvlPLKBzFlx6DwNv5mF8c1UGnqfZaBbqm5CiUGQBZ67i7OgimLDw9
-ApxPJG3RxmJQCvTz7_hw",
-  "EpbRoWuW7ms8Hy8QOu-8dTntrt9L7QqxepXMeJQc0dQ"
+  "2sqPqwf_Yw9goaPXaJewV7K6C5OkXH3sC8aNRZ2JwPt6ygX5I9S8_Xu7Hf2vTqY2H2
+td0bOiJZ2l2KgbKkMHtw",
+  "OQ8bMadJi9YxsHjJ0eGv6Qu8kXQNfBqueu71k1jq22c"
 ]
 
 </pre>
@@ -3420,18 +3422,18 @@ ApxPJG3RxmJQCvTz7_hw",
 <p id="appendix-A.4-19">The final issued JWP in compact serialization is:<a href="#appendix-A.4-19" class="pilcrow">¶</a></p>
 <span id="name-issued-jwp-mac-h256-json-co"></span><figure id="figure-23">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-20.1">
-<pre>eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiwiaXNzIjoia
-HR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbH
-lfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJ
-dLCJocGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsInVzZSI6InNpZ24iLCJ4Ijoi
-U09wd0c0QW0zTjRQNUF1MFpKTUtab2pybEpmUnlUM1J0dTFjNUdsSXMzMCIsInkiOiJwd
-nBKcnVmRlk4MkJkRnpnVmh1cThGMzFYa2habEcxZHc2OFpvUDhrOEljIn19.MTcxNDUyM
-TYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJm
-b3JtYXR0ZWQiOiIxMjM0IE1haW4gU3QuXG5Bbnl0b3duLCBDQSAxMjM0NVxuVVNBIiwic
-3RyZWV0X2FkZHJlc3MiOiIxMjM0IE1haW4gU3QuIiwibG9jYWxpdHkiOiJBbnl0b3duIi
-wicmVnaW9uIjoiQ0EiLCJwb3N0YWxfY29kZSI6MTIzNDUsImNvdW50cnkiOiJVU0EifQ~
-dHJ1ZQ.Ugxjmfb6bLwYMNvlPLKBzFlx6DwNv5mF8c1UGnqfZaBbqm5CiUGQBZ67i7Ogim
-LDw9ApxPJG3RxmJQCvTz7_hw~EpbRoWuW7ms8Hy8QOu-8dTntrt9L7QqxepXMeJQc0dQ
+<pre>eyJhbGciOiJNQUMtSDI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1pbHlfbmFtZ
+SIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8yMSJdLCJocG
+EiOiJFUzI1NiIsImhwayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwidXNlIjoic2l
+nbiIsIngiOiJ4UF83dEkxYWNNRHdFVnhVcC1YdENWeE5Ua3pmUEtVWFlILTF3OFlzZm5V
+IiwieSI6IlBrQ1YxSG1ycnVDUmpNNDREQWJkYl8xb3B2MDN4QUVNWmVLYmloX0NFSlEif
+SwiaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsInR5cCI6IkpQVCJ9.MTcxNDUyM
+TYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~ImpheWRvZUBleGFtcGxlLm9yZyI~eyJj
+b3VudHJ5IjoiVVNBIiwiZm9ybWF0dGVkIjoiMTIzNCBNYWluIFN0LlxuQW55dG93biwgQ
+0EgMTIzNDVcblVTQSIsImxvY2FsaXR5IjoiQW55dG93biIsInBvc3RhbF9jb2RlIjoxMj
+M0NSwicmVnaW9uIjoiQ0EiLCJzdHJlZXRfYWRkcmVzcyI6IjEyMzQgTWFpbiBTdC4ifQ~
+dHJ1ZQ.2sqPqwf_Yw9goaPXaJewV7K6C5OkXH3sC8aNRZ2JwPt6ygX5I9S8_Xu7Hf2vTq
+Y2H2td0bOiJZ2l2KgbKkMHtw~OQ8bMadJi9YxsHjJ0eGv6Qu8kXQNfBqueu71k1jq22c
 
 </pre>
 </div>
@@ -3445,7 +3447,7 @@ LDw9ApxPJG3RxmJQCvTz7_hw~EpbRoWuW7ms8Hy8QOu-8dTntrt9L7QqxepXMeJQc0dQ
 <pre>{
   "alg": "MAC-H256",
   "aud": "https://recipient.example.com",
-  "nonce": "CXZnznMxxoxrefyz6-c77cwAd22UnSmn-pByeEz6ga4"
+  "nonce": "Kbyx9Mlh-XUgbOdam1vR-dl4WK13Ltn6y7nfvFUQKKM"
 }
 
 </pre>
@@ -3469,17 +3471,17 @@ This results in the following proof:<a href="#appendix-A.4-27" class="pilcrow">�
 <span id="name-presentation-proof-base64ur"></span><figure id="figure-25">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-28.1">
 <pre>[
-  "Ugxjmfb6bLwYMNvlPLKBzFlx6DwNv5mF8c1UGnqfZaBbqm5CiUGQBZ67i7OgimLDw9
-ApxPJG3RxmJQCvTz7_hw",
-  "3-mtN-m_3lUzngc_1hRgCa2lj92oQQ1GvmhpVlBcjWU",
-  "LHpWHEUm2jm3ssvh6dlXn2bIxBDNC_kfTAvfVJIYyOM",
-  "JGrj5aipcK1LyCoGaHmRdTYARn1tSetlGc3YsKAsIRY",
-  "3tqDY1JCm1G89pVia6pR_RFQ9-dHNbJHWmZy1U2ulJo",
-  "uEKRhR5V5hRrMVLAQ8i7fjj8FV03ye5EiLcthrKzcF8",
-  "sIGsyYcbpCnZiBYJ8QCwKafgfO-iCE0pKqbsWOCPHFc",
-  "eTsESe_k0iT7KSbcLmX2wMBjJeigjxDyoD1k32hvmnM",
-  "yz9mo3t0BYxZI3VNWEHBfxbp5Di0gpgp_GhBUiTlDnOf7fxc21JSgpCczZirQbk9T1
-mWxzU4Sb_r6EUHU9BDvg"
+  "2sqPqwf_Yw9goaPXaJewV7K6C5OkXH3sC8aNRZ2JwPt6ygX5I9S8_Xu7Hf2vTqY2H2
+td0bOiJZ2l2KgbKkMHtw",
+  "dAl1DDShaQd8JNWxtb_geTjPpdlUvhAYxhjZXQT9m78",
+  "ixhgL6Xok1TY8qhJQs5RpUUdwaI2UUth-c1kE_Tp9Is",
+  "AlsVYc-OkHzb-jjK11lXIebmaMydqDqInqVe29W2Vpo",
+  "sMtqZYvHga5XmI0iXfjt590DUGTkijkW2uBlcxUtNic",
+  "LCwZOoqRRM0OePErrPelGxf0TEngY8ZjoDDi2OJLHZo",
+  "BJ5DQg-cWglSDDxdmXs1AD0Zkb09a32h3vCEqFdj0PI",
+  "d4PaY2wWPAy8xYbK4yYrnZIZAbPKIb0OYScKVd7Er5I",
+  "C_z9m-WcOFGUOgx4pEp_Kb4jq4IePH67AX7HeM0QGxQ8sYUUCOqxDsDipQ0irMeTT9
+bvSxkMIY5nw5apx3-KDA"
 ]
 
 </pre>
@@ -3491,21 +3493,21 @@ mWxzU4Sb_r6EUHU9BDvg"
 <span id="name-presented-jwp-mac-h256-json"></span><figure id="figure-26">
           <div class="lang-wrapped sourcecode" id="appendix-A.4-30.1">
 <pre>eyJhbGciOiJNQUMtSDI1NiIsImF1ZCI6Imh0dHBzOi8vcmVjaXBpZW50LmV4YW1wbGUuY
-29tIiwibm9uY2UiOiJDWFpuem5NeHhveHJlZnl6Ni1jNzdjd0FkMjJVblNtbi1wQnllRX
-o2Z2E0In0.eyJhbGciOiJNQUMtSDI1NiIsImhwYSI6IkVTMjU2IiwidHlwIjoiSlBUIiw
-iaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsImNsYWltcyI6WyJpYXQiLCJleHAi
-LCJmYW1pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb
-3Zlcl8yMSJdLCJocGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsInVzZSI6InNpZ2
-4iLCJ4IjoiU09wd0c0QW0zTjRQNUF1MFpKTUtab2pybEpmUnlUM1J0dTFjNUdsSXMzMCI
-sInkiOiJwdnBKcnVmRlk4MkJkRnpnVmh1cThGMzFYa2habEcxZHc2OFpvUDhrOEljIn19
-.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.Ugxjmfb6bLwYMNvlPLK
-BzFlx6DwNv5mF8c1UGnqfZaBbqm5CiUGQBZ67i7OgimLDw9ApxPJG3RxmJQCvTz7_hw~3
--mtN-m_3lUzngc_1hRgCa2lj92oQQ1GvmhpVlBcjWU~LHpWHEUm2jm3ssvh6dlXn2bIxB
-DNC_kfTAvfVJIYyOM~JGrj5aipcK1LyCoGaHmRdTYARn1tSetlGc3YsKAsIRY~3tqDY1J
-Cm1G89pVia6pR_RFQ9-dHNbJHWmZy1U2ulJo~uEKRhR5V5hRrMVLAQ8i7fjj8FV03ye5E
-iLcthrKzcF8~sIGsyYcbpCnZiBYJ8QCwKafgfO-iCE0pKqbsWOCPHFc~eTsESe_k0iT7K
-SbcLmX2wMBjJeigjxDyoD1k32hvmnM~yz9mo3t0BYxZI3VNWEHBfxbp5Di0gpgp_GhBUi
-TlDnOf7fxc21JSgpCczZirQbk9T1mWxzU4Sb_r6EUHU9BDvg
+29tIiwibm9uY2UiOiJLYnl4OU1saC1YVWdiT2RhbTF2Ui1kbDRXSzEzTHRuNnk3bmZ2Rl
+VRS0tNIn0.eyJhbGciOiJNQUMtSDI1NiIsImNsYWltcyI6WyJpYXQiLCJleHAiLCJmYW1
+pbHlfbmFtZSIsImdpdmVuX25hbWUiLCJlbWFpbCIsImFkZHJlc3MiLCJhZ2Vfb3Zlcl8y
+MSJdLCJocGEiOiJFUzI1NiIsImhwayI6eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwid
+XNlIjoic2lnbiIsIngiOiJ4UF83dEkxYWNNRHdFVnhVcC1YdENWeE5Ua3pmUEtVWFlILT
+F3OFlzZm5VIiwieSI6IlBrQ1YxSG1ycnVDUmpNNDREQWJkYl8xb3B2MDN4QUVNWmVLYml
+oX0NFSlEifSwiaXNzIjoiaHR0cHM6Ly9pc3N1ZXIuZXhhbXBsZSIsInR5cCI6IkpQVCJ9
+.MTcxNDUyMTYwMA~MTcxNzE5OTk5OQ~IkRvZSI~IkpheSI~~~.2sqPqwf_Yw9goaPXaJe
+wV7K6C5OkXH3sC8aNRZ2JwPt6ygX5I9S8_Xu7Hf2vTqY2H2td0bOiJZ2l2KgbKkMHtw~d
+Al1DDShaQd8JNWxtb_geTjPpdlUvhAYxhjZXQT9m78~ixhgL6Xok1TY8qhJQs5RpUUdwa
+I2UUth-c1kE_Tp9Is~AlsVYc-OkHzb-jjK11lXIebmaMydqDqInqVe29W2Vpo~sMtqZYv
+Hga5XmI0iXfjt590DUGTkijkW2uBlcxUtNic~LCwZOoqRRM0OePErrPelGxf0TEngY8Zj
+oDDi2OJLHZo~BJ5DQg-cWglSDDxdmXs1AD0Zkb09a32h3vCEqFdj0PI~d4PaY2wWPAy8x
+YbK4yYrnZIZAbPKIb0OYScKVd7Er5I~C_z9m-WcOFGUOgx4pEp_Kb4jq4IePH67AX7HeM
+0QGxQ8sYUUCOqxDsDipQ0irMeTT9bvSxkMIY5nw5apx3-KDA
 
 </pre>
 </div>
@@ -3536,180 +3538,185 @@ for his valuable contributions to this specification.<a href="#appendix-B-2" cla
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
 <p id="appendix-C-1">[[ To be removed from the final specification ]]<a href="#appendix-C-1" class="pilcrow">¶</a></p>
-<p id="appendix-C-2">-12<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">-13<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-3.1">IANA Considerations section changes from IANA Early Review<a href="#appendix-C-3.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-3.2">Updated BLS keys to match BLS Key Representations draft 8<a href="#appendix-C-3.2" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-3.1">Examples are now built deterministically<a href="#appendix-C-3.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-4">-11<a href="#appendix-C-4" class="pilcrow">¶</a></p>
+<p id="appendix-C-4">-12<a href="#appendix-C-4" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-5.1">Change Issuer Protected Header to Issuer Header<a href="#appendix-C-5.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-5.1">IANA Considerations section changes from IANA Early Review<a href="#appendix-C-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-5.2">Change Presentation Protected Header and Holder Presentation Header to
-Presentation Header<a href="#appendix-C-5.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-5.2">Updated BLS keys to match BLS Key Representations draft 8<a href="#appendix-C-5.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-6">-10<a href="#appendix-C-6" class="pilcrow">¶</a></p>
+<p id="appendix-C-6">-11<a href="#appendix-C-6" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-7.1">Clarify MAC issuance and presentation using new "payload slot"
-nomenclature.<a href="#appendix-C-7.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-7.1">Change Issuer Protected Header to Issuer Header<a href="#appendix-C-7.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.2">Define a new binary "Presentation Internal Representation" so that the
-holder signature protects the entire presentation<a href="#appendix-C-7.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-7.2">Change Presentation Protected Header and Holder Presentation Header to
+Presentation Header<a href="#appendix-C-7.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.3">Leverage the new "Holder Presentation Algorithm" to allow the holder
+      </ul>
+<p id="appendix-C-8">-10<a href="#appendix-C-8" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-C-9.1">Clarify MAC issuance and presentation using new "payload slot"
+nomenclature.<a href="#appendix-C-9.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.2">Define a new binary "Presentation Internal Representation" so that the
+holder signature protects the entire presentation<a href="#appendix-C-9.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-9.3">Leverage the new "Holder Presentation Algorithm" to allow the holder
 algorithm to be independent from the signature algorithm used by the
-issuer<a href="#appendix-C-7.3" class="pilcrow">¶</a>
+issuer<a href="#appendix-C-9.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.4">Redefine computation of the "Combined MAC Representation" to more
-closely match the new Presentation Internal Representation.<a href="#appendix-C-7.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.4">Redefine computation of the "Combined MAC Representation" to more
+closely match the new Presentation Internal Representation.<a href="#appendix-C-9.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.5">Change the MAC algorithm to directly sign the binary Combined MAC
-Representation rather than convert it to a JWS.<a href="#appendix-C-7.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.5">Change the MAC algorithm to directly sign the binary Combined MAC
+Representation rather than convert it to a JWS.<a href="#appendix-C-9.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.6">Do not unnecessarily hash the issuer protected header inside the
+        <li class="compact" id="appendix-C-9.6">Do not unnecessarily hash the issuer protected header inside the
 Combined MAC Representation, so that it can provide some manner of
-domain separation.<a href="#appendix-C-7.6" class="pilcrow">¶</a>
+domain separation.<a href="#appendix-C-9.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.7">Clarify how verifiers are to generate the Combined MAC Representation
-from available information.<a href="#appendix-C-7.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.7">Clarify how verifiers are to generate the Combined MAC Representation
+from available information.<a href="#appendix-C-9.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.8">Provider step-by-step instructions for verification of a presentation<a href="#appendix-C-7.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.8">Provider step-by-step instructions for verification of a presentation<a href="#appendix-C-9.8" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-7.9">Change Proof Key to Issuer Ephemeral Key and Presentation Key to
-Holder Presentation Key<a href="#appendix-C-7.9" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-C-8">-09<a href="#appendix-C-8" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-C-9.1">Remove JSON serialization<a href="#appendix-C-9.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-9.2">Added CBOR (CPT) example to the appendix using SU-ES256<a href="#appendix-C-9.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-9.9">Change Proof Key to Issuer Ephemeral Key and Presentation Key to
+Holder Presentation Key<a href="#appendix-C-9.9" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-10">-08<a href="#appendix-C-10" class="pilcrow">¶</a></p>
+<p id="appendix-C-10">-09<a href="#appendix-C-10" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-11.1">Made some additional references normative.<a href="#appendix-C-11.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-11.1">Remove JSON serialization<a href="#appendix-C-11.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-11.2">Corrected SU-ES256 issuer protected header including private keys<a href="#appendix-C-11.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-11.2">Added CBOR (CPT) example to the appendix using SU-ES256<a href="#appendix-C-11.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-12">-07<a href="#appendix-C-12" class="pilcrow">¶</a></p>
+<p id="appendix-C-12">-08<a href="#appendix-C-12" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-13.1">Changing primary editor<a href="#appendix-C-13.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-13.1">Made some additional references normative.<a href="#appendix-C-13.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.2">Update registry template for algorithms to account for integer CBOR
-labels<a href="#appendix-C-13.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-13.2">Corrected SU-ES256 issuer protected header including private keys<a href="#appendix-C-13.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.3">Restylize initial registry entries for readability<a href="#appendix-C-13.3" class="pilcrow">¶</a>
+      </ul>
+<p id="appendix-C-14">-07<a href="#appendix-C-14" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-C-15.1">Changing primary editor<a href="#appendix-C-15.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.4">Defer BBS key definition to <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span><a href="#appendix-C-13.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-15.2">Update registry template for algorithms to account for integer CBOR
+labels<a href="#appendix-C-15.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.5">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code>
-names<a href="#appendix-C-13.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-15.3">Restylize initial registry entries for readability<a href="#appendix-C-15.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.6">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
+        <li class="compact" id="appendix-C-15.4">Defer BBS key definition to <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span><a href="#appendix-C-15.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-15.5">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code>
+names<a href="#appendix-C-15.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-15.6">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
 <code>presentation_key</code> to better represent that the key may be JSON or
-CBOR-formatted.<a href="#appendix-C-13.6" class="pilcrow">¶</a>
+CBOR-formatted.<a href="#appendix-C-15.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.7">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP where
+        <li class="compact" id="appendix-C-15.7">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP where
 they are defined.  Consolidated usage, purpose, and requirements from
-algorithm usage under these definitions.<a href="#appendix-C-13.7" class="pilcrow">¶</a>
+algorithm usage under these definitions.<a href="#appendix-C-15.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-13.8">Combined <code>BBS-PROOF</code> into <code>BBS</code><a href="#appendix-C-13.8" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-C-14">-06<a href="#appendix-C-14" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-C-15.1">Update reference to new repository home<a href="#appendix-C-15.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-15.2">Fixed #77: Removed vestigial use of <code>presentation_header</code>.<a href="#appendix-C-15.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-C-15.3">Correct <code>pjwk</code> to <code>presentation_jwk</code><a href="#appendix-C-15.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-15.8">Combined <code>BBS-PROOF</code> into <code>BBS</code><a href="#appendix-C-15.8" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-16">-05<a href="#appendix-C-16" class="pilcrow">¶</a></p>
+<p id="appendix-C-16">-06<a href="#appendix-C-16" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-17.1">Update of appendix describing MAC-H256 to now also be generated by the
-build system from a common set of code and templates.<a href="#appendix-C-17.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-17.1">Update reference to new repository home<a href="#appendix-C-17.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-17.2">Update single use algorithm to use an array of octet values rather
+        <li class="compact" id="appendix-C-17.2">Fixed #77: Removed vestigial use of <code>presentation_header</code>.<a href="#appendix-C-17.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-17.3">Correct <code>pjwk</code> to <code>presentation_jwk</code><a href="#appendix-C-17.3" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="appendix-C-18">-05<a href="#appendix-C-18" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-C-19.1">Update of appendix describing MAC-H256 to now also be generated by the
+build system from a common set of code and templates.<a href="#appendix-C-19.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-19.2">Update single use algorithm to use an array of octet values rather
 than requiring splitting an octet buffer into parts during generation
-of a presentation and during verification.<a href="#appendix-C-17.2" class="pilcrow">¶</a>
+of a presentation and during verification.<a href="#appendix-C-19.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-17.3">Update BBS algorithm description and examples to clarify the proof is
-an array with a single octet string.<a href="#appendix-C-17.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-19.3">Update BBS algorithm description and examples to clarify the proof is
+an array with a single octet string.<a href="#appendix-C-19.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-17.4">Update MAC algorithm to use an array of octet values for the proof,
-rather than requiring splitting an octet buffer into parts.<a href="#appendix-C-17.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-19.4">Update MAC algorithm to use an array of octet values for the proof,
+rather than requiring splitting an octet buffer into parts.<a href="#appendix-C-19.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-17.5">Add new section on the Combined MAC Representation to clarify
-operations are serving to recreate this octet string value.<a href="#appendix-C-17.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-19.5">Add new section on the Combined MAC Representation to clarify
+operations are serving to recreate this octet string value.<a href="#appendix-C-19.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-17.6">Correct reference to the latest BBS draft.<a href="#appendix-C-17.6" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-19.6">Correct reference to the latest BBS draft.<a href="#appendix-C-19.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-17.7">SU and MAC families now use raw JWA rather than JWS and synthesized
-headers<a href="#appendix-C-17.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-19.7">SU and MAC families now use raw JWA rather than JWS and synthesized
+headers<a href="#appendix-C-19.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-17.8">Change algorithms to not use base64url-encoding internally.
+        <li class="compact" id="appendix-C-19.8">Change algorithms to not use base64url-encoding internally.
 Algorithms are meant to operate on octets, while base64url-encoding is
-used to represent those octets in JSON and compact serializations.<a href="#appendix-C-17.8" class="pilcrow">¶</a>
+used to represent those octets in JSON and compact serializations.<a href="#appendix-C-19.8" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-18">-04<a href="#appendix-C-18" class="pilcrow">¶</a></p>
+<p id="appendix-C-20">-04<a href="#appendix-C-20" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-19.1">Refactoring figures and examples to be built from a common set across
-all three documents<a href="#appendix-C-19.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-21.1">Refactoring figures and examples to be built from a common set across
+all three documents<a href="#appendix-C-21.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-19.2">Move single-use example appendix from JWP to JPA<a href="#appendix-C-19.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-21.2">Move single-use example appendix from JWP to JPA<a href="#appendix-C-21.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-19.3">Change algorithm from <code>BBS-DRAFT-5</code> to <code>BBS</code>, and from
-<code>BBS-PROOF-DRAFT-5</code> to <code>BBS-PROOF</code><a href="#appendix-C-19.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-21.3">Change algorithm from <code>BBS-DRAFT-5</code> to <code>BBS</code>, and from
+<code>BBS-PROOF-DRAFT-5</code> to <code>BBS-PROOF</code><a href="#appendix-C-21.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-19.4">Update BBS ciphersuite ID to <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code><a href="#appendix-C-19.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-21.4">Update BBS ciphersuite ID to <code>BBS_BLS12381G1_XMD:SHA-256_SSWU_RO_</code><a href="#appendix-C-21.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-19.5">Update to draft 5 BLS key representations<a href="#appendix-C-19.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-21.5">Update to draft 5 BLS key representations<a href="#appendix-C-21.5" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-20">-03<a href="#appendix-C-20" class="pilcrow">¶</a></p>
+<p id="appendix-C-22">-03<a href="#appendix-C-22" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-21.1">Improvements resulting from a full proofreading.<a href="#appendix-C-21.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-23.1">Improvements resulting from a full proofreading.<a href="#appendix-C-23.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-21.2">Populated IANA Considerations section.<a href="#appendix-C-21.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-23.2">Populated IANA Considerations section.<a href="#appendix-C-23.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-21.3">Updated to use BBS draft -05.<a href="#appendix-C-21.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-23.3">Updated to use BBS draft -05.<a href="#appendix-C-23.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-21.4">Updated examples.<a href="#appendix-C-21.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-23.4">Updated examples.<a href="#appendix-C-23.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-22">-02<a href="#appendix-C-22" class="pilcrow">¶</a></p>
+<p id="appendix-C-24">-02<a href="#appendix-C-24" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-23.1">Add new <code>BBS-DRAFT-3</code> and <code>BBS-PROOF-DRAFT-3</code> algorithms based on
-draft-irtf-cfrg-bbs-signatures-03.<a href="#appendix-C-23.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-25.1">Add new <code>BBS-DRAFT-3</code> and <code>BBS-PROOF-DRAFT-3</code> algorithms based on
+draft-irtf-cfrg-bbs-signatures-03.<a href="#appendix-C-25.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-23.2">Remove prior <code>BBS-X</code> algorithm based on a particular implementation of
-earlier drafts.<a href="#appendix-C-23.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-25.2">Remove prior <code>BBS-X</code> algorithm based on a particular implementation of
+earlier drafts.<a href="#appendix-C-25.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-24">-01<a href="#appendix-C-24" class="pilcrow">¶</a></p>
+<p id="appendix-C-26">-01<a href="#appendix-C-26" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-25.1">Correct cross-references within group<a href="#appendix-C-25.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-27.1">Correct cross-references within group<a href="#appendix-C-27.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-25.2">Describe <code>issuer_header</code> and <code>presentation_header</code><a href="#appendix-C-25.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-27.2">Describe <code>issuer_header</code> and <code>presentation_header</code><a href="#appendix-C-27.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-25.3">Update BBS references to CFRG drafts<a href="#appendix-C-25.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-27.3">Update BBS references to CFRG drafts<a href="#appendix-C-27.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-25.4">Rework reference to HMAC ( RFC2104 )<a href="#appendix-C-25.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-27.4">Rework reference to HMAC ( RFC2104 )<a href="#appendix-C-27.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-25.5">Remove ZKSnark placeholder<a href="#appendix-C-25.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-27.5">Remove ZKSnark placeholder<a href="#appendix-C-27.5" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-C-26">-00<a href="#appendix-C-26" class="pilcrow">¶</a></p>
+<p id="appendix-C-28">-00<a href="#appendix-C-28" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-C-27.1">Created initial working group draft based on
-draft-jmiller-jose-json-proof-algorithms-01<a href="#appendix-C-27.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-C-29.1">Created initial working group draft based on
+draft-jmiller-jose-json-proof-algorithms-01<a href="#appendix-C-29.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>

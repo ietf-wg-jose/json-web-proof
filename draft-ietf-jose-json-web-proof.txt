@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 9 May 2026                               Self-Issued Consulting
+Expires: 3 September 2026                         Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                         5 November 2025
+                                                            2 March 2026
 
 
                              JSON Web Proof
@@ -49,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 May 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -824,16 +824,16 @@ Table of Contents
    detached payloads.
 
    eyJhbGciOiJCQlMiLCJhdWQiOiJodHRwczovL3JlY2lwaWVudC5leGFtcGxlLmNvbSIsI
-   m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJraWQiOiJIamZjcHlqdVpRLU84WWUyaFFuTmJ
-   UOVJiYm5yb2JwdGRuRXhSMERValU4IiwiYWxnIjoiQkJTIn0.MTcxNDUyMTYwMA~MTcxN
-   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.hHfPFGabxEfCEV9CwCfVviGOptT4u_43NLtq8HPJ
-   xDYZmr9WC0VaPyZwbPalsLK3qlfAMHNr0hbUpXb3jZb-RZHyn1zifZuL-204eHRBKXnOS
-   iPTZmkAbIXH94k1jAGAhxP6gIr7q6SKZQRhbY14LeoVvSAPub4dDX5N3C9-zI1mc_VJFx
-   QRDDN9GbjQD4gYRDos03Ak21W6-KCj6B85EVjbKnF2mwY06X1CPsKSa8olS4ue_hcYDVi
-   FOtgjNR20QKlDUot2op3Sj7nBmdotymxZsGHstCVKgIj4A5CBCfKXyH8HR76ZgjDmqDHu
-   znwXE1orD4q2Ns99RR9gwJKsUvpxX44yACayXt_nQmoxTpAbTzeHzLfNZ7eYXhP99oXKz
-   zbq1y_ACe182o36j4dXngvyFPJuEIS67T-t_KHBJ6ODIexpGBJC19O-qMQEld7UOEPuLu
-   WfEQ22yvvWfhSWFrAeMjb0D0l90ayA3mq2YT0
+   m5vbmNlIjoid3JtQlJrS3RYalEifQ.eyJhbGciOiJCQlMiLCJraWQiOiJIamZjcHlqdVp
+   RLU84WWUyaFFuTmJUOVJiYm5yb2JwdGRuRXhSMERValU4In0.MTcxNDUyMTYwMA~MTcxN
+   zE5OTk5OQ~IkRvZSI~IkpheSI~~~.j8Un-MjA3J3D5HN9_dC3WLgFx51MIWLc--NPxO1N
+   SIb7RZENkiwMo8pzHcq3uevulTEy0Ni_BqBQ6wrS19uBtfBAlsqf3boYAwroR4RIMFc7D
+   Ko3qhKgy_Y7A1Zt_2CIrfjEPj_PsaKCntHZRjGZs9ZA1tzvc3CyrGYlE4ssiEHU9AY_t1
+   eGCEro_nI8VAVhCVOyl-_GkhjstRLxACFlM8lAJ1MRrNPfIYKsMjFV5PlBkY9sab1dE5S
+   n7ZpQyQEl2g9jlLfYm2plGUPT4KV6mV0sWlmAT73XWQwsnc6WR_dhoL-QNLSBRgKXklDu
+   yN40M02Qy0SndGHx-W-rlvCD7LkoHbuKpX2GtyE6aR4EBxMsMtRZXLsfD0JzG37TfRw2F
+   II_BFslao_0XsWNbpUATyX5DvYB0Uvzd94a_B0eCuf-qfoLTlZIeqWZIO9kVVk3Iu1HSh
+   pL1vx21g7iVQM7Wo1jgkwjpcml7Nn4WGFee_s
 
    |  Figure: Compact Serialization of Presentation
 
@@ -1290,9 +1290,9 @@ Table of Contents
    [I-D.irtf-cfrg-bbs-signatures]
               Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
               BBS Signature Scheme", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-bbs-signatures-09, 7 July 2025,
+              draft-irtf-cfrg-bbs-signatures-10, 8 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              bbs-signatures-09>.
+              bbs-signatures-10>.
 
    [IANA.CoAP.Formats]
               IANA, "CoAP Content-Formats",
@@ -1360,6 +1360,10 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -13
+
+   *  Examples are now built deterministically
 
    -12
 

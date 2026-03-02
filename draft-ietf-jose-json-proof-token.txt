@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 9 May 2026                                            J. Miller
+Expires: 3 September 2026                                      J. Miller
                                                            Ping Identity
-                                                         5 November 2025
+                                                            2 March 2026
 
 
                  JSON Proof Token and CBOR Proof Token
@@ -43,11 +43,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 May 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -247,7 +247,6 @@ Table of Contents
    property:
 
    {
-     "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
      "alg": "BBS",
      "claims": [
        "iat",
@@ -257,7 +256,8 @@ Table of Contents
        "email",
        "address",
        "age_over_21"
-     ]
+     ],
+     "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8"
    }
 
    In this example, the "iat" and "exp" would be JSON-formatted numbers,
@@ -297,9 +297,9 @@ Table of Contents
    The following is an example Header that includes a cid:
 
    {
-     "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8",
      "alg": "BBS",
-     "cid": "guA8PAI14Gkn4273f1rR606yMbRMFg4y"
+     "cid": "guA8PAI14Gkn4273f1rR606yMbRMFg4y",
+     "kid": "HjfcpyjuZQ-O8Ye2hQnNbT9RbbnrobptdnExR0DUjU8"
    }
 
 8.  Presented Claims and Proofs
@@ -581,6 +581,10 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -13
+
+   *  Examples are now built deterministically
 
    -12
 
