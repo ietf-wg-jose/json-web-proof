@@ -196,7 +196,7 @@ To avoid the risk of collision with algorithms contained here,
 registered in the "JSON Web Proof Algorithms" registry, this
 specification defines `proof_alg`.
 
-For COSE_Key values, a `proof_alg` parameter is likewise defined to
+For COSE_Key values, a `proof_alg` key parameter is likewise defined to
 avoid collision with the IANA "COSE Algorithms" registry [@IANA.COSE].
 
 Implementations SHOULD NOT specify proof algorithms using the `alg`
