@@ -4,14 +4,20 @@
   3: 20,    / typ: "JPT" (20CPA) /
   5: "https://issuer.example",  / iss: "https://issuer.example" /
   6: [      / claims /
+    7,      / "cti" /
     6,      / "iat" /
-    4,      / "exp" / 
-    170,    / "family_name" (I-D.maldant-spice-oidc-cwt TBD1) /
-    171,    / "given_name"  (I-D.maldant-spice-oidc-cwt TBD2) / 
+    4,      / "exp" /
+    2,      / "sub" / 
+    170,    / "family_name" (I-D.maldant-spice-oidc-cwt TBD1)  /
+    171,    / "given_name"  (I-D.maldant-spice-oidc-cwt TBD2)  / 
     179,    / "email"       (I-D.maldant-spice-oidc-cwt TBD10) /
-    187,    / "address"     (I-D.maldant-spice-oidc-cwt TBD18) /
-    "age_over_21"
+    ["addresses", 0], / no array variant defined.              /
+    ["addresses", 1], / no array variant defined.              /
+    ["addresses", 0, 6 ], / country 0                          /
+    ["addresses", 1, 6 ], / country 1                          /
+    ["age_equal_or_over", 21] / age_equal_or_over_21 /
   ],
+  
   8: {      / iek /
     1: 2,   / kty : "EC2" /
     -1: 1,  / crv: "P-256" /
