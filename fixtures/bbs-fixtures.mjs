@@ -1,5 +1,5 @@
-import { signSHA256 } from "@alksol/cfrg-bbs";
-import { generateProofSha256 } from "@alksol/cfrg-bbs/deterministic";
+import { sign } from "@alksol/cfrg-bbs";
+import { generateProof } from "@alksol/cfrg-bbs/deterministic";
 import { base64url } from "jose";
 
 import { seed32 } from "./deterministic.mjs";
@@ -30,12 +30,11 @@ async function loadInputs() {
 
 function deriveValues({ keyPair, issuerHeader, holderHeader, payloads }) {
     const issuerPayloads = [...payloads];
-    const signature = signSHA256(
-        keyPair.secretKey,
-        keyPair.publicKey.compressed,
-        issuerHeader,
-        issuerPayloads
-    );
+    const signature = sign({
+        keyPair: keyPair.keyPair,
+        header: issuerHeader,
+        messages: issuerPayloads
+    });
 
     const issuerCompact = [
         encode(issuerHeader),
@@ -43,15 +42,15 @@ function deriveValues({ keyPair, issuerHeader, holderHeader, payloads }) {
         encode(signature)
     ].join(".");
 
-    const proof = generateProofSha256(
-        keyPair.publicKey.compressed,
+    const proof = generateProof({
+        publicKey: keyPair.publicKey,
         signature,
-        issuerHeader,
-        holderHeader,
-        issuerPayloads,
-        DISCLOSED_INDEXES,
-        seed32("bbs:proof-seed:v1")
-    );
+        header: issuerHeader,
+        presentationHeader: holderHeader,
+        messages: issuerPayloads,
+        disclosedIndexes: DISCLOSED_INDEXES,
+        seed32: seed32("bbs:proof-seed:v1")
+    });
 
     const presentationPayloads = [...issuerPayloads];
     presentationPayloads[4] = null;

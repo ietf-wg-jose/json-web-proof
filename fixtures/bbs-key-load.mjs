@@ -1,19 +1,21 @@
-// read the previous generated key from build/bbs-private-key.jwk
+// read the generated BBS private key from build/ and load it through the npm API
 
-import { base64url } from "jose";
 import fs from "node:fs/promises";
+import { base64url } from "jose";
 
-const decode = base64url.decode;
+import { KeyPair } from "@alksol/cfrg-bbs";
+
+async function readPrivateJwk() {
+    return JSON.parse(await fs.readFile("build/bbs-private-key.jwk", "utf-8"));
+}
 
 export async function keyRead() {
-    const jwk = JSON.parse(await fs.readFile("build/bbs-private-key.jwk", "utf-8"));
-    const result = {
-        secretKey: decode(jwk.d),
-        publicKey: {
-            x: decode(jwk.x)
-        }
-    };
+    const jwk = await readPrivateJwk();
+    const keyPair = KeyPair.fromJoseKey(JSON.stringify(jwk));
+    const publicKey = base64url.decode(jwk.x);
 
-    result.publicKey.compressed = result.publicKey.x;
-    return result;
+    return {
+        keyPair,
+        publicKey
+    };
 }
