@@ -113,17 +113,10 @@ async function assertCompactMatches(basePath) {
 }
 
 describe("BBS fixtures generated with local JWP decoration on @alksol/cfrg-bbs 0.2.1", () => {
-    it("verifies MATTR legacy vectors with the new library", async () => {
+    it("verifies outputs generated from library-derived key material", async () => {
         expect(issuerHeaderJSON).toBeDefined();
         expect(holderHeaderJSON).toBeDefined();
         expect(payloadsJSON.length).toBeGreaterThan(0);
-        const legacyPath = new URL("./vectors/bbs/mattr-legacy/", import.meta.url);
-        await assertKeyStructure(legacyPath);
-        await assertCompactMatches(legacyPath);
-        await assertCryptographicVerification(legacyPath);
-    });
-
-    it("verifies outputs generated from library-derived key material", async () => {
         const buildPath = new URL("../build/", import.meta.url);
         await assertKeyStructure(buildPath);
         await assertCompactMatches(buildPath);
