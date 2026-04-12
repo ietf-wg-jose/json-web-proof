@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 3 September 2026                                      J. Miller
+Expires: 14 October 2026                                       J. Miller
                                                            Ping Identity
-                                                            2 March 2026
+                                                           12 April 2026
 
 
                          JSON Proof Algorithms
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 September 2026.
+   This Internet-Draft will expire on 14 October 2026.
 
 Copyright Notice
 
@@ -1189,9 +1189,9 @@ Table of Contents
    [I-D.ietf-cbor-edn-literals]
               Bormann, C., "CBOR Extended Diagnostic Notation (EDN)",
               Work in Progress, Internet-Draft, draft-ietf-cbor-edn-
-              literals-19, 16 October 2025,
+              literals-22, 6 April 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-cbor-
-              edn-literals-19>.
+              edn-literals-22>.
 
    [I-D.ietf-cose-bls-key-representations]
               Looker, T. and M. B. Jones, "Barreto-Lynn-Scott Elliptic
@@ -1204,9 +1204,9 @@ Table of Contents
    [I-D.ietf-spice-oidc-cwt]
               Maldant, B. and M. B. Jones, "OpenID Connect Standard
               Claims Registration for CBOR Web Tokens", Work in
-              Progress, Internet-Draft, draft-ietf-spice-oidc-cwt-04, 30
-              November 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-spice-oidc-cwt-04>.
+              Progress, Internet-Draft, draft-ietf-spice-oidc-cwt-05, 2
+              March 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-spice-oidc-cwt-05>.
 
    [IANA.COSE]
               IANA, "CBOR Object Signing and Encryption",
@@ -1614,7 +1614,6 @@ A.3.  Example BBS JWP
      "d": "NvpnjNccjwvZTsmcBO4Ntw46mzig50sfOYjeljAl8Bk",
      "kty": "OKP",
      "proof_alg": "BBS",
-     "use": "proof",
      "x": "l5CqEP9LwItyq0KzEU7FVrNollmcqgUGX6v69ghb3VNRMfPP3wGg7Tk8m9VEn
            edsFUKjxj35OiCTWU3w43faSmn3wenj3E52S4ifIRJgBI1JP_q_1-7TsA7Wmt
            wj1Z05"
