@@ -1,7 +1,7 @@
 // generate BBS key artifacts from the library-native key material, then add
 // JWP-specific proof_alg decoration locally
 import fs from "node:fs/promises";
-import { KeyPair, PublicKey } from "@alksol/cfrg-bbs";
+import { PublicKey, SigningKey } from "@alksol/cfrg-bbs";
 import { decode as cborDecode, encode as cborEncode, diagnose } from "cbor2";
 
 import { seed32 } from "./deterministic.mjs";
@@ -41,13 +41,13 @@ function addProofAlgToCwk(cwk, { includePrivateKey }) {
 }
 
 function deriveValues() {
-    const keyPair = KeyPair.fromKeyMaterial(seed32("bbs:key-material:v1"));
-    const publicKey = PublicKey.fromBytes(keyPair.getPublicKey());
+    const signingKey = SigningKey.fromKeyMaterial(seed32("bbs:key-material:v1"));
+    const publicKey = PublicKey.fromBytes(signingKey.getPublicKey());
 
-    const privateJwk = addProofAlgToJwk(JSON.parse(keyPair.toJoseKey()));
+    const privateJwk = addProofAlgToJwk(JSON.parse(signingKey.toJoseKey()));
     const publicJwk = addProofAlgToJwk(JSON.parse(publicKey.toJoseKey()));
 
-    const privateCwk = addProofAlgToCwk(cborDecode(Buffer.from(keyPair.toCoseKey())), {
+    const privateCwk = addProofAlgToCwk(cborDecode(Buffer.from(signingKey.toCoseKey())), {
         includePrivateKey: true
     });
     const publicCwk = addProofAlgToCwk(cborDecode(Buffer.from(publicKey.toCoseKey())), {

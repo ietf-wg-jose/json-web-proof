@@ -3,7 +3,7 @@
 import fs from "node:fs/promises";
 import { base64url } from "jose";
 
-import { KeyPair } from "@alksol/cfrg-bbs";
+import { SigningKey } from "@alksol/cfrg-bbs";
 
 async function readPrivateJwk() {
     return JSON.parse(await fs.readFile("build/bbs-private-key.jwk", "utf-8"));
@@ -11,11 +11,11 @@ async function readPrivateJwk() {
 
 export async function keyRead() {
     const jwk = await readPrivateJwk();
-    const keyPair = KeyPair.fromJoseKey(JSON.stringify(jwk));
+    const signingKey = SigningKey.fromJoseKey(JSON.stringify(jwk));
     const publicKey = base64url.decode(jwk.x);
 
     return {
-        keyPair,
+        signingKey,
         publicKey
     };
 }

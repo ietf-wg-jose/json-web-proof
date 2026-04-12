@@ -19,19 +19,19 @@ const encode = base64url.encode;
 const DISCLOSED_INDEXES = new Uint32Array([0, 1, 2, 3]);
 
 async function loadInputs() {
-    const keyPair = await keyRead();
+    const keyMaterial = await keyRead();
     return {
-        keyPair,
+        keyMaterial,
         issuerHeader: Buffer.from(serializeJSON(issuerHeaderJSON), "utf-8"),
         holderHeader: Buffer.from(serializeJSON(holderHeaderJSON), "utf-8"),
         payloads: payloadsJSON.map((item) => Buffer.from(serializeJSON(item), "utf-8"))
     };
 }
 
-function deriveValues({ keyPair, issuerHeader, holderHeader, payloads }) {
+function deriveValues({ keyMaterial, issuerHeader, holderHeader, payloads }) {
     const issuerPayloads = [...payloads];
     const signature = sign({
-        keyPair: keyPair.keyPair,
+        signingKey: keyMaterial.signingKey,
         header: issuerHeader,
         messages: issuerPayloads
     });
@@ -43,7 +43,7 @@ function deriveValues({ keyPair, issuerHeader, holderHeader, payloads }) {
     ].join(".");
 
     const proof = generateProof({
-        publicKey: keyPair.publicKey,
+        publicKey: keyMaterial.publicKey,
         signature,
         header: issuerHeader,
         presentationHeader: holderHeader,
