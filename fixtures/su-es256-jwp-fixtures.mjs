@@ -85,10 +85,15 @@ async function deriveValues({
     const holderHeader = Buffer.from(serializeJSON(holderHeaderJSON), "utf-8");
 
     const presentationPayloads = [...issuerPayloads];
-    presentationPayloads[7] = null;
-    presentationPayloads[8] = null;
+    presentationPayloads[2] = null;
+    presentationPayloads[4] = null;
+    presentationPayloads[5] = null;
 
     const presentationProofs = [...issuerProofs];
+    presentationProofs.splice(6, 1);
+    presentationProofs.splice(5, 1);
+    presentationProofs.splice(3, 1);
+
     const presentationInternal = createPresentationInternalRepresentation(
         issuerHeader,
         holderHeader,
@@ -97,7 +102,6 @@ async function deriveValues({
     );
     const holderSignature = await signPayloadSHA256(presentationInternal, holderPrivateKey);
 
-    presentationProofs.splice(6, 2);
     presentationProofs.push(holderSignature);
 
     const presentationCompact = [

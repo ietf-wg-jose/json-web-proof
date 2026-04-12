@@ -89,10 +89,11 @@ describe("SU-ES256 generated fixtures", () => {
 
         expect(holderHeader.alg).toBe("SU-ES256");
         expect(holderHeader.aud).toBe("https://recipient.example.com");
-        expect(payloads.length).toBe(issuerPayloads.length + 2);
-        expect(payloads.at(-1)).toBeNull();
-        expect(payloads.at(-2)).toBeNull();
-        expect(proofs.length).toBe(7);
+        expect(payloads.length).toBe(issuerPayloads.length);
+        expect(payloads[2]).toBeNull();
+        expect(payloads[4]).toBeNull();
+        expect(payloads[5]).toBeNull();
+        expect(proofs.length).toBe(6);
         expect(issuerHeader.length).toBeGreaterThan(0);
     });
 });
@@ -102,17 +103,18 @@ describe("MAC-H256 generated fixtures", () => {
         const issuerCompact = unwrapWrappedCompact(await readUtf8("mac-h256-issuer-compact.jwp.wrapped"));
         const [, , proofPart] = issuerCompact.split(".");
         const issuerHeaderObject = await readJson("mac-h256-issuer-header.json");
-        const issuerHeader = JSON.stringify(issuerHeaderObject);
+        const issuerHeader = Buffer.from(JSON.stringify(issuerHeaderObject), "utf-8");
         const payloads = issuerPayloads;
         const proof = proofPart.split("~").map(base64url.decode);
         const [issuedSignature, sharedSecret] = proof;
 
         const issuerPublicKey = toPublicKey(await readJson("es256-issuer-public-key.jwk.json"));
-        const issuerNonce = base64url.decode(await readJson("shared-issuer-nonce.base64url.json"));
-        const expectedPayloadKeys = payloadSecrets("sha256", issuerNonce, payloads.length);
+        const holderSharedSecret = base64url.decode(
+            await readJson("mac-h256-holder-shared-secret.base64url.json")
+        );
+        const expectedPayloadKeys = payloadSecrets("sha256", holderSharedSecret, payloads.length);
         const expectedPayloadMacs = payloadMACs("sha256", expectedPayloadKeys, payloads);
         const combined = combinedMACRepresentation(issuerHeader, expectedPayloadMacs);
-        const holderSharedSecret = base64url.decode(await readJson("mac-h256-holder-shared-secret.base64url.json"));
 
         expect(verifySignatureP1363(combined, issuedSignature, issuerPublicKey)).toBeTrue();
         expect(sharedSecret).toEqual(holderSharedSecret);
@@ -120,7 +122,7 @@ describe("MAC-H256 generated fixtures", () => {
 
     it("verify holder presentation signature", async () => {
         const issuerHeaderObject = await readJson("mac-h256-issuer-header.json");
-        const issuerHeader = JSON.stringify(issuerHeaderObject);
+        const issuerHeader = Buffer.from(JSON.stringify(issuerHeaderObject), "utf-8");
         const holderHeaderObject = JSON.parse(
             unwrapWrappedCompact(await readUtf8("mac-h256-holder-header.json.wrapped"))
         );
@@ -172,14 +174,18 @@ describe("CPT generated fixtures", () => {
         const holderSignature = base64url.decode(
             await readUtf8("cpt-presentation-pop.base64url")
         );
-        const payloadsForPop = [...payloadValuesPresented];
-        payloadsForPop[7] = null;
-        payloadsForPop[8] = null;
+        const payloadsForPop = payloadValuesPresented.map((item) =>
+            item === null ? null : cborEncode(item)
+        );
+        const presentationProofs = [...issuedProofs];
+        presentationProofs.splice(6, 1);
+        presentationProofs.splice(5, 1);
+        presentationProofs.splice(3, 1);
         const internal = createPresentationInternalRepresentation(
             issuerHeaderPresented,
             holderHeader,
             payloadsForPop,
-            issuedProofs
+            presentationProofs
         );
 
         expect(verifySignatureP1363(internal, holderSignature, holderPublicKey)).toBeTrue();

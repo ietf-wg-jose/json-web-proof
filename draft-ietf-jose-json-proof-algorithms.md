@@ -1152,8 +1152,8 @@ Figure: Presentation Header (SU-ES256, JSON)
 <{{./fixtures/build/su-es256-holder-header.base64url.wrapped}}
 Figure: Presentation Header (SU-ES256, JSON, Base64url-Encoded)
 
-We apply selective disclosure of only the given name and age claims
-(family name and email hidden), and remove the proof components
+We apply selective disclosure of only the given name and age_over_21 claims
+(family name, email, and address hidden), and remove the proof components
 corresponding to these entries.
 
 Using the selectively disclosed information, we generate the
@@ -1241,9 +1241,9 @@ This is the Issuer's stable private key in the JWK format:
 <{{./fixtures/build/es256-issuer-private-key.jwk.wrapped}}
 Figure: Issuer private key
 
-This is the Issuer's ephemerally generated shared secret:
+This is the shared secret carried in the issued proof:
 
-<{{./fixtures/build/shared-issuer-nonce.base64url.json}}
+<{{./fixtures/build/mac-h256-holder-shared-secret.base64url.json}}
 Figure: Shared Secret
 
 This is the Holder's presentation private key in the JWK format:
@@ -1336,6 +1336,14 @@ The BBS examples were generated using the library at
 # Document History
 
   [[ To be removed from the final specification ]]
+
+-14
+
+- `MAC-H256` example now includes the correct secret in the issuer
+  proof
+- `MAC-H256` example no longer omits some components in signed inputs.
+- Align `SU-ES256` prose and fixtures for compact and CPT example
+  payloads and disclosures
 
 -13
 
