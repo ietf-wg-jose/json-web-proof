@@ -58,6 +58,8 @@ jobs:
     needs: fixtures
     permissions:
       contents: write
+      issues: write
+      pull-requests: read
     steps:
     - name: "Checkout"
       uses: actions/checkout@v5
@@ -92,12 +94,160 @@ jobs:
       with:
         token: ${{ github.token }}
 
+    - name: "Prepare Pending PR Preview"
+      if: ${{ github.event_name == 'pull_request' }}
+      id: pending-preview
+      env:
+        BASE_URL: https://ietf-wg-jose.github.io/json-web-proof
+        HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        IS_SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+      run: |
+        summary_file="$(mktemp)"
+        comment_file="$(mktemp)"
+
+        if [ "${IS_SAME_REPO}" != "true" ]; then
+          {
+            echo "## PR Preview Links"
+            echo
+            echo "Preview links are only published for pull requests whose head branch"
+            echo "lives in \`${GITHUB_REPOSITORY}\`."
+            echo
+            echo "This pull request comes from \`${{ github.event.pull_request.head.repo.full_name }}\`,"
+            echo "so no published Pages preview is available under the current workflow."
+          } >>"${GITHUB_STEP_SUMMARY}"
+          exit 0
+        fi
+
+        ./scripts/generate-pr-preview-comment.sh pending "${HEAD_BRANCH}" "${summary_file}" "${comment_file}"
+        cat "${summary_file}" >>"${GITHUB_STEP_SUMMARY}"
+        echo "comment_file=${comment_file}" >>"${GITHUB_OUTPUT}"
+
+    - name: "Update Pending PR Preview Comment"
+      if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+      uses: actions/github-script@v8
+      env:
+        COMMENT_FILE: ${{ steps.pending-preview.outputs.comment_file }}
+        ISSUE_NUMBER: ${{ github.event.pull_request.number }}
+      with:
+        script: |
+          const fs = require('fs');
+          const marker = '<!-- pr-preview-links -->';
+          const body = fs.readFileSync(process.env.COMMENT_FILE, 'utf8');
+          const { owner, repo } = context.repo;
+          const issue_number = Number(process.env.ISSUE_NUMBER);
+
+          const comments = await github.paginate(
+            github.rest.issues.listComments,
+            { owner, repo, issue_number, per_page: 100 }
+          );
+
+          const existing = comments.find((comment) =>
+            comment.user?.type === 'Bot' && comment.body?.includes(marker)
+          );
+
+          if (existing) {
+            await github.rest.issues.updateComment({
+              owner,
+              repo,
+              comment_id: existing.id,
+              body,
+            });
+            core.info(`Updated PR preview comment ${existing.id}.`);
+          } else {
+            const created = await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body,
+            });
+            core.info(`Created PR preview comment ${created.data.id}.`);
+          }
+
     - name: "Update GitHub Pages"
       uses: martinthomson/i-d-template@v1
       if: ${{ github.event_name == 'push' }}
       with:
         make: gh-pages
         token: ${{ github.token }}
+
+    - name: "Find Open PR For Branch"
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') }}
+      id: branch-pr
+      uses: actions/github-script@v8
+      env:
+        HEAD_BRANCH: ${{ github.ref_name }}
+      with:
+        script: |
+          const { owner, repo } = context.repo;
+          const head = `${owner}:${process.env.HEAD_BRANCH}`;
+          const result = await github.rest.pulls.list({
+            owner,
+            repo,
+            state: 'open',
+            head,
+            per_page: 1,
+          });
+          const pr = result.data[0];
+          if (!pr) {
+            core.info(`No open pull request found for ${head}.`);
+            core.setOutput('issue_number', '');
+            return;
+          }
+          core.info(`Found open pull request #${pr.number} for ${head}.`);
+          core.setOutput('issue_number', String(pr.number));
+
+    - name: "Prepare Published PR Preview"
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') && steps.branch-pr.outputs.issue_number != '' }}
+      id: published-preview
+      env:
+        HEAD_BRANCH: ${{ github.ref_name }}
+      run: |
+        summary_file="$(mktemp)"
+        comment_file="$(mktemp)"
+        ./scripts/generate-pr-preview-comment.sh published "${HEAD_BRANCH}" "${summary_file}" "${comment_file}"
+        cat "${summary_file}" >>"${GITHUB_STEP_SUMMARY}"
+        echo "comment_file=${comment_file}" >>"${GITHUB_OUTPUT}"
+
+    - name: "Update Published PR Preview Comment"
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') && steps.branch-pr.outputs.issue_number != '' }}
+      uses: actions/github-script@v8
+      env:
+        COMMENT_FILE: ${{ steps.published-preview.outputs.comment_file }}
+        ISSUE_NUMBER: ${{ steps.branch-pr.outputs.issue_number }}
+      with:
+        script: |
+          const fs = require('fs');
+          const marker = '<!-- pr-preview-links -->';
+          const body = fs.readFileSync(process.env.COMMENT_FILE, 'utf8');
+          const { owner, repo } = context.repo;
+          const issue_number = Number(process.env.ISSUE_NUMBER);
+
+          const comments = await github.paginate(
+            github.rest.issues.listComments,
+            { owner, repo, issue_number, per_page: 100 }
+          );
+
+          const existing = comments.find((comment) =>
+            comment.user?.type === 'Bot' && comment.body?.includes(marker)
+          );
+
+          if (existing) {
+            await github.rest.issues.updateComment({
+              owner,
+              repo,
+              comment_id: existing.id,
+              body,
+            });
+            core.info(`Updated PR preview comment ${existing.id}.`);
+          } else {
+            const created = await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body,
+            });
+            core.info(`Created PR preview comment ${created.data.id}.`);
+          }
 
     - name: "Archive Built Drafts"
       uses: actions/upload-artifact@v4
