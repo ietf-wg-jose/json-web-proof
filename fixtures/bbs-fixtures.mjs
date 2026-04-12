@@ -1,5 +1,5 @@
-import { signSHA256 } from "@alksol/cfrg-bbs";
-import { generateProofSha256 } from "@alksol/cfrg-bbs/deterministic";
+import { sign } from "@alksol/cfrg-bbs";
+import { generateProof } from "@alksol/cfrg-bbs/deterministic";
 import { base64url } from "jose";
 
 import { seed32 } from "./deterministic.mjs";
@@ -19,23 +19,22 @@ const encode = base64url.encode;
 const DISCLOSED_INDEXES = new Uint32Array([0, 1, 2, 3]);
 
 async function loadInputs() {
-    const keyPair = await keyRead();
+    const keyMaterial = await keyRead();
     return {
-        keyPair,
+        keyMaterial,
         issuerHeader: Buffer.from(serializeJSON(issuerHeaderJSON), "utf-8"),
         holderHeader: Buffer.from(serializeJSON(holderHeaderJSON), "utf-8"),
         payloads: payloadsJSON.map((item) => Buffer.from(serializeJSON(item), "utf-8"))
     };
 }
 
-function deriveValues({ keyPair, issuerHeader, holderHeader, payloads }) {
+function deriveValues({ keyMaterial, issuerHeader, holderHeader, payloads }) {
     const issuerPayloads = [...payloads];
-    const signature = signSHA256(
-        keyPair.secretKey,
-        keyPair.publicKey.compressed,
-        issuerHeader,
-        issuerPayloads
-    );
+    const signature = sign({
+        signingKey: keyMaterial.signingKey,
+        header: issuerHeader,
+        messages: issuerPayloads
+    });
 
     const issuerCompact = [
         encode(issuerHeader),
@@ -43,15 +42,15 @@ function deriveValues({ keyPair, issuerHeader, holderHeader, payloads }) {
         encode(signature)
     ].join(".");
 
-    const proof = generateProofSha256(
-        keyPair.publicKey.compressed,
+    const proof = generateProof({
+        publicKey: keyMaterial.publicKey,
         signature,
-        issuerHeader,
-        holderHeader,
-        issuerPayloads,
-        DISCLOSED_INDEXES,
-        seed32("bbs:proof-seed:v1")
-    );
+        header: issuerHeader,
+        presentationHeader: holderHeader,
+        messages: issuerPayloads,
+        disclosedIndexes: DISCLOSED_INDEXES,
+        seed32: seed32("bbs:proof-seed:v1")
+    });
 
     const presentationPayloads = [...issuerPayloads];
     presentationPayloads[4] = null;

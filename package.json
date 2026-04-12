@@ -23,7 +23,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@alksol/cfrg-bbs": "file:./fixtures/vendor/alksol-cfrg-bbs-0.1.0.tgz",
+    "@alksol/cfrg-bbs": "file:./fixtures/vendor/alksol-cfrg-bbs-0.2.4.tgz",
     "cbor-edn": "^0.2.2",
     "cbor2": "^2.0.1",
     "jose": "^6"
