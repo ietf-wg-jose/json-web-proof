@@ -59,7 +59,7 @@ jobs:
     permissions:
       contents: write
       issues: write
-      pull-requests: read
+      pull-requests: write
     steps:
     - name: "Checkout"
       uses: actions/checkout@v5
@@ -124,6 +124,7 @@ jobs:
 
     - name: "Update Pending PR Preview Comment"
       if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+      continue-on-error: true
       uses: actions/github-script@v8
       env:
         COMMENT_FILE: ${{ steps.pending-preview.outputs.comment_file }}
@@ -210,6 +211,7 @@ jobs:
 
     - name: "Update Published PR Preview Comment"
       if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') && steps.branch-pr.outputs.issue_number != '' }}
+      continue-on-error: true
       uses: actions/github-script@v8
       env:
         COMMENT_FILE: ${{ steps.published-preview.outputs.comment_file }}
