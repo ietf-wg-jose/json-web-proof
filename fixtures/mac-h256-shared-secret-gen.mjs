@@ -13,7 +13,7 @@ async function loadInputs() {
 
 function deriveValues() {
     return {
-        holderSharedSecret: encode(bytes32("mac-h256-holder-shared-secret:v1"))
+        holderSharedSecret: encode(bytes32("issuer-nonce:v1"))
     };
 }
 

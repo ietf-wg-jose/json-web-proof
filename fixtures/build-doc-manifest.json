@@ -17,7 +17,7 @@
   "mac-h256-payload-macs.json",
   "mac-h256-presentation-compact.jwp.wrapped",
   "mac-h256-presentation-proof.json.wrapped",
-  "shared-issuer-nonce.base64url.json",
+  "mac-h256-holder-shared-secret.base64url.json",
   "su-es256-holder-header.base64url.wrapped",
   "su-es256-holder-header.json.wrapped",
   "su-es256-issuer-compact.jwp.wrapped",

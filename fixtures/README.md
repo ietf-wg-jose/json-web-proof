@@ -50,9 +50,8 @@ pipeline in `build-fixtures.mjs`.
 
 | Artifact(s) | Producer script | Draft include |
 |---|---|---|
-| `shared-issuer-nonce.base64url.json` | `shared-nonce-gen.mjs` | `draft-ietf-jose-json-proof-algorithms.md` |
 | `shared-presentation-nonce.base64url.json` | `shared-nonce-gen.mjs` | Not directly included |
-| `mac-h256-holder-shared-secret.base64url.json` | `mac-h256-shared-secret-gen.mjs` | Not directly included |
+| `mac-h256-holder-shared-secret.base64url.json` | `mac-h256-shared-secret-gen.mjs` | `draft-ietf-jose-json-proof-algorithms.md` |
 | `bbs-private-key.jwk` | `bbs-keygen.mjs` | Not directly included |
 | `bbs-private-key.jwk.wrapped` | `bbs-keygen.mjs` | `draft-ietf-jose-json-proof-algorithms.md` |
 | `bbs-private-key.cwk` | `bbs-keygen.mjs` | Not directly included |
