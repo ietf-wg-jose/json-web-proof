@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 17 October 2026                                       J. Miller
+Expires: 7 January 2027                                        J. Miller
                                                            Ping Identity
-                                                           15 April 2026
+                                                             6 July 2026
 
 
                          JSON Proof Algorithms
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 October 2026.
+   This Internet-Draft will expire on 7 January 2027.
 
 Copyright Notice
 
@@ -1187,11 +1187,10 @@ Table of Contents
               draft-numbers>.
 
    [I-D.ietf-cbor-edn-literals]
-              Bormann, C., "CBOR Extended Diagnostic Notation (EDN)",
-              Work in Progress, Internet-Draft, draft-ietf-cbor-edn-
-              literals-22, 6 April 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-cbor-
-              edn-literals-22>.
+              Bormann, C., "Concise Diagnostic Notation (CDN)", Work in
+              Progress, Internet-Draft, draft-ietf-cbor-edn-literals-26,
+              15 June 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-cbor-edn-literals-26>.
 
    [I-D.ietf-cose-bls-key-representations]
               Looker, T. and M. B. Jones, "Barreto-Lynn-Scott Elliptic
