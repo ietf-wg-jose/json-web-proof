@@ -265,7 +265,7 @@ represented as described in [@!I-D.ietf-jose-json-web-proof, Section 6]
 
 # Example JPT and CPT
 
-See the examples in [@I-D.ietf-jose-json-proof-algorithms, section A.1].
+See the examples in [@I-D.ietf-jose-json-proof-algorithms, Section A.1].
 
 # Security Considerations {#security}
 
@@ -317,7 +317,7 @@ Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
 
 This section registers the following COSE_Key parameter in the IANA
 "COSE Key Common Parameters" registry [@IANA.COSE] established by
-[@RFC8152].
+[@RFC9052].
 
 ### Registry Contents {#COSEKeyParamContents}
 

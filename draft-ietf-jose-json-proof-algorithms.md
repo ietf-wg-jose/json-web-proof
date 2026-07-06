@@ -76,7 +76,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier" are used as defined by
-the VC Data Model [@VC-DATA-MODEL-2.0].  The term "presentation" is also
+the VC Data Model [@!VC-DATA-MODEL-2.0].  The term "presentation" is also
 used as defined by this source, but the term "credential" is avoided in
 this specification to minimize confusion with other definitions.
 
@@ -488,7 +488,7 @@ presentation proofs.
 ### Issuance
 
 Issuance is performed using the `Sign` operation from
-[@!I-D.irtf-cfrg-bbs-signatures, section 3.5.1].  This operation
+[@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.1].  This operation
 utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with
 desired Header octets as `header`, and the array of payload
 octet string as `messages`.
@@ -500,7 +500,7 @@ payloads to serialize the JWP.
 ### Issuance Proof Verification
 
 Holder verification of the signature on issuance form is performed using
-the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, section
+the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section
 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as
@@ -510,7 +510,7 @@ payload octets as `messages`.
 ### Presentation
 
 Derivation of a presentation is done by the holder using the `ProofGen`
-operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.3].
+operation from [@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.3].
 
 This operation utilizes the issuer's public key as `PK`, the Issuer
 Header as `header`, the issuance proof as `signature`, the
@@ -780,7 +780,7 @@ the initial registrations:
 The following registration procedure is used for all the registries
 established by this specification.
 
-Values are registered on a Specification Required [@RFC5226] basis after
+Values are registered on a Specification Required [@!RFC8126] basis after
 a three-week review period on the <jose-reg-review@ietf.org> mailing
 list, on the advice of one or more Designated Experts.  However, to
 allow for the allocation of values prior to publication, the Designated
@@ -1402,7 +1402,7 @@ The BBS examples were generated using the library at
 - Update registry template for algorithms to account for integer CBOR
   labels
 - Restylize initial registry entries for readability
-- Defer BBS key definition to [@I-D.ietf-cose-bls-key-representations]
+- Defer BBS key definition to [@!I-D.ietf-cose-bls-key-representations]
 - Modify example generation to use `proof_key` and `presentation_key`
   names
 - Change `proof_jwk` to `proof_key` and `presentation_jwk` to

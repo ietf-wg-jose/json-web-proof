@@ -122,7 +122,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier" are used as defined by
-the VC Data Model [@VC-DATA-MODEL-2.0].  The term "presentation" is also
+the VC Data Model [@!VC-DATA-MODEL-2.0].  The term "presentation" is also
 used as defined by this source, but the term "credential" is avoided in
 this specification to minimize confusion with other definitions.
 
@@ -170,7 +170,7 @@ any algorithm-specific capabilities.
 
 To fully support the newer privacy primitives, JWP utilizes the three
 roles of issuer, holder, and verifier, as defined by the VC Data Model
-[@VC-DATA-MODEL-2.0].  There are also two forms of a JWP: the issued
+[@!VC-DATA-MODEL-2.0].  There are also two forms of a JWP: the issued
 form created by an issuer for a holder, and the presented form created
 by a holder for a verifier.
 
@@ -237,7 +237,7 @@ processing MUST reject messages if two Headers with the same parameter
 label are encountered. JSON processing SHOULD reject messages received
 with the same parameter label, but MAY instead represent only the
 lexically last member with that label, as specified in Section 15.12
-("The JSON Object") of ECMAScript 5.1 [@ECMAScript]. JSON processing
+("The JSON Object") of ECMAScript 5.1 [@!ECMAScript]. JSON processing
 MUST take one of these two approaches with regards to encountering
 duplicate Header Parameter labels.
 
@@ -346,7 +346,7 @@ corresponds to the IANA "CoAP Content-Formats" registry
 [@IANA.CoAP.Formats], which describes the corresponding media type, as
 described in [@!RFC9596].
 
-Per [@RFC2045], all media type values, subtype values, and parameter
+Per [@!RFC2045], all media type values, subtype values, and parameter
 names are case insensitive.  However, parameter values are case
 sensitive unless otherwise specified for the specific parameter.
 
@@ -813,7 +813,7 @@ Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
 
 ```
 
-Figure 1: CDDL [@RFC8610] for CBOR Serializations.
+Figure 1: CDDL [@!RFC8610] for CBOR Serializations.
 
 # Encrypted JSON Web Proofs
 
@@ -879,7 +879,7 @@ Notes to be expanded:
 The following registration procedure is used for all the registries
 established by this specification.
 
-Values are registered on a Specification Required [@RFC5226] basis after
+Values are registered on a Specification Required [@!RFC8126] basis after
 a three-week review period on the jose-reg-review@ietf.org mailing list,
 on the advice of one or more Designated Experts.  However, to allow for
 the allocation of values prior to publication, the Designated Experts
