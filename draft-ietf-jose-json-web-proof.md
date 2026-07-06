@@ -341,8 +341,8 @@ parameter is ignored by JWP implementations; any processing of this
 parameter is performed by the JWP application.  Use of this Header
 Parameter is OPTIONAL.
 
-For COSE-formatted Headers, `typ` MAY also instead be an integer value
-which corresponds to the IANA "CoAP Content-Formats" registry
+For COSE-formatted Headers, `typ` MAY instead be an integer value that
+corresponds to the IANA "CoAP Content-Formats" registry
 [@IANA.CoAP.Formats], which describes the corresponding media type, as
 described in [@!RFC9596].
 
@@ -416,7 +416,7 @@ implementations.
 
 The `hpk` (Holder Presentation Key) represents the public key with
 certain algorithms, and is used by the holder for proof of possession
-and integrity protection of the Presented Header.
+and integrity protection of the Presentation Header.
 
 The issuer MUST validate that the holder has possession of this key
 through a trusted mechanism, such as requiring the signature of a unique
@@ -765,8 +765,8 @@ JWP.  The serialization consists of two arrays, representing issued and
 presented forms.
 
 The Headers MUST be CBOR formatted for CBOR serialization.
-This includes both the issued and Presented Headers in the presented
-form.
+This includes both the Issuer Header and Presentation Header in the
+presented form.
 
 The issued form consists of a three-element array, while the presented
 form consists of a four-element array.

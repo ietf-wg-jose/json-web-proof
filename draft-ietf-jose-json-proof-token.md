@@ -119,7 +119,7 @@ algorithm when presented.
 
 Any other data that is repeated across multiple JPTs or CPTs is
 externalized so that it is uniform across every issuance.  This includes
-preventing the usage of optional Headers, dynamic mapping of claims to
+preventing the use of optional Headers, dynamic mapping of claims to
 payloads, changes to how many payloads are included, and the ordering of
 the payloads.
 

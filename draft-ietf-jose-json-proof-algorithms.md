@@ -341,8 +341,8 @@ Presentation Header Parameters SHOULD NOT contain values that are common
 across multiple presentations and SHOULD be unique to a single
 presentation and verifier.
 
-The Presentation Header MUST contain the same Algorithm
-protected header as the Issuer Header.  The Holder
+The Presentation Header MUST contain the same `alg` Header Parameter as
+the Issuer Header.  The Holder
 Presentation Algorithm Header Parameter MUST NOT be included.
 
 ### Presentation
