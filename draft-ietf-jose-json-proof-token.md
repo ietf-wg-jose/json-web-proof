@@ -125,7 +125,7 @@ the payloads.
 
 ## Selective Disclosure
 
-While JWPs provide the underling structure for easily supporting
+While JWPs provide the underlying structure for easily supporting
 selective disclosure, JPTs and CPTs must go a step further to ensure
 that holders can effectively provide choice and consent on exactly what
 is being disclosed.  Software using JWPs or CPTs MUST know the mappings
@@ -137,14 +137,14 @@ NOT contain claims that are intended only for a specific verifier.
 
 ## Familiarity
 
-JPTs are intended to be as close to a JWT as possible in order to
+JPTs are intended to be as close to a JWT as possible to
 provide the simplest transition for any JWT-based system to add support
 for JPTs.  The same is true for CPTs and CWTs.
 
 Although there are some stark differences in the lifecycle of a JPT,
 from the application's perspective, the interface to a JPT can be made
 fairly similar: a JSON object containing a mix of required and optional
-claims with well-understood values.  Likewise, A CPT is a CBOR object
+claims with well-understood values.  Likewise, a CPT is a CBOR object
 containing a mix of required and optional claims with well-understood
 values.
 
@@ -219,7 +219,7 @@ The structure of the `cid` value is unspecified.  For JPTs, its value
 MUST be a case-sensitive string.  For CPTs, its value MUST be a binary
 string.  Use of this Header Parameter is OPTIONAL.
 
-The `cid` can be used similarly to a `kid` in order to ensure that it is
+The `cid` can be used similarly to a `kid` to ensure that it is
 possible to externally resolve and then verify that the correct list of
 claim names is being used when processing the payloads containing the
 claim values.
@@ -231,7 +231,7 @@ containing the signing key information, the `claims` key is also
 registered there as a convenient location for the claim names.
 
 When the claims array is transferred as a property in the Issuer Header,
-any variations of that array between JWP will be visible to the
+any variations of that array between JWPs will be visible to the
 verifier, and can leak information about the subject or provide an
 additional vector for linkability.  Given the privacy design
 considerations around linkability, it is RECOMMENDED that the claims are
@@ -391,7 +391,7 @@ The media type for a CBOR Proof Token (CPT) is `application/cpt`.
 ## Structured Syntax Suffix Registry
 
 This section registers the following entries in the IANA "Structured
-Syntax Suffix" registry [IANA.StructuredSuffix] in the manner described
+Syntax Suffix" registry [@IANA.StructuredSuffix] in the manner described
 in [@RFC6838].
 
 ### +jpt

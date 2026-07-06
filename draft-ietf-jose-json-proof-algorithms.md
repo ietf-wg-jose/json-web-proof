@@ -264,7 +264,7 @@ between the parties.
 
 ### Holder Setup
 
-In order to support the protection of a presentation by a holder to a
+To support the protection of a presentation by a holder to a
 verifier, the holder MUST use a Holder Presentation Key during the
 issuance and the presentation of every Single Use JWP.  This Holder
 Presentation Key MUST be generated and used for only one JWP if
@@ -478,7 +478,7 @@ The `BBS` algorithm corresponds to a cipher suite identifier of
 The key used for the `BBS` algorithm is an elliptic curve-based key
 pair, specifically against the G_2 subgroup of a pairing friendly curve.
 Additional details on key generation can be found in
-[@!I-D.irtf-cfrg-bbs-signatures, Section 3.4].  The JWK and Cose Key
+[@!I-D.irtf-cfrg-bbs-signatures, Section 3.4].  The JWK and COSE Key
 Object representations of the key are detailed in
 [@!I-D.ietf-cose-bls-key-representations].
 
@@ -559,7 +559,7 @@ algorithm than the Issuer used to sign the issued form.
 
 Like the Single Use algorithm family, it also does not support
 unlinkability if the same JWP is presented multiple times and requires
-an individually issued JWP for each presentation in order to fully
+an individually issued JWP for each presentation to fully
 protect privacy.  When compared to the JWS approach, using a MAC
 requires less computation but can result in potentially larger
 presentation proof values.
@@ -574,7 +574,7 @@ authenticity of the issuer and holder.
 
 ### Holder Setup
 
-In order to support the protection of a presentation by a holder to a
+To support the protection of a presentation by a holder to a
 verifier, the holder MUST use a Holder Presentation Key during the
 issuance and the presentation of every MAC JWP.  This Holder
 Presentation Key MUST be generated and used for only one JWP if
@@ -810,7 +810,7 @@ should direct all requests for registration to the review mailing list.
 
 It is suggested that multiple Designated Experts be appointed who are
 able to represent the perspectives of different applications using this
-specification, in order to enable broadly informed review of
+specification, to enable broadly informed review of
 registration decisions.  In cases where a registration decision could be
 perceived as creating a conflict of interest for a particular Expert,
 that Expert should defer to the judgment of the other Experts.
@@ -819,7 +819,7 @@ that Expert should defer to the judgment of the other Experts.
 
 This specification establishes the IANA "JSON Web Proof Algorithms"
 registry, under the "JSON Object Signing and Encryption (JOSE)" registry
-group. The registry records values values of the JWP `alg` (algorithm)
+group. The registry records values of the JWP `alg` (algorithm)
 Header Parameter.  The registry records the algorithm name, the
 algorithm description, the algorithm usage locations, the implementation
 requirements, the change controller, and a reference to the
@@ -1074,7 +1074,7 @@ the final assigned value and remove this note before publication.]
 {{common-biblio.md}}
 {{series-draft-biblio.md}}
 
-# Example JWPs
+# JWP Examples
 
 The following examples use algorithms defined in JSON Proof Algorithms
 and also contain the keys used, so that implementations can validate
@@ -1167,7 +1167,7 @@ Figure: Presentation (SU-ES256, JSON, Compact Serialization)
 ## Example CBOR-Serialized Single-Use CPT
 
 This example is meant to mirror the prior compact serialization, using
-[RFC8392] (CWT) and claims from [@I-D.ietf-spice-oidc-cwt],
+[@RFC8392] (CWT) and claims from [@I-D.ietf-spice-oidc-cwt],
 illustrated using [@I-D.ietf-cbor-edn-literals] (EDN).
 
 To simplify this example, the same information is represented as the JPT
@@ -1183,7 +1183,7 @@ When signed and serialized, the CPT is represented by the following CBOR
 (in hex):
 
 <{{./fixtures/build/cpt-issuer-form.cbor.hex}}>
-Fixtures: Issued Form (SU-ES256, CBOR)
+Figure: Issued Form (SU-ES256, CBOR)
 
 The presented form, similarly to the issued form above, is made with the
 holder conveying the same parameters and the same set of selectively
@@ -1230,7 +1230,7 @@ address, and generates a proof.  That proof is represented in the
 following serialization:
 
 <{{./fixtures/build/bbs-presentation-compact.jwp.wrapped}}
-Figure: Presentation JWP (BBS, JSON, Compact serialization)
+Figure: Presentation JWP (BBS, JSON, Compact Serialization)
 
 ## Example MAC JWP
 
@@ -1382,7 +1382,7 @@ The BBS examples were generated using the library at
   domain separation.
 - Clarify how verifiers are to generate the Combined MAC Representation
   from available information.
-- Provider step-by-step instructions for verification of a presentation
+- Provide step-by-step instructions for verification of a presentation
 - Change Proof Key to Issuer Ephemeral Key and Presentation Key to
   Holder Presentation Key
 

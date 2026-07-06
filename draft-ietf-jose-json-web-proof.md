@@ -400,8 +400,8 @@ The `iek` (Issuer Ephemeral Key) represents the public key used by the
 issuer for indirect signatures within certain algorithms. This is an
 ephemeral key that MUST be unique for each issued JWP.
 
-This Header Parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON-formatted Header, and a COSE Key Object
+This Header Parameter references a JSON Web Key (JWK) public key value
+when represented as a JSON-formatted Header, and a COSE Key Object
 when represented as a CBOR-formatted Header.
 
 It MUST contain only public key parameters and SHOULD contain only the
@@ -422,8 +422,8 @@ The issuer MUST validate that the holder has possession of this key
 through a trusted mechanism, such as requiring the signature of a unique
 nonce value from the holder before issuing the JWP.
 
-This Header Parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON-formatted Header, and a COSE Key Object
+This Header Parameter references a JSON Web Key (JWK) public key value
+when represented as a JSON-formatted Header, and a COSE Key Object
 when represented as a CBOR-formatted Header.
 
 It MUST contain only public key parameters and SHOULD contain only the
@@ -509,7 +509,7 @@ Use of this Header Parameter is OPTIONAL.
 ## Public Header Parameter Names {#PublicHeaderParameterName}
 
 Additional Header Parameter names can be defined by those using JWPs.
-However, in order to prevent collisions, any new Header Parameter name
+However, to prevent collisions, any new Header Parameter name
 should either be registered in the IANA "JSON Web Proof Header
 Parameters" registry established by (#HdrReg) or be a Public Name (a
 value that contains a Collision-Resistant Name).  In each case, the
@@ -614,7 +614,7 @@ proof value will always be updated to add integrity protection of the
 Presentation Header along with the necessary cryptographic statements to
 verify the presented JWP.
 
-When supported by the underling JPA, a single issued JWP can be used to
+When supported by the underlying JPA, a single issued JWP can be used to
 safely generate multiple presented JWPs without becoming correlatable.
 
 A JWP may also be single use, where an issued JWP can only be used once
@@ -626,7 +626,7 @@ issued JWPs can be retrieved easily.
 ### Presentation Header {#presentation-header}
 
 The presented form of a JWP MUST contain a Presentation Header.  It is
-added by the holder and MUST be integrity protected by the underling
+added by the holder and MUST be integrity protected by the underlying
 JPA.
 
 This Header is used to ensure that a presented JWP cannot be replayed
@@ -813,7 +813,7 @@ Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
 
 ```
 
-Figure 1: CDDL [RFC8610] for CBOR Serializations.
+Figure 1: CDDL [@RFC8610] for CBOR Serializations.
 
 # Encrypted JSON Web Proofs
 
@@ -909,7 +909,7 @@ should direct all requests for registration to the review mailing list.
 
 It is suggested that multiple Designated Experts be appointed who are
 able to represent the perspectives of different applications using this
-specification, in order to enable broadly informed review of
+specification, to enable broadly informed review of
 registration decisions.  In cases where a registration decision could be
 perceived as creating a conflict of interest for a particular Expert,
 that Expert should defer to the judgment of the other Experts.
@@ -1131,7 +1131,7 @@ is a JWP using the JWP Compact Serialization.
 ### Registry Contents {#SuffixContents}
 
 This section registers the following entries in the IANA "Structured
-Syntax Suffix" registry [IANA.StructuredSuffix] in the manner described
+Syntax Suffix" registry [@IANA.StructuredSuffix] in the manner described
 in [@RFC6838].
 
 #### The +jwp Structured Syntax Suffix
