@@ -21,7 +21,6 @@ import holderPrivateKeyJSON from "./build/es256-holder-private-key.jwk.json" wit
 import holderPublicKeyJSON from "./build/es256-holder-public-key.jwk.json" with { type: "json" };
 import issuerPrivateKeyJSON from "./build/es256-issuer-private-key.jwk.json" with { type: "json" };
 import holderSharedSecretStr from "./build/mac-h256-holder-shared-secret.base64url.json" with { type: "json" };
-import issuerNonceStr from "./build/shared-issuer-nonce.base64url.json" with { type: "json" };
 import presentationNonceStr from "./build/shared-presentation-nonce.base64url.json" with { type: "json" };
 import holderHeaderTemplate from "./template/mac-h256-holder-header.json" with { type: "json" };
 import issuerHeaderTemplate from "./template/mac-h256-issuer-header.json" with { type: "json" };
@@ -35,7 +34,6 @@ function loadInputs() {
 
     return {
         payloads,
-        issuerNonce: decode(issuerNonceStr),
         presentationNonce: decode(presentationNonceStr),
         holderSharedSecret: decode(holderSharedSecretStr),
         issuerPrivateKey: crypto.createPrivateKey({
@@ -53,7 +51,6 @@ function loadInputs() {
 
 async function deriveValues({
     payloads,
-    issuerNonce,
     presentationNonce,
     holderSharedSecret,
     issuerPrivateKey,
@@ -65,11 +62,12 @@ async function deriveValues({
 
     issuerHeaderJSON.hpk = holderPublicKeyJSON;
     const issuerHeader = serializeJSON(issuerHeaderJSON);
+    const issuerHeaderBytes = Buffer.from(issuerHeader, "UTF-8");
 
-    const payloadKeys = payloadSecrets("sha256", issuerNonce, issuerPayloads.length);
+    const payloadKeys = payloadSecrets("sha256", holderSharedSecret, issuerPayloads.length);
     const payloadMacs = payloadMACs("sha256", payloadKeys, issuerPayloads);
 
-    const combinedMacRepresentation = combinedMACRepresentation(issuerHeader, payloadMacs);
+    const combinedMacRepresentation = combinedMACRepresentation(issuerHeaderBytes, payloadMacs);
     const macsSignature = await signPayloadSHA256(combinedMacRepresentation, issuerPrivateKey);
     const issuedProof = [macsSignature, holderSharedSecret];
 
@@ -80,7 +78,8 @@ async function deriveValues({
     ].join(".");
 
     holderHeaderJSON.nonce = encode(presentationNonce);
-    const holderHeader = Buffer.from(serializeJSON(holderHeaderJSON), "utf-8");
+    const holderHeader = serializeJSON(holderHeaderJSON);
+    const holderHeaderBytes = Buffer.from(holderHeader, "utf-8");
 
     const presentationPayloads = [...issuerPayloads];
     const presentationProof = [macsSignature];
@@ -96,8 +95,8 @@ async function deriveValues({
     }
 
     const presentationInternalRepresentation = createPresentationInternalRepresentation(
-        issuerHeader,
-        holderHeader,
+        issuerHeaderBytes,
+        holderHeaderBytes,
         presentationPayloads,
         presentationProof
     );
