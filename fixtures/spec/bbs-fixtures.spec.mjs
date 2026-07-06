@@ -112,7 +112,7 @@ async function assertCompactMatches(basePath) {
     expect(base64url.decode(holderParts[3])).toEqual(holderProof);
 }
 
-describe("BBS fixtures generated with local JWP decoration on @alksol/cfrg-bbs 0.2.4", () => {
+describe("BBS fixtures generated with local JWP decoration on @alksol/cfrg-bbs 0.2.9", () => {
     it("verifies outputs generated from library-derived key material", async () => {
         expect(issuerHeaderJSON).toBeDefined();
         expect(holderHeaderJSON).toBeDefined();
