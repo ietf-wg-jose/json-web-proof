@@ -706,7 +706,7 @@ representation parallel to the JWS JSON serialization is defined.
 
  JWP CBOR Serialization provides a compact CBOR-based encoding suitable
 for constrained environments.  Its design closely parallels COSE_Sign1
-[@RFC9338].
+in [@RFC9052, section 4.2].
 
 ## Compact Serialization {#CompactSerialization}
 
