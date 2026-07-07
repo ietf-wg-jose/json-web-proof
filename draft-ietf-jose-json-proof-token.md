@@ -302,7 +302,8 @@ This section registers the following Header Parameter in the IANA
 ## JSON Web Key Parameters Registry {#JWKParamReg}
 
 This section registers the following JWK parameter in the IANA "JSON Web
-Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
+Key Parameters" registry [@IANA.JOSE] established by Section 8.1 of
+[@!RFC7517].
 
 ### Registry Contents {#JWKParamContents}
 
@@ -317,7 +318,7 @@ Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
 
 This section registers the following COSE_Key parameter in the IANA
 "COSE Key Common Parameters" registry [@IANA.COSE] established by
-[@RFC9052].
+Section 11.2 of [@!RFC9052].
 
 ### Registry Contents {#COSEKeyParamContents}
 
