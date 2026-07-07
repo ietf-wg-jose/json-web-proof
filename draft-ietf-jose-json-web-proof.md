@@ -850,7 +850,7 @@ or convention, in which case the `cty` value MAY be omitted.
 
 In some contexts, it is useful to make statements about payloads which
 are not themselves contained within the JWP, similar to "Detached
-Content" in JWS (Appendix F of [@RFC7515]).
+Content" in JWS [@RFC7515, section F].
 
 For this purpose, the compact, JSON and CBOR serializations allow for
 all payload slots to be omitted from a serialized form. While this is a
