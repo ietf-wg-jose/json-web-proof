@@ -1345,6 +1345,9 @@ The BBS examples were generated using the library at
 - `MAC-H256` example no longer omits some components in signed inputs.
 - Align `SU-ES256` prose and fixtures for compact and CPT example
   payloads and disclosures
+- Clarified `alg` Header Parameter terminology.
+- Applied editorial corrections.
+- Normalized references and section citations.
 
 -13
 
