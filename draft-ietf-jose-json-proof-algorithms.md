@@ -478,7 +478,7 @@ The `BBS` algorithm corresponds to a cipher suite identifier of
 The key used for the `BBS` algorithm is an elliptic curve-based key
 pair, specifically against the G_2 subgroup of a pairing friendly curve.
 Additional details on key generation can be found in
-[@!I-D.irtf-cfrg-bbs-signatures, Section 3.4].  The JWK and COSE Key
+[@!I-D.irtf-cfrg-bbs-signatures, section 3.4].  The JWK and COSE Key
 Object representations of the key are detailed in
 [@!I-D.ietf-cose-bls-key-representations].
 
@@ -488,7 +488,7 @@ presentation proofs.
 ### Issuance
 
 Issuance is performed using the `Sign` operation from
-[@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.1].  This operation
+[@!I-D.irtf-cfrg-bbs-signatures, section 3.5.1].  This operation
 utilizes the issuer's BLS12-381 G2 key pair as `SK` and `PK`, along with
 desired Header octets as `header`, and the array of payload
 octet string as `messages`.
@@ -501,7 +501,7 @@ payloads to serialize the JWP.
 
 Holder verification of the signature on issuance form is performed using
 the `Verify` operation from
-[@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.2].
+[@!I-D.irtf-cfrg-bbs-signatures, section 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as
 `signature`, the Header octets as `header` and the array of
@@ -510,7 +510,7 @@ payload octets as `messages`.
 ### Presentation
 
 Derivation of a presentation is done by the holder using the `ProofGen`
-operation from [@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.3].
+operation from [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.3].
 
 This operation utilizes the issuer's public key as `PK`, the Issuer
 Header as `header`, the issuance proof as `signature`, the
@@ -534,7 +534,7 @@ serialization and a zero-length string in compact serialization.
 
 Verification of a presentation is done by the verifier using the
 `ProofVerify` operation from
-[@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.4].
+[@!I-D.irtf-cfrg-bbs-signatures, section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the Issuer
 Header as `header`, the issuance proof as `signature`, the
@@ -1039,8 +1039,8 @@ Algorithm Analysis Documents(s):
 ## JSON Web Key Parameters Registry {#JWKParamReg}
 
 This section registers the following JWK parameter in the IANA "JSON Web
-Key Parameters" registry [@IANA.JOSE] established by Section 8.1 of
-[@!RFC7517].
+Key Parameters" registry [@IANA.JOSE] established by
+[@!RFC7517, section 8.1].
 
 ### Registry Contents {#JWKParamContents}
 
@@ -1055,7 +1055,7 @@ Key Parameters" registry [@IANA.JOSE] established by Section 8.1 of
 
 This section registers the following COSE_Key parameter in the IANA
 "COSE Key Common Parameters" registry [@IANA.COSE] established by
-Section 11.2 of [@!RFC9052].
+[@!RFC9052, section 11.2].
 
 ### Registry Contents {#COSEKeyParamContents}
 

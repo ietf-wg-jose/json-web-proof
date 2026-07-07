@@ -273,7 +273,7 @@ IANA or another party, but are expected to only be used for testing or
 in closed environments.
 
 These classes of Header Parameters are intentionally parallel to those
-in Section 4 of [@RFC7515].
+in [@RFC7515, section 4].
 
 ## Registered Header Parameter Labels {#RegisteredHeaderParameterLabels}
 
@@ -344,7 +344,7 @@ Parameter is OPTIONAL.
 For COSE-formatted Headers, `typ` MAY instead be an integer value that
 corresponds to the IANA "CoAP Content-Formats" registry
 [@IANA.CoAP.Formats], which describes the corresponding media type, as
-described in Section 2 of [@!RFC9596].
+described in [@!RFC9596, section 2].
 
 Per [@!RFC2045], all media type values, subtype values, and parameter
 names are case insensitive.  However, parameter values are case
@@ -463,7 +463,7 @@ specific.
 
 The `iss` value is a case-sensitive string containing a StringOrURI
 value.  Its definition is intentionally parallel to the `iss` claim
-defined in Section 4.1.1 of [@!RFC7519].
+defined in [@!RFC7519, section 4.1.1].
 
 Use of this Header Parameter is OPTIONAL.
 
@@ -484,7 +484,7 @@ string containing a StringOrURI value.
 The interpretation of audience values is application specific.
 
 Its definition is intentionally parallel to the `aud` claim defined in
-Section 4.1.3 of [@!RFC7519].
+[@!RFC7519, section 4.1.3].
 
 Use of this Header Parameter is OPTIONAL.
 
@@ -702,7 +702,7 @@ composed of multiple octet strings).
 
 The JWP Compact Serialization provides a JSON-based, space-efficient
 encoding of a JWP in URL-safe characters.  Its design closely parallels
-the JWS Compact Serialization in Section 7.1 of [@RFC7515].  No
+the JWS Compact Serialization in [@RFC7515, section 7.1].  No
 representation parallel to the JWS JSON serialization is defined.
 
  JWP CBOR Serialization provides a compact CBOR-based encoding suitable
@@ -827,9 +827,8 @@ Encrypted JWPs is identical to the processing of other JWEs.
 For a JWP with JSON-formatted Headers, an Encrypted JWP is a JWE
 [@!RFC7516] with a JWP in Compact Serialization as its plaintext value.
 For a JWP with CBOR-formatted Headers, an Encrypted JWP should use
-`COSE_Encrypt0` (Section 5.2 of [@!RFC9052]) or `COSE_Encrypt`
-(Section 5.1 of [@!RFC9052]) with the CBOR Serialization as its
-plaintext.
+`COSE_Encrypt0` [@!RFC9052, section 5.2] or `COSE_Encrypt`
+[@!RFC9052, section 5.1] with the CBOR Serialization as its plaintext.
 
 The `cty` (content type) JWE/COSE Header Parameter is used to indicate
 that the content of the JWE is a JWP.  The `cty` value of the JWE/COSE

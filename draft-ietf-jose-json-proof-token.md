@@ -260,12 +260,12 @@ represented as a CBOR value.
 ## Undisclosed
 
 The placeholder indicating that a payload was not disclosed is
-represented as described in [@!I-D.ietf-jose-json-web-proof, Section 6]
+represented as described in [@!I-D.ietf-jose-json-web-proof, section 6]
 (Serializations).
 
 # Example JPT and CPT
 
-See the examples in [@I-D.ietf-jose-json-proof-algorithms, Section A.1].
+See the examples in [@I-D.ietf-jose-json-proof-algorithms, section A.1].
 
 # Security Considerations {#security}
 
@@ -302,8 +302,8 @@ This section registers the following Header Parameter in the IANA
 ## JSON Web Key Parameters Registry {#JWKParamReg}
 
 This section registers the following JWK parameter in the IANA "JSON Web
-Key Parameters" registry [@IANA.JOSE] established by Section 8.1 of
-[@!RFC7517].
+Key Parameters" registry [@IANA.JOSE] established by
+[@!RFC7517, section 8.1].
 
 ### Registry Contents {#JWKParamContents}
 
@@ -318,7 +318,7 @@ Key Parameters" registry [@IANA.JOSE] established by Section 8.1 of
 
 This section registers the following COSE_Key parameter in the IANA
 "COSE Key Common Parameters" registry [@IANA.COSE] established by
-Section 11.2 of [@!RFC9052].
+[@!RFC9052, section 11.2].
 
 ### Registry Contents {#COSEKeyParamContents}
 
