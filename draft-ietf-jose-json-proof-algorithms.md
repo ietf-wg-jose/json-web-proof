@@ -500,8 +500,8 @@ payloads to serialize the JWP.
 ### Issuance Proof Verification
 
 Holder verification of the signature on issuance form is performed using
-the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section
-3.5.2].
+the `Verify` operation from
+[@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as
 `signature`, the Header octets as `header` and the array of
@@ -533,8 +533,8 @@ serialization and a zero-length string in compact serialization.
 ### Presentation Verification
 
 Verification of a presentation is done by the verifier using the
-`ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section
-3.5.4].
+`ProofVerify` operation from
+[@!I-D.irtf-cfrg-bbs-signatures, Section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the Issuer
 Header as `header`, the issuance proof as `signature`, the
