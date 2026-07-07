@@ -1180,6 +1180,12 @@ for their valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-14
+
+- Applied editorial corrections.
+- Normalized references and section citations.
+- Corrected the `COSE_Sign1` reference.
+
 -13
 
 - Examples are now built deterministically (using RFC 6979 deterministic

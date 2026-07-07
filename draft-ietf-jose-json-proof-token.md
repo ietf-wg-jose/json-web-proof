@@ -452,6 +452,11 @@ for his valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-14
+
+- Applied editorial corrections.
+- Normalized references and section citations.
+
 -13
 
 - Examples are now built deterministically (using RFC 6979 deterministic
