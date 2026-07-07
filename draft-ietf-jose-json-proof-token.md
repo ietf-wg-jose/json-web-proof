@@ -333,7 +333,7 @@ This section registers the following COSE_Key parameter in the IANA
 
 This section registers the following media type [@RFC2046] in the IANA
 "Media Types" registry [@IANA.MediaTypes] in the manner
-described in [@RFC6838].
+described in [@RFC6838, section 5.6].
 
 ### application/jpt {#jpt_media_type}
 
@@ -393,7 +393,7 @@ The media type for a CBOR Proof Token (CPT) is `application/cpt`.
 
 This section registers the following entries in the IANA "Structured
 Syntax Suffix" registry [@IANA.StructuredSuffix] in the manner described
-in [@RFC6838].
+in [@RFC6838, section 6.2].
 
 ### +jpt
 

@@ -346,9 +346,9 @@ corresponds to the IANA "CoAP Content-Formats" registry
 [@IANA.CoAP.Formats], which describes the corresponding media type, as
 described in [@!RFC9596, section 2].
 
-Per [@!RFC2045], all media type values, subtype values, and parameter
-names are case insensitive.  However, parameter values are case
-sensitive unless otherwise specified for the specific parameter.
+Per [@!RFC2045, section 5.1], all media type values, subtype values,
+and parameter names are case insensitive.  However, parameter values are
+case sensitive unless otherwise specified for the specific parameter.
 
 To keep messages compact in common situations, it is RECOMMENDED that
 producers omit an "application/" prefix of a media type value in a `typ`
@@ -366,8 +366,7 @@ can also be used by applications, including those using the `+jwp` media
 type structured syntax suffix.
 
 It is RECOMMENDED that the `typ` Header Parameter be used for explicit
-typing, in parallel to the recommendations in Section 3.11 of
-[@RFC8725].
+typing, in parallel to the recommendations in [@RFC8725, section 3.11].
 
 ### "crit" (Critical) Header Parameter {#critDef}
 
@@ -1070,8 +1069,8 @@ This section registers the Header Parameters defined in
 
 This section registers the `application/jwp` media type [@RFC2046] in
 the IANA "Media Types" registry [@IANA.MediaTypes] in the manner
-described in [@RFC6838], which can be used to indicate that the content
-is a JWP using the JWP Compact Serialization.
+described in [@RFC6838, section 5.6], which can be used to indicate
+that the content is a JWP using the JWP Compact Serialization.
 
 #### The application/jwp Media Type
 
@@ -1132,7 +1131,7 @@ is a JWP using the JWP Compact Serialization.
 
 This section registers the following entries in the IANA "Structured
 Syntax Suffix" registry [@IANA.StructuredSuffix] in the manner described
-in [@RFC6838].
+in [@RFC6838, section 6.2].
 
 #### The +jwp Structured Syntax Suffix
 

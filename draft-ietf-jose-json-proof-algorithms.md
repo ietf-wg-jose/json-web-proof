@@ -84,7 +84,7 @@ this specification to minimize confusion with other definitions.
 
 The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header
 Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS
-Protected Header" are defined by [@!RFC7515].
+Protected Header" are defined by [@!RFC7515, section 2].
 
 The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP
  Header" are defined by [@!I-D.ietf-jose-json-web-proof].
