@@ -687,8 +687,8 @@ The proof of a presented JWP will always be different than the issued
 proof.  At a minimum, it MUST be updated to include protection of the
 added Presentation Header.
 
-Algorithms SHOULD generate an un-correlatable presentation proof in
-order to support multiple presentations from a single issued JWP.
+Algorithms SHOULD generate presentation proofs that preserve
+unlinkability across multiple presentations from a single issued JWP.
 
 The algorithm is responsible for representing selective disclosure of
 payloads in a presented proof. If multiple octet strings are

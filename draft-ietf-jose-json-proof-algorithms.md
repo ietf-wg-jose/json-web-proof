@@ -217,7 +217,7 @@ registered in the IANA "JSON Web Proof Algorithms" registry established
 by this specification, or be a collision-resistant name for a JSON Web
 Proof Algorithm.
 
-As a CWK paramter, this value may also be an integer value.
+As a CWK parameter, this value may also be an integer value.
 The integer CBOR Label from the "JSON Web Proof Algorithms" registry
 SHOULD be used when one is available.
 
@@ -279,7 +279,7 @@ The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the `hpa` Issuer Header.
+in the `hpa` Issuer Header Parameter.
 
 ### Issuer Setup
 
@@ -595,7 +595,7 @@ The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the Holder Protected Algorithm Header Parameter.
+in the `hpa` Issuer Header Parameter.
 
 ### Issuer Setup
 
@@ -631,12 +631,12 @@ its 8-byte, network-ordered representation.  For example, the length of
 a 1,234-byte payload would have a length representation of
 `0x00 00 00 00 00 00 04 D2`.
 
-The holder will a unique key per payload value using a MAC, with the
-Shared Secret as the key and a generated binary value.  This binary
+The holder will derive a unique key per payload value using a MAC, with
+the Shared Secret as the key and a generated binary value.  This binary
 value is constructed by appending data into a single octet string:
 
 1. `0x82 67 70 61 79 6C 6F 61 64 1B`
-2. The zero indexed count of the payload slot
+2. The zero-indexed count of the payload slot
 
 The holder will also compute a corresponding MAC of each payload.  This
 MAC uses the unique key above and the payload octet string as the value.
