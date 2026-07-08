@@ -341,10 +341,13 @@ parameter is ignored by JWP implementations; any processing of this
 parameter is performed by the JWP application.  Use of this Header
 Parameter is OPTIONAL.
 
-For COSE-formatted Headers, `typ` MAY instead be an integer value that
-corresponds to the IANA "CoAP Content-Formats" registry
-[@IANA.CoAP.Formats], which describes the corresponding media type, as
-described in [@!RFC9596, section 2].
+When `typ` is used for a JSON-formatted Header, its value is a string
+containing a media type.
+
+When `typ` is used for a CBOR-formatted Header, its value MAY also be
+an integer from the IANA "CoAP Content-Formats" registry
+[@IANA.CoAP.Formats].  The integer value identifies the corresponding
+media type, as described in [@!RFC9596, section 2].
 
 Per [@!RFC2045, section 5.1], all media type values, subtype values,
 and parameter names are case insensitive.  However, parameter values are
@@ -413,7 +416,7 @@ implementations.
 
 ### "hpk" (Holder Presentation Key) Header Parameter {#holder_presentation_keyDef}
 
-The `hpk` (Holder Presentation Key) represents the public key with
+The `hpk` (Holder Presentation Key) represents the public key used with
 certain algorithms, and is used by the holder for proof of possession
 and integrity protection of the Presentation Header.
 
@@ -632,9 +635,10 @@ This Header is used to ensure that a presented JWP cannot be replayed
 and is cryptographically bound to the verifier it was presented to.
 
 While there are not any required Header Parameters in the Presentation
-Header, it MUST contain one or Header Parameters that uniquely identify
-the presented JWP to both the holder and verifier.  For example, Header
-Parameters that would satisfy this requirement include `nonce` and `aud`.
+Header, it MUST contain one or more Header Parameters that uniquely
+identify the presented JWP to both the holder and verifier.  For
+example, Header Parameters that would satisfy this requirement include
+`nonce` and `aud`.
 
 ### Presentation Payloads
 
@@ -704,7 +708,7 @@ encoding of a JWP in URL-safe characters.  Its design closely parallels
 the JWS Compact Serialization in [@RFC7515, section 7.1].  No
 representation parallel to the JWS JSON serialization is defined.
 
- JWP CBOR Serialization provides a compact CBOR-based encoding suitable
+The JWP CBOR Serialization provides a compact CBOR-based encoding suitable
 for constrained environments.  Its design closely parallels COSE_Sign1
 in [@RFC9052, section 4.2].
 
@@ -763,7 +767,7 @@ The CBOR serialization provides a compact binary representation of a
 JWP.  The serialization consists of two arrays, representing issued and
 presented forms.
 
-The Headers MUST be CBOR formatted for CBOR serialization.
+Implementations using CBOR Serialization MUST encode Headers in CBOR.
 This includes both the Issuer Header and Presentation Header in the
 presented form.
 
@@ -897,7 +901,7 @@ Registration requests that are undetermined for a period longer than 21
 days can be brought to the IESG's attention (using the iesg@ietf.org
 mailing list) for resolution.
 
-Criteria that should be applied by the Designated Experts includes
+Criteria that should be applied by the Designated Experts include
 determining whether the proposed registration duplicates existing
 functionality, whether it is likely to be of general applicability or
 useful only for a single application, and whether the registration
@@ -934,9 +938,9 @@ Header Parameter Name:
 Header Parameter JSON Label:
 : The string label requested within a JSON context. (e.g., `kid`).
   Because a core goal of this specification is for the resulting
-  representations to be compact, it is RECOMMENDED that the label be
+  representations to be compact, it is recommended that the label be
   short -- not to exceed 8 characters without a compelling reason to do
-  so. This label is case sensitive, and it is RECOMMENDED to avoid
+  so. This label is case sensitive, and it is recommended to avoid
   upper-case characters. Labels may not match another registered names
   in a case-insensitive manner unless the Designated Experts state that
   there is a compelling reason to allow an exception. This registry
@@ -1185,6 +1189,9 @@ for their valuable contributions to this specification.
 - Applied editorial corrections.
 - Normalized references and section citations.
 - Corrected the `COSE_Sign1` reference.
+- Clarified JSON-formatted and CBOR-formatted `typ` Header Parameter
+  values.
+- Clarified CBOR Serialization requirements for Header encoding.
 
 -13
 

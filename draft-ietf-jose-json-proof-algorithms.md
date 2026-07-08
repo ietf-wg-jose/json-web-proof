@@ -258,9 +258,8 @@ JWP.  The fully-specified algorithm the holder must use for
 presentations is also included.  This algorithm MAY be different from
 the algorithm used by the issuer.
 
-The chosen algorithms MUST be asymmetric signing algorithms, so that
-each signature can be verified without sharing any private values
-between the parties.
+Issuers and holders MUST choose asymmetric signing algorithms, so each
+signature can be verified without sharing secrets between the parties.
 
 ### Holder Setup
 
@@ -341,9 +340,9 @@ Presentation Header Parameters SHOULD NOT contain values that are common
 across multiple presentations and SHOULD be unique to a single
 presentation and verifier.
 
-The Presentation Header MUST contain the same `alg` Header Parameter as
-the Issuer Header.  The Holder
-Presentation Algorithm Header Parameter MUST NOT be included.
+The Presentation Header MUST contain the same `alg` Header Parameter
+value as the Issuer Header.  It MUST NOT contain the `hpa` Header
+Parameter.
 
 ### Presentation
 
@@ -525,10 +524,10 @@ to be disclosed for later proof verification.
 The output of this operation is the presentation proof, as a single
 octet string.
 
-Presentation serialization leverages the two Headers and
-presentation proof, along with the disclosed payloads.  Non-disclosed
-payloads are represented with the absent value of `null` in CBOR
-serialization and a zero-length string in compact serialization.
+Presentation serialization leverages the two Headers and presentation
+proof, along with the disclosed payloads.  Encoding of disclosed and
+omitted payload slots follows the JWP serialization rules defined in
+[@!I-D.ietf-jose-json-web-proof].
 
 ### Presentation Verification
 
@@ -545,6 +544,9 @@ In addition, the `disclosed_indexes` scalar array is calculated from the
 payloads provided.  Values disclosed in the presented payloads have a
 zero-based index in this array, while the indices of absent payloads are
 omitted.
+
+If `ProofVerify` returns false, the presented JWP is invalid and the
+verifier rejects it.
 
 ## Message Authentication Code
 
@@ -1077,9 +1079,9 @@ the final assigned value and remove this note before publication.]
 
 # JWP Examples
 
-The following examples use algorithms defined in JSON Proof Algorithms
-and also contain the keys used, so that implementations can validate
-these samples.
+This section provides several sample JWPs, using algorithms defined
+above. The private keys are also included so that implementations can
+validate these samples.
 
 ## Example JSON-Serialized Single-Use JWP
 
@@ -1177,6 +1179,9 @@ example above, including the same public and private keys.
 <{{./fixtures/build/cpt-issuer-header.edn}}>
 Figure: Issuer Header (SU-ES256, CBOR)
 
+The payload values below are the same logical claims as in the JSON JPT
+example above, represented in EDN for the CBOR-based form.
+
 <{{./fixtures/template/cpt-issuer-payloads.edn}}>
 Figure: Issuer Payloads (as CBOR array)
 
@@ -1210,7 +1215,7 @@ Figure: BBS private key in JWK format
 
 There is no additional holder key necessary for presentation proofs.
 
-For the following protected header and array of payloads:
+For the following Issuer Header and array of payloads:
 
 <{{./fixtures/template/jpt-issuer-header.json}}
 Figure: Example Issuer Header
@@ -1348,6 +1353,7 @@ The BBS examples were generated using the library at
 - Clarified `alg` Header Parameter terminology.
 - Applied editorial corrections.
 - Normalized references and section citations.
+- Clarified BBS presentation serialization and example prose.
 
 -13
 

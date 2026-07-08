@@ -112,16 +112,16 @@ a subtle vector for relying parties to collude and correlate one or more
 subjects across their usage.
 
 The principal tools to prevent this are data minimization and
-uniformity.  The data included SHOULD be minimized to remove potential
-correlation points.  The data SHOULD contain only values that are able
-to be selectively disclosed with consent or transformed by the proof
-algorithm when presented.
+uniformity.  Issuers and applications SHOULD minimize included data to
+remove potential correlation points.  Issuers SHOULD include only values
+that are able to be selectively disclosed with consent or transformed by
+the proof algorithm when presented.
 
 Any other data that is repeated across multiple JPTs or CPTs is
 externalized so that it is uniform across every issuance.  This includes
-preventing the use of optional Headers, dynamic mapping of claims to
-payloads, changes to how many payloads are included, and the ordering of
-the payloads.
+preventing use of optional Header Parameters, dynamic mapping of claims
+to payloads, changes to how many payloads are included, and the ordering
+of the payloads.
 
 ## Selective Disclosure
 
@@ -456,6 +456,8 @@ for his valuable contributions to this specification.
 
 - Applied editorial corrections.
 - Normalized references and section citations.
+- Clarified unlinkability guidance for data minimization and optional
+  Header Parameters.
 
 -13
 
