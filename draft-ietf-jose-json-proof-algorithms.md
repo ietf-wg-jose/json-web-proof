@@ -76,7 +76,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier" are used as defined by
-the VC Data Model [@VC-DATA-MODEL-2.0].  The term "presentation" is also
+the VC Data Model [@!VC-DATA-MODEL-2.0].  The term "presentation" is also
 used as defined by this source, but the term "credential" is avoided in
 this specification to minimize confusion with other definitions.
 
@@ -84,7 +84,7 @@ this specification to minimize confusion with other definitions.
 
 The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header
 Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS
-Protected Header" are defined by [@!RFC7515].
+Protected Header" are defined by [@!RFC7515, section 2].
 
 The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP
  Header" are defined by [@!I-D.ietf-jose-json-web-proof].
@@ -217,7 +217,7 @@ registered in the IANA "JSON Web Proof Algorithms" registry established
 by this specification, or be a collision-resistant name for a JSON Web
 Proof Algorithm.
 
-As a CWK paramter, this value may also be an integer value.
+As a CWK parameter, this value may also be an integer value.
 The integer CBOR Label from the "JSON Web Proof Algorithms" registry
 SHOULD be used when one is available.
 
@@ -258,13 +258,12 @@ JWP.  The fully-specified algorithm the holder must use for
 presentations is also included.  This algorithm MAY be different from
 the algorithm used by the issuer.
 
-The chosen algorithms MUST be asymmetric signing algorithms, so that
-each signature can be verified without sharing any private values
-between the parties.
+Issuers and holders MUST choose asymmetric signing algorithms, so each
+signature can be verified without sharing secrets between the parties.
 
 ### Holder Setup
 
-In order to support the protection of a presentation by a holder to a
+To support the protection of a presentation by a holder to a
 verifier, the holder MUST use a Holder Presentation Key during the
 issuance and the presentation of every Single Use JWP.  This Holder
 Presentation Key MUST be generated and used for only one JWP if
@@ -280,7 +279,7 @@ The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the `hpa` Issuer Header.
+in the `hpa` Issuer Header Parameter.
 
 ### Issuer Setup
 
@@ -341,9 +340,9 @@ Presentation Header Parameters SHOULD NOT contain values that are common
 across multiple presentations and SHOULD be unique to a single
 presentation and verifier.
 
-The Presentation Header MUST contain the same Algorithm
-protected header as the Issuer Header.  The Holder
-Presentation Algorithm Header Parameter MUST NOT be included.
+The Presentation Header MUST contain the same `alg` Header Parameter
+value as the Issuer Header.  It MUST NOT contain the `hpa` Header
+Parameter.
 
 ### Presentation
 
@@ -478,7 +477,7 @@ The `BBS` algorithm corresponds to a cipher suite identifier of
 The key used for the `BBS` algorithm is an elliptic curve-based key
 pair, specifically against the G_2 subgroup of a pairing friendly curve.
 Additional details on key generation can be found in
-[@!I-D.irtf-cfrg-bbs-signatures, Section 3.4].  The JWK and Cose Key
+[@!I-D.irtf-cfrg-bbs-signatures, section 3.4].  The JWK and COSE Key
 Object representations of the key are detailed in
 [@!I-D.ietf-cose-bls-key-representations].
 
@@ -500,8 +499,8 @@ payloads to serialize the JWP.
 ### Issuance Proof Verification
 
 Holder verification of the signature on issuance form is performed using
-the `Verify` operation from [@!I-D.irtf-cfrg-bbs-signatures, section
-3.5.2].
+the `Verify` operation from
+[@!I-D.irtf-cfrg-bbs-signatures, section 3.5.2].
 
 This operation utilizes the issuer's public key as `PK`, the proof as
 `signature`, the Header octets as `header` and the array of
@@ -525,16 +524,16 @@ to be disclosed for later proof verification.
 The output of this operation is the presentation proof, as a single
 octet string.
 
-Presentation serialization leverages the two Headers and
-presentation proof, along with the disclosed payloads.  Non-disclosed
-payloads are represented with the absent value of `null` in CBOR
-serialization and a zero-length string in compact serialization.
+Presentation serialization leverages the two Headers and presentation
+proof, along with the disclosed payloads.  Encoding of disclosed and
+omitted payload slots follows the JWP serialization rules defined in
+[@!I-D.ietf-jose-json-web-proof].
 
 ### Presentation Verification
 
 Verification of a presentation is done by the verifier using the
-`ProofVerify` operation from [@!I-D.irtf-cfrg-bbs-signatures, Section
-3.5.4].
+`ProofVerify` operation from
+[@!I-D.irtf-cfrg-bbs-signatures, section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the Issuer
 Header as `header`, the issuance proof as `signature`, the
@@ -545,6 +544,9 @@ In addition, the `disclosed_indexes` scalar array is calculated from the
 payloads provided.  Values disclosed in the presented payloads have a
 zero-based index in this array, while the indices of absent payloads are
 omitted.
+
+If `ProofVerify` returns false, the presented JWP is invalid and the
+verifier rejects it.
 
 ## Message Authentication Code
 
@@ -559,7 +561,7 @@ algorithm than the Issuer used to sign the issued form.
 
 Like the Single Use algorithm family, it also does not support
 unlinkability if the same JWP is presented multiple times and requires
-an individually issued JWP for each presentation in order to fully
+an individually issued JWP for each presentation to fully
 protect privacy.  When compared to the JWS approach, using a MAC
 requires less computation but can result in potentially larger
 presentation proof values.
@@ -574,7 +576,7 @@ authenticity of the issuer and holder.
 
 ### Holder Setup
 
-In order to support the protection of a presentation by a holder to a
+To support the protection of a presentation by a holder to a
 verifier, the holder MUST use a Holder Presentation Key during the
 issuance and the presentation of every MAC JWP.  This Holder
 Presentation Key MUST be generated and used for only one JWP if
@@ -593,7 +595,7 @@ The issuer MUST determine an appropriate holder presentation algorithm
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the Holder Protected Algorithm Header Parameter.
+in the `hpa` Issuer Header Parameter.
 
 ### Issuer Setup
 
@@ -629,12 +631,12 @@ its 8-byte, network-ordered representation.  For example, the length of
 a 1,234-byte payload would have a length representation of
 `0x00 00 00 00 00 00 04 D2`.
 
-The holder will a unique key per payload value using a MAC, with the
-Shared Secret as the key and a generated binary value.  This binary
+The holder will derive a unique key per payload value using a MAC, with
+the Shared Secret as the key and a generated binary value.  This binary
 value is constructed by appending data into a single octet string:
 
 1. `0x82 67 70 61 79 6C 6F 61 64 1B`
-2. The zero indexed count of the payload slot
+2. The zero-indexed count of the payload slot
 
 The holder will also compute a corresponding MAC of each payload.  This
 MAC uses the unique key above and the payload octet string as the value.
@@ -780,7 +782,7 @@ the initial registrations:
 The following registration procedure is used for all the registries
 established by this specification.
 
-Values are registered on a Specification Required [@RFC5226] basis after
+Values are registered on a Specification Required [@!RFC8126] basis after
 a three-week review period on the <jose-reg-review@ietf.org> mailing
 list, on the advice of one or more Designated Experts.  However, to
 allow for the allocation of values prior to publication, the Designated
@@ -810,7 +812,7 @@ should direct all requests for registration to the review mailing list.
 
 It is suggested that multiple Designated Experts be appointed who are
 able to represent the perspectives of different applications using this
-specification, in order to enable broadly informed review of
+specification, to enable broadly informed review of
 registration decisions.  In cases where a registration decision could be
 perceived as creating a conflict of interest for a particular Expert,
 that Expert should defer to the judgment of the other Experts.
@@ -819,7 +821,7 @@ that Expert should defer to the judgment of the other Experts.
 
 This specification establishes the IANA "JSON Web Proof Algorithms"
 registry, under the "JSON Object Signing and Encryption (JOSE)" registry
-group. The registry records values values of the JWP `alg` (algorithm)
+group. The registry records values of the JWP `alg` (algorithm)
 Header Parameter.  The registry records the algorithm name, the
 algorithm description, the algorithm usage locations, the implementation
 requirements, the change controller, and a reference to the
@@ -1039,7 +1041,8 @@ Algorithm Analysis Documents(s):
 ## JSON Web Key Parameters Registry {#JWKParamReg}
 
 This section registers the following JWK parameter in the IANA "JSON Web
-Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
+Key Parameters" registry [@IANA.JOSE] established by
+[@!RFC7517, section 8.1].
 
 ### Registry Contents {#JWKParamContents}
 
@@ -1054,7 +1057,7 @@ Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
 
 This section registers the following COSE_Key parameter in the IANA
 "COSE Key Common Parameters" registry [@IANA.COSE] established by
-[@RFC9052].
+[@!RFC9052, section 11.2].
 
 ### Registry Contents {#COSEKeyParamContents}
 
@@ -1074,11 +1077,11 @@ the final assigned value and remove this note before publication.]
 {{common-biblio.md}}
 {{series-draft-biblio.md}}
 
-# Example JWPs
+# JWP Examples
 
-The following examples use algorithms defined in JSON Proof Algorithms
-and also contain the keys used, so that implementations can validate
-these samples.
+This section provides several sample JWPs, using algorithms defined
+above. The private keys are also included so that implementations can
+validate these samples.
 
 ## Example JSON-Serialized Single-Use JWP
 
@@ -1167,7 +1170,7 @@ Figure: Presentation (SU-ES256, JSON, Compact Serialization)
 ## Example CBOR-Serialized Single-Use CPT
 
 This example is meant to mirror the prior compact serialization, using
-[RFC8392] (CWT) and claims from [@I-D.ietf-spice-oidc-cwt],
+[@RFC8392] (CWT) and claims from [@I-D.ietf-spice-oidc-cwt],
 illustrated using [@I-D.ietf-cbor-edn-literals] (EDN).
 
 To simplify this example, the same information is represented as the JPT
@@ -1176,6 +1179,9 @@ example above, including the same public and private keys.
 <{{./fixtures/build/cpt-issuer-header.edn}}>
 Figure: Issuer Header (SU-ES256, CBOR)
 
+The payload values below are the same logical claims as in the JSON JPT
+example above, represented in EDN for the CBOR-based form.
+
 <{{./fixtures/template/cpt-issuer-payloads.edn}}>
 Figure: Issuer Payloads (as CBOR array)
 
@@ -1183,7 +1189,7 @@ When signed and serialized, the CPT is represented by the following CBOR
 (in hex):
 
 <{{./fixtures/build/cpt-issuer-form.cbor.hex}}>
-Fixtures: Issued Form (SU-ES256, CBOR)
+Figure: Issued Form (SU-ES256, CBOR)
 
 The presented form, similarly to the issued form above, is made with the
 holder conveying the same parameters and the same set of selectively
@@ -1209,7 +1215,7 @@ Figure: BBS private key in JWK format
 
 There is no additional holder key necessary for presentation proofs.
 
-For the following protected header and array of payloads:
+For the following Issuer Header and array of payloads:
 
 <{{./fixtures/template/jpt-issuer-header.json}}
 Figure: Example Issuer Header
@@ -1230,7 +1236,7 @@ address, and generates a proof.  That proof is represented in the
 following serialization:
 
 <{{./fixtures/build/bbs-presentation-compact.jwp.wrapped}}
-Figure: Presentation JWP (BBS, JSON, Compact serialization)
+Figure: Presentation JWP (BBS, JSON, Compact Serialization)
 
 ## Example MAC JWP
 
@@ -1344,6 +1350,10 @@ The BBS examples were generated using the library at
 - `MAC-H256` example no longer omits some components in signed inputs.
 - Align `SU-ES256` prose and fixtures for compact and CPT example
   payloads and disclosures
+- Clarified `alg` Header Parameter terminology.
+- Applied editorial corrections.
+- Normalized references and section citations.
+- Clarified BBS presentation serialization and example prose.
 
 -13
 
@@ -1382,7 +1392,7 @@ The BBS examples were generated using the library at
   domain separation.
 - Clarify how verifiers are to generate the Combined MAC Representation
   from available information.
-- Provider step-by-step instructions for verification of a presentation
+- Provide step-by-step instructions for verification of a presentation
 - Change Proof Key to Issuer Ephemeral Key and Presentation Key to
   Holder Presentation Key
 
@@ -1402,7 +1412,7 @@ The BBS examples were generated using the library at
 - Update registry template for algorithms to account for integer CBOR
   labels
 - Restylize initial registry entries for readability
-- Defer BBS key definition to [@I-D.ietf-cose-bls-key-representations]
+- Defer BBS key definition to [@!I-D.ietf-cose-bls-key-representations]
 - Modify example generation to use `proof_key` and `presentation_key`
   names
 - Change `proof_jwk` to `proof_key` and `presentation_jwk` to

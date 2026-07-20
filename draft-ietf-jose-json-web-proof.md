@@ -122,7 +122,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 capitals, as shown here.
 
 The roles of "issuer", "holder", and "verifier" are used as defined by
-the VC Data Model [@VC-DATA-MODEL-2.0].  The term "presentation" is also
+the VC Data Model [@!VC-DATA-MODEL-2.0].  The term "presentation" is also
 used as defined by this source, but the term "credential" is avoided in
 this specification to minimize confusion with other definitions.
 
@@ -170,7 +170,7 @@ any algorithm-specific capabilities.
 
 To fully support the newer privacy primitives, JWP utilizes the three
 roles of issuer, holder, and verifier, as defined by the VC Data Model
-[@VC-DATA-MODEL-2.0].  There are also two forms of a JWP: the issued
+[@!VC-DATA-MODEL-2.0].  There are also two forms of a JWP: the issued
 form created by an issuer for a holder, and the presented form created
 by a holder for a verifier.
 
@@ -237,7 +237,7 @@ processing MUST reject messages if two Headers with the same parameter
 label are encountered. JSON processing SHOULD reject messages received
 with the same parameter label, but MAY instead represent only the
 lexically last member with that label, as specified in Section 15.12
-("The JSON Object") of ECMAScript 5.1 [@ECMAScript]. JSON processing
+("The JSON Object") of ECMAScript 5.1 [@!ECMAScript]. JSON processing
 MUST take one of these two approaches with regards to encountering
 duplicate Header Parameter labels.
 
@@ -273,7 +273,7 @@ IANA or another party, but are expected to only be used for testing or
 in closed environments.
 
 These classes of Header Parameters are intentionally parallel to those
-in Section 4 of [@RFC7515].
+in [@RFC7515, section 4].
 
 ## Registered Header Parameter Labels {#RegisteredHeaderParameterLabels}
 
@@ -341,14 +341,17 @@ parameter is ignored by JWP implementations; any processing of this
 parameter is performed by the JWP application.  Use of this Header
 Parameter is OPTIONAL.
 
-For COSE-formatted Headers, `typ` MAY also instead be an integer value
-which corresponds to the IANA "CoAP Content-Formats" registry
-[@IANA.CoAP.Formats], which describes the corresponding media type, as
-described in [@!RFC9596].
+When `typ` is used for a JSON-formatted Header, its value is a string
+containing a media type.
 
-Per [@RFC2045], all media type values, subtype values, and parameter
-names are case insensitive.  However, parameter values are case
-sensitive unless otherwise specified for the specific parameter.
+When `typ` is used for a CBOR-formatted Header, its value MAY also be
+an integer from the IANA "CoAP Content-Formats" registry
+[@IANA.CoAP.Formats].  The integer value identifies the corresponding
+media type, as described in [@!RFC9596, section 2].
+
+Per [@!RFC2045, section 5.1], all media type values, subtype values,
+and parameter names are case insensitive.  However, parameter values are
+case sensitive unless otherwise specified for the specific parameter.
 
 To keep messages compact in common situations, it is RECOMMENDED that
 producers omit an "application/" prefix of a media type value in a `typ`
@@ -366,8 +369,7 @@ can also be used by applications, including those using the `+jwp` media
 type structured syntax suffix.
 
 It is RECOMMENDED that the `typ` Header Parameter be used for explicit
-typing, in parallel to the recommendations in Section 3.11 of
-[@RFC8725].
+typing, in parallel to the recommendations in [@RFC8725, section 3.11].
 
 ### "crit" (Critical) Header Parameter {#critDef}
 
@@ -400,8 +402,8 @@ The `iek` (Issuer Ephemeral Key) represents the public key used by the
 issuer for indirect signatures within certain algorithms. This is an
 ephemeral key that MUST be unique for each issued JWP.
 
-This Header Parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON-formatted Header, and a COSE Key Object
+This Header Parameter references a JSON Web Key (JWK) public key value
+when represented as a JSON-formatted Header, and a COSE Key Object
 when represented as a CBOR-formatted Header.
 
 It MUST contain only public key parameters and SHOULD contain only the
@@ -414,16 +416,16 @@ implementations.
 
 ### "hpk" (Holder Presentation Key) Header Parameter {#holder_presentation_keyDef}
 
-The `hpk` (Holder Presentation Key) represents the public key with
+The `hpk` (Holder Presentation Key) represents the public key used with
 certain algorithms, and is used by the holder for proof of possession
-and integrity protection of the Presented Header.
+and integrity protection of the Presentation Header.
 
 The issuer MUST validate that the holder has possession of this key
 through a trusted mechanism, such as requiring the signature of a unique
 nonce value from the holder before issuing the JWP.
 
-This Header Parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON-formatted Header, and a COSE Key Object
+This Header Parameter references a JSON Web Key (JWK) public key value
+when represented as a JSON-formatted Header, and a COSE Key Object
 when represented as a CBOR-formatted Header.
 
 It MUST contain only public key parameters and SHOULD contain only the
@@ -463,7 +465,7 @@ specific.
 
 The `iss` value is a case-sensitive string containing a StringOrURI
 value.  Its definition is intentionally parallel to the `iss` claim
-defined in [@!RFC7519].
+defined in [@!RFC7519, section 4.1.1].
 
 Use of this Header Parameter is OPTIONAL.
 
@@ -484,7 +486,7 @@ string containing a StringOrURI value.
 The interpretation of audience values is application specific.
 
 Its definition is intentionally parallel to the `aud` claim defined in
-[@!RFC7519].
+[@!RFC7519, section 4.1.3].
 
 Use of this Header Parameter is OPTIONAL.
 
@@ -509,7 +511,7 @@ Use of this Header Parameter is OPTIONAL.
 ## Public Header Parameter Names {#PublicHeaderParameterName}
 
 Additional Header Parameter names can be defined by those using JWPs.
-However, in order to prevent collisions, any new Header Parameter name
+However, to prevent collisions, any new Header Parameter name
 should either be registered in the IANA "JSON Web Proof Header
 Parameters" registry established by (#HdrReg) or be a Public Name (a
 value that contains a Collision-Resistant Name).  In each case, the
@@ -614,7 +616,7 @@ proof value will always be updated to add integrity protection of the
 Presentation Header along with the necessary cryptographic statements to
 verify the presented JWP.
 
-When supported by the underling JPA, a single issued JWP can be used to
+When supported by the underlying JPA, a single issued JWP can be used to
 safely generate multiple presented JWPs without becoming correlatable.
 
 A JWP may also be single use, where an issued JWP can only be used once
@@ -626,16 +628,17 @@ issued JWPs can be retrieved easily.
 ### Presentation Header {#presentation-header}
 
 The presented form of a JWP MUST contain a Presentation Header.  It is
-added by the holder and MUST be integrity protected by the underling
+added by the holder and MUST be integrity protected by the underlying
 JPA.
 
 This Header is used to ensure that a presented JWP cannot be replayed
 and is cryptographically bound to the verifier it was presented to.
 
 While there are not any required Header Parameters in the Presentation
-Header, it MUST contain one or Header Parameters that uniquely identify
-the presented JWP to both the holder and verifier.  For example, Header
-Parameters that would satisfy this requirement include `nonce` and `aud`.
+Header, it MUST contain one or more Header Parameters that uniquely
+identify the presented JWP to both the holder and verifier.  For
+example, Header Parameters that would satisfy this requirement include
+`nonce` and `aud`.
 
 ### Presentation Payloads
 
@@ -684,8 +687,8 @@ The proof of a presented JWP will always be different than the issued
 proof.  At a minimum, it MUST be updated to include protection of the
 added Presentation Header.
 
-Algorithms SHOULD generate an un-correlatable presentation proof in
-order to support multiple presentations from a single issued JWP.
+Algorithms SHOULD generate presentation proofs that preserve
+unlinkability across multiple presentations from a single issued JWP.
 
 The algorithm is responsible for representing selective disclosure of
 payloads in a presented proof. If multiple octet strings are
@@ -702,12 +705,12 @@ composed of multiple octet strings).
 
 The JWP Compact Serialization provides a JSON-based, space-efficient
 encoding of a JWP in URL-safe characters.  Its design closely parallels
-the JWS Compact Serialization [@RFC7515].  No representation parallel to
-the JWS JSON serialization is defined.
+the JWS Compact Serialization in [@RFC7515, section 7.1].  No
+representation parallel to the JWS JSON serialization is defined.
 
- JWP CBOR Serialization provides a compact CBOR-based encoding suitable
+The JWP CBOR Serialization provides a compact CBOR-based encoding suitable
 for constrained environments.  Its design closely parallels COSE_Sign1
-[@RFC9338].
+in [@RFC9052, section 4.2].
 
 ## Compact Serialization {#CompactSerialization}
 
@@ -764,9 +767,9 @@ The CBOR serialization provides a compact binary representation of a
 JWP.  The serialization consists of two arrays, representing issued and
 presented forms.
 
-The Headers MUST be CBOR formatted for CBOR serialization.
-This includes both the issued and Presented Headers in the presented
-form.
+Implementations using CBOR Serialization MUST encode Headers in CBOR.
+This includes both the Issuer Header and Presentation Header in the
+presented form.
 
 The issued form consists of a three-element array, while the presented
 form consists of a four-element array.
@@ -813,7 +816,7 @@ Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
 
 ```
 
-Figure 1: CDDL [RFC8610] for CBOR Serializations.
+Figure 1: CDDL [@!RFC8610] for CBOR Serializations.
 
 # Encrypted JSON Web Proofs
 
@@ -827,8 +830,8 @@ Encrypted JWPs is identical to the processing of other JWEs.
 For a JWP with JSON-formatted Headers, an Encrypted JWP is a JWE
 [@!RFC7516] with a JWP in Compact Serialization as its plaintext value.
 For a JWP with CBOR-formatted Headers, an Encrypted JWP should use
-`COSE_Encrypt0` or `COSE_Encrypt` [@!RFC9052] with the CBOR
-Serialization as its plaintext.
+`COSE_Encrypt0` [@!RFC9052, section 5.2] or `COSE_Encrypt`
+[@!RFC9052, section 5.1] with the CBOR Serialization as its plaintext.
 
 The `cty` (content type) JWE/COSE Header Parameter is used to indicate
 that the content of the JWE is a JWP.  The `cty` value of the JWE/COSE
@@ -850,7 +853,7 @@ or convention, in which case the `cty` value MAY be omitted.
 
 In some contexts, it is useful to make statements about payloads which
 are not themselves contained within the JWP, similar to "Detached
-Content" in JWS [@RFC7515].
+Content" in JWS [@RFC7515, section F].
 
 For this purpose, the compact, JSON and CBOR serializations allow for
 all payload slots to be omitted from a serialized form. While this is a
@@ -879,7 +882,7 @@ Notes to be expanded:
 The following registration procedure is used for all the registries
 established by this specification.
 
-Values are registered on a Specification Required [@RFC5226] basis after
+Values are registered on a Specification Required [@!RFC8126] basis after
 a three-week review period on the jose-reg-review@ietf.org mailing list,
 on the advice of one or more Designated Experts.  However, to allow for
 the allocation of values prior to publication, the Designated Experts
@@ -898,7 +901,7 @@ Registration requests that are undetermined for a period longer than 21
 days can be brought to the IESG's attention (using the iesg@ietf.org
 mailing list) for resolution.
 
-Criteria that should be applied by the Designated Experts includes
+Criteria that should be applied by the Designated Experts include
 determining whether the proposed registration duplicates existing
 functionality, whether it is likely to be of general applicability or
 useful only for a single application, and whether the registration
@@ -909,7 +912,7 @@ should direct all requests for registration to the review mailing list.
 
 It is suggested that multiple Designated Experts be appointed who are
 able to represent the perspectives of different applications using this
-specification, in order to enable broadly informed review of
+specification, to enable broadly informed review of
 registration decisions.  In cases where a registration decision could be
 perceived as creating a conflict of interest for a particular Expert,
 that Expert should defer to the judgment of the other Experts.
@@ -935,9 +938,9 @@ Header Parameter Name:
 Header Parameter JSON Label:
 : The string label requested within a JSON context. (e.g., `kid`).
   Because a core goal of this specification is for the resulting
-  representations to be compact, it is RECOMMENDED that the label be
+  representations to be compact, it is recommended that the label be
   short -- not to exceed 8 characters without a compelling reason to do
-  so. This label is case sensitive, and it is RECOMMENDED to avoid
+  so. This label is case sensitive, and it is recommended to avoid
   upper-case characters. Labels may not match another registered names
   in a case-insensitive manner unless the Designated Experts state that
   there is a compelling reason to allow an exception. This registry
@@ -1070,8 +1073,8 @@ This section registers the Header Parameters defined in
 
 This section registers the `application/jwp` media type [@RFC2046] in
 the IANA "Media Types" registry [@IANA.MediaTypes] in the manner
-described in [@RFC6838], which can be used to indicate that the content
-is a JWP using the JWP Compact Serialization.
+described in [@RFC6838, section 5.6], which can be used to indicate
+that the content is a JWP using the JWP Compact Serialization.
 
 #### The application/jwp Media Type
 
@@ -1131,8 +1134,8 @@ is a JWP using the JWP Compact Serialization.
 ### Registry Contents {#SuffixContents}
 
 This section registers the following entries in the IANA "Structured
-Syntax Suffix" registry [IANA.StructuredSuffix] in the manner described
-in [@RFC6838].
+Syntax Suffix" registry [@IANA.StructuredSuffix] in the manner described
+in [@RFC6838, section 6.2].
 
 #### The +jwp Structured Syntax Suffix
 
@@ -1180,6 +1183,15 @@ for their valuable contributions to this specification.
 # Document History
 
 [[ To be removed from the final specification ]]
+
+-14
+
+- Applied editorial corrections.
+- Normalized references and section citations.
+- Corrected the `COSE_Sign1` reference.
+- Clarified JSON-formatted and CBOR-formatted `typ` Header Parameter
+  values.
+- Clarified CBOR Serialization requirements for Header encoding.
 
 -13
 

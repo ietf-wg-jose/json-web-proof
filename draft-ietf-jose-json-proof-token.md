@@ -112,20 +112,20 @@ a subtle vector for relying parties to collude and correlate one or more
 subjects across their usage.
 
 The principal tools to prevent this are data minimization and
-uniformity.  The data included SHOULD be minimized to remove potential
-correlation points.  The data SHOULD contain only values that are able
-to be selectively disclosed with consent or transformed by the proof
-algorithm when presented.
+uniformity.  Issuers and applications SHOULD minimize included data to
+remove potential correlation points.  Issuers SHOULD include only values
+that are able to be selectively disclosed with consent or transformed by
+the proof algorithm when presented.
 
 Any other data that is repeated across multiple JPTs or CPTs is
 externalized so that it is uniform across every issuance.  This includes
-preventing the usage of optional Headers, dynamic mapping of claims to
-payloads, changes to how many payloads are included, and the ordering of
-the payloads.
+preventing use of optional Header Parameters, dynamic mapping of claims
+to payloads, changes to how many payloads are included, and the ordering
+of the payloads.
 
 ## Selective Disclosure
 
-While JWPs provide the underling structure for easily supporting
+While JWPs provide the underlying structure for easily supporting
 selective disclosure, JPTs and CPTs must go a step further to ensure
 that holders can effectively provide choice and consent on exactly what
 is being disclosed.  Software using JWPs or CPTs MUST know the mappings
@@ -137,14 +137,14 @@ NOT contain claims that are intended only for a specific verifier.
 
 ## Familiarity
 
-JPTs are intended to be as close to a JWT as possible in order to
+JPTs are intended to be as close to a JWT as possible to
 provide the simplest transition for any JWT-based system to add support
 for JPTs.  The same is true for CPTs and CWTs.
 
 Although there are some stark differences in the lifecycle of a JPT,
 from the application's perspective, the interface to a JPT can be made
 fairly similar: a JSON object containing a mix of required and optional
-claims with well-understood values.  Likewise, A CPT is a CBOR object
+claims with well-understood values.  Likewise, a CPT is a CBOR object
 containing a mix of required and optional claims with well-understood
 values.
 
@@ -219,7 +219,7 @@ The structure of the `cid` value is unspecified.  For JPTs, its value
 MUST be a case-sensitive string.  For CPTs, its value MUST be a binary
 string.  Use of this Header Parameter is OPTIONAL.
 
-The `cid` can be used similarly to a `kid` in order to ensure that it is
+The `cid` can be used similarly to a `kid` to ensure that it is
 possible to externally resolve and then verify that the correct list of
 claim names is being used when processing the payloads containing the
 claim values.
@@ -231,7 +231,7 @@ containing the signing key information, the `claims` key is also
 registered there as a convenient location for the claim names.
 
 When the claims array is transferred as a property in the Issuer Header,
-any variations of that array between JWP will be visible to the
+any variations of that array between JWPs will be visible to the
 verifier, and can leak information about the subject or provide an
 additional vector for linkability.  Given the privacy design
 considerations around linkability, it is RECOMMENDED that the claims are
@@ -260,7 +260,7 @@ represented as a CBOR value.
 ## Undisclosed
 
 The placeholder indicating that a payload was not disclosed is
-represented as described in [@!I-D.ietf-jose-json-web-proof, Section 6]
+represented as described in [@!I-D.ietf-jose-json-web-proof, section 6]
 (Serializations).
 
 # Example JPT and CPT
@@ -302,7 +302,8 @@ This section registers the following Header Parameter in the IANA
 ## JSON Web Key Parameters Registry {#JWKParamReg}
 
 This section registers the following JWK parameter in the IANA "JSON Web
-Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
+Key Parameters" registry [@IANA.JOSE] established by
+[@!RFC7517, section 8.1].
 
 ### Registry Contents {#JWKParamContents}
 
@@ -317,7 +318,7 @@ Key Parameters" registry [@IANA.JOSE] established by [@RFC7517].
 
 This section registers the following COSE_Key parameter in the IANA
 "COSE Key Common Parameters" registry [@IANA.COSE] established by
-[@RFC8152].
+[@!RFC9052, section 11.2].
 
 ### Registry Contents {#COSEKeyParamContents}
 
@@ -332,7 +333,7 @@ This section registers the following COSE_Key parameter in the IANA
 
 This section registers the following media type [@RFC2046] in the IANA
 "Media Types" registry [@IANA.MediaTypes] in the manner
-described in [@RFC6838].
+described in [@RFC6838, section 5.6].
 
 ### application/jpt {#jpt_media_type}
 
@@ -391,8 +392,8 @@ The media type for a CBOR Proof Token (CPT) is `application/cpt`.
 ## Structured Syntax Suffix Registry
 
 This section registers the following entries in the IANA "Structured
-Syntax Suffix" registry [IANA.StructuredSuffix] in the manner described
-in [@RFC6838].
+Syntax Suffix" registry [@IANA.StructuredSuffix] in the manner described
+in [@RFC6838, section 6.2].
 
 ### +jpt
 
@@ -450,6 +451,13 @@ for his valuable contributions to this specification.
 # Document History
 
 [[ To be removed from the final specification ]]
+
+-14
+
+- Applied editorial corrections.
+- Normalized references and section citations.
+- Clarified unlinkability guidance for data minimization and optional
+  Header Parameters.
 
 -13
 
