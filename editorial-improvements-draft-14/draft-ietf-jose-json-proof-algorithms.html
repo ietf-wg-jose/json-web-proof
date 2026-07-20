@@ -33,7 +33,7 @@ these identifiers.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.10.1
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1060,7 +1060,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 8 January 2027</td>
+<td class="center">Expires 21 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1073,12 +1073,12 @@ svg {
 <dd class="internet-draft">draft-ietf-jose-json-proof-algorithms-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-07" class="published">7 July 2026</time>
+<time datetime="2026-07-20" class="published">20 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-08">8 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-21">21 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1590,7 +1590,7 @@ string containing a StringOrURI value.  The value MUST be a name
 registered in the IANA "JSON Web Proof Algorithms" registry established
 by this specification, or be a collision-resistant name for a JSON Web
 Proof Algorithm.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3">As a CWK paramter, this value may also be an integer value.
+<p id="section-6.1-3">As a CWK parameter, this value may also be an integer value.
 The integer CBOR Label from the "JSON Web Proof Algorithms" registry
 SHOULD be used when one is available.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 <p id="section-6.1-4">When <code>proof_alg</code> is present, the <code>alg</code> key parameter SHOULD NOT be used.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
@@ -1636,9 +1636,8 @@ ephemeral asymmetric key meant to only be used for presenting a single
 JWP.  The fully-specified algorithm the holder must use for
 presentations is also included.  This algorithm MAY be different from
 the algorithm used by the issuer.<a href="#section-7.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-7.1.1-3">The chosen algorithms MUST be asymmetric signing algorithms, so that
-each signature can be verified without sharing any private values
-between the parties.<a href="#section-7.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1.1-3">Issuers and holders MUST choose asymmetric signing algorithms, so each
+signature can be verified without sharing secrets between the parties.<a href="#section-7.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="holder-setup">
@@ -1660,7 +1659,7 @@ unique.<a href="#section-7.1.2-2" class="pilcrow">¶</a></p>
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the <code>hpa</code> Issuer Header.<a href="#section-7.1.2-3" class="pilcrow">¶</a></p>
+in the <code>hpa</code> Issuer Header Parameter.<a href="#section-7.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-setup">
@@ -1739,9 +1738,9 @@ that are either provided by the verifier or by the holder.  These
 Presentation Header Parameters SHOULD NOT contain values that are common
 across multiple presentations and SHOULD be unique to a single
 presentation and verifier.<a href="#section-7.1.8-3" class="pilcrow">¶</a></p>
-<p id="section-7.1.8-4">The Presentation Header MUST contain the same <code>alg</code> Header Parameter as
-the Issuer Header.  The Holder
-Presentation Algorithm Header Parameter MUST NOT be included.<a href="#section-7.1.8-4" class="pilcrow">¶</a></p>
+<p id="section-7.1.8-4">The Presentation Header MUST contain the same <code>alg</code> Header Parameter
+value as the Issuer Header.  It MUST NOT contain the <code>hpa</code> Header
+Parameter.<a href="#section-7.1.8-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation">
@@ -1985,10 +1984,10 @@ for proof generation, but only these indicated payloads will be required
 to be disclosed for later proof verification.<a href="#section-7.3.5-3" class="pilcrow">¶</a></p>
 <p id="section-7.3.5-4">The output of this operation is the presentation proof, as a single
 octet string.<a href="#section-7.3.5-4" class="pilcrow">¶</a></p>
-<p id="section-7.3.5-5">Presentation serialization leverages the two Headers and
-presentation proof, along with the disclosed payloads.  Non-disclosed
-payloads are represented with the absent value of <code>null</code> in CBOR
-serialization and a zero-length string in compact serialization.<a href="#section-7.3.5-5" class="pilcrow">¶</a></p>
+<p id="section-7.3.5-5">Presentation serialization leverages the two Headers and presentation
+proof, along with the disclosed payloads.  Encoding of disclosed and
+omitted payload slots follows the JWP serialization rules defined in
+<span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span>.<a href="#section-7.3.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-verification">
@@ -2007,6 +2006,8 @@ holder's Presentation Header as <code>ph</code>, and the payloads as
 payloads provided.  Values disclosed in the presented payloads have a
 zero-based index in this array, while the indices of absent payloads are
 omitted.<a href="#section-7.3.6-3" class="pilcrow">¶</a></p>
+<p id="section-7.3.6-4">If <code>ProofVerify</code> returns false, the presented JWP is invalid and the
+verifier rejects it.<a href="#section-7.3.6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2057,7 +2058,7 @@ using the Holder Presentation Key Header Parameter.<a href="#section-7.4.1-3" cl
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the Holder Protected Algorithm Header Parameter.<a href="#section-7.4.1-4" class="pilcrow">¶</a></p>
+in the <code>hpa</code> Issuer Header Parameter.<a href="#section-7.4.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-setup-1">
@@ -2097,14 +2098,14 @@ string MUST be generated by an implementation.<a href="#section-7.4.3-2" class="
 its 8-byte, network-ordered representation.  For example, the length of
 a 1,234-byte payload would have a length representation of
 <code>0x00 00 00 00 00 00 04 D2</code>.<a href="#section-7.4.3-3" class="pilcrow">¶</a></p>
-<p id="section-7.4.3-4">The holder will a unique key per payload value using a MAC, with the
-Shared Secret as the key and a generated binary value.  This binary
+<p id="section-7.4.3-4">The holder will derive a unique key per payload value using a MAC, with
+the Shared Secret as the key and a generated binary value.  This binary
 value is constructed by appending data into a single octet string:<a href="#section-7.4.3-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-7.4.3-5">
 <li id="section-7.4.3-5.1">
               <code>0x82 67 70 61 79 6C 6F 61 64 1B</code><a href="#section-7.4.3-5.1" class="pilcrow">¶</a>
 </li>
-            <li id="section-7.4.3-5.2">The zero indexed count of the payload slot<a href="#section-7.4.3-5.2" class="pilcrow">¶</a>
+            <li id="section-7.4.3-5.2">The zero-indexed count of the payload slot<a href="#section-7.4.3-5.2" class="pilcrow">¶</a>
 </li>
           </ol>
 <p id="section-7.4.3-6">The holder will also compute a corresponding MAC of each payload.  This
@@ -2897,9 +2898,9 @@ the final assigned value and remove this note before publication.]<a href="#sect
       <h2 id="name-jwp-examples">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-jwp-examples" class="section-name selfRef">JWP Examples</a>
       </h2>
-<p id="appendix-A-1">The following examples use algorithms defined in JSON Proof Algorithms
-and also contain the keys used, so that implementations can validate
-these samples.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">This section provides several sample JWPs, using algorithms defined
+above. The private keys are also included so that implementations can
+validate these samples.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <div id="example-json-serialized-single-use-jwp">
 <section id="appendix-A.1">
         <h3 id="name-example-json-serialized-sin">
@@ -3198,7 +3199,9 @@ example above, including the same public and private keys.<a href="#appendix-A.2
 <blockquote id="appendix-A.2-4">
           <p id="appendix-A.2-4.1">Figure: Issuer Header (SU-ES256, CBOR)<a href="#appendix-A.2-4.1" class="pilcrow">¶</a></p>
 </blockquote>
-<div class="lang-edn sourcecode" id="appendix-A.2-5">
+<p id="appendix-A.2-5">The payload values below are the same logical claims as in the JSON JPT
+example above, represented in EDN for the CBOR-based form.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
+<div class="lang-edn sourcecode" id="appendix-A.2-6">
 <pre>[ / payloads    /
   / iat         / 171452160,
   / exp         / 171719999,
@@ -3216,14 +3219,14 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   / age_over_21 / true
 ]
 
-</pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-6" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-6">
-          <p id="appendix-A.2-6.1">Figure: Issuer Payloads (as CBOR array)<a href="#appendix-A.2-6.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-7">
+          <p id="appendix-A.2-7.1">Figure: Issuer Payloads (as CBOR array)<a href="#appendix-A.2-7.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-7">When signed and serialized, the CPT is represented by the following CBOR
-(in hex):<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
-<div class="lang-hex sourcecode" id="appendix-A.2-8">
+<p id="appendix-A.2-8">When signed and serialized, the CPT is represented by the following CBOR
+(in hex):<a href="#appendix-A.2-8" class="pilcrow">¶</a></p>
+<div class="lang-hex sourcecode" id="appendix-A.2-9">
 <pre>8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
 20f7365268c3ff5ff3453a6d438a7c7f124d094028b543adb0c89616ff819ef0
@@ -3252,29 +3255,29 @@ ecd39d0df8ef109947ca3eaecdd69140d0040035dee0e45840f30fe8507b3f1b
 40479608fe99bd4318e965275dc9ae9089571fa5935f3c1c6777560a7f494116
 5b491edb25fe800726cbd1f8b2a169b3543b7f69c86220b620
 
-</pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-9" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-9">
-          <p id="appendix-A.2-9.1">Figure: Issued Form (SU-ES256, CBOR)<a href="#appendix-A.2-9.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-10">
+          <p id="appendix-A.2-10.1">Figure: Issued Form (SU-ES256, CBOR)<a href="#appendix-A.2-10.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-10">The presented form, similarly to the issued form above, is made with the
+<p id="appendix-A.2-11">The presented form, similarly to the issued form above, is made with the
 holder conveying the same parameters and the same set of selectively
-disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">¶</a></p>
-<div class="lang-edn sourcecode" id="appendix-A.2-11">
+disclosed payloads as the JPT above:<a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
+<div class="lang-edn sourcecode" id="appendix-A.2-12">
 <pre>{          / holder header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
   7: h'29bcb1f4c961f975206ce75a9b5bd1f9d97858ad772ed9facbb9dfbc551028a3', / nonce /
 }
 
-</pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-12" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-12">
-          <p id="appendix-A.2-12.1">Figure: Presentation Header (SU-ES256, CBOR)<a href="#appendix-A.2-12.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-13">
+          <p id="appendix-A.2-13.1">Figure: Presentation Header (SU-ES256, CBOR)<a href="#appendix-A.2-13.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-13">When the appropriate proof is generated, the CPT is serialized into the
-following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
-<div class="lang-hex sourcecode" id="appendix-A.2-14">
+<p id="appendix-A.2-14">When the appropriate proof is generated, the CPT is serialized into the
+following CBOR (in hex):<a href="#appendix-A.2-14" class="pilcrow">¶</a></p>
+<div class="lang-hex sourcecode" id="appendix-A.2-15">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
 6c652e636f6d07582029bcb1f4c961f975206ce75a9b5bd1f9d97858ad772ed9
 facbb9dfbc551028a358cfa701010314057668747470733a2f2f697373756572
@@ -3298,10 +3301,10 @@ d73c968c9016a12a7866e24931a2fc84363973d306ee5840f30fe8507b3f1b40
 19a5ca741beece5b07b022e687f88212580850aa0d8f50b27f7655addca9125f
 d889387184eb45bdea5affc3348a3808acfa2c2be51aeacd2f8a
 
-</pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-15" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-15">
-          <p id="appendix-A.2-15.1">Figure: Presented Form (SU-ES256, CBOR)<a href="#appendix-A.2-15.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-16">
+          <p id="appendix-A.2-16.1">Figure: Presented Form (SU-ES256, CBOR)<a href="#appendix-A.2-16.1" class="pilcrow">¶</a></p>
 </blockquote>
 </section>
 </div>
@@ -3330,7 +3333,7 @@ d889387184eb45bdea5affc3348a3808acfa2c2be51aeacd2f8a
 <a href="#name-bbs-private-key-in-jwk-form" class="selfRef">BBS private key in JWK format</a>
           </figcaption></figure>
 <p id="appendix-A.3-4">There is no additional holder key necessary for presentation proofs.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-5">For the following protected header and array of payloads:<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-5">For the following Issuer Header and array of payloads:<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
 <span id="name-example-issuer-header"></span><figure id="figure-11">
           <div class="lang-json sourcecode" id="appendix-A.3-6.1">
 <pre>{
@@ -3696,6 +3699,8 @@ payloads and disclosures<a href="#appendix-C-3.3" class="pilcrow">¶</a>
         <li class="compact" id="appendix-C-3.5">Applied editorial corrections.<a href="#appendix-C-3.5" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-C-3.6">Normalized references and section citations.<a href="#appendix-C-3.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-3.7">Clarified BBS presentation serialization and example prose.<a href="#appendix-C-3.7" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-C-4">-13<a href="#appendix-C-4" class="pilcrow">¶</a></p>

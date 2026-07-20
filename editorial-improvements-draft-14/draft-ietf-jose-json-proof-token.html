@@ -40,7 +40,7 @@ Serialization.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.10.1
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1067,7 +1067,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 8 January 2027</td>
+<td class="center">Expires 21 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1080,12 +1080,12 @@ svg {
 <dd class="internet-draft">draft-ietf-jose-json-proof-token-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-07" class="published">7 July 2026</time>
+<time datetime="2026-07-20" class="published">20 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-08">8 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-21">21 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1136,7 +1136,7 @@ Serialization.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1375,15 +1375,15 @@ constraint for JPTs and CPTs.  Even the smallest oversight can introduce
 a subtle vector for relying parties to collude and correlate one or more
 subjects across their usage.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">The principal tools to prevent this are data minimization and
-uniformity.  The data included SHOULD be minimized to remove potential
-correlation points.  The data SHOULD contain only values that are able
-to be selectively disclosed with consent or transformed by the proof
-algorithm when presented.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+uniformity.  Issuers and applications SHOULD minimize included data to
+remove potential correlation points.  Issuers SHOULD include only values
+that are able to be selectively disclosed with consent or transformed by
+the proof algorithm when presented.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">Any other data that is repeated across multiple JPTs or CPTs is
 externalized so that it is uniform across every issuance.  This includes
-preventing the use of optional Headers, dynamic mapping of claims to
-payloads, changes to how many payloads are included, and the ordering of
-the payloads.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+preventing use of optional Header Parameters, dynamic mapping of claims
+to payloads, changes to how many payloads are included, and the ordering
+of the payloads.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="selective-disclosure">
@@ -2044,6 +2044,9 @@ for his valuable contributions to this specification.<a href="#appendix-A-2" cla
 <li class="compact" id="appendix-B-3.1">Applied editorial corrections.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-B-3.2">Normalized references and section citations.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.3">Clarified unlinkability guidance for data minimization and optional
+Header Parameters.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-13<a href="#appendix-B-4" class="pilcrow">¶</a></p>

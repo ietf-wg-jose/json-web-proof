@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 8 January 2027                                        J. Miller
+Expires: 21 January 2027                                       J. Miller
                                                            Ping Identity
-                                                             7 July 2026
+                                                            20 July 2026
 
 
                          JSON Proof Algorithms
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 January 2027.
+   This Internet-Draft will expire on 21 January 2027.
 
 Copyright Notice
 
@@ -291,7 +291,7 @@ Table of Contents
    established by this specification, or be a collision-resistant name
    for a JSON Web Proof Algorithm.
 
-   As a CWK paramter, this value may also be an integer value.  The
+   As a CWK parameter, this value may also be an integer value.  The
    integer CBOR Label from the "JSON Web Proof Algorithms" registry
    SHOULD be used when one is available.
 
@@ -331,9 +331,9 @@ Table of Contents
    presentations is also included.  This algorithm MAY be different from
    the algorithm used by the issuer.
 
-   The chosen algorithms MUST be asymmetric signing algorithms, so that
-   each signature can be verified without sharing any private values
-   between the parties.
+   Issuers and holders MUST choose asymmetric signing algorithms, so
+   each signature can be verified without sharing secrets between the
+   parties.
 
 7.1.2.  Holder Setup
 
@@ -353,7 +353,7 @@ Table of Contents
    algorithm corresponding to the holder presentation key.  If the
    holder and verifier cannot be assumed to know this algorithm is the
    appropriate choice for a given holder presentation key, this value
-   MUST be conveyed in the hpa Issuer Header.
+   MUST be conveyed in the hpa Issuer Header Parameter.
 
 7.1.3.  Issuer Setup
 
@@ -415,9 +415,9 @@ Table of Contents
    multiple presentations and SHOULD be unique to a single presentation
    and verifier.
 
-   The Presentation Header MUST contain the same alg Header Parameter as
-   the Issuer Header.  The Holder Presentation Algorithm Header
-   Parameter MUST NOT be included.
+   The Presentation Header MUST contain the same alg Header Parameter
+   value as the Issuer Header.  It MUST NOT contain the hpa Header
+   Parameter.
 
 7.1.9.  Presentation
 
@@ -609,9 +609,9 @@ Table of Contents
    octet string.
 
    Presentation serialization leverages the two Headers and presentation
-   proof, along with the disclosed payloads.  Non-disclosed payloads are
-   represented with the absent value of null in CBOR serialization and a
-   zero-length string in compact serialization.
+   proof, along with the disclosed payloads.  Encoding of disclosed and
+   omitted payload slots follows the JWP serialization rules defined in
+   [I-D.ietf-jose-json-web-proof].
 
 7.3.6.  Presentation Verification
 
@@ -627,6 +627,9 @@ Table of Contents
    the payloads provided.  Values disclosed in the presented payloads
    have a zero-based index in this array, while the indices of absent
    payloads are omitted.
+
+   If ProofVerify returns false, the presented JWP is invalid and the
+   verifier rejects it.
 
 7.4.  Message Authentication Code
 
@@ -676,7 +679,7 @@ Table of Contents
    algorithm corresponding to the holder presentation key.  If the
    holder and verifier cannot be assumed to know this algorithm is the
    appropriate choice for a given holder presentation key, this value
-   MUST be conveyed in the Holder Protected Algorithm Header Parameter.
+   MUST be conveyed in the hpa Issuer Header Parameter.
 
 7.4.2.  Issuer Setup
 
@@ -714,12 +717,13 @@ Table of Contents
    length of a 1,234-byte payload would have a length representation of
    0x00 00 00 00 00 00 04 D2.
 
-   The holder will a unique key per payload value using a MAC, with the
-   Shared Secret as the key and a generated binary value.  This binary
-   value is constructed by appending data into a single octet string:
+   The holder will derive a unique key per payload value using a MAC,
+   with the Shared Secret as the key and a generated binary value.  This
+   binary value is constructed by appending data into a single octet
+   string:
 
    1.  0x82 67 70 61 79 6C 6F 61 64 1B
-   2.  The zero indexed count of the payload slot
+   2.  The zero-indexed count of the payload slot
 
    The holder will also compute a corresponding MAC of each payload.
    This MAC uses the unique key above and the payload octet string as
@@ -1250,8 +1254,8 @@ Table of Contents
 
 Appendix A.  JWP Examples
 
-   The following examples use algorithms defined in JSON Proof
-   Algorithms and also contain the keys used, so that implementations
+   This section provides several sample JWPs, using algorithms defined
+   above.  The private keys are also included so that implementations
    can validate these samples.
 
 A.1.  Example JSON-Serialized Single-Use JWP
@@ -1504,6 +1508,9 @@ A.2.  Example CBOR-Serialized Single-Use CPT
 
    |  Figure: Issuer Header (SU-ES256, CBOR)
 
+   The payload values below are the same logical claims as in the JSON
+   JPT example above, represented in EDN for the CBOR-based form.
+
    [ / payloads    /
      / iat         / 171452160,
      / exp         / 171719999,
@@ -1616,7 +1623,7 @@ A.3.  Example BBS JWP
 
    There is no additional holder key necessary for presentation proofs.
 
-   For the following protected header and array of payloads:
+   For the following Issuer Header and array of payloads:
 
    {
      "alg": "BBS",
@@ -1905,6 +1912,7 @@ Appendix C.  Document History
    *  Clarified alg Header Parameter terminology.
    *  Applied editorial corrections.
    *  Normalized references and section citations.
+   *  Clarified BBS presentation serialization and example prose.
 
    -13
 

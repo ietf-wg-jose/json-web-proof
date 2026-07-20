@@ -44,7 +44,7 @@ computation, and adds a Presentation Header to prevent replay.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.10.1
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1071,7 +1071,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 8 January 2027</td>
+<td class="center">Expires 21 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1084,12 +1084,12 @@ svg {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-07" class="published">7 July 2026</time>
+<time datetime="2026-07-20" class="published">20 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-08">8 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-21">21 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1146,7 +1146,7 @@ computation, and adds a Presentation Header to prevent replay.<a href="#section-
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1729,14 +1729,16 @@ be used by applications when the kind of object is already known.  This
 parameter is ignored by JWP implementations; any processing of this
 parameter is performed by the JWP application.  Use of this Header
 Parameter is OPTIONAL.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">For COSE-formatted Headers, <code>typ</code> MAY instead be an integer value that
-corresponds to the IANA "CoAP Content-Formats" registry
-<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>, which describes the corresponding media type, as
-described in <span><a href="https://rfc-editor.org/rfc/rfc9596#section-2" class="relref">Section 2</a> of [<a href="#RFC9596" class="cite xref">RFC9596</a>]</span>.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-3">Per <span><a href="https://rfc-editor.org/rfc/rfc2045#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values, subtype values,
+<p id="section-5.2.3-2">When <code>typ</code> is used for a JSON-formatted Header, its value is a string
+containing a media type.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-3">When <code>typ</code> is used for a CBOR-formatted Header, its value MAY also be
+an integer from the IANA "CoAP Content-Formats" registry
+<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>.  The integer value identifies the corresponding
+media type, as described in <span><a href="https://rfc-editor.org/rfc/rfc9596#section-2" class="relref">Section 2</a> of [<a href="#RFC9596" class="cite xref">RFC9596</a>]</span>.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-4">Per <span><a href="https://rfc-editor.org/rfc/rfc2045#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values, subtype values,
 and parameter names are case insensitive.  However, parameter values are
-case sensitive unless otherwise specified for the specific parameter.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-4">To keep messages compact in common situations, it is RECOMMENDED that
+case sensitive unless otherwise specified for the specific parameter.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-5">To keep messages compact in common situations, it is RECOMMENDED that
 producers omit an "application/" prefix of a media type value in a <code>typ</code>
 Header Parameter when no other '/' appears in the media type value.  A
 recipient using the media type value MUST treat it as if "application/"
@@ -1744,13 +1746,13 @@ were prepended to any <code>typ</code> value not containing a '/'.  For instance
 <code>typ</code> value of <code>example</code> SHOULD be used to represent the
 <code>application/example</code> media type, whereas the media type
 <code>application/example;part="1/2"</code> cannot be shortened to
-<code>example;part="1/2"</code>.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-5">The <code>typ</code> value <code>jwp</code> can be used by applications to indicate that this
+<code>example;part="1/2"</code>.<a href="#section-5.2.3-5" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-6">The <code>typ</code> value <code>jwp</code> can be used by applications to indicate that this
 object is a JWP using the JWP Compact Serialization.  Other type values
 can also be used by applications, including those using the <code>+jwp</code> media
-type structured syntax suffix.<a href="#section-5.2.3-5" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-6">It is RECOMMENDED that the <code>typ</code> Header Parameter be used for explicit
-typing, in parallel to the recommendations in <span><a href="https://rfc-editor.org/rfc/rfc8725#section-3.11" class="relref">Section 3.11</a> of [<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-5.2.3-6" class="pilcrow">¶</a></p>
+type structured syntax suffix.<a href="#section-5.2.3-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-7">It is RECOMMENDED that the <code>typ</code> Header Parameter be used for explicit
+typing, in parallel to the recommendations in <span><a href="https://rfc-editor.org/rfc/rfc8725#section-3.11" class="relref">Section 3.11</a> of [<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-5.2.3-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="critDef">
@@ -1805,7 +1807,7 @@ implementations.<a href="#section-5.2.5-4" class="pilcrow">¶</a></p>
           <h4 id="name-hpk-holder-presentation-key">
 <a href="#section-5.2.6" class="section-number selfRef">5.2.6. </a><a href="#name-hpk-holder-presentation-key" class="section-name selfRef">"hpk" (Holder Presentation Key) Header Parameter</a>
           </h4>
-<p id="section-5.2.6-1">The <code>hpk</code> (Holder Presentation Key) represents the public key with
+<p id="section-5.2.6-1">The <code>hpk</code> (Holder Presentation Key) represents the public key used with
 certain algorithms, and is used by the holder for proof of possession
 and integrity protection of the Presentation Header.<a href="#section-5.2.6-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.6-2">The issuer MUST validate that the holder has possession of this key
@@ -2051,9 +2053,10 @@ JPA.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.1-2">This Header is used to ensure that a presented JWP cannot be replayed
 and is cryptographically bound to the verifier it was presented to.<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.1-3">While there are not any required Header Parameters in the Presentation
-Header, it MUST contain one or Header Parameters that uniquely identify
-the presented JWP to both the holder and verifier.  For example, Header
-Parameters that would satisfy this requirement include <code>nonce</code> and <code>aud</code>.<a href="#section-6.2.1-3" class="pilcrow">¶</a></p>
+Header, it MUST contain one or more Header Parameters that uniquely
+identify the presented JWP to both the holder and verifier.  For
+example, Header Parameters that would satisfy this requirement include
+<code>nonce</code> and <code>aud</code>.<a href="#section-6.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-payloads">
@@ -2115,8 +2118,8 @@ internal structures.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.4-2">The proof of a presented JWP will always be different than the issued
 proof.  At a minimum, it MUST be updated to include protection of the
 added Presentation Header.<a href="#section-6.2.4-2" class="pilcrow">¶</a></p>
-<p id="section-6.2.4-3">Algorithms SHOULD generate an un-correlatable presentation proof in
-order to support multiple presentations from a single issued JWP.<a href="#section-6.2.4-3" class="pilcrow">¶</a></p>
+<p id="section-6.2.4-3">Algorithms SHOULD generate presentation proofs that preserve
+unlinkability across multiple presentations from a single issued JWP.<a href="#section-6.2.4-3" class="pilcrow">¶</a></p>
 <p id="section-6.2.4-4">The algorithm is responsible for representing selective disclosure of
 payloads in a presented proof. If multiple octet strings are
 insufficient for representing a proof as defined by an algorithm, the
@@ -2141,7 +2144,7 @@ composed of multiple octet strings).<a href="#section-7-1" class="pilcrow">¶</a
 encoding of a JWP in URL-safe characters.  Its design closely parallels
 the JWS Compact Serialization in <span><a href="https://rfc-editor.org/rfc/rfc7515#section-7.1" class="relref">Section 7.1</a> of [<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.  No
 representation parallel to the JWS JSON serialization is defined.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">JWP CBOR Serialization provides a compact CBOR-based encoding suitable
+<p id="section-7-3">The JWP CBOR Serialization provides a compact CBOR-based encoding suitable
 for constrained environments.  Its design closely parallels COSE_Sign1
 in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.2" class="relref">Section 4.2</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <div id="CompactSerialization">
@@ -2212,7 +2215,7 @@ allow interchangeability with Compact Serialization.<a href="#section-7.2-1" cla
 <p id="section-7.2-2">The CBOR serialization provides a compact binary representation of a
 JWP.  The serialization consists of two arrays, representing issued and
 presented forms.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
-<p id="section-7.2-3">The Headers MUST be CBOR formatted for CBOR serialization.
+<p id="section-7.2-3">Implementations using CBOR Serialization MUST encode Headers in CBOR.
 This includes both the Issuer Header and Presentation Header in the
 presented form.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
 <p id="section-7.2-4">The issued form consists of a three-element array, while the presented
@@ -2362,7 +2365,7 @@ applicable, suggestions as to how to make the request successful.
 Registration requests that are undetermined for a period longer than 21
 days can be brought to the IESG's attention (using the iesg@ietf.org
 mailing list) for resolution.<a href="#section-11-4" class="pilcrow">¶</a></p>
-<p id="section-11-5">Criteria that should be applied by the Designated Experts includes
+<p id="section-11-5">Criteria that should be applied by the Designated Experts include
 determining whether the proposed registration duplicates existing
 functionality, whether it is likely to be of general applicability or
 useful only for a single application, and whether the registration
@@ -2403,9 +2406,9 @@ values.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
 <dt id="section-11.1.1-1.3">Header Parameter JSON Label:</dt>
             <dd style="margin-left: 1.5em" id="section-11.1.1-1.4">The string label requested within a JSON context. (e.g., <code>kid</code>).
 Because a core goal of this specification is for the resulting
-representations to be compact, it is RECOMMENDED that the label be
+representations to be compact, it is recommended that the label be
 short -- not to exceed 8 characters without a compelling reason to do
-so. This label is case sensitive, and it is RECOMMENDED to avoid
+so. This label is case sensitive, and it is recommended to avoid
 upper-case characters. Labels may not match another registered names
 in a case-insensitive manner unless the Designated Experts state that
 there is a compelling reason to allow an exception. This registry
@@ -3009,6 +3012,11 @@ for their valuable contributions to this specification.<a href="#appendix-A-2" c
         <li class="compact" id="appendix-B-3.2">Normalized references and section citations.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-B-3.3">Corrected the <code>COSE_Sign1</code> reference.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.4">Clarified JSON-formatted and CBOR-formatted <code>typ</code> Header Parameter
+values.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.5">Clarified CBOR Serialization requirements for Header encoding.<a href="#appendix-B-3.5" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="appendix-B-4">-13<a href="#appendix-B-4" class="pilcrow">¶</a></p>
