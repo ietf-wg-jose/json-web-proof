@@ -5,9 +5,9 @@
 jose                                                            M. Jones
 Internet-Draft                                    Self-Issued Consulting
 Intended status: Standards Track                                D. Waite
-Expires: 7 January 2027                                        J. Miller
+Expires: 21 January 2027                                       J. Miller
                                                            Ping Identity
-                                                             6 July 2026
+                                                            20 July 2026
 
 
                  JSON Proof Token and CBOR Proof Token
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2027.
+   This Internet-Draft will expire on 21 January 2027.
 
 Copyright Notice
 
@@ -154,20 +154,20 @@ Table of Contents
    correlate one or more subjects across their usage.
 
    The principal tools to prevent this are data minimization and
-   uniformity.  The data included SHOULD be minimized to remove
-   potential correlation points.  The data SHOULD contain only values
-   that are able to be selectively disclosed with consent or transformed
-   by the proof algorithm when presented.
+   uniformity.  Issuers and applications SHOULD minimize included data
+   to remove potential correlation points.  Issuers SHOULD include only
+   values that are able to be selectively disclosed with consent or
+   transformed by the proof algorithm when presented.
 
    Any other data that is repeated across multiple JPTs or CPTs is
    externalized so that it is uniform across every issuance.  This
-   includes preventing the usage of optional Headers, dynamic mapping of
-   claims to payloads, changes to how many payloads are included, and
-   the ordering of the payloads.
+   includes preventing use of optional Header Parameters, dynamic
+   mapping of claims to payloads, changes to how many payloads are
+   included, and the ordering of the payloads.
 
 4.2.  Selective Disclosure
 
-   While JWPs provide the underling structure for easily supporting
+   While JWPs provide the underlying structure for easily supporting
    selective disclosure, JPTs and CPTs must go a step further to ensure
    that holders can effectively provide choice and consent on exactly
    what is being disclosed.  Software using JWPs or CPTs MUST know the
@@ -180,14 +180,14 @@ Table of Contents
 
 4.3.  Familiarity
 
-   JPTs are intended to be as close to a JWT as possible in order to
-   provide the simplest transition for any JWT-based system to add
-   support for JPTs.  The same is true for CPTs and CWTs.
+   JPTs are intended to be as close to a JWT as possible to provide the
+   simplest transition for any JWT-based system to add support for JPTs.
+   The same is true for CPTs and CWTs.
 
    Although there are some stark differences in the lifecycle of a JPT,
    from the application's perspective, the interface to a JPT can be
    made fairly similar: a JSON object containing a mix of required and
-   optional claims with well-understood values.  Likewise, A CPT is a
+   optional claims with well-understood values.  Likewise, a CPT is a
    CBOR object containing a mix of required and optional claims with
    well-understood values.
 
@@ -275,10 +275,10 @@ Table of Contents
    MUST be a case-sensitive string.  For CPTs, its value MUST be a
    binary string.  Use of this Header Parameter is OPTIONAL.
 
-   The cid can be used similarly to a kid in order to ensure that it is
-   possible to externally resolve and then verify that the correct list
-   of claim names is being used when processing the payloads containing
-   the claim values.
+   The cid can be used similarly to a kid to ensure that it is possible
+   to externally resolve and then verify that the correct list of claim
+   names is being used when processing the payloads containing the claim
+   values.
 
    If there is an associated JWK containing the signing key information,
    the claims key is also registered there as a convenient location for
@@ -287,7 +287,7 @@ Table of Contents
    registered there as a convenient location for the claim names.
 
    When the claims array is transferred as a property in the Issuer
-   Header, any variations of that array between JWP will be visible to
+   Header, any variations of that array between JWPs will be visible to
    the verifier, and can leak information about the subject or provide
    an additional vector for linkability.  Given the privacy design
    considerations around linkability, it is RECOMMENDED that the claims
@@ -320,7 +320,8 @@ Table of Contents
 8.2.  Undisclosed
 
    The placeholder indicating that a payload was not disclosed is
-   represented as described in Section 6 (Serializations).
+   represented as described in Section 6 of
+   [I-D.ietf-jose-json-web-proof] (Serializations).
 
 9.  Example JPT and CPT
 
@@ -362,7 +363,8 @@ Table of Contents
 11.2.  JSON Web Key Parameters Registry
 
    This section registers the following JWK parameter in the IANA "JSON
-   Web Key Parameters" registry [IANA.JOSE] established by [RFC7517].
+   Web Key Parameters" registry [IANA.JOSE] established by Section 8.1
+   of [RFC7517].
 
 11.2.1.  Registry Contents
 
@@ -377,7 +379,7 @@ Table of Contents
 
    This section registers the following COSE_Key parameter in the IANA
    "COSE Key Common Parameters" registry [IANA.COSE] established by
-   [RFC8152].
+   Section 11.2 of [RFC9052].
 
 11.3.1.  Registry Contents
 
@@ -392,7 +394,7 @@ Table of Contents
 
    This section registers the following media type [RFC2046] in the IANA
    "Media Types" registry [IANA.MediaTypes] in the manner described in
-   [RFC6838].
+   Section 5.6 of [RFC6838].
 
 11.4.1.  application/jpt
 
@@ -452,7 +454,7 @@ Table of Contents
 
    This section registers the following entries in the IANA "Structured
    Syntax Suffix" registry [IANA.StructuredSuffix] in the manner
-   described in [RFC6838].
+   described in Section 6.2 of [RFC6838].
 
 11.5.1.  +jpt
 
@@ -508,6 +510,10 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+   [RFC7517]  Jones, M., "JSON Web Key (JWK)", RFC 7517,
+              DOI 10.17487/RFC7517, May 2015,
+              <https://www.rfc-editor.org/info/rfc7517>.
+
    [RFC7519]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
               (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
               <https://www.rfc-editor.org/info/rfc7519>.
@@ -519,6 +525,11 @@ Table of Contents
    [RFC8392]  Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
               "CBOR Web Token (CWT)", RFC 8392, DOI 10.17487/RFC8392,
               May 2018, <https://www.rfc-editor.org/info/rfc8392>.
+
+   [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Structures and Process", STD 96, RFC 9052,
+              DOI 10.17487/RFC9052, August 2022,
+              <https://www.rfc-editor.org/info/rfc9052>.
 
 12.2.  Informative References
 
@@ -552,6 +563,11 @@ Table of Contents
               IANA, "Media Types",
               <https://www.iana.org/assignments/media-types>.
 
+   [IANA.StructuredSuffix]
+              IANA, "Structured Syntax Suffix",
+              <https://www.iana.org/assignments/media-type-structured-
+              suffix/>.
+
    [RFC2046]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
               Extensions (MIME) Part Two: Media Types", RFC 2046,
               DOI 10.17487/RFC2046, November 1996,
@@ -561,14 +577,6 @@ Table of Contents
               Specifications and Registration Procedures", BCP 13,
               RFC 6838, DOI 10.17487/RFC6838, January 2013,
               <https://www.rfc-editor.org/info/rfc6838>.
-
-   [RFC7517]  Jones, M., "JSON Web Key (JWK)", RFC 7517,
-              DOI 10.17487/RFC7517, May 2015,
-              <https://www.rfc-editor.org/info/rfc7517>.
-
-   [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              RFC 8152, DOI 10.17487/RFC8152, July 2017,
-              <https://www.rfc-editor.org/info/rfc8152>.
 
 Appendix A.  Acknowledgements
 
@@ -581,6 +589,13 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -14
+
+   *  Applied editorial corrections.
+   *  Normalized references and section citations.
+   *  Clarified unlinkability guidance for data minimization and
+      optional Header Parameters.
 
    -13
 

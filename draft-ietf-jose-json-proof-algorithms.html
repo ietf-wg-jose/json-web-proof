@@ -33,7 +33,7 @@ these identifiers.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.10.1
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1060,7 +1060,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 7 January 2027</td>
+<td class="center">Expires 21 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1073,12 +1073,12 @@ svg {
 <dd class="internet-draft">draft-ietf-jose-json-proof-algorithms-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-06" class="published">6 July 2026</time>
+<time datetime="2026-07-20" class="published">20 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-07">7 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-21">21 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1369,7 +1369,7 @@ these identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-example-jwps" class="internal xref">Example JWPs</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-jwp-examples" class="internal xref">JWP Examples</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
                 <p id="section-toc.1-1.11.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-example-json-serialized-sin" class="internal xref">Example JSON-Serialized Single-Use JWP</a></p>
@@ -1440,7 +1440,7 @@ this specification to minimize confusion with other definitions.<a href="#sectio
       </h2>
 <p id="section-3-1">The terms "JSON Web Signature (JWS)", "Base64url Encoding", "Header
 Parameter", "JOSE Header", "JWS Payload", "JWS Signature", and "JWS
-Protected Header" are defined by <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
+Protected Header" are defined by <span><a href="https://rfc-editor.org/rfc/rfc7515#section-2" class="relref">Section 2</a> of [<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The terms "JSON Web Proof (JWP)", "JWP Payload", "JWP Proof", and "JWP
  Header" are defined by <span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">These terms are defined by this specification:<a href="#section-3-3" class="pilcrow">¶</a></p>
@@ -1590,7 +1590,7 @@ string containing a StringOrURI value.  The value MUST be a name
 registered in the IANA "JSON Web Proof Algorithms" registry established
 by this specification, or be a collision-resistant name for a JSON Web
 Proof Algorithm.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3">As a CWK paramter, this value may also be an integer value.
+<p id="section-6.1-3">As a CWK parameter, this value may also be an integer value.
 The integer CBOR Label from the "JSON Web Proof Algorithms" registry
 SHOULD be used when one is available.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 <p id="section-6.1-4">When <code>proof_alg</code> is present, the <code>alg</code> key parameter SHOULD NOT be used.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
@@ -1636,9 +1636,8 @@ ephemeral asymmetric key meant to only be used for presenting a single
 JWP.  The fully-specified algorithm the holder must use for
 presentations is also included.  This algorithm MAY be different from
 the algorithm used by the issuer.<a href="#section-7.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-7.1.1-3">The chosen algorithms MUST be asymmetric signing algorithms, so that
-each signature can be verified without sharing any private values
-between the parties.<a href="#section-7.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1.1-3">Issuers and holders MUST choose asymmetric signing algorithms, so each
+signature can be verified without sharing secrets between the parties.<a href="#section-7.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="holder-setup">
@@ -1646,7 +1645,7 @@ between the parties.<a href="#section-7.1.1-3" class="pilcrow">¶</a></p>
           <h4 id="name-holder-setup">
 <a href="#section-7.1.2" class="section-number selfRef">7.1.2. </a><a href="#name-holder-setup" class="section-name selfRef">Holder Setup</a>
           </h4>
-<p id="section-7.1.2-1">In order to support the protection of a presentation by a holder to a
+<p id="section-7.1.2-1">To support the protection of a presentation by a holder to a
 verifier, the holder MUST use a Holder Presentation Key during the
 issuance and the presentation of every Single Use JWP.  This Holder
 Presentation Key MUST be generated and used for only one JWP if
@@ -1660,7 +1659,7 @@ unique.<a href="#section-7.1.2-2" class="pilcrow">¶</a></p>
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the <code>hpa</code> Issuer Header.<a href="#section-7.1.2-3" class="pilcrow">¶</a></p>
+in the <code>hpa</code> Issuer Header Parameter.<a href="#section-7.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-setup">
@@ -1739,9 +1738,9 @@ that are either provided by the verifier or by the holder.  These
 Presentation Header Parameters SHOULD NOT contain values that are common
 across multiple presentations and SHOULD be unique to a single
 presentation and verifier.<a href="#section-7.1.8-3" class="pilcrow">¶</a></p>
-<p id="section-7.1.8-4">The Presentation Header MUST contain the same Algorithm
-protected header as the Issuer Header.  The Holder
-Presentation Algorithm Header Parameter MUST NOT be included.<a href="#section-7.1.8-4" class="pilcrow">¶</a></p>
+<p id="section-7.1.8-4">The Presentation Header MUST contain the same <code>alg</code> Header Parameter
+value as the Issuer Header.  It MUST NOT contain the <code>hpa</code> Header
+Parameter.<a href="#section-7.1.8-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation">
@@ -1933,7 +1932,7 @@ together based on the proof.<a href="#section-7.3-2" class="pilcrow">¶</a></p>
 <p id="section-7.3.2-1">The key used for the <code>BBS</code> algorithm is an elliptic curve-based key
 pair, specifically against the G_2 subgroup of a pairing friendly curve.
 Additional details on key generation can be found in
-<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10#appendix-Section%203.4" class="relref">Section 3.4</a>.  The JWK and Cose Key
+<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10#section-3.4" class="relref">Section 3.4</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.  The JWK and COSE Key
 Object representations of the key are detailed in
 <span>[<a href="#I-D.ietf-cose-bls-key-representations" class="cite xref">I-D.ietf-cose-bls-key-representations</a>]</span>.<a href="#section-7.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-7.3.2-2">There is no additional holder presentation key necessary for
@@ -1961,8 +1960,8 @@ payloads to serialize the JWP.<a href="#section-7.3.3-2" class="pilcrow">¶</a><
 <a href="#section-7.3.4" class="section-number selfRef">7.3.4. </a><a href="#name-issuance-proof-verification" class="section-name selfRef">Issuance Proof Verification</a>
           </h4>
 <p id="section-7.3.4-1">Holder verification of the signature on issuance form is performed using
-the <code>Verify</code> operation from [@!I-D.irtf-cfrg-bbs-signatures, section
-3.5.2].<a href="#section-7.3.4-1" class="pilcrow">¶</a></p>
+the <code>Verify</code> operation from
+<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10#section-3.5.2" class="relref">Section 3.5.2</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-7.3.4-1" class="pilcrow">¶</a></p>
 <p id="section-7.3.4-2">This operation utilizes the issuer's public key as <code>PK</code>, the proof as
 <code>signature</code>, the Header octets as <code>header</code> and the array of
 payload octets as <code>messages</code>.<a href="#section-7.3.4-2" class="pilcrow">¶</a></p>
@@ -1985,10 +1984,10 @@ for proof generation, but only these indicated payloads will be required
 to be disclosed for later proof verification.<a href="#section-7.3.5-3" class="pilcrow">¶</a></p>
 <p id="section-7.3.5-4">The output of this operation is the presentation proof, as a single
 octet string.<a href="#section-7.3.5-4" class="pilcrow">¶</a></p>
-<p id="section-7.3.5-5">Presentation serialization leverages the two Headers and
-presentation proof, along with the disclosed payloads.  Non-disclosed
-payloads are represented with the absent value of <code>null</code> in CBOR
-serialization and a zero-length string in compact serialization.<a href="#section-7.3.5-5" class="pilcrow">¶</a></p>
+<p id="section-7.3.5-5">Presentation serialization leverages the two Headers and presentation
+proof, along with the disclosed payloads.  Encoding of disclosed and
+omitted payload slots follows the JWP serialization rules defined in
+<span>[<a href="#I-D.ietf-jose-json-web-proof" class="cite xref">I-D.ietf-jose-json-web-proof</a>]</span>.<a href="#section-7.3.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-verification">
@@ -1997,8 +1996,8 @@ serialization and a zero-length string in compact serialization.<a href="#sectio
 <a href="#section-7.3.6" class="section-number selfRef">7.3.6. </a><a href="#name-presentation-verification" class="section-name selfRef">Presentation Verification</a>
           </h4>
 <p id="section-7.3.6-1">Verification of a presentation is done by the verifier using the
-<code>ProofVerify</code> operation from [@!I-D.irtf-cfrg-bbs-signatures, Section
-3.5.4].<a href="#section-7.3.6-1" class="pilcrow">¶</a></p>
+<code>ProofVerify</code> operation from
+<span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10#section-3.5.4" class="relref">Section 3.5.4</a> of [<a href="#I-D.irtf-cfrg-bbs-signatures" class="cite xref">I-D.irtf-cfrg-bbs-signatures</a>]</span>.<a href="#section-7.3.6-1" class="pilcrow">¶</a></p>
 <p id="section-7.3.6-2">This operation utilizes the issuer's public key as <code>PK</code>, the Issuer
 Header as <code>header</code>, the issuance proof as <code>signature</code>, the
 holder's Presentation Header as <code>ph</code>, and the payloads as
@@ -2007,6 +2006,8 @@ holder's Presentation Header as <code>ph</code>, and the payloads as
 payloads provided.  Values disclosed in the presented payloads have a
 zero-based index in this array, while the indices of absent payloads are
 omitted.<a href="#section-7.3.6-3" class="pilcrow">¶</a></p>
+<p id="section-7.3.6-4">If <code>ProofVerify</code> returns false, the presented JWP is invalid and the
+verifier rejects it.<a href="#section-7.3.6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2025,7 +2026,7 @@ signature created from the Holder Presentation Key MAY use a different
 algorithm than the Issuer used to sign the issued form.<a href="#section-7.4-2" class="pilcrow">¶</a></p>
 <p id="section-7.4-3">Like the Single Use algorithm family, it also does not support
 unlinkability if the same JWP is presented multiple times and requires
-an individually issued JWP for each presentation in order to fully
+an individually issued JWP for each presentation to fully
 protect privacy.  When compared to the JWS approach, using a MAC
 requires less computation but can result in potentially larger
 presentation proof values.<a href="#section-7.4-3" class="pilcrow">¶</a></p>
@@ -2041,7 +2042,7 @@ authenticity of the issuer and holder.<a href="#section-7.4-4" class="pilcrow">�
           <h4 id="name-holder-setup-2">
 <a href="#section-7.4.1" class="section-number selfRef">7.4.1. </a><a href="#name-holder-setup-2" class="section-name selfRef">Holder Setup</a>
           </h4>
-<p id="section-7.4.1-1">In order to support the protection of a presentation by a holder to a
+<p id="section-7.4.1-1">To support the protection of a presentation by a holder to a
 verifier, the holder MUST use a Holder Presentation Key during the
 issuance and the presentation of every MAC JWP.  This Holder
 Presentation Key MUST be generated and used for only one JWP if
@@ -2057,7 +2058,7 @@ using the Holder Presentation Key Header Parameter.<a href="#section-7.4.1-3" cl
 corresponding to the holder presentation key.  If the holder and
 verifier cannot be assumed to know this algorithm is the appropriate
 choice for a given holder presentation key, this value MUST be conveyed
-in the Holder Protected Algorithm Header Parameter.<a href="#section-7.4.1-4" class="pilcrow">¶</a></p>
+in the <code>hpa</code> Issuer Header Parameter.<a href="#section-7.4.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-setup-1">
@@ -2097,14 +2098,14 @@ string MUST be generated by an implementation.<a href="#section-7.4.3-2" class="
 its 8-byte, network-ordered representation.  For example, the length of
 a 1,234-byte payload would have a length representation of
 <code>0x00 00 00 00 00 00 04 D2</code>.<a href="#section-7.4.3-3" class="pilcrow">¶</a></p>
-<p id="section-7.4.3-4">The holder will a unique key per payload value using a MAC, with the
-Shared Secret as the key and a generated binary value.  This binary
+<p id="section-7.4.3-4">The holder will derive a unique key per payload value using a MAC, with
+the Shared Secret as the key and a generated binary value.  This binary
 value is constructed by appending data into a single octet string:<a href="#section-7.4.3-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="compact type-1" id="section-7.4.3-5">
 <li id="section-7.4.3-5.1">
               <code>0x82 67 70 61 79 6C 6F 61 64 1B</code><a href="#section-7.4.3-5.1" class="pilcrow">¶</a>
 </li>
-            <li id="section-7.4.3-5.2">The zero indexed count of the payload slot<a href="#section-7.4.3-5.2" class="pilcrow">¶</a>
+            <li id="section-7.4.3-5.2">The zero-indexed count of the payload slot<a href="#section-7.4.3-5.2" class="pilcrow">¶</a>
 </li>
           </ol>
 <p id="section-7.4.3-6">The holder will also compute a corresponding MAC of each payload.  This
@@ -2315,7 +2316,7 @@ become more stable.<a href="#section-8-1.1" class="pilcrow">¶</a></p>
       </h2>
 <p id="section-9-1">The following registration procedure is used for all the registries
 established by this specification.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">Values are registered on a Specification Required <span>[<a href="#RFC5226" class="cite xref">RFC5226</a>]</span> basis after
+<p id="section-9-2">Values are registered on a Specification Required <span>[<a href="#RFC8126" class="cite xref">RFC8126</a>]</span> basis after
 a three-week review period on the <a href="mailto:jose-reg-review@ietf.org">jose-reg-review@ietf.org</a> mailing
 list, on the advice of one or more Designated Experts.  However, to
 allow for the allocation of values prior to publication, the Designated
@@ -2340,7 +2341,7 @@ description is clear.<a href="#section-9-5" class="pilcrow">¶</a></p>
 should direct all requests for registration to the review mailing list.<a href="#section-9-6" class="pilcrow">¶</a></p>
 <p id="section-9-7">It is suggested that multiple Designated Experts be appointed who are
 able to represent the perspectives of different applications using this
-specification, in order to enable broadly informed review of
+specification, to enable broadly informed review of
 registration decisions.  In cases where a registration decision could be
 perceived as creating a conflict of interest for a particular Expert,
 that Expert should defer to the judgment of the other Experts.<a href="#section-9-7" class="pilcrow">¶</a></p>
@@ -2351,7 +2352,7 @@ that Expert should defer to the judgment of the other Experts.<a href="#section-
         </h3>
 <p id="section-9.1-1">This specification establishes the IANA "JSON Web Proof Algorithms"
 registry, under the "JSON Object Signing and Encryption (JOSE)" registry
-group. The registry records values values of the JWP <code>alg</code> (algorithm)
+group. The registry records values of the JWP <code>alg</code> (algorithm)
 Header Parameter.  The registry records the algorithm name, the
 algorithm description, the algorithm usage locations, the implementation
 requirements, the change controller, and a reference to the
@@ -2740,7 +2741,8 @@ and <code>EdDSA using Curve25519</code> for the signatures<a href="#section-9.1.
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-json-web-key-parameters-reg" class="section-name selfRef">JSON Web Key Parameters Registry</a>
         </h3>
 <p id="section-9.2-1">This section registers the following JWK parameter in the IANA "JSON Web
-Key Parameters" registry <span>[<a href="#IANA.JOSE" class="cite xref">IANA.JOSE</a>]</span> established by <span>[<a href="#RFC7517" class="cite xref">RFC7517</a>]</span>.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
+Key Parameters" registry <span>[<a href="#IANA.JOSE" class="cite xref">IANA.JOSE</a>]</span> established by
+<span><a href="https://rfc-editor.org/rfc/rfc7517#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC7517" class="cite xref">RFC7517</a>]</span>.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
 <div id="JWKParamContents">
 <section id="section-9.2.1">
           <h4 id="name-registry-contents">
@@ -2771,7 +2773,7 @@ Key Parameters" registry <span>[<a href="#IANA.JOSE" class="cite xref">IANA.JOSE
         </h3>
 <p id="section-9.3-1">This section registers the following COSE_Key parameter in the IANA
 "COSE Key Common Parameters" registry <span>[<a href="#IANA.COSE" class="cite xref">IANA.COSE</a>]</span> established by
-<span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#section-9.3-1" class="pilcrow">¶</a></p>
+<span><a href="https://rfc-editor.org/rfc/rfc9052#section-11.2" class="relref">Section 11.2</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#section-9.3-1" class="pilcrow">¶</a></p>
 <div id="COSEKeyParamContents">
 <section id="section-9.3.1">
           <h4 id="name-registry-contents-2">
@@ -2809,6 +2811,10 @@ the final assigned value and remove this note before publication.]<a href="#sect
 <a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.ietf-cose-bls-key-representations">[I-D.ietf-cose-bls-key-representations]</dt>
+        <dd>
+<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Barreto-Lynn-Scott Elliptic Curve Key Representations for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-bls-key-representations-08</span>, <time datetime="2025-11-04" class="refDate">4 November 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-08">https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-08</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-jose-json-web-proof">[I-D.ietf-jose-json-web-proof]</dt>
         <dd>
 <span class="refAuthor">Waite, D.</span>, <span class="refAuthor">Jones, M. B.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Web Proof"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-web-proof-latest</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-proof</a>&gt;</span>. </dd>
@@ -2825,9 +2831,25 @@ the final assigned value and remove this note before publication.]<a href="#sect
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Signature (JWS)"</span>, <span class="seriesInfo">RFC 7515</span>, <span class="seriesInfo">DOI 10.17487/RFC7515</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7515">https://www.rfc-editor.org/info/rfc7515</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7517">[RFC7517]</dt>
+        <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Key (JWK)"</span>, <span class="seriesInfo">RFC 7517</span>, <span class="seriesInfo">DOI 10.17487/RFC7517</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7517">https://www.rfc-editor.org/info/rfc7517</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8126">[RFC8126]</dt>
+        <dd>
+<span class="refAuthor">Cotton, M.</span>, <span class="refAuthor">Leiba, B.</span>, and <span class="refAuthor">T. Narten</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">BCP 26</span>, <span class="seriesInfo">RFC 8126</span>, <span class="seriesInfo">DOI 10.17487/RFC8126</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8126">https://www.rfc-editor.org/info/rfc8126</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9052">[RFC9052]</dt>
+        <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9052">https://www.rfc-editor.org/info/rfc9052</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VC-DATA-MODEL-2.0">[VC-DATA-MODEL-2.0]</dt>
+      <dd>
+<span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Jr, T. T.</span>, <span class="refAuthor">Herman, I.</span>, <span class="refAuthor">Cohen, G.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Verifiable Credentials Data Model v2.0"</span>, <time datetime="2025-05-15" class="refDate">15 May 2025</time>, <span>&lt;<a href="https://www.w3.org/TR/vc-data-model-2.0">https://www.w3.org/TR/vc-data-model-2.0</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2843,10 +2865,6 @@ the final assigned value and remove this note before publication.]<a href="#sect
 <dt id="I-D.ietf-cbor-edn-literals">[I-D.ietf-cbor-edn-literals]</dt>
         <dd>
 <span class="refAuthor">Bormann, C.</span>, <span class="refTitle">"Concise Diagnostic Notation (CDN)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cbor-edn-literals-26</span>, <time datetime="2026-06-15" class="refDate">15 June 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cbor-edn-literals-26">https://datatracker.ietf.org/doc/html/draft-ietf-cbor-edn-literals-26</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ietf-cose-bls-key-representations">[I-D.ietf-cose-bls-key-representations]</dt>
-        <dd>
-<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Barreto-Lynn-Scott Elliptic Curve Key Representations for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-bls-key-representations-08</span>, <time datetime="2025-11-04" class="refDate">4 November 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-08">https://datatracker.ietf.org/doc/html/draft-ietf-cose-bls-key-representations-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-spice-oidc-cwt">[I-D.ietf-spice-oidc-cwt]</dt>
         <dd>
@@ -2864,37 +2882,25 @@ the final assigned value and remove this note before publication.]<a href="#sect
         <dd>
 <span class="refAuthor">Krawczyk, H.</span>, <span class="refAuthor">Bellare, M.</span>, and <span class="refAuthor">R. Canetti</span>, <span class="refTitle">"HMAC: Keyed-Hashing for Message Authentication"</span>, <span class="seriesInfo">RFC 2104</span>, <span class="seriesInfo">DOI 10.17487/RFC2104</span>, <time datetime="1997-02" class="refDate">February 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2104">https://www.rfc-editor.org/info/rfc2104</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC5226">[RFC5226]</dt>
-        <dd>
-<span class="refAuthor">Narten, T.</span> and <span class="refAuthor">H. Alvestrand</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">RFC 5226</span>, <span class="seriesInfo">DOI 10.17487/RFC5226</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5226">https://www.rfc-editor.org/info/rfc5226</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7517">[RFC7517]</dt>
-        <dd>
-<span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Key (JWK)"</span>, <span class="seriesInfo">RFC 7517</span>, <span class="seriesInfo">DOI 10.17487/RFC7517</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7517">https://www.rfc-editor.org/info/rfc7517</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC7518">[RFC7518]</dt>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Algorithms (JWA)"</span>, <span class="seriesInfo">RFC 7518</span>, <span class="seriesInfo">DOI 10.17487/RFC7518</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7518">https://www.rfc-editor.org/info/rfc7518</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC9052">[RFC9052]</dt>
-        <dd>
-<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9052">https://www.rfc-editor.org/info/rfc9052</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="VC-DATA-MODEL-2.0">[VC-DATA-MODEL-2.0]</dt>
+<dt id="RFC8392">[RFC8392]</dt>
       <dd>
-<span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Jr, T. T.</span>, <span class="refAuthor">Herman, I.</span>, <span class="refAuthor">Cohen, G.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Verifiable Credentials Data Model v2.0"</span>, <time datetime="2025-05-15" class="refDate">15 May 2025</time>, <span>&lt;<a href="https://www.w3.org/TR/vc-data-model-2.0">https://www.w3.org/TR/vc-data-model-2.0</a>&gt;</span>. </dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Wahlstroem, E.</span>, <span class="refAuthor">Erdtman, S.</span>, and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"CBOR Web Token (CWT)"</span>, <span class="seriesInfo">RFC 8392</span>, <span class="seriesInfo">DOI 10.17487/RFC8392</span>, <time datetime="2018-05" class="refDate">May 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8392">https://www.rfc-editor.org/info/rfc8392</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
 </section>
-<div id="example-jwps">
+<div id="jwp-examples">
 <section id="appendix-A">
-      <h2 id="name-example-jwps">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-example-jwps" class="section-name selfRef">Example JWPs</a>
+      <h2 id="name-jwp-examples">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-jwp-examples" class="section-name selfRef">JWP Examples</a>
       </h2>
-<p id="appendix-A-1">The following examples use algorithms defined in JSON Proof Algorithms
-and also contain the keys used, so that implementations can validate
-these samples.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">This section provides several sample JWPs, using algorithms defined
+above. The private keys are also included so that implementations can
+validate these samples.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <div id="example-json-serialized-single-use-jwp">
 <section id="appendix-A.1">
         <h3 id="name-example-json-serialized-sin">
@@ -3150,7 +3156,7 @@ TUxqhrvq55VV4r8xKsp6fQ~LG1E3Q4f6K4CB2dfDao1QP0D7nBkZIPPSLh3nY3hc-hRkI
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-example-cbor-serialized-sin" class="section-name selfRef">Example CBOR-Serialized Single-Use CPT</a>
         </h3>
 <p id="appendix-A.2-1">This example is meant to mirror the prior compact serialization, using
-<a href="CWT">RFC8392</a> and claims from <span>[<a href="#I-D.ietf-spice-oidc-cwt" class="cite xref">I-D.ietf-spice-oidc-cwt</a>]</span>,
+<span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span> (CWT) and claims from <span>[<a href="#I-D.ietf-spice-oidc-cwt" class="cite xref">I-D.ietf-spice-oidc-cwt</a>]</span>,
 illustrated using <span>[<a href="#I-D.ietf-cbor-edn-literals" class="cite xref">I-D.ietf-cbor-edn-literals</a>]</span> (EDN).<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-2">To simplify this example, the same information is represented as the JPT
 example above, including the same public and private keys.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
@@ -3193,7 +3199,9 @@ example above, including the same public and private keys.<a href="#appendix-A.2
 <blockquote id="appendix-A.2-4">
           <p id="appendix-A.2-4.1">Figure: Issuer Header (SU-ES256, CBOR)<a href="#appendix-A.2-4.1" class="pilcrow">¶</a></p>
 </blockquote>
-<div class="lang-edn sourcecode" id="appendix-A.2-5">
+<p id="appendix-A.2-5">The payload values below are the same logical claims as in the JSON JPT
+example above, represented in EDN for the CBOR-based form.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
+<div class="lang-edn sourcecode" id="appendix-A.2-6">
 <pre>[ / payloads    /
   / iat         / 171452160,
   / exp         / 171719999,
@@ -3211,14 +3219,14 @@ example above, including the same public and private keys.<a href="#appendix-A.2
   / age_over_21 / true
 ]
 
-</pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-6" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-6">
-          <p id="appendix-A.2-6.1">Figure: Issuer Payloads (as CBOR array)<a href="#appendix-A.2-6.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-7">
+          <p id="appendix-A.2-7.1">Figure: Issuer Payloads (as CBOR array)<a href="#appendix-A.2-7.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-7">When signed and serialized, the CPT is represented by the following CBOR
-(in hex):<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
-<div class="lang-hex sourcecode" id="appendix-A.2-8">
+<p id="appendix-A.2-8">When signed and serialized, the CPT is represented by the following CBOR
+(in hex):<a href="#appendix-A.2-8" class="pilcrow">¶</a></p>
+<div class="lang-hex sourcecode" id="appendix-A.2-9">
 <pre>8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
 0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
 20f7365268c3ff5ff3453a6d438a7c7f124d094028b543adb0c89616ff819ef0
@@ -3247,29 +3255,29 @@ ecd39d0df8ef109947ca3eaecdd69140d0040035dee0e45840f30fe8507b3f1b
 40479608fe99bd4318e965275dc9ae9089571fa5935f3c1c6777560a7f494116
 5b491edb25fe800726cbd1f8b2a169b3543b7f69c86220b620
 
-</pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-9" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-9">
-          <p id="appendix-A.2-9.1">Fixtures: Issued Form (SU-ES256, CBOR)<a href="#appendix-A.2-9.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-10">
+          <p id="appendix-A.2-10.1">Figure: Issued Form (SU-ES256, CBOR)<a href="#appendix-A.2-10.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-10">The presented form, similarly to the issued form above, is made with the
+<p id="appendix-A.2-11">The presented form, similarly to the issued form above, is made with the
 holder conveying the same parameters and the same set of selectively
-disclosed payloads as the JPT above:<a href="#appendix-A.2-10" class="pilcrow">¶</a></p>
-<div class="lang-edn sourcecode" id="appendix-A.2-11">
+disclosed payloads as the JPT above:<a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
+<div class="lang-edn sourcecode" id="appendix-A.2-12">
 <pre>{          / holder header /
   1: 1,    / alg: "SU-ES256" /
   6: "https://recipient.example.com", / aud /
   7: h'29bcb1f4c961f975206ce75a9b5bd1f9d97858ad772ed9facbb9dfbc551028a3', / nonce /
 }
 
-</pre><a href="#appendix-A.2-11" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-12" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-12">
-          <p id="appendix-A.2-12.1">Figure: Presentation Header (SU-ES256, CBOR)<a href="#appendix-A.2-12.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-13">
+          <p id="appendix-A.2-13.1">Figure: Presentation Header (SU-ES256, CBOR)<a href="#appendix-A.2-13.1" class="pilcrow">¶</a></p>
 </blockquote>
-<p id="appendix-A.2-13">When the appropriate proof is generated, the CPT is serialized into the
-following CBOR (in hex):<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
-<div class="lang-hex sourcecode" id="appendix-A.2-14">
+<p id="appendix-A.2-14">When the appropriate proof is generated, the CPT is serialized into the
+following CBOR (in hex):<a href="#appendix-A.2-14" class="pilcrow">¶</a></p>
+<div class="lang-hex sourcecode" id="appendix-A.2-15">
 <pre>845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
 6c652e636f6d07582029bcb1f4c961f975206ce75a9b5bd1f9d97858ad772ed9
 facbb9dfbc551028a358cfa701010314057668747470733a2f2f697373756572
@@ -3293,10 +3301,10 @@ d73c968c9016a12a7866e24931a2fc84363973d306ee5840f30fe8507b3f1b40
 19a5ca741beece5b07b022e687f88212580850aa0d8f50b27f7655addca9125f
 d889387184eb45bdea5affc3348a3808acfa2c2be51aeacd2f8a
 
-</pre><a href="#appendix-A.2-14" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-15" class="pilcrow">¶</a>
 </div>
-<blockquote id="appendix-A.2-15">
-          <p id="appendix-A.2-15.1">Figure: Presented Form (SU-ES256, CBOR)<a href="#appendix-A.2-15.1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.2-16">
+          <p id="appendix-A.2-16.1">Figure: Presented Form (SU-ES256, CBOR)<a href="#appendix-A.2-16.1" class="pilcrow">¶</a></p>
 </blockquote>
 </section>
 </div>
@@ -3325,7 +3333,7 @@ d889387184eb45bdea5affc3348a3808acfa2c2be51aeacd2f8a
 <a href="#name-bbs-private-key-in-jwk-form" class="selfRef">BBS private key in JWK format</a>
           </figcaption></figure>
 <p id="appendix-A.3-4">There is no additional holder key necessary for presentation proofs.<a href="#appendix-A.3-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.3-5">For the following protected header and array of payloads:<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-5">For the following Issuer Header and array of payloads:<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
 <span id="name-example-issuer-header"></span><figure id="figure-11">
           <div class="lang-json sourcecode" id="appendix-A.3-6.1">
 <pre>{
@@ -3390,7 +3398,7 @@ pL1vx21g7iVQM7Wo1jgkwjpcml7Nn4WGFee_s
 </pre>
 </div>
 <figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
-<a href="#name-presentation-jwp-bbs-json-c" class="selfRef">Presentation JWP (BBS, JSON, Compact serialization)</a>
+<a href="#name-presentation-jwp-bbs-json-c" class="selfRef">Presentation JWP (BBS, JSON, Compact Serialization)</a>
           </figcaption></figure>
 </section>
 </div>
@@ -3686,6 +3694,14 @@ proof<a href="#appendix-C-3.1" class="pilcrow">¶</a>
         <li class="compact" id="appendix-C-3.3">Align <code>SU-ES256</code> prose and fixtures for compact and CPT example
 payloads and disclosures<a href="#appendix-C-3.3" class="pilcrow">¶</a>
 </li>
+        <li class="compact" id="appendix-C-3.4">Clarified <code>alg</code> Header Parameter terminology.<a href="#appendix-C-3.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-3.5">Applied editorial corrections.<a href="#appendix-C-3.5" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-3.6">Normalized references and section citations.<a href="#appendix-C-3.6" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-C-3.7">Clarified BBS presentation serialization and example prose.<a href="#appendix-C-3.7" class="pilcrow">¶</a>
+</li>
       </ul>
 <p id="appendix-C-4">-13<a href="#appendix-C-4" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -3737,7 +3753,7 @@ domain separation.<a href="#appendix-C-11.6" class="pilcrow">¶</a>
         <li class="compact" id="appendix-C-11.7">Clarify how verifiers are to generate the Combined MAC Representation
 from available information.<a href="#appendix-C-11.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-C-11.8">Provider step-by-step instructions for verification of a presentation<a href="#appendix-C-11.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-C-11.8">Provide step-by-step instructions for verification of a presentation<a href="#appendix-C-11.8" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="appendix-C-11.9">Change Proof Key to Issuer Ephemeral Key and Presentation Key to
 Holder Presentation Key<a href="#appendix-C-11.9" class="pilcrow">¶</a>

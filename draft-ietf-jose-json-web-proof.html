@@ -44,7 +44,7 @@ computation, and adds a Presentation Header to prevent replay.
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.10.1
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1071,7 +1071,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Waite, et al.</td>
-<td class="center">Expires 7 January 2027</td>
+<td class="center">Expires 21 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1084,12 +1084,12 @@ svg {
 <dd class="internet-draft">draft-ietf-jose-json-web-proof-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-06" class="published">6 July 2026</time>
+<time datetime="2026-07-20" class="published">20 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-07">7 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-21">21 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1146,7 +1146,7 @@ computation, and adds a Presentation Header to prevent replay.<a href="#section-
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1656,7 +1656,7 @@ in closed environments.<a href="#section-5.1-3.3.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-5.1-4">These classes of Header Parameters are intentionally parallel to those
-in Section 4 of <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+in <span><a href="https://rfc-editor.org/rfc/rfc7515#section-4" class="relref">Section 4</a> of [<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="RegisteredHeaderParameterLabels">
@@ -1729,14 +1729,16 @@ be used by applications when the kind of object is already known.  This
 parameter is ignored by JWP implementations; any processing of this
 parameter is performed by the JWP application.  Use of this Header
 Parameter is OPTIONAL.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">For COSE-formatted Headers, <code>typ</code> MAY also instead be an integer value
-which corresponds to the IANA "CoAP Content-Formats" registry
-<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>, which describes the corresponding media type, as
-described in <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span>.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-3">Per <span>[<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values, subtype values, and parameter
-names are case insensitive.  However, parameter values are case
-sensitive unless otherwise specified for the specific parameter.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-4">To keep messages compact in common situations, it is RECOMMENDED that
+<p id="section-5.2.3-2">When <code>typ</code> is used for a JSON-formatted Header, its value is a string
+containing a media type.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-3">When <code>typ</code> is used for a CBOR-formatted Header, its value MAY also be
+an integer from the IANA "CoAP Content-Formats" registry
+<span>[<a href="#IANA.CoAP.Formats" class="cite xref">IANA.CoAP.Formats</a>]</span>.  The integer value identifies the corresponding
+media type, as described in <span><a href="https://rfc-editor.org/rfc/rfc9596#section-2" class="relref">Section 2</a> of [<a href="#RFC9596" class="cite xref">RFC9596</a>]</span>.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-4">Per <span><a href="https://rfc-editor.org/rfc/rfc2045#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC2045" class="cite xref">RFC2045</a>]</span>, all media type values, subtype values,
+and parameter names are case insensitive.  However, parameter values are
+case sensitive unless otherwise specified for the specific parameter.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-5">To keep messages compact in common situations, it is RECOMMENDED that
 producers omit an "application/" prefix of a media type value in a <code>typ</code>
 Header Parameter when no other '/' appears in the media type value.  A
 recipient using the media type value MUST treat it as if "application/"
@@ -1744,14 +1746,13 @@ were prepended to any <code>typ</code> value not containing a '/'.  For instance
 <code>typ</code> value of <code>example</code> SHOULD be used to represent the
 <code>application/example</code> media type, whereas the media type
 <code>application/example;part="1/2"</code> cannot be shortened to
-<code>example;part="1/2"</code>.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-5">The <code>typ</code> value <code>jwp</code> can be used by applications to indicate that this
+<code>example;part="1/2"</code>.<a href="#section-5.2.3-5" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-6">The <code>typ</code> value <code>jwp</code> can be used by applications to indicate that this
 object is a JWP using the JWP Compact Serialization.  Other type values
 can also be used by applications, including those using the <code>+jwp</code> media
-type structured syntax suffix.<a href="#section-5.2.3-5" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-6">It is RECOMMENDED that the <code>typ</code> Header Parameter be used for explicit
-typing, in parallel to the recommendations in Section 3.11 of
-<span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-5.2.3-6" class="pilcrow">¶</a></p>
+type structured syntax suffix.<a href="#section-5.2.3-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-7">It is RECOMMENDED that the <code>typ</code> Header Parameter be used for explicit
+typing, in parallel to the recommendations in <span><a href="https://rfc-editor.org/rfc/rfc8725#section-3.11" class="relref">Section 3.11</a> of [<a href="#RFC8725" class="cite xref">RFC8725</a>]</span>.<a href="#section-5.2.3-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="critDef">
@@ -1790,8 +1791,8 @@ processed by implementations.<a href="#section-5.2.4-2" class="pilcrow">¶</a></
 <p id="section-5.2.5-1">The <code>iek</code> (Issuer Ephemeral Key) represents the public key used by the
 issuer for indirect signatures within certain algorithms. This is an
 ephemeral key that MUST be unique for each issued JWP.<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.5-2">This Header Parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON-formatted Header, and a COSE Key Object
+<p id="section-5.2.5-2">This Header Parameter references a JSON Web Key (JWK) public key value
+when represented as a JSON-formatted Header, and a COSE Key Object
 when represented as a CBOR-formatted Header.<a href="#section-5.2.5-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.5-3">It MUST contain only public key parameters and SHOULD contain only the
 minimum parameters necessary to represent the key; other parameters
@@ -1806,14 +1807,14 @@ implementations.<a href="#section-5.2.5-4" class="pilcrow">¶</a></p>
           <h4 id="name-hpk-holder-presentation-key">
 <a href="#section-5.2.6" class="section-number selfRef">5.2.6. </a><a href="#name-hpk-holder-presentation-key" class="section-name selfRef">"hpk" (Holder Presentation Key) Header Parameter</a>
           </h4>
-<p id="section-5.2.6-1">The <code>hpk</code> (Holder Presentation Key) represents the public key with
+<p id="section-5.2.6-1">The <code>hpk</code> (Holder Presentation Key) represents the public key used with
 certain algorithms, and is used by the holder for proof of possession
-and integrity protection of the Presented Header.<a href="#section-5.2.6-1" class="pilcrow">¶</a></p>
+and integrity protection of the Presentation Header.<a href="#section-5.2.6-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.6-2">The issuer MUST validate that the holder has possession of this key
 through a trusted mechanism, such as requiring the signature of a unique
 nonce value from the holder before issuing the JWP.<a href="#section-5.2.6-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.6-3">This Header Parameter is references a JSON Web Key (JWK) public key
-value when represented as a JSON-formatted Header, and a COSE Key Object
+<p id="section-5.2.6-3">This Header Parameter references a JSON Web Key (JWK) public key value
+when represented as a JSON-formatted Header, and a COSE Key Object
 when represented as a CBOR-formatted Header.<a href="#section-5.2.6-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.6-4">It MUST contain only public key parameters and SHOULD contain only the
 minimum parameters necessary to represent the key; other parameters
@@ -1854,7 +1855,7 @@ the JWP.  The processing of this claim is generally application
 specific.<a href="#section-5.2.8-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.8-2">The <code>iss</code> value is a case-sensitive string containing a StringOrURI
 value.  Its definition is intentionally parallel to the <code>iss</code> claim
-defined in <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-5.2.8-2" class="pilcrow">¶</a></p>
+defined in <span><a href="https://rfc-editor.org/rfc/rfc7519#section-4.1.1" class="relref">Section 4.1.1</a> of [<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-5.2.8-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.8-3">Use of this Header Parameter is OPTIONAL.<a href="#section-5.2.8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1875,7 +1876,7 @@ the JWP has one audience, the <code>aud</code> value MAY be a single case-sensit
 string containing a StringOrURI value.<a href="#section-5.2.9-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.9-3">The interpretation of audience values is application specific.<a href="#section-5.2.9-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.9-4">Its definition is intentionally parallel to the <code>aud</code> claim defined in
-<span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-5.2.9-4" class="pilcrow">¶</a></p>
+<span><a href="https://rfc-editor.org/rfc/rfc7519#section-4.1.3" class="relref">Section 4.1.3</a> of [<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>.<a href="#section-5.2.9-4" class="pilcrow">¶</a></p>
 <p id="section-5.2.9-5">Use of this Header Parameter is OPTIONAL.<a href="#section-5.2.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1905,7 +1906,7 @@ registered in the IANA "JSON Web Token Claims" registry <span>[<a href="#IANA.JW
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-public-header-parameter-nam" class="section-name selfRef">Public Header Parameter Names</a>
         </h3>
 <p id="section-5.3-1">Additional Header Parameter names can be defined by those using JWPs.
-However, in order to prevent collisions, any new Header Parameter name
+However, to prevent collisions, any new Header Parameter name
 should either be registered in the IANA "JSON Web Proof Header
 Parameters" registry established by <a href="#HdrReg" class="auto internal xref">Section 11.1</a> or be a Public Name (a
 value that contains a Collision-Resistant Name).  In each case, the
@@ -2034,7 +2035,7 @@ omitted, disclosing only a subset of the original issued payloads.  The
 proof value will always be updated to add integrity protection of the
 Presentation Header along with the necessary cryptographic statements to
 verify the presented JWP.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">When supported by the underling JPA, a single issued JWP can be used to
+<p id="section-6.2-2">When supported by the underlying JPA, a single issued JWP can be used to
 safely generate multiple presented JWPs without becoming correlatable.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 <p id="section-6.2-3">A JWP may also be single use, where an issued JWP can only be used once
 to generate a presented form. In this case, any additional presentations
@@ -2047,14 +2048,15 @@ issued JWPs can be retrieved easily.<a href="#section-6.2-3" class="pilcrow">¶<
 <a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-presentation-header" class="section-name selfRef">Presentation Header</a>
           </h4>
 <p id="section-6.2.1-1">The presented form of a JWP MUST contain a Presentation Header.  It is
-added by the holder and MUST be integrity protected by the underling
+added by the holder and MUST be integrity protected by the underlying
 JPA.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.1-2">This Header is used to ensure that a presented JWP cannot be replayed
 and is cryptographically bound to the verifier it was presented to.<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.1-3">While there are not any required Header Parameters in the Presentation
-Header, it MUST contain one or Header Parameters that uniquely identify
-the presented JWP to both the holder and verifier.  For example, Header
-Parameters that would satisfy this requirement include <code>nonce</code> and <code>aud</code>.<a href="#section-6.2.1-3" class="pilcrow">¶</a></p>
+Header, it MUST contain one or more Header Parameters that uniquely
+identify the presented JWP to both the holder and verifier.  For
+example, Header Parameters that would satisfy this requirement include
+<code>nonce</code> and <code>aud</code>.<a href="#section-6.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="presentation-payloads">
@@ -2116,8 +2118,8 @@ internal structures.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.4-2">The proof of a presented JWP will always be different than the issued
 proof.  At a minimum, it MUST be updated to include protection of the
 added Presentation Header.<a href="#section-6.2.4-2" class="pilcrow">¶</a></p>
-<p id="section-6.2.4-3">Algorithms SHOULD generate an un-correlatable presentation proof in
-order to support multiple presentations from a single issued JWP.<a href="#section-6.2.4-3" class="pilcrow">¶</a></p>
+<p id="section-6.2.4-3">Algorithms SHOULD generate presentation proofs that preserve
+unlinkability across multiple presentations from a single issued JWP.<a href="#section-6.2.4-3" class="pilcrow">¶</a></p>
 <p id="section-6.2.4-4">The algorithm is responsible for representing selective disclosure of
 payloads in a presented proof. If multiple octet strings are
 insufficient for representing a proof as defined by an algorithm, the
@@ -2140,11 +2142,11 @@ Headers, multiple Payload slots, and a single Proof (which may be
 composed of multiple octet strings).<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">The JWP Compact Serialization provides a JSON-based, space-efficient
 encoding of a JWP in URL-safe characters.  Its design closely parallels
-the JWS Compact Serialization <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.  No representation parallel to
-the JWS JSON serialization is defined.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">JWP CBOR Serialization provides a compact CBOR-based encoding suitable
+the JWS Compact Serialization in <span><a href="https://rfc-editor.org/rfc/rfc7515#section-7.1" class="relref">Section 7.1</a> of [<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.  No
+representation parallel to the JWS JSON serialization is defined.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">The JWP CBOR Serialization provides a compact CBOR-based encoding suitable
 for constrained environments.  Its design closely parallels COSE_Sign1
-<span>[<a href="#RFC9338" class="cite xref">RFC9338</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
+in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.2" class="relref">Section 4.2</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <div id="CompactSerialization">
 <section id="section-7.1">
         <h3 id="name-compact-serialization">
@@ -2213,9 +2215,9 @@ allow interchangeability with Compact Serialization.<a href="#section-7.2-1" cla
 <p id="section-7.2-2">The CBOR serialization provides a compact binary representation of a
 JWP.  The serialization consists of two arrays, representing issued and
 presented forms.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
-<p id="section-7.2-3">The Headers MUST be CBOR formatted for CBOR serialization.
-This includes both the issued and Presented Headers in the presented
-form.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
+<p id="section-7.2-3">Implementations using CBOR Serialization MUST encode Headers in CBOR.
+This includes both the Issuer Header and Presentation Header in the
+presented form.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
 <p id="section-7.2-4">The issued form consists of a three-element array, while the presented
 form consists of a four-element array.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
 <p id="section-7.2-5">If an individual payload has been omitted, it is represented by the CBOR
@@ -2259,7 +2261,7 @@ Tagged_CBOR_JWP_Presented = #6.yyy (CBOR_JWP_Presented)
 
 </pre><a href="#section-7.2-7" class="pilcrow">¶</a>
 </div>
-<p id="section-7.2-8">Figure 1: CDDL [RFC8610] for CBOR Serializations.<a href="#section-7.2-8" class="pilcrow">¶</a></p>
+<p id="section-7.2-8">Figure 1: CDDL <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> for CBOR Serializations.<a href="#section-7.2-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2278,8 +2280,8 @@ Encrypted JWPs is identical to the processing of other JWEs.<a href="#section-8-
 <p id="section-8-2">For a JWP with JSON-formatted Headers, an Encrypted JWP is a JWE
 <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span> with a JWP in Compact Serialization as its plaintext value.
 For a JWP with CBOR-formatted Headers, an Encrypted JWP should use
-<code>COSE_Encrypt0</code> or <code>COSE_Encrypt</code> <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> with the CBOR
-Serialization as its plaintext.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<code>COSE_Encrypt0</code> <span><a href="https://rfc-editor.org/rfc/rfc9052#section-5.2" class="relref">Section 5.2</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> or <code>COSE_Encrypt</code>
+        <span><a href="https://rfc-editor.org/rfc/rfc9052#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> with the CBOR Serialization as its plaintext.<a href="#section-8-2" class="pilcrow">¶</a></p>
 <p id="section-8-3">The <code>cty</code> (content type) JWE/COSE Header Parameter is used to indicate
 that the content of the JWE is a JWP.  The <code>cty</code> value of the JWE/COSE
 message SHOULD be the same as the <code>typ</code> (type) JWP Header Parameter
@@ -2308,7 +2310,7 @@ or convention, in which case the <code>cty</code> value MAY be omitted.<a href="
       </h2>
 <p id="section-9-1">In some contexts, it is useful to make statements about payloads which
 are not themselves contained within the JWP, similar to "Detached
-Content" in JWS <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
+Content" in JWS <span><a href="https://rfc-editor.org/rfc/rfc7515#appendix-F" class="relref">Appendix F</a> of [<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <p id="section-9-2">For this purpose, the compact, JSON and CBOR serializations allow for
 all payload slots to be omitted from a serialized form. While this is a
 legal serialization, it is not on its own able to be verified.<a href="#section-9-2" class="pilcrow">¶</a></p>
@@ -2347,7 +2349,7 @@ non-deterministic serialization.<a href="#section-10-2.4" class="pilcrow">¶</a>
       </h2>
 <p id="section-11-1">The following registration procedure is used for all the registries
 established by this specification.<a href="#section-11-1" class="pilcrow">¶</a></p>
-<p id="section-11-2">Values are registered on a Specification Required <span>[<a href="#RFC5226" class="cite xref">RFC5226</a>]</span> basis after
+<p id="section-11-2">Values are registered on a Specification Required <span>[<a href="#RFC8126" class="cite xref">RFC8126</a>]</span> basis after
 a three-week review period on the jose-reg-review@ietf.org mailing list,
 on the advice of one or more Designated Experts.  However, to allow for
 the allocation of values prior to publication, the Designated Experts
@@ -2363,7 +2365,7 @@ applicable, suggestions as to how to make the request successful.
 Registration requests that are undetermined for a period longer than 21
 days can be brought to the IESG's attention (using the iesg@ietf.org
 mailing list) for resolution.<a href="#section-11-4" class="pilcrow">¶</a></p>
-<p id="section-11-5">Criteria that should be applied by the Designated Experts includes
+<p id="section-11-5">Criteria that should be applied by the Designated Experts include
 determining whether the proposed registration duplicates existing
 functionality, whether it is likely to be of general applicability or
 useful only for a single application, and whether the registration
@@ -2372,7 +2374,7 @@ description is clear.<a href="#section-11-5" class="pilcrow">¶</a></p>
 should direct all requests for registration to the review mailing list.<a href="#section-11-6" class="pilcrow">¶</a></p>
 <p id="section-11-7">It is suggested that multiple Designated Experts be appointed who are
 able to represent the perspectives of different applications using this
-specification, in order to enable broadly informed review of
+specification, to enable broadly informed review of
 registration decisions.  In cases where a registration decision could be
 perceived as creating a conflict of interest for a particular Expert,
 that Expert should defer to the judgment of the other Experts.<a href="#section-11-7" class="pilcrow">¶</a></p>
@@ -2404,9 +2406,9 @@ values.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
 <dt id="section-11.1.1-1.3">Header Parameter JSON Label:</dt>
             <dd style="margin-left: 1.5em" id="section-11.1.1-1.4">The string label requested within a JSON context. (e.g., <code>kid</code>).
 Because a core goal of this specification is for the resulting
-representations to be compact, it is RECOMMENDED that the label be
+representations to be compact, it is recommended that the label be
 short -- not to exceed 8 characters without a compelling reason to do
-so. This label is case sensitive, and it is RECOMMENDED to avoid
+so. This label is case sensitive, and it is recommended to avoid
 upper-case characters. Labels may not match another registered names
 in a case-insensitive manner unless the Designated Experts state that
 there is a compelling reason to allow an exception. This registry
@@ -2679,8 +2681,8 @@ this specification<a href="#section-11.1.2.10-1.6" class="pilcrow">¶</a>
           </h4>
 <p id="section-11.2.1-1">This section registers the <code>application/jwp</code> media type <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span> in
 the IANA "Media Types" registry <span>[<a href="#IANA.MediaTypes" class="cite xref">IANA.MediaTypes</a>]</span> in the manner
-described in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>, which can be used to indicate that the content
-is a JWP using the JWP Compact Serialization.<a href="#section-11.2.1-1" class="pilcrow">¶</a></p>
+described in <span><a href="https://rfc-editor.org/rfc/rfc6838#section-5.6" class="relref">Section 5.6</a> of [<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>, which can be used to indicate
+that the content is a JWP using the JWP Compact Serialization.<a href="#section-11.2.1-1" class="pilcrow">¶</a></p>
 <div id="the-application-jwp-media-type">
 <section id="section-11.2.1.1">
             <h5 id="name-the-application-jwp-media-t">
@@ -2807,8 +2809,8 @@ Michael B. Jones, michael_b_jones@hotmail.com<a href="#section-11.2.1.2-1.12" cl
 <a href="#section-11.3.1" class="section-number selfRef">11.3.1. </a><a href="#name-registry-contents-2" class="section-name selfRef">Registry Contents</a>
           </h4>
 <p id="section-11.3.1-1">This section registers the following entries in the IANA "Structured
-Syntax Suffix" registry [IANA.StructuredSuffix] in the manner described
-in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-11.3.1-1" class="pilcrow">¶</a></p>
+Syntax Suffix" registry <span>[<a href="#IANA.StructuredSuffix" class="cite xref">IANA.StructuredSuffix</a>]</span> in the manner described
+in <span><a href="https://rfc-editor.org/rfc/rfc6838#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-11.3.1-1" class="pilcrow">¶</a></p>
 <div id="the-jwp-structured-syntax-suffix">
 <section id="section-11.3.1.1">
             <h5 id="name-the-jwp-structured-syntax-s">
@@ -2883,6 +2885,10 @@ specification<a href="#section-11.3.1.2-1.7" class="pilcrow">¶</a>
 <a href="#section-12.1" class="section-number selfRef">12.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
+<dt id="ECMAScript">[ECMAScript]</dt>
+        <dd>
+<span class="refAuthor">Ecma International</span>, <span class="refTitle">"ECMAScript Language Specification, 5.1 Edition"</span>, <span class="seriesInfo">ECMA 262</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://262.ecma-international.org/5.1/">https://262.ecma-international.org/5.1/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-jose-json-proof-algorithms">[I-D.ietf-jose-json-proof-algorithms]</dt>
         <dd>
 <span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Algorithms"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-algorithms-latest</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-algorithms</a>&gt;</span>. </dd>
@@ -2890,6 +2896,10 @@ specification<a href="#section-11.3.1.2-1.7" class="pilcrow">¶</a>
 <dt id="I-D.ietf-jose-json-proof-token">[I-D.ietf-jose-json-proof-token]</dt>
         <dd>
 <span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Waite, D.</span>, and <span class="refAuthor">J. Miller</span>, <span class="refTitle">"JSON Proof Token and CBOR Proof Token"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-json-proof-token-latest</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token">https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-proof-token</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2045">[RFC2045]</dt>
+        <dd>
+<span class="refAuthor">Freed, N.</span> and <span class="refAuthor">N. Borenstein</span>, <span class="refTitle">"Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies"</span>, <span class="seriesInfo">RFC 2045</span>, <span class="seriesInfo">DOI 10.17487/RFC2045</span>, <time datetime="1996-11" class="refDate">November 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2045">https://www.rfc-editor.org/info/rfc2045</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -2903,17 +2913,29 @@ specification<a href="#section-11.3.1.2-1.7" class="pilcrow">¶</a>
         <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8126">[RFC8126]</dt>
+        <dd>
+<span class="refAuthor">Cotton, M.</span>, <span class="refAuthor">Leiba, B.</span>, and <span class="refAuthor">T. Narten</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">BCP 26</span>, <span class="seriesInfo">RFC 8126</span>, <span class="seriesInfo">DOI 10.17487/RFC8126</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8126">https://www.rfc-editor.org/info/rfc8126</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8610">[RFC8610]</dt>
+        <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Vigano, C.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures"</span>, <span class="seriesInfo">RFC 8610</span>, <span class="seriesInfo">DOI 10.17487/RFC8610</span>, <time datetime="2019-06" class="refDate">June 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8610">https://www.rfc-editor.org/info/rfc8610</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9052">[RFC9052]</dt>
         <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9052">https://www.rfc-editor.org/info/rfc9052</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9596">[RFC9596]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Jones, M.B.</span> and <span class="refAuthor">O. Steele</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE) "typ" (type) Header Parameter"</span>, <span class="seriesInfo">RFC 9596</span>, <span class="seriesInfo">DOI 10.17487/RFC9596</span>, <time datetime="2024-06" class="refDate">June 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9596">https://www.rfc-editor.org/info/rfc9596</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VC-DATA-MODEL-2.0">[VC-DATA-MODEL-2.0]</dt>
+      <dd>
+<span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Jr, T. T.</span>, <span class="refAuthor">Herman, I.</span>, <span class="refAuthor">Cohen, G.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Verifiable Credentials Data Model v2.0"</span>, <time datetime="2025-05-15" class="refDate">15 May 2025</time>, <span>&lt;<a href="https://www.w3.org/TR/vc-data-model-2.0">https://www.w3.org/TR/vc-data-model-2.0</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2922,10 +2944,6 @@ specification<a href="#section-11.3.1.2-1.7" class="pilcrow">¶</a>
 <a href="#section-12.2" class="section-number selfRef">12.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
-<dt id="ECMAScript">[ECMAScript]</dt>
-        <dd>
-<span class="refAuthor">Ecma International</span>, <span class="refTitle">"ECMAScript Language Specification, 5.1 Edition"</span>, <span class="seriesInfo">ECMA 262</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://262.ecma-international.org/5.1/">https://262.ecma-international.org/5.1/</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.irtf-cfrg-bbs-signatures">[I-D.irtf-cfrg-bbs-signatures]</dt>
         <dd>
 <span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Kalos, V.</span>, <span class="refAuthor">Whitehead, A.</span>, and <span class="refAuthor">M. Lodder</span>, <span class="refTitle">"The BBS Signature Scheme"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-bbs-signatures-10</span>, <time datetime="2026-01-08" class="refDate">8 January 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bbs-signatures-10</a>&gt;</span>. </dd>
@@ -2942,17 +2960,13 @@ specification<a href="#section-11.3.1.2-1.7" class="pilcrow">¶</a>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"Media Types"</span>, <span>&lt;<a href="https://www.iana.org/assignments/media-types">https://www.iana.org/assignments/media-types</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC2045">[RFC2045]</dt>
+<dt id="IANA.StructuredSuffix">[IANA.StructuredSuffix]</dt>
         <dd>
-<span class="refAuthor">Freed, N.</span> and <span class="refAuthor">N. Borenstein</span>, <span class="refTitle">"Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies"</span>, <span class="seriesInfo">RFC 2045</span>, <span class="seriesInfo">DOI 10.17487/RFC2045</span>, <time datetime="1996-11" class="refDate">November 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2045">https://www.rfc-editor.org/info/rfc2045</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Structured Syntax Suffix"</span>, <span>&lt;<a href="https://www.iana.org/assignments/media-type-structured-suffix/">https://www.iana.org/assignments/media-type-structured-suffix/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2046">[RFC2046]</dt>
         <dd>
 <span class="refAuthor">Freed, N.</span> and <span class="refAuthor">N. Borenstein</span>, <span class="refTitle">"Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types"</span>, <span class="seriesInfo">RFC 2046</span>, <span class="seriesInfo">DOI 10.17487/RFC2046</span>, <time datetime="1996-11" class="refDate">November 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2046">https://www.rfc-editor.org/info/rfc2046</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC5226">[RFC5226]</dt>
-        <dd>
-<span class="refAuthor">Narten, T.</span> and <span class="refAuthor">H. Alvestrand</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">RFC 5226</span>, <span class="seriesInfo">DOI 10.17487/RFC5226</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5226">https://www.rfc-editor.org/info/rfc5226</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6838">[RFC6838]</dt>
         <dd>
@@ -2967,16 +2981,8 @@ specification<a href="#section-11.3.1.2-1.7" class="pilcrow">¶</a>
 <span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Algorithms (JWA)"</span>, <span class="seriesInfo">RFC 7518</span>, <span class="seriesInfo">DOI 10.17487/RFC7518</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7518">https://www.rfc-editor.org/info/rfc7518</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8725">[RFC8725]</dt>
-        <dd>
-<span class="refAuthor">Sheffer, Y.</span>, <span class="refAuthor">Hardt, D.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"JSON Web Token Best Current Practices"</span>, <span class="seriesInfo">BCP 225</span>, <span class="seriesInfo">RFC 8725</span>, <span class="seriesInfo">DOI 10.17487/RFC8725</span>, <time datetime="2020-02" class="refDate">February 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8725">https://www.rfc-editor.org/info/rfc8725</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9338">[RFC9338]</dt>
-        <dd>
-<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Countersignatures"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9338</span>, <span class="seriesInfo">DOI 10.17487/RFC9338</span>, <time datetime="2022-12" class="refDate">December 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9338">https://www.rfc-editor.org/info/rfc9338</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="VC-DATA-MODEL-2.0">[VC-DATA-MODEL-2.0]</dt>
       <dd>
-<span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Jr, T. T.</span>, <span class="refAuthor">Herman, I.</span>, <span class="refAuthor">Cohen, G.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Verifiable Credentials Data Model v2.0"</span>, <time datetime="2025-05-15" class="refDate">15 May 2025</time>, <span>&lt;<a href="https://www.w3.org/TR/vc-data-model-2.0">https://www.w3.org/TR/vc-data-model-2.0</a>&gt;</span>. </dd>
+<span class="refAuthor">Sheffer, Y.</span>, <span class="refAuthor">Hardt, D.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"JSON Web Token Best Current Practices"</span>, <span class="seriesInfo">BCP 225</span>, <span class="seriesInfo">RFC 8725</span>, <span class="seriesInfo">DOI 10.17487/RFC8725</span>, <time datetime="2020-02" class="refDate">February 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8725">https://www.rfc-editor.org/info/rfc8725</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2999,198 +3005,212 @@ for their valuable contributions to this specification.<a href="#appendix-A-2" c
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
 <p id="appendix-B-1">[[ To be removed from the final specification ]]<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">-13<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">-14<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-3.1">Examples are now built deterministically (using RFC 6979 deterministic
-ECDSA and seeded random number generation for BBS)<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-3.1">Applied editorial corrections.<a href="#appendix-B-3.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.2">Normalized references and section citations.<a href="#appendix-B-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.3">Corrected the <code>COSE_Sign1</code> reference.<a href="#appendix-B-3.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.4">Clarified JSON-formatted and CBOR-formatted <code>typ</code> Header Parameter
+values.<a href="#appendix-B-3.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-3.5">Clarified CBOR Serialization requirements for Header encoding.<a href="#appendix-B-3.5" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-4">-12<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">-13<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-5.1">IANA Considerations section changes from IANA Early Review<a href="#appendix-B-5.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-5.1">Examples are now built deterministically (using RFC 6979 deterministic
+ECDSA and seeded random number generation for BBS)<a href="#appendix-B-5.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-6">-11<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+<p id="appendix-B-6">-12<a href="#appendix-B-6" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-7.1">Change Issuer Protected Header to Issuer Header<a href="#appendix-B-7.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-7.2">Change Presentation Protected Header to Presentation Header<a href="#appendix-B-7.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-7.3">Clarify usage of headers and header parameters<a href="#appendix-B-7.3" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-7.1">IANA Considerations section changes from IANA Early Review<a href="#appendix-B-7.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-8">-10<a href="#appendix-B-8" class="pilcrow">¶</a></p>
+<p id="appendix-B-8">-11<a href="#appendix-B-8" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-9.1">Replaced <code>application/jwp+cbor</code> with <code>application/cwp</code>.<a href="#appendix-B-9.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-9.1">Change Issuer Protected Header to Issuer Header<a href="#appendix-B-9.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.2">Registered <code>+cwp</code> structured syntax suffix and simplified +jwp suffix.<a href="#appendix-B-9.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-9.2">Change Presentation Protected Header to Presentation Header<a href="#appendix-B-9.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.3">Expanded descriptions of and rationale for the serializations.<a href="#appendix-B-9.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-9.3">Clarify usage of headers and header parameters<a href="#appendix-B-9.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.4">Payload nomenclature was clarified by adding the concept of payload
+      </ul>
+<p id="appendix-B-10">-10<a href="#appendix-B-10" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-11.1">Replaced <code>application/jwp+cbor</code> with <code>application/cwp</code>.<a href="#appendix-B-11.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.2">Registered <code>+cwp</code> structured syntax suffix and simplified +jwp suffix.<a href="#appendix-B-11.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.3">Expanded descriptions of and rationale for the serializations.<a href="#appendix-B-11.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-11.4">Payload nomenclature was clarified by adding the concept of payload
 slots. The issued form and presented form have a certain number of
 ordered payload slots, and a presentation may choose to omit
-information from a slot.<a href="#appendix-B-9.4" class="pilcrow">¶</a>
+information from a slot.<a href="#appendix-B-11.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.5">Recommendation for Issuer Protected Header is to make the header
+        <li class="compact" id="appendix-B-11.5">Recommendation for Issuer Protected Header is to make the header
 static across issued JWPs if possible, to prevent unintentional
-correlation by verifiers<a href="#appendix-B-9.5" class="pilcrow">¶</a>
+correlation by verifiers<a href="#appendix-B-11.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.6">Cleaned up the text around algorithmic support for additional proofs
-of knowledge outside of payload disclosure (e.g., range proofs)<a href="#appendix-B-9.6" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.6">Cleaned up the text around algorithmic support for additional proofs
+of knowledge outside of payload disclosure (e.g., range proofs)<a href="#appendix-B-11.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.7">Clarify that a proof is made up of multiple octet strings<a href="#appendix-B-9.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.7">Clarify that a proof is made up of multiple octet strings<a href="#appendix-B-11.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.8">(CDDL) The protected header definitions now reference
-<code>empty_or_serialized_map</code> properly<a href="#appendix-B-9.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.8">(CDDL) The protected header definitions now reference
+<code>empty_or_serialized_map</code> properly<a href="#appendix-B-11.8" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.9">(CDDL) <code>payloads</code> is now <code>PayloadSlots</code>, and represents you need at
-least one slot<a href="#appendix-B-9.9" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.9">(CDDL) <code>payloads</code> is now <code>PayloadSlots</code>, and represents you need at
+least one slot<a href="#appendix-B-11.9" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.10">(CDDL) The issuer <code>PayloadSlots</code> contains <code>payload</code>, which is not
-omittable<a href="#appendix-B-9.10" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.10">(CDDL) The issuer <code>PayloadSlots</code> contains <code>payload</code>, which is not
+omittable<a href="#appendix-B-11.10" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.11">(CDDL) The presented form likewise references <code>disclosable_payload</code>,
-which is nillable to represent omission<a href="#appendix-B-9.11" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.11">(CDDL) The presented form likewise references <code>disclosable_payload</code>,
+which is nillable to represent omission<a href="#appendix-B-11.11" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.12">(CDDL) <code>Proof</code> is capitalized to match, and properly represents you
-need at least one <code>bstr</code><a href="#appendix-B-9.12" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.12">(CDDL) <code>Proof</code> is capitalized to match, and properly represents you
+need at least one <code>bstr</code><a href="#appendix-B-11.12" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.13">(CDDL) <code>header_map</code>, <code>label</code> and <code>value</code> definitions imported from
-RFC 9052<a href="#appendix-B-9.13" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.13">(CDDL) <code>header_map</code>, <code>label</code> and <code>value</code> definitions imported from
+RFC 9052<a href="#appendix-B-11.13" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.14">Receive examples of additional types of algorithm-specific proofs from
-JPT<a href="#appendix-B-9.14" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.14">Receive examples of additional types of algorithm-specific proofs from
+JPT<a href="#appendix-B-11.14" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.15">Added Holder Presentation Algorithm (<code>hpa</code>) parameter to support the
+        <li class="compact" id="appendix-B-11.15">Added Holder Presentation Algorithm (<code>hpa</code>) parameter to support the
 holder presenting using a different key type and algorithm than the
-issuer in SU and MAC family algorithms<a href="#appendix-B-9.15" class="pilcrow">¶</a>
+issuer in SU and MAC family algorithms<a href="#appendix-B-11.15" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-9.16">Change "proof_key" to "iek" and "presentation_key" to "hpk", both to
-shorten their JSON labels and to clarify owner/purpose.<a href="#appendix-B-9.16" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-B-10">-09<a href="#appendix-B-10" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-B-11.1">Removed JSON serialization.<a href="#appendix-B-11.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-11.2">Corrected informative reference to the IANA JWT registry.<a href="#appendix-B-11.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-11.16">Change "proof_key" to "iek" and "presentation_key" to "hpk", both to
+shorten their JSON labels and to clarify owner/purpose.<a href="#appendix-B-11.16" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-12">-08<a href="#appendix-B-12" class="pilcrow">¶</a></p>
+<p id="appendix-B-12">-09<a href="#appendix-B-12" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-13.1">Corrected instances of identifier <code>proofs</code> to <code>proof</code>.<a href="#appendix-B-13.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-13.1">Removed JSON serialization.<a href="#appendix-B-13.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-13.2">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-13.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-13.3">Made some additional references normative.<a href="#appendix-B-13.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-13.2">Corrected informative reference to the IANA JWT registry.<a href="#appendix-B-13.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-14">-07<a href="#appendix-B-14" class="pilcrow">¶</a></p>
+<p id="appendix-B-14">-08<a href="#appendix-B-14" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-15.1">Changing primary editor<a href="#appendix-B-15.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-15.1">Corrected instances of identifier <code>proofs</code> to <code>proof</code>.<a href="#appendix-B-15.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.2">Broad changes to define a CBOR serialization, which leverages the new CBOR
-Protected Headers<a href="#appendix-B-15.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-15.2">Added reference to <span>[<a href="#RFC9596" class="cite xref">RFC9596</a>]</span> for COSE "typ" header parameter.<a href="#appendix-B-15.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.3">Deemphasis of JSON in some parts of the document to represent CBOR
-alternatives<a href="#appendix-B-15.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-15.3">Made some additional references normative.<a href="#appendix-B-15.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.4">Rewrite Header Parameter parsing requirements for JSON to emphasize
+      </ul>
+<p id="appendix-B-16">-07<a href="#appendix-B-16" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-17.1">Changing primary editor<a href="#appendix-B-17.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-17.2">Broad changes to define a CBOR serialization, which leverages the new CBOR
+Protected Headers<a href="#appendix-B-17.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-17.3">Deemphasis of JSON in some parts of the document to represent CBOR
+alternatives<a href="#appendix-B-17.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-17.4">Rewrite Header Parameter parsing requirements for JSON to emphasize
 preference to fail on duplicate headers (to match CBOR behavior).
-Last-encountered remains as an option to match ECMA definition.<a href="#appendix-B-15.4" class="pilcrow">¶</a>
+Last-encountered remains as an option to match ECMA definition.<a href="#appendix-B-17.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.5">Add option to use CoAP Formats for <code>typ</code> in CBOR mode to match COSE,
-as a compact indirection over full media types.<a href="#appendix-B-15.5" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-17.5">Add option to use CoAP Formats for <code>typ</code> in CBOR mode to match COSE,
+as a compact indirection over full media types.<a href="#appendix-B-17.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.6">Modify IANA registry template to account for CBOR Labels in header
-parameters<a href="#appendix-B-15.6" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-17.6">Modify IANA registry template to account for CBOR Labels in header
+parameters<a href="#appendix-B-17.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.7">Add application/jwp+cbor media type<a href="#appendix-B-15.7" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-17.7">Add application/jwp+cbor media type<a href="#appendix-B-17.7" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.8">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code>
-names<a href="#appendix-B-15.8" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-17.8">Modify example generation to use <code>proof_key</code> and <code>presentation_key</code>
+names<a href="#appendix-B-17.8" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.9">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
+        <li class="compact" id="appendix-B-17.9">Change <code>proof_jwk</code> to <code>proof_key</code> and <code>presentation_jwk</code> to
 <code>presentation_key</code> to better represent that the key may be JSON or
-CBOR-formatted.<a href="#appendix-B-15.9" class="pilcrow">¶</a>
+CBOR-formatted.<a href="#appendix-B-17.9" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.10">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP where
+        <li class="compact" id="appendix-B-17.10">Moved the registry for <code>proof_key</code> and <code>presentation_key</code> to JWP where
 they are defined. Consolidated usage, purpose, and requirements from
-algorithm usage under these definitions.<a href="#appendix-B-15.10" class="pilcrow">¶</a>
+algorithm usage under these definitions.<a href="#appendix-B-17.10" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.11">Clarified that <code>proof_key</code> and <code>presentation_key</code> are required by
+        <li class="compact" id="appendix-B-17.11">Clarified that <code>proof_key</code> and <code>presentation_key</code> are required by
 particular algorithms and are not more generally required for issued
-and presented JWPs.<a href="#appendix-B-15.11" class="pilcrow">¶</a>
+and presented JWPs.<a href="#appendix-B-17.11" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-15.12">Move <code>claims</code> to JPT to live beside <code>cid</code>, and renumber CBOR labels so
-that they may be adjacent<a href="#appendix-B-15.12" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-B-16">-06<a href="#appendix-B-16" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-B-17.1">Update reference to new repository home.<a href="#appendix-B-17.1" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-17.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-17.2" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-17.3">Added additional clarification around the compact and JSON
-serializations<a href="#appendix-B-17.3" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="appendix-B-17.4">Added text around fully detached payloads<a href="#appendix-B-17.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-17.12">Move <code>claims</code> to JPT to live beside <code>cid</code>, and renumber CBOR labels so
+that they may be adjacent<a href="#appendix-B-17.12" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-18">-05<a href="#appendix-B-18" class="pilcrow">¶</a></p>
+<p id="appendix-B-18">-06<a href="#appendix-B-18" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-19.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-19.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-19.1">Update reference to new repository home.<a href="#appendix-B-19.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-19.2">Update BBS algorithm example in JSON serialization to show the proof
-as an array with a single octet string.<a href="#appendix-B-19.2" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-19.2">Fixed #83: Added encrypted JWPs.<a href="#appendix-B-19.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-19.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-19.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-19.3">Added additional clarification around the compact and JSON
+serializations<a href="#appendix-B-19.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-19.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-19.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-19.4">Added text around fully detached payloads<a href="#appendix-B-19.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-20">-04<a href="#appendix-B-20" class="pilcrow">¶</a></p>
+<p id="appendix-B-20">-05<a href="#appendix-B-20" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-21.1">Refactoring figures and examples to be built from a common set across
-all three documents.<a href="#appendix-B-21.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-21.1">Clarify the use of multiple octet strings in presentation proofs.<a href="#appendix-B-21.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-21.2">Update BBS algorithm example in JSON serialization to show the proof
+as an array with a single octet string.<a href="#appendix-B-21.2" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-21.3">Move single-use example appendix from JWP to JPA.<a href="#appendix-B-21.3" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-21.4">Registered <code>+jwp</code> structured syntax suffix.<a href="#appendix-B-21.4" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-22">-03<a href="#appendix-B-22" class="pilcrow">¶</a></p>
+<p id="appendix-B-22">-04<a href="#appendix-B-22" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-23.1">Improvements resulting from a full proofreading.<a href="#appendix-B-23.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-23.1">Refactoring figures and examples to be built from a common set across
+all three documents.<a href="#appendix-B-23.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-23.2">Populated IANA Considerations section.<a href="#appendix-B-23.2" class="pilcrow">¶</a>
+      </ul>
+<p id="appendix-B-24">-03<a href="#appendix-B-24" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-25.1">Improvements resulting from a full proofreading.<a href="#appendix-B-25.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-23.3">Specified JWP Header Parameters.<a href="#appendix-B-23.3" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-25.2">Populated IANA Considerations section.<a href="#appendix-B-25.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-23.4">Specified representation of zero-length disclosed payloads for the
-compact serialization.<a href="#appendix-B-23.4" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-25.3">Specified JWP Header Parameters.<a href="#appendix-B-25.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-23.5">Specified that algorithms may supply multiple octet strings for the
+        <li class="compact" id="appendix-B-25.4">Specified representation of zero-length disclosed payloads for the
+compact serialization.<a href="#appendix-B-25.4" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="appendix-B-25.5">Specified that algorithms may supply multiple octet strings for the
 proof, which are separated by <code>~</code> characters in the compact
-serialization.<a href="#appendix-B-23.5" class="pilcrow">¶</a>
+serialization.<a href="#appendix-B-25.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-23.6">Updated to use BBS draft -05.<a href="#appendix-B-23.6" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-25.6">Updated to use BBS draft -05.<a href="#appendix-B-25.6" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="appendix-B-23.7">Added Terminology Section.<a href="#appendix-B-23.7" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="appendix-B-24">-02<a href="#appendix-B-24" class="pilcrow">¶</a></p>
-<ul class="compact">
-<li class="compact" id="appendix-B-25.1">Update reference to current BBS algorithm<a href="#appendix-B-25.1" class="pilcrow">¶</a>
+        <li class="compact" id="appendix-B-25.7">Added Terminology Section.<a href="#appendix-B-25.7" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-26">-01<a href="#appendix-B-26" class="pilcrow">¶</a></p>
+<p id="appendix-B-26">-02<a href="#appendix-B-26" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-27.1">Correct cross-references within group.<a href="#appendix-B-27.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-27.1">Update reference to current BBS algorithm<a href="#appendix-B-27.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="appendix-B-28">-00<a href="#appendix-B-28" class="pilcrow">¶</a></p>
+<p id="appendix-B-28">-01<a href="#appendix-B-28" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="appendix-B-29.1">Created initial working group draft based on
-draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-29.1" class="pilcrow">¶</a>
+<li class="compact" id="appendix-B-29.1">Correct cross-references within group.<a href="#appendix-B-29.1" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="appendix-B-30">-00<a href="#appendix-B-30" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="appendix-B-31.1">Created initial working group draft based on
+draft-jmiller-jose-json-web-proof-01<a href="#appendix-B-31.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
