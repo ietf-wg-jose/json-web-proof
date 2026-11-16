@@ -5,10 +5,10 @@
 jose                                                            D. Waite
 Internet-Draft                                             Ping Identity
 Intended status: Standards Track                                M. Jones
-Expires: 21 January 2027                          Self-Issued Consulting
+Expires: 20 May 2027                              Self-Issued Consulting
                                                                J. Miller
                                                            Ping Identity
-                                                            20 July 2026
+                                                        16 November 2026
 
 
                              JSON Web Proof
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 January 2027.
+   This Internet-Draft will expire on 20 May 2027.
 
 Copyright Notice
 
@@ -1313,11 +1313,12 @@ Table of Contents
 12.2.  Informative References
 
    [I-D.irtf-cfrg-bbs-signatures]
-              Looker, T., Kalos, V., Whitehead, A., and M. Lodder, "The
-              BBS Signature Scheme", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-bbs-signatures-10, 8 January 2026,
+              Looker, T., Kalos, V., Whitehead, A., Lodder, M., and G.
+              M. Bernstein, "The BBS Signature Scheme", Work in
+              Progress, Internet-Draft, draft-irtf-cfrg-bbs-signatures-
+              14, 29 October 2026,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              bbs-signatures-10>.
+              bbs-signatures-14>.
 
    [IANA.CoAP.Formats]
               IANA, "CoAP Content-Formats",
