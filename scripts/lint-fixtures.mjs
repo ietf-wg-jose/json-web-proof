@@ -100,6 +100,57 @@ function canonicalizeJSON(value) {
     return value;
 }
 
+function formatInlineJSON(value) {
+    if (Array.isArray(value)) {
+        if (value.length === 0) {
+            return "[]";
+        }
+        return `[${value.map((item) => formatInlineJSON(item)).join(", ")}]`;
+    }
+    if (isPlainObject(value)) {
+        const keys = Object.keys(value);
+        if (keys.length === 0) {
+            return "{}";
+        }
+        const entries = keys.map((key) => `${JSON.stringify(key)}: ${formatInlineJSON(value[key])}`);
+        return `{ ${entries.join(", ")} }`;
+    }
+    return JSON.stringify(value);
+}
+
+function formatCanonicalJSON(value, indent = 0, lineWidth = 76) {
+    const inline = formatInlineJSON(value);
+    if (indent + inline.length <= lineWidth) {
+        return inline;
+    }
+
+    const nestedIndent = indent + 2;
+    const indentText = " ".repeat(indent);
+    const nestedIndentText = " ".repeat(nestedIndent);
+
+    if (Array.isArray(value)) {
+        if (value.length === 0) {
+            return "[]";
+        }
+        const lines = value.map((item) => `${nestedIndentText}${formatCanonicalJSON(item, nestedIndent, lineWidth)}`);
+        return `[\n${lines.join(",\n")}\n${indentText}]`;
+    }
+
+    if (isPlainObject(value)) {
+        const keys = Object.keys(value);
+        if (keys.length === 0) {
+            return "{}";
+        }
+        const lines = keys.map(
+            (key) =>
+                `${nestedIndentText}${JSON.stringify(key)}: ${formatCanonicalJSON(value[key], nestedIndent, lineWidth)}`
+        );
+        return `{\n${lines.join(",\n")}\n${indentText}}`;
+    }
+
+    return JSON.stringify(value);
+}
+
 async function collectTemplateJSONFindings() {
     const findings = [];
     const entries = await readdir(templateDir, { withFileTypes: true });
@@ -120,8 +171,10 @@ async function collectTemplateJSONFindings() {
             continue;
         }
 
-        const canonical = JSON.stringify(canonicalizeJSON(parsed), null, 2);
-        if (text !== canonical) {
+        const canonicalized = canonicalizeJSON(parsed);
+        const canonicalMultiline = JSON.stringify(canonicalized, null, 2);
+        const canonicalWithInlineCollections = formatCanonicalJSON(canonicalized);
+        if (text !== canonicalMultiline && text !== canonicalWithInlineCollections) {
             findings.push(`${relPath}: non-canonical JSON formatting/key order`);
         }
     }
