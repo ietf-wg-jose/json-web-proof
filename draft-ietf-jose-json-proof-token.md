@@ -260,12 +260,12 @@ represented as a CBOR value.
 ## Undisclosed
 
 The placeholder indicating that a payload was not disclosed is
-represented as described in [@!I-D.ietf-jose-json-web-proof, section 6]
+represented as described in [@!I-D.ietf-jose-json-web-proof, section 7]
 (Serializations).
 
 # Example JPT and CPT
 
-See the examples in [@I-D.ietf-jose-json-proof-algorithms, section A.1].
+See the examples in [@I-D.ietf-jose-json-proof-algorithms, section A].
 
 # Security Considerations {#security}
 

@@ -320,7 +320,7 @@ The proof value is an octet string array.  The first entry is the octet
 string of the Issuer Header signature, with an additional
 entry for each payload signature.
 
-### Presentation Header #{presentation-header}
+### Presentation Header {#presentation-header}
 
 To generate a new presentation, the holder first creates a Presentation
 Header that is specific to the verifier being presented to.
