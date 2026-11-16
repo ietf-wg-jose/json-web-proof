@@ -1,5 +1,4 @@
-import { sign } from "@alksol/cfrg-bbs";
-import { generateProof } from "@alksol/cfrg-bbs/deterministic";
+import { generateProof, sign } from "@alksol/cfrg-bbs";
 import { base64url } from "jose";
 
 import { seed32 } from "./deterministic.mjs";
@@ -49,7 +48,9 @@ function deriveValues({ keyMaterial, issuerHeader, holderHeader, payloads }) {
         presentationHeader: holderHeader,
         messages: issuerPayloads,
         disclosedIndexes: DISCLOSED_INDEXES,
-        seed32: seed32("bbs:proof-seed:v1")
+        testVector: {
+            deterministicSeed: seed32("bbs:proof-seed:v1")
+        }
     });
 
     const presentationPayloads = [...issuerPayloads];
