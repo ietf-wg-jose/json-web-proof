@@ -460,7 +460,7 @@ octet string in the following order:
 ## BBS
 
 The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under
-active development within the CRFG.
+active development within the CFRG.
 
 This algorithm supports both selective disclosure and unlinkability,
 enabling the holder to generate multiple presentations from one issued
@@ -536,7 +536,7 @@ Verification of a presentation is done by the verifier using the
 [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the Issuer
-Header as `header`, the issuance proof as `signature`, the
+Header as `header`, the presentation proof as `proof`, the
 holder's Presentation Header as `ph`, and the payloads as
 `disclosed_messages`.
 
@@ -1171,7 +1171,7 @@ Figure: Presentation (SU-ES256, JSON, Compact Serialization)
 
 This example is meant to mirror the prior compact serialization, using
 [@RFC8392] (CWT) and claims from [@I-D.ietf-spice-oidc-cwt],
-illustrated using [@I-D.ietf-cbor-edn-literals] (EDN).
+illustrated using [@I-D.ietf-cbor-edn-literals] (CDN).
 
 To simplify this example, the same information is represented as the JPT
 example above, including the same public and private keys.
@@ -1180,7 +1180,7 @@ example above, including the same public and private keys.
 Figure: Issuer Header (SU-ES256, CBOR)
 
 The payload values below are the same logical claims as in the JSON JPT
-example above, represented in EDN for the CBOR-based form.
+example above, represented in CDN for the CBOR-based form.
 
 <{{./fixtures/template/cpt-issuer-payloads.edn}}>
 Figure: Issuer Payloads (as CBOR array)
@@ -1342,6 +1342,13 @@ The BBS examples were generated using the library at
 # Document History
 
   [[ To be removed from the final specification ]]
+
+-15
+
+- Updated CPT example `family_name` claim key to `172` (TBD3) per
+  `I-D.ietf-spice-oidc-cwt` and ordered example claims numerically.
+- Updated CBOR diagnostic notation references from EDN to CDN.
+- Fixed `ProofVerify` parameter description (`proof`) and `CFRG` typo.
 
 -14
 

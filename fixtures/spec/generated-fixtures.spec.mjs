@@ -180,7 +180,7 @@ describe("CPT generated fixtures", () => {
         const presentationProofs = [...issuedProofs];
         presentationProofs.splice(6, 1);
         presentationProofs.splice(5, 1);
-        presentationProofs.splice(3, 1);
+        presentationProofs.splice(4, 1);
         const internal = createPresentationInternalRepresentation(
             issuerHeaderPresented,
             holderHeader,

@@ -1,8 +1,8 @@
 [ / payloads    /
   / iat         / 171452160,
   / exp         / 171719999,
-  / family_name / "Doe",
   / given_name  / "Jay",
+  / family_name / "Doe",
   / email       / "jaydoe@example.org",
   / address     / {
     / formatted / 1: "1234 Main St.\nAnytown, CA 12345\nUSA",

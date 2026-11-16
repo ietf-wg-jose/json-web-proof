@@ -133,19 +133,19 @@ async function deriveValues({ presentationNonce, issuerPrivateKey, holderPrivate
     );
 
     const presentationPayloads = [...issuerPayloads];
-    presentationPayloads[2] = null;
+    presentationPayloads[3] = null;
     presentationPayloads[4] = null;
     presentationPayloads[5] = null;
 
     const presentationPayloadOctets = [...payloadOctets];
-    presentationPayloadOctets[2] = null;
+    presentationPayloadOctets[3] = null;
     presentationPayloadOctets[4] = null;
     presentationPayloadOctets[5] = null;
 
     const presentationSigs = [...issuerSigs];
     presentationSigs.splice(6, 1);
     presentationSigs.splice(5, 1);
-    presentationSigs.splice(3, 1);
+    presentationSigs.splice(4, 1);
 
     const presentationInternal = createPresentationInternalRepresentation(
         issuerHeaderOctets,

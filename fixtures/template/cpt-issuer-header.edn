@@ -6,10 +6,10 @@
   6: [      / claims /
     6,      / "iat" /
     4,      / "exp" / 
-    170,    / "family_name" (I-D.maldant-spice-oidc-cwt TBD1) /
-    171,    / "given_name"  (I-D.maldant-spice-oidc-cwt TBD2) / 
-    179,    / "email"       (I-D.maldant-spice-oidc-cwt TBD10) /
-    187,    / "address"     (I-D.maldant-spice-oidc-cwt TBD18) /
+    171,    / "given_name"  (I-D.ietf-spice-oidc-cwt TBD2) /
+    172,    / "family_name" (I-D.ietf-spice-oidc-cwt TBD3) /
+    179,    / "email"       (I-D.ietf-spice-oidc-cwt TBD10) /
+    187,    / "address"     (I-D.ietf-spice-oidc-cwt TBD18) /
     "age_over_21"
   ],
   8: {      / iek /
@@ -24,5 +24,5 @@
     / hpk-x / 
     / hpk-y / 
   },
-  10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
+  10: -9    / hpa: "ESP256" (RFC9864) /
 }
