@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout"
-      uses: actions/checkout@v5
+      uses: actions/checkout@v7
 
     - name: "Setup Node.js"
-      uses: actions/setup-node@v5
+      uses: actions/setup-node@v7
       with:
         node-version: "22.13.1"
         cache: "npm"
@@ -62,14 +62,14 @@ jobs:
       pull-requests: write
     steps:
     - name: "Checkout"
-      uses: actions/checkout@v5
+      uses: actions/checkout@v7
 
     - name: "Setup"
       id: setup
       run: date -u "+date=%FT%T" >>"$GITHUB_OUTPUT"
 
     - name: "Caching"
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: |
           .refcache
@@ -81,7 +81,7 @@ jobs:
         restore-keys: i-d-
 
     - name: "Setup Node.js"
-      uses: actions/setup-node@v5
+      uses: actions/setup-node@v7
       with:
         node-version: "22.13.1"
         cache: "npm"
@@ -90,6 +90,7 @@ jobs:
       run: npm ci
 
     - name: "Build Drafts"
+      id: build
       uses: martinthomson/i-d-template@v1
       with:
         token: ${{ github.token }}
@@ -125,7 +126,7 @@ jobs:
     - name: "Update Pending PR Preview Comment"
       if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
       continue-on-error: true
-      uses: actions/github-script@v8
+      uses: actions/github-script@v9
       env:
         COMMENT_FILE: ${{ steps.pending-preview.outputs.comment_file }}
         ISSUE_NUMBER: ${{ github.event.pull_request.number }}
@@ -164,6 +165,23 @@ jobs:
             core.info(`Created PR preview comment ${created.data.id}.`);
           }
 
+    - name: "Fix Lints"
+      id: fix-lint
+      if: always() && steps.build.outcome == 'failure'
+      uses: martinthomson/i-d-template@v1
+      with:
+        make: fix-lint
+
+    - name: "Propose Linting Fixes"
+      if: >
+        always() &&
+        steps.fix-lint.outcome != 'skipped' &&
+        github.event.pull_request &&
+        github.event.pull_request.head.repo.full_name == github.repository
+      uses: parkerbxyz/suggest-changes@v3
+      with:
+        token: ${{ github.token }}
+
     - name: "Update GitHub Pages"
       uses: martinthomson/i-d-template@v1
       if: ${{ github.event_name == 'push' }}
@@ -174,7 +192,7 @@ jobs:
     - name: "Find Open PR For Branch"
       if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') }}
       id: branch-pr
-      uses: actions/github-script@v8
+      uses: actions/github-script@v9
       env:
         HEAD_BRANCH: ${{ github.ref_name }}
       with:
@@ -212,7 +230,7 @@ jobs:
     - name: "Update Published PR Preview Comment"
       if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') && steps.branch-pr.outputs.issue_number != '' }}
       continue-on-error: true
-      uses: actions/github-script@v8
+      uses: actions/github-script@v9
       env:
         COMMENT_FILE: ${{ steps.published-preview.outputs.comment_file }}
         ISSUE_NUMBER: ${{ steps.branch-pr.outputs.issue_number }}
@@ -252,7 +270,7 @@ jobs:
           }
 
     - name: "Archive Built Drafts"
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: drafts
         path: |
