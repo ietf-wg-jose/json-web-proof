@@ -320,7 +320,7 @@ The proof value is an octet string array.  The first entry is the octet
 string of the Issuer Header signature, with an additional
 entry for each payload signature.
 
-### Presentation Header #{presentation-header}
+### Presentation Header {#presentation-header}
 
 To generate a new presentation, the holder first creates a Presentation
 Header that is specific to the verifier being presented to.
@@ -409,9 +409,17 @@ Verification is performed using the following steps.
 
 ### JPA Registration {#SU-registration}
 
-The proposed JWP `alg` value is of the format "SU-" appended with the
-relevant JWS `alg` value for the chosen public and ephemeral key-pair
-algorithm, for example "SU-ES256".
+The proposed JWP `alg` value is of the format `SU-` appended with the
+JWS `alg` name of a fully-specified algorithm [@!RFC9864].  Note that
+the corresponding COSE fully-specified algorithm name and integer label
+may differ from the JWS name.  Below are the initial registrations:
+
+- `SU-ES256` uses ECDSA with P-256 and SHA-256 (JWS `ES256`, COSE
+  `ESP256` / `-9`)
+- `SU-ES384` uses ECDSA with P-384 and SHA-384 (JWS `ES384`, COSE
+  `ESP384` / `-51`)
+- `SU-ES512` uses ECDSA with P-521 and SHA-512 (JWS `ES512`, COSE
+  `ESP512` / `-52`)
 
 ## Presentation Internal Representation {#presentation-internal-representation}
 
@@ -460,7 +468,7 @@ octet string in the following order:
 ## BBS
 
 The BBS Signature Scheme [@!I-D.irtf-cfrg-bbs-signatures] is under
-active development within the CRFG.
+active development within the CFRG.
 
 This algorithm supports both selective disclosure and unlinkability,
 enabling the holder to generate multiple presentations from one issued
@@ -536,7 +544,7 @@ Verification of a presentation is done by the verifier using the
 [@!I-D.irtf-cfrg-bbs-signatures, section 3.5.4].
 
 This operation utilizes the issuer's public key as `PK`, the Issuer
-Header as `header`, the issuance proof as `signature`, the
+Header as `header`, the presentation proof as `proof`, the
 holder's Presentation Header as `ph`, and the payloads as
 `disclosed_messages`.
 
@@ -754,20 +762,25 @@ Verification is performed using the following steps.
 
 Proposed JWP `alg` value is of the format "MAC-" appended with a unique
 identifier for the set of MAC and signing algorithms used.  Below are
-the initial registrations:
+the initial registrations, referencing the corresponding fully-specified
+JWS and COSE algorithm identifiers [@!RFC9864] [@!RFC8812]:
 
-- `MAC-H256` uses `HMAC SHA-256` as the MAC and
-  `ECDSA using P-256 and SHA-256` for the signatures
-- `MAC-H384` uses `HMAC SHA-384` as the MAC and
-  `ECDSA using P-384 and SHA-384` for the signatures
-- `MAC-H512` uses `HMAC SHA-512` as the MAC and
-  `ECDSA using P-521 and SHA-512` for the signatures
-- `MAC-K25519` uses `KMAC SHAKE128` as the MAC and
-  `EdDSA using Curve25519` for the signatures
-- `MAC-K448` uses `KMAC SHAKE256` as the MAC and `EdDSA using Curve448`
-  for the signatures
-- `MAC-H256K` uses `HMAC SHA-256` as the MAC and
-  `ECDSA using secp256k1 and SHA-256` for the signatures
+- `MAC-H256` uses `HMAC SHA-256` (JWS `HS256`, COSE `HMAC 256/256` /
+  `5`) as the MAC and `ECDSA using P-256 and SHA-256` (JWS `ES256`, COSE
+  `ESP256` / `-9`) for the signatures
+- `MAC-H384` uses `HMAC SHA-384` (JWS `HS384`, COSE `HMAC 384/384` /
+  `6`) as the MAC and `ECDSA using P-384 and SHA-384` (JWS `ES384`, COSE
+  `ESP384` / `-51`) for the signatures
+- `MAC-H512` uses `HMAC SHA-512` (JWS `HS512`, COSE `HMAC 512/512` /
+  `7`) as the MAC and `ECDSA using P-521 and SHA-512` (JWS `ES512`, COSE
+  `ESP512` / `-52`) for the signatures
+- `MAC-K25519` uses `KMAC SHAKE128` as the MAC and `Ed25519` (JWS
+  `Ed25519`, COSE `Ed25519` / `-19`) for the signatures
+- `MAC-K448` uses `KMAC SHAKE256` as the MAC and `Ed448` (JWS `Ed448`,
+  COSE `Ed448` / `-53`) for the signatures
+- `MAC-H256K` uses `HMAC SHA-256` (JWS `HS256`, COSE `HMAC 256/256` /
+  `5`) as the MAC and `ECDSA using secp256k1 and SHA-256` (JWS `ES256K`,
+  COSE `ES256K` / `-47`) for the signatures
 
 # Security Considerations
 
@@ -839,7 +852,11 @@ security decisions.
 The Designated Experts should perform reasonable due diligence that
 algorithms being registered either are currently considered
 cryptographically credible or are being registered as Deprecated or
-Prohibited.
+Prohibited.  Registered algorithms must be fully-specified [@!RFC9864]
+rather than polymorphic.  As guidance, if a registered algorithm
+leverages underlying algorithms defined by JOSE or COSE, the
+registering specification should identify the corresponding JWS
+algorithm name and COSE algorithm name and label.
 
 The implementation requirements of an algorithm may be changed over time
 as the cryptographic landscape evolves, for instance, to change the
@@ -919,6 +936,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: Single-Use JWP using ES256
 - Algorithm JSON Label: `SU-ES256`
 - Algorithm CBOR Label: 1
+- Algorithm Description: Single-Use JWP using ECDSA with P-256 and
+  SHA-256
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Recommended
 - Change Controller: IETF
@@ -930,6 +949,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: Single-Use JWP using ES384
 - Algorithm JSON Label: `SU-ES384`
 - Algorithm CBOR Label: 2
+- Algorithm Description: Single-Use JWP using ECDSA with P-384 and
+  SHA-384
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -941,6 +962,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: Single-Use JWP using ES512
 - Algorithm JSON Label: `SU-ES512`
 - Algorithm CBOR Label: 3
+- Algorithm Description: Single-Use JWP using ECDSA with P-521 and
+  SHA-512
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -965,8 +988,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: MAC-H256
 - Algorithm JSON Label: `MAC-H256`
 - Algorithm CBOR Label: 5
-- Algorithm Description: `MAC-H256` uses `HMAC SHA-256` as the MAC, and
-  `ECDSA using P-256 and SHA-256` for the signatures
+- Algorithm Description: `MAC-H256` uses HMAC SHA-256 as the MAC, and
+  ECDSA with P-256 and SHA-256 for the signatures
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -978,8 +1001,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: MAC-H384
 - Algorithm JSON Label: `MAC-H384`
 - Algorithm CBOR Label: 6
-- Algorithm Description: `MAC-H384` uses `HMAC SHA-384` as the MAC, and
-  `ECDSA using P-384 and SHA-384` for the signatures
+- Algorithm Description: `MAC-H384` uses HMAC SHA-384 as the MAC, and
+  ECDSA with P-384 and SHA-384 for the signatures
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -991,8 +1014,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: MAC-H512
 - Algorithm JSON Label: `MAC-H512`
 - Algorithm CBOR Label: 7
-- Algorithm Description: `MAC-H512` uses `HMAC SHA-512` as the MAC, and
-  `ECDSA using P-521 and SHA-512` for the signatures
+- Algorithm Description: `MAC-H512` uses HMAC SHA-512 as the MAC, and
+  ECDSA with P-521 and SHA-512 for the signatures
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -1004,8 +1027,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: MAC-K25519
 - Algorithm JSON Label: `MAC-K25519`
 - Algorithm CBOR Label: 8
-- Algorithm Description: `MAC-K25519` uses `KMAC SHAKE128` as the MAC,
-  and `EdDSA using Curve25519` for the signatures
+- Algorithm Description: `MAC-K25519` uses KMAC SHAKE128 as the MAC,
+  and EdDSA using Ed25519 for the signatures
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -1017,8 +1040,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: MAC-K448
 - Algorithm JSON Label: `MAC-K448`
 - Algorithm CBOR Label: 9
-- Algorithm Description: `MAC-K448` uses `KMAC SHAKE256` as the MAC, and
-  `EdDSA using Curve448` for the signatures
+- Algorithm Description: `MAC-K448` uses KMAC SHAKE256 as the MAC, and
+  EdDSA using Ed448 for the signatures
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -1030,8 +1053,8 @@ Algorithm Analysis Documents(s):
 - Algorithm Name: MAC-H256K
 - Algorithm JSON Label: `MAC-H256K`
 - Algorithm CBOR Label: 10
-- Algorithm Description: `MAC-H256K` uses `HMAC SHA-256` as the MAC, and
-  `ECDSA using secp256k1 and SHA-256` for the signatures
+- Algorithm Description: `MAC-H256K` uses HMAC SHA-256 as the MAC, and
+  ECDSA with secp256k1 and SHA-256 for the signatures
 - Algorithm Usage Location(s): Issued, Presented
 - JWP Implementation Requirements: Optional
 - Change Controller: IETF
@@ -1171,7 +1194,7 @@ Figure: Presentation (SU-ES256, JSON, Compact Serialization)
 
 This example is meant to mirror the prior compact serialization, using
 [@RFC8392] (CWT) and claims from [@I-D.ietf-spice-oidc-cwt],
-illustrated using [@I-D.ietf-cbor-edn-literals] (EDN).
+illustrated using [@I-D.ietf-cbor-edn-literals] (CDN).
 
 To simplify this example, the same information is represented as the JPT
 example above, including the same public and private keys.
@@ -1180,7 +1203,7 @@ example above, including the same public and private keys.
 Figure: Issuer Header (SU-ES256, CBOR)
 
 The payload values below are the same logical claims as in the JSON JPT
-example above, represented in EDN for the CBOR-based form.
+example above, represented in CDN for the CBOR-based form.
 
 <{{./fixtures/template/cpt-issuer-payloads.edn}}>
 Figure: Issuer Payloads (as CBOR array)
@@ -1342,6 +1365,17 @@ The BBS examples were generated using the library at
 # Document History
 
   [[ To be removed from the final specification ]]
+
+-15
+
+- Updated CPT example `family_name` claim key to `172` (TBD3) per
+  `I-D.ietf-spice-oidc-cwt` and ordered example claims numerically.
+- Updated CBOR diagnostic notation references from EDN to CDN.
+- Clarification of fully-specified algorithm requirements. Update
+  registrations of single use and MAC algorithms to be fully
+  specified, and to reference the fully-specified JWS/COSE algorithms
+  they leverage, where appropriate.
+- Fixed `ProofVerify` parameter description (`proof`) and `CFRG` typo.
 
 -14
 

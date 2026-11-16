@@ -37,6 +37,9 @@ jobs:
     - name: "Lint Fixture Scripts"
       run: npm run lint:fixtures
 
+    - name: "Lint Draft Markdown"
+      run: npm run lint:docs
+
     - name: "Check Fixture Artifact Manifest"
       run: npm run check:fixtures:artifacts
 

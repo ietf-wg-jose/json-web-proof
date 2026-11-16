@@ -1184,23 +1184,27 @@ for their valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-15
+
+* Editorial and formatting updates only; no normative changes.
+
 -14
 
-- Applied editorial corrections.
-- Normalized references and section citations.
-- Corrected the `COSE_Sign1` reference.
-- Clarified JSON-formatted and CBOR-formatted `typ` Header Parameter
+* Applied editorial corrections.
+* Normalized references and section citations.
+* Corrected the `COSE_Sign1` reference.
+* Clarified JSON-formatted and CBOR-formatted `typ` Header Parameter
   values.
-- Clarified CBOR Serialization requirements for Header encoding.
+* Clarified CBOR Serialization requirements for Header encoding.
 
 -13
 
-- Examples are now built deterministically (using RFC 6979 deterministic
+* Examples are now built deterministically (using RFC 6979 deterministic
   ECDSA and seeded random number generation for BBS)
 
 -12
 
-- IANA Considerations section changes from IANA Early Review
+* IANA Considerations section changes from IANA Early Review
 
  -11
 

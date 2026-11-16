@@ -18,17 +18,19 @@
     "update:fixtures:doc-manifest": "node --no-warnings scripts/update-fixture-doc-manifest.mjs",
     "update:fixtures:manifests": "npm run update:fixtures:manifest && npm run update:fixtures:doc-manifest",
     "lint:fixtures": "node --no-warnings scripts/lint-fixtures.mjs",
-    "verify": "make fixtures && npm run check:fixtures:artifacts && npm run check:fixtures:docs && npm run lint:fixtures && npm test && npm run test:random && npm run check:repro:fixtures && make"
+    "lint:docs": "markdownlint-cli2 \"draft-*.md\"",
+    "verify": "make fixtures && npm run check:fixtures:artifacts && npm run check:fixtures:docs && npm run lint:fixtures && npm run lint:docs && npm test && npm run test:random && npm run check:repro:fixtures && make"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@alksol/cfrg-bbs": "file:./fixtures/vendor/alksol-cfrg-bbs-0.2.9.tgz",
+    "@alksol/cfrg-bbs": "file:./fixtures/vendor/alksol-cfrg-bbs-0.2.11.tgz",
     "cbor-edn": "^0.2.2",
     "cbor2": "^2.0.1",
     "jose": "^6"
   },
   "devDependencies": {
-    "jasmine": "^6.1"
+    "jasmine": "^6.1",
+    "markdownlint-cli2": "^0.24.1"
   }
 }
