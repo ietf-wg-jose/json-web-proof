@@ -590,6 +590,10 @@ Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
 
+   -15
+
+   *  Corrected cross-draft section references.
+
    -14
 
    *  Applied editorial corrections.
