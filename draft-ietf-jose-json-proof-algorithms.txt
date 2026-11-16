@@ -73,7 +73,7 @@ Table of Contents
        7.1.5.  Issuer Header
        7.1.6.  Payloads
        7.1.7.  Proof
-       7.1.8.  Presentation Header #{presentation-header}
+       7.1.8.  Presentation Header
        7.1.9.  Presentation
        7.1.10. Verification of Presentation
        7.1.11. JPA Registration
@@ -395,7 +395,7 @@ Table of Contents
    octet string of the Issuer Header signature, with an additional entry
    for each payload signature.
 
-7.1.8.  Presentation Header #{presentation-header}
+7.1.8.  Presentation Header
 
    To generate a new presentation, the holder first creates a
    Presentation Header that is specific to the verifier being presented
@@ -484,9 +484,17 @@ Table of Contents
 
 7.1.11.  JPA Registration
 
-   The proposed JWP alg value is of the format "SU-" appended with the
-   relevant JWS alg value for the chosen public and ephemeral key-pair
-   algorithm, for example "SU-ES256".
+   The proposed JWP alg value is of the format SU- appended with the JWS
+   alg name of a fully-specified algorithm [RFC9864].  Note that the
+   corresponding COSE fully-specified algorithm name and integer label
+   may differ from the JWS name.  Below are the initial registrations:
+
+   *  SU-ES256 uses ECDSA with P-256 and SHA-256 (JWS ES256, COSE ESP256
+      / -9)
+   *  SU-ES384 uses ECDSA with P-384 and SHA-384 (JWS ES384, COSE ESP384
+      / -51)
+   *  SU-ES512 uses ECDSA with P-521 and SHA-512 (JWS ES512, COSE ESP512
+      / -52)
 
 7.2.  Presentation Internal Representation
 
@@ -545,7 +553,7 @@ Table of Contents
 7.3.  BBS
 
    The BBS Signature Scheme [I-D.irtf-cfrg-bbs-signatures] is under
-   active development within the CRFG.
+   active development within the CFRG.
 
    This algorithm supports both selective disclosure and unlinkability,
    enabling the holder to generate multiple presentations from one
@@ -620,7 +628,7 @@ Table of Contents
    [I-D.irtf-cfrg-bbs-signatures].
 
    This operation utilizes the issuer's public key as PK, the Issuer
-   Header as header, the issuance proof as signature, the holder's
+   Header as header, the presentation proof as proof, the holder's
    Presentation Header as ph, and the payloads as disclosed_messages.
 
    In addition, the disclosed_indexes scalar array is calculated from
@@ -843,20 +851,25 @@ Table of Contents
 
    Proposed JWP alg value is of the format "MAC-" appended with a unique
    identifier for the set of MAC and signing algorithms used.  Below are
-   the initial registrations:
+   the initial registrations, referencing the corresponding fully-
+   specified JWS and COSE algorithm identifiers [RFC9864] [RFC8812]:
 
-   *  MAC-H256 uses HMAC SHA-256 as the MAC and ECDSA using P-256 and
-      SHA-256 for the signatures
-   *  MAC-H384 uses HMAC SHA-384 as the MAC and ECDSA using P-384 and
-      SHA-384 for the signatures
-   *  MAC-H512 uses HMAC SHA-512 as the MAC and ECDSA using P-521 and
-      SHA-512 for the signatures
-   *  MAC-K25519 uses KMAC SHAKE128 as the MAC and EdDSA using
-      Curve25519 for the signatures
-   *  MAC-K448 uses KMAC SHAKE256 as the MAC and EdDSA using Curve448
-      for the signatures
-   *  MAC-H256K uses HMAC SHA-256 as the MAC and ECDSA using secp256k1
-      and SHA-256 for the signatures
+   *  MAC-H256 uses HMAC SHA-256 (JWS HS256, COSE HMAC 256/256 / 5) as
+      the MAC and ECDSA using P-256 and SHA-256 (JWS ES256, COSE ESP256
+      / -9) for the signatures
+   *  MAC-H384 uses HMAC SHA-384 (JWS HS384, COSE HMAC 384/384 / 6) as
+      the MAC and ECDSA using P-384 and SHA-384 (JWS ES384, COSE ESP384
+      / -51) for the signatures
+   *  MAC-H512 uses HMAC SHA-512 (JWS HS512, COSE HMAC 512/512 / 7) as
+      the MAC and ECDSA using P-521 and SHA-512 (JWS ES512, COSE ESP512
+      / -52) for the signatures
+   *  MAC-K25519 uses KMAC SHAKE128 as the MAC and Ed25519 (JWS Ed25519,
+      COSE Ed25519 / -19) for the signatures
+   *  MAC-K448 uses KMAC SHAKE256 as the MAC and Ed448 (JWS Ed448, COSE
+      Ed448 / -53) for the signatures
+   *  MAC-H256K uses HMAC SHA-256 (JWS HS256, COSE HMAC 256/256 / 5) as
+      the MAC and ECDSA using secp256k1 and SHA-256 (JWS ES256K, COSE
+      ES256K / -47) for the signatures
 
 8.  Security Considerations
 
@@ -930,7 +943,11 @@ Table of Contents
    The Designated Experts should perform reasonable due diligence that
    algorithms being registered either are currently considered
    cryptographically credible or are being registered as Deprecated or
-   Prohibited.
+   Prohibited.  Registered algorithms must be fully-specified [RFC9864]
+   rather than polymorphic.  As guidance, if a registered algorithm
+   leverages underlying algorithms defined by JOSE or COSE, the
+   registering specification should identify the corresponding JWS
+   algorithm name and COSE algorithm name and label.
 
    The implementation requirements of an algorithm may be changed over
    time as the cryptographic landscape evolves, for instance, to change
@@ -997,6 +1014,8 @@ Table of Contents
    *  Algorithm Name: Single-Use JWP using ES256
    *  Algorithm JSON Label: SU-ES256
    *  Algorithm CBOR Label: 1
+   *  Algorithm Description: Single-Use JWP using ECDSA with P-256 and
+      SHA-256
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Recommended
    *  Change Controller: IETF
@@ -1008,6 +1027,8 @@ Table of Contents
    *  Algorithm Name: Single-Use JWP using ES384
    *  Algorithm JSON Label: SU-ES384
    *  Algorithm CBOR Label: 2
+   *  Algorithm Description: Single-Use JWP using ECDSA with P-384 and
+      SHA-384
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1019,6 +1040,8 @@ Table of Contents
    *  Algorithm Name: Single-Use JWP using ES512
    *  Algorithm JSON Label: SU-ES512
    *  Algorithm CBOR Label: 3
+   *  Algorithm Description: Single-Use JWP using ECDSA with P-521 and
+      SHA-512
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1044,7 +1067,7 @@ Table of Contents
    *  Algorithm JSON Label: MAC-H256
    *  Algorithm CBOR Label: 5
    *  Algorithm Description: MAC-H256 uses HMAC SHA-256 as the MAC, and
-      ECDSA using P-256 and SHA-256 for the signatures
+      ECDSA with P-256 and SHA-256 for the signatures
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1057,7 +1080,7 @@ Table of Contents
    *  Algorithm JSON Label: MAC-H384
    *  Algorithm CBOR Label: 6
    *  Algorithm Description: MAC-H384 uses HMAC SHA-384 as the MAC, and
-      ECDSA using P-384 and SHA-384 for the signatures
+      ECDSA with P-384 and SHA-384 for the signatures
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1070,7 +1093,7 @@ Table of Contents
    *  Algorithm JSON Label: MAC-H512
    *  Algorithm CBOR Label: 7
    *  Algorithm Description: MAC-H512 uses HMAC SHA-512 as the MAC, and
-      ECDSA using P-521 and SHA-512 for the signatures
+      ECDSA with P-521 and SHA-512 for the signatures
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1083,7 +1106,7 @@ Table of Contents
    *  Algorithm JSON Label: MAC-K25519
    *  Algorithm CBOR Label: 8
    *  Algorithm Description: MAC-K25519 uses KMAC SHAKE128 as the MAC,
-      and EdDSA using Curve25519 for the signatures
+      and EdDSA using Ed25519 for the signatures
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1096,7 +1119,7 @@ Table of Contents
    *  Algorithm JSON Label: MAC-K448
    *  Algorithm CBOR Label: 9
    *  Algorithm Description: MAC-K448 uses KMAC SHAKE256 as the MAC, and
-      EdDSA using Curve448 for the signatures
+      EdDSA using Ed448 for the signatures
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1109,7 +1132,7 @@ Table of Contents
    *  Algorithm JSON Label: MAC-H256K
    *  Algorithm CBOR Label: 10
    *  Algorithm Description: MAC-H256K uses HMAC SHA-256 as the MAC, and
-      ECDSA using secp256k1 and SHA-256 for the signatures
+      ECDSA with secp256k1 and SHA-256 for the signatures
    *  Algorithm Usage Location(s): Issued, Presented
    *  JWP Implementation Requirements: Optional
    *  Change Controller: IETF
@@ -1200,10 +1223,22 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
+   [RFC8812]  Jones, M., "CBOR Object Signing and Encryption (COSE) and
+              JSON Object Signing and Encryption (JOSE) Registrations
+              for Web Authentication (WebAuthn) Algorithms", RFC 8812,
+              DOI 10.17487/RFC8812, August 2020,
+              <https://www.rfc-editor.org/info/rfc8812>.
+
    [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Structures and Process", STD 96, RFC 9052,
               DOI 10.17487/RFC9052, August 2022,
               <https://www.rfc-editor.org/info/rfc9052>.
+
+   [RFC9864]  Jones, M.B. and O. Steele, "Fully-Specified Algorithms for
+              JSON Object Signing and Encryption (JOSE) and CBOR Object
+              Signing and Encryption (COSE)", RFC 9864,
+              DOI 10.17487/RFC9864, October 2025,
+              <https://www.rfc-editor.org/info/rfc9864>.
 
    [VC-DATA-MODEL-2.0]
               Sporny, M., Jr, T. T., Herman, I., Cohen, G., and M. B.
@@ -1213,11 +1248,11 @@ Table of Contents
 10.2.  Informative References
 
    [I-D.bormann-cbor-draft-numbers]
-              Bormann, C., "CBOR: Code Point Allocation and Assigned
-              Numbers", Work in Progress, Internet-Draft, draft-bormann-
-              cbor-draft-numbers-latest,
+              Bormann, C., "Managing CBOR codepoints in Internet-
+              Drafts", Work in Progress, Internet-Draft, draft-bormann-
+              cbor-draft-numbers-08, 27 June 2026,
               <https://datatracker.ietf.org/doc/html/draft-bormann-cbor-
-              draft-numbers>.
+              draft-numbers-08>.
 
    [I-D.ietf-cbor-edn-literals]
               Bormann, C., "Concise Diagnostic Notation (CDN)", Work in
@@ -1470,7 +1505,7 @@ A.2.  Example CBOR-Serialized Single-Use CPT
 
    This example is meant to mirror the prior compact serialization,
    using [RFC8392] (CWT) and claims from [I-D.ietf-spice-oidc-cwt],
-   illustrated using [I-D.ietf-cbor-edn-literals] (EDN).
+   illustrated using [I-D.ietf-cbor-edn-literals] (CDN).
 
    To simplify this example, the same information is represented as the
    JPT example above, including the same public and private keys.
@@ -1482,10 +1517,10 @@ A.2.  Example CBOR-Serialized Single-Use CPT
      6: [      / claims /
        6,      / "iat" /
        4,      / "exp" /
-       170,    / "family_name" (I-D.maldant-spice-oidc-cwt TBD1) /
-       171,    / "given_name"  (I-D.maldant-spice-oidc-cwt TBD2) /
-       179,    / "email"       (I-D.maldant-spice-oidc-cwt TBD10) /
-       187,    / "address"     (I-D.maldant-spice-oidc-cwt TBD18) /
+       171,    / "given_name"  (I-D.ietf-spice-oidc-cwt TBD2) /
+       172,    / "family_name" (I-D.ietf-spice-oidc-cwt TBD3) /
+       179,    / "email"       (I-D.ietf-spice-oidc-cwt TBD10) /
+       187,    / "address"     (I-D.ietf-spice-oidc-cwt TBD18) /
        "age_over_21"
      ],
      8: {      / iek /
@@ -1504,19 +1539,19 @@ A.2.  Example CBOR-Serialized Single-Use CPT
        -3: h'3e4095d479abaee0918cce380c06dd6ffd68a6fd37c4010c65e29b8a' +
            h'1fc21094'  / y /
      },
-     10: -9    / hpa: "ESP256" (I-D.ietf-jose-fully-specified-algorithms TBD-9) /
+     10: -9    / hpa: "ESP256" (RFC9864) /
    }
 
    |  Figure: Issuer Header (SU-ES256, CBOR)
 
    The payload values below are the same logical claims as in the JSON
-   JPT example above, represented in EDN for the CBOR-based form.
+   JPT example above, represented in CDN for the CBOR-based form.
 
    [ / payloads    /
      / iat         / 171452160,
      / exp         / 171719999,
-     / family_name / "Doe",
      / given_name  / "Jay",
+     / family_name / "Doe",
      / email       / "jaydoe@example.org",
      / address     / {
        / formatted / 1: "1234 Main St.\nAnytown, CA 12345\nUSA",
@@ -1535,26 +1570,26 @@ A.2.  Example CBOR-Serialized Single-Use CPT
    CBOR (in hex):
 
    8358cfa701010314057668747470733a2f2f6973737565722e6578616d706c65
-   0687060418aa18ab18b318bb6b6167655f6f7665725f323108a4010220012158
+   0687060418ab18ac18b318bb6b6167655f6f7665725f323108a4010220012158
    20f7365268c3ff5ff3453a6d438a7c7f124d094028b543adb0c89616ff819ef0
    9d2258209e25aec6e0fcda21ae67d7c71edbdaaee4eec1e6d3aa53e88a5b6c2c
    d72fe4b309a401022001215820c4fffbb48d5a70c0f0115c54a7e5ed095c4d4e
    4cdf3ca517607fb5c3c62c7e752258203e4095d479abaee0918cce380c06dd6f
-   fd68a6fd37c4010c65e29b8a1fc210940a28871a0a3827001a0a3c3d3f63446f
-   65634a6179726a6179646f65406578616d706c652e6f7267a601782331323334
+   fd68a6fd37c4010c65e29b8a1fc210940a28871a0a3827001a0a3c3d3f634a61
+   7963446f65726a6179646f65406578616d706c652e6f7267a601782331323334
    204d61696e2053742e0a416e79746f776e2c2043412031323334350a55534102
    6d31323334204d61696e2053742e0367416e79746f776e046243410565393032
-   31300663555341f588584015f0d68fd8b959e464a73c04a0f5cdfc50c5bbfdeb
-   d57ac3c2e65e619661de99548321d644c07b0cc37bc783eb3074bb0a3874bbe5
-   210d6d5e9df02087eb9d3b584003397555302f7b41f5f3a707ad6c96b8f5ae82
+   31300663555341f58858406d47464c061d9f48eeb744121dde7ae91435e4b166
+   341e92ce1043dee358fd374af6f34beb6d26ec278efbc49dc6d5c7e11d9abfa0
+   f85f50d87d9de6a6be194d584003397555302f7b41f5f3a707ad6c96b8f5ae82
    3c3bc93e4fdd1a5bb177e179a60a85bdf79f16dec69dd06047bbb0e16fe614d8
    db4c6d64d653cc7e894dbf985958400ca4dec2ad2d58fda6516ecfd625e2601a
    6072baaa875e74fb57dc9111f7f54d0a5376bf64c4abd6c217c0243e68894236
-   28aeaa64a8534fbbcd7fc61e9be8e55840ac33af78f15644ee5426dfc05ecf4f
-   cef0737a848feb68db76ef11a74ca878ef272fdf49e5b0c2739a9e025e641cc2
-   4bb5f8f0badfecfc3f14d9f5e2a806bb3b58404887f2272fbeb8d2f95b464cfd
-   6c2f30c64a9b63317d90dd096d31b8ff656b846ea92278d1d23ead6020d73c96
-   8c9016a12a7866e24931a2fc84363973d306ee5840a34b660c9cad70e682d216
+   28aeaa64a8534fbbcd7fc61e9be8e558404887f2272fbeb8d2f95b464cfd6c2f
+   30c64a9b63317d90dd096d31b8ff656b846ea92278d1d23ead6020d73c968c90
+   16a12a7866e24931a2fc84363973d306ee5840ac33af78f15644ee5426dfc05e
+   cf4fcef0737a848feb68db76ef11a74ca878ef272fdf49e5b0c2739a9e025e64
+   1cc24bb5f8f0badfecfc3f14d9f5e2a806bb3b5840a34b660c9cad70e682d216
    c0ab67063b9f2ca76073bd718dfce1fe39aef0a23b3caf7fcee083067dbfb720
    35d33dd5c47dee84d73561687fd41f8cc8bc5cd07c58400f70a6cd9ee624c2db
    5128ffef0d93f2866d3fa4028c1c7996d8c8d7094baebd24f53829a04b5be6df
@@ -1582,15 +1617,15 @@ A.2.  Example CBOR-Serialized Single-Use CPT
    845846a3010106781d68747470733a2f2f726563697069656e742e6578616d70
    6c652e636f6d07582029bcb1f4c961f975206ce75a9b5bd1f9d97858ad772ed9
    facbb9dfbc551028a358cfa701010314057668747470733a2f2f697373756572
-   2e6578616d706c650687060418aa18ab18b318bb6b6167655f6f7665725f3231
+   2e6578616d706c650687060418ab18ac18b318bb6b6167655f6f7665725f3231
    08a401022001215820f7365268c3ff5ff3453a6d438a7c7f124d094028b543ad
    b0c89616ff819ef09d2258209e25aec6e0fcda21ae67d7c71edbdaaee4eec1e6
    d3aa53e88a5b6c2cd72fe4b309a401022001215820c4fffbb48d5a70c0f0115c
    54a7e5ed095c4d4e4cdf3ca517607fb5c3c62c7e752258203e4095d479abaee0
    918cce380c06dd6ffd68a6fd37c4010c65e29b8a1fc210940a28871a0a382700
-   1a0a3c3d3ff6634a6179f6f6f586584015f0d68fd8b959e464a73c04a0f5cdfc
-   50c5bbfdebd57ac3c2e65e619661de99548321d644c07b0cc37bc783eb3074bb
-   0a3874bbe5210d6d5e9df02087eb9d3b584003397555302f7b41f5f3a707ad6c
+   1a0a3c3d3f634a6179f6f6f6f58658406d47464c061d9f48eeb744121dde7ae9
+   1435e4b166341e92ce1043dee358fd374af6f34beb6d26ec278efbc49dc6d5c7
+   e11d9abfa0f85f50d87d9de6a6be194d584003397555302f7b41f5f3a707ad6c
    96b8f5ae823c3bc93e4fdd1a5bb177e179a60a85bdf79f16dec69dd06047bbb0
    e16fe614d8db4c6d64d653cc7e894dbf985958400ca4dec2ad2d58fda6516ecf
    d625e2601a6072baaa875e74fb57dc9111f7f54d0a5376bf64c4abd6c217c024
@@ -1598,9 +1633,9 @@ A.2.  Example CBOR-Serialized Single-Use CPT
    464cfd6c2f30c64a9b63317d90dd096d31b8ff656b846ea92278d1d23ead6020
    d73c968c9016a12a7866e24931a2fc84363973d306ee5840f30fe8507b3f1b40
    479608fe99bd4318e965275dc9ae9089571fa5935f3c1c6777560a7f4941165b
-   491edb25fe800726cbd1f8b2a169b3543b7f69c86220b6205840b289d5f1be26
-   19a5ca741beece5b07b022e687f88212580850aa0d8f50b27f7655addca9125f
-   d889387184eb45bdea5affc3348a3808acfa2c2be51aeacd2f8a
+   491edb25fe800726cbd1f8b2a169b3543b7f69c86220b62058403642eab6dea7
+   bb0a76f125f824a52edfa86651cf8bee5835e4f4638525c1ea905b93e3e2cdfb
+   d23f377b2c9ba30feaaaf1fb8356b981ec681d5f3b4bdb27eec9
 
    |  Figure: Presented Form (SU-ES256, CBOR)
 
@@ -1902,6 +1937,17 @@ Appendix B.  Acknowledgements
 Appendix C.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -15
+
+   *  Updated CPT example family_name claim key to 172 (TBD3) per I-
+      D.ietf-spice-oidc-cwt and ordered example claims numerically.
+   *  Updated CBOR diagnostic notation references from EDN to CDN.
+   *  Clarification of fully-specified algorithm requirements.  Update
+      registrations of single use and MAC algorithms to be fully
+      specified, and to reference the fully-specified JWS/COSE
+      algorithms they leverage, where appropriate.
+   *  Fixed ProofVerify parameter description (proof) and CFRG typo.
 
    -14
 

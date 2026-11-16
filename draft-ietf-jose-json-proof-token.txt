@@ -320,12 +320,12 @@ Table of Contents
 8.2.  Undisclosed
 
    The placeholder indicating that a payload was not disclosed is
-   represented as described in Section 6 of
+   represented as described in Section 7 of
    [I-D.ietf-jose-json-web-proof] (Serializations).
 
 9.  Example JPT and CPT
 
-   See the examples in Appendix A.1 of
+   See the examples in Appendix A of
    [I-D.ietf-jose-json-proof-algorithms].
 
 10.  Security Considerations
@@ -589,6 +589,10 @@ Appendix A.  Acknowledgements
 Appendix B.  Document History
 
    [[ To be removed from the final specification ]]
+
+   -15
+
+   *  Corrected cross-draft section references.
 
    -14
 
