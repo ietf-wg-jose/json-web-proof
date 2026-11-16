@@ -1184,6 +1184,10 @@ for their valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-15
+
+* Editorial and formatting updates only; no normative changes.
+
 -14
 
 * Applied editorial corrections.

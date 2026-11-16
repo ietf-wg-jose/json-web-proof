@@ -452,6 +452,10 @@ for his valuable contributions to this specification.
 
 [[ To be removed from the final specification ]]
 
+-15
+
+- Corrected cross-draft section references.
+
 -14
 
 - Applied editorial corrections.
