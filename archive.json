@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-06T00:57:07.214258+00:00",
+  "timestamp": "2026-11-17T07:29:58.385091+00:00",
   "repo": "ietf-wg-jose/json-web-proof",
   "labels": [
     {
@@ -3193,16 +3193,24 @@
       "id": "I_kwDOFsQObc7CFkpi",
       "title": "Investigate Sigma Protocols",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/182",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "[Sigma Protocols and Fiat-Shamir](https://datatracker.ietf.org/doc/draft-orru-zkproof-sigma-protocols/)\" begins to add commitment schemes to prove knowledge about witnesses (secrets) and combinators.\n\nNeed to investigate if there is (or is planned to be) enough here for an algorithm. ",
       "createdAt": "2025-07-23T12:41:34Z",
-      "updatedAt": "2025-07-23T12:41:34Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-07-06T21:46:15Z",
+      "closedAt": "2026-07-06T21:46:14Z",
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Deferring to modular bbs draft. https://datatracker.ietf.org/doc/draft-bormann-jwp-modular-bbs/",
+          "createdAt": "2026-07-06T21:46:14Z",
+          "updatedAt": "2026-07-06T21:46:14Z"
+        }
+      ]
     },
     {
       "number": 186,
@@ -3242,7 +3250,7 @@
       "id": "I_kwDOFsQObc7Vm05q",
       "title": "JWK/CWK `alg` does not reference JWP algorithm registry.",
       "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/188",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dwaite",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3251,7 +3259,33 @@
       "labels": [],
       "body": "While attempting to improve the CBOR examples, I noticed that the CWK `alg` parameter references the \"COSE Algorithms\" registry, while the `alg` header in JWP references the \"JSON Web Proof Algorithms\" registry.\n\nFor JWK, it references the \"JSON Web Signature and Encryption Algorithms\" registry, which additionally indicates whether it is used for signing or encryption\n\nTwo ways I see to correct this:\n\n1. Create a new JWK/CWK key, perhaps spelled `proof-alg`, which provides the same behavior of `alg` but uses the JWP algorithms registry\n2. Remove the JWP algorithms registry, and instead register parameters in the \"COSE Algorithms\" registry, and work to modify the \"JSON Web Signature and Encryption Algorithms\" registry to also support JWP.",
       "createdAt": "2025-11-03T20:56:42Z",
-      "updatedAt": "2025-11-03T20:56:48Z",
+      "updatedAt": "2026-03-02T22:36:04Z",
+      "closedAt": "2026-03-02T22:36:04Z",
+      "comments": [
+        {
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Let's go with registering a new JWK \"proof_alg\" parameter and corresponding COSE_Key parameter and see what the working group thinks about that.\n\nThis would entail a change at least to the example at https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-proof-algorithms.html#name-example-bbs-jwp.",
+          "createdAt": "2026-02-20T19:37:17Z",
+          "updatedAt": "2026-02-20T19:37:17Z"
+        }
+      ]
+    },
+    {
+      "number": 196,
+      "id": "I_kwDOFsQObc8AAAABH4d6rA",
+      "title": "Request from IANA #1446157 (Early Review)",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/issues/196",
+      "state": "OPEN",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite"
+      ],
+      "labels": [],
+      "body": "We have an older request from IANA to define the upper and lower numeric boundaries for the CBOR Label in Header Parameters. \n\n> What are the upper and lower numeric boundaries for the \u201cHeader Parameter CBOR Label\u201d field?\n>\n> If you have any questions, just let us know. If you'd like to talk in person, you can find us next to the RFC Editor's table from Monday through Thursday. You can also request another review at any time by contacting us at [iana@iana.org](mailto:iana@iana.org).\n>\n> For more information about IANA Considerations section requirements, please see",
+      "createdAt": "2026-07-06T23:41:44Z",
+      "updatedAt": "2026-07-06T23:41:51Z",
       "closedAt": null,
       "comments": []
     }
@@ -11602,13 +11636,13 @@
       "labels": [],
       "body": "Closes #186 \r\n\r\nFirst pass at trying to define a path/pointer syntax that meets the requirements I've heard so far:\r\n\r\n1. mirrors DCQL and SD-JWT-VC as closely as possible\r\n2. keeps a way to select parts of an array of values\r\n3. defines a CBOR equivalent which attempts to align with [CBOR Pointer](https://www.ietf.org/archive/id/draft-mahy-cbor-pointer-00.html)\r\n\r\nThe ability to filter an array to component values adds a fair bit of complexity and keeps us from being able to use some existing work (like the new CBOR Pointer) outright. We should think about whether this is required.\r\n\r\nThis does not attempt to add functions (such as length of array, something @c2bo mentioned they used in their prototype). Functions are actually somewhat difficult to represent in such a selector as a special case within CBOR, since a CBOR map can be keyed off of literally anything.\r\n\r\nAs specified (and as shown in examples), it is possible to have a root document of claims which cannot be reconstructed from the payloads and selectors. It is also possible to have an issuer release a claim and provide a selector into it which does not match when evaluated by the holder/verifier. We probably need to have opinions on these behaviors.",
       "createdAt": "2025-10-24T20:32:19Z",
-      "updatedAt": "2025-11-04T19:53:24Z",
+      "updatedAt": "2026-03-04T08:31:28Z",
       "baseRepository": "ietf-wg-jose/json-web-proof",
       "baseRefName": "main",
-      "baseRefOid": "f91adf269ab2d3af214509aeb37b3541b6cbaf16",
+      "baseRefOid": "7440607a9806a8b8e9c6afb0a50b75332f5c0f20",
       "headRepository": "ietf-wg-jose/json-web-proof",
       "headRefName": "change-jpt-to-array-query-syntax",
-      "headRefOid": "2a8693f4d735762402e6a215e334c74745f68f14",
+      "headRefOid": "396e0b777a8bc06984844d4af275eef3369f79e2",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -11704,6 +11738,486 @@
           "body": "",
           "createdAt": "2025-11-05T00:53:38Z",
           "updatedAt": "2025-11-05T00:53:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 191,
+      "id": "PR_kwDOFsQObc7HOdcC",
+      "title": "Bbs fixtures revamp",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/191",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite"
+      ],
+      "labels": [],
+      "body": "Significant revamp of code generating examples:\r\n\r\n1. Align naming of generated example files and corresponding sections anchors with current spec terminology.\r\n2. Consistency in templates and generated example naming\r\n3. Consistency in fixture naming and internal structure\r\n4. Make example generation deterministic\r\n    a. Move to deterministic ES256 (RFC 6979)\r\n    b. Move to new bbs signature library which has the ability to provide a source of deterministic randomness (a salted ChaCha20 RNG)\r\n    c. Change parameters in JSON examples to be always returned in a canonical order (sorted)\r\n5. Clean up invocation of fixtures\r\n6. Add additional sanity checks as part of the CI process\r\n\r\n",
+      "createdAt": "2026-03-02T04:21:54Z",
+      "updatedAt": "2026-03-02T05:18:04Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "f1f4fe43221f9682c50454ae0ddb8a810b30f09c",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "bbs-fixtures-revamp",
+      "headRefOid": "a35e865a3fc75fc20264c56b7264a551f82898e7",
+      "closedAt": "2026-03-02T05:17:58Z",
+      "mergedAt": "2026-03-02T05:17:58Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "75e094826860cc629bdcfc4a77005d195c849412"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc7m6Sne",
+          "commit": {
+            "abbreviatedOid": "4cc2ac0"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Do we know why the CI is failing?",
+          "createdAt": "2026-03-02T04:48:04Z",
+          "updatedAt": "2026-03-02T04:48:04Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 192,
+      "id": "PR_kwDOFsQObc7HcG-r",
+      "title": "Define `proof_alg` to prevent `alg` collisions.",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/192",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "dwaite"
+      ],
+      "labels": [],
+      "body": "This registers `proof_alg` and defines its usage for both JWK and CWK. Fixes #188 ",
+      "createdAt": "2026-03-02T21:16:55Z",
+      "updatedAt": "2026-03-02T22:36:03Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "3d52b843fb041bbd743ac2e6fcb84c151e57174d",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "proof-alg-parameter-jwk-cwk",
+      "headRefOid": "ee00c9bd22d1e02bdb46e57a16ed487fd3e43058",
+      "closedAt": "2026-03-02T22:36:03Z",
+      "mergedAt": "2026-03-02T22:36:03Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "7440607a9806a8b8e9c6afb0a50b75332f5c0f20"
+      },
+      "comments": [
+        {
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Remaining tasks\r\n\r\n- [x] verifying the embedded examples are correct\r\n- [x] update change history to JPA",
+          "createdAt": "2026-03-02T21:18:47Z",
+          "updatedAt": "2026-03-02T21:33:03Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc7nMkK_",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:42:10Z",
+          "updatedAt": "2026-03-02T21:42:11Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\nTo avoid the risk of collision with algorithms\nregistered in the IANA \"JSON Web Proof Algorithms\" registry, this\nspecification defines the `proof_alg` key parameter\nfor use with algorithms registered in the\nIANA \"JSON Web Proof Algorithms\" registry.\n```",
+              "createdAt": "2026-03-02T21:42:10Z",
+              "updatedAt": "2026-03-02T21:42:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMlj4",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:43:42Z",
+          "updatedAt": "2026-03-02T21:43:42Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\nFor COSE_Key values, a `proof_alg` key parameter is likewise defined to\n```",
+              "createdAt": "2026-03-02T21:43:42Z",
+              "updatedAt": "2026-03-02T21:43:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMl5L",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:44:03Z",
+          "updatedAt": "2026-03-02T21:44:03Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\navoid collisions with the IANA \"COSE Algorithms\" registry [@IANA.COSE].\n```",
+              "createdAt": "2026-03-02T21:44:03Z",
+              "updatedAt": "2026-03-02T21:44:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMmOI",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:44:23Z",
+          "updatedAt": "2026-03-02T21:44:24Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\nkey parameter.\n```",
+              "createdAt": "2026-03-02T21:44:24Z",
+              "updatedAt": "2026-03-02T21:44:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMoLR",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:46:34Z",
+          "updatedAt": "2026-03-02T21:46:34Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\ncryptographic operation.\n```\n\nI believe deleted sentence would cause more confusion than comprehension. ;-)",
+              "createdAt": "2026-03-02T21:46:34Z",
+              "updatedAt": "2026-03-02T21:46:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMqQT",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:48:52Z",
+          "updatedAt": "2026-03-02T21:48:52Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\nWhen `proof_alg` is present, the `alg` key parameter SHOULD NOT be used.\n```",
+              "createdAt": "2026-03-02T21:48:52Z",
+              "updatedAt": "2026-03-02T21:48:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMrpw",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:50:27Z",
+          "updatedAt": "2026-03-02T21:50:27Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "```suggestion\nis 7CPA, following [@I-D.bormann-cbor-draft-numbers]. Please replace 7CPA with\n```",
+              "createdAt": "2026-03-02T21:50:27Z",
+              "updatedAt": "2026-03-02T21:50:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMsnq",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Approved with suggested wording changes",
+          "createdAt": "2026-03-02T21:51:29Z",
+          "updatedAt": "2026-03-02T21:51:29Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMtmd",
+          "commit": {
+            "abbreviatedOid": "1daeade"
+          },
+          "author": "dwaite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:52:34Z",
+          "updatedAt": "2026-03-02T21:52:34Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "How about the simpler:\r\n\r\n```suggestion\r\nTo avoid the risk of collision with algorithms registered in\r\nthe \"JSON Web Proof Algorithms\" registry, this specification\r\ndefines `proof_alg` key parameter.\r\n```",
+              "createdAt": "2026-03-02T21:52:34Z",
+              "updatedAt": "2026-03-02T21:52:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFsQObc7nMxMI",
+          "commit": {
+            "abbreviatedOid": "86c8768"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-02T21:56:01Z",
+          "updatedAt": "2026-03-02T21:56:01Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\ndefines the `proof_alg` key parameter.\n```",
+              "createdAt": "2026-03-02T21:56:01Z",
+              "updatedAt": "2026-03-02T21:56:01Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 193,
+      "id": "PR_kwDOFsQObc7Ru33f",
+      "title": "Update scaffolding code for new library version and interface, deleted library migration code.",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/193",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Verified this did not affect spec output due to new deterministic generation",
+      "createdAt": "2026-04-12T05:02:09Z",
+      "updatedAt": "2026-04-12T05:05:52Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "7440607a9806a8b8e9c6afb0a50b75332f5c0f20",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "scaffold-lib-update",
+      "headRefOid": "0ac24113ff334d2d7248ea90c65917a1a733f2cb",
+      "closedAt": "2026-04-12T05:05:42Z",
+      "mergedAt": "2026-04-12T05:05:42Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "51e5de0da140b3e96eb987f266d9e46227ad9715"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 194,
+      "id": "PR_kwDOFsQObc7Ru-Qp",
+      "title": "Corrections of example generation based on implementor feedback",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/194",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Corrections of example generation based on implementor feedback.\r\n\r\n- `MAC-H256` example now includes the correct secret in the issuer proof\r\n- `MAC-H256` example no longer omits some components in signed inputs.\r\n- Align `SU-ES256` prose and fixtures for compact and CPT example payloads and disclosures",
+      "createdAt": "2026-04-12T05:26:01Z",
+      "updatedAt": "2026-04-15T23:36:43Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "51e5de0da140b3e96eb987f266d9e46227ad9715",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "example-fixes",
+      "headRefOid": "34fd91cac17e2d2078545bdc489b46e3e8958a2a",
+      "closedAt": "2026-04-15T23:36:43Z",
+      "mergedAt": "2026-04-15T23:36:43Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "7375df4c0a099f3a4854ddc7a12e3b9156ccd29a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc71VUNY",
+          "commit": {
+            "abbreviatedOid": "34fd91c"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-04-15T18:36:40Z",
+          "updatedAt": "2026-04-15T18:36:40Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 195,
+      "id": "PR_kwDOFsQObc7RvPZI",
+      "title": "Test PR to verify GitHub actions changes",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/195",
+      "state": "CLOSED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-04-12T06:17:59Z",
+      "updatedAt": "2026-04-12T08:31:18Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "8fbea5d17a5778e2b808eef0c0d246820fbd6d8c",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "pr-test",
+      "headRefOid": "857351f24e0ca302104317af253f752ee49c6fbf",
+      "closedAt": "2026-04-12T08:31:18Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "github-actions",
+          "authorAssociation": "NONE",
+          "body": "<!-- pr-preview-links -->\n## PR Preview Links\n\nPreview publication is confirmed.\n\nThese preview URLs are confirmed from the published `gh-pages` branch for `pr-test`.\n\n| Draft | HTML | Text | Diff |\n| --- | --- | --- | --- |\n| json-proof-algorithms | [html](https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-proof-algorithms.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-proof-algorithms.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-proof-algorithms.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-proof-algorithms.txt) |\n| json-proof-token | [html](https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-proof-token.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-proof-token.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-proof-token.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-proof-token.txt) |\n| json-web-proof | [html](https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-web-proof.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-web-proof.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-web-proof.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/pr-test/draft-ietf-jose-json-web-proof.txt) |\n",
+          "createdAt": "2026-04-12T08:29:35Z",
+          "updatedAt": "2026-04-12T08:29:49Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 197,
+      "id": "PR_kwDOFsQObc7uuumm",
+      "title": "Editorial improvements draft 14",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/197",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "An editorial pass including:\r\n\r\n- tightening language (e.g. dropping 'in order to')\r\n- correcting a few malformed references (specifically, line wrapping within a reference)\r\n- evaluating the normative/informative referencing, and making sure each document is consistent\r\n- refining references to point to particular sections/appendices when appropriate\r\n- fix reference to COSE_Sign1, which was pointing to the countersignatures RFC",
+      "createdAt": "2026-07-07T08:33:31Z",
+      "updatedAt": "2026-07-20T16:17:20Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "eea45d21fde04bb7d7ea6234d3cb5d3135fcdab2",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "editorial-improvements-draft-14",
+      "headRefOid": "125df046d60365d5900e1e06816613204713d2d8",
+      "closedAt": "2026-07-20T16:17:20Z",
+      "mergedAt": "2026-07-20T16:17:20Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "01c33e3cf326bc89d0aa3fd6ef125e27cf2008cf"
+      },
+      "comments": [
+        {
+          "author": "github-actions",
+          "authorAssociation": "NONE",
+          "body": "<!-- pr-preview-links -->\n## PR Preview Links\n\nPreview publication is confirmed.\n\nThese preview URLs are confirmed from the published `gh-pages` branch for `editorial-improvements-draft-14`.\n\n| Draft | HTML | Text | Diff |\n| --- | --- | --- | --- |\n| json-proof-algorithms | [html](https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-proof-algorithms.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-proof-algorithms.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-proof-algorithms.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-proof-algorithms.txt) |\n| json-proof-token | [html](https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-proof-token.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-proof-token.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-proof-token.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-proof-token.txt) |\n| json-web-proof | [html](https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-web-proof.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-web-proof.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-web-proof.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/editorial-improvements-draft-14/draft-ietf-jose-json-web-proof.txt) |\n",
+          "createdAt": "2026-07-07T08:34:39Z",
+          "updatedAt": "2026-07-20T16:10:49Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc8AAAABGk9L9Q",
+          "commit": {
+            "abbreviatedOid": "6c656bf"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-07-20T15:27:13Z",
+          "updatedAt": "2026-07-20T15:27:13Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 198,
+      "id": "PR_kwDOFsQObc8AAAABPmNGcw",
+      "title": "Editorial changes including additional fully-specified algorithm guidance",
+      "url": "https://github.com/ietf-wg-jose/json-web-proof/pull/198",
+      "state": "MERGED",
+      "author": "dwaite",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-11-16T17:21:17Z",
+      "updatedAt": "2026-11-16T17:46:08Z",
+      "baseRepository": "ietf-wg-jose/json-web-proof",
+      "baseRefName": "main",
+      "baseRefOid": "6bb7ae186972a00a0c7b6cc9b6e5b6e320df5a09",
+      "headRepository": "ietf-wg-jose/json-web-proof",
+      "headRefName": "fully-specified-algorithms-and-editorial",
+      "headRefOid": "2741dbeb037422406faa7fef229cbbd4d07361bf",
+      "closedAt": "2026-11-16T17:46:02Z",
+      "mergedAt": "2026-11-16T17:46:02Z",
+      "mergedBy": "dwaite",
+      "mergeCommit": {
+        "oid": "af37f244751db03889027cb9bc23f6788f7f4e52"
+      },
+      "comments": [
+        {
+          "author": "github-actions",
+          "authorAssociation": "NONE",
+          "body": "<!-- pr-preview-links -->\n## PR Preview Links\n\nPreview publication is confirmed.\n\nThese preview URLs are confirmed from the published `gh-pages` branch for `fully-specified-algorithms-and-editorial`.\n\n| Draft | HTML | Text | Diff |\n| --- | --- | --- | --- |\n| json-proof-algorithms | [html](https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-proof-algorithms.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-proof-algorithms.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-proof-algorithms.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-proof-algorithms.txt) |\n| json-proof-token | [html](https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-proof-token.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-proof-token.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-proof-token.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-proof-token.txt) |\n| json-web-proof | [html](https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-web-proof.html) | [text](https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-web-proof.txt) | [diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-wg-jose.github.io/json-web-proof/draft-ietf-jose-json-web-proof.txt&url_2=https://ietf-wg-jose.github.io/json-web-proof/fully-specified-algorithms-and-editorial/draft-ietf-jose-json-web-proof.txt) |\n",
+          "createdAt": "2026-11-16T17:22:16Z",
+          "updatedAt": "2026-11-16T17:22:25Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFsQObc8AAAABYSJL1Q",
+          "commit": {
+            "abbreviatedOid": "2741dbe"
+          },
+          "author": "selfissued",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-11-16T17:40:44Z",
+          "updatedAt": "2026-11-16T17:40:44Z",
           "comments": []
         }
       ]
